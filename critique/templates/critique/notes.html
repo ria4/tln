@@ -1,0 +1,84 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+{% load l10n %}
+
+{% block title %}tln - notes{% endblock %}
+
+{% block content %}
+
+<ul>
+    <li><a href={% url "liste_notes" "film" %}>films</a></li>
+    <li><a href={% url "liste_notes" "serie" %}>séries</a></li>
+    <li><a href={% url "liste_notes" "album" %}>musique</a></li>
+    <li><a href={% url "liste_notes" "jeu" %}>jeux</a></li>
+    <li><a href={% url "liste_notes" "livre" %}>livres</a></li>
+    <!-- <li><a href={% url "liste_notes" "bd" %}>bd</a></li> -->
+</ul>
+
+{% if mtype %}
+<h1>Notes éperdues - {{ mtype }}</h1>
+{% else %}
+<h1>Notes éperdues</h1>
+{% endif %}
+
+<div>
+{% for oeuvre in oeuvres %}
+    <div>
+    {# <a href={% url "detail_oeuvre" oeuvre.id %}> #}
+        {% if oeuvre.info.image_url %}
+        <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
+        {% else %}
+        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+        {% endif %}
+    {# </a> #}
+    <div>
+    <h2>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h2>
+    {% with oeuvre.comments.0 as comment %}
+        <article>
+            <div>
+                {% with comment.content.0 as p %}
+                <p>{{ p }}</p>
+                {% endwith %}
+            </div>
+            <div>
+                {% if comment.content|length > 1 %}
+                <p>[...]</p>
+                {% endif %}
+            </div>
+            <p>écrit 
+                {% localize on %}
+                {% if comment.date_month_unknown %}
+                    en {{ comment.date|date:"Y" }}
+                {% elif comment.date_day_unknown %}
+                    en {{ comment.date|date:"F Y" }}
+                {% else %}
+                    {% if comment.date|date:"j" == "1" %}
+                        le 1er {{ comment.date|date:"F Y" }}
+                    {% else %}
+                        le {{ comment.date|date:"j F Y" }}
+                    {% endif %}
+                {% endif %}
+                {% endlocalize %}
+            </p>
+        </article>
+    {% endwith %}
+    </div>
+    </div>
+{% endfor %}
+</div>
+
+<div class="pagination">
+    {% if oeuvres.has_previous %}
+        <a href={% url "liste_oeuvres" mtype oeuvres.previous_page_number %}>Page précédente</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ oeuvres.number }} sur {{ oeuvres.paginator.num_pages }}
+    </span>
+
+    {% if oeuvres.has_next %}
+        <a href={% url "liste_oeuvres" mtype oeuvres.next_page_number %}>Page suivante</a>
+    {% endif %}
+</div>
+    
+{% endblock %}

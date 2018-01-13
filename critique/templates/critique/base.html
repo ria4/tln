@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <!-- <link rel="stylesheet" href="/media/css/style.css" -->
+        <title>{% block title %}tln - critiques{% endblock%}</title>
+    </head>
+    <body>
+        <header>
+        <a href="/">tln (logo)</a>
+        <nav>
+            <ul>
+                <li><a href={% url "preambule" %}>préambule</a></li>
+                <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
+                <li>errances</li>
+                <ul>
+                    <li><a href={% url "liste_notes" %}>carnet de notes</a></li>
+                    <li><a href={% url "liste_envies" "film" %}>en ligne de mire</a></li>
+                    <li><a href={% url "liste_oeuvres" "film" %}>films rencontrés</a></li>
+                    <li><a href={% url "liste_cinemas" %}>cinémas parisiens</a></li>
+                    <li><a href={% url "liste_seances" %}>liste des séances</a></li>
+                    <li><a href={% url "top_films" %}>top films par année</a></li>
+                </ul>
+                <li>recherche</li>
+            </ul>
+        </nav>
+        </header>
+        <section id="content">
+            {% block content %}{% endblock %}
+        </section>
+        {# <footer>--footer--</footer> #}
+    </body>
+</html>

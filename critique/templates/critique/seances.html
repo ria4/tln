@@ -1,0 +1,35 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+{% load l10n %}
+
+{% block title %}tln - séances{% endblock %}
+
+{% block content %}
+
+<ul>
+    <li><a href={% url "liste_seances" 2011 %}>avant 2012</a></li>
+    {% for y in year_range %}
+    <li><a href={% url "liste_seances" y %}>{{ y }}</a></li>
+    {% endfor %}
+</ul>
+
+<h1>Séances ciné - {{ year }}</h1>
+
+<div>
+    <ul>
+    {% for seance in seances %}
+        <li>{% localize on %}
+            {% if seance.date_day_unknown %}
+                ??? {{ seance.date|date:"Y" }} :
+            {% elif seance.date|date:"j" == "1" %}
+                1er {{ seance.date|date:"F Y" }} :
+            {% else %}
+                {{ seance.date|date:"j F Y" }} :
+            {% endif %}
+            {% endlocalize %}
+            {{ seance.cinema }} - {{ seance.film }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+{% load l10n %}
+
+{% block title %}tln - {{ oeuvre.info.titles.vf|lower }}{% endblock %}
+
+{% block content %}
+
+<div>
+    <h1>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h1>
+    {% if oeuvre.info.titles.vo %}
+    <p>{{ oeuvre.info.titles.vo }}</p>
+    {% endif %}
+
+    {% if oeuvre.info.imdb_id %}
+    <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">Voir sur IMDb</a></p>
+    {% endif %}
+    
+    {% if oeuvre.info.artists|length > 0 %}
+    <p>Artiste{{ oeuvre.info.artists|length|pluralize }} :
+    {% for artist in oeuvre.info.artists %}
+        {% if forloop.last %}
+            <a href={% url "artiste" artist %}>{{ artist }}</a>
+        {% else %}
+            <a href={% url "artiste" artist %}>{{ artist }}</a>,
+        {% endif %}
+    {% endfor %}
+    </p>
+    {% endif %}
+    
+    {% if oeuvre.envie %}
+    <p>Ceci est une envie.</p>
+    {% endif %}
+    
+    {% if oeuvre.info.image_url %}
+    <p><img src="{% static oeuvre.info.image_url %}" alt="cover" /></p>
+    <!-- <p><img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /></p> -->
+    {% endif %}
+</div>
+
+{% if oeuvre.comments|length > 0 %}
+    <div>
+    {% for comment in oeuvre.comments %}
+        <article>
+            {% if comment.title %}
+            <h2>{{ comment.title }}</h2>
+            {% endif %}
+            <div>
+            {% for p in comment.content %}
+                <p>{{ p }}</p>
+            {% endfor %}
+            </div>
+            <p>écrit 
+                {% localize on %}
+                {% if comment.date_month_unknown %}
+                    en {{ comment.date|date:"Y" }}
+                {% elif comment.date_day_unknown %}
+                    en {{ comment.date|date:"F Y" }}
+                {% else %}
+                    {% if comment.date|date:"j" == "1" %}
+                        le 1er {{ comment.date|date:"F Y" }}
+                    {% else %}
+                        le {{ comment.date|date:"j F Y" }}
+                    {% endif %}
+                {% endif %}
+                {% endlocalize %}
+            </p>
+        </article>
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}
