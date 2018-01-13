@@ -1,0 +1,51 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+
+{% block title %}tln - collection{% endblock %}
+
+{% block content %}
+
+<ul>
+    <li><a href={% url "liste_oeuvres" "film" %}>films</a></li>
+    <li><a href={% url "liste_oeuvres" "serie" %}>séries</a></li>
+    <li><a href={% url "liste_oeuvres" "album" %}>musique</a></li>
+    <li><a href={% url "liste_oeuvres" "jeu" %}>jeux</a></li>
+    <li><a href={% url "liste_oeuvres" "livre" %}>livres</a></li>
+    <!-- <li><a href={% url "liste_oeuvres" "bd" %}>BD</a></li> -->
+</ul>
+
+<h1>Collection {{ mtype }}</h1>
+
+<ul>
+{% for oeuvre in oeuvres %}
+<li><a href={% url "detail_oeuvre" oeuvre.id %}>
+        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+{% comment %}
+        {% if oeuvre.info.image_url %}
+        <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
+        {% else %}
+        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+        {% endif %}
+{% endcomment %}
+    </a></li>
+{% endfor %}
+</ul>
+
+
+{% comment %}
+<div class="pagination">
+    {% if oeuvres.has_previous %}
+        <a href={% url "liste_oeuvres" mtype oeuvres.previous_page_number %}>Page précédente</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ oeuvres.number }} sur {{ oeuvres.paginator.num_pages }}
+    </span>
+
+    {% if oeuvres.has_next %}
+        <a href={% url "liste_oeuvres" mtype oeuvres.next_page_number %}>Page suivante</a>
+    {% endif %}
+</div>
+{% endcomment %}
+    
+{% endblock %}

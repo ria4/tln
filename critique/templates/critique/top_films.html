@@ -1,0 +1,28 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+
+{% block title %}tln - top ciné{% endblock %}
+
+{% block content %}
+
+<ul>
+    {% for y in year_range %}
+    <li><a href={% url "top_films" y %}>{{ y }}</a></li>
+    {% endfor %}
+</ul>
+
+<h1>Top Ciné {{ year }}</h1>
+
+<ul>
+{% for oeuvre in oeuvres %}
+<li><a href={% url "detail_oeuvre" oeuvre.id %}>
+        {% if oeuvre.info.image_url %}
+        <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
+        {% else %}
+        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+        {% endif %}
+    </a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+
+{% block title %}tln - {{ artist|lower }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ artist }}</h1>
+
+<ul>
+{% for oeuvre in oeuvres %}
+<li><a href={% url "detail_oeuvre" oeuvre.id %}>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</a></li>
+{% endfor %}
+</ul>
+    
+{% endblock %}

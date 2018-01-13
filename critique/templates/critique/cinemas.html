@@ -1,0 +1,114 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+{% load l10n %}
+
+{% block title %}tln - cinémas{% endblock %}
+
+{% block content %}
+
+<h1>Cinémas parisiens</h1>
+
+{% if not cinemas.has_previous %}
+<div>
+    <p>
+    Paris abrite une centaine de cinémas. Je ne travaille pas au CNC et je doute que quiconque d'autre soit capable de fournir un nombre exact, mais je suis certain que c'est la ville la mieux lotie au monde en lieux dédiés à la projection. Après Londres ? Perfide Albion. Quoi qu'il en soit, cent, c'est déjà bien assez. D'autant que j'ambitionne vaguement de tous leur payer une petite visite. On s'occupe comme on peut.
+    </p>
+    <p>
+    Cette liste constitue un vague journal de mes pérégrinations. Les histoires et les descriptions des lieux s'y mélangent à des expériences plus personnelles. Je ne me satisfais pas des faits, et j'ai tendance à exacerber certains caractères que j'ai pu observer, à des fins de réflexion probablement excessive, de divertissement, et souvent des deux. Je n'ai aucune prétention d'objectivité, si tant est qu'un tel concept existe, et j'accueille la critique à bras ouverts. Affirmer que la vérité extatique de Werner Herzog me sert de modèle serait faux en plus d'être terriblement prétentieux, mais je vous laisse juges d'établir d'éventuels rapprochements avec ma démarche. :)
+    </p>
+    <p>
+    Pour les historiques des salles, je n'ai pas le courage de jouer le journaliste en herbe et d'interroger des exploitants. Je suis trop paresseux pour vouloir être pris au sérieux, et de toute façon ce n'est pas une finalité de ce pèlerinage diffus. J'utilise donc diverses sources indirectes, que j'essaye dans la mesure du possible de recroiser, parmi lesquelles les éventuels sites des cinémas en question, les pages wikipédia encore moins nombreuses et parfois douteuses, des threads de divers forums obscurs enterrés depuis des années, des articles de presse tout autant enfouis, et d'autres intermédiaires à prendre avec plus ou moins de pincettes mais desquels je suis redevable :
+    </p>
+    <ul>
+        <li>l'excellent blog Ciné-Façades, toujours actif : http://sallesdecinemas.blogspot.fr/</li>
+        <li>le blog Silver Screens, plus daté mais exigeant dans ses recherches : http://www.silverscreens.com/paris.php</li>
+        <li>le site communautaire et un peu fourre-tout Salles-Cinéma : http://www.salles-cinema.com/paris</li>
+        <li>et le registre inégal mais quand même précieux Cinema Treasures : http://cinematreasures.org/theaters/france/paris</li>
+    </ul>
+    <p>
+    Je me suis aussi souvent référé à la fantastique carte composée sur Paris-Louxor : http://www.paris-louxor.fr/cinemasdeparis/. Elle permet entre autres de prendre la triste mesure de l'hécatombe qui a touché les salles parisiennes, principalement dans les années 70-80.
+    </p>
+    <p>
+    Pour ceux que la question intéresse, évidemment majeurs, sachez qu'il reste à ma connaissance deux cinés X en activité, l'Atlas et le Beverley, qui dispose d'un site authentiquement rétro : http://cinebeverley.chez.com/ (les icônes de navigation sont un peu cachées). Et j'en profite pour glisser un témoignage : http://www.salles-cinema.com/actualites/interview-cinema-le-beverley. Parenthèse cochonne terminée.
+    </p>
+    <p>
+    Quelques observations en vrac mais réduites à l'essentiel, sachant qu'une majorité de cinés acceptent la carte UGC Illimité, bon plan ultime :
+    <ul>
+        <li>les attractions à visiter au moins une fois : le Louxor - salle Youssef Chahine, le Grand Rex - Grande Salle ;</li>
+        <li>les rétrospectives : la Filmothèque, le Grand Action, la Cinémathèque, le Forum des images, le Champo, le Desperado, le Christine 21 ;</li>
+        <li>les films à spectacle : Max Linder Panorama, UGC Normandie - salle 1, UGC La Défense - salle 16, UGC Les Halles - salle 6 ;</li>
+        <li>les cinés éclectiques à surveiller : le Reflet Médicis, le Balzac, la Clef ;</li>
+        <li>les découvertes audacieuses : le Saint André des Arts ;</li>
+        <li>les nanars et Bollywood : le Publicis Cinémas ;</li>
+        <li>les documentaires : l'Espace Saint-Michel ;</li>
+        <li>pour traîner l'été : MK2 Quai de Seine ;</li>
+        <li>RIP : UGC Orient Express, la Pagode. :'(</li>
+    </ul>
+    Les dates en fin d'articles ne correspondent pas à ma dernière visite, mais au jour où j'ai vu le film retenu (souvent arbitrairement) pour la liste.
+    </p>
+    <p>
+    Ils m'ont déjà vu passer : 
+    <ul>
+        <li>les 3 Luxembourg, les 5 Caumartin, les 7 Parnassiens, l'Accattone, l'Archipel, l'Arlequin, le Balzac, la Bastille, le Brady, le Bretagne, le Chaplin Denfert, le Chaplin Saint Lambert, la Cinémathèque française, le Cinéma des cinéastes, le Cinéma du Panthéon, la Clef, le Champo, le Christine 21, le Desperado, l'Entrepôt, l'Escurial, l'Espace Saint-Michel, l'Étoile Lilas, l'Étoile Saint-Germain-des-Prés, la Filmothèque du Quartier Latin, le Forum des Images, le Grand Action, le Grand Rex, le Lincoln, le Louxor, le Lucernaire, le Luminor Hôtel de Ville, le Mac-Mahon, le Majestic Bastille, le Majestic Passy, le Max Linder Panorama, le Nouvel Odéon, la Pagode, le Publicis Cinémas, le Reflet Médicis, le Saint André des Arts, le Saint Lazare, le Studio 28, le Studio des Ursulines ;</li>
+        <li>l'UGC Bercy, l'UGC Danton, l'UGC La Défense (hors Paris, mais il a sa place dans cette liste), l'UGC George V, l'UGC Gobelins, l'UGC Les Halles, l'UGC Lyon Bastille, l'UGC Maillot, l'UGC Montparnasse, l'UGC Normandie, l'UGC Odéon, l'UGC Opéra, l'UGC Orient Express, l'UGC Paris 19, l'UGC Rotonde ;</li>
+        <li>le MK2 Bastille, le MK2 Beaubourg, le MK2 Bibliothèque, le MK2 Gambetta, le MK2 Grand Palais, le MK2 Hautefeuille, le MK2 Nation, le MK2 Odéon, le MK2 Parnasse, le MK2 Quai de Loire, le MK2 Quai de Seine ;</li>
+        <li>les Fauvettes, le Gaumont Champs-Élysées Marignan, le Gaumont Parnasse, le Pathé Wepler ;</li>
+        <li>le Club de l'Étoile, le Club 13, la Fondation Jérôme Seydoux, la Géode, le Jeu de Paume, le Parc de la Villette, la katasalle ciné.</li>
+    </ul>
+    <p>
+    J'arrive bientôt : l'Épée de Bois, le Studio Galande, le Beverley (celui-là, je me tâte), les Bobines, la Gaîté lyrique, le Grand Palais (Cinéma Paradiso), le Katara, la Lucarne, la Péniche Cinéma.
+    </p>
+    <p>
+    Je manque de contacts (salles privatisables) : l'Élysées Biarritz, le Germain Paradisio, le Madame/Mademoiselle Cinéma, le Silencio.
+    </p>
+    <p>
+    Je passerai sans doute mon tour (cumul de désaccords en ce qui concerne le design des cinémas, la sélection, la VF et les tarifs) : le Gaumont Champs-Élysées côté Ambassade, le Gaumont Aquaboulevard, le Gaumont Convention, le Gaumont Mistral, les Gaumont Opéra côtés Capucine, Français & Premier, le Gaumont Parnasse côté Montparnos, le Pathé Beaugrenelle, le Pathé Convention.
+    </p>
+    <p>
+    J'hésite à parler de cinéma, même s'ils ont au moins une salle dédiée à la projection occasionnelle de films : l'Atlas (le troll de citer un lieu de cruising avant tous les musées), le Centre Georges-Pompidou, le Cinaxe, la Cité de l'architecture et du patrimoine, la Cité de la musique, la Cité des sciences et de l'industrie, l'Institut du monde arabe, l'Institut finlandais (visité !), l'Institut océanographique de Paris, la Maison de la culture du Japon, la Maison européenne de la photographie, le Musée d'art et d'histoire du judaïsme, le Musée d'Orsay, le Musée de l'histoire de l'immigration, le Musée du Louvre, le Théâtre Le Ranelagh, mon appartement (visité aussi).
+    </p>
+    <p>
+    80 cinés parisiens visités au 14 mars 2016
+    </p>
+</div>
+{% endif %}
+
+<div>
+{% for cinema in cinemas %}
+    <div>
+        <h2>{{ cinema.name }}</h2>
+        <article>
+            <div>
+                {% for p in cinema.comment %}
+                <p>{{ p }}</p>
+                {% endfor %}
+            </div>
+            <p>visité le 
+                {% localize on %}
+                {% if cinema.visited|date:"j" == "1" %}
+                    le 1er {{ cinema.visited|date:"F Y" }}
+                {% else %}
+                    le {{ cinema.visited|date:"j F Y" }}
+                {% endif %}
+                {% endlocalize %}
+            </p>
+        </article>
+    </div>
+{% endfor %}
+</div>
+
+<div class="pagination">
+    {% if cinemas.has_previous %}
+        <a href={% url "liste_cinemas" cinemas.previous_page_number %}>Page précédente</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ cinemas.number }} sur {{ cinemas.paginator.num_pages }}
+    </span>
+
+    {% if cinemas.has_next %}
+        <a href={% url "liste_cinemas" cinemas.next_page_number %}>Page suivante</a>
+    {% endif %}
+</div>
+    
+{% endblock %}
