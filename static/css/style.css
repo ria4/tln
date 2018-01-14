@@ -705,15 +705,8 @@ header {
     justify-content: center;
 }
 
-.content .oeuvre_info .info_img {
-    width: 220px;
-    height: auto;
+.content .oeuvre_info .oeuvre_display {
     margin-right: 20px;
-}
-
-.content .oeuvre_info .info_img img {
-    max-width: 100%;
-    max-height: 100%;
 }
 
 .content .oeuvre_info .info_text {
@@ -780,10 +773,13 @@ header {
 .content .oeuvre_display {
     height: 290px;
     width: auto;
+    max-width: 400px;
     margin: 10px;
 }
 
 .content .oeuvre_display img {
+    padding: 0;
+    border: 1px solid #eee;
     max-width: 100%;
     max-height: 100%;
 }
