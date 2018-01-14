@@ -1,5 +1,6 @@
 
 import os
+import random
 from datetime import datetime
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage
@@ -73,8 +74,8 @@ def liste_notes(req, mtype=None, page=1):
     return render(req, 'critique/notes.html', context)
 
 def top_films(req, year=2017):
-    top_films = get_object_or_404(TopFilms, year=year)
-    oeuvres = top_films.top
+    oeuvres = list(get_object_or_404(TopFilms, year=year).top)
+    random.shuffle(oeuvres)
     year_range = range(2012, 2018)
     return render(req, 'critique/top_films.html', locals())
 

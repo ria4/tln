@@ -535,7 +535,7 @@ textarea, input {
     float: right;
 }
 
-/* Menu Bar
+/* Main
    ========================================================================== */
 body {
     height: auto;
@@ -553,6 +553,57 @@ header {
     width: 100%;
     z-index: 101;
 }
+
+.content {
+    margin-top: 100px;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: Alegreya;
+}
+
+.content a {
+    color: gray;
+    text-decoration: none;
+}
+
+.content a:hover {
+    color: #ffb618;
+}
+
+.content a:active, .navbar a:focus {
+    outline: none
+}
+
+
+/* Navigation Bars
+   ========================================================================== */
+.navbar {
+    width: 100%;
+}
+
+.navbar li {
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-family: Abuget;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #ffb618;
+}
+
+.navbar a:active, .navbar a:focus {
+    outline: none
+}
+
 
 #main-bar {
     margin: 0 auto;
@@ -582,8 +633,6 @@ header {
 
 
 #errance-bar {
-    left: 0;
-    width: 100%;
     z-index: 0;
     background: #fff;
     position: relative;
@@ -600,7 +649,6 @@ header {
     -o-transition: all 0.4s ease;
     font-size: 40px;
 }
-
 
 #errance-bar.expanded {
     visibility: visible;
@@ -626,50 +674,30 @@ header {
 }
 
 
-.navbar li {
-    float: left;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-family: Abuget;
-}
-
-.navbar a {
-    color: black;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    color: #ffb618;
-}
-
-.navbar a:active, .navbar a:focus {
-    outline: none
-}
-
-
-#content {
-    margin-top: 100px;
-    font-size: 20px;
+#sub-bar {
+    font-size: 46px;
+    margin-top: -20px;
+    margin-bottom: 10px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
-#content a {
-    color: gray;
-    text-decoration: none;
+#sub-bar li {
+    padding: 0 36px;
 }
 
-#content a:hover {
-    color: #ffb618;
+#sub-bar .selected {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    display: inline-block;
+    line-height: 0.55;
 }
 
-#content a:active, .navbar a:focus {
-    outline: none
-}
 
-#content .oeuvre_info {
+/* Content Oeuvres
+   ========================================================================== */
+.content .oeuvre_info {
     font-family: AlegreyaSans;
     width: 100%;
     display: flex;
@@ -677,64 +705,86 @@ header {
     justify-content: center;
 }
 
-#content .oeuvre_info .info_img {
+.content .oeuvre_info .info_img {
     width: 220px;
     height: auto;
     margin-right: 20px;
 }
 
-#content .oeuvre_info .info_img img {
+.content .oeuvre_info .info_img img {
     max-width: 100%;
     max-height: 100%;
 }
 
-#content .oeuvre_info .info_text {
+.content .oeuvre_info .info_text {
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#content .oeuvre_info .main_title {
+.content .oeuvre_info .main_title {
     font-weight: bold;
     font-size: 30px;
     padding-bottom: 6px;
 }
 
-#content .oeuvre_info .alt_title {
+.content .oeuvre_info .alt_title {
     margin-top: -10px;
     padding-bottom: 6px;
 }
-#content .oeuvre_info .artists {
+.content .oeuvre_info .artists {
     padding-bottom: 6px;
 }
 
-#content .oeuvre_comments {
+.content .oeuvre_comments {
     margin-top: 24px;
     width: 750px;
-    font-family: Alegreya;
 }
 
-#content .comment {
+.content .comment {
     border-top: 1px solid black;
     padding-top: 4px;
 }
 
-#content .comment_par {
+.content .comment_par {
     margin: 18px 0;
 }
 
-#content .comment_title {
+.content .comment_title {
     font-weight: bold;
     font-size: 30px;
     text-align: center;
     padding: 44px 8px 12px 0;
 }    
 
-#content .comment_date {
+.content .comment_date {
     margin-top: -4px;
     font-style: italic;
     text-align: right;
     padding-right: 20px;
 }    
+
+
+/* Content Top Films
+   ========================================================================== */
+.content .oeuvres_display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+    max-width: 1320px;
+}
+
+.content .oeuvre_display {
+    height: 290px;
+    width: auto;
+    margin: 10px;
+}
+
+.content .oeuvre_display img {
+    max-width: 100%;
+    max-height: 100%;
+}
 
