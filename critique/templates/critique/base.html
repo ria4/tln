@@ -1,17 +1,30 @@
 <!doctype html>
 <html lang="fr">
     <head>
-        <!-- <link rel="stylesheet" href="/media/css/style.css" -->
+        <link rel="stylesheet" href="/static/css/style.css"/>
         <title>{% block title %}tln - critiques{% endblock%}</title>
     </head>
+
     <body>
         <header>
-        <a href="/">tln (logo)</a>
-        <nav>
-            <ul>
-                <li><a href={% url "preambule" %}>préambule</a></li>
-                <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
-                <li>errances</li>
+            <div id="main-bar" class="navbar">
+                <a id="logo" href="/" title="tln">
+                    tln
+                    {% comment %}
+                    <img src="/static/img_base/tln_logo.png" alt="tln-logo"/>
+                    {% endcomment %}
+                </a>
+                <nav role="navigation">
+                <ul>
+                    <li><a href={% url "preambule" %}>préambule</a></li>
+                    <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
+                    <li data-expnd=".errance-bar" id="errance-bar-trigger"><a href="#">errances</a></li>
+                    {# <li>recherche</li> #}
+                </ul>
+                </nav>
+            </div>
+
+            <div id="errance-bar" class="navbar">
                 <ul>
                     <li><a href={% url "liste_notes" %}>carnet de notes</a></li>
                     <li><a href={% url "liste_envies" "film" %}>en ligne de mire</a></li>
@@ -20,13 +33,14 @@
                     <li><a href={% url "liste_seances" %}>liste des séances</a></li>
                     <li><a href={% url "top_films" %}>top films par année</a></li>
                 </ul>
-                <li>recherche</li>
-            </ul>
-        </nav>
+            </div>
         </header>
+
         <section id="content">
             {% block content %}{% endblock %}
         </section>
+
         {# <footer>--footer--</footer> #}
+        <script type="text/javascript" src="/static/js/base.js"></script>
     </body>
 </html>
