@@ -6,16 +6,17 @@
 
 {% block content %}
 
-<div>
-    <h1>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h1>
+<div class="oeuvre_info">
+    {% if oeuvre.info.image_url %}
+    <p><img src="{% static oeuvre.info.image_url %}" alt="cover" /></p>
+    <!-- <p><img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /></p> -->
+    {% endif %}
+
+    <h1 class="main_title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h1>
     {% if oeuvre.info.titles.vo %}
     <p>{{ oeuvre.info.titles.vo }}</p>
     {% endif %}
 
-    {% if oeuvre.info.imdb_id %}
-    <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">Voir sur IMDb</a></p>
-    {% endif %}
-    
     {% if oeuvre.info.artists|length > 0 %}
     <p>Artiste{{ oeuvre.info.artists|length|pluralize }} :
     {% for artist in oeuvre.info.artists %}
@@ -28,29 +29,28 @@
     </p>
     {% endif %}
     
-    {% if oeuvre.envie %}
-    <p>Ceci est une envie.</p>
+    {% if oeuvre.info.imdb_id %}
+    <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">Voir sur IMDb</a></p>
     {% endif %}
     
-    {% if oeuvre.info.image_url %}
-    <p><img src="{% static oeuvre.info.image_url %}" alt="cover" /></p>
-    <!-- <p><img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /></p> -->
+    {% if oeuvre.envie %}
+    <p>Ceci est une envie.</p>
     {% endif %}
 </div>
 
 {% if oeuvre.comments|length > 0 %}
     <div>
     {% for comment in oeuvre.comments %}
-        <article>
+        <article class="comment">
             {% if comment.title %}
-            <h2>{{ comment.title }}</h2>
+            <h2 class="comment_title">{{ comment.title }}</h2>
             {% endif %}
             <div>
             {% for p in comment.content %}
                 <p>{{ p }}</p>
             {% endfor %}
             </div>
-            <p>écrit 
+            <p class="comment_date">écrit 
                 {% localize on %}
                 {% if comment.date_month_unknown %}
                     en {{ comment.date|date:"Y" }}

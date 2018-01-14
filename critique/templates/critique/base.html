@@ -18,13 +18,13 @@
                 <ul>
                     <li><a href={% url "preambule" %}>préambule</a></li>
                     <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
-                    <li data-expnd=".errance-bar" id="errance-bar-trigger"><a href="#">errances</a></li>
+                    <li id="errance-bar-trigger"><a href="#">errances</a></li>
                     {# <li>recherche</li> #}
                 </ul>
                 </nav>
             </div>
 
-            <div id="errance-bar" class="navbar">
+            <div id="errance-bar" class="navbar" expanded_size="simple">
                 <ul>
                     <li><a href={% url "liste_notes" %}>carnet de notes</a></li>
                     <li><a href={% url "liste_envies" "film" %}>en ligne de mire</a></li>
