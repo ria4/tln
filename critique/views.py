@@ -51,7 +51,7 @@ def liste_oeuvres(req, mtype, page=1):
 
 def liste_envies(req, mtype, page=1):
     oeuvres_list = Oeuvre.objects(__raw__={'envie': True, 'info.type': mtype})
-    paginator = Paginator(oeuvres_list, 20)
+    paginator = Paginator(oeuvres_list, 22)
     try:
         oeuvres = paginator.page(page)
     except EmptyPage:
