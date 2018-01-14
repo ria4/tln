@@ -5,23 +5,25 @@
 
 {% block content %}
 
-<ul>
+<ul id="sub-bar" class="navbar">
     {% for y in year_range %}
-    <li><a href={% url "top_films" y %}>{{ y }}</a></li>
+    <li><a href={% url "top_films" y %}
+        {% if y == year %}class="selected"{% endif %}>
+        {{ y }}</a></li>
     {% endfor %}
 </ul>
 
-<h1>Top Ciné {{ year }}</h1>
-
-<ul>
+<ul class="oeuvres_display">
 {% for oeuvre in oeuvres %}
-<li><a href={% url "detail_oeuvre" oeuvre.id %}>
+    <li><div class="oeuvre_display">
+        <a href={% url "detail_oeuvre" oeuvre.id %}>
         {% if oeuvre.info.image_url %}
-        <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
+        
+            <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
         {% else %}
-        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
-        {% endif %}
-    </a></li>
+            {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+        {% endif %}</a>
+    </div></li>
 {% endfor %}
 </ul>
 
