@@ -8,38 +8,42 @@
 
 <div class="oeuvre_info">
     {% if oeuvre.info.image_url %}
-    <p><img src="{% static oeuvre.info.image_url %}" alt="cover" /></p>
-    <!-- <p><img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /></p> -->
+    <div class="info_img">
+    <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
+    </div>
+    {# <img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /> #}
     {% endif %}
 
-    <h1 class="main_title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h1>
-    {% if oeuvre.info.titles.vo %}
-    <p>{{ oeuvre.info.titles.vo }}</p>
-    {% endif %}
-
-    {% if oeuvre.info.artists|length > 0 %}
-    <p>Artiste{{ oeuvre.info.artists|length|pluralize }} :
-    {% for artist in oeuvre.info.artists %}
-        {% if forloop.last %}
-            <a href={% url "artiste" artist %}>{{ artist }}</a>
-        {% else %}
-            <a href={% url "artiste" artist %}>{{ artist }}</a>,
+    <div class="info_text">
+        <h1 class="main_title">{{ oeuvre.info.titles.vf }}</h1>
+        {% if oeuvre.info.titles.vo %}
+        <p class="alt_title">{{ oeuvre.info.titles.vo }}</p>
         {% endif %}
-    {% endfor %}
-    </p>
-    {% endif %}
-    
-    {% if oeuvre.info.imdb_id %}
-    <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">Voir sur IMDb</a></p>
-    {% endif %}
-    
-    {% if oeuvre.envie %}
-    <p>Ceci est une envie.</p>
-    {% endif %}
+
+        {% if oeuvre.info.artists|length > 0 %}
+        <p class="artists">un{% if oeuvre.info.type == "serie" %}e{% endif %}
+        {% if oeuvre.info.type == "serie" %}série
+        {% else %}{{ oeuvre.info.type }}{% endif %}
+        de
+        {% for artist in oeuvre.info.artists %}
+            {% if forloop.last %}
+                <a href={% url "artiste" artist %}>{{ artist }}</a>
+                ({{ oeuvre.info.year }})
+            {% else %}
+                <a href={% url "artiste" artist %}>{{ artist }}</a>,
+            {% endif %}
+        {% endfor %}
+        </p>
+        {% endif %}
+        
+        {% if oeuvre.info.imdb_id %}
+        <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">[lien IMDb]</a></p>
+        {% endif %}
+    </div>
 </div>
 
 {% if oeuvre.comments|length > 0 %}
-    <div>
+<div class="oeuvre_comments">
     {% for comment in oeuvre.comments %}
         <article class="comment">
             {% if comment.title %}
@@ -47,7 +51,7 @@
             {% endif %}
             <div>
             {% for p in comment.content %}
-                <p>{{ p }}</p>
+                <p class="comment_par">{{ p }}</p>
             {% endfor %}
             </div>
             <p class="comment_date">écrit 
@@ -67,7 +71,7 @@
             </p>
         </article>
     {% endfor %}
-    </div>
+</div>
 {% endif %}
 
 {% endblock %}

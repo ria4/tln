@@ -1,4 +1,4 @@
-@import 'fontface.css';
+/* @import 'fontface.css'; */
 
 /* ==========================================================================
    Master Stylesheet 
@@ -472,6 +472,11 @@ textarea, input {
     src: url("../fonts/abuget/Abuget.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: 'SoljikDambaek';
+    src: url("../fonts/soljik-dambaek/Soljik-Dambaek.ttf") format("truetype");
+}
+
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
     font-family: 'NautilusIcon';
@@ -558,14 +563,17 @@ header {
 }
 
 #main-bar #logo {
-    margin-left: 40px;
-    font-family: AltheaSemiBold;
-    font-size: 54px;
+    margin-left: 50px;
+    font-family: SoljikDambaek;
+    font-size: 56px;
 }
 
 #main-bar ul {
     margin-right: 80px;
     font-size: 46px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 #main-bar li {
@@ -642,25 +650,91 @@ header {
 
 #content {
     margin-top: 100px;
-    font-family: Alegreya;
     font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#content .comment_title {
-    font-weight: bold;
-    font-size: 30px;
-}    
+#content a {
+    color: gray;
+    text-decoration: none;
+}
 
-#content .comment_date {
-    font-style: italic;
-}    
+#content a:hover {
+    color: #ffb618;
+}
+
+#content a:active, .navbar a:focus {
+    outline: none
+}
 
 #content .oeuvre_info {
     font-family: AlegreyaSans;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#content .oeuvre_info .info_img {
+    width: 220px;
+    height: auto;
+    margin-right: 20px;
+}
+
+#content .oeuvre_info .info_img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#content .oeuvre_info .info_text {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #content .oeuvre_info .main_title {
     font-weight: bold;
     font-size: 30px;
+    padding-bottom: 6px;
 }
+
+#content .oeuvre_info .alt_title {
+    margin-top: -10px;
+    padding-bottom: 6px;
+}
+#content .oeuvre_info .artists {
+    padding-bottom: 6px;
+}
+
+#content .oeuvre_comments {
+    margin-top: 24px;
+    width: 750px;
+    font-family: Alegreya;
+}
+
+#content .comment {
+    border-top: 1px solid black;
+    padding-top: 4px;
+}
+
+#content .comment_par {
+    margin: 18px 0;
+}
+
+#content .comment_title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    padding: 44px 8px 12px 0;
+}    
+
+#content .comment_date {
+    margin-top: -4px;
+    font-style: italic;
+    text-align: right;
+    padding-right: 20px;
+}    
 
