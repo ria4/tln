@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<ul id="sub-bar" class="navbar">
+<ul class="navbar subbar">
     {% for y in year_range %}
     <li><a href={% url "top_films" y %}
         {% if y == year %}class="selected"{% endif %}>

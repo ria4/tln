@@ -1,4 +1,4 @@
-var window_width_trigger = 1214;
+var window_width_trigger = 1200;
 var errance_bar_trigger = document.getElementById("errance-bar-trigger");
 var errance_bar = document.getElementById("errance-bar");
 
@@ -9,8 +9,6 @@ errance_bar_trigger.addEventListener("click", function(e) {
     } else {
         errance_bar.classList.add("expanded");
     }
-
-    console.log(errance_bar.getAttribute('expanded_size'));
 
     if (window.innerWidth < window_width_trigger) {
         errance_bar.setAttribute("expanded_size", "double");
@@ -26,3 +24,17 @@ window.addEventListener("resize", function(e) {
         errance_bar.setAttribute("expanded_size", "simple");
     }
 });
+
+var media_bar = document.getElementById("media-bar");
+if (media_bar) {
+    var href = window.location.href;
+    var mtype = href.substr(href.lastIndexOf("/") + 1);
+    links = media_bar.getElementsByTagName("li");
+    for (var i=0; i<links.length; i++) {
+        link = links[i].getElementsByTagName("a")[0]
+        if (link.getAttribute("desc") == mtype) {
+            link.classList.add("selected");
+        }
+    }
+}
+
