@@ -674,8 +674,8 @@ header {
 }
 
 
-#sub-bar {
-    font-size: 46px;
+.subbar {
+    font-size: 44px;
     margin-top: -20px;
     margin-bottom: 10px;
     display: flex;
@@ -683,15 +683,19 @@ header {
     align-items: center;
 }
 
-#sub-bar li {
+.subbar li {
     padding: 0 36px;
 }
 
-#sub-bar .selected {
+.subbar .selected {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     display: inline-block;
     line-height: 0.55;
+}
+
+#media-bar .selected {
+    line-height: 0.88;
 }
 
 
