@@ -14,30 +14,31 @@
     <!-- <li><a href={% url "liste_envies" "bd" %}>bd</a></li> -->
 </ul>
 
-<ul>
+<ul class="oeuvres_display display_envies">
 {% for oeuvre in oeuvres %}
-<li><a href={% url "detail_oeuvre" oeuvre.id %}>
+    <li><div class="oeuvre_display">
+        <a href={% url "detail_oeuvre" oeuvre.id %}>
         {% if oeuvre.info.image_url %}
-        <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
+            <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
         {% else %}
-        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
-        {% endif %}
-    </a></li>
+            {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+        {% endif %}</a>
+    </div></li>
 {% endfor %}
 </ul>
 
 
 <div class="pagination">
     {% if oeuvres.has_previous %}
-        <a href={% url "liste_envies" mtype oeuvres.previous_page_number %}>page précédente</a>
+        <a href={% url "liste_envies" mtype oeuvres.previous_page_number %}><-</a>
     {% endif %}
 
     <span class="current">
-        Page {{ oeuvres.number }} sur {{ oeuvres.paginator.num_pages }}
+        page {{ oeuvres.number }} sur {{ oeuvres.paginator.num_pages }}
     </span>
 
     {% if oeuvres.has_next %}
-        <a href={% url "liste_envies" mtype oeuvres.next_page_number %}>page suivante</a>
+        <a href={% url "liste_envies" mtype oeuvres.next_page_number %}>-></a>
     {% endif %}
 </div>
     

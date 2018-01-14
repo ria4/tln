@@ -27,8 +27,11 @@ window.addEventListener("resize", function(e) {
 
 var media_bar = document.getElementById("media-bar");
 if (media_bar) {
-    var href = window.location.href;
-    var mtype = href.substr(href.lastIndexOf("/") + 1);
+    var hrefs = window.location.href.split('/');
+    var mtype = hrefs[hrefs.length - 1];
+    if (!isNaN(parseInt(mtype.charAt(0)))) {
+        mtype = hrefs[hrefs.length - 2];
+    }
     links = media_bar.getElementsByTagName("li");
     for (var i=0; i<links.length; i++) {
         link = links[i].getElementsByTagName("a")[0]

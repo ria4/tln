@@ -766,11 +766,15 @@ header {
 /* Content Top Films
    ========================================================================== */
 .content .oeuvres_display {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin-top: -10px;
+}
+
+.content .display_top_films {
     max-width: 1320px;
 }
 
