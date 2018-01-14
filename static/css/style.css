@@ -457,6 +457,21 @@ textarea, input {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'AlegreyaSans';
+    src: url("../fonts/alegreya-sans/AlegreyaSans-Medium.otf") format("opentype");
+}
+@font-face {
+    font-family: 'AlegreyaSans';
+    src: url("../fonts/alegreya-sans/AlegreyaSans-MediumItalic.otf") format("opentype");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Abuget';
+    src: url("../fonts/abuget/Abuget.ttf") format("truetype");
+}
+
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
     font-family: 'NautilusIcon';
@@ -536,7 +551,6 @@ header {
 
 #main-bar {
     margin: 0 auto;
-    padding: 0 21px;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -549,6 +563,15 @@ header {
     font-size: 54px;
 }
 
+#main-bar ul {
+    margin-right: 80px;
+    font-size: 46px;
+}
+
+#main-bar li {
+    padding: 0 34px;
+}
+
 
 #errance-bar {
     left: 0;
@@ -557,6 +580,7 @@ header {
     background: #fff;
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     visibility: hidden;
@@ -566,25 +590,40 @@ header {
     -moz-transition: all 0.4s ease;
     -ms-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
+    font-size: 40px;
 }
 
 
 #errance-bar.expanded {
     visibility: visible;
-    height: 30px;
 }
 
-
-#main-bar ul {
-    margin-right: 80px;
+#errance-bar.expanded[expanded_size=simple] {
+    height: 44px;
 }
+
+#errance-bar.expanded[expanded_size=double] {
+    height: 88px;
+}
+
+#errance-bar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#errance-bar li {
+    padding: 0 36px;
+}
+
 
 .navbar li {
     float: left;
     display: block;
     text-align: center;
-    padding: 0 34px;
     text-decoration: none;
+    font-family: Abuget;
 }
 
 .navbar a {
@@ -603,13 +642,25 @@ header {
 
 #content {
     margin-top: 100px;
-}
-
-#content p {
     font-family: Alegreya;
     font-size: 20px;
+}
+
+#content .comment_title {
+    font-weight: bold;
+    font-size: 30px;
 }    
 
-.navbar {
+#content .comment_date {
+    font-style: italic;
+}    
+
+#content .oeuvre_info {
+    font-family: AlegreyaSans;
+}
+
+#content .oeuvre_info .main_title {
+    font-weight: bold;
+    font-size: 30px;
 }
 
