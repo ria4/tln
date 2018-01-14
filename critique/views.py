@@ -22,11 +22,7 @@ def detail_oeuvre(req, id):
     L'image est stockée à la fois dans la base MongoDB et dans le répertoire,
     mais maintenant le client peut la mettre en cache...
     """
-    try:
-        oeuvre = get_object_or_404(Oeuvre, id=id)
-    except Oeuvre.MultipleObjectsReturned:
-        #TODO afficher les différentes possibilités
-        raise Http404
+    oeuvre = get_object_or_404(Oeuvre, id=id)
     return render(req, 'critique/oeuvre.html', {'oeuvre': oeuvre})
 
 def detail_oeuvre_slug(req, slug):
