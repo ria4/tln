@@ -735,6 +735,13 @@ header {
 }
 
 
+/* Content Preambule
+   ========================================================================== */
+.content .oeuvre_comments#preambule {
+    margin-top: -10px;
+}
+
+
 /* Content Oeuvres
    ========================================================================== */
 .content .oeuvre_info {
