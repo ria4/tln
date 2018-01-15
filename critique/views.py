@@ -88,14 +88,14 @@ def top_textes(req):
         top_oeuvres.append((oeuvre[0], texte))
     return render(req, 'critique/top_textes.html', locals())
 
-def liste_cinemas(req, page=1):
-    cinemas_list = Cinema.objects.all()
-    paginator = Paginator(cinemas_list, 20)
-    try:
-        cinemas = paginator.page(page)
-    except EmptyPage:
-        cinemas = paginator.page(paginator.num_pages)
+def liste_cinemas(req):
+    cinemas = list(Cinema.objects.all())
+    random.shuffle(cinemas)
     return render(req, 'critique/cinemas.html', {'cinemas': cinemas})
+
+def detail_cinema(req, id):
+    cinema = get_object_or_404(Cinema, id=id)
+    return render(req, 'critique/cinema.html', {'cinema': cinema})
 
 def liste_seances(req, year=2017):
     if year > 2011:

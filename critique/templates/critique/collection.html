@@ -1,6 +1,5 @@
 {% extends "critique/base.html" %}
 {% load staticfiles %}
-{% load js %}
 
 {% block title %}tln - collection{% endblock %}
 
@@ -21,7 +20,7 @@
     var oeuvres = [];
     {% for oeuvre in oeuvres %}
         oeuvres.push(["{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})",
-                      "{% url "detail_oeuvre" oeuvre.id %}"]);
+                      "{% url 'detail_oeuvre' oeuvre.id %}"]);
     {% endfor %}
 </script>
 
