@@ -48,6 +48,7 @@ if (media_bar) {
 
 
 /* Collection - Display oeuvres by chunks */
+
 var txt_decoder = document.createElement("textarea");
 function decodeHtml(html) {
     txt_decoder.innerHTML = html;
@@ -57,10 +58,8 @@ function decodeHtml(html) {
 var chunk_size = 25;
 var collection = document.getElementById("collection");
 if (collection) {
-    console.log(oeuvres);
     for (i=0; i<oeuvres.length/chunk_size; i++) {
         var ul = document.createElement("ul");
-        ul.classList.add("collection_chunk");
         collection.appendChild(ul);
         for (j=0; j<chunk_size; j++) {
             if (oeuvres[chunk_size*i+j]) {
@@ -77,3 +76,22 @@ if (collection) {
     }
 }
 
+
+/* Seances - Displays seances by chunks */
+
+var seances_display = document.getElementById("seances");
+if (seances_display) {
+    for (i=0; i<seances.length/chunk_size; i++) {
+        var ul = document.createElement("ul");
+        seances_display.appendChild(ul);
+        for (j=0; j<chunk_size; j++) {
+            if (seances[chunk_size*i+j]) {
+                var li = document.createElement("li");
+                var text = decodeHtml(seances[chunk_size*i+j]);
+                var textNode = document.createTextNode(text);
+                li.appendChild(textNode);
+                ul.appendChild(li);
+            }
+        }
+    }
+}
