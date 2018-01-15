@@ -73,8 +73,8 @@ class Oeuvre(Document):
         Cela vise à permettre la mise en cache d'images par les clients.
         """
         self.slug = slugify(self.info.titles.vf)
-        if self.info.image.md5 and not self.info.image_url:
-            self.info.image_url = create_image_url(self.info.image)
+        #if self.info.image.md5 and not self.info.image_url:
+        #    self.info.image_url = create_image_url(self.info.image)
         super(Oeuvre, self).save(*args, **kwargs)
 
     def __str__(self):
