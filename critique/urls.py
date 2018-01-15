@@ -22,3 +22,4 @@ urlpatterns = [
     path('seances/', views.liste_seances, name='liste_seances'),
     path('seances/<int:year>', views.liste_seances, name='liste_seances'),
 ]
+

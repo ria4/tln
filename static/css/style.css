@@ -807,6 +807,13 @@ header {
 }    
 
 
+/* Content Artiste
+   ========================================================================== */
+.content .oeuvre_comments.collection_artist {
+    width: 1200px;
+}
+
+
 /* Content Notes
    ========================================================================== */
 
@@ -914,6 +921,10 @@ header {
     width: 380px;
 }
 
+#collection.collection_artist.chunks ul {
+    width: 520px;
+}
+
 #seances.chunks ul {
     width: 600px;
 }
@@ -943,7 +954,8 @@ header {
     margin-top: 28px;
 }
 
-.content .oeuvre_info#cinema_info {
+.content .oeuvre_info#cinema_info,
+.content .oeuvre_info#artist_info {
     margin-top: 38px;
 }
 
