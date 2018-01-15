@@ -99,8 +99,6 @@ def detail_cinema(req, id):
 
 def liste_seances(req, year=2017):
     if year > 2011:
-        if year > 2017:
-            year = 2017
         start = datetime(year, 1, 1)
         end = datetime(year, 12, 31)
     else:

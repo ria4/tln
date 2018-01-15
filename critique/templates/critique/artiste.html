@@ -5,12 +5,20 @@
 
 {% block content %}
 
-<h1>{{ artist }}</h1>
+<div id="artist_info" class="oeuvre_info">
+    <div class="info_text">
+        <h1 class="main_title">{{ artist }}</h1>
+    </div>
+</div>
 
-<ul>
-{% for oeuvre in oeuvres %}
-<li><a href={% url "detail_oeuvre" oeuvre.id %}>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</a></li>
-{% endfor %}
-</ul>
+<div id="collection" class="oeuvre_comments chunks collection_artist"></div>
     
+<script type="text/javascript">
+    var oeuvres = [];
+    {% for oeuvre in oeuvres %}
+        oeuvres.push(["{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})",
+                      "{% url 'detail_oeuvre' oeuvre.id %}"]);
+    {% endfor %}
+</script>
+
 {% endblock %}

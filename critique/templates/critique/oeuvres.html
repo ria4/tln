@@ -1,22 +1,18 @@
 {% extends "critique/base.html" %}
 {% load staticfiles %}
 
-{% block title %}tln - envies{% endblock %}
+{% block title %}tln - {{ oeuvres.0.slug|lower }}{% endblock %}
 
 {% block content %}
 
-<h1>multiples résultats</h1>
+<div id="collection" class="chunks oeuvre_comments"></div>
 
-<ul>
-{% for oeuvre in oeuvres %}
-<li><a href={% url "detail_oeuvre" oeuvre.id %}>
-        {% if oeuvre.info.image_url %}
-        <img src="{% static oeuvre.info.image_url %}" alt="Image {{ oeuvre.info.titles.vf }}" />
-        {% else %}
-        {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
-        {% endif %}
-    </a></li>
-{% endfor %}
-</ul>
+<script type="text/javascript">
+    var oeuvres = [];
+    {% for oeuvre in oeuvres %}
+        oeuvres.push(["{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})",
+                      "{% url 'detail_oeuvre' oeuvre.id %}"]);
+    {% endfor %}
+</script>
 
 {% endblock %}
