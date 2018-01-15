@@ -59,8 +59,8 @@ def liste_envies(req, mtype, page=1):
     context = {'oeuvres': oeuvres, 'mtype': mtype}
     return render(req, 'critique/envies.html', context)
 
-def liste_notes(req, mtype=None, page=1):
-    if not mtype:
+def liste_notes(req, mtype="all", page=1):
+    if mtype == "all":
         oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}})
     else:
         oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}, 'info.type': mtype})

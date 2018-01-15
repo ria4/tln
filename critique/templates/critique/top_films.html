@@ -13,7 +13,7 @@
     {% endfor %}
 </ul>
 
-<ul class="oeuvres_display display_top_films">
+<ul id="top_films" class="oeuvres_display mosaic_display">
 {% for oeuvre in oeuvres %}
     <li><div class="oeuvre_display">
         <a href={% url "detail_oeuvre" oeuvre.id %}>
