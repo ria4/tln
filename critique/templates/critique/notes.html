@@ -6,20 +6,14 @@
 
 {% block content %}
 
-<ul>
-    <li><a href={% url "liste_notes" "film" %}>films</a></li>
-    <li><a href={% url "liste_notes" "serie" %}>séries</a></li>
-    <li><a href={% url "liste_notes" "album" %}>musique</a></li>
-    <li><a href={% url "liste_notes" "jeu" %}>jeux</a></li>
-    <li><a href={% url "liste_notes" "livre" %}>livres</a></li>
+<ul id="media-bar" class="navbar subbar">
+    <li><a desc="film" href={% url "liste_notes" "film" %}>films</a></li>
+    <li><a desc="serie" href={% url "liste_notes" "serie" %}>séries</a></li>
+    <li><a desc="album" href={% url "liste_notes" "album" %}>musique</a></li>
+    <li><a desc="jeu" href={% url "liste_notes" "jeu" %}>jeux</a></li>
+    <li><a desc="livre" href={% url "liste_notes" "livre" %}>livres</a></li>
     <!-- <li><a href={% url "liste_notes" "bd" %}>bd</a></li> -->
 </ul>
-
-{% if mtype %}
-<h1>Notes éperdues - {{ mtype }}</h1>
-{% else %}
-<h1>Notes éperdues</h1>
-{% endif %}
 
 <div>
 {% for oeuvre in oeuvres %}

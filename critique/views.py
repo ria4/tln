@@ -104,7 +104,7 @@ def liste_seances(req, year=2017):
         start = datetime(year, 1, 1)
         end = datetime(year, 12, 31)
     else:
-        year = "Avant 2012"
+        year = 2011
         start = datetime(2000, 1, 1)
         end = datetime(2011, 12, 31)
     seances = Seance.objects(__raw__={'date': {'$gte': start, '$lte': end}}).order_by('date')

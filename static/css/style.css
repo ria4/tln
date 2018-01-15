@@ -789,25 +789,32 @@ header {
 /* Content Collection
    ========================================================================== */
 
-#collection {
+.chunks {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-#collection ul {
-    width: 380px;
+.chunks ul {
     padding: 10px 0;
     margin: 0 -16px -1px -16px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
 
-#collection li {
+.chunks li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0 30px;
+}
+
+#collection.chunks ul {
+    width: 380px;
+}
+
+#seances.chunks ul {
+    width: 600px;
 }
 
 
