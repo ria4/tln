@@ -14,7 +14,7 @@
     <!-- <li><a href={% url "liste_envies" "bd" %}>bd</a></li> -->
 </ul>
 
-<ul class="oeuvres_display display_envies">
+<ul class="oeuvres_display mosaic_display">
 {% for oeuvre in oeuvres %}
     <li><div class="oeuvre_display">
         <a href={% url "detail_oeuvre" oeuvre.id %}>

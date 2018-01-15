@@ -572,7 +572,8 @@ header {
     color: #ffb618;
 }
 
-.content a:active, .navbar a:focus {
+.content a:active, .content a:focus,
+.navbar a:active, .navbar a:focus {
     outline: none
 }
 
@@ -589,6 +590,9 @@ header {
     height: 290px;
     width: auto;
     max-width: 400px;
+}
+
+.content .mosaic_display .oeuvre_display {
     margin: 10px;
 }
 
@@ -742,6 +746,7 @@ header {
 }
 
 .content .oeuvre_info .oeuvre_display {
+    margin: 10px;
     margin-right: 20px;
 }
 
@@ -793,6 +798,82 @@ header {
     text-align: right;
     padding-right: 20px;
 }    
+
+
+/* Content Notes
+   ========================================================================== */
+
+.content #notes_summaries {
+    padding: 0 20px;
+}
+
+.content #notes_summaries a {
+    color: black;
+}
+
+.content #notes_summaries a:hover {
+    color: black;
+}
+
+.content #notes_summaries .oeuvre_display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content #notes_summaries .main_title {
+    text-align: center;
+}
+
+.content .note_summary {
+    margin: 12px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 900px;
+    max-height: 210px;
+    display: flex;
+}
+
+.content .note_summary .oeuvre_display {
+    width: 140px;
+    height: auto;
+    max-width: none;
+}
+
+.content .note_summary_text {
+    margin-left: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content .info_text .main_title {
+    font-family: AlegreyaSans;
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-right: 22px;
+}
+
+.content .note_content_summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content #notes_summaries .comment_text {
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.content #notes_summaries .comment_date {
+    margin-top: 4px;
+}
 
 
 /* Content Collection
@@ -851,10 +932,14 @@ header {
     margin-top: 28px;
 }
 
+.content .oeuvre_info#cinema_info {
+    margin-top: 38px;
+}
+
 
 /* Content Top Films
    ========================================================================== */
-.display_top_films {
+.content #top_films {
     max-width: 1320px;
 }
 
