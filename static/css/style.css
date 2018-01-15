@@ -577,6 +577,18 @@ header {
     outline: none
 }
 
+.content .top_title {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    padding: 44px 8px 12px 0;
+}
+
+.content .par_title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
 .content .oeuvres_display {
     width: 100%;
     display: flex;
@@ -734,11 +746,43 @@ header {
     line-height: 0.88;
 }
 
+.content .title {
+    font-family: AlegreyaSans;
+    font-weight: bold;
+    font-size: 34px;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-right: 22px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.content .sub_title {
+    font-size: 26px;
+}
+
 
 /* Content Preambule
    ========================================================================== */
-.content .oeuvre_comments#preambule {
+#preambule.oeuvre_comments {
     margin-top: -10px;
+}
+
+#preambule div:first-of-type {
+    margin-top: -14px;
+}
+
+#preambule > div {
+    border-bottom: 1px solid #bbb;
+    margin: 0 -50px;
+    padding: 20px 50px;
+}
+
+#preambule > div p:last-child {
+    margin-bottom: 2px;
 }
 
 
@@ -764,18 +808,18 @@ header {
     justify-content: center;
 }
 
-.content .oeuvre_info .main_title {
-    font-weight: bold;
-    font-size: 30px;
-    padding-bottom: 6px;
+.content .info_text .main_title {
+    text-align: left;
+    margin-left: -1px;
+    padding-bottom: 2px;
 }
 
 .content .oeuvre_info .alt_title {
-    margin-top: -10px;
-    padding-bottom: 6px;
+    margin-top: -15px;
+    padding-bottom: 8px;
 }
 .content .oeuvre_info .artists {
-    padding-bottom: 6px;
+    margin-top: 2px;
 }
 
 .content .oeuvre_comments {
@@ -836,10 +880,6 @@ header {
     align-items: center;
 }
 
-.content #notes_summaries .main_title {
-    text-align: center;
-}
-
 .content .note_summary {
     margin: 12px 0;
     padding: 10px;
@@ -860,19 +900,6 @@ header {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
-
-.content .info_text .main_title {
-    font-family: AlegreyaSans;
-    font-weight: bold;
-    font-size: 26px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding-right: 22px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
 }
 
 .content .note_content_summary {
@@ -936,7 +963,7 @@ header {
 
 /* Content Cinemas
    ========================================================================== */
-.content .oeuvre_comments#cinemas_intro {
+.content #cinemas_intro.oeuvre_comments {
     margin-top: -10px;
     margin-bottom: 20px;
 }
