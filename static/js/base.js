@@ -1,3 +1,5 @@
+/* Errance Bar - Double height in small windows */
+
 var window_width_trigger = 1200;
 var errance_bar_trigger = document.getElementById("errance-bar-trigger");
 var errance_bar = document.getElementById("errance-bar");
@@ -25,6 +27,9 @@ window.addEventListener("resize", function(e) {
     }
 });
 
+
+/* Media Bar - Highlight selectec media type */
+
 var media_bar = document.getElementById("media-bar");
 if (media_bar) {
     var hrefs = window.location.href.split('/');
@@ -37,6 +42,37 @@ if (media_bar) {
         link = links[i].getElementsByTagName("a")[0]
         if (link.getAttribute("desc") == mtype) {
             link.classList.add("selected");
+        }
+    }
+}
+
+
+/* Collection - Display oeuvres by chunks */
+var txt_decoder = document.createElement("textarea");
+function decodeHtml(html) {
+    txt_decoder.innerHTML = html;
+    return txt_decoder.value;
+}
+
+var chunk_size = 25;
+var collection = document.getElementById("collection");
+if (collection) {
+    console.log(oeuvres);
+    for (i=0; i<oeuvres.length/chunk_size; i++) {
+        var ul = document.createElement("ul");
+        ul.classList.add("collection_chunk");
+        collection.appendChild(ul);
+        for (j=0; j<chunk_size; j++) {
+            if (oeuvres[chunk_size*i+j]) {
+                var a = document.createElement("a");
+                var text = decodeHtml(oeuvres[chunk_size*i+j][0]);
+                var textNode = document.createTextNode(text);
+                a.href = oeuvres[chunk_size*i+j][1];
+                a.appendChild(textNode);
+                var li = document.createElement("li");
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
         }
     }
 }
