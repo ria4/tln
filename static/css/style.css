@@ -576,6 +576,29 @@ header {
     outline: none
 }
 
+.content .oeuvres_display {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.content .oeuvre_display {
+    height: 290px;
+    width: auto;
+    max-width: 400px;
+    margin: 10px;
+}
+
+.content .oeuvre_display img {
+    padding: 0;
+    border: 1px solid #eee;
+    max-width: 100%;
+    max-height: 100%;
+}
+
 
 /* Navigation Bars
    ========================================================================== */
@@ -763,32 +786,35 @@ header {
 }    
 
 
-/* Content Top Films
+/* Content Collection
    ========================================================================== */
-.content .oeuvres_display {
-    width: 100%;
+
+#collection {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin-top: -10px;
 }
 
-.content .display_top_films {
+#collection ul {
+    width: 380px;
+    padding: 10px 0;
+    margin: 0 -16px -1px -16px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+#collection li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 30px;
+}
+
+
+/* Content Top Films
+   ========================================================================== */
+.display_top_films {
     max-width: 1320px;
 }
 
-.content .oeuvre_display {
-    height: 290px;
-    width: auto;
-    max-width: 400px;
-    margin: 10px;
-}
-
-.content .oeuvre_display img {
-    padding: 0;
-    border: 1px solid #eee;
-    max-width: 100%;
-    max-height: 100%;
-}
 
