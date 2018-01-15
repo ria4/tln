@@ -776,16 +776,16 @@ header {
     padding-top: 4px;
 }
 
-.content .comment_par {
-    margin: 18px 0;
-}
-
 .content .comment_title {
     font-weight: bold;
     font-size: 30px;
     text-align: center;
     padding: 44px 8px 12px 0;
-}    
+}
+
+.content .oeuvre_comments p {
+    margin: 18px 0;
+}
 
 .content .comment_date {
     margin-top: -4px;
@@ -826,11 +826,35 @@ header {
     width: 600px;
 }
 
+#cinemas.chunks ul {
+    width: 440px;
+}
+
+
+/* Content Cinemas
+   ========================================================================== */
+.content .oeuvre_comments#cinemas_intro {
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.content #cinemas_intro ul {
+    list-style: square;
+    padding-left: 40px;
+}
+
+.content #cinemas_intro li {
+    list-style: square;
+}
+
+.content .oeuvre_comments #cinemas_total {
+    margin-top: 28px;
+}
+
 
 /* Content Top Films
    ========================================================================== */
 .display_top_films {
     max-width: 1320px;
 }
-
 

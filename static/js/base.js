@@ -95,3 +95,27 @@ if (seances_display) {
         }
     }
 }
+
+
+/* Cinemas - Displays cinemas by chunks */
+
+chunk_size = 23;
+var cinemas = document.getElementById("cinemas");
+if (cinemas) {
+    for (i=0; i<cines.length/chunk_size; i++) {
+        var ul = document.createElement("ul");
+        cinemas.appendChild(ul);
+        for (j=0; j<chunk_size; j++) {
+            if (cines[chunk_size*i+j]) {
+                var a = document.createElement("a");
+                var text = decodeHtml(cines[chunk_size*i+j][0]);
+                var textNode = document.createTextNode(text);
+                a.href = cines[chunk_size*i+j][1];
+                a.appendChild(textNode);
+                var li = document.createElement("li");
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+        }
+    }
+}
