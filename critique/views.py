@@ -1,6 +1,9 @@
 
+import binascii
 import os
 import random
+import requests
+import shutil
 from datetime import datetime
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage
@@ -14,7 +17,8 @@ def preambule(req):
     return render(req, 'critique/preambule.html', {})
 
 def artiste(req, artist):
-    oeuvres = Oeuvre.objects(__raw__={"$query": {'info.artists': artist}, "$orderby": {'info.year': 1}})
+    oeuvres = Oeuvre.objects(__raw__={"$query": {'info.artists': artist},
+                                      "$orderby": {'info.year': 1}})
     context = {'oeuvres': oeuvres, 'artist': artist}
     return render(req, 'critique/artiste.html', context)
 
@@ -36,9 +40,44 @@ def get_oeuvre_form_data(oeuvre):
         form_data['envie'] = oeuvre.envie
     return form_data
 
+def download_distant_image(url):
+    r = requests.get(url, stream=True)
+    if r.status_code == 200:
+        r.raw.decode_content = True
+        h = binascii.hexlify(os.urandom(16))
+        local_url = 'critique/%s' % h.decode('ascii')
+        with open('critique/static/%s' % local_url, 'wb') as f:
+            shutil.copyfileobj(r.raw, f)
+            return local_url
+    return ''
+
+def update_oeuvre(oeuvre, form):
+    oeuvre.info.type = form.cleaned_data['type']
+    oeuvre.info.titles.vf = form.cleaned_data['title_vf']
+    if form.cleaned_data['title_vo']:
+        oeuvre.info.titles.vo = form.cleaned_data['title_vo']
+    if form.cleaned_data['title_alt']:
+        oeuvre.info.titles.alt = form.cleaned_data['title_alt'].split('; ')
+    oeuvre.info.artists = form.cleaned_data['artists'].split('; ')
+    oeuvre.info.year = form.cleaned_data['year']
+    if form.cleaned_data['imdb_id']:
+        oeuvre.info.imdb_id = form.cleaned_data['imdb_id']
+    if form.cleaned_data['image_link']:
+        url = download_distant_image(form.cleaned_data['image_link'])
+        oeuvre.info.image_url = url
+    if form.cleaned_data['tags']:
+        oeuvre.tags = form.cleaned_data['tags']
+    if 'envie' in form.cleaned_data:
+        oeuvre.envie = form.cleaned_data['envie']
+    oeuvre.save()
+
 def detail_oeuvre(req, id):
     oeuvre = get_object_or_404(Oeuvre, id=id)
-    form = OeuvreForm(get_oeuvre_form_data(oeuvre))
+    form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
+    if req.POST and form.is_valid():
+        # actually there should already have been client-side validation
+        update_oeuvre(oeuvre, form)
+        oeuvre = get_object_or_404(Oeuvre, id=id)
     return render(req, 'critique/oeuvre.html', locals())
 
 def detail_oeuvre_slug(req, slug):
