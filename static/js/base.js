@@ -1,3 +1,4 @@
+
 /* Errance Bar - Double height in small windows */
 
 var window_width_trigger = 1200;
@@ -28,7 +29,7 @@ window.addEventListener("resize", function(e) {
 });
 
 
-/* Media Bar - Highlight selectec media type */
+/* Sub Bar - Highlight selected media type or year */
 
 var media_bar = document.getElementById("media-bar");
 if (media_bar) {
@@ -170,4 +171,54 @@ if (oeuvre_form) {
         }
     });
 }
+
+
+/* Global - Reveal login, edit... through keyboard inputs */
+
+var login_form = document.getElementById("login_form");
+var comment_form = document.getElementById("comment_form");
+var oeuvre_form_empty = document.getElementById("oeuvre_form_empty");
+var comment_form_empty = document.getElementById("comment_form_empty");
+var cinema_form = document.getElementById("cinema_form");
+
+var codes = {"login": login_form,
+             "edito": oeuvre_form,
+             "editc": comment_form,
+             "addo": oeuvre_form_empty,
+             "addc": comment_form_empty,
+             "editi": cinema_form};
+var active_code = "";
+var cached_code = "";
+document.addEventListener("keypress", function (e) {
+    if (!active_code) {
+        cached_code += String.fromCharCode(e.charCode);
+        var possible_code = false;
+        var code_found = false;
+        for (var key in codes) {
+            if (codes.hasOwnProperty(key)) {
+                if (key.startsWith(cached_code)) {
+                    possible_code = true;
+                    if (cached_code === key) {
+                        active_code = key;
+                        code_found = true;
+                    }
+                }
+            }
+        }
+        if (!possible_code) {
+            cached_code = "";
+        } else if (code_found) {
+            cached_code = "";
+            codes[active_code].parentElement.classList.add("revealed");
+        }
+    }
+});
+
+/* there is no keypress event for ESC... */
+document.addEventListener("keydown", function (e) {
+    if (active_code && (e.keyCode == 27)) {
+        codes[active_code].parentElement.classList.remove("revealed");
+        active_code = "";
+    }
+});
 
