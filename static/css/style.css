@@ -615,6 +615,17 @@ header {
     max-height: 100%;
 }
 
+.content .oeuvre_display a img {
+    -webkit-transition: all 0.3s ease;
+}
+
+.content .oeuvre_display a img:hover {
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
+    box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
+    -webkit-transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 255, 0.3);
+}
+
 .pagination {
     width: 100%;
     margin-top: 10px;
@@ -884,9 +895,18 @@ header {
     margin: 12px 0;
     padding: 10px;
     border: 1px solid #ddd;
+    -webkit-box-shadow: 0 0 8px 0 rgba(2, 3, 3, 0.16);
+    box-shadow: 0 0 8px 0 rgba(2, 3, 3, 0.16);
     width: 900px;
     max-height: 210px;
     display: flex;
+    -webkit-transition: all 0.4s ease;
+}
+
+.content .note_summary:hover {
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
+    box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
+    -webkit-transition: all 0.4s ease;
 }
 
 .content .note_summary .oeuvre_display {
