@@ -119,3 +119,59 @@ if (cinemas) {
         }
     }
 }
+
+
+/* Oeuvre - Update an oeuvre from a django form */
+/* TODO CSS styling! */
+
+var oeuvre_form = document.getElementById("oeuvre_form");
+if (oeuvre_form) {
+
+    /* Validate inputs */
+
+    function validation_mark(e, test) {
+        if (test) {
+            e.target.classList.add("bad_input");
+        } else {
+            e.target.classList.remove("bad_input");
+        }
+    }
+
+    title_vf = document.getElementById("id_title_vf");
+    title_vo = document.getElementById("id_title_vo");
+    title_alt = document.getElementById("id_title_alt");
+    artists = document.getElementById("id_artists");
+    year = document.getElementById("id_year");
+    imdb_id = document.getElementById("id_imdb_id");
+    validated_elements = [title_vf, title_vo, title_alt, artists, year, imdb_id]
+
+    title_vf.addEventListener("blur", function (e) {
+        validation_mark(e, e.target.value.length > 1000);});
+    title_vo.addEventListener("blur", function (e) {
+        validation_mark(e, e.target.value.length > 1000);});
+    title_alt.addEventListener("blur", function (e) {
+        validation_mark(e, e.target.value.length > 1000);});
+    artists.addEventListener("blur", function (e) {
+        validation_mark(e, e.target.value.length > 1000);});
+    year.addEventListener("blur", function (e) {
+        validation_mark(e, e.target.value > 2100);});
+    imdb_id.addEventListener("blur", function (e) {
+        validation_mark(e, !e.target.value.match(/^tt\d{7}$/))});
+
+    oeuvre_form.addEventListener("submit", function (e) {
+        var data_ok = true;
+        for (i=0; i<validated_elements.length; i++) {
+            if (validated_elements[i].classList.contains("bad_input")) {
+                data_ok = false;
+            }
+        };
+        if (!data_ok) {
+            console.log("nope");
+            e.preventDefault();
+        } else {
+            console.log("yep");
+            e.preventDefault();
+        }
+    });
+}
+
