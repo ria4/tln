@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
+from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
 from .models import Oeuvre, TopFilms, TopTextes, Cinema, Seance
 
 
@@ -17,14 +18,28 @@ def artiste(req, artist):
     context = {'oeuvres': oeuvres, 'artist': artist}
     return render(req, 'critique/artiste.html', context)
 
+def get_oeuvre_form_data(oeuvre):
+    form_data = {}
+    form_data['type'] = oeuvre.info.type
+    form_data['title_vf'] = oeuvre.info.titles.vf
+    if hasattr(oeuvre.info.titles, 'vo'):
+        form_data['title_vo'] = oeuvre.info.titles.vo
+    if hasattr(oeuvre.info.titles, 'alt') and oeuvre.info.titles.alt:
+        form_data['title_alt'] = '; '.join(list(oeuvre.info.titles.alt))
+    form_data['artists'] = '; '.join(list(oeuvre.info.artists))
+    form_data['year'] = oeuvre.info.year
+    if hasattr(oeuvre.info, 'imdb_id'):
+        form_data['imdb_id'] = oeuvre.info.imdb_id
+    if hasattr(oeuvre, 'tags'):
+        form_data['tags'] = oeuvre.tags
+    if hasattr(oeuvre, 'envie'):
+        form_data['envie'] = oeuvre.envie
+    return form_data
+
 def detail_oeuvre(req, id):
-    """
-    Version qui extrait ou enregistre l'image dans un répertoire statique.
-    L'image est stockée à la fois dans la base MongoDB et dans le répertoire,
-    mais maintenant le client peut la mettre en cache...
-    """
     oeuvre = get_object_or_404(Oeuvre, id=id)
-    return render(req, 'critique/oeuvre.html', {'oeuvre': oeuvre})
+    form = OeuvreForm(get_oeuvre_form_data(oeuvre))
+    return render(req, 'critique/oeuvre.html', locals())
 
 def detail_oeuvre_slug(req, slug):
     try:
@@ -32,7 +47,8 @@ def detail_oeuvre_slug(req, slug):
     except Oeuvre.MultipleObjectsReturned:
         oeuvres = Oeuvre.objects.filter(slug=slug)
         return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
-    return render(req, 'critique/oeuvre.html', {'oeuvre': oeuvre})
+    form = OeuvreForm(get_oeuvre_form_data(oeuvre))
+    return render(req, 'critique/oeuvre.html', locals())
 
 def liste_oeuvres(req, mtype, page=1):
     """
