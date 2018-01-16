@@ -166,10 +166,6 @@ if (oeuvre_form) {
             }
         };
         if (!data_ok) {
-            console.log("nope");
-            e.preventDefault();
-        } else {
-            console.log("yep");
             e.preventDefault();
         }
     });
