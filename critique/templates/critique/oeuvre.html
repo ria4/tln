@@ -74,11 +74,13 @@
 </div>
 {% endif %}
 
-<form id='oeuvre_form' action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="envoyer"/>
-    <input type="reset" value="annuler"/>
-</form>
+<div class='update_form'>
+    <form id='oeuvre_form' action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="envoyer"/>
+        <input type="reset" value="annuler"/>
+    </form>
+</div>
 
 {% endblock %}
