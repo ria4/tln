@@ -74,8 +74,8 @@
 </div>
 {% endif %}
 
-<div class='update_form'>
-    <form id='oeuvre_form' action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
+<div class="update_form">
+    <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
             {{ form.as_p }}

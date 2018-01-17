@@ -125,18 +125,18 @@ if (cinemas) {
 /* Oeuvre - Update an oeuvre from a django form */
 /* TODO CSS styling! */
 
+function validation_mark(e, test) {
+    if (test) {
+        e.target.classList.add("bad_input");
+    } else {
+        e.target.classList.remove("bad_input");
+    }
+}
+
 var oeuvre_form = document.getElementById("oeuvre_form");
 if (oeuvre_form) {
 
     /* Validate inputs */
-
-    function validation_mark(e, test) {
-        if (test) {
-            e.target.classList.add("bad_input");
-        } else {
-            e.target.classList.remove("bad_input");
-        }
-    }
 
     title_vf = document.getElementById("id_title_vf");
     title_vo = document.getElementById("id_title_vo");
@@ -198,7 +198,7 @@ document.addEventListener("keypress", function (e) {
             if (codes.hasOwnProperty(key)) {
                 if (key.startsWith(cached_code)) {
                     possible_code = true;
-                    if (cached_code === key) {
+                    if ((cached_code === key) && (codes[key])) {
                         active_code = key;
                         code_found = true;
                     }

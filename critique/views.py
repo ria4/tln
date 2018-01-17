@@ -72,12 +72,21 @@ def update_oeuvre(oeuvre, form):
     oeuvre.save()
 
 def detail_oeuvre(req, id):
+    if id == "new":
+        form = OeuvreForm(req.POST)
+        oeuvre = Oeuvre()
+        if form.is_valid():
+            update_oeuvre(oeuvre, form)
+            return redirect('detail_oeuvre', id=oeuvre.id)
+
     oeuvre = get_object_or_404(Oeuvre, id=id)
     form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
+
     if req.POST and form.is_valid():
         # actually there should already have been client-side validation
         update_oeuvre(oeuvre, form)
         oeuvre = get_object_or_404(Oeuvre, id=id)
+
     return render(req, 'critique/oeuvre.html', locals())
 
 def detail_oeuvre_slug(req, slug):
