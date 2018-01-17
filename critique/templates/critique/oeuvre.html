@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="oeuvre_info">
+<div id="oeuvre_info" class="info">
     {% if oeuvre.info.image_url %}
     <div class="oeuvre_display">
     <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
@@ -81,6 +81,11 @@
             {{ form.as_p }}
         </div>
         <div class="form_buttons">
+    {# when 'enter' is pressed, the form gives priority to the first submit #}
+    {# hence the hidden button, so that default is send rather than delete #}
+            <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
+            <input type="submit" formaction="{% url 'supprimer_oeuvre' oeuvre.id %}" value="supprimer"/>
+            <div class="filler"></div>
             <input type="submit" value="envoyer"/>
             <div class="filler"></div>
             <input type="reset" value="annuler"/>

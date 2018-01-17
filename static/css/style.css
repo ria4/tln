@@ -764,7 +764,6 @@ header {
     text-align: center;
     margin-top: 8px;
     margin-bottom: 8px;
-    padding-right: 22px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -772,6 +771,7 @@ header {
 }
 
 .content .sub_title {
+    padding-right: 22px;
     font-size: 26px;
 }
 
@@ -799,7 +799,7 @@ header {
 
 /* Content Oeuvres
    ========================================================================== */
-.content .oeuvre_info {
+.content .info {
     font-family: AlegreyaSans;
     width: 100%;
     display: flex;
@@ -807,12 +807,12 @@ header {
     justify-content: center;
 }
 
-.content .oeuvre_info .oeuvre_display {
+.content .info .oeuvre_display {
     margin: 10px;
     margin-right: 20px;
 }
 
-.content .oeuvre_info .info_text {
+.content .info .info_text {
     height: 90%;
     display: flex;
     flex-direction: column;
@@ -825,12 +825,16 @@ header {
     padding-bottom: 2px;
 }
 
-.content .oeuvre_info .alt_title {
+.content .info .alt_title {
     margin-top: -15px;
     padding-bottom: 8px;
 }
-.content .oeuvre_info .artists {
+.content .info .artists {
     margin-top: 2px;
+}
+
+.content #oeuvre_info {
+    min-height: 150px;
 }
 
 .content .oeuvre_comments {
@@ -1001,8 +1005,8 @@ header {
     margin-top: 28px;
 }
 
-.content .oeuvre_info#cinema_info,
-.content .oeuvre_info#artist_info {
+.content #cinema_info,
+.content #artist_info {
     margin-top: 38px;
 }
 
@@ -1089,19 +1093,27 @@ header {
     justify-content: center;
     font-family: Abuget;
     font-size: 40px;
+    margin-top: -4px;
 }
 
 .update_form .form_buttons input {
     background-color: transparent;
     border: 0px solid;
-    margin-top: -6px;
+}
+
+.update_form .form_buttons input.hidden {
+    display: none;
 }
 
 .update_form .form_buttons input:hover {
     color: #ffb618;
 }
 
-.update_form .form_buttons .filler {
+.update_form #oeuvre_form .form_buttons .filler {
+    width: 32px;
+}
+
+.update_form #oeuvre_form_empty .form_buttons .filler {
     width: 44px;
 }
 

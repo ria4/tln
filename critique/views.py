@@ -71,6 +71,12 @@ def update_oeuvre(oeuvre, form):
         oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save()
 
+def supprimer_oeuvre(req, id):
+    oeuvre = get_object_or_404(Oeuvre, id=id)
+    mtype = oeuvre.info.type
+    oeuvre.delete()
+    return redirect('liste_oeuvres', mtype)
+
 def detail_oeuvre(req, id):
     if id == "new":
         form = OeuvreForm(req.POST)
