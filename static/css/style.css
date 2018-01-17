@@ -1028,6 +1028,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: AlegreyaSans;
 }
 
 .update_form.revealed {
@@ -1036,13 +1037,52 @@ header {
 
 .update_form form {
     background-color: rgb(255, 255, 255);
-    padding: 20px;
+    padding: 6px 20px;
     border: 1px solid grey;
     -webkit-box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
     box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
 }
 
+.update_form form p {
+    margin: 8px 0;
+}
+
+.update_form form p label {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+    margin-right: 1px;
+}
+
 .update_form .bad_input {
     border: 2px solid red;
+}
+
+.update_form .form_inputs input:not([type="checkbox"]) {
+    padding: 1px 0 1px 4px;
+    border: 1px solid grey;
+    -webkit-box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+}
+
+.update_form .form_buttons {
+    display: flex;
+    justify-content: center;
+    font-family: Abuget;
+    font-size: 40px;
+}
+
+.update_form .form_buttons input {
+    background-color: transparent;
+    border: 0px solid;
+    margin-top: -6px;
+}
+
+.update_form .form_buttons input:hover {
+    color: #ffb618;
+}
+
+.update_form .form_buttons .filler {
+    width: 44px;
 }
 

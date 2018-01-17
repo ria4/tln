@@ -76,10 +76,15 @@
 
 <div class='update_form'>
     <form id='oeuvre_form' action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="envoyer"/>
-        <input type="reset" value="annuler"/>
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <div class="form_buttons">
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
     </form>
 </div>
 

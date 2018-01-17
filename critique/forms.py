@@ -1,6 +1,10 @@
 
+"""
+BooleanField must be required=False, because of some django nonsense.
+Also, the validation data written here is mostly useless, thanks to client-side validation.
+"""
+
 from django import forms
-# BooleanField must be required=False, because of some django nonsense.
 
 OEUVRES_TYPES = [('film', 'Film'),
                  ('serie', 'Série'),

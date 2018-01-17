@@ -222,3 +222,14 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
+for (var key in codes) {
+    if (codes.hasOwnProperty(key)) {
+        if (codes[key]) {
+            codes[key].addEventListener("reset", function (e) {
+                e.target.parentElement.classList.remove("revealed");
+                active_code = "";
+            });
+        }
+    }
+}
+
