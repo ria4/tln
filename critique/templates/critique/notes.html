@@ -7,13 +7,13 @@
 {% block content %}
 
 <ul id="media-bar" class="navbar subbar">
-    <li><a desc="film" href={% url "liste_notes" "film" %}>films</a></li>
-    <li><a desc="serie" href={% url "liste_notes" "serie" %}>séries</a></li>
-    <li><a desc="album" href={% url "liste_notes" "album" %}>musique</a></li>
-    <li><a desc="jeu" href={% url "liste_notes" "jeu" %}>jeux</a></li>
-    <li><a desc="livre" href={% url "liste_notes" "livre" %}>livres</a></li>
-    <!-- <li><a href={% url "liste_notes" "bd" %}>bd</a></li> -->
-    <li><a desc="all" href={% url "liste_notes" "all" %}>tout</a></li>
+    <li><a desc="film" href={% url "list_notes" "film" %}>films</a></li>
+    <li><a desc="serie" href={% url "list_notes" "serie" %}>séries</a></li>
+    <li><a desc="album" href={% url "list_notes" "album" %}>musique</a></li>
+    <li><a desc="jeu" href={% url "list_notes" "jeu" %}>jeux</a></li>
+    <li><a desc="livre" href={% url "list_notes" "livre" %}>livres</a></li>
+    <!-- <li><a href={% url "list_notes" "bd" %}>bd</a></li> -->
+    <li><a desc="all" href={% url "list_notes" "all" %}>tout</a></li>
 </ul>
 
 {# <a href={% url "detail_oeuvre" oeuvre.id %}> #}
@@ -63,7 +63,7 @@
 
 <div class="pagination">
     {% if oeuvres.has_previous %}
-        <a href={% url "liste_notes" mtype oeuvres.previous_page_number %}><-</a>
+        <a href={% url "list_notes" mtype oeuvres.previous_page_number %}><-</a>
     {% endif %}
 
     <span class="current">
@@ -71,7 +71,7 @@
     </span>
 
     {% if oeuvres.has_next %}
-    <a href={% url "liste_notes" mtype oeuvres.next_page_number %}>-></a>
+    <a href={% url "list_notes" mtype oeuvres.next_page_number %}>-></a>
     {% endif %}
 </div>
     

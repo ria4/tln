@@ -6,12 +6,12 @@
 {% block content %}
 
 <ul id="media-bar" class="navbar subbar">
-    <li><a desc="film" href={% url "liste_oeuvres" "film" %}>films</a></li>
-    <li><a desc="serie" href={% url "liste_oeuvres" "serie" %}>séries</a></li>
-    <li><a desc="album" href={% url "liste_oeuvres" "album" %}>musique</a></li>
-    <li><a desc="jeu" href={% url "liste_oeuvres" "jeu" %}>jeux</a></li>
-    <li><a desc="livre" href={% url "liste_oeuvres" "livre" %}>livres</a></li>
-    <!-- <li><a href={% url "liste_oeuvres" "bd" %}>bd</a></li> -->
+    <li><a desc="film" href={% url "list_oeuvres" "film" %}>films</a></li>
+    <li><a desc="serie" href={% url "list_oeuvres" "serie" %}>séries</a></li>
+    <li><a desc="album" href={% url "list_oeuvres" "album" %}>musique</a></li>
+    <li><a desc="jeu" href={% url "list_oeuvres" "jeu" %}>jeux</a></li>
+    <li><a desc="livre" href={% url "list_oeuvres" "livre" %}>livres</a></li>
+    <!-- <li><a href={% url "list_oeuvres" "bd" %}>bd</a></li> -->
 </ul>
 
 <div id="collection" class="chunks"></div>

@@ -35,7 +35,7 @@
     {# when 'enter' is pressed, the form gives priority to the first submit #}
     {# hence the hidden button, so that default is send rather than delete #}
             <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
-            <input type="submit" formaction="{% url 'supprimer_cinema' cinema.id %}" value="supprimer"/>
+            <input type="submit" formaction="{% url 'delete_cinema' cinema.id %}" value="supprimer"/>
             <div class="filler"></div>
             <input type="submit" value="envoyer"/>
             <div class="filler"></div>

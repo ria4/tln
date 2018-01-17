@@ -1084,7 +1084,7 @@ header {
     margin-top: 2px;
 }
 
-.update_form .form_inputs input[id="id_visited"] {
+.update_form .form_inputs input[type="date"] {
     width: 160px;
 }
 
@@ -1094,6 +1094,7 @@ header {
 }
 
 .update_form .form_inputs .bad_input {
+    /* fuck this */
     border: 1px solid red !important;
 }
 
@@ -1126,54 +1127,79 @@ header {
 /* Content Oeuvre Forms
    ========================================================================== */
 
-.update_form #oeuvre_form p,
-.update_form #oeuvre_form_empty p {
+#oeuvre_form p,
+#oeuvre_form_empty p {
     width: 350px;
 }
 
-.update_form #oeuvre_form p label,
-.update_form #oeuvre_form_empty p label {
+#oeuvre_form p label,
+#oeuvre_form_empty p label {
     width: 130px;
 }
 
-.update_form #oeuvre_form p label[for="id_envie"],
-.update_form #oeuvre_form p label[for="id_type"],
-.update_form #oeuvre_form_empty p label[for="id_empty_envie"],
-.update_form #oeuvre_form_empty p label[for="id_empty_type"] {
+#oeuvre_form p label[for="id_envie"],
+#oeuvre_form p label[for="id_type"],
+#oeuvre_form_empty p label[for="id_empty_envie"],
+#oeuvre_form_empty p label[for="id_empty_type"] {
     /* fuck this */
     width: 92.7px;
 }
 
-.update_form #oeuvre_form .form_buttons .filler {
+#oeuvre_form .form_buttons .filler {
     width: 32px;
 }
 
-.update_form #oeuvre_form_empty .form_buttons .filler {
+#oeuvre_form_empty .form_buttons .filler {
     width: 44px;
+}
+
+
+/* Content Comment Forms
+   ========================================================================== */
+
+#comment_form_empty .form_inputs {
+    margin-top: 3px;
+}
+
+#comment_form_empty p {
+    /* the textarea will mirror exactly the width of the text underneath */
+    width: 863px;
+}
+
+#comment_form_empty p label {
+    width: 96px;
+}
+
+#comment_form_empty p label[for="id_visited"] {
+    width: 85px;
+}
+
+#comment_form_empty .form_buttons .filler {
+    width: 72px;
 }
 
 
 /* Content Cinema Forms
    ========================================================================== */
 
-.update_form #cinema_form .form_inputs {
+#cinema_form .form_inputs {
     margin-top: 3px;
 }
 
-.update_form #cinema_form p {
+#cinema_form p {
     /* the textarea will mirror exactly the width of the text underneath */
     width: 863px;
 }
 
-.update_form #cinema_form p label {
+#cinema_form p label {
     width: 96px;
 }
 
-.update_form #cinema_form p label[for="id_visited"] {
+#cinema_form p label[for="id_visited"] {
     width: 85px;
 }
 
-.update_form #cinema_form .form_buttons .filler {
+#cinema_form .form_buttons .filler {
     width: 72px;
 }
 

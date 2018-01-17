@@ -6,12 +6,12 @@
 {% block content %}
 
 <ul id="media-bar" class="navbar subbar">
-    <li><a desc="film" href={% url "liste_envies" "film" %}>films</a></li>
-    <li><a desc="serie" href={% url "liste_envies" "serie" %}>séries</a></li>
-    <li><a desc="album" href={% url "liste_envies" "album" %}>musique</a></li>
-    <li><a desc="jeu" href={% url "liste_envies" "jeu" %}>jeux</a></li>
-    <li><a desc="livre" href={% url "liste_envies" "livre" %}>livres</a></li>
-    <!-- <li><a href={% url "liste_envies" "bd" %}>bd</a></li> -->
+    <li><a desc="film" href={% url "list_envies" "film" %}>films</a></li>
+    <li><a desc="serie" href={% url "list_envies" "serie" %}>séries</a></li>
+    <li><a desc="album" href={% url "list_envies" "album" %}>musique</a></li>
+    <li><a desc="jeu" href={% url "list_envies" "jeu" %}>jeux</a></li>
+    <li><a desc="livre" href={% url "list_envies" "livre" %}>livres</a></li>
+    <!-- <li><a href={% url "list_envies" "bd" %}>bd</a></li> -->
 </ul>
 
 <ul class="oeuvres_display mosaic_display">
@@ -30,7 +30,7 @@
 
 <div class="pagination">
     {% if oeuvres.has_previous %}
-        <a href={% url "liste_envies" mtype oeuvres.previous_page_number %}><-</a>
+        <a href={% url "list_envies" mtype oeuvres.previous_page_number %}><-</a>
     {% endif %}
 
     <span class="current">
@@ -38,7 +38,7 @@
     </span>
 
     {% if oeuvres.has_next %}
-        <a href={% url "liste_envies" mtype oeuvres.next_page_number %}>-></a>
+        <a href={% url "list_envies" mtype oeuvres.next_page_number %}>-></a>
     {% endif %}
 </div>
     
