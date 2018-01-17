@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.preambule, name='preambule'),
     path('oeuvre/<slug:slug>', views.detail_oeuvre_slug, name='detail_oeuvre_slug'),
     path('oeuvre/id/<str:id>', views.detail_oeuvre, name='detail_oeuvre'),
+    path('oeuvre/id/<str:id>/delete', views.supprimer_oeuvre, name='supprimer_oeuvre'),
     path('artiste/<str:artist>', views.artiste, name='artiste'),
     path('envies/<str:mtype>', views.liste_envies, name='liste_envies'),
     path('envies/<str:mtype>/<int:page>', views.liste_envies, name='liste_envies'),
