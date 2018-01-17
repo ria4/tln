@@ -32,6 +32,17 @@ def artiste(req, artist):
 
 # Helpers
 
+def download_distant_image(url):
+    r = requests.get(url, stream=True)
+    if r.status_code == 200:
+        r.raw.decode_content = True
+        h = binascii.hexlify(os.urandom(16))
+        local_url = 'critique/%s' % h.decode('ascii')
+        with open('critique/static/%s' % local_url, 'wb') as f:
+            shutil.copyfileobj(r.raw, f)
+            return local_url
+    return ''
+
 def get_oeuvre_form_data(oeuvre):
     form_data = {}
     form_data['type'] = oeuvre.info.type
@@ -49,17 +60,6 @@ def get_oeuvre_form_data(oeuvre):
     if hasattr(oeuvre, 'envie'):
         form_data['envie'] = oeuvre.envie
     return form_data
-
-def download_distant_image(url):
-    r = requests.get(url, stream=True)
-    if r.status_code == 200:
-        r.raw.decode_content = True
-        h = binascii.hexlify(os.urandom(16))
-        local_url = 'critique/%s' % h.decode('ascii')
-        with open('critique/static/%s' % local_url, 'wb') as f:
-            shutil.copyfileobj(r.raw, f)
-            return local_url
-    return ''
 
 def update_oeuvre(oeuvre, form):
     oeuvre.info.type = form.cleaned_data['type']
@@ -81,10 +81,28 @@ def update_oeuvre(oeuvre, form):
         oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save()
 
-def update_comment(comment, form, oeuvre_id):
-    """
-    Note that 'comment' being an EmbeddedDocument, it cannot be saved as such.
-    """
+def get_comment_form_data(comment):
+    form_data = {}
+    form_data['title'] = comment.title
+    form_data['date'] = comment.date.strftime('%Y-%m-%d')
+    if hasattr(comment, 'date_month_unknown'):
+        form_data['no_month'] = comment.date_month_unknown
+    if hasattr(comment, 'date_day_unknown'):
+        form_data['no_day'] = comment.date_day_unknown
+    form_data['content'] = '\n\n'.join(comment.content)
+    return form_data
+
+def update_latest_comment(req, id):
+    comment_form = OeuvreCommentForm(req.POST)
+    if req.POST and comment_form.is_valid():
+        # actually there should already have been client-side validation
+        oeuvre = get_object_or_404(Oeuvre, id=id)
+        comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
+        update_comment_with_form(comments[0], comment_form)
+        oeuvre.save()
+    return redirect('detail_oeuvre', id=id)
+
+def update_comment_with_form(comment, form):
     if form.cleaned_data['title']:
         comment.title = form.cleaned_data['title']
     comment.date = form.cleaned_data['date']
@@ -93,19 +111,20 @@ def update_comment(comment, form, oeuvre_id):
     if 'no_day' in form.cleaned_data:
         comment.date_day_unknown = form.cleaned_data['no_day']
     comment.content = form.cleaned_data['content'].split('\r\n\r\n')
-    oeuvre = get_object_or_404(Oeuvre, id=oeuvre_id)
-    oeuvre.comments.append(comment)
-    oeuvre.save()
 
 def add_comment(req, id):
     """
     The id here should be an oeuvre.id.
+    Note that 'comment' being an EmbeddedDocument, it cannot be saved as such.
     """
     form = OeuvreCommentForm(req.POST)
-    comment = OeuvreComment()
     if form.is_valid():
-        update_comment(comment, form, id)
-        return redirect('detail_oeuvre', id=id)
+        comment = OeuvreComment()
+        update_comment_with_form(comment, form)
+        oeuvre = get_object_or_404(Oeuvre, id=id)
+        oeuvre.comments.append(comment)
+        oeuvre.save()
+    return redirect('detail_oeuvre', id=id)
 
 # Views
 
@@ -119,15 +138,17 @@ def add_oeuvre(req):
 def detail_oeuvre(req, id):
     """
     We need to order the comments by date before sending them to the template.
+    Only the most recent comment may be edited.
     """
     oeuvre = get_object_or_404(Oeuvre, id=id)
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
         update_oeuvre(oeuvre, oeuvre_form)
-    comments = None
+    comments = comment_form = None
     if oeuvre.comments:
         comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
+        comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
     return render(req, 'critique/oeuvre.html', locals())
 
 def detail_oeuvre_slug(req, slug):
@@ -137,7 +158,9 @@ def detail_oeuvre_slug(req, slug):
         oeuvres = Oeuvre.objects.filter(slug=slug)
         return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
     oeuvre_form = OeuvreForm(get_oeuvre_form_data(oeuvre))
-    comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
+    if oeuvre.comments:
+        comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
+        comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
     return render(req, 'critique/oeuvre.html', locals())
 
 def delete_oeuvre(req, id):
@@ -145,6 +168,15 @@ def delete_oeuvre(req, id):
     mtype = oeuvre.info.type
     oeuvre.delete()
     return redirect('list_oeuvres', mtype)
+
+def delete_latest_comment(req, id):
+    oeuvre = get_object_or_404(Oeuvre, id=id)
+    n = len(oeuvre.comments)
+    comments = sorted(enumerate(oeuvre.comments),
+                      key=lambda p: p[1].date, reverse=True)
+    del(oeuvre.comments[comments[0][0]])
+    oeuvre.save()
+    return redirect('detail_oeuvre', id=id)
 
 
 # Top Textes

@@ -95,6 +95,23 @@
 </div>
 
 <div class="update_form">
+    <form id="comment_form" action="{% url 'update_latest_comment' oeuvre.id %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+        </div>
+        <div class="form_buttons">
+            <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
+            <input type="submit" formaction="{% url 'delete_latest_comment' oeuvre.id %}" value="supprimer"/>
+            <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+
+<div class="update_form">
     <form id="comment_form_empty" action="{% url 'add_comment' oeuvre.id %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
