@@ -7,11 +7,11 @@
 {% block content %}
 
 <ul class="navbar subbar">
-    <li><a href={% url "liste_seances" 2011 %}
+    <li><a href={% url "list_seances" 2011 %}
         {% if year < 2012 %}class="selected"{% endif %}>
         avant 2012</a></li>
     {% for y in year_range %}
-    <li><a href={% url "liste_seances" y %}
+    <li><a href={% url "list_seances" y %}
         {% if y == year %}class="selected"{% endif %}>
         {{ y }}</a></li>
     {% endfor %}

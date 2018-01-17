@@ -42,9 +42,9 @@
     </div>
 </div>
 
-{% if oeuvre.comments|length > 0 %}
+{% if comments|length > 0 %}
 <div class="oeuvre_comments">
-    {% for comment in oeuvre.comments %}
+    {% for comment in comments %}
         <article class="comment">
             {% if comment.title %}
             <h2 class="comment_title">{{ comment.title }}</h2>
@@ -74,18 +74,33 @@
 </div>
 {% endif %}
 
+
 <div class="update_form">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ oeuvre_form.as_p }}
         </div>
         <div class="form_buttons">
     {# when 'enter' is pressed, the form gives priority to the first submit #}
     {# hence the hidden button, so that default is send rather than delete #}
             <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
-            <input type="submit" formaction="{% url 'supprimer_oeuvre' oeuvre.id %}" value="supprimer"/>
+            <input type="submit" formaction="{% url 'delete_oeuvre' oeuvre.id %}" value="supprimer"/>
             <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+
+<div class="update_form">
+    <form id="comment_form_empty" action="{% url 'add_comment' oeuvre.id %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ comment_form_empty.as_p }}
+        </div>
+        <div class="form_buttons">
             <input type="submit" value="envoyer"/>
             <div class="filler"></div>
             <input type="reset" value="annuler"/>

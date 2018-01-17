@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
-from .models import Oeuvre, TopFilms, TopTextes, Cinema, Seance
+from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
 
 
 # Préambule
@@ -81,23 +81,53 @@ def update_oeuvre(oeuvre, form):
         oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save()
 
+def update_comment(comment, form, oeuvre_id):
+    """
+    Note that 'comment' being an EmbeddedDocument, it cannot be saved as such.
+    """
+    if form.cleaned_data['title']:
+        comment.title = form.cleaned_data['title']
+    comment.date = form.cleaned_data['date']
+    if 'no_month' in form.cleaned_data:
+        comment.date_month_unknown = form.cleaned_data['no_month']
+    if 'no_day' in form.cleaned_data:
+        comment.date_day_unknown = form.cleaned_data['no_day']
+    comment.content = form.cleaned_data['content'].split('\r\n\r\n')
+    oeuvre = get_object_or_404(Oeuvre, id=oeuvre_id)
+    oeuvre.comments.append(comment)
+    oeuvre.save()
+
+def add_comment(req, id):
+    """
+    The id here should be an oeuvre.id.
+    """
+    form = OeuvreCommentForm(req.POST)
+    comment = OeuvreComment()
+    if form.is_valid():
+        update_comment(comment, form, id)
+        return redirect('detail_oeuvre', id=id)
+
 # Views
 
-def detail_oeuvre(req, id):
-    if id == "new":
-        form = OeuvreForm(req.POST, auto_id='id_empty_%s')
-        oeuvre = Oeuvre()
-        if form.is_valid():
-            update_oeuvre(oeuvre, form)
-            return redirect('detail_oeuvre', id=oeuvre.id)
-
-    oeuvre = get_object_or_404(Oeuvre, id=id)
-    form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
-
-    if req.POST and form.is_valid():
-        # actually there should already have been client-side validation
+def add_oeuvre(req):
+    form = OeuvreForm(req.POST)
+    oeuvre = Oeuvre()
+    if form.is_valid():
         update_oeuvre(oeuvre, form)
+        return redirect('detail_oeuvre', id=oeuvre.id)
 
+def detail_oeuvre(req, id):
+    """
+    We need to order the comments by date before sending them to the template.
+    """
+    oeuvre = get_object_or_404(Oeuvre, id=id)
+    oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
+    if req.POST and oeuvre_form.is_valid():
+        # actually there should already have been client-side validation
+        update_oeuvre(oeuvre, oeuvre_form)
+    comments = None
+    if oeuvre.comments:
+        comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
     return render(req, 'critique/oeuvre.html', locals())
 
 def detail_oeuvre_slug(req, slug):
@@ -106,14 +136,15 @@ def detail_oeuvre_slug(req, slug):
     except Oeuvre.MultipleObjectsReturned:
         oeuvres = Oeuvre.objects.filter(slug=slug)
         return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
-    form = OeuvreForm(get_oeuvre_form_data(oeuvre))
+    oeuvre_form = OeuvreForm(get_oeuvre_form_data(oeuvre))
+    comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
     return render(req, 'critique/oeuvre.html', locals())
 
-def supprimer_oeuvre(req, id):
+def delete_oeuvre(req, id):
     oeuvre = get_object_or_404(Oeuvre, id=id)
     mtype = oeuvre.info.type
     oeuvre.delete()
-    return redirect('liste_oeuvres', mtype)
+    return redirect('list_oeuvres', mtype)
 
 
 # Top Textes
@@ -130,7 +161,7 @@ def top_textes(req):
 
 # Notes
 
-def liste_notes(req, mtype="all", page=1):
+def list_notes(req, mtype="all", page=1):
     if mtype == "all":
         oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}})
     else:
@@ -147,7 +178,7 @@ def liste_notes(req, mtype="all", page=1):
 
 # Collection
 
-def liste_oeuvres(req, mtype, page=1):
+def list_oeuvres(req, mtype, page=1):
     """
     Liste les oeuvres qui ne sont pas marquées en tant qu'envies.
     (Les "re-" envies ne sont pas prises en charge.)
@@ -165,7 +196,7 @@ def liste_oeuvres(req, mtype, page=1):
 
 # Envies
 
-def liste_envies(req, mtype, page=1):
+def list_envies(req, mtype, page=1):
     oeuvres_list = Oeuvre.objects(__raw__={'envie': True, 'info.type': mtype})
     paginator = Paginator(oeuvres_list, 22)
     try:
@@ -195,7 +226,7 @@ def update_cinema(cinema, form):
 
 # Views
 
-def liste_cinemas(req):
+def list_cinemas(req):
     cinemas = list(Cinema.objects.all())
     random.shuffle(cinemas)
     return render(req, 'critique/cinemas.html', {'cinemas': cinemas})
@@ -207,14 +238,14 @@ def detail_cinema(req, id):
         update_cinema(cinema, form)
     return render(req, 'critique/cinema.html', locals())
 
-def supprimer_cinema(req, id):
+def delete_cinema(req, id):
     cinema = get_object_or_404(Cinema, id=id).delete()
-    return redirect('liste_cinemas')
+    return redirect('list_cinemas')
 
 
 # Séances
 
-def liste_seances(req, year=2017):
+def list_seances(req, year=2017):
     if year > 2011:
         start = datetime(year, 1, 1)
         end = datetime(year, 12, 31)

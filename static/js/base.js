@@ -236,12 +236,33 @@ if (cinema_form) {
     add_submit_listener(cinema_form, validated_elements);
 }
 
+var comment_form_empty = document.getElementById("comment_form_empty");
+if (comment_form_empty) {
+
+    title = document.getElementById("id_empty_title");
+    date = document.getElementById("id_empty_date");
+    content = document.getElementById("id_empty_content");
+    validated_elements = [title, date, content];
+
+    validation_mark(title, title.value == "");
+    validation_mark(date, date.value == "");
+    validation_mark(content, content.value == "");
+
+    title.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+    date.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+    content.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+
+    add_submit_listener(comment_form_empty, validated_elements);
+}
+
 
 /* Global - Reveal login, edit... through keyboard inputs */
 
 var login_form = document.getElementById("login_form");
 var comment_form = document.getElementById("comment_form");
-var comment_form_empty = document.getElementById("comment_form_empty");
 
 var codes = {"login": login_form,
              "edito": oeuvre_form,

@@ -21,11 +21,11 @@
 
             <div id="errance-bar" class="navbar" expanded_size="simple">
                 <ul>
-                    <li><a href={% url "liste_notes" "all" %}>carnet de notes</a></li>
-                    <li><a href={% url "liste_oeuvres" "film" %}>rencontres passées</a></li>
-                    <li><a href={% url "liste_envies" "film" %}>en ligne de mire</a></li>
-                    <li><a href={% url "liste_cinemas" %}>cinémas parisiens</a></li>
-                    <li><a href={% url "liste_seances" %}>liste des séances</a></li>
+                    <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
+                    <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
+                    <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
+                    <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
+                    <li><a href={% url "list_seances" %}>liste des séances</a></li>
                     <li><a href={% url "top_films" %}>top films par année</a></li>
                 </ul>
             </div>
@@ -35,10 +35,10 @@
             {% block content %}{% endblock %}
 
             <div class="update_form">
-                <form id="oeuvre_form_empty" action="{% url 'detail_oeuvre' 'new' %}" method="post">
+                <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
                     <div class="form_inputs">
                         {% csrf_token %}
-                        {{ new_oeuvre_form.as_p }}
+                        {{ oeuvre_form_empty.as_p }}
                     </div>
                     <div class="form_buttons">
                         <input type="submit" value="envoyer"/>

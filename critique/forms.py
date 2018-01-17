@@ -14,6 +14,13 @@ OEUVRES_TYPES = [('film', 'Film'),
                  ('bd', 'BD')]
 
 
+class DateInput(forms.DateInput):
+    """
+    Use this custom widget to make the default type for DateField 'date'
+    instead of 'text'. Note that only recent browsers support this.
+    """
+    input_type = 'date'
+
 class OeuvreForm(forms.Form):
     type = forms.ChoiceField(choices=OEUVRES_TYPES)
     title_vf = forms.CharField(max_length=1000)
@@ -28,13 +35,10 @@ class OeuvreForm(forms.Form):
 
 class OeuvreCommentForm(forms.Form):
     title = forms.CharField(max_length=500, required=False)
-    date = forms.DateField()
-    date_month_unknown = forms.BooleanField(required=False)
-    date_day_unknown = forms.BooleanField(required=False)
-    content = forms.CharField()
-
-class DateInput(forms.DateInput):
-    input_type = 'date'
+    date = forms.DateField(widget=DateInput)
+    no_month = forms.BooleanField(required=False)
+    no_day = forms.BooleanField(required=False)
+    content = forms.CharField(widget=forms.Textarea)
 
 class CinemaForm(forms.Form):
     name = forms.CharField(max_length=100)
