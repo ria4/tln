@@ -66,6 +66,12 @@ class Oeuvre(Document):
     comments = fields.ListField(fields.EmbeddedDocumentField(OeuvreComment), blank=True, null=True)
     slug = fields.StringField()
 
+    def __init__(self, *args, **kwargs):
+        super(Oeuvre, self).__init__(*args, **kwargs)
+        if "info" not in kwargs:
+            self.info = OeuvreInfo()
+            self.info.titles = OeuvreInfoTitres()
+
     def save(self, *args, **kwargs):
         """
         Un slug est généré à la création et à chaque modification.

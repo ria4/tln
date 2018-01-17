@@ -33,6 +33,20 @@
 
         <section class="content">
             {% block content %}{% endblock %}
+
+            <div class="update_form">
+                <form id="oeuvre_form_empty" action="{% url 'detail_oeuvre' 'new' %}" method="post">
+                    <div class="form_inputs">
+                        {% csrf_token %}
+                        {{ new_oeuvre_form.as_p }}
+                    </div>
+                    <div class="form_buttons">
+                        <input type="submit" value="envoyer"/>
+                        <div class="filler"></div>
+                        <input type="reset" value="annuler"/>
+                    </div>
+                </form>
+            </div>
         </section>
 
         {# <footer>--footer--</footer> #}
