@@ -1018,7 +1018,7 @@ header {
 }
 
 
-/* Content Forms
+/* Forms
    ========================================================================== */
 
 .update_form {
@@ -1124,7 +1124,7 @@ header {
 }
 
 
-/* Content Oeuvre Forms
+/* Forms Oeuvre
    ========================================================================== */
 
 #oeuvre_form p,
@@ -1154,32 +1154,51 @@ header {
 }
 
 
-/* Content Comment Forms
+/* Forms Comment
    ========================================================================== */
 
+#comment_form .form_inputs,
 #comment_form_empty .form_inputs {
     margin-top: 3px;
 }
 
+#comment_form p,
 #comment_form_empty p {
     /* the textarea will mirror exactly the width of the text underneath */
-    width: 863px;
+    /* /!\ this is linked to the widths below... */
+    width: 869px;
 }
 
+#comment_form p label,
 #comment_form_empty p label {
-    width: 96px;
+    width: 103px;
 }
 
-#comment_form_empty p label[for="id_visited"] {
-    width: 85px;
+#comment_form p label[for="id_date"],
+#comment_form_empty p label[for="id_empty_date"] {
+    width: 91px;
 }
 
+#comment_form p label[for="id_no_month"],
+#comment_form p label[for="id_no_day"],
+#comment_form_empty p label[for="id_empty_no_month"],
+#comment_form_empty p label[for="id_empty_no_day"] {
+    /* fuck this */
+    width: 91px;
+}
+
+#comment_form .form_buttons,
+#comment_form_empty .form_buttons {
+    margin-top: -2px;
+}
+
+#comment_form .form_buttons .filler,
 #comment_form_empty .form_buttons .filler {
     width: 72px;
 }
 
 
-/* Content Cinema Forms
+/* Forms Cinema
    ========================================================================== */
 
 #cinema_form .form_inputs {
@@ -1188,6 +1207,7 @@ header {
 
 #cinema_form p {
     /* the textarea will mirror exactly the width of the text underneath */
+    /* /!\ this is linked to the widths below... */
     width: 863px;
 }
 
