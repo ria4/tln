@@ -33,8 +33,11 @@ class OeuvreCommentForm(forms.Form):
     date_day_unknown = forms.BooleanField(required=False)
     content = forms.CharField()
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class CinemaForm(forms.Form):
     name = forms.CharField(max_length=100)
     comment = forms.CharField(widget=forms.Textarea)
-    visited = forms.DateField()
+    visited = forms.DateField(widget=DateInput)
 

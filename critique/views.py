@@ -13,14 +13,24 @@ from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
 from .models import Oeuvre, TopFilms, TopTextes, Cinema, Seance
 
 
+# Préambule
+
 def preambule(req):
     return render(req, 'critique/preambule.html', {})
+
+
+# Artiste
 
 def artiste(req, artist):
     oeuvres = Oeuvre.objects(__raw__={"$query": {'info.artists': artist},
                                       "$orderby": {'info.year': 1}})
     context = {'oeuvres': oeuvres, 'artist': artist}
     return render(req, 'critique/artiste.html', context)
+
+
+# Oeuvre
+
+# Helpers
 
 def get_oeuvre_form_data(oeuvre):
     form_data = {}
@@ -71,11 +81,7 @@ def update_oeuvre(oeuvre, form):
         oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save()
 
-def supprimer_oeuvre(req, id):
-    oeuvre = get_object_or_404(Oeuvre, id=id)
-    mtype = oeuvre.info.type
-    oeuvre.delete()
-    return redirect('liste_oeuvres', mtype)
+# Views
 
 def detail_oeuvre(req, id):
     if id == "new":
@@ -91,7 +97,6 @@ def detail_oeuvre(req, id):
     if req.POST and form.is_valid():
         # actually there should already have been client-side validation
         update_oeuvre(oeuvre, form)
-        oeuvre = get_object_or_404(Oeuvre, id=id)
 
     return render(req, 'critique/oeuvre.html', locals())
 
@@ -103,6 +108,44 @@ def detail_oeuvre_slug(req, slug):
         return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
     form = OeuvreForm(get_oeuvre_form_data(oeuvre))
     return render(req, 'critique/oeuvre.html', locals())
+
+def supprimer_oeuvre(req, id):
+    oeuvre = get_object_or_404(Oeuvre, id=id)
+    mtype = oeuvre.info.type
+    oeuvre.delete()
+    return redirect('liste_oeuvres', mtype)
+
+
+# Top Textes
+
+def top_textes(req):
+    top_textes = get_object_or_404(TopTextes)
+    top_oeuvres = []
+    for texte in top_textes.textes:
+        content = texte.content
+        oeuvre = Oeuvre.objects(__raw__={'comments.content': content})
+        top_oeuvres.append((oeuvre[0], texte))
+    return render(req, 'critique/top_textes.html', locals())
+
+
+# Notes
+
+def liste_notes(req, mtype="all", page=1):
+    if mtype == "all":
+        oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}})
+    else:
+        oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}, 'info.type': mtype})
+    oeuvres_list = oeuvres_list.order_by('-comments__date')
+    paginator = Paginator(oeuvres_list, 20)
+    try:
+        oeuvres = paginator.page(page)
+    except EmptyPage:
+        oeuvres = paginator.page(paginator.num_pages)
+    context = {'oeuvres': oeuvres, 'mtype': mtype}
+    return render(req, 'critique/notes.html', context)
+
+
+# Collection
 
 def liste_oeuvres(req, mtype, page=1):
     """
@@ -119,6 +162,9 @@ def liste_oeuvres(req, mtype, page=1):
     context = {'oeuvres': oeuvres, 'mtype': mtype}
     return render(req, 'critique/collection.html', context)
 
+
+# Envies
+
 def liste_envies(req, mtype, page=1):
     oeuvres_list = Oeuvre.objects(__raw__={'envie': True, 'info.type': mtype})
     paginator = Paginator(oeuvres_list, 22)
@@ -129,34 +175,25 @@ def liste_envies(req, mtype, page=1):
     context = {'oeuvres': oeuvres, 'mtype': mtype}
     return render(req, 'critique/envies.html', context)
 
-def liste_notes(req, mtype="all", page=1):
-    if mtype == "all":
-        oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}})
-    else:
-        oeuvres_list = Oeuvre.objects(__raw__={'comments.0': {'$exists': 'true'}, 'info.type': mtype})
-    oeuvres_list = oeuvres_list.order_by('-comments__date')
-    paginator = Paginator(oeuvres_list, 20)
-    try:
-        oeuvres = paginator.page(page)
-    except EmptyPage:
-        oeuvres = paginator.page(paginator.num_pages)
-    context = {'oeuvres': oeuvres, 'mtype': mtype}
-    return render(req, 'critique/notes.html', context)
 
-def top_films(req, year=2017):
-    oeuvres = list(get_object_or_404(TopFilms, year=year).top)
-    random.shuffle(oeuvres)
-    year_range = range(2012, 2018)
-    return render(req, 'critique/top_films.html', locals())
+# Cinemas
 
-def top_textes(req):
-    top_textes = get_object_or_404(TopTextes)
-    top_oeuvres = []
-    for texte in top_textes.textes:
-        content = texte.content
-        oeuvre = Oeuvre.objects(__raw__={'comments.content': content})
-        top_oeuvres.append((oeuvre[0], texte))
-    return render(req, 'critique/top_textes.html', locals())
+# Helpers
+
+def get_cinema_form_data(cinema):
+    form_data = {}
+    form_data['name'] = cinema.name
+    form_data['comment'] = '\n\n'.join(cinema.comment)
+    form_data['visited'] = cinema.visited.strftime('%Y-%m-%d')
+    return form_data
+
+def update_cinema(cinema, form):
+    cinema.name = form.cleaned_data['name']
+    cinema.comment = form.cleaned_data['comment'].split('\r\n\r\n')
+    cinema.visited = form.cleaned_data['visited']
+    cinema.save()
+
+# Views
 
 def liste_cinemas(req):
     cinemas = list(Cinema.objects.all())
@@ -165,7 +202,17 @@ def liste_cinemas(req):
 
 def detail_cinema(req, id):
     cinema = get_object_or_404(Cinema, id=id)
-    return render(req, 'critique/cinema.html', {'cinema': cinema})
+    form = CinemaForm(req.POST or get_cinema_form_data(cinema))
+    if req.POST and form.is_valid():
+        update_cinema(cinema, form)
+    return render(req, 'critique/cinema.html', locals())
+
+def supprimer_cinema(req, id):
+    cinema = get_object_or_404(Cinema, id=id).delete()
+    return redirect('liste_cinemas')
+
+
+# Séances
 
 def liste_seances(req, year=2017):
     if year > 2011:
@@ -178,6 +225,15 @@ def liste_seances(req, year=2017):
     seances = Seance.objects(__raw__={'date': {'$gte': start, '$lte': end}}).order_by('date')
     year_range = range(2012, 2018)
     return render(req, 'critique/seances.html', locals())
+
+
+# Top Films
+
+def top_films(req, year=2017):
+    oeuvres = list(get_object_or_404(TopFilms, year=year).top)
+    random.shuffle(oeuvres)
+    year_range = range(2012, 2018)
+    return render(req, 'critique/top_films.html', locals())
 
 
 
