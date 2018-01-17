@@ -85,7 +85,7 @@ def update_oeuvre(oeuvre, form):
 
 def detail_oeuvre(req, id):
     if id == "new":
-        form = OeuvreForm(req.POST)
+        form = OeuvreForm(req.POST, auto_id='id_empty_%s')
         oeuvre = Oeuvre()
         if form.is_valid():
             update_oeuvre(oeuvre, form)

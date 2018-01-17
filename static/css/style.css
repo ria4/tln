@@ -1047,6 +1047,12 @@ header {
     box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
 }
 
+.update_form form .form_inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .update_form form p {
     margin: 4px 0;
     display: flex;
@@ -1056,16 +1062,6 @@ header {
 .update_form form p label {
     text-align: right;
     margin-right: 6px;
-}
-
-.update_form .bad_input {
-    border: 2px solid red;
-}
-
-.update_form .form_inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 .update_form .form_inputs input:not([type="checkbox"]),
@@ -1078,6 +1074,12 @@ header {
     margin-left: -0.3px;
 }
 
+.update_form .form_inputs textarea {
+    font-family: Alegreya;
+    font-size: 100%;
+    resize: vertical;
+}
+
 .update_form .form_inputs input[type="checkbox"] {
     margin-top: 2px;
 }
@@ -1088,6 +1090,14 @@ header {
 
 .update_form .form_inputs input[type="date"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    display: none;
+}
+
+.update_form .form_inputs .bad_input {
+    border: 1px solid red !important;
+}
+
+.update_form .form_inputs .errorlist {
     display: none;
 }
 
@@ -1127,7 +1137,9 @@ header {
 }
 
 .update_form #oeuvre_form p label[for="id_envie"],
-.update_form #oeuvre_form p label[for="id_type"] {
+.update_form #oeuvre_form p label[for="id_type"],
+.update_form #oeuvre_form_empty p label[for="id_empty_envie"],
+.update_form #oeuvre_form_empty p label[for="id_empty_type"] {
     /* fuck this */
     width: 92.7px;
 }
@@ -1149,7 +1161,8 @@ header {
 }
 
 .update_form #cinema_form p {
-    width: 800px;
+    /* the textarea will mirror exactly the width of the text underneath */
+    width: 863px;
 }
 
 .update_form #cinema_form p label {
