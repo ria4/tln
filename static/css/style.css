@@ -1048,14 +1048,12 @@ header {
 }
 
 .update_form form p {
-    width: 350px;
     margin: 4px 0;
     display: flex;
     align-items: center;
 }
 
 .update_form form p label {
-    width: 130px;
     text-align: right;
     margin-right: 6px;
 }
@@ -1070,22 +1068,27 @@ header {
     align-items: flex-start;
 }
 
-.update_form .form_inputs label[for="id_envie"],
-.update_form .form_inputs label[for="id_type"] {
-    /* fuck this */
-    width: 92.7px;
+.update_form .form_inputs input:not([type="checkbox"]),
+.update_form .form_inputs textarea {
+    width: 100%;
+    padding: 1px 0 1px 4px;
+    border: 1px solid grey;
+    -webkit-box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+    margin-left: -0.3px;
 }
 
 .update_form .form_inputs input[type="checkbox"] {
     margin-top: 2px;
 }
 
-.update_form .form_inputs input:not([type="checkbox"]) {
-    width: 100%;
-    padding: 1px 0 1px 4px;
-    border: 1px solid grey;
-    -webkit-box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
-    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+.update_form .form_inputs input[id="id_visited"] {
+    width: 160px;
+}
+
+.update_form .form_inputs input[type="date"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
 }
 
 .update_form .form_buttons {
@@ -1109,11 +1112,55 @@ header {
     color: #ffb618;
 }
 
+
+/* Content Oeuvre Forms
+   ========================================================================== */
+
+.update_form #oeuvre_form p,
+.update_form #oeuvre_form_empty p {
+    width: 350px;
+}
+
+.update_form #oeuvre_form p label,
+.update_form #oeuvre_form_empty p label {
+    width: 130px;
+}
+
+.update_form #oeuvre_form p label[for="id_envie"],
+.update_form #oeuvre_form p label[for="id_type"] {
+    /* fuck this */
+    width: 92.7px;
+}
+
 .update_form #oeuvre_form .form_buttons .filler {
     width: 32px;
 }
 
 .update_form #oeuvre_form_empty .form_buttons .filler {
     width: 44px;
+}
+
+
+/* Content Cinema Forms
+   ========================================================================== */
+
+.update_form #cinema_form .form_inputs {
+    margin-top: 3px;
+}
+
+.update_form #cinema_form p {
+    width: 800px;
+}
+
+.update_form #cinema_form p label {
+    width: 96px;
+}
+
+.update_form #cinema_form p label[for="id_visited"] {
+    width: 85px;
+}
+
+.update_form #cinema_form .form_buttons .filler {
+    width: 72px;
 }
 

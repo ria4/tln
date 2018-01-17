@@ -1,0 +1,47 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+{% load l10n %}
+
+{% block title %}tln - {{ cinema.name|lower }}{% endblock %}
+
+{% block content %}
+
+<div id="cinema_info" class="info">
+    <h1 class="title">{{ cinema.name }}</h1>
+</div>
+
+<div class="oeuvre_comments">
+    <article class="comment">
+        <div>
+        {% for p in cinema.comment %}
+            <p class="comment_par">{{ p }}</p>
+        {% endfor %}
+        </div>
+        <p class="comment_date">visité le
+            {% localize on %}
+            {{ cinema.visited|date:"j F Y" }}
+            {% endlocalize %}
+        </p>
+    </article>
+</div>
+
+<div class="update_form">
+    <form id="cinema_form" action="{% url 'detail_cinema' cinema.id %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <div class="form_buttons">
+    {# when 'enter' is pressed, the form gives priority to the first submit #}
+    {# hence the hidden button, so that default is send rather than delete #}
+            <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
+            <input type="submit" formaction="{% url 'supprimer_cinema' cinema.id %}" value="supprimer"/>
+            <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

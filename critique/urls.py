@@ -19,6 +19,7 @@ urlpatterns = [
     path('top_films/<int:year>', views.top_films, name='top_films'),
     path('textes/', views.top_textes, name='top_textes'),
     path('cinema/id/<str:id>', views.detail_cinema, name='detail_cinema'),
+    path('cinema/id/<str:id>/delete', views.supprimer_cinema, name='supprimer_cinema'),
     path('cinemas/', views.liste_cinemas, name='liste_cinemas'),
     path('seances/', views.liste_seances, name='liste_seances'),
     path('seances/<int:year>', views.liste_seances, name='liste_seances'),
