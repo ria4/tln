@@ -122,44 +122,18 @@ if (cinemas) {
 }
 
 
-/* Oeuvre - Update an oeuvre from a django form */
-/* TODO CSS styling! */
+/* Forms Validation */
 
-function validation_mark(e, test) {
+function validation_mark(elem, test) {
     if (test) {
-        e.target.classList.add("bad_input");
+        elem.classList.add("bad_input");
     } else {
-        e.target.classList.remove("bad_input");
+        elem.classList.remove("bad_input");
     }
 }
 
-var oeuvre_form = document.getElementById("oeuvre_form");
-if (oeuvre_form) {
-
-    /* Validate inputs */
-
-    title_vf = document.getElementById("id_title_vf");
-    title_vo = document.getElementById("id_title_vo");
-    title_alt = document.getElementById("id_title_alt");
-    artists = document.getElementById("id_artists");
-    year = document.getElementById("id_year");
-    imdb_id = document.getElementById("id_imdb_id");
-    validated_elements = [title_vf, title_vo, title_alt, artists, year, imdb_id]
-
-    title_vf.addEventListener("blur", function (e) {
-        validation_mark(e, e.target.value.length > 1000);});
-    title_vo.addEventListener("blur", function (e) {
-        validation_mark(e, e.target.value.length > 1000);});
-    title_alt.addEventListener("blur", function (e) {
-        validation_mark(e, e.target.value.length > 1000);});
-    artists.addEventListener("blur", function (e) {
-        validation_mark(e, e.target.value.length > 1000);});
-    year.addEventListener("blur", function (e) {
-        validation_mark(e, e.target.value > 2100);});
-    imdb_id.addEventListener("blur", function (e) {
-        validation_mark(e, !e.target.value.match(/^tt\d{7}$/))});
-
-    oeuvre_form.addEventListener("submit", function (e) {
+function add_submit_listener(form, validated_elements) {
+    form.addEventListener("submit", function (e) {
         var data_ok = true;
         for (i=0; i<validated_elements.length; i++) {
             if (validated_elements[i].classList.contains("bad_input")) {
@@ -172,21 +146,110 @@ if (oeuvre_form) {
     });
 }
 
+var oeuvre_form = document.getElementById("oeuvre_form");
+if (oeuvre_form) {
+
+    title_vf = document.getElementById("id_title_vf");
+    title_vo = document.getElementById("id_title_vo");
+    title_alt = document.getElementById("id_title_alt");
+    artists = document.getElementById("id_artists");
+    year = document.getElementById("id_year");
+    imdb_id = document.getElementById("id_imdb_id");
+    validated_elements = [title_vf, title_vo, title_alt, artists, year, imdb_id];
+
+    validation_mark(title_vf, ((title_vf.value.length > 1000) || (title_vf.value == "")));
+    validation_mark(title_vo, title_vo.value.length > 1000);
+    validation_mark(title_alt, title_alt.value.length > 1000);
+    validation_mark(artists, ((artists.value.length > 1000) || (artists.value == "")));
+    validation_mark(year, ((year.value > 2100) || (year.value == "")));
+    validation_mark(imdb_id, !imdb_id.value.match(/^tt\d{7}$|^$/));
+
+    title_vf.addEventListener("blur", function (e) {
+        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
+    title_vo.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value.length > 1000);});
+    title_alt.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value.length > 1000);});
+    artists.addEventListener("blur", function (e) {
+        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
+    year.addEventListener("blur", function (e) {
+        validation_mark(e.target, ((e.target.value > 2100) || (e.target.value == "")));});
+    imdb_id.addEventListener("blur", function (e) {
+        validation_mark(e.target, !e.target.value.match(/^tt\d{7}$|^$/))});
+
+    add_submit_listener(oeuvre_form, validated_elements);
+}
+
+var oeuvre_form_empty = document.getElementById("oeuvre_form_empty");
+if (oeuvre_form_empty) {
+
+    title_vf = document.getElementById("id_empty_title_vf");
+    title_vo = document.getElementById("id_empty_title_vo");
+    title_alt = document.getElementById("id_empty_title_alt");
+    artists = document.getElementById("id_empty_artists");
+    year = document.getElementById("id_empty_year");
+    imdb_id = document.getElementById("id_empty_imdb_id");
+    validated_elements = [title_vf, title_vo, title_alt, artists, year, imdb_id];
+
+    validation_mark(title_vf, ((title_vf.value.length > 1000) || (title_vf.value == "")));
+    validation_mark(title_vo, title_vo.value.length > 1000);
+    validation_mark(title_alt, title_alt.value.length > 1000);
+    validation_mark(artists, ((artists.value.length > 1000) || (artists.value == "")));
+    validation_mark(year, ((year.value > 2100) || (year.value == "")));
+    validation_mark(imdb_id, !imdb_id.value.match(/^tt\d{7}$|^$/));
+
+    title_vf.addEventListener("blur", function (e) {
+        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
+    title_vo.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value.length > 1000);});
+    title_alt.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value.length > 1000);});
+    artists.addEventListener("blur", function (e) {
+        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
+    year.addEventListener("blur", function (e) {
+        validation_mark(e.target, ((e.target.value > 2100) || (e.target.value == "")));});
+    imdb_id.addEventListener("blur", function (e) {
+        validation_mark(e.target, !e.target.value.match(/^tt\d{7}$|^$/))});
+
+    add_submit_listener(oeuvre_form_empty, validated_elements);
+}
+
+var cinema_form = document.getElementById("cinema_form");
+if (cinema_form) {
+
+    name_input = document.getElementById("id_name");
+    comment = document.getElementById("id_comment");
+    visited = document.getElementById("id_visited");
+    validated_elements = [name, comment, visited];
+
+    validation_mark(name_input, name_input.value == "");
+    validation_mark(comment, comment.value == "");
+    validation_mark(visited, visited.value == "");
+
+    name_input.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+    comment.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+    visited.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+
+    add_submit_listener(cinema_form, validated_elements);
+}
+
 
 /* Global - Reveal login, edit... through keyboard inputs */
 
 var login_form = document.getElementById("login_form");
 var comment_form = document.getElementById("comment_form");
-var oeuvre_form_empty = document.getElementById("oeuvre_form_empty");
 var comment_form_empty = document.getElementById("comment_form_empty");
-var cinema_form = document.getElementById("cinema_form");
 
 var codes = {"login": login_form,
              "edito": oeuvre_form,
-             "editc": comment_form,
              "addo": oeuvre_form_empty,
+             "editc": comment_form,
              "addc": comment_form_empty,
              "editi": cinema_form};
+
 var active_code = "";
 var cached_code = "";
 document.addEventListener("keypress", function (e) {
