@@ -258,13 +258,35 @@ if (comment_form_empty) {
     add_submit_listener(comment_form_empty, validated_elements);
 }
 
+var comment_form = document.getElementById("comment_form");
+if (comment_form) {
+
+    title = document.getElementById("id_title");
+    date = document.getElementById("id_date");
+    content = document.getElementById("id_content");
+    validated_elements = [title, date, content];
+
+    validation_mark(title, title.value == "");
+    validation_mark(date, date.value == "");
+    validation_mark(content, content.value == "");
+
+    title.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+    date.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+    content.addEventListener("blur", function (e) {
+        validation_mark(e.target, e.target.value == "");});
+
+    add_submit_listener(comment_form, validated_elements);
+}
+
+var login_form = document.getElementById("login_form");
+
 
 /* Global - Reveal login, edit... through keyboard inputs */
 
-var login_form = document.getElementById("login_form");
-var comment_form = document.getElementById("comment_form");
-
 var codes = {"login": login_form,
+             "logout": true,
              "edito": oeuvre_form,
              "addo": oeuvre_form_empty,
              "editc": comment_form,
@@ -293,7 +315,13 @@ document.addEventListener("keypress", function (e) {
             cached_code = "";
         } else if (code_found) {
             cached_code = "";
-            codes[active_code].parentElement.classList.add("revealed");
+            console.log(active_code);
+            if (active_code == "logout") {
+                active_code = "";
+                window.location.href = "/critique/logout";
+            } else {
+                codes[active_code].parentElement.classList.add("revealed");
+            }
         }
     }
 });
@@ -308,7 +336,7 @@ document.addEventListener("keydown", function (e) {
 
 for (var key in codes) {
     if (codes.hasOwnProperty(key)) {
-        if (codes[key]) {
+        if ((key != "logout") && (codes[key])) {
             codes[key].addEventListener("reset", function (e) {
                 e.target.parentElement.classList.remove("revealed");
                 active_code = "";

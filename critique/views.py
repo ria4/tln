@@ -6,8 +6,10 @@ import requests
 import shutil
 from datetime import datetime
 from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, EmptyPage
-from django.http import HttpResponse, Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
 from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
@@ -61,7 +63,8 @@ def get_oeuvre_form_data(oeuvre):
         form_data['envie'] = oeuvre.envie
     return form_data
 
-def update_oeuvre(oeuvre, form):
+@permission_required('critique.all_rights')
+def update_oeuvre(req, oeuvre, form):
     oeuvre.info.type = form.cleaned_data['type']
     oeuvre.info.titles.vf = form.cleaned_data['title_vf']
     if form.cleaned_data['title_vo']:
@@ -92,6 +95,7 @@ def get_comment_form_data(comment):
     form_data['content'] = '\n\n'.join(comment.content)
     return form_data
 
+@permission_required('critique.all_rights')
 def update_latest_comment(req, id):
     comment_form = OeuvreCommentForm(req.POST)
     if req.POST and comment_form.is_valid():
@@ -112,6 +116,7 @@ def update_comment_with_form(comment, form):
         comment.date_day_unknown = form.cleaned_data['no_day']
     comment.content = form.cleaned_data['content'].split('\r\n\r\n')
 
+@permission_required('critique.all_rights')
 def add_comment(req, id):
     """
     The id here should be an oeuvre.id.
@@ -128,11 +133,12 @@ def add_comment(req, id):
 
 # Views
 
+@permission_required('critique.all_rights')
 def add_oeuvre(req):
     form = OeuvreForm(req.POST)
     oeuvre = Oeuvre()
     if form.is_valid():
-        update_oeuvre(oeuvre, form)
+        update_oeuvre(req, oeuvre, form)
         return redirect('detail_oeuvre', id=oeuvre.id)
 
 def detail_oeuvre(req, id):
@@ -144,7 +150,7 @@ def detail_oeuvre(req, id):
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
-        update_oeuvre(oeuvre, oeuvre_form)
+        update_oeuvre(req, oeuvre, oeuvre_form)
     comments = comment_form = None
     if oeuvre.comments:
         comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
@@ -163,12 +169,14 @@ def detail_oeuvre_slug(req, slug):
         comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
     return render(req, 'critique/oeuvre.html', locals())
 
+@permission_required('critique.all_rights')
 def delete_oeuvre(req, id):
     oeuvre = get_object_or_404(Oeuvre, id=id)
     mtype = oeuvre.info.type
     oeuvre.delete()
     return redirect('list_oeuvres', mtype)
 
+@permission_required('critique.all_rights')
 def delete_latest_comment(req, id):
     oeuvre = get_object_or_404(Oeuvre, id=id)
     n = len(oeuvre.comments)
@@ -250,7 +258,8 @@ def get_cinema_form_data(cinema):
     form_data['visited'] = cinema.visited.strftime('%Y-%m-%d')
     return form_data
 
-def update_cinema(cinema, form):
+@permission_required('critique.all_rights')
+def update_cinema(req, cinema, form):
     cinema.name = form.cleaned_data['name']
     cinema.comment = form.cleaned_data['comment'].split('\r\n\r\n')
     cinema.visited = form.cleaned_data['visited']
@@ -267,9 +276,10 @@ def detail_cinema(req, id):
     cinema = get_object_or_404(Cinema, id=id)
     form = CinemaForm(req.POST or get_cinema_form_data(cinema))
     if req.POST and form.is_valid():
-        update_cinema(cinema, form)
+        update_cinema(req, cinema, form)
     return render(req, 'critique/cinema.html', locals())
 
+@permission_required('critique.all_rights')
 def delete_cinema(req, id):
     cinema = get_object_or_404(Cinema, id=id).delete()
     return redirect('list_cinemas')
@@ -299,34 +309,20 @@ def top_films(req, year=2017):
     return render(req, 'critique/top_films.html', locals())
 
 
+# Login
 
-#import base64
-#from tempfile import NamedTemporaryFile
-#from shutil import copyfileobj
+def login_view(req):
+    username = req.POST['username']
+    password = req.POST['password']
+    user = authenticate(req, username=username, password=password)
+    if user is not None:
+        login(req, user)
+        return HttpResponseRedirect(req.META.get('HTTP_REFERER'))
+    return redirect('preambule')
 
-#def detail_oeuvre_tmpfile(req, slug):
-#    """
-#    Version qui crée un fichier temporaire.
-#    """
-#    try:
-#        oeuvre = get_object_or_404(Oeuvre, slug=slug)
-#        tmpFileObj = NamedTemporaryFile(dir='critique/static/critique')
-#        copyfileobj(oeuvre.info.image, tmpFileObj)
-#        tmpFileObj.seek(0, 0)
-#        tmpFileObjName = 'critique/' + os.path.basename(tmpFileObj.name)
-#    except Oeuvre.MultipleObjectsReturned:
-#        raise Http404
-#    return render(req, 'critique/oeuvre.html', {'oeuvre': oeuvre, 'img_url': img_name})
-
-#def detail_oeuvre_b64(req, slug):
-#    """
-#    Version qui transmet l'image en base64.
-#    """
-#    try:
-#        oeuvre = get_object_or_404(Oeuvre, slug=slug)
-#        img = oeuvre.info.image.read()
-#        img_b64 = base64.encodebytes(img).decode('utf-8')
-#    except Oeuvre.MultipleObjectsReturned:
-#        raise Http404
-#    return render(req, 'critique/oeuvre.html', {'oeuvre': oeuvre, 'img_b64': img_b64})
+def logout_view(req):
+    if req.user.is_authenticated:
+        logout(req)
+        return redirect('preambule')
+    return HttpResponseRedirect(req.META.get('HTTP_REFERER'))
 

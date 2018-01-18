@@ -1,10 +1,21 @@
 
 import os
 from datetime import datetime
+from django.db import models
 from django.template.defaultfilters import slugify
 from django_mongoengine import Document, EmbeddedDocument, fields
 
 OEUVRES_TYPES = ('film', 'serie', 'album', 'jeu', 'livre', 'bd')
+
+
+class RightsSupport(models.Model):
+    """
+    This is a dummy Model for managing permissions without them
+    being linked to a particular Model.
+    """
+    class Meta:
+        managed = False
+        permissions = (('all_rights', 'All rights'),)
 
 
 def create_image_url(image):
@@ -107,3 +118,4 @@ class Seance(Document):
     date = fields.DateTimeField()
     date_day_unknown = fields.BooleanField(default=False)
     film = fields.StringField(max_length=500)
+
