@@ -100,7 +100,7 @@ if (seances_display) {
 
 /* Cinemas - Displays cinemas by chunks */
 
-chunk_size = 23;
+chunk_size = 21;
 var cinemas = document.getElementById("cinemas");
 if (cinemas) {
     for (i=0; i<cines.length/chunk_size; i++) {
