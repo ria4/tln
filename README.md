@@ -1,3 +1,5 @@
 # tln
 
-A django website.
+A media manager website, powered by django.
+
+Copyright Max Tury <mtury@outlook.fr>
