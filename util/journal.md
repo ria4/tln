@@ -8,4 +8,4 @@
 * 14/01 - Polices d'écriture, barre de navigation réduite, menus contextuels de navigation, style CSS, chunks JS ;
 * 15/01 - Style CSS, cadres de commentaires, édition page cinémas, réglages divers ;
 * 16/01 - Tweaks style, édition/ajout oeuvre (formulaire django, validation js, style css+js)
-* 17/01 - Tweaks style, suppression oeuvre
+* 17/01 - Tweaks style, suppression oeuvre, update/delete cinema, create/update/delete comments, authentification et permissions

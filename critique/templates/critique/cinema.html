@@ -25,6 +25,7 @@
     </article>
 </div>
 
+{% if perms.critique.all_rights %}
 <div class="update_form">
     <form id="cinema_form" action="{% url 'detail_cinema' cinema.id %}" method="post">
         <div class="form_inputs">
@@ -43,5 +44,6 @@
         </div>
     </form>
 </div>
+{% endif %}
 
 {% endblock %}
