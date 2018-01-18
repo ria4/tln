@@ -127,7 +127,10 @@ def add_comment(req, id):
         comment = OeuvreComment()
         update_comment_with_form(comment, form)
         oeuvre = get_object_or_404(Oeuvre, id=id)
-        oeuvre.comments.append(comment)
+        if oeuvre.comments:
+            oeuvre.comments.append(comment)
+        else:
+            oeuvre.comments = [comment]
         oeuvre.save()
     return redirect('detail_oeuvre', id=id)
 
