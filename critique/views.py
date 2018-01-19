@@ -5,6 +5,7 @@ import random
 import requests
 import shutil
 from datetime import datetime
+from PIL import Image
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
@@ -39,10 +40,17 @@ def download_distant_image(url):
     if r.status_code == 200:
         r.raw.decode_content = True
         h = binascii.hexlify(os.urandom(16))
-        local_url = 'critique/%s' % h.decode('ascii')
-        with open('critique/static/%s' % local_url, 'wb') as f:
+        local_url = h.decode('ascii')
+        with open('critique/static/critique/tmp/%s' % local_url, 'wb') as f:
             shutil.copyfileobj(r.raw, f)
-            return local_url
+        baseheight = 300
+        img = Image.open('critique/static/critique/tmp/%s' % local_url)
+        hpercent = baseheight/float(img.size[1])
+        wsize = int(float(img.size[0])*float(hpercent))
+        img = img.resize((wsize, baseheight), Image.ANTIALIAS)
+        img.save('critique/static/critique/%s.jpg' % local_url)
+        os.remove('critique/static/critique/tmp/%s' % local_url)
+        return 'critique/%s.jpg' % local_url
     return ''
 
 def get_oeuvre_form_data(oeuvre):
@@ -65,6 +73,10 @@ def get_oeuvre_form_data(oeuvre):
 
 @permission_required('critique.all_rights')
 def update_oeuvre(req, oeuvre, form):
+    """
+    /!\ This will NOT update the oeuvre info embedded in TopFilms documents.
+    Update a top film at your own risk.
+    """
     oeuvre.info.type = form.cleaned_data['type']
     oeuvre.info.titles.vf = form.cleaned_data['title_vf']
     if form.cleaned_data['title_vo']:
@@ -77,6 +89,8 @@ def update_oeuvre(req, oeuvre, form):
         oeuvre.info.imdb_id = form.cleaned_data['imdb_id']
     if form.cleaned_data['image_link']:
         url = download_distant_image(form.cleaned_data['image_link'])
+        if oeuvre.info.image_url:
+            os.remove('critique/static/%s' % oeuvre.info.image_url)
         oeuvre.info.image_url = url
     if form.cleaned_data['tags']:
         oeuvre.tags = form.cleaned_data['tags']
@@ -176,6 +190,8 @@ def detail_oeuvre_slug(req, slug):
 def delete_oeuvre(req, id):
     oeuvre = get_object_or_404(Oeuvre, id=id)
     mtype = oeuvre.info.type
+    if hasattr(oeuvre.info, 'image_url') and oeuvre.info.image_url:
+        os.remove('critique/static/%s' % oeuvre.info.image_url)
     oeuvre.delete()
     return redirect('list_oeuvres', mtype)
 
