@@ -239,17 +239,13 @@ if (cinema_form) {
 var comment_form_empty = document.getElementById("comment_form_empty");
 if (comment_form_empty) {
 
-    title = document.getElementById("id_empty_title");
     date = document.getElementById("id_empty_date");
     content = document.getElementById("id_empty_content");
-    validated_elements = [title, date, content];
+    validated_elements = [date, content];
 
-    validation_mark(title, title.value == "");
     validation_mark(date, date.value == "");
     validation_mark(content, content.value == "");
 
-    title.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
     date.addEventListener("blur", function (e) {
         validation_mark(e.target, e.target.value == "");});
     content.addEventListener("blur", function (e) {
@@ -261,17 +257,13 @@ if (comment_form_empty) {
 var comment_form = document.getElementById("comment_form");
 if (comment_form) {
 
-    title = document.getElementById("id_title");
     date = document.getElementById("id_date");
     content = document.getElementById("id_content");
-    validated_elements = [title, date, content];
+    validated_elements = [date, content];
 
-    validation_mark(title, title.value == "");
     validation_mark(date, date.value == "");
     validation_mark(content, content.value == "");
 
-    title.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
     date.addEventListener("blur", function (e) {
         validation_mark(e.target, e.target.value == "");});
     content.addEventListener("blur", function (e) {

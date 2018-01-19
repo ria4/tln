@@ -81,12 +81,18 @@ def update_oeuvre(req, oeuvre, form):
     oeuvre.info.titles.vf = form.cleaned_data['title_vf']
     if form.cleaned_data['title_vo']:
         oeuvre.info.titles.vo = form.cleaned_data['title_vo']
+    else:
+        oeuvre.info.titles.vo = None
     if form.cleaned_data['title_alt']:
         oeuvre.info.titles.alt = form.cleaned_data['title_alt'].split('; ')
+    else:
+        oeuvre.info.titles.alt = None
     oeuvre.info.artists = form.cleaned_data['artists'].split('; ')
     oeuvre.info.year = form.cleaned_data['year']
     if form.cleaned_data['imdb_id']:
         oeuvre.info.imdb_id = form.cleaned_data['imdb_id']
+    else:
+        oeuvre.info.imdb_id = None
     if form.cleaned_data['image_link']:
         url = download_distant_image(form.cleaned_data['image_link'])
         if oeuvre.info.image_url:
@@ -94,6 +100,8 @@ def update_oeuvre(req, oeuvre, form):
         oeuvre.info.image_url = url
     if form.cleaned_data['tags']:
         oeuvre.tags = form.cleaned_data['tags']
+    else:
+        oeuvre.tags = None
     if 'envie' in form.cleaned_data:
         oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save()
@@ -123,6 +131,8 @@ def update_latest_comment(req, id):
 def update_comment_with_form(comment, form):
     if form.cleaned_data['title']:
         comment.title = form.cleaned_data['title']
+    else:
+        comment.title = None
     comment.date = form.cleaned_data['date']
     if 'no_month' in form.cleaned_data:
         comment.date_month_unknown = form.cleaned_data['no_month']
