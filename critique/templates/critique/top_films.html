@@ -6,14 +6,17 @@
 {% block content %}
 
 <ul class="navbar subbar">
+    <li><a href={% url "top_films" %}
+        {% if year == 2011 %}class="selected"{% endif %}>
+        189x-2018</a></li>
     {% for y in year_range %}
     <li><a href={% url "top_films" y %}
-        {% if y == year %}class="selected"{% endif %}>
+        {% if year == y %}class="selected"{% endif %}>
         {{ y }}</a></li>
     {% endfor %}
 </ul>
 
-<ul id="top_films" class="oeuvres_display mosaic_display">
+<ul id="top_films" class="oeuvres_display mosaic_display {% if year == 2011 %}all_time{% endif %}">
 {% for oeuvre in oeuvres %}
     <li><div class="oeuvre_display">
         <a href={% url "detail_oeuvre" oeuvre.id %}>

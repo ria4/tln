@@ -331,7 +331,7 @@ def list_seances(req, year=2017):
 
 # Top Films
 
-def top_films(req, year=2017):
+def top_films(req, year=2011):
     oeuvres = list(get_object_or_404(TopFilms, year=year).top)
     random.shuffle(oeuvres)
     year_range = range(2012, 2018)
