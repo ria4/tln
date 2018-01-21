@@ -595,17 +595,20 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: -10px;
+    margin-top: -4px;
 }
 
 .content .oeuvre_display {
     height: 290px;
     width: auto;
     max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content .mosaic_display .oeuvre_display {
-    margin: 10px;
+    margin: 12px 6px;
 }
 
 .content .oeuvre_display img {
@@ -814,19 +817,24 @@ header {
 
 .content .info .info_text {
     height: 90%;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .content .info_text .main_title {
+    max-width: 430px;
     text-align: left;
     margin-left: -1px;
     padding-bottom: 2px;
+    display: block;
+    line-height: 1;
+    padding-top: 5px;
 }
 
 .content .info .alt_title {
-    margin-top: -15px;
+    margin-top: -12px;
     padding-bottom: 8px;
 }
 .content .info .artists {
