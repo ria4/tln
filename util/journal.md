@@ -10,3 +10,7 @@
 * 16/01 - Tweaks style, édition/ajout oeuvre (formulaire django, validation js, style css+js) ;
 * 17/01 - Tweaks style, suppression oeuvre, update/delete cinema, create/update/delete comments, authentification et permissions ;
 * 18/01 - Licences, écriture du préambule, suppression des images de la base de données ;
+* 19/01 - Gestion des images, nettoyage db films
+* 20/01 - Pause
+* 21/01 - Style, nettoyage db films et livres
+* 22/01 - Nettoyage db séries

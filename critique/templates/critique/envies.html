@@ -21,7 +21,10 @@
         {% if oeuvre.info.image_url %}
             <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
         {% else %}
-            {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+            <div class="substitute_display">
+                <img src="{% static 'critique/substitute.jpg' %}" alt="{{ oeuvre.info.titles.vf }}" />
+                <p>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</p>
+            </div>
         {% endif %}</a>
     </div></li>
 {% endfor %}

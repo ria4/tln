@@ -590,14 +590,15 @@ header {
 }
 
 .content .oeuvres_display {
-    width: 100%;
+    width: 95%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: -4px;
+    margin-top: -11px;
 }
 
+/* weird margins around here, this could probably be cleaned up */
 .content .oeuvre_display {
     height: 290px;
     width: auto;
@@ -609,6 +610,10 @@ header {
 
 .content .mosaic_display .oeuvre_display {
     margin: 12px 6px;
+}
+
+.content .mosaic_display .oeuvre_display a {
+    max-height: 100%;
 }
 
 .content .oeuvre_display img {
@@ -627,6 +632,19 @@ header {
     box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
     -webkit-transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 255, 0.3);
+}
+
+.content .oeuvre_display .substitute_display {
+    position: relative;
+}
+
+.content .oeuvre_display .substitute_display p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
 }
 
 .pagination {
@@ -816,7 +834,7 @@ header {
 }
 
 .content .info .info_text {
-    height: 90%;
+    height: 92%;
     min-height: 250px;
     display: flex;
     flex-direction: column;
