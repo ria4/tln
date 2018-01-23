@@ -647,7 +647,7 @@ header {
     transform: translate(-50%, -80%);
 }
 
-.pagination {
+#pagination {
     width: 100%;
     margin-top: 10px;
     font-family: Abuget;
@@ -794,6 +794,8 @@ header {
 .content .sub_title {
     padding-right: 22px;
     font-size: 26px;
+    padding-top: 1px;
+    margin-top: 7px;
 }
 
 
@@ -849,6 +851,7 @@ header {
     display: block;
     line-height: 1;
     padding-top: 5px;
+    padding-right: 1px;
 }
 
 .content .info .alt_title {

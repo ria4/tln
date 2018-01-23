@@ -1,3 +1,2 @@
 * insérer html dans commentaires ?
-* nettoyer la base de données : musique, jeux
 * style couleurs, liens, backgrounds...

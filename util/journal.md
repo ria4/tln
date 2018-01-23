@@ -13,4 +13,5 @@
 * 19/01 - Gestion des images, nettoyage db films
 * 20/01 - Pause
 * 21/01 - Style, nettoyage db films et livres
-* 22/01 - Nettoyage db séries
+* 22/01 - Style, nettoyage db séries (rework crawler imdb), jeux
+* 23/01 - Style, navigation fléchée entre pages, nettoyage db musique (envies seulement...)

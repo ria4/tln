@@ -272,10 +272,10 @@ if (comment_form) {
     add_submit_listener(comment_form, validated_elements);
 }
 
-var login_form = document.getElementById("login_form");
-
 
 /* Global - Reveal login, edit... through keyboard inputs */
+
+var login_form = document.getElementById("login_form");
 
 var codes = {"login": login_form,
              "logout": true,
@@ -337,3 +337,15 @@ for (var key in codes) {
     }
 }
 
+/* Pagination - Navigate with arrow keys */
+
+var pagination = document.getElementById("pagination");
+if (pagination) {
+    document.addEventListener("keydown", function (e) {
+        if ((e.keyCode == 37) && (previous_page_url)) {
+            window.location.href = previous_page_url;
+        } else if ((e.keyCode == 39) && (next_page_url)) {
+            window.location.href = next_page_url;
+        }
+    });
+}
