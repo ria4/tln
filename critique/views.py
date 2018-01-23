@@ -253,11 +253,6 @@ def list_oeuvres(req, mtype, page=1):
     (Les "re-" envies ne sont pas prises en charge.)
     """
     oeuvres_list = Oeuvre.objects(__raw__={'envie': False, 'info.type': mtype})
-    #paginator = Paginator(oeuvres_list, 20)
-    #try:
-    #    oeuvres = paginator.page(page)
-    #except EmptyPage:
-    #    oeuvres = paginator.page(paginator.num_pages)
     oeuvres = oeuvres_list.order_by('-info__year')
     context = {'oeuvres': oeuvres, 'mtype': mtype}
     return render(req, 'critique/collection.html', context)
@@ -267,12 +262,13 @@ def list_oeuvres(req, mtype, page=1):
 
 def list_envies(req, mtype, page=1):
     oeuvres_list = Oeuvre.objects(__raw__={'envie': True, 'info.type': mtype})
-    paginator = Paginator(oeuvres_list, 22)
+    oeuvres = oeuvres_list.order_by('-info__year')
+    paginator = Paginator(oeuvres, 22)
     try:
-        oeuvres = paginator.page(page)
+        oeuvres_page = paginator.page(page)
     except EmptyPage:
-        oeuvres = paginator.page(paginator.num_pages)
-    context = {'oeuvres': oeuvres, 'mtype': mtype}
+        oeuvres_page = paginator.page(paginator.num_pages)
+    context = {'oeuvres': oeuvres_page, 'mtype': mtype}
     return render(req, 'critique/envies.html', context)
 
 
