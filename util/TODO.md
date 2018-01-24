@@ -1,2 +1,3 @@
-* insérer html dans commentaires ?
-* style couleurs, liens, backgrounds...
+* insérer html dans commentaires
+* ajout de séances
+* bug hover/shadow substitute display

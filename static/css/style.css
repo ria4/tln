@@ -568,12 +568,12 @@ body {
 }
 
 #content a {
-    color: gray;
+    color: #bd4700;
     text-decoration: none;
 }
 
 #content a:hover {
-    color: #ffb618;
+    color: #f7a300;
 }
 
 #content a:active, #content a:focus,
@@ -632,8 +632,8 @@ body {
 }
 
 #content .oeuvre_display a img:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
-    box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
     -webkit-transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 255, 0.3);
 }
@@ -642,6 +642,9 @@ body {
     position: relative;
 }
 
+/* TODO segregating img and p will prevent the shadow
+ * appearing around the box when hovering over p...
+ * This is part of why the oeuvre_display should be cleaned up. */
 #content .oeuvre_display .substitute_display p {
     position: absolute;
     width: 100%;
@@ -681,7 +684,7 @@ body {
 }
 
 .navbar a:hover {
-    color: #ffb618;
+    color: #a40000;
 }
 
 .navbar a:active, .navbar a:focus {
@@ -770,6 +773,14 @@ body {
     padding: 0 36px;
 }
 
+.subbar a {
+    color: black !important;
+}
+
+.subbar a:hover {
+    color: #f7a300 !important;
+}
+
 .subbar .selected {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
@@ -813,7 +824,7 @@ body {
 }
 
 #preambule > div {
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid #a57100;
     margin: 0 -50px;
     padding: 20px 50px;
 }
@@ -930,9 +941,9 @@ body {
 #content .note_summary {
     margin: 12px 0;
     padding: 10px;
-    border: 1px solid #ddd;
-    -webkit-box-shadow: 0 0 8px 0 rgba(2, 3, 3, 0.16);
-    box-shadow: 0 0 8px 0 rgba(2, 3, 3, 0.16);
+    border: 1px solid #d3d4db;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.16);
+    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.16);
     width: 900px;
     max-height: 210px;
     display: flex;
@@ -941,8 +952,8 @@ body {
 }
 
 #content .note_summary:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
-    box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
     -webkit-transition: all 0.4s ease;
 }
 
@@ -990,8 +1001,8 @@ body {
 .chunks ul {
     padding: 10px 0;
     margin: 0 -16px -1px -16px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #a57100;
+    border-bottom: 1px solid #a57100;
 }
 
 .chunks li {
@@ -1157,7 +1168,7 @@ body {
 }
 
 .update_form .form_buttons input:hover {
-    color: #ffb618;
+    color: #f7a300;
 }
 
 
