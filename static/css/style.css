@@ -541,6 +541,8 @@ body {
     height: auto;
     min-height: 100%;
     padding-bottom: 50px;
+    background-image: url("/static/img_base/background.jpg");
+    background-size: 100% auto;
 }
 
 header {
@@ -554,7 +556,7 @@ header {
     z-index: 101;
 }
 
-.content {
+#content {
     margin-top: 100px;
     font-size: 20px;
     display: flex;
@@ -563,33 +565,33 @@ header {
     font-family: Alegreya;
 }
 
-.content a {
+#content a {
     color: gray;
     text-decoration: none;
 }
 
-.content a:hover {
+#content a:hover {
     color: #ffb618;
 }
 
-.content a:active, .content a:focus,
+#content a:active, #content a:focus,
 .navbar a:active, .navbar a:focus {
     outline: none
 }
 
-.content .top_title {
+#content .top_title {
     font-weight: bold;
     font-size: 40px;
     text-align: center;
     padding: 44px 8px 12px 0;
 }
 
-.content .par_title {
+#content .par_title {
     font-weight: bold;
     font-size: 30px;
 }
 
-.content .oeuvres_display {
+#content .oeuvres_display {
     width: 95%;
     display: flex;
     flex-wrap: wrap;
@@ -599,7 +601,7 @@ header {
 }
 
 /* weird margins around here, this could probably be cleaned up */
-.content .oeuvre_display {
+#content .oeuvre_display {
     height: 290px;
     width: auto;
     max-width: 400px;
@@ -608,37 +610,37 @@ header {
     align-items: center;
 }
 
-.content .mosaic_display .oeuvre_display {
+#content .mosaic_display .oeuvre_display {
     margin: 12px 6px;
 }
 
-.content .mosaic_display .oeuvre_display a {
+#content .mosaic_display .oeuvre_display a {
     max-height: 100%;
 }
 
-.content .oeuvre_display img {
+#content .oeuvre_display img {
     padding: 0;
     border: 1px solid #eee;
     max-width: 100%;
     max-height: 100%;
 }
 
-.content .oeuvre_display a img {
+#content .oeuvre_display a img {
     -webkit-transition: all 0.3s ease;
 }
 
-.content .oeuvre_display a img:hover {
+#content .oeuvre_display a img:hover {
     -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
     box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
     -webkit-transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 255, 0.3);
 }
 
-.content .oeuvre_display .substitute_display {
+#content .oeuvre_display .substitute_display {
     position: relative;
 }
 
-.content .oeuvre_display .substitute_display p {
+#content .oeuvre_display .substitute_display p {
     position: absolute;
     width: 100%;
     text-align: center;
@@ -778,7 +780,7 @@ header {
     line-height: 0.88;
 }
 
-.content .title {
+#content .title {
     font-family: AlegreyaSans;
     font-weight: bold;
     font-size: 34px;
@@ -791,7 +793,7 @@ header {
     -webkit-box-orient: vertical;
 }
 
-.content .sub_title {
+#content .sub_title {
     padding-right: 22px;
     font-size: 26px;
     padding-top: 1px;
@@ -822,7 +824,7 @@ header {
 
 /* Content Oeuvres
    ========================================================================== */
-.content .info {
+#content .info {
     font-family: AlegreyaSans;
     width: 100%;
     display: flex;
@@ -830,12 +832,12 @@ header {
     justify-content: center;
 }
 
-.content .info .oeuvre_display {
+#content .info .oeuvre_display {
     margin: 10px;
     margin-right: 20px;
 }
 
-.content .info .info_text {
+#content .info .info_text {
     height: 92%;
     min-height: 250px;
     display: flex;
@@ -843,7 +845,7 @@ header {
     justify-content: center;
 }
 
-.content .info_text .main_title {
+#content .info_text .main_title {
     max-width: 430px;
     text-align: left;
     margin-left: -1px;
@@ -854,40 +856,40 @@ header {
     padding-right: 1px;
 }
 
-.content .info .alt_title {
+#content .info .alt_title {
     margin-top: -12px;
     padding-bottom: 8px;
 }
-.content .info .artists {
+#content .info .artists {
     margin-top: 2px;
 }
 
-.content #oeuvre_info {
+#content #oeuvre_info {
     min-height: 150px;
 }
 
-.content .oeuvre_comments {
+#content .oeuvre_comments {
     margin-top: 24px;
     width: 750px;
 }
 
-.content .comment {
+#content .comment {
     border-top: 1px solid black;
     padding-top: 4px;
 }
 
-.content .comment_title {
+#content .comment_title {
     font-weight: bold;
     font-size: 30px;
     text-align: center;
     padding: 44px 8px 12px 0;
 }
 
-.content .oeuvre_comments p {
+#content .oeuvre_comments p {
     margin: 18px 0;
 }
 
-.content .comment_date {
+#content .comment_date {
     margin-top: -4px;
     font-style: italic;
     text-align: right;
@@ -897,7 +899,7 @@ header {
 
 /* Content Artiste
    ========================================================================== */
-.content .oeuvre_comments.collection_artist {
+#content .oeuvre_comments.collection_artist {
     width: 1200px;
 }
 
@@ -905,26 +907,26 @@ header {
 /* Content Notes
    ========================================================================== */
 
-.content #notes_summaries {
+#content #notes_summaries {
     padding: 0 20px;
 }
 
-.content #notes_summaries a {
+#content #notes_summaries a {
     color: black;
 }
 
-.content #notes_summaries a:hover {
+#content #notes_summaries a:hover {
     color: black;
 }
 
-.content #notes_summaries .oeuvre_display {
+#content #notes_summaries .oeuvre_display {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.content .note_summary {
+#content .note_summary {
     margin: 12px 0;
     padding: 10px;
     border: 1px solid #ddd;
@@ -936,32 +938,32 @@ header {
     -webkit-transition: all 0.4s ease;
 }
 
-.content .note_summary:hover {
+#content .note_summary:hover {
     -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
     box-shadow: 0 0 12px 0 rgba(0, 0, 255, 0.5);
     -webkit-transition: all 0.4s ease;
 }
 
-.content .note_summary .oeuvre_display {
+#content .note_summary .oeuvre_display {
     width: 140px;
     height: auto;
     max-width: none;
 }
 
-.content .note_summary_text {
+#content .note_summary_text {
     margin-left: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.content .note_content_summary {
+#content .note_content_summary {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.content #notes_summaries .comment_text {
+#content #notes_summaries .comment_text {
     flex: 1;
     overflow: hidden;
     display: -webkit-box;
@@ -969,7 +971,7 @@ header {
     -webkit-box-orient: vertical;
 }
 
-.content #notes_summaries .comment_date {
+#content #notes_summaries .comment_date {
     margin-top: 4px;
 }
 
@@ -1016,37 +1018,37 @@ header {
 
 /* Content Cinemas
    ========================================================================== */
-.content #cinemas_intro.oeuvre_comments {
+#content #cinemas_intro.oeuvre_comments {
     margin-top: -10px;
     margin-bottom: 20px;
 }
 
-.content #cinemas_intro ul {
+#content #cinemas_intro ul {
     list-style: square;
     padding-left: 40px;
 }
 
-.content #cinemas_intro li {
+#content #cinemas_intro li {
     list-style: square;
 }
 
-.content .oeuvre_comments #cinemas_total {
+#content .oeuvre_comments #cinemas_total {
     margin-top: 28px;
 }
 
-.content #cinema_info,
-.content #artist_info {
+#content #cinema_info,
+#content #artist_info {
     margin-top: 38px;
 }
 
 
 /* Content Top Films
    ========================================================================== */
-.content #top_films {
+#content #top_films {
     max-width: 1320px;
 }
 
-.content #top_films.all_time {
+#content #top_films.all_time {
     max-width: 1400px;
 }
 
