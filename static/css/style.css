@@ -537,23 +537,25 @@ textarea, input {
 
 /* Main
    ========================================================================== */
-body {
-    height: auto;
-    min-height: 100%;
-    padding-bottom: 50px;
-    background-image: url("/static/img_base/background.jpg");
-    background-size: 100% auto;
-}
-
 header {
     -webkit-box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
     box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
     overflow: hidden;
-    background: #fff;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 101;
+    background-image: url("/static/img_base/critique_background_header.jpg");
+    background-size: 1920px; auto;
+    background-position: right top;
+}
+
+body {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 50px;
+    background-image: url("/static/img_base/critique_background_content.jpg");
+    background-size: 100% auto;
 }
 
 #content {
@@ -716,7 +718,6 @@ header {
 
 #errance-bar {
     z-index: 0;
-    background: #fff;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -936,6 +937,7 @@ header {
     max-height: 210px;
     display: flex;
     -webkit-transition: all 0.4s ease;
+    background-color: #fffddb;
 }
 
 #content .note_summary:hover {
