@@ -632,26 +632,47 @@ body {
 }
 
 #content .oeuvre_display a img:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     -webkit-transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 255, 0.3);
+    border: 1px solid rgba(0, 0, 255, 0.4);
 }
 
+/* Here is a dirty fix for borders/shadows of substitute displays...
+ * Otherwise shadows would not appear when hovering over the inner p. */
 #content .oeuvre_display .substitute_display {
+    -webkit-transition: all 0.3s ease;
     position: relative;
+    display: inline-flex;
+    padding: 0;
+    border: 1px solid #eee;
+    max-width: 100%;
+    max-height: 100%;
 }
 
-/* TODO segregating img and p will prevent the shadow
- * appearing around the box when hovering over p...
- * This is part of why the oeuvre_display should be cleaned up. */
+#content .oeuvre_display .substitute_display:hover {
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    -webkit-transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 255, 0.4);
+}
+
+#content .oeuvre_display .substitute_display img {
+    border: none;
+}
+
+#content .oeuvre_display .substitute_display img:hover {
+    box-shadow: none;
+    border: none;
+}
+
 #content .oeuvre_display .substitute_display p {
     position: absolute;
     width: 100%;
     text-align: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -80%);
+    transform: translate(-50%, -70%);
 }
 
 #pagination {
@@ -942,8 +963,8 @@ body {
     margin: 12px 0;
     padding: 10px;
     border: 1px solid #d3d4db;
-    -webkit-box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.16);
-    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.16);
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
+    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
     width: 900px;
     max-height: 210px;
     display: flex;
@@ -952,8 +973,8 @@ body {
 }
 
 #content .note_summary:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.5);
+    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     -webkit-transition: all 0.4s ease;
 }
 

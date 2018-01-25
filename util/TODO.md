@@ -1,3 +1,2 @@
-* insérer html dans commentaires
+* nettoyer textes md -> html
 * ajout de séances
-* bug hover/shadow substitute display
