@@ -342,9 +342,9 @@ for (var key in codes) {
 var pagination = document.getElementById("pagination");
 if (pagination) {
     document.addEventListener("keydown", function (e) {
-        if ((e.keyCode == 37) && (previous_page_url)) {
+        if ((e.keyCode == 37) && previous_page_url && !(active_code)) {
             window.location.href = previous_page_url;
-        } else if ((e.keyCode == 39) && (next_page_url)) {
+        } else if ((e.keyCode == 39) && next_page_url && !(active_code)) {
             window.location.href = next_page_url;
         }
     });
