@@ -719,6 +719,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 700px;
 }
 
 #main-bar #logo {
@@ -755,6 +756,7 @@ body {
     -ms-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     font-size: 40px;
+    min-width: 700px;
 }
 
 #errance-bar.expanded {
