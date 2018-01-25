@@ -15,3 +15,4 @@
 * 21/01 - Style, nettoyage db films et livres
 * 22/01 - Style, nettoyage db séries (rework crawler imdb), jeux
 * 23/01 - Style, navigation fléchée entre pages, nettoyage db musique (envies seulement...)
+* 24/01 - Images backgrounds, couleurs, fixs divers

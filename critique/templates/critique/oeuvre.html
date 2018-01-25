@@ -51,7 +51,7 @@
             {% endif %}
             <div>
             {% for p in comment.content %}
-                <p class="comment_par">{{ p }}</p>
+                <p class="comment_par">{{ p|safe }}</p>
             {% endfor %}
             </div>
             <p class="comment_date">écrit 
