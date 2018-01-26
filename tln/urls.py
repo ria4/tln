@@ -21,6 +21,7 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('critique/', include('critique.urls')),
+    path('blog/', include('blog.urls')),
 ]
 
 #TODO remove for production
