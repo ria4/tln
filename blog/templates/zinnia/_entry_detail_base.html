@@ -1,3 +1,4 @@
+{% load staticfiles %}
 {% load i18n %}
 {% load zinnia %}
 <article id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %}" itemscope itemtype="http://schema.org/Article">
@@ -154,25 +155,25 @@
       <meta itemprop="commentCount" content="{{ object.comment_count }}" />
       <meta itemprop="discussionUrl" content="{{ object.get_absolute_url }}#comments" />
       {% if comment_count %}
-      <a href="{{ object.get_absolute_url }}#comments"
-         title="{% blocktrans with object=object.title %}Comments on {{ object }}{% endblocktrans %}">
-        {% blocktrans count comment_count=comment_count %}{{ comment_count }} comment{% plural %}{{ comment_count }} comments{% endblocktrans %}
-      </a>
+      {{ comment_count }}
+      <img src="{% static 'blog/icon_comment.png' %}" alt="{% trans 'comment' %}" />
+      -
+      {% comment %}
       {% else %}
       {% if object.comments_are_open %}
       {% trans "No comments yet." %}
-      {% comment %}
       <a href="{{ object.get_absolute_url }}#comment-form"
          title="{% blocktrans with object=object.title %}Leave a comment on {{ object }}{% endblocktrans %}">
         {% trans "Be first to comment!" %}
       </a>
-      {% endcomment %}
       {% else %}
       {% trans "Comments are closed." %}
       {% endif %}
+      {% endcomment %}
       {% endif %}
       {% endwith %}
       {% endblock entry-comments %}
+      {% comment %}
       {% block entry-pingbacks %}
       {% with pingback_count=object.pingback_count %}
       {% if pingback_count %}
@@ -191,6 +192,7 @@
       {% endif %}
       {% endwith %}
       {% endblock entry-trackbacks %}
+      {% endcomment %}
     </p>
     {% endblock entry-discussions %}
     {% block entry-published %}
