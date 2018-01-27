@@ -102,10 +102,8 @@ class TopFilms(Document):
     top = fields.ListField(fields.EmbeddedDocumentField('Oeuvre'))
 
 class TopTextes(Document):
-    """
-    There should only be one document in the associatied collection.
-    """
-    textes = fields.ListField(fields.EmbeddedDocumentField('OeuvreComment'))
+    oeuvre_id = fields.StringField(max_length=100)
+    comment_idx = fields.IntField(default=0)
 
 class Cinema(Document):
     name = fields.StringField(max_length=100)
