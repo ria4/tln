@@ -24,7 +24,7 @@
             <article class="note_content_summary">
                 <div class="comment_text">
                     {% for p in comment.content %}
-                    {{ p|safe }}
+                    {{ p|striptags }}
                     {% endfor %}
                 </div>
                 <p class="comment_date">

@@ -307,7 +307,6 @@ document.addEventListener("keypress", function (e) {
             cached_code = "";
         } else if (code_found) {
             cached_code = "";
-            console.log(active_code);
             if (active_code == "logout") {
                 active_code = "";
                 window.location.href = "/critique/logout";
