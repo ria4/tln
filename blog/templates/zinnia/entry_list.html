@@ -58,18 +58,16 @@
 {% block content %}
 
 {% block content-loop %}
-<div id="notes_summaries">
 {% for object in object_list %}
-<a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark" itemprop="url">
+<a href="{{ object.get_absolute_url }}" rel="bookmark" itemprop="url">
   {% zinnia_loop_template object.content_template as template %}
-  {% include template with object_content=object.html_preview continue_reading=1 %}
+  {% include template with object_content=object.html_preview|striptags continue_reading=1 %}
 </a>
 {% empty %}
   <p class="info">
     <a href="{% url 'admin:zinnia_entry_add' %}">{% trans "No entries yet." %}</a>
   </p>
 {% endfor %}
-</div>
 {% endblock content-loop %}
 
 {% block content-pagination %}

@@ -16,3 +16,5 @@
 * 22/01 - Style, nettoyage db séries (rework crawler imdb), jeux
 * 23/01 - Style, navigation fléchée entre pages, nettoyage db musique (envies seulement...)
 * 24/01 - Images backgrounds, couleurs, fixs divers
+* 25/01 - Tweaks pour section critique, installation zinnia pour le blog
+* 26/01 - Style blog, tweaks zinnia

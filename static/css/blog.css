@@ -550,10 +550,22 @@ body {
     background-size: 100% auto;
 }
 
+body #content-wrap {
+    display: flex;
+}
+
+body #content-wrap #sidebar-balance {
+    flex: 1;
+}
+
+body #content-wrap #sidebar {
+    flex: 1;
+}
+
 #content {
     font-size: 20px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     font-family: Alegreya;
 }
@@ -716,23 +728,23 @@ body {
 }    
 
 
-/* Content Notes
+/* Entry-list
    ========================================================================== */
 
-#content #notes_summaries {
+.entry-list #content {
     padding: 0 20px;
 }
 
-#content #notes_summaries a {
+.entry-list #content a {
     color: black;
 }
 
-#content #notes_summaries a:hover {
+.entry-list #content a:hover {
     color: black;
 }
 
-#content #notes_summaries article {
-    margin: 12px 0;
+.entry-list #content article {
+    margin: 6px 0;
     padding: 10px;
     border: 1px solid #d3d4db;
     -webkit-box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
@@ -746,50 +758,53 @@ body {
     flex-direction: column;
 }
 
-#content #notes_summaries article:hover {
+.entry-list #content article:hover {
     -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     -webkit-transition: all 0.4s ease;
 }
 
-#content #notes_summaries article .entry-body {
-    margin-left: 20px;
+.entry-list #content article .entry-body {
     flex: 1;
+}
+
+.entry-list #content article .entry-body .entry-content {
+    margin-left: 20px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 
-#content #notes_summaries article .entry-footer {
+.entry-list #content article .entry-footer {
     padding-top: 6px;
     margin: 0 20px;
     display: flex;
     align-items: center;
 }
 
-#content #notes_summaries article .entry-footer .entry-tags {
+.entry-list #content article .entry-footer .entry-tags {
     font-size: 18px;
 }
 
-#content #notes_summaries article .entry-footer .entry-discussions {
+.entry-list #content article .entry-footer .entry-discussions {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-right: 7px;
 }
 
-#content #notes_summaries article .entry-footer .entry-discussions img {
+.entry-list #content article .entry-footer .entry-discussions img {
     height: 14px;
     margin: 3px 8px 0 4px;
 }
 
-#content #notes_summaries article .entry-footer time {
+.entry-list #content article .entry-footer time {
     font-style: italic;
     text-align: right;
 }
 
-#content #notes_summaries article .entry-footer .entry-discussions {
+.entry-list #content article .entry-footer .entry-discussions {
     flex: 1;
     text-align: right;
 }
