@@ -599,7 +599,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: -11px;
+    margin-top: -3px;
 }
 
 /* weird margins around here, this could probably be cleaned up */
@@ -614,6 +614,8 @@ body {
 
 #content .mosaic_display .oeuvre_display {
     margin: 12px 6px;
+    max-height: 290px;
+    height: auto;
 }
 
 #content .mosaic_display .oeuvre_display a {
@@ -874,14 +876,14 @@ body {
 
 #content .info .info_text {
     height: 92%;
-    min-height: 250px;
+    min-height: 220px;
+    max-width: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 #content .info_text .main_title {
-    max-width: 430px;
     text-align: left;
     margin-left: -1px;
     padding-bottom: 2px;
@@ -897,6 +899,7 @@ body {
 }
 #content .info .artists {
     margin-top: 2px;
+    line-height: 1;
 }
 
 #content #oeuvre_info {
