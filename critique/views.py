@@ -219,15 +219,16 @@ def delete_latest_comment(req, id):
 # Top Textes
 
 def top_textes(req):
-    """
-    We use the comments titles, for a lack of mongoengine foreign keys.
-    """
-    top_textes = get_object_or_404(TopTextes)
+    top_textes = TopTextes.objects.all()
     top_oeuvres = []
-    for texte in top_textes.textes:
-        title = texte.title
-        oeuvre = Oeuvre.objects(__raw__={'comments.title': title})
-        top_oeuvres.append((oeuvre[0], texte))
+    for texte in top_textes:
+        comment_idx = 0
+        if hasattr(texte, 'comment_idx'):
+            comment_idx = texte.comment_idx
+        oeuvre = Oeuvre.objects.filter(id=texte.oeuvre_id)
+        comment = oeuvre[0].comments[comment_idx]
+        top_oeuvres.append((oeuvre[0], comment))
+    top_oeuvres = sorted(top_oeuvres, key=lambda o: o[1].date, reverse=True)
     return render(req, 'critique/top_textes.html', locals())
 
 
