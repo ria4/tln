@@ -13,7 +13,7 @@
     <article class="comment">
         <div>
         {% for p in cinema.comment %}
-            <p class="comment_par">{{ p }}</p>
+            <p class="comment_par">{{ p|safe }}</p>
         {% endfor %}
         </div>
         <p class="comment_date">visité le

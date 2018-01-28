@@ -916,6 +916,19 @@ body {
     padding-top: 4px;
 }
 
+/* TODO clean this (see juste prix text) */
+#content .comment ul {
+    margin: initial;
+    padding: initial;
+    list-style: initial;
+    vertical-align: initial;
+}
+
+#content .comment li {
+    margin: initial;
+    padding: initial;
+}
+
 #content .comment_title {
     font-weight: bold;
     font-size: 30px;
@@ -991,6 +1004,7 @@ body {
 
 #content .note_summary_text {
     margin-left: 10px;
+    padding-right: 4px;
     flex: 1;
     display: flex;
     flex-direction: column;
