@@ -76,5 +76,20 @@
       </footer>
       {% endcomment %}
     </div>
+
+    <div class="update_form">
+        <form id="login_form" action="{% url 'login' %}" method="post">
+            <div class="form_inputs">
+                {% csrf_token %}
+                {{ login_form.as_p }}
+            </div>
+            <div class="form_buttons">
+                <input type="submit" value="envoyer"/>
+                <div class="filler"></div>
+                <input type="reset" value="annuler"/>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="/static/js/base.js"></script>
   </body>
 </html>
