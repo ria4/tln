@@ -19,3 +19,4 @@
 * 25/01 - Tweaks pour section critique, installation zinnia pour le blog
 * 26/01 - Style blog, tweaks zinnia
 * 27/01 - Mise en forme textes critique, tweaks critique
+* 28/01 - Style blog, logout/login blog, archive widget avec template tag custom (exploration doc zinnia...)

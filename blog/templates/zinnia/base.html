@@ -32,7 +32,8 @@
 </aside>
 <aside id="widget-tags" class="widget">
   <h3>
-    <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a>
+      {# <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a> #}
+    {% trans "Tags" %}
   </h3>
   {% get_tag_cloud %}
 </aside>
