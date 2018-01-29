@@ -8,11 +8,17 @@ If two entries were published on the same day, they would be counted only as one
 <ul class="{% if not archives %}no-{% endif %}archives-entries-tree">
   {% for year in year_list reversed %}
   <li>
+      <a class='toggle
+        {% if forloop.first %} expanded{% else %} collapsed{% endif %}
+        ' href="#"><span class='toggle-in'></span></a>
       <a rel="archives" href="{% url 'zinnia:entry_archive_year' year.grouper %}">{{ year.grouper }} ({{ year.list|length }})</a>
     {% regroup year.list by month as month_list %}
     <ul>
       {% for month in month_list reversed %}
       <li>
+        <a class='toggle
+          {% if forloop.parentloop.first and forloop.first %} expanded{% else %} collapsed{% endif %}
+          ' href="#"><span class='toggle-in'></span></a>
         {% with month_date=month.list.0 %}
         <a rel="archives" href="{% url 'zinnia:entry_archive_month' month_date|date:"Y" month_date|date:"m" %}">
           {{ month_date|date:"F" }} ({{ month.list|length }})

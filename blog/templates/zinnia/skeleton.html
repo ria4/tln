@@ -59,16 +59,18 @@
       </header>
       {% block slider %}{% endblock slider %}
       <div id="content-wrap">
-      <div id="sidebar-balance" role="none">
-      </div>
-      <div id="content" class="hfeed" role="main">
-        {% block content %}
-        {% endblock content %}
-      </div>
-      <div id="sidebar" role="complementary">
-        {% block sidebar %}
-        {% endblock sidebar %}
-      </div>
+        <div id="sidebar-wrap-balance" role="none"></div>
+        <div id="content" class="hfeed" role="main">
+          {% block content %}
+          {% endblock content %}
+        </div>
+        <div id="sidebar-wrap">
+          <div id="sidebar-balance" role="none"></div>
+          <div id="sidebar" role="complementary">
+            {% block sidebar %}
+            {% endblock sidebar %}
+          </div>
+        </div>
       </div>
       {% comment %}
       <footer id="footer" role="contentinfo">
