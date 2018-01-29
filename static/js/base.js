@@ -354,3 +354,26 @@ if (pagination) {
         }
     });
 }
+
+/* Blog Archive Widget - Expand/Collapse entries */
+
+var widget_archives = document.getElementById("widget-archives");
+if (widget_archives) {
+
+    function add_toggle_listener(toggle) {
+        toggle.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (toggle.classList.contains("expanded")) {
+                toggle.classList.add("collapsed");
+                toggle.classList.remove("expanded");
+            } else {
+                toggle.classList.add("expanded");
+                toggle.classList.remove("collapsed");
+            }
+        });
+    }
+
+    toggles = widget_archives.getElementsByClassName("toggle");
+    [].forEach.call(toggles, add_toggle_listener);
+}
+
