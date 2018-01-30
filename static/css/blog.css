@@ -620,8 +620,7 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 }
 
 
-.title {
-    font-family: AlegreyaSans;
+.entry-title {
     font-size: 34px;
     text-align: center;
     margin-top: 8px;
@@ -632,11 +631,19 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
     -webkit-box-orient: vertical;
 }
 
-.sub_title {
+.entry-list .entry-title {
+    font-family: AlegreyaSans;
     padding-right: 10px;
     font-size: 26px;
     padding-top: 1px;
     margin-top: 7px;
+}
+
+.entry .entry-title {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    padding: 44px 8px 12px 0;
 }
 
 

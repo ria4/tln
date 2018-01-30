@@ -20,3 +20,5 @@
 * 26/01 - Style blog, tweaks zinnia
 * 27/01 - Mise en forme textes critique, tweaks critique
 * 28/01 - Style blog, logout/login blog, archive widget avec template tag custom (exploration doc zinnia...)
+* 29/01 - Style blog sidebar, remove useless commentform fields
+* 30/01 - Favicon

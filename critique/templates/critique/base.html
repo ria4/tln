@@ -1,7 +1,9 @@
+{% load staticfiles %}
 <!doctype html>
 <html lang="fr">
     <head>
-        <link rel="stylesheet" href="/static/css/critique.css"/>
+        <link rel="stylesheet" href="{% static 'css/critique.css' %}"/>
+        <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
         <title>{% block title %}tln - critiques{% endblock%}</title>
     </head>
 
