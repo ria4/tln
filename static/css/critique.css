@@ -1315,6 +1315,10 @@ body {
 /* Form Login
    ========================================================================== */
 
+#login_form {
+    font-size: 20px;
+}
+
 #login_form .form_inputs {
     margin-top: 3px;
 }

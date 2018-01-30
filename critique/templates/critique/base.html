@@ -1,73 +1,53 @@
+{% extends 'tln/base.html' %}
 {% load staticfiles %}
-<!doctype html>
-<html lang="fr">
-    <head>
-        <link rel="stylesheet" href="{% static 'css/critique.css' %}"/>
-        <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
-        <title>{% block title %}tln - critiques{% endblock%}</title>
-    </head>
 
-    <body>
-        <header>
-            <div id="main-bar" class="navbar">
-                <a id="logo" href="/">tln</a>
-                <nav role="navigation">
-                <ul>
-                    <li><a href={% url "preambule" %}>préambule</a></li>
-                    <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
-                    <li id="errance-bar-trigger"><a href="#">errances</a></li>
-                    {# <li>recherche</li> #}
-                </ul>
-                </nav>
+{% block css-path %}{% static 'css/critique.css' %}{% endblock %}
+{% block title-between %} - {% endblock %}
+{% block title %}critiques{% endblock %}
+
+{% block body %}
+<header>
+    <div id="main-bar" class="navbar">
+        <a id="logo" href="/">tln</a>
+        <nav role="navigation">
+        <ul>
+            <li><a href={% url "preambule" %}>préambule</a></li>
+            <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
+            <li id="errance-bar-trigger"><a href="#">errances</a></li>
+            {# <li>recherche</li> #}
+        </ul>
+        </nav>
+    </div>
+
+    <div id="errance-bar" class="navbar" expanded_size="simple">
+        <ul>
+            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
+            <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
+            <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
+            <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
+            <li><a href={% url "list_seances" %}>liste des séances</a></li>
+            <li><a href={% url "top_films" %}>top films par année</a></li>
+        </ul>
+    </div>
+</header>
+
+<section id="content">
+    {% block content %}{% endblock %}
+
+    {% if perms.critique.all_rights %}
+    <div class="update_form">
+        <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
+            <div class="form_inputs">
+                {% csrf_token %}
+                {{ oeuvre_form_empty.as_p }}
             </div>
-
-            <div id="errance-bar" class="navbar" expanded_size="simple">
-                <ul>
-                    <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
-                    <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
-                    <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
-                    <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
-                    <li><a href={% url "list_seances" %}>liste des séances</a></li>
-                    <li><a href={% url "top_films" %}>top films par année</a></li>
-                </ul>
+            <div class="form_buttons">
+                <input type="submit" value="envoyer"/>
+                <div class="filler"></div>
+                <input type="reset" value="annuler"/>
             </div>
-        </header>
-
-        <section id="content">
-            {% block content %}{% endblock %}
-
-            {% if perms.critique.all_rights %}
-            <div class="update_form">
-                <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
-                    <div class="form_inputs">
-                        {% csrf_token %}
-                        {{ oeuvre_form_empty.as_p }}
-                    </div>
-                    <div class="form_buttons">
-                        <input type="submit" value="envoyer"/>
-                        <div class="filler"></div>
-                        <input type="reset" value="annuler"/>
-                    </div>
-                </form>
-            </div>
-            {% endif %}
-
-            <div class="update_form">
-                <form id="login_form" action="{% url 'login' %}" method="post">
-                    <div class="form_inputs">
-                        {% csrf_token %}
-                        {{ login_form.as_p }}
-                    </div>
-                    <div class="form_buttons">
-                        <input type="submit" value="envoyer"/>
-                        <div class="filler"></div>
-                        <input type="reset" value="annuler"/>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        {# <footer>--footer--</footer> #}
-        <script type="text/javascript" src="/static/js/base.js"></script>
-    </body>
-</html>
+        </form>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
