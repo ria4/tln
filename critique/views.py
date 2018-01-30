@@ -7,10 +7,8 @@ import shutil
 from datetime import datetime
 from PIL import Image
 from django.conf import settings
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, EmptyPage
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
 from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
@@ -336,22 +334,4 @@ def top_films(req, year=2011):
     random.shuffle(oeuvres)
     year_range = range(2012, 2018)
     return render(req, 'critique/top_films.html', locals())
-
-
-# Login
-
-def login_view(req):
-    username = req.POST['username']
-    password = req.POST['password']
-    user = authenticate(req, username=username, password=password)
-    if user is not None:
-        login(req, user)
-        return HttpResponseRedirect(req.META.get('HTTP_REFERER'))
-    return redirect('preambule')
-
-def logout_view(req):
-    if req.user.is_authenticated:
-        logout(req)
-        return redirect('preambule')
-    return HttpResponseRedirect(req.META.get('HTTP_REFERER'))
 

@@ -311,11 +311,7 @@ document.addEventListener("keypress", function (e) {
             cached_code = "";
             if (active_code == "logout") {
                 active_code = "";
-                if (window.location.pathname.startsWith("/critique")) {
-                    window.location.href = "/critique/logout";
-                } else if (window.location.pathname.startsWith("/blog")) {
-                    window.location.href = "/blog/logout";
-                }
+                window.location.href = "/logout";
             } else {
                 codes[active_code].parentElement.classList.add("revealed");
             }

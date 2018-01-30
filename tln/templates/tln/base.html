@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+  <head>
+    <meta charset="utf-8">
+    <title>tln{% block title-between %}{% endblock %}{% block title %}{% endblock title %}{% block title-page %}{% endblock title-page %}</title>
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{% block meta-description %}TODO desc mtu{% endblock meta-description %}{% block meta-description-page %}{% endblock meta-description-page %}" />
+    <meta name="author" content="max tury">
+    <meta name="keywords" content="{% block meta-keywords %}photos, blog, cinema, critique{% endblock meta-keywords %}" />
+    {% block meta %}{% endblock meta %}
+    <link rel="pingback" href="/xmlrpc/" />
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
+    <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
+    <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />
+    {% block link %}{% endblock link %}
+    {% block script %}{% endblock script %}
+  </head>
+
+  <body class="{% block body-class %}{% endblock body-class %}">
+
+    {% block body %}{% endblock %}
+
+    <div class="update_form">
+        <form id="login_form" action="{% url 'login' %}" method="post">
+            <div class="form_inputs">
+                {% csrf_token %}
+                {{ login_form.as_p }}
+            </div>
+            <div class="form_buttons">
+                <input type="submit" value="envoyer"/>
+                <div class="filler"></div>
+                <input type="reset" value="annuler"/>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+
+  </body>
+
+</html>
