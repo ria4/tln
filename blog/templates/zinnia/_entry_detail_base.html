@@ -196,7 +196,7 @@
     </p>
     {% endblock entry-discussions %}
     {% block entry-published %}
-    <time class="published" datetime="{{ object.publication_date|date:"c" }}" itemprop="datePublished">{{ object.publication_date|date:"DATE_FORMAT" }}</time>
+    <time class="published" datetime="{{ object.publication_date|date:"c" }}" itemprop="datePublished">écrit le {{ object.publication_date|date:"DATE_FORMAT" }}</time>
     {% endblock entry-published %}
   </footer>
   {% endblock entry-footer %}
