@@ -151,6 +151,7 @@
       <strong>{% trans "Discussions" %}</strong> :
       {% endcomment %}
       {% block entry-comments %}
+      {% if comments_count_display %}
       {% with comment_count=object.comment_count %}
       <meta itemprop="commentCount" content="{{ object.comment_count }}" />
       <meta itemprop="discussionUrl" content="{{ object.get_absolute_url }}#comments" />
@@ -172,6 +173,7 @@
       {% endcomment %}
       {% endif %}
       {% endwith %}
+      {% endif %}
       {% endblock entry-comments %}
       {% comment %}
       {% block entry-pingbacks %}
@@ -196,7 +198,7 @@
     </p>
     {% endblock entry-discussions %}
     {% block entry-published %}
-    <time class="published" datetime="{{ object.publication_date|date:"c" }}" itemprop="datePublished">écrit le {{ object.publication_date|date:"DATE_FORMAT" }}</time>
+    <time class="published" datetime="{{ object.publication_date|date:"c" }}" itemprop="datePublished">{{ before_published }}{{ object.publication_date|date:"DATE_FORMAT" }}</time>
     {% endblock entry-published %}
   </footer>
   {% endblock entry-footer %}

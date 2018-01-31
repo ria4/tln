@@ -36,7 +36,7 @@
 {% block content %}
 
 {% block entry-content %}
-  {% include object.content_template with object_content=object.html_content %}
+  {% include object.content_template with object_content=object.html_content before_published='écrit le ' comments_count_display=False continue_reading=True %}
 {% endblock entry-content %}
 
 {% comment %}
@@ -189,6 +189,8 @@
 {% endblock entry-trackbacks %}
 {% endcomment %}
 
+<div class="divide"></div>
+
 {% block entry-comments %}
 <section id="comments">
   <h3>{% trans "Comments" %}</h3>
@@ -199,6 +201,7 @@
     {% for comment in comment_list %}
     <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
         class="comment vcard {% cycle 'box1' 'box2' %}{% if comment.user %} authenticated-comment{% if comment.user.is_staff %} staff-comment{% endif %}{% if comment.user.is_superuser %} superuser-comment{% endif %}{% endif %}">
+      {% comment %}
       {% block comment-image %}
       <img src="{% get_gravatar comment.email 60 "G" %}"
            class="gravatar photo" alt="{{ comment.name }}" />
@@ -216,6 +219,18 @@
            id="c{{ comment_pk }}" class="anchor-link"
            title="Direct link to this comment">#</a>
         {% endblocktrans %}
+      </p>
+      {% endblock comment-info %}
+      {% block comment-content %}
+      {{ comment.comment|linebreaks }}
+      {% endblock comment-content %}
+      {% endcomment %}
+      {% block comment-info %}
+      <p class="comment-info">
+      <strong>{{ comment.name }}</strong>, le
+        <time class="comment-published" datetime="{{ comment.submit_date|date:"c" }}">
+          {{ comment.submit_date }}
+        </time>
       </p>
       {% endblock comment-info %}
       {% block comment-content %}

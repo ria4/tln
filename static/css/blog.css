@@ -560,7 +560,7 @@ body #content-wrap #sidebar-wrap-balance {
 }
 
 body #content-wrap #sidebar-wrap {
-    flex: 1;
+    flex: 1.15;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -573,7 +573,7 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 #content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-family: Alegreya;
     min-width: 480px;
@@ -649,10 +649,6 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
     padding: 44px 8px 32px 0;
 }
 
-.entry .entry-body {
-    padding-left: 8px;
-}
-
 
 /* Sidebar
    ========================================================================== */
@@ -664,6 +660,31 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
     padding: 0 4px;
     border: 1px solid #deda99;
     background-color: #fbf2bd;
+}
+
+.entry #sidebar {
+    opacity: 0.15;
+    -webkit-transition: all 0.4s linear;
+}
+.entry #sidebar:hover {
+    opacity: 1;
+    -webkit-transition: all 0.4s linear;
+}
+.entry #sidebar:hover #widget-tags:hover * {
+    -webkit-transition: none;
+}
+.entry #sidebar:hover #widget-archives:hover * {
+    -webkit-transition: none;
+}
+.entry #sidebar a {
+    color: black;
+    -webkit-transition: all 0.4s linear;
+}
+.entry #sidebar:hover a {
+    color: #bd4700;
+}
+.entry #sidebar:hover a:hover {
+    color: #f7a300;
 }
 
 #sidebar h3 {
@@ -804,11 +825,20 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 
 .entry #content {
     margin-top: 24px;
-    max-width: 750px;
+    max-width: 900px;
 }
 
-.entry #content p {
+.entry #content .entry-content p {
+    text-align: justify;
     margin: 18px 0;
+}
+
+.entry #content > :not(.divide) {
+    max-width: 820px;
+}
+
+.entry #content > .divide {
+    border-bottom: 1px solid #a57100;
 }
 
 #content .comment {
@@ -882,10 +912,17 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 
 .entry-footer {
     padding-top: 6px;
-    margin: 0 20px;
     display: flex;
     align-items: center;
     white-space: nowrap;
+}
+
+.entry-list .entry-footer {
+    margin: 0 20px;
+}
+
+.entry .entry-footer {
+    margin: 60px 0 10px 0;
 }
 
 .entry-footer .entry-tags {
@@ -901,7 +938,7 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
     justify-content: flex-end;
     align-items: center;
     margin-right: 7px;
-    min-width: 50px;
+    min-width: 80px;
 }
 
 .entry-footer .entry-discussions img {
