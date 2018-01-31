@@ -33,21 +33,23 @@
 
 <section id="content">
     {% block content %}{% endblock %}
-
-    {% if perms.critique.all_rights %}
-    <div class="update_form">
-        <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
-            <div class="form_inputs">
-                {% csrf_token %}
-                {{ oeuvre_form_empty.as_p }}
-            </div>
-            <div class="form_buttons">
-                <input type="submit" value="envoyer"/>
-                <div class="filler"></div>
-                <input type="reset" value="annuler"/>
-            </div>
-        </form>
-    </div>
-    {% endif %}
 </section>
 {% endblock %}
+
+{% if perms.critique.all_rights %}
+{% block forms %}
+<div class="update_form">
+    <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ oeuvre_form_empty.as_p }}
+        </div>
+        <div class="form_buttons">
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% endif %}
