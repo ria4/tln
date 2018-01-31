@@ -556,11 +556,11 @@ body {
     padding-bottom: 50px;
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
+    font-size: 20px;
 }
 
 #content {
     margin-top: 100px;
-    font-size: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1314,10 +1314,6 @@ body {
 
 /* Form Login
    ========================================================================== */
-
-#login_form {
-    font-size: 20px;
-}
 
 #login_form .form_inputs {
     margin-top: 3px;

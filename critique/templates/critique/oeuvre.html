@@ -73,9 +73,11 @@
     {% endfor %}
 </div>
 {% endif %}
+{% endblock %}
 
 
 {% if perms.critique.all_rights %}
+{% block forms %}
 <div class="update_form">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
         <div class="form_inputs">
@@ -88,6 +90,20 @@
             <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
             <input type="submit" formaction="{% url 'delete_oeuvre' oeuvre.id %}" value="supprimer"/>
             <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+
+<div class="update_form">
+    <form id="comment_form_empty" action="{% url 'add_comment' oeuvre.id %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ comment_form_empty.as_p }}
+        </div>
+        <div class="form_buttons">
             <input type="submit" value="envoyer"/>
             <div class="filler"></div>
             <input type="reset" value="annuler"/>
@@ -113,20 +129,5 @@
     </form>
 </div>
 {% endif %}
-
-<div class="update_form">
-    <form id="comment_form_empty" action="{% url 'add_comment' oeuvre.id %}" method="post">
-        <div class="form_inputs">
-            {% csrf_token %}
-            {{ comment_form_empty.as_p }}
-        </div>
-        <div class="form_buttons">
-            <input type="submit" value="envoyer"/>
-            <div class="filler"></div>
-            <input type="reset" value="annuler"/>
-        </div>
-    </form>
-</div>
-{% endif %}
-
 {% endblock %}
+{% endif %}
