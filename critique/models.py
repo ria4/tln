@@ -99,10 +99,10 @@ class Oeuvre(Document):
 
 class TopFilms(Document):
     year = fields.IntField(max_value=2100, unique=True)
-    top = fields.ListField(fields.EmbeddedDocumentField('Oeuvre'))
+    top = fields.ListField(fields.StringField(max_length=24))
 
 class TopTextes(Document):
-    oeuvre_id = fields.StringField(max_length=100)
+    oeuvre_id = fields.StringField(max_length=24)
     comment_idx = fields.IntField(default=0)
 
 class Cinema(Document):

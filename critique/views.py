@@ -330,8 +330,11 @@ def list_seances(req, year=2017):
 # Top Films
 
 def top_films(req, year=2011):
-    oeuvres = list(get_object_or_404(TopFilms, year=year).top)
-    random.shuffle(oeuvres)
+    oeuvres_id = list(get_object_or_404(TopFilms, year=year).top)
+    random.shuffle(oeuvres_id)
+    oeuvres = []
+    for oeuvre_id in oeuvres_id:
+        oeuvres.append(Oeuvre.objects.filter(id=oeuvre_id)[0])
     year_range = range(2012, 2018)
     return render(req, 'critique/top_films.html', locals())
 
