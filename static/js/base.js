@@ -1,7 +1,7 @@
 
 /* Errance Bar - Double height in small windows */
 
-var window_width_trigger = 1200;
+var width_trigger_errance = 1200;
 var errance_bar_trigger = document.getElementById("errance-bar-trigger");
 var errance_bar = document.getElementById("errance-bar");
 
@@ -14,7 +14,7 @@ if (errance_bar) {
             errance_bar.classList.add("expanded");
         }
 
-        if (window.innerWidth < window_width_trigger) {
+        if (window.innerWidth < width_trigger_errance) {
             errance_bar.setAttribute("expanded_size", "double");
         } else {
             errance_bar.setAttribute("expanded_size", "simple");
@@ -22,7 +22,7 @@ if (errance_bar) {
     });
 
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < window_width_trigger) {
+        if (window.innerWidth < width_trigger_errance) {
             errance_bar.setAttribute("expanded_size", "double");
         } else {
             errance_bar.setAttribute("expanded_size", "simple");
@@ -350,6 +350,29 @@ if (pagination) {
         }
     });
 }
+
+
+/* Blog - Nav menu position depends on window width */
+
+var width_trigger_blogdisplay = 1600;
+var blog_content_wrap = document.getElementById("blog-content-wrap");
+
+if (blog_content_wrap) {
+    if (window.innerWidth < width_trigger_blogdisplay) {
+        blog_content_wrap.setAttribute("layout", "vertical");
+    } else {
+        blog_content_wrap.setAttribute("layout", "horizontal");
+    }
+
+    window.addEventListener("resize", function(e) {
+        if (window.innerWidth < width_trigger_blogdisplay) {
+            blog_content_wrap.setAttribute("layout", "vertical");
+        } else {
+            blog_content_wrap.setAttribute("layout", "horizontal");
+        }
+    });
+}
+
 
 /* Blog Archive Widget - Expand/Collapse entries */
 
