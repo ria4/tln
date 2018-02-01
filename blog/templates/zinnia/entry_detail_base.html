@@ -193,7 +193,9 @@
 
 {% block entry-comments %}
 <section id="comments">
+  {% comment %}
   <h3>{% trans "Comments" %}</h3>
+  {% endcomment %}
   {% if object.comment_count %}
   {% with comment_list=object.comments %}
   {% block comments-loop %}
@@ -226,18 +228,20 @@
       {% endblock comment-content %}
       {% endcomment %}
       {% block comment-info %}
-      <p class="comment-info">
-      <strong>{{ comment.name }}</strong>, le
-        <time class="comment-published" datetime="{{ comment.submit_date|date:"c" }}">
+      <div class="comment-info">
+      <strong>{{ comment.name }}</strong>,
+        <time class="comment-published" datetime="{{ comment.submit_date|date:"c" }}">le
           {{ comment.submit_date|date:"j" }}{% if comment.submit_date|date:"j" == '1' %}er{% endif %}
           {{ comment.submit_date|date:"F Y" }}
           à {{ comment.submit_date|date:"TIME_FORMAT" }}
         </time>
-      </p>
+      </div>
       {% endblock comment-info %}
+      <div class="comment-content">
       {% block comment-content %}
       {{ comment.comment|linebreaks }}
       {% endblock comment-content %}
+      </div>
     </li>
     {% endfor %}
   </ol>
@@ -257,9 +261,11 @@
 {% endblock entry-comments %}
 
 {% block entry-comments-form %}
+{% comment %}
 {% if object.comments_are_open %}
   {% render_comment_form for object %}
 {% endif %}
+{% endcomment %}
 {% endblock entry-comments-form %}
 
 {% endblock content %}

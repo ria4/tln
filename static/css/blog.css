@@ -826,6 +826,7 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 .entry #content {
     margin-top: 24px;
     max-width: 900px;
+    padding-left: 6px;
 }
 
 .entry #content .entry-content p {
@@ -840,25 +841,6 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 .entry #content > .divide {
     border-bottom: 1px solid #a57100;
 }
-
-#content .comment {
-    border-top: 1px solid black;
-    padding-top: 4px;
-}
-
-#content .comment_title {
-    font-weight: bold;
-    font-size: 30px;
-    text-align: center;
-    padding: 44px 8px 12px 0;
-}
-
-#content .comment_date {
-    margin-top: -4px;
-    font-style: italic;
-    text-align: right;
-    padding-right: 20px;
-}    
 
 
 /* Entry-list
@@ -952,43 +934,39 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 }
 
 
-/* Content Collection
+/* Comments
    ========================================================================== */
 
-.chunks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+#comments {
+    font-size: 18px;
+    margin-top: 40px;
 }
 
-.chunks ul {
-    padding: 10px 0;
-    margin: 0 -16px -1px -16px;
-    border-top: 1px solid #a57100;
-    border-bottom: 1px solid #a57100;
+#comments .comment {
+    padding: 6px 0 4px 40px;
+    border-top: 1px solid rgba(165, 113, 0, 0.35);
 }
 
-.chunks li {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0 30px;
+#comments .comment:last-child {
+    border-bottom: 1px solid rgba(165, 113, 0, 0.35);
 }
 
-#collection.chunks ul {
-    width: 380px;
+#comments .comment .comment-info {
+    display: inline;
+    margin-left: 30px;
 }
 
-#collection.collection_artist.chunks ul {
-    width: 520px;
+#comments .comment .comment-info time {
+    font-style: italic;
 }
 
-#seances.chunks ul {
-    width: 600px;
+#comments .comment .comment-content {
+    padding-bottom: 1px;
 }
 
-#cinemas.chunks ul {
-    width: 440px;
+#comments .comment .comment-content p {
+    line-height: 1.2;
+    padding: 3px 0;
 }
 
 
