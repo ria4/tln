@@ -261,11 +261,9 @@
 {% endblock entry-comments %}
 
 {% block entry-comments-form %}
-{% comment %}
 {% if object.comments_are_open %}
   {% render_comment_form for object %}
 {% endif %}
-{% endcomment %}
 {% endblock entry-comments-form %}
 
 {% endblock content %}

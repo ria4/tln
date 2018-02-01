@@ -9,9 +9,15 @@ load all apps at once, therefore preventing easy imports from one app
 But I'd rather copy-paste code than modify django app registry mechanisms...
 """
 
-from ._forms import CommentForm
+from django import forms
+from django.utils.translation import pgettext_lazy, ugettext_lazy as _
+from ._forms import CommentForm, COMMENT_MAX_LENGTH
 
 class CommentFormCustom(CommentForm):
+    name = forms.CharField(label=pgettext_lazy("Person name", "Name"), max_length=50, widget=forms.TextInput(attrs={"placeholder": "~nom~"}))
+    comment = forms.CharField(label=_('Comment'),
+                              widget=forms.Textarea(attrs={"placeholder": "~commentaire~"}),
+                              max_length=COMMENT_MAX_LENGTH)
 
     def get_comment_create_data(self, site_id=None):
         from django.contrib.contenttypes.models import ContentType

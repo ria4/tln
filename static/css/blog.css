@@ -1005,25 +1005,25 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
     box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
 }
 
-.update_form form .form_inputs {
+form .form_inputs {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.update_form form p {
+form p {
     margin: 4px 0;
     display: flex;
     align-items: center;
 }
 
-.update_form form p label {
+form p label {
     text-align: right;
     margin-right: 6px;
 }
 
-.update_form .form_inputs input:not([type="checkbox"]),
-.update_form .form_inputs textarea {
+form .form_inputs input:not([type="checkbox"]),
+form .form_inputs textarea {
     width: 100%;
     padding: 1px 0 1px 4px;
     border: 1px solid grey;
@@ -1031,35 +1031,35 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
     margin-left: -0.3px;
 }
 
-.update_form .form_inputs textarea {
+form .form_inputs textarea {
     font-family: Alegreya;
     font-size: 100%;
     resize: vertical;
 }
 
-.update_form .form_inputs input[type="checkbox"] {
+form .form_inputs input[type="checkbox"] {
     margin-top: 2px;
 }
 
-.update_form .form_inputs input[type="date"] {
+form .form_inputs input[type="date"] {
     width: 160px;
 }
 
-.update_form .form_inputs input[type="date"]::-webkit-inner-spin-button {
+form .form_inputs input[type="date"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
 
-.update_form .form_inputs .bad_input {
+form .form_inputs .bad_input {
     /* fuck this */
     border: 1px solid red !important;
 }
 
-.update_form .form_inputs .errorlist {
+form .form_inputs .errorlist {
     display: none;
 }
 
-.update_form .form_buttons {
+form .form_buttons {
     display: flex;
     justify-content: center;
     font-family: Abuget;
@@ -1067,40 +1067,67 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
     margin-top: -4px;
 }
 
-.update_form .form_buttons input {
+form .form_buttons input {
     background-color: transparent;
     border: 0px solid;
 }
 
-.update_form .form_buttons input.hidden {
+form .form_buttons input.hidden {
     display: none;
 }
 
-.update_form .form_buttons input:hover {
+form .form_buttons input:hover {
     color: #f7a300;
 }
 
 
-/* Form Login
+/* Form Comment
    ========================================================================== */
 
-#login_form .form_inputs {
+#comment_form_custom {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+#comment_form_custom .form_inputs {
     margin-top: 3px;
+    padding-left: 40px;
 }
 
-#login_form p {
-    width: 390px;
+#comment_form_custom .form_inputs p label {
+    display: none;
 }
 
-#login_form p label {
-    width: 280px;
+#comment_form_custom .form_inputs p {
+    margin: 3px 0;
 }
 
-#login_form .form_buttons {
-    margin-top: -2px;
+#comment_form_custom .form_inputs > p:first-of-type {
+    margin-left: 29px;
+    width: 200px;
+}
+#comment_form_custom .form_inputs > p:first-of-type input {
+    font-weight: bold;
 }
 
-#login_form .form_buttons .filler {
-    width: 44px;
+#comment_form_custom .form_inputs > p:nth-of-type(2) textarea {
+    z-index: 100;
+    height: 80px;
 }
+
+::placeholder {
+    opacity: 0.8; }
+:-ms-input-placeholder {
+    opacity: 0.8; }
+::-ms-input-placeholder {
+    opacity: 0.8; }
+#comment_form_custom .form_inputs > p input:focus::-webkit-input-placeholder,
+#comment_form_custom .form_inputs > p textarea:focus::-webkit-input-placeholder {
+    color: transparent; }
+
+#comment_form_custom .form_buttons {
+    z-index: 1;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-top: -12px; }
 
