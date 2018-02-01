@@ -551,24 +551,34 @@ body {
     font-size: 20px;
 }
 
-body #content-wrap {
+body #blog-content-wrap {
     display: flex;
 }
 
-body #content-wrap #sidebar-wrap-balance {
-    flex: 1;
-}
-
-body #content-wrap #sidebar-wrap {
+body #blog-content-wrap[layout='horizontal'] #sidebar-wrap-balance {
+    flex: 1; }
+body #blog-content-wrap[layout='horizontal'] #sidebar-wrap {
     flex: 1.15;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
-}
+    align-items: flex-start; }
+body #blog-content-wrap[layout='horizontal'] #sidebar-wrap #sidebar-balance {
+    width: 44px; }
+body #blog-content-wrap[layout='horizontal'] #sidebar-wrap #sidebar {
+    margin-top: 76px; }
 
-body #content-wrap #sidebar-wrap #sidebar-balance {
-    width: 50px;
-}
+body #blog-content-wrap[layout='vertical'] {
+    flex-direction: column;
+    align-items: center; }
+body #blog-content-wrap[layout='vertical'] #sidebar-wrap-balance {
+    display: none; }
+body #blog-content-wrap[layout='vertical'] #sidebar-wrap {
+    display: flex;
+    width: 300px; }
+body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
+    display: none; }
+body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
+    margin-top: 66px; }
 
 #content {
     display: flex;
@@ -576,7 +586,7 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
     justify-content: center;
     align-items: center;
     font-family: Alegreya;
-    min-width: 480px;
+    min-width: 420px;
     width: 100%;
 }
 
@@ -584,16 +594,16 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
     width: 100%;
 }
 
-#content-wrap a {
+#blog-content-wrap a {
     color: #bd4700;
     text-decoration: none;
 }
 
-#content-wrap a:hover {
+#blog-content-wrap a:hover {
     color: #f7a300;
 }
 
-#content-wrap a:active, #content-wrap a:focus {
+#blog-content-wrap a:active, #blog-content-wrap a:focus {
     outline: none
 }
 
@@ -655,7 +665,6 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 #sidebar {
     font-family: Alegreya;
     font-size: 18px;
-    margin-top: 76px;
     width: 300px;
     padding: 0 4px;
     border: 1px solid #deda99;
@@ -826,7 +835,7 @@ body #content-wrap #sidebar-wrap #sidebar-balance {
 .entry #content {
     margin-top: 24px;
     max-width: 900px;
-    padding-left: 6px;
+    padding: 0 6px;
 }
 
 .entry #content .entry-content p {
