@@ -229,7 +229,9 @@
       <p class="comment-info">
       <strong>{{ comment.name }}</strong>, le
         <time class="comment-published" datetime="{{ comment.submit_date|date:"c" }}">
-          {{ comment.submit_date }}
+          {{ comment.submit_date|date:"j" }}{% if comment.submit_date|date:"j" == '1' %}er{% endif %}
+          {{ comment.submit_date|date:"F Y" }}
+          à {{ comment.submit_date|date:"TIME_FORMAT" }}
         </time>
       </p>
       {% endblock comment-info %}
