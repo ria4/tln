@@ -538,7 +538,6 @@ textarea, input {
 /* Main
    ========================================================================== */
 header {
-    -webkit-box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
     box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
     overflow: hidden;
     position: fixed;
@@ -630,20 +629,19 @@ body {
 }
 
 #content .oeuvre_display a img {
-    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 #content .oeuvre_display a img:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 255, 0.4);
 }
 
 /* Here is a dirty fix for borders/shadows of substitute displays...
  * Otherwise shadows would not appear when hovering over the inner p. */
 #content .oeuvre_display .substitute_display {
-    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
     display: inline-flex;
     padding: 0;
@@ -653,9 +651,8 @@ body {
 }
 
 #content .oeuvre_display .substitute_display:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 255, 0.4);
 }
 
@@ -753,10 +750,7 @@ body {
     visibility: hidden;
     height: 0px;
     overflow: hidden;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
     font-size: 40px;
     min-width: 700px;
 }
@@ -981,19 +975,17 @@ body {
     margin: 12px 0;
     padding: 10px;
     border: 1px solid #d3d4db;
-    -webkit-box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
     box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
     width: 900px;
     max-height: 210px;
     display: flex;
-    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
     background-color: #fffddb;
 }
 
 #content .note_summary:hover {
-    -webkit-box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 #content .note_summary .oeuvre_display {
@@ -1131,7 +1123,6 @@ body {
     background-color: rgb(255, 255, 255);
     padding: 6px 20px 6px 13px;
     border: 1px solid grey;
-    -webkit-box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
     box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
 }
 
@@ -1157,7 +1148,6 @@ body {
     width: 100%;
     padding: 1px 0 1px 4px;
     border: 1px solid grey;
-    -webkit-box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
     box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
     margin-left: -0.3px;
 }
