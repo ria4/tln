@@ -5,7 +5,7 @@
 
 {% block title %}{{ object.title|lower }}{% endblock title %}
 
-{% block meta-description %}{{ object.excerpt|safe }}{% endblock meta-description %}
+{% block meta-description %}{{ object.title|safe }}{% endblock meta-description %}
 
 {% block meta-keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
 
@@ -273,7 +273,7 @@
 {% block admin-tools %}
 {% if perms.zinnia.change_entry %}
 <li>
-  <a href="{% url 'admin:zinnia_entry_change' object.pk %}" title="{% trans "Edit the entry" %}">
+  <a href="{% url 'admin:zinnia_entry_change' object.pk %}">
     {% trans "Edit the entry" %}
   </a>
 </li>
