@@ -1117,6 +1117,7 @@ body {
 
 .update_form.revealed {
     visibility: visible;
+    z-index: 101;
 }
 
 .update_form form {

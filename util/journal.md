@@ -22,3 +22,5 @@
 * 28/01 - Style blog, logout/login blog, archive widget avec template tag custom (exploration doc zinnia...)
 * 29/01 - Style blog sidebar, remove useless commentform fields
 * 30/01 - Favicon, login/logout from root instead of apps
+* 31/01 - Blog comments (logic & style)
+* 01/02 - Blog style, various code improvements, comment moderation

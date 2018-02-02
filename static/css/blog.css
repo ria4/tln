@@ -996,6 +996,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
 
 .update_form.revealed {
     visibility: visible;
+    z-index: 101;
 }
 
 .update_form form {
@@ -1081,6 +1082,30 @@ form .form_buttons input:hover {
 }
 
 
+/* Form Login
+   ========================================================================== */
+
+#login_form .form_inputs {
+    margin-top: 3px;
+}
+
+#login_form p {
+    width: 390px;
+}
+
+#login_form p label {
+    width: 280px;
+}
+
+#login_form .form_buttons {
+    margin-top: -2px;
+}
+
+#login_form .form_buttons .filler {
+    width: 44px;
+}
+
+
 /* Form Comment
    ========================================================================== */
 
@@ -1102,16 +1127,18 @@ form .form_buttons input:hover {
     margin: 3px 0;
 }
 
-#comment_form_custom .form_inputs > p:first-of-type {
+#comment_form_custom .form_inputs > p:first-of-type,
+#comment_form_custom .form_inputs > p:nth-of-type(2) {
     margin-left: 29px;
-    width: 200px;
+    max-width: 500px;
 }
+
 #comment_form_custom .form_inputs > p:first-of-type input {
     font-weight: bold;
 }
 
-#comment_form_custom .form_inputs > p:nth-of-type(2) textarea {
-    z-index: 100;
+#comment_form_custom .form_inputs > p:nth-of-type(3) textarea {
+    z-index: 10;
     height: 80px;
 }
 
