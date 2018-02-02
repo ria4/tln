@@ -34,10 +34,8 @@
 <section id="content">
     {% block content %}{% endblock %}
 </section>
-{% endblock %}
 
 {% if perms.critique.all_rights %}
-{% block forms %}
 <div class="update_form">
     <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
         <div class="form_inputs">
@@ -51,5 +49,7 @@
         </div>
     </form>
 </div>
-{% endblock %}
 {% endif %}
+{% endblock %}
+
+{% block forms %}{% endblock %}
