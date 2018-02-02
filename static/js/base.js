@@ -258,10 +258,13 @@ if (comment_form_custom) {
     add_submit_listener(comment_form_custom, validated_elements);
 
     function validate_email(x) {
-        return((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1))
+        return ((x.length > 0) &&
+                ((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1)))
     }
     email.addEventListener("blur", function (e) {
         validation_mark(e.target, validate_email(e.target.value));});
+    email.addEventListener("input", function (e) {
+        validation_mark(e.target, (e.target.value.length > 0));});
 }
 
 
