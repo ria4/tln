@@ -248,6 +248,7 @@ if (comment_form) {
 var comment_form_custom = document.getElementById("comment_form_custom");
 if (comment_form_custom) {
     username = document.getElementById("id_name");
+    email = document.getElementById("id_email");
     comment = document.getElementById("id_comment");
     validated_elements = [
         [username, x => (x == "")],
@@ -255,6 +256,12 @@ if (comment_form_custom) {
     ];
     add_inputs_listener(validated_elements, false);
     add_submit_listener(comment_form_custom, validated_elements);
+
+    function validate_email(x) {
+        return((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1))
+    }
+    email.addEventListener("blur", function (e) {
+        validation_mark(e.target, validate_email(e.target.value));});
 }
 
 
