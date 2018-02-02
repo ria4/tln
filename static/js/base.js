@@ -134,11 +134,29 @@ function validation_mark(elem, test) {
     }
 }
 
+function add_input_listener(validated_elements, at_init, n) {
+    if (at_init) {
+        validation_mark(validated_elements[n][0],
+                        validated_elements[n][1](validated_elements[n][0].value));
+    }
+    validated_elements[n][0].addEventListener("blur", function (e) {
+        validation_mark(e.target, validated_elements[n][1](e.target.value));});
+    validated_elements[n][0].addEventListener("input", function (e) {
+        validation_mark(e.target, validated_elements[n][1](e.target.value));});
+}
+
+function add_inputs_listener(validated_elements, at_init) {
+    for (i=0; i<validated_elements.length; i++) {
+        /* we need an auxiliary function to copy i */
+        add_input_listener(validated_elements, at_init, i);
+    }
+}
+
 function add_submit_listener(form, validated_elements) {
     form.addEventListener("submit", function (e) {
         var data_ok = true;
         for (i=0; i<validated_elements.length; i++) {
-            if (validated_elements[i].classList.contains("bad_input")) {
+            if (validated_elements[i][0].classList.contains("bad_input")) {
                 data_ok = false;
             }
         };
@@ -150,128 +168,93 @@ function add_submit_listener(form, validated_elements) {
 
 var oeuvre_form = document.getElementById("oeuvre_form");
 if (oeuvre_form) {
-
     title_vf = document.getElementById("id_title_vf");
     title_vo = document.getElementById("id_title_vo");
     title_alt = document.getElementById("id_title_alt");
     artists = document.getElementById("id_artists");
     year = document.getElementById("id_year");
     imdb_id = document.getElementById("id_imdb_id");
-    validated_elements = [title_vf, title_vo, title_alt, artists, year, imdb_id];
-
-    validation_mark(title_vf, ((title_vf.value.length > 1000) || (title_vf.value == "")));
-    validation_mark(title_vo, title_vo.value.length > 1000);
-    validation_mark(title_alt, title_alt.value.length > 1000);
-    validation_mark(artists, ((artists.value.length > 1000) || (artists.value == "")));
-    validation_mark(year, ((year.value > 2100) || (year.value == "")));
-    validation_mark(imdb_id, !imdb_id.value.match(/^tt\d{7}$|^$/));
-
-    title_vf.addEventListener("blur", function (e) {
-        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
-    title_vo.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value.length > 1000);});
-    title_alt.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value.length > 1000);});
-    artists.addEventListener("blur", function (e) {
-        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
-    year.addEventListener("blur", function (e) {
-        validation_mark(e.target, ((e.target.value > 2100) || (e.target.value == "")));});
-    imdb_id.addEventListener("blur", function (e) {
-        validation_mark(e.target, !e.target.value.match(/^tt\d{7}$|^$/))});
-
+    validated_elements = [
+        [title_vf, x => ((x.length > 1000) || (x == ""))],
+        [title_vo, x => (x.length > 1000)],
+        [title_alt, x => (x.length > 1000)],
+        [artists, x => ((x.length > 1000) || (x == ""))],
+        [year, x => ((x > 2100) || (x == ""))],
+        [imdb_id, x => !x.match(/^tt\d{7}$|^$/)]
+    ];
+    add_inputs_listener(validated_elements, true);
     add_submit_listener(oeuvre_form, validated_elements);
 }
 
 var oeuvre_form_empty = document.getElementById("oeuvre_form_empty");
 if (oeuvre_form_empty) {
-
     title_vf = document.getElementById("id_empty_title_vf");
     title_vo = document.getElementById("id_empty_title_vo");
     title_alt = document.getElementById("id_empty_title_alt");
     artists = document.getElementById("id_empty_artists");
     year = document.getElementById("id_empty_year");
     imdb_id = document.getElementById("id_empty_imdb_id");
-    validated_elements = [title_vf, title_vo, title_alt, artists, year, imdb_id];
-
-    validation_mark(title_vf, ((title_vf.value.length > 1000) || (title_vf.value == "")));
-    validation_mark(title_vo, title_vo.value.length > 1000);
-    validation_mark(title_alt, title_alt.value.length > 1000);
-    validation_mark(artists, ((artists.value.length > 1000) || (artists.value == "")));
-    validation_mark(year, ((year.value > 2100) || (year.value == "")));
-    validation_mark(imdb_id, !imdb_id.value.match(/^tt\d{7}$|^$/));
-
-    title_vf.addEventListener("blur", function (e) {
-        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
-    title_vo.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value.length > 1000);});
-    title_alt.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value.length > 1000);});
-    artists.addEventListener("blur", function (e) {
-        validation_mark(e.target, ((e.target.value.length > 1000) || (e.target.value == "")));});
-    year.addEventListener("blur", function (e) {
-        validation_mark(e.target, ((e.target.value > 2100) || (e.target.value == "")));});
-    imdb_id.addEventListener("blur", function (e) {
-        validation_mark(e.target, !e.target.value.match(/^tt\d{7}$|^$/))});
-
+    validated_elements = [
+        [title_vf, x => ((x.length > 1000) || (x == ""))],
+        [title_vo, x => (x.length > 1000)],
+        [title_alt, x => (x.length > 1000)],
+        [artists, x => ((x.length > 1000) || (x == ""))],
+        [year, x => ((x > 2100) || (x == ""))],
+        [imdb_id, x => !x.match(/^tt\d{7}$|^$/)]
+    ];
+    add_inputs_listener(validated_elements, true);
     add_submit_listener(oeuvre_form_empty, validated_elements);
 }
 
 var cinema_form = document.getElementById("cinema_form");
 if (cinema_form) {
-
     name_input = document.getElementById("id_name");
     comment = document.getElementById("id_comment");
     visited = document.getElementById("id_visited");
-    validated_elements = [name, comment, visited];
-
-    validation_mark(name_input, name_input.value == "");
-    validation_mark(comment, comment.value == "");
-    validation_mark(visited, visited.value == "");
-
-    name_input.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-    comment.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-    visited.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-
+    validated_elements = [
+        [name_input, x => (x == "")],
+        [comment, x => (x == "")],
+        [visited, x => (x == "")]
+    ];
+    add_inputs_listener(validated_elements, true);
     add_submit_listener(cinema_form, validated_elements);
 }
 
 var comment_form_empty = document.getElementById("comment_form_empty");
 if (comment_form_empty) {
-
     date = document.getElementById("id_empty_date");
     content = document.getElementById("id_empty_content");
-    validated_elements = [date, content];
-
-    validation_mark(date, date.value == "");
-    validation_mark(content, content.value == "");
-
-    date.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-    content.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-
+    validated_elements = [
+        [date, x => (x == "")],
+        [content, x => (x == "")]
+    ];
+    add_inputs_listener(validated_elements, true);
     add_submit_listener(comment_form_empty, validated_elements);
 }
 
 var comment_form = document.getElementById("comment_form");
 if (comment_form) {
-
     date = document.getElementById("id_date");
     content = document.getElementById("id_content");
-    validated_elements = [date, content];
-
-    validation_mark(date, date.value == "");
-    validation_mark(content, content.value == "");
-
-    date.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-    content.addEventListener("blur", function (e) {
-        validation_mark(e.target, e.target.value == "");});
-
+    validated_elements = [
+        [date, x => (x == "")],
+        [content, x => (x == "")]
+    ];
+    add_inputs_listener(validated_elements, true);
     add_submit_listener(comment_form, validated_elements);
+}
+
+/* this is for the blog */
+var comment_form_custom = document.getElementById("comment_form_custom");
+if (comment_form_custom) {
+    username = document.getElementById("id_name");
+    comment = document.getElementById("id_comment");
+    validated_elements = [
+        [username, x => (x == "")],
+        [comment, x => (x == "")]
+    ];
+    add_inputs_listener(validated_elements, false);
+    add_submit_listener(comment_form_custom, validated_elements);
 }
 
 

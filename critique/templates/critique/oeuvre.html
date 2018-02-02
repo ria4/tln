@@ -76,8 +76,8 @@
 {% endblock %}
 
 
-{% if perms.critique.all_rights %}
 {% block forms %}
+{% if perms.critique.all_rights %}
 <div class="update_form">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
         <div class="form_inputs">
@@ -129,5 +129,5 @@
     </form>
 </div>
 {% endif %}
-{% endblock %}
 {% endif %}
+{% endblock %}

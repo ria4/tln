@@ -10,7 +10,9 @@ But I'd rather copy-paste code than modify django app registry mechanisms...
 """
 
 from django import forms
+from django.utils.encoding import force_text
 from django.utils.translation import pgettext_lazy, ugettext_lazy as _
+from django.utils import timezone
 from ._forms import CommentForm, COMMENT_MAX_LENGTH
 
 class CommentFormCustom(CommentForm):
