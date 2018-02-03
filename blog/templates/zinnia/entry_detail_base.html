@@ -1,4 +1,5 @@
 {% extends "zinnia/base.html" %}
+{% load staticfiles %}
 {% load i18n %}
 {% load zinnia %}
 {% load comments %}
@@ -192,7 +193,7 @@
 <div class="divide"></div>
 
 {% block entry-comments %}
-<section id="comments">
+<section id="comments" {% if not object.comment_count %}class="empty"{% endif %}>
   {% comment %}
   <h3>{% trans "Comments" %}</h3>
   {% endcomment %}
@@ -252,7 +253,7 @@
     {% endif %}
   {% else %}
     {% if object.comments_are_open %}
-  <p>{% trans "No comments yet." %}</p>
+    {# <p>{% trans "No comments yet." %}</p> #}
     {% else %}
   <p>{% trans "Comments are closed." %}</p>
     {% endif %}
@@ -261,9 +262,15 @@
 {% endblock entry-comments %}
 
 {% block entry-comments-form %}
-{% if object.comments_are_open %}
-  {% render_comment_form for object %}
-{% endif %}
+<div id="comment-form-wrap">
+  <a href="#" id="comment-form-trigger">
+    <img src="{% static 'blog/icon_comment_link.png' %}" alt="">
+    <span> écrire un commentaire</span>
+  </a>
+  {% if object.comments_are_open %}
+    {% render_comment_form for object %}
+  {% endif %}
+</div>
 {% endblock entry-comments-form %}
 
 {% endblock content %}

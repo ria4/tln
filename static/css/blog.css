@@ -558,14 +558,13 @@ body #blog-content-wrap {
 body #blog-content-wrap[layout='horizontal'] #sidebar-wrap-balance {
     flex: 1; }
 body #blog-content-wrap[layout='horizontal'] #sidebar-wrap {
+    padding-top: 76px;
     flex: 1.15;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start; }
 body #blog-content-wrap[layout='horizontal'] #sidebar-wrap #sidebar-balance {
     width: 44px; }
-body #blog-content-wrap[layout='horizontal'] #sidebar-wrap #sidebar {
-    margin-top: 76px; }
 
 body #blog-content-wrap[layout='vertical'] {
     flex-direction: column;
@@ -573,12 +572,11 @@ body #blog-content-wrap[layout='vertical'] {
 body #blog-content-wrap[layout='vertical'] #sidebar-wrap-balance {
     display: none; }
 body #blog-content-wrap[layout='vertical'] #sidebar-wrap {
+    padding-top: 44px;
     display: flex;
     width: 300px; }
 body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     display: none; }
-body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
-    margin-top: 66px; }
 
 #content {
     display: flex;
@@ -949,6 +947,10 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar {
     margin-top: 40px;
 }
 
+#comments.empty {
+    margin-top: 4px;
+}
+
 #comments .comment {
     padding: 6px 0 4px 40px;
     border-top: 1px solid rgba(165, 113, 0, 0.35);
@@ -1109,9 +1111,40 @@ form .form_buttons input:hover {
 /* Form Comment
    ========================================================================== */
 
+#comment-form-wrap {
+    margin-top: 6px;
+    text-align: right;
+    min-height: 227px;
+}
+
+#comment-form-trigger img {
+    height: 14px;
+    margin-right: 4px;
+    margin-bottom: -1px;
+}
+
+#comment-form-trigger span {
+    font-style: italic;
+    text-align: right;
+    padding-right: 8px;
+}
+
 #comment_form_custom {
-    margin-top: 10px;
     font-size: 18px;
+    transition: all 0.6s linear;
+    overflow: hidden;
+}
+
+#comment_form_custom.expanded {
+    visibility: visible;
+    max-height: 800px;
+    opacity: 1;
+}
+
+#comment_form_custom.collapsed {
+    visibility: hidden;
+    max-height: 0px;
+    opacity: 0;
 }
 
 #comment_form_custom .form_inputs {
@@ -1139,7 +1172,9 @@ form .form_buttons input:hover {
 
 #comment_form_custom .form_inputs > p:nth-of-type(3) textarea {
     z-index: 10;
+    min-height: 30px;
     height: 80px;
+    max-height: 680px;
 }
 
 ::placeholder {
@@ -1158,3 +1193,7 @@ form .form_buttons input:hover {
     margin-right: 10px;
     margin-top: -12px; }
 
+#comment_form_custom .form_buttons input {
+    color: #bd4700; }
+#comment_form_custom .form_buttons input:hover {
+    color: #f7a300; }
