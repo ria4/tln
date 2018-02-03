@@ -1,3 +1,4 @@
 * ajout de séances
 * font-family alternatives ?
-* comment moderation/redirect
+* comment mail templates & redirections
+* pas d'input nom pour mtu

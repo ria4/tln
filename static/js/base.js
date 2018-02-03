@@ -418,22 +418,62 @@ if (comment_form) {
      * when resizing the text area, for the horizontal layout
      * (there is no textarea resize event support) */
     function scroll_to_bottom(e) {
-        if (window.innerWidth >= width_trigger_blogdisplay) {
-            if ((window.innerHeight - event.clientY) < 50) {
-                window.scrollTo(0, document.body.scrollHeight);
-            }
+        if ((window.innerHeight - event.clientY) < 50) {
+            window.scrollTo(0, document.body.scrollHeight);
         }
     }
 
     var comment_form_textarea = comment_form.getElementsByTagName("textarea")[0];
     var pos_info = comment_form_textarea.getBoundingClientRect()
     comment_form_textarea.addEventListener("mousedown", function (e) {
-        if (((pos_info.height - (e.pageY - this.offsetTop)) < 17) &&
-            ((pos_info.width - (e.pageX - this.offsetLeft)) < 17)) {
-            document.body.addEventListener("mousemove", scroll_to_bottom);
+        if (window.innerWidth >= width_trigger_blogdisplay) {
+            if (((pos_info.height - (e.pageY - this.offsetTop)) < 17) &&
+                ((pos_info.width - (e.pageX - this.offsetLeft)) < 17)) {
+                document.body.addEventListener("mousemove", scroll_to_bottom);
+            }
         }
     });
     document.body.addEventListener("mouseup", function (e) {
         document.body.removeEventListener("mousemove", scroll_to_bottom);
+    });
+
+
+    comment_form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var request = new XMLHttpRequest();
+        request.open('POST', '/blog/comments/post/', true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+        request.onreadystatechange = function() {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                // display 'thanks for your comment'
+            }
+        }
+
+        // ?? I can't find a way to build the x-www-form-urlencoded string
+        // from the form data. And we can't use FormData because it would mess
+        // with django's post_comment method. I guess I shall do it myself,
+        // except it may break if the form changes...
+        var urlEncodedData = "";
+        var urlEncodedDataPairs = [];
+        var inputs = comment_form.getElementsByTagName("input");
+        for (var i=0; i<inputs.length; i++) {
+            var input = inputs[i];
+            name = input.getAttribute('name');
+            value = '';
+            if ((name == "name") || (name == "email") || (name == "honeypot")) {
+                if (input.value != null) { value = input.value; }
+            } else {
+                if (input.value != null) { value = input.getAttribute('value'); }
+            }
+            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
+        }
+        var comment_input = comment_form.getElementsByTagName("textarea")[0];
+        urlEncodedDataPairs.push(encodeURIComponent(comment_input.getAttribute('name'))
+            + '=' + encodeURIComponent(comment_input.value));
+        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+        request.send(urlEncodedData);
     });
 }
