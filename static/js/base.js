@@ -1,11 +1,10 @@
 
 /* Errance Bar - Double height in small windows */
 
-var width_trigger_errance = 1200;
-var errance_bar_trigger = document.getElementById("errance-bar-trigger");
 var errance_bar = document.getElementById("errance-bar");
-
 if (errance_bar) {
+    var width_trigger_errance = 1200;
+    var errance_bar_trigger = document.getElementById("errance-bar-trigger");
     errance_bar_trigger.addEventListener("click", function(e) {
         e.preventDefault();
         if (errance_bar.classList.contains("expanded")) {
@@ -349,7 +348,6 @@ if (pagination) {
 
 var width_trigger_blogdisplay = 1600;
 var blog_content_wrap = document.getElementById("blog-content-wrap");
-
 if (blog_content_wrap) {
     if (window.innerWidth < width_trigger_blogdisplay) {
         blog_content_wrap.setAttribute("layout", "vertical");
@@ -389,3 +387,53 @@ if (widget_archives) {
     [].forEach.call(toggles, add_toggle_listener);
 }
 
+
+/* Blog Comment - Reveal comment form */
+
+var comment_form = document.getElementById("comment_form_custom");
+if (comment_form) {
+    var comment_form_trigger = document.getElementById("comment-form-trigger");
+    var comment_form_trigger_img = comment_form_trigger.getElementsByTagName("img")[0];
+    comment_form_trigger.addEventListener("mouseover", function (e) {
+        comment_form_trigger_img.setAttribute("src", "/static/blog/icon_comment_link_hover.png");
+    });
+    comment_form_trigger.addEventListener("mouseout", function (e) {
+        comment_form_trigger_img.setAttribute("src", "/static/blog/icon_comment_link.png");
+    });
+
+    comment_form.classList.add("collapsed");
+    comment_form_trigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (comment_form.classList.contains("expanded")) {
+            comment_form.classList.add("collapsed");
+            comment_form.classList.remove("expanded");
+        } else {
+            comment_form.classList.add("expanded");
+            comment_form.classList.remove("collapsed");
+        }
+    });
+
+
+    /* this hackish part auto-scrolls to the bottom of the window
+     * when resizing the text area, for the horizontal layout
+     * (there is no textarea resize event support) */
+    function scroll_to_bottom(e) {
+        if (window.innerWidth >= width_trigger_blogdisplay) {
+            if ((window.innerHeight - event.clientY) < 50) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        }
+    }
+
+    var comment_form_textarea = comment_form.getElementsByTagName("textarea")[0];
+    var pos_info = comment_form_textarea.getBoundingClientRect()
+    comment_form_textarea.addEventListener("mousedown", function (e) {
+        if (((pos_info.height - (e.pageY - this.offsetTop)) < 17) &&
+            ((pos_info.width - (e.pageX - this.offsetLeft)) < 17)) {
+            document.body.addEventListener("mousemove", scroll_to_bottom);
+        }
+    });
+    document.body.addEventListener("mouseup", function (e) {
+        document.body.removeEventListener("mousemove", scroll_to_bottom);
+    });
+}
