@@ -1059,7 +1059,8 @@ form .form_inputs input[type="date"]::-webkit-inner-spin-button {
 
 form .form_inputs .bad_input {
     /* fuck this */
-    border: 1px solid red !important;
+    border: 1px solid #db0000 !important;
+    transition: all 0.2s ease;
 }
 
 form .form_inputs .errorlist {

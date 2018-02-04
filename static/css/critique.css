@@ -1174,7 +1174,8 @@ body {
 
 .update_form .form_inputs .bad_input {
     /* fuck this */
-    border: 1px solid red !important;
+    border: 1px solid #db0000 !important;
+    transition: all 0.2s ease;
 }
 
 .update_form .form_inputs .errorlist {
