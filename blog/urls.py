@@ -4,7 +4,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('zinnia.urls')),
-    path('comments/', include('django_comments.urls')),
+    path('comments/', include('django_comments_custom.urls')),
     #path('admin/', admin.site.urls),
 ]
 

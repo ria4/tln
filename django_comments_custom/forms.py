@@ -25,6 +25,11 @@ class CommentFormCustom(CommentForm):
     comment = forms.CharField(label=_('Comment'), max_length=COMMENT_MAX_LENGTH,
                               widget=forms.Textarea(attrs={"placeholder": "~commentaire~"}))
 
+    def __init__(self, target_object, data=None, initial=None, is_user_authenticated=False, **kwargs):
+        super().__init__(target_object, data=data, initial=initial, **kwargs)
+        if is_user_authenticated:
+            self.fields['name'].initial = 'mtu'
+
     def get_comment_create_data(self, site_id=None):
         from django.contrib.contenttypes.models import ContentType
         return dict(
