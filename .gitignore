@@ -77,3 +77,13 @@ util/old/
 blog/templates/zinnia/tags/entries_archives.html
 blog/templates/zinnia/tags/entries_archives_link.html
 blog/templatetags/__pycache__/
+django_comments_custom/__pycache__/
+django_comments_custom/migrations/
+django_comments_custom/templatetags/__pycache__/
+django_comments_custom/views/__pycache__/
+site-packages
+static/favicon/DSC_0163.JPG
+static/favicon/DSC_0164.JPG
+static/favicon/favicon.xcf
+static/favicon/favicon6.ico
+static/favicon/favicon7.ico
