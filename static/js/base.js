@@ -438,42 +438,76 @@ if (comment_form) {
     });
 
 
+    var currently_submitting = false;
+    var comment_form_main = document.getElementById("comment-form-main");
+    var comment_post_loader = document.getElementById("comment-post-loader");
+    var comment_post_result = document.getElementById("comment-post-result");
+    var comment_post_result_text = comment_post_result.getElementsByTagName("p")[0];
     comment_form.addEventListener("submit", function (e) {
         e.preventDefault();
+        comment_form_main.classList.add("waiting");
+        comment_post_loader.style.display = "block";
 
-        var request = new XMLHttpRequest();
-        request.open('POST', '/blog/comments/post/', true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        if (!currently_submitting) {
+            currently_submitting = true;
+            var request = new XMLHttpRequest();
+            request.open('POST', '/blog/comments/post/', true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-        request.onreadystatechange = function() {
-            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-                // display 'thanks for your comment'
+            function clean_comment_form() {
+                comment_post_result.style.display = "none";
+                comment_form.classList.add("collapsed");
+                comment_form.classList.remove("expanded");
+                comment_form_main.classList.remove("waiting");
             }
-        }
 
-        // ?? I can't find a way to build the x-www-form-urlencoded string
-        // from the form data. And we can't use FormData because it would mess
-        // with django's post_comment method. I guess I shall do it myself,
-        // except it may break if the form changes...
-        var urlEncodedData = "";
-        var urlEncodedDataPairs = [];
-        var inputs = comment_form.getElementsByTagName("input");
-        for (var i=0; i<inputs.length; i++) {
-            var input = inputs[i];
-            name = input.getAttribute('name');
-            value = '';
-            if ((name == "name") || (name == "email") || (name == "honeypot")) {
-                if (input.value != null) { value = input.value; }
-            } else {
-                if (input.value != null) { value = input.getAttribute('value'); }
+            request.onreadystatechange = function() {
+                currently_submitting = false;
+                comment_post_loader.style.display = "none";
+                if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                    res = JSON.parse(request.responseText);
+                    var post_comment_success = res["post_comment_success"];
+                    if (post_comment_success) {
+                        comment_post_result_text.innerHTML = "success";
+                    } else {
+                        comment_post_result_text.innerHTML = "failure";
+                    }
+                } else {
+                    comment_post_result_text.innerHTML = "failure";
+                }
+                comment_post_result.style.display = "block";
+                setTimeout(clean_comment_form, 10000);
             }
-            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
-        }
-        var comment_input = comment_form.getElementsByTagName("textarea")[0];
-        urlEncodedDataPairs.push(encodeURIComponent(comment_input.getAttribute('name'))
-            + '=' + encodeURIComponent(comment_input.value));
-        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
 
-        request.send(urlEncodedData);
+            // ?? I can't find a way to build the x-www-form-urlencoded string
+            // from the form data. And we can't use FormData because it would mess
+            // with django's post_comment method. I guess I shall do it myself,
+            // except it may break if the form changes...
+            var urlEncodedData = "";
+            var urlEncodedDataPairs = [];
+            var inputs = comment_form.getElementsByTagName("input");
+            for (var i=0; i<inputs.length; i++) {
+                var input = inputs[i];
+                name = input.getAttribute('name');
+                value = '';
+                if (name == "name") {
+                    if (input.value != null) { value = input.value; }
+                    else if (input.getAttribute('value') != null) {
+                        /* authenticated user only */
+                        value = input.getAttribute('value'); }
+                } else if ((name == "email") || (name == "honeypot")) {
+                    if (input.value != null) { value = input.value; }
+                } else {
+                    if (input.value != null) { value = input.getAttribute('value'); }
+                }
+                urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
+            }
+            var comment_input = comment_form.getElementsByTagName("textarea")[0];
+            urlEncodedDataPairs.push(encodeURIComponent(comment_input.getAttribute('name'))
+                + '=' + encodeURIComponent(comment_input.value));
+            urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+            request.send(urlEncodedData);
+        }
     });
 }

@@ -965,6 +965,10 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     margin-left: 30px;
 }
 
+#comments .comment.superuser-comment .comment-info strong {
+    color: #2a00ff;
+}
+
 #comments .comment .comment-info time {
     font-style: italic;
 }
@@ -1197,3 +1201,71 @@ form .form_buttons input:hover {
     color: #bd4700; }
 #comment_form_custom .form_buttons input:hover {
     color: #f7a300; }
+
+
+/* Form Comment Reaction
+   ========================================================================== */
+
+.loader {
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    border: 5px solid #e6e6e6;
+    border-radius: 50%;
+    border-top: 5px solid #bd4700;
+    -webkit-animation: spin 1.1s linear infinite;
+    animation: spin 1.1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(359deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 }
+    to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 }
+    to{ bottom:0; opacity:1 }
+}
+
+#comment-form-wrap {
+    position: relative;
+}
+
+#comment-form-main.waiting {
+    z-index: 1;
+    opacity: 0.2;
+}
+
+#comment-post-loader {
+    z-index: 20;
+    display: none;
+}
+
+#comment-post-result {
+    z-index: 20;
+    display: none;
+    text-align: center;
+}

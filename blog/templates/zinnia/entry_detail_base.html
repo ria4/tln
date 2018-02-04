@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load zinnia %}
 {% load comments %}
+{% load comments_custom %}
 
 {% block title %}{{ object.title|lower }}{% endblock title %}
 
@@ -263,13 +264,21 @@
 
 {% block entry-comments-form %}
 <div id="comment-form-wrap">
-  <a href="#" id="comment-form-trigger">
-    <img src="{% static 'blog/icon_comment_link.png' %}" alt="">
-    <span> écrire un commentaire</span>
-  </a>
-  {% if object.comments_are_open %}
-    {% render_comment_form for object %}
-  {% endif %}
+  <div id="comment-form-main">
+    <a href="#" id="comment-form-trigger">
+      <img src="{% static 'blog/icon_comment_link.png' %}" alt="">
+      <span> écrire un commentaire</span>
+    </a>
+    {% if object.comments_are_open %}
+      {% render_comment_form_with_auth_info for object %}
+    {% endif %}
+  </div>
+  <div id="comment-post-loader">
+    <span class="loader"></span>
+  </div>
+  <div id="comment-post-result" class="animate-bottom">
+      <p id="comment-post-info"></p>
+  </div>
 </div>
 {% endblock entry-comments-form %}
 
