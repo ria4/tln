@@ -13,6 +13,6 @@ def get_article_on_day(date):
     entry = Entry.objects.filter(publication_date__year=date.year,
                                  publication_date__month=date.month,
                                  publication_date__day=date.day)[0]
-    url = '/blog/%.4d/%.2d/%.2d/%s}' % (date.year, date.month, date.day, entry.slug)
+    url = '/blog/%.4d/%.2d/%.2d/%s' % (date.year, date.month, date.day, entry.slug)
     return {'title': entry.title, 'url': url}
 
