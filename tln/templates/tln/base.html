@@ -26,6 +26,7 @@
 
     {% block forms %}{% endblock %}
 
+    {% if not user.is_authenticated %}
     <div class="update_form">
         <form id="login_form" action="{% url 'login' %}" method="post">
             <div class="form_inputs">
@@ -39,7 +40,11 @@
             </div>
         </form>
     </div>
+    {% endif %}
 
+    <script type="text/javascript">
+        var user_is_authenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
+    </script>
     <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
 
   </body>

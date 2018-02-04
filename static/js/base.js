@@ -303,7 +303,7 @@ document.addEventListener("keypress", function (e) {
             cached_code = "";
             if (active_code == "logout") {
                 active_code = "";
-                window.location.href = "/logout";
+                if (user_is_authenticated) { window.location.href = "/logout"; }
             } else {
                 codes[active_code].parentElement.classList.add("revealed");
             }
