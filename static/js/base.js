@@ -133,21 +133,21 @@ function validation_mark(elem, test) {
     }
 }
 
-function add_input_listener(validated_elements, at_init, n) {
+function add_input_listener(element, at_init) {
     if (at_init) {
-        validation_mark(validated_elements[n][0],
-                        validated_elements[n][1](validated_elements[n][0].value));
+        validation_mark(element[0],
+                        element[1](element[0].value));
     }
-    validated_elements[n][0].addEventListener("blur", function (e) {
-        validation_mark(e.target, validated_elements[n][1](e.target.value));});
-    validated_elements[n][0].addEventListener("input", function (e) {
-        validation_mark(e.target, validated_elements[n][1](e.target.value));});
+    element[0].addEventListener("blur", function (e) {
+        validation_mark(e.target, element[1](e.target.value));});
+    element[0].addEventListener("input", function (e) {
+        validation_mark(e.target, element[1](e.target.value));});
 }
 
 function add_inputs_listener(validated_elements, at_init) {
     for (i=0; i<validated_elements.length; i++) {
         /* we need an auxiliary function to copy i */
-        add_input_listener(validated_elements, at_init, i);
+        add_input_listener(validated_elements[i], at_init);
     }
 }
 
@@ -260,10 +260,15 @@ if (comment_form_custom) {
         return ((x.length > 0) &&
                 ((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1)))
     }
+    var tried_email = false;
     email.addEventListener("blur", function (e) {
-        validation_mark(e.target, validate_email(e.target.value));});
+        validation_mark(e.target, validate_email(e.target.value));
+        if (e.target.value.length > 0) {tried_email = true;}});
     email.addEventListener("input", function (e) {
-        validation_mark(e.target, (e.target.value.length > 0));});
+        if (tried_email) {
+            validation_mark(e.target, validate_email(e.target.value));
+        }
+    });
 }
 
 
