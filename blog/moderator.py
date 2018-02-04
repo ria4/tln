@@ -12,6 +12,11 @@ from zinnia.moderator import EntryCommentModerator
 
 class EntryCommentModeratorCustom(EntryCommentModerator):
 
+    def moderate(self, comment, content_object, request):
+        if request.user.is_authenticated:
+            return False
+        return super().moderate(comment, content_object, request)
+
     def email(self, comment, entry, request):
         """
         This is mostly copy-paste, except for the notification test.
@@ -21,7 +26,9 @@ class EntryCommentModeratorCustom(EntryCommentModerator):
             activate(settings.LANGUAGE_CODE)
             site = Site.objects.get_current()
             #if self.auto_moderate_comments or comment.is_public:
-            if self.auto_moderate_comments and not comment.is_public:
+            if (self.auto_moderate_comments and
+                not comment.is_public and
+                not request.user.is_authenticated):
                 self.do_email_notification(comment, entry, site)
             if comment.is_public:
                 self.do_email_authors(comment, entry, site)
