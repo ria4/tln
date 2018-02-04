@@ -1,0 +1,12 @@
+{% extends "zinnia/base.html" %}
+{#{% extends "zinnia/post_result.html" %}#}
+{% load i18n %}
+
+{% block title %}désabonnement{% endblock %}
+
+{% block content %}
+    <div id="post-result-info">
+        <p>Vous êtes désormais désabonné·e des alertes pour l'article {{ entry.title }}.</p>
+        <p>Merci d'avoir participé !</p>
+    </div>
+{% endblock %}

@@ -585,7 +585,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     align-items: center;
     font-family: Alegreya;
     min-width: 420px;
-    width: 100%;
+    max-width: 900px;
 }
 
 #content > * {
@@ -832,7 +832,6 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 
 .entry #content {
     margin-top: 24px;
-    max-width: 900px;
     padding: 0 6px;
 }
 
@@ -855,7 +854,6 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 
 .entry-list #content {
     padding: 0 20px;
-    max-width: 900px;
 }
 
 .entry-list #content a {
@@ -1281,4 +1279,8 @@ form .form_buttons input:hover {
     font-size: 18px;
     text-align: center;
     font-family: AlegreyaSans;
+}
+
+#post-result-info {
+    width: 100%;
 }
