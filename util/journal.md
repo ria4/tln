@@ -1,6 +1,6 @@
 ## Journal
 
-* 9/01 - Tutos HTML/CSS ;
+* 09/01 - Tutos HTML/CSS ;
 * 10/01 - Tutos CSS/JS/Django ;
 * 11/01 - Tuto Django ;
 * 12/01 - Intégration MongoDB à Django, écriture du HTML ;
@@ -26,4 +26,4 @@
 * 01/02 - Blog style, various code improvements, comment moderation
 * 02/02 - Comment moderation, comment style
 * 03/02 - AJAX comments
-* 04/02 - Comments style, unsubscribe to replies
+* 04/02 - AJAX animations & style, unsubscribe to replies, mails & comment moderation style

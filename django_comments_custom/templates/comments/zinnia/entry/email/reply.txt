@@ -1,8 +1,16 @@
-{% load i18n %}{% trans "Author" %}: {{ comment.name }} {{ comment.url }}
+{% load i18n %}Bonjour,
+
+Un nouveau commentaire a été publié pour l'article {{ entry.title }}, sur le blog tln.
+
+#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
+
+{% trans "Author" %}: {{ comment.name }} {{ comment.url }}
 
 {% trans "Comment" %}:
 {{ comment.comment }}
 
-{% trans "View this comment" %}: {{ protocol }}://{{ site }}{{ entry.get_absolute_url }}#comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}
+#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
-Si vous souhaiter arrêter de recevoir des alertes pour cet article : {{ protocol }}://{{ site }}{{ entry.get_absolute_url }}unsubscribe/{{ email_hash }}
+Pour voir ce commentaire sur le site : {{ protocol }}://{{ site }}{{ entry.get_absolute_url }}#comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}
+
+Pour arrêter de recevoir des alertes pour cet article : {{ protocol }}://{{ site }}{{ entry.get_absolute_url }}unsubscribe/{{ email_hash }}
