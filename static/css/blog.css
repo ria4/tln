@@ -1282,5 +1282,35 @@ form .form_buttons input:hover {
 }
 
 #post-result-info {
+    margin-top: 292px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#post-result-info > * {
+    margin: 6px 0;
+}
+
+#post-result-info form {
+    display: flex;
+    justify-content: center;
+    font-family: Abuget;
+    font-size: 42px;
+    margin-top: -4px;
+}
+
+#post-result-info form input {
+    background-color: transparent;
+    border: 0px solid;
+    color: #bd4700;
+}
+
+#post-result-info form input.hidden {
+    display: none;
+}
+
+#post-result-info form input:hover {
+    color: #f7a300;
 }
