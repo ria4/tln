@@ -1210,11 +1210,11 @@ form .form_buttons input:hover {
     position: absolute;
     z-index: 20;
     left: 50%;
-    top: 50%;
+    top: 52%;
     width: 40px;
     height: 40px;
-    margin-top: 5px;
-    margin-left: -20px;
+    margin-top: -8px;
+    margin-left: -14px;
     border: 5px solid #e6e6e6;
     border-radius: 50%;
     border-top: 5px solid #bd4700;
@@ -1233,30 +1233,37 @@ form .form_buttons input:hover {
 }
 
 .animate-bottom {
-    position: relative;
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    transform: translate(-44%);
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
-    animation-duration: 1s
+    animation-duration: 1s;
 }
 
 @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 }
-    to { bottom:0px; opacity:1 }
+    from { top:95%; opacity:0; }
+    to { top:47%; opacity:1; }
 }
 
 @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 }
-    to{ bottom:0; opacity:1 }
+    from { top:95%; opacity:0; }
+    to { top:47%; opacity:1; }
 }
 
 #comment-form-wrap {
     position: relative;
 }
 
+#comment-form-main {
+    transition: all 0.2s linear;
+}
+
 #comment-form-main.waiting {
     z-index: 1;
-    opacity: 0.2;
+    opacity: 0.12;
     pointer-events: none;
 }
 
@@ -1268,5 +1275,9 @@ form .form_buttons input:hover {
 #comment-post-result {
     z-index: 20;
     display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     text-align: center;
+    font-family: AlegreyaSans;
 }

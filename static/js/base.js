@@ -449,9 +449,11 @@ if (comment_form) {
     var comment_post_loader = document.getElementById("comment-post-loader");
     var comment_post_result = document.getElementById("comment-post-result");
     var comment_post_result_text = comment_post_result.getElementsByTagName("p")[0];
+    var timeout_clean_form;
 
     comment_form_wrap.addEventListener("click", function (e) {
         if (!currently_submitting) {
+            clearTimeout(timeout_clean_form);
             comment_form_main.classList.remove("waiting");
             comment_post_result.style.display = "none";
         }
@@ -472,11 +474,12 @@ if (comment_form) {
                 comment_post_result.style.display = "none";
                 comment_form.classList.add("collapsed");
                 comment_form.classList.remove("expanded");
-                comment_form_main.classList.remove("waiting");
+                setTimeout(function () { comment_form_main.classList.remove("waiting"); }, 500);
             }
 
             request.onreadystatechange = function() {
-                currently_submitting = false;
+                /* allow to remove waiting screen after some time */
+                setTimeout(function() { currently_submitting = false; }, 2000);
                 comment_post_loader.style.display = "none";
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                     res = JSON.parse(request.responseText);
@@ -486,7 +489,7 @@ if (comment_form) {
                             window.location.reload(false);
                         } else {
                         comment_post_result_text.innerHTML = "Merci ! Votre commentaire sera publié après modération.";
-                        setTimeout(clean_comment_form_success, 10000);
+                        timeout_clean_form = setTimeout(clean_comment_form_success, 6000);
                         }
                     } else {
                         comment_post_result_text.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
@@ -494,7 +497,7 @@ if (comment_form) {
                 } else {
                     comment_post_result_text.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                 }
-                comment_post_result.style.display = "block";
+                comment_post_result.style.display = "flex";
             }
 
             // ?? I can't find a way to build the x-www-form-urlencoded string
