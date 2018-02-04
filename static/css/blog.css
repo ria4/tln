@@ -581,10 +581,10 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 #content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     font-family: Alegreya;
     min-width: 420px;
+    width: 100%;
     max-width: 900px;
 }
 
@@ -637,13 +637,13 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 .entry-title {
     font-size: 34px;
     text-align: center;
+}
+
+.entry-list .entry-title {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-}
-
-.entry-list .entry-title {
     font-family: AlegreyaSans;
     padding-right: 10px;
     font-size: 26px;
