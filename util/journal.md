@@ -24,3 +24,6 @@
 * 30/01 - Favicon, login/logout from root instead of apps
 * 31/01 - Blog comments (logic & style)
 * 01/02 - Blog style, various code improvements, comment moderation
+* 02/02 - Comment moderation, comment style
+* 03/02 - AJAX comments
+* 04/02 - Comments style, unsubscribe to replies
