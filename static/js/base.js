@@ -306,6 +306,11 @@ document.addEventListener("keypress", function (e) {
                 if (user_is_authenticated) { window.location.href = "/logout"; }
             } else {
                 codes[active_code].parentElement.classList.add("revealed");
+                if (active_code == "login") {
+                    e.preventDefault();
+                    name_input = document.getElementById("id_username");
+                    name_input.focus();
+                }
             }
         }
     }
@@ -439,10 +444,19 @@ if (comment_form) {
 
 
     var currently_submitting = false;
+    var comment_form_wrap = document.getElementById("comment-form-wrap");
     var comment_form_main = document.getElementById("comment-form-main");
     var comment_post_loader = document.getElementById("comment-post-loader");
     var comment_post_result = document.getElementById("comment-post-result");
     var comment_post_result_text = comment_post_result.getElementsByTagName("p")[0];
+
+    comment_form_wrap.addEventListener("click", function (e) {
+        if (!currently_submitting) {
+            comment_form_main.classList.remove("waiting");
+            comment_post_result.style.display = "none";
+        }
+    });
+
     comment_form.addEventListener("submit", function (e) {
         e.preventDefault();
         comment_form_main.classList.add("waiting");
@@ -451,10 +465,10 @@ if (comment_form) {
         if (!currently_submitting) {
             currently_submitting = true;
             var request = new XMLHttpRequest();
-            request.open('POST', '/blog/comments/post/', true);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            request.open("POST", "/blog/comments/post/", true);
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 
-            function clean_comment_form() {
+            function clean_comment_form_success() {
                 comment_post_result.style.display = "none";
                 comment_form.classList.add("collapsed");
                 comment_form.classList.remove("expanded");
@@ -468,15 +482,19 @@ if (comment_form) {
                     res = JSON.parse(request.responseText);
                     var post_comment_success = res["post_comment_success"];
                     if (post_comment_success) {
-                        comment_post_result_text.innerHTML = "success";
+                        if (user_is_authenticated) {
+                            window.location.reload(false);
+                        } else {
+                        comment_post_result_text.innerHTML = "Merci ! Votre commentaire sera publié après modération.";
+                        setTimeout(clean_comment_form_success, 10000);
+                        }
                     } else {
-                        comment_post_result_text.innerHTML = "failure";
+                        comment_post_result_text.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                     }
                 } else {
-                    comment_post_result_text.innerHTML = "failure";
+                    comment_post_result_text.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                 }
                 comment_post_result.style.display = "block";
-                setTimeout(clean_comment_form, 10000);
             }
 
             // ?? I can't find a way to build the x-www-form-urlencoded string
