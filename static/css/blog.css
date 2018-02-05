@@ -582,7 +582,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Alegreya;
+    font-family: Alegreya, Palatino, serif;
     min-width: 420px;
     width: 100%;
     max-width: 900px;
@@ -611,7 +611,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 }
 
 .container > header h1 #top_title {
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
     font-size: 70px;
     text-align: center;
     font-weight: normal;
@@ -627,7 +627,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 #pagination {
     width: 100%;
     margin-top: 10px;
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
     font-size: 40px;
     text-align: right;
     padding-right: 96px;
@@ -644,7 +644,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     padding-right: 10px;
     font-size: 26px;
     margin: 8px 0;
@@ -661,7 +661,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 /* Sidebar
    ========================================================================== */
 #sidebar {
-    font-family: Alegreya;
+    font-family: Alegreya, Palatino, serif;
     font-size: 18px;
     width: 300px;
     padding: 0 4px;
@@ -787,7 +787,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 /* Content Oeuvres
    ========================================================================== */
 #content .info {
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -995,7 +995,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .update_form.revealed {
@@ -1037,7 +1037,7 @@ form .form_inputs textarea {
 }
 
 form .form_inputs textarea {
-    font-family: Alegreya;
+    font-family: Alegreya, Palatino, serif;
     font-size: 100%;
     resize: vertical;
 }
@@ -1068,7 +1068,7 @@ form .form_inputs .errorlist {
 form .form_buttons {
     display: flex;
     justify-content: center;
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
     font-size: 40px;
     margin-top: -4px;
 }
@@ -1278,7 +1278,7 @@ form .form_buttons input:hover {
     align-items: center;
     font-size: 18px;
     text-align: center;
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 #post-result-info {
@@ -1296,7 +1296,7 @@ form .form_buttons input:hover {
 #post-result-info form {
     display: flex;
     justify-content: center;
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
     font-size: 42px;
     margin-top: -4px;
 }
