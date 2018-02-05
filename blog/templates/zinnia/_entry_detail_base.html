@@ -126,9 +126,9 @@
          rel="tag" itemprop="articleSection">{{ tag }}</a>
       {% endcomment %}
       {% if forloop.last %}
-      {{ tag }}
+      <a href="{% url 'zinnia:tag_detail' tag %}">{{ tag }}</a>
       {% else %}
-      {{ tag }},
+      <a href="{% url 'zinnia:tag_detail' tag %}">{{ tag }},</a>
       {% endif %}
       {% endfor %}
     </p>

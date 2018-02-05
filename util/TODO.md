@@ -1,7 +1,8 @@
 * make it mobile-friendly
 * ajout de séances
 * pages 404, 403, 50X
-* clean zinnia templates (comments, unnecessary links, metadata) & remove useless files
+* sitemap avec django framework ?
+* ajouter meta-descriptions des pages
 * importer quelques articles dans le blog
 * menu bar
 * écrire à propos

@@ -12,7 +12,6 @@
     <link rel="index" href="{% url 'zinnia:entry_archive_index' %}" />
     <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed of last entries" %}" href="{% url 'zinnia:entry_feed' %}" />
     <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed of last discussions" %}" href="{% url 'zinnia:discussion_feed' %}" />
-    {% get_archives_entries "zinnia/tags/entries_archives_link.html" %}
 {% endblock link %}
 
 {% block breadcrumbs %}
