@@ -563,7 +563,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: Alegreya;
+    font-family: Alegreya, Palatino, serif;
 }
 
 #content a {
@@ -677,7 +677,7 @@ body {
 #pagination {
     width: 100%;
     margin-top: 10px;
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
     font-size: 40px;
     text-align: right;
     padding-right: 96px;
@@ -695,7 +695,7 @@ body {
     display: block;
     text-align: center;
     text-decoration: none;
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
 }
 
 .navbar a {
@@ -723,7 +723,7 @@ body {
 
 #main-bar #logo {
     margin-left: 50px;
-    font-family: SoljikDambaek;
+    font-family: SoljikDambaek, "Times New Roman", Times, serif;
     font-size: 56px;
 }
 
@@ -812,7 +812,7 @@ body {
 }
 
 #content .title {
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-weight: bold;
     font-size: 34px;
     text-align: center;
@@ -856,7 +856,7 @@ body {
 /* Content Oeuvres
    ========================================================================== */
 #content .info {
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -1112,7 +1112,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .update_form.revealed {
@@ -1154,7 +1154,7 @@ body {
 }
 
 .update_form .form_inputs textarea {
-    font-family: Alegreya;
+    font-family: Alegreya, Palatino, serif;
     font-size: 100%;
     resize: vertical;
 }
@@ -1185,7 +1185,7 @@ body {
 .update_form .form_buttons {
     display: flex;
     justify-content: center;
-    font-family: Abuget;
+    font-family: Abuget, Palatino, serif;
     font-size: 40px;
     margin-top: -4px;
 }
