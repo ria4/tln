@@ -130,7 +130,7 @@
       {% if entry_list %}
       {{ tag }},
       {% else %}
-      <a href="{% url 'zinnia:tag_detail' tag %}">{{ tag }},</a>
+      <a href="{% url 'zinnia:tag_detail' tag %}">{{ tag }}</a>,
       {% endif %}
       {% endif %}
       {% endfor %}
