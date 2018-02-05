@@ -1,4 +1,7 @@
 from bs4 import BeautifulSoup
+import re
+
+r = re.compile(r'^(\s*)', re.MULTILINE)
 
 class BeautifulMiddleware:
     def __init__(self, get_response):
@@ -9,5 +12,5 @@ class BeautifulMiddleware:
         if response.status_code == 200:
             if response["content-type"].startswith("text/html"):
                 beauty = BeautifulSoup(response.content)
-                response.content = beauty.prettify()
+                response.content = r.sub(r'\1'*2, beauty.prettify())
         return response

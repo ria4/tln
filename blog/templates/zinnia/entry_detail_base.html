@@ -7,7 +7,8 @@
 
 {% block title %}{{ object.title|lower }}{% endblock title %}
 
-{% block meta-description %}{{ object.title|safe }}{% endblock meta-description %}
+{% block meta-description %}blog de max tury - {% endblock meta-description %}
+{% block meta-description-page %}article '{{ object.title }}'{% endblock meta-description-page %}
 
 {% block meta-keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
 
