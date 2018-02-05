@@ -120,15 +120,18 @@
       <meta itemprop="keywords" content="{{ object.tags }}" />
       {% endif %}
       {% for tag in object.tags_list %}
-      {% comment %}
-      <a href="{% url 'zinnia:tag_detail' tag %}"
-         title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}"
-         rel="tag" itemprop="articleSection">{{ tag }}</a>
-      {% endcomment %}
       {% if forloop.last %}
+      {% if entry_list %}
+      {{ tag }}
+      {% else %}
       <a href="{% url 'zinnia:tag_detail' tag %}">{{ tag }}</a>
+      {% endif %}
+      {% else %}
+      {% if entry_list %}
+      {{ tag }},
       {% else %}
       <a href="{% url 'zinnia:tag_detail' tag %}">{{ tag }},</a>
+      {% endif %}
       {% endif %}
       {% endfor %}
     </p>

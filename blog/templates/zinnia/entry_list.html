@@ -2,43 +2,15 @@
 {% load i18n %}
 {% load zinnia %}
 
-{% block meta-description %}{% spaceless %}
-{% if category %}
-{% if category.description %}
-{{ category.description|striptags|safe }}
-{% else %}
-{% blocktrans with object=category %}The last entries categorized under {{ object }}{% endblocktrans %}
-{% endif %}
-{% endif %}
-
-{% if tag %}
-{% blocktrans with object=tag %}The last entries tagged with {{ object }}{% endblocktrans %}
-{% endif %}
-
-{% if author %}
-{% blocktrans with object=author %}The last entries by {{ object }}{% endblocktrans %}
-{% endif %}
-
-{% endspaceless %}{% endblock meta-description %}
-
-{% block meta-description-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} {% blocktrans with page_number=page_obj.number %}page {{ page_number }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock meta-description-page %}
-
 {% block title %}{% spaceless %}
-{% if category %}
-{% blocktrans with object=category %}Category {{ object }}{% endblocktrans %}
-{% endif %}
-
 {% if tag %}
-{% blocktrans with object=tag %}Tag {{ object }}{% endblocktrans %}
+{% blocktrans with object=tag %}tag {{ object }}{% endblocktrans %}
 {% endif %}
-
-{% if author %}
-{% blocktrans with object=author %}Author {{ object }}{% endblocktrans %}
-{% endif %}
-
 {% endspaceless %}{% endblock title %}
 
-{% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}Page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %}
+{% block meta-description %}j'aime le point médian et l'inénarrable{% endblock %}
+
+{% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %}
 
 {% block link %}
   {{ block.super }}
@@ -61,7 +33,7 @@
 {% for object in object_list %}
 <a href="{{ object.get_absolute_url }}" rel="bookmark" itemprop="url">
   {% zinnia_loop_template object.content_template as template %}
-  {% include template with object_content=object.html_preview|striptags before_published='' comments_count_display=True continue_reading=1 %}
+  {% include template with object_content=object.html_preview|striptags before_published='' comments_count_display=True continue_reading=1 entry_list=1 %}
 </a>
 {% empty %}
   <p class="info">
