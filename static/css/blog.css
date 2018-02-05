@@ -911,10 +911,18 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 }
 
 .entry-footer .entry-tags {
-    font-size: 18px;
+    font-size: 17px;
     display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #929292;
+}
+
+#content .entry-footer .entry-tags a {
+    color: inherit;
+}
+#content .entry-footer .entry-tags a:hover {
+    color: #f7a300;
 }
 
 .entry-footer .entry-discussions {
