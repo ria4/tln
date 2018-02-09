@@ -354,21 +354,26 @@ if (pagination) {
 }
 
 
-/* Blog - Nav menu position depends on window width */
+/* Blog - Menus positions depend on window width */
 
 var width_trigger_blogdisplay = 1600;
+var top_navigation = document.getElementById("top-navigation");
 var blog_content_wrap = document.getElementById("blog-content-wrap");
-if (blog_content_wrap) {
+if (top_navigation) {
     if (window.innerWidth < width_trigger_blogdisplay) {
+        top_navigation.setAttribute("layout", "vertical");
         blog_content_wrap.setAttribute("layout", "vertical");
     } else {
+        top_navigation.setAttribute("layout", "horizontal");
         blog_content_wrap.setAttribute("layout", "horizontal");
     }
 
     window.addEventListener("resize", function(e) {
         if (window.innerWidth < width_trigger_blogdisplay) {
+            top_navigation.setAttribute("layout", "vertical");
             blog_content_wrap.setAttribute("layout", "vertical");
         } else {
+            top_navigation.setAttribute("layout", "horizontal");
             blog_content_wrap.setAttribute("layout", "horizontal");
         }
     });

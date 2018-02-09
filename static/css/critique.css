@@ -859,7 +859,6 @@ body {
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
 }
 
