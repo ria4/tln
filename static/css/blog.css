@@ -658,6 +658,40 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 }
 
 
+
+/* Navigation Bar
+   ========================================================================== */
+#top-navigation {
+    margin: 40px 0;
+    padding-top: 5px;
+    padding-right: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#top-navigation li {
+    padding: 0 60px;
+}
+#top-navigation .nav_separator {
+    height: 30px;
+    border-right: 1px solid #a57100;
+    margin-top: -2px;
+}
+#top-navigation a {
+    text-decoration: none;
+    font-size: 56px;
+    font-family: Abuget;
+    color: black;
+    white-space: nowrap;
+}
+#top-navigation a:hover {
+    color: #a40000;
+}
+#top-navigation a:active, #top-navigation a:focus {
+    outline: none;
+}
+
+
 /* Sidebar
    ========================================================================== */
 #sidebar {
