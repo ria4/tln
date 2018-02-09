@@ -29,21 +29,19 @@
         <input type="submit" class="submitbutton" value="OK" />
       </p>
     </form>
-    <h1>
-      <a href="{% url 'zinnia:entry_archive_index' %}" title="Zinnia's Weblog" rel="home">
-        Zinnia's Weblog
-      </a>
-    </h1>
-    <blockquote>
-      <p>{% trans "another Zinnia weblog." %}</p>
-    </blockquote>
     {% block breadcrumbs %}{% endblock breadcrumbs %}
   {% endcomment %}
-    <h1>
-      <a href="{% url 'zinnia:entry_archive_index' %}" id="top_title" title="blog" rel="home">
-        blog
-      </a>
-    </h1>
+    <nav>
+      <ul id="top-navigation">
+        <li><a href="#">Photos</a></li>
+        <span class="nav_separator"></span>
+        <li><a href="{% url 'zinnia:entry_archive_index' %}" rel="home">Blog</a></li>
+        <span class="nav_separator"></span>
+        <li><a href="/critique">Critique</a></li>
+        <span class="nav_separator"></span>
+        <li><a href="/info">À propos</a></li>
+      </ul>
+    </nav>
   </header>
   {% block slider %}{% endblock slider %}
   <div id="blog-content-wrap">
@@ -60,11 +58,6 @@
       </div>
     </div>
   </div>
-  {% comment %}
-  <footer id="footer" role="contentinfo">
-    <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
-  </footer>
-  {% endcomment %}
 </div>
 
 {% endblock %}
