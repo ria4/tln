@@ -87,3 +87,11 @@ static/favicon/DSC_0164.JPG
 static/favicon/favicon.xcf
 static/favicon/favicon6.ico
 static/favicon/favicon7.ico
+media/
+photos/__pycache__/
+photos/admin.py
+photos/apps.py
+photos/migrations/
+photos/models.py
+photos/tests.py
+photos/views.py
