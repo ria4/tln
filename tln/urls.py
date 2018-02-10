@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('critique/', include('critique.urls')),
     path('blog/', include('blog.urls')),
+    path('photos/', include('photos.urls')),
 ]
 
 #TODO remove for production

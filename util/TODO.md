@@ -1,4 +1,3 @@
-* menu bar
 * écrire à propos
 * photos
 
