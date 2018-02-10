@@ -13,6 +13,7 @@
         <ul>
             <li><a href={% url "preambule" %}>préambule</a></li>
             <li><a href={% url "top_textes" %}>textes cardinaux</a></li>
+            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
             <li id="errance-bar-trigger"><a href="#">errances</a></li>
             {# <li>recherche</li> #}
         </ul>
@@ -21,7 +22,6 @@
 
     <div id="errance-bar" class="navbar" expanded_size="simple">
         <ul>
-            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
             <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
             <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
             <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>

@@ -3,7 +3,7 @@
 
 var errance_bar = document.getElementById("errance-bar");
 if (errance_bar) {
-    var width_trigger_errance = 1200;
+    var width_trigger_errance = 1104;
     var errance_bar_trigger = document.getElementById("errance-bar-trigger");
     errance_bar_trigger.addEventListener("click", function(e) {
         e.preventDefault();
