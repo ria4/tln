@@ -28,7 +28,14 @@
         <ul id="top-navigation1">
           <li><a href="{% url 'zinnia:entry_archive_index' %}" rel="home">Blog</a></li>
           <span class="nav-separator-sub"></span>
-          <li><a href="/photos">Photos</a></li>
+          <li class="dropdown">
+              <a href="/photos">Photos</a>
+              <div class="dropdown-content">
+                  {% for gallery in gallery_list %}
+                  <a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a>
+                  {% endfor %}
+              </div>
+          </li>
         </ul>
           <span class="nav-separator"></span>
         <ul id="top-navigation2">
