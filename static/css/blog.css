@@ -537,7 +537,7 @@ textarea, input {
 
 /* Main
    ========================================================================== */
-body > .container > header {
+body > header {
     width: 100%;
     text-align: center;
 }
@@ -605,12 +605,12 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     outline: none
 }
 
-.container > header h1 {
+body > header h1 {
     margin-top: 30px;
     margin-bottom: 25px;
 }
 
-.container > header h1 #top_title {
+body > header h1 #top_title {
     font-family: Abuget, Palatino, serif;
     font-size: 70px;
     text-align: center;
@@ -667,9 +667,6 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#top-navigation[layout="horizontal"] {
-    padding-right: 60px;
 }
 #top-navigation[layout="vertical"] {
     flex-direction: column;

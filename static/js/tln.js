@@ -1,10 +1,29 @@
 
-/* Errance Bar - Double height in small windows */
+/* Critique Navigation Bars - Hide/Reveal and Resize bars */
 
-var errance_bar = document.getElementById("errance-bar");
-if (errance_bar) {
-    var width_trigger_errance = 1104;
+var width_trigger_topnav = 900;
+var top_navigation = document.getElementById("top-navigation");
+var top_navigation_trigger = document.getElementById("top-navigation-trigger");
+if (top_navigation_trigger) {
     var errance_bar_trigger = document.getElementById("errance-bar-trigger");
+    var errance_bar = document.getElementById("errance-bar");
+
+    top_navigation_trigger.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (top_navigation.classList.contains("expanded")) {
+            top_navigation.classList.remove("expanded");
+        } else {
+            top_navigation.classList.add("expanded");
+        }
+
+        if (window.innerWidth < width_trigger_topnav) {
+            top_navigation.setAttribute("expanded_size", "double");
+        } else {
+            top_navigation.setAttribute("expanded_size", "simple");
+        }
+    });
+
+    var width_trigger_errance = 1104;
     errance_bar_trigger.addEventListener("click", function(e) {
         e.preventDefault();
         if (errance_bar.classList.contains("expanded")) {
@@ -21,6 +40,11 @@ if (errance_bar) {
     });
 
     window.addEventListener("resize", function(e) {
+        if (window.innerWidth < width_trigger_topnav) {
+            top_navigation.setAttribute("expanded_size", "double");
+        } else {
+            top_navigation.setAttribute("expanded_size", "simple");
+        }
         if (window.innerWidth < width_trigger_errance) {
             errance_bar.setAttribute("expanded_size", "double");
         } else {
@@ -356,25 +380,41 @@ if (pagination) {
 
 /* Blog - Menus positions depend on window width */
 
-var width_trigger_blogdisplay = 1600;
+var width_trigger_blog_sidebar = 1600;
 var top_navigation = document.getElementById("top-navigation");
 var blog_content_wrap = document.getElementById("blog-content-wrap");
-if (top_navigation) {
-    if (window.innerWidth < width_trigger_blogdisplay) {
-        top_navigation.setAttribute("layout", "vertical");
+if (blog_content_wrap) {
+    if (window.innerWidth < width_trigger_blog_sidebar) {
         blog_content_wrap.setAttribute("layout", "vertical");
+        top_navigation.style.paddingRight = "0px";
     } else {
-        top_navigation.setAttribute("layout", "horizontal");
         blog_content_wrap.setAttribute("layout", "horizontal");
+        top_navigation.style.paddingRight = "60px";
     }
 
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < width_trigger_blogdisplay) {
-            top_navigation.setAttribute("layout", "vertical");
+        if (window.innerWidth < width_trigger_blog_sidebar) {
             blog_content_wrap.setAttribute("layout", "vertical");
+            top_navigation.style.paddingRight = "0px";
+        } else {
+            blog_content_wrap.setAttribute("layout", "horizontal");
+            top_navigation.style.paddingRight = "60px";
+        }
+    });
+}
+
+if (top_navigation) {
+    if (window.innerWidth < width_trigger_topnav) {
+        top_navigation.setAttribute("layout", "vertical");
+    } else {
+        top_navigation.setAttribute("layout", "horizontal");
+    }
+
+    window.addEventListener("resize", function(e) {
+        if (window.innerWidth < width_trigger_topnav) {
+            top_navigation.setAttribute("layout", "vertical");
         } else {
             top_navigation.setAttribute("layout", "horizontal");
-            blog_content_wrap.setAttribute("layout", "horizontal");
         }
     });
 }

@@ -5,10 +5,10 @@
 {% block title-between %} - {% endblock %}
 {% block title %}critiques{% endblock %}
 
-{% block body %}
-<header>
-    <div id="main-bar" class="navbar">
-        <a id="logo" href="/">tln</a>
+{% block header-more %}
+<div id="header-more">
+    <nav id="main-bar" class="navbar">
+        <a id="top-navigation-trigger" href="#">tln</a>
         <nav role="navigation">
         <ul>
             <li><a href={% url "preambule" %}>préambule</a></li>
@@ -18,9 +18,9 @@
             {# <li>recherche</li> #}
         </ul>
         </nav>
-    </div>
+    </nav>
 
-    <div id="errance-bar" class="navbar" expanded_size="simple">
+    <nav id="errance-bar" class="navbar" expanded_size="simple">
         <ul>
             <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
             <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
@@ -28,9 +28,11 @@
             <li><a href={% url "list_seances" %}>liste des séances</a></li>
             <li><a href={% url "top_films" %}>top films par année</a></li>
         </ul>
-    </div>
-</header>
+    </nav>
+</div>
+{% endblock %}
 
+{% block content-wrap %}
 <section id="content">
     {% block content %}{% endblock %}
 </section>

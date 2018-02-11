@@ -538,12 +538,15 @@ textarea, input {
 /* Main
    ========================================================================== */
 header {
-    box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
     overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 101;
+    box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
+}
+
+#header-more {
     background-image: url("/static/img_base/critique_background_header.jpg");
     background-size: 1920px; auto;
     background-position: right top;
@@ -684,6 +687,65 @@ body {
 }
 
 
+/* Top Navigation Bar
+   ========================================================================== */
+#top-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/static/img_base/critique_background_content.jpg");
+    background-size: 100% auto;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+#top-navigation.expanded {
+    visibility: visible;
+    padding: 7px 0 5px 0;
+}
+#top-navigation.expanded[expanded_size=simple] {
+    height: 70px;
+}
+#top-navigation.expanded[expanded_size=double] {
+    height: 140px;
+}
+#top-navigation[layout="vertical"] {
+    flex-direction: column;
+}
+#top-navigation[layout="vertical"] #top-navigation1 {
+    padding-left: 19px;
+}
+#top-navigation ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#top-navigation li {
+    padding: 0 60px;
+}
+#top-navigation .nav-separator-sub,
+#top-navigation[layout="horizontal"] .nav-separator {
+    height: 30px;
+    border-right: 1px solid #a57100;
+    margin-top: -2px;
+}
+#top-navigation a {
+    text-decoration: none;
+    font-size: 56px;
+    font-family: Abuget;
+    color: black;
+    white-space: nowrap;
+}
+#top-navigation a:hover {
+    color: #a40000;
+}
+#top-navigation a:active, #top-navigation a:focus {
+    outline: none;
+}
+
+
 /* Navigation Bars
    ========================================================================== */
 .navbar {
@@ -721,7 +783,7 @@ body {
     min-width: 700px;
 }
 
-#main-bar #logo {
+#main-bar #top-navigation-trigger {
     margin-left: 50px;
     font-family: SoljikDambaek, "Times New Roman", Times, serif;
     font-size: 56px;
@@ -741,7 +803,6 @@ body {
 
 
 #errance-bar {
-    z-index: 0;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -754,26 +815,21 @@ body {
     font-size: 40px;
     min-width: 700px;
 }
-
 #errance-bar.expanded {
     visibility: visible;
 }
-
 #errance-bar.expanded[expanded_size=simple] {
     height: 44px;
 }
-
 #errance-bar.expanded[expanded_size=double] {
     height: 88px;
 }
-
 #errance-bar ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
-
 #errance-bar li {
     padding: 0 42px;
 }
