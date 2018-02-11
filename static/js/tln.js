@@ -481,7 +481,7 @@ if (comment_form) {
     var comment_form_textarea = comment_form.getElementsByTagName("textarea")[0];
     var pos_info = comment_form_textarea.getBoundingClientRect()
     comment_form_textarea.addEventListener("mousedown", function (e) {
-        if (window.innerWidth >= width_trigger_blogdisplay) {
+        if (window.innerWidth >= width_trigger_blog_sidebar) {
             if (((pos_info.height - (e.pageY - this.offsetTop)) < 17) &&
                 ((pos_info.width - (e.pageX - this.offsetLeft)) < 17)) {
                 document.body.addEventListener("mousemove", scroll_to_bottom);
