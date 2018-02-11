@@ -77,9 +77,9 @@
 {% endblock %}
 
 
-{% block forms %}
+{% block overlays %}
 {% if perms.critique.all_rights %}
-<div class="update_form">
+<div class="overlay">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
@@ -98,7 +98,7 @@
     </form>
 </div>
 
-<div class="update_form">
+<div class="overlay">
     <form id="comment_form_empty" action="{% url 'add_comment' oeuvre.id %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
@@ -113,7 +113,7 @@
 </div>
 
 {% if comment_form %}
-<div class="update_form">
+<div class="overlay">
     <form id="comment_form" action="{% url 'update_latest_comment' oeuvre.id %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}

@@ -1100,7 +1100,7 @@ body {
 /* Forms
    ========================================================================== */
 
-.update_form {
+.overlay {
     visibility: hidden;
     width: 100%;
     height: 100%;
@@ -1114,37 +1114,37 @@ body {
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-.update_form.revealed {
+.overlay.revealed {
     visibility: visible;
     z-index: 101;
 }
 
-.update_form form {
+.overlay form {
     background-color: rgb(255, 255, 255);
     padding: 6px 20px 6px 13px;
     border: 1px solid grey;
     box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
 }
 
-.update_form form .form_inputs {
+.overlay form .form_inputs {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.update_form form p {
+.overlay form p {
     margin: 4px 0;
     display: flex;
     align-items: center;
 }
 
-.update_form form p label {
+.overlay form p label {
     text-align: right;
     margin-right: 6px;
 }
 
-.update_form .form_inputs input:not([type="checkbox"]),
-.update_form .form_inputs textarea {
+.overlay .form_inputs input:not([type="checkbox"]),
+.overlay .form_inputs textarea {
     width: 100%;
     padding: 1px 0 1px 4px;
     border: 1px solid grey;
@@ -1152,36 +1152,36 @@ body {
     margin-left: -0.3px;
 }
 
-.update_form .form_inputs textarea {
+.overlay .form_inputs textarea {
     font-family: Alegreya, Palatino, serif;
     font-size: 100%;
     resize: vertical;
 }
 
-.update_form .form_inputs input[type="checkbox"] {
+.overlay .form_inputs input[type="checkbox"] {
     margin-top: 2px;
 }
 
-.update_form .form_inputs input[type="date"] {
+.overlay .form_inputs input[type="date"] {
     width: 160px;
 }
 
-.update_form .form_inputs input[type="date"]::-webkit-inner-spin-button {
+.overlay .form_inputs input[type="date"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
 
-.update_form .form_inputs .bad_input {
+.overlay .form_inputs .bad_input {
     /* fuck this */
     border: 1px solid #db0000 !important;
     transition: all 0.2s ease;
 }
 
-.update_form .form_inputs .errorlist {
+.overlay .form_inputs .errorlist {
     display: none;
 }
 
-.update_form .form_buttons {
+.overlay .form_buttons {
     display: flex;
     justify-content: center;
     font-family: Abuget, Palatino, serif;
@@ -1189,16 +1189,16 @@ body {
     margin-top: -4px;
 }
 
-.update_form .form_buttons input {
+.overlay .form_buttons input {
     background-color: transparent;
     border: 0px solid;
 }
 
-.update_form .form_buttons input.hidden {
+.overlay .form_buttons input.hidden {
     display: none;
 }
 
-.update_form .form_buttons input:hover {
+.overlay .form_buttons input:hover {
     color: #f7a300;
 }
 

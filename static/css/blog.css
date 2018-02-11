@@ -1040,7 +1040,7 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
 /* Forms
    ========================================================================== */
 
-.update_form {
+.overlay {
     visibility: hidden;
     width: 100%;
     height: 100%;
@@ -1054,12 +1054,12 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-.update_form.revealed {
+.overlay.revealed {
     visibility: visible;
     z-index: 101;
 }
 
-.update_form form {
+.overlay form {
     background-color: rgb(255, 255, 255);
     padding: 6px 20px 6px 13px;
     border: 1px solid grey;

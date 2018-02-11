@@ -36,7 +36,7 @@
 </section>
 
 {% if perms.critique.all_rights %}
-<div class="update_form">
+<div class="overlay">
     <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
@@ -52,4 +52,4 @@
 {% endif %}
 {% endblock %}
 
-{% block forms %}{% endblock %}
+{% block overlays %}{% endblock %}

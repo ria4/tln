@@ -24,10 +24,10 @@
 
     {% block body %}{% endblock %}
 
-    {% block forms %}{% endblock %}
+    {% block overlays %}{% endblock %}
 
     {% if not user.is_authenticated %}
-    <div class="update_form">
+    <div class="overlay">
         <form id="login_form" action="{% url 'login' %}" method="post">
             <div class="form_inputs">
                 {% csrf_token %}
@@ -45,7 +45,7 @@
     <script type="text/javascript">
         var user_is_authenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
     </script>
-    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tln.js' %}"></script>
 
   </body>
 
