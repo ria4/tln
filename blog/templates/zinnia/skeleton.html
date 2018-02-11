@@ -5,46 +5,34 @@
 {% block css-path %}{% static 'css/blog.css' %}{% endblock %}
 {% block title-between %} - {% endblock %}
 
-{% block body %}
+{% comment %}
+<header id="header" role="banner">
+  <nav>
+    <ul class="top-navigation">
+      <li>
+        <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}" class="sitemap" rel="sitemap">
+          {% trans "Sitemap" %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'zinnia:entry_feed' %}" title="{% trans "RSS feed of last entries" %}" class="feeds">
+          {% trans "RSS feed" %}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <form method="get" action="{% url 'zinnia:entry_search' %}">
+    <p>
+      <input type="text" name="pattern" placeholder="{% trans "Keywords..." %}" {% if pattern %}value="{{ pattern }}"{% endif %} />
+      <input type="submit" class="submitbutton" value="OK" />
+    </p>
+  </form>
+  {% block breadcrumbs %}{% endblock breadcrumbs %}
+</header>
+{% endcomment %}
+
+{% block content-wrap %}
 <div class="container">
-  <header id="header" role="banner">
-  {% comment %}
-    <nav>
-      <ul class="top-navigation">
-        <li>
-          <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}" class="sitemap" rel="sitemap">
-            {% trans "Sitemap" %}
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'zinnia:entry_feed' %}" title="{% trans "RSS feed of last entries" %}" class="feeds">
-            {% trans "RSS feed" %}
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <form method="get" action="{% url 'zinnia:entry_search' %}">
-      <p>
-        <input type="text" name="pattern" placeholder="{% trans "Keywords..." %}" {% if pattern %}value="{{ pattern }}"{% endif %} />
-        <input type="submit" class="submitbutton" value="OK" />
-      </p>
-    </form>
-    {% block breadcrumbs %}{% endblock breadcrumbs %}
-  {% endcomment %}
-    <nav id="top-navigation">
-      <ul id="top-navigation1">
-        <li><a href="{% url 'zinnia:entry_archive_index' %}" rel="home">Blog</a></li>
-        <span class="nav-separator-sub"></span>
-        <li><a href="/photos">Photos</a></li>
-      </ul>
-        <span class="nav-separator"></span>
-      <ul id="top-navigation2">
-        <li><a href="/critique">Critique</a></li>
-        <span class="nav-separator-sub"></span>
-        <li><a href="/info">À propos</a></li>
-      </ul>
-    </nav>
-  </header>
   {% block slider %}{% endblock slider %}
   <div id="blog-content-wrap">
     <div id="sidebar-wrap-balance" role="none"></div>
@@ -61,5 +49,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}
