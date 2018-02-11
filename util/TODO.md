@@ -1,4 +1,6 @@
 * écrire à propos
+* accès top navigation depuis section critique (href="#" sur 'tln')
+* liens déroulés sous 'photos' de top navigation
 * photos
 
 # plus tard
