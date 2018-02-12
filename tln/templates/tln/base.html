@@ -33,6 +33,9 @@
               <div class="dropdown-content">
                   {% for gallery in gallery_list %}
                   <a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a>
+                  {% if not forloop.last %}
+                  <div class="dropdown-separator"></div>
+                  {% endif %}
                   {% endfor %}
               </div>
           </li>

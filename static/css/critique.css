@@ -1,7 +1,6 @@
 /* Main
    ========================================================================== */
 header {
-    overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
@@ -160,7 +159,6 @@ body {
     height: 0;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     transition: all 0.4s ease;
 }
 #top-navigation.expanded {
@@ -172,6 +170,16 @@ body {
 }
 #top-navigation.expanded[expanded_size=double] {
     height: 140px;
+}
+#top-navigation > * {
+    transform: translateY(-35px);
+    transition: all 0.4s ease;
+}
+#top-navigation.expanded > * {
+    transform: translateY(0);
+}
+#top-navigation1 {
+    z-index: 200;
 }
 
 

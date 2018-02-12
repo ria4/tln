@@ -536,7 +536,7 @@ textarea, input {
 }
 
 
-/* Navigation Bar
+/* Main Navigation Bar
    ========================================================================== */
 #top-navigation {
     margin: 40px 0;
@@ -544,6 +544,7 @@ textarea, input {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 #top-navigation[layout="vertical"] {
     flex-direction: column;
@@ -583,23 +584,31 @@ textarea, input {
     position: relative;
 }
 #top-navigation .dropdown-content {
+    z-index: 200;
     visibility: hidden;
     opacity: 0;
     display: flex;
     justify-content: center;
-    transform: translateY(-8px);
-    transition: all 0.4s ease-in-out 0s, visibility 0s linear 0.4s;
+    transform: translateY(-14px);
+    transition: all 0.4s ease-in-out 0s;
     flex-direction: column;
     position: absolute;
-    width: 96%;
-    left: 2%;
+    width: 94%;
+    left: 3.4%;
     font-size: 46px;
-    background-color: rgba(0, 6, 61, 0.76);
-    box-shadow: 0 0 10px 4px rgba(0, 6, 81, 0.8);
+    background-color: rgba(0, 5, 61, 0.85);
+    box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9);
 }
 #top-navigation .dropdown-content a {
-    margin: -5px 0;
+    margin-top: -6px;
+    margin-bottom: -4px;
     color: #f8f8f8;
+}
+#top-navigation .dropdown-content a:first-child {
+    margin-top: -8px;
+}
+#top-navigation .dropdown-content a:last-child {
+    margin-bottom: -6px;
 }
 #top-navigation .dropdown-content a:hover {
     color: #f7a300;
@@ -607,6 +616,10 @@ textarea, input {
 #top-navigation .dropdown:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0%);
-    transition-delay: 0s, 0s, 0.4s;
+    transform: translateY(-4px);
+}
+#top-navigation .dropdown-content .dropdown-separator {
+    margin: 0 20px;
+    border-bottom: solid 1px #d0d0d0;
+    height: 0;
 }
