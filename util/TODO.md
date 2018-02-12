@@ -1,8 +1,8 @@
-* écrire à propos
+* page d'accueil / à propos
 * photos
 
 # plus tard
-* clean css
+* clean css (critique...)
 * ajout de séances
 * pages 404, 403, 50X
 * make it mobile-friendly

@@ -31,3 +31,5 @@
 * 06-08/02 - Repos
 * 09/02 - Blog top navigation bar, recherche django-photologue & bootstrap carousel
 * 10/02 - Install photologue, think about photos display, remove useless urls, create initial galleries
+* 11/02 - Design section photos et home + about, menu global sur le site, dropdown menu photos
+* 12/02 - Fin style dropdown menu photos

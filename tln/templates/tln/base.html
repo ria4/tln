@@ -52,6 +52,8 @@
 
     {% block content-wrap %}{% endblock %}
 
+    <footer>{% block footer %}{% endblock %}</footer>
+
     {% block overlays %}{% endblock %}
 
     {% if not user.is_authenticated %}
