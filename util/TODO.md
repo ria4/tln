@@ -1,5 +1,4 @@
 * écrire à propos
-* liens déroulés sous 'photos' de top navigation
 * photos
 
 # plus tard
