@@ -794,28 +794,3 @@ body {
 #cinema_form .form_buttons .filler {
     width: 72px;
 }
-
-
-/* Form Login
-   ========================================================================== */
-
-#login_form .form_inputs {
-    margin-top: 3px;
-}
-
-#login_form p {
-    width: 390px;
-}
-
-#login_form p label {
-    width: 280px;
-}
-
-#login_form .form_buttons {
-    margin-top: -2px;
-}
-
-#login_form .form_buttons .filler {
-    width: 44px;
-}
-

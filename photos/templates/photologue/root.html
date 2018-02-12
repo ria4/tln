@@ -3,3 +3,13 @@
 
 {% block css-path %}{% static 'css/photos.css' %}{% endblock %}
 {% block title-between %} - {% endblock %}
+
+{% block content-wrap %}
+<section id="content" role="main">
+{% block content %}{% endblock content %}
+</section>
+{% endblock %}
+
+{% block footer %}
+<div id="copyright">Copyright - Max Tury</div>
+{% endblock %}

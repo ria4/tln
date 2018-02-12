@@ -1,71 +1,21 @@
 /* Main
    ========================================================================== */
-body > header {
-    width: 100%;
-    text-align: center;
+html {
+    height: 100%;
 }
 
 body {
-    height: auto;
-    min-height: 100%;
-    padding-bottom: 50px;
+    height: 100%;
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
     font-size: 20px;
-}
-
-body #blog-content-wrap {
-    display: flex;
-}
-
-body #blog-content-wrap[layout='horizontal'] #sidebar-wrap-balance {
-    flex: 1; }
-body #blog-content-wrap[layout='horizontal'] #sidebar-wrap {
-    padding-top: 76px;
-    flex: 1.15;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start; }
-body #blog-content-wrap[layout='horizontal'] #sidebar-wrap #sidebar-balance {
-    width: 44px; }
-
-body #blog-content-wrap[layout='vertical'] {
-    flex-direction: column;
-    align-items: center; }
-body #blog-content-wrap[layout='vertical'] #sidebar-wrap-balance {
-    display: none; }
-body #blog-content-wrap[layout='vertical'] #sidebar-wrap {
-    padding-top: 6px;
-    display: flex;
-    width: 300px; }
-body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
-    display: none; }
-
-#content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    font-family: Alegreya, Palatino, serif;
-    min-width: 420px;
-    width: 100%;
-    max-width: 900px;
+    justify-content: flex-end;
 }
 
-#content > * {
-    width: 100%;
-}
-
-#blog-content-wrap a {
-    color: #bd4700;
-    text-decoration: none;
-}
-
-#blog-content-wrap a:hover {
-    color: #f7a300;
-}
-
-#blog-content-wrap a:active, #blog-content-wrap a:focus {
-    outline: none
+body > header {
+    text-align: center;
 }
 
 body > header h1 {
@@ -81,19 +31,31 @@ body > header h1 #top_title {
     text-decoration: none;
 }
 
-#content .par_title {
-    font-weight: bold;
-    font-size: 30px;
+#content {
+    height: 100%;
+    font-family: Alegreya, Palatino, serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#content a {
+    color: #bd4700;
+    text-decoration: none;
+}
 
-#pagination {
-    width: 100%;
-    margin-top: 10px;
-    font-family: Abuget, Palatino, serif;
-    font-size: 40px;
-    text-align: right;
-    padding-right: 96px;
+#content a:hover {
+    color: #f7a300;
+}
+
+#content a:active, #content a:focus {
+    outline: none
+}
+
+#content #gallery-title {
+    font-weight: bold;
+    font-size: 50px;
 }
 
 
@@ -118,18 +80,6 @@ body > header h1 #top_title {
     font-size: 40px;
     text-align: center;
     padding: 44px 8px 32px 0;
-}
-
-
-/* Sidebar
-   ========================================================================== */
-#sidebar {
-    font-family: Alegreya, Palatino, serif;
-    font-size: 18px;
-    width: 300px;
-    padding: 0 4px;
-    border: 1px solid #deda99;
-    background-color: #fbf2bd;
 }
 
 
@@ -219,102 +169,6 @@ body > header h1 #top_title {
 }
 
 
-/* Entry-list
-   ========================================================================== */
-
-.entry-list #content {
-    padding: 0 20px;
-}
-
-.entry-list #content a {
-    color: black;
-}
-
-.entry-list #content a:hover {
-    color: black;
-}
-
-.entry-list #content article {
-    margin: 6px 0;
-    padding: 10px;
-    border: 1px solid #d3d4db;
-    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
-    max-height: 210px;
-    display: flex;
-    transition: all 0.4s ease;
-    background-color: #fffddb;
-    display: flex;
-    flex-direction: column;
-}
-
-.entry-list #content article:hover {
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    transition: all 0.4s ease;
-}
-
-.entry-list #content article .entry-body {
-    flex: 1;
-}
-
-.entry-list #content article .entry-body .entry-content {
-    margin-left: 20px;
-    padding-right: 12px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-}
-
-.entry-footer {
-    padding-top: 6px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-}
-
-.entry-list .entry-footer {
-    margin: 0 20px;
-}
-
-.entry .entry-footer {
-    margin: 60px 0 10px 0;
-}
-
-.entry-footer .entry-tags {
-    font-size: 17px;
-    display: inline;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #929292;
-}
-
-#content .entry-footer .entry-tags a {
-    color: inherit;
-}
-#content .entry-footer .entry-tags a:hover {
-    color: #f7a300;
-}
-
-.entry-footer .entry-discussions {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 7px;
-    min-width: 80px;
-}
-
-.entry-footer .entry-discussions img {
-    height: 14px;
-    margin: 3px 8px 0 4px;
-}
-
-.entry-footer time {
-    font-style: italic;
-    text-align: right;
-}
-
-
 /* Forms
    ========================================================================== */
 
@@ -361,8 +215,8 @@ form p label {
     margin-right: 6px;
 }
 
-form .form_inputs input:not([type="checkbox"]),
-form .form_inputs textarea {
+.overlay .form_inputs input:not([type="checkbox"]),
+.overlay .form_inputs textarea {
     width: 100%;
     padding: 1px 0 1px 4px;
     border: 1px solid grey;
@@ -370,32 +224,32 @@ form .form_inputs textarea {
     margin-left: -0.3px;
 }
 
-form .form_inputs textarea {
+.overlay .form_inputs textarea {
     font-family: Alegreya, Palatino, serif;
     font-size: 100%;
     resize: vertical;
 }
 
-form .form_inputs input[type="checkbox"] {
+.overlay .form_inputs input[type="checkbox"] {
     margin-top: 2px;
 }
 
-form .form_inputs input[type="date"] {
+.overlay .form_inputs input[type="date"] {
     width: 160px;
 }
 
-form .form_inputs input[type="date"]::-webkit-inner-spin-button {
+.overlay .form_inputs input[type="date"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
 
-form .form_inputs .bad_input {
+.overlay .form_inputs .bad_input {
     /* fuck this */
     border: 1px solid #db0000 !important;
     transition: all 0.2s ease;
 }
 
-form .form_inputs .errorlist {
+.overlay .form_inputs .errorlist {
     display: none;
 }
 
@@ -418,28 +272,4 @@ form .form_buttons input.hidden {
 
 form .form_buttons input:hover {
     color: #f7a300;
-}
-
-
-/* Form Login
-   ========================================================================== */
-
-#login_form .form_inputs {
-    margin-top: 3px;
-}
-
-#login_form p {
-    width: 390px;
-}
-
-#login_form p label {
-    width: 280px;
-}
-
-#login_form .form_buttons {
-    margin-top: -2px;
-}
-
-#login_form .form_buttons .filler {
-    width: 44px;
 }
