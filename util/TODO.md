@@ -1,6 +1,6 @@
 * page d'accueil / à propos
 * photos
-* display inline block pour oeuvre_display
+* display flex pour oeuvre_display
 
 # plus tard
 * clean css (critique...)
