@@ -1,6 +1,11 @@
 {% extends "photologue/root.html" %}
 {% load i18n %}
 
+{% block link %}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>  {# TODO remove? #}
+{% endblock%}
+
 {% block title %}{{ gallery_custom.gallery.title }}{% endblock %}
 
 {% block content %}
@@ -20,4 +25,9 @@
     <div id="desc-en">{{ gallery_custom.description_en|safe }}</div>
     <div id="desc-date">({{ gallery_custom.date_shooting }})</div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
 {% endblock %}
