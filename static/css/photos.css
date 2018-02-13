@@ -45,38 +45,39 @@ body > header h1 #top_title {
 #content #gallery-title {
     font-weight: bold;
     font-size: 50px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 34px;
 }
 
 #content #gallery-photos {
+    margin-bottom: 80px;
+    max-width: 800px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 800px;
-    margin-bottom: 80px;
 }
 
 .photo-display {
     margin: 5px 5px;
     width: 150px;
-    height: 100px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .photo-display a {
-    display: inline-block;
-    max-height: 100%;
+    display: flex;
 }
 .photo-display a img {
-    padding: 0;
+    align-self: center;
+    max-width: 150px;
+    max-height: 150px;
     border: 1px solid #eee;
-    max-height: 100px;
     transition: all 0.3s ease;
 }
 .photo-display a img:hover {
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     border: 1px solid rgba(0, 0, 255, 0.4);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
 }
 
 
