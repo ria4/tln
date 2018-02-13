@@ -1,5 +1,5 @@
-from photologue.models import Gallery
+from .models import GalleryCustom
 
 def gallery_list(req):
-    gallery_list = Gallery.objects.on_site().is_public().order_by("date_added")
+    gallery_list = GalleryCustom.objects.filter(gallery__is_public=True).order_by("date_shooting")
     return {"gallery_list": gallery_list}
