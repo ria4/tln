@@ -5,13 +5,12 @@ html {
 }
 
 body {
-    height: 100%;
+    min-height: 100%;
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
 }
 
 body > header {
@@ -32,54 +31,60 @@ body > header h1 #top_title {
 }
 
 #content {
-    height: 100%;
+    flex: 1;
     font-family: Alegreya, Palatino, serif;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-#content a {
-    color: #bd4700;
-    text-decoration: none;
-}
-
-#content a:hover {
-    color: #f7a300;
-}
-
-#content a:active, #content a:focus {
-    outline: none
-}
+#content a { color: #bd4700; text-decoration: none; }
+#content a:hover { color: #f7a300; }
+#content a:active, #content a:focus { outline: none }
 
 #content #gallery-title {
     font-weight: bold;
     font-size: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
+#content #gallery-photos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin-bottom: 80px;
+}
 
-.entry-title {
-    font-size: 34px;
+.photo-display {
+    margin: 5px 5px;
+    width: 150px;
+    height: 100px;
     text-align: center;
 }
 
-.entry-list .entry-title {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    padding-right: 10px;
-    font-size: 26px;
-    margin: 8px 0;
+.photo-display a {
+    display: inline-block;
+    max-height: 100%;
+}
+.photo-display a img {
+    padding: 0;
+    border: 1px solid #eee;
+    max-height: 100px;
+    transition: all 0.3s ease;
+}
+.photo-display a img:hover {
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    border: 1px solid rgba(0, 0, 255, 0.4);
 }
 
-.entry .entry-title {
-    font-weight: bold;
-    font-size: 40px;
-    text-align: center;
-    padding: 44px 8px 32px 0;
+
+body > footer {
+    font-family: AlegreyaSans;
+    font-size: 16px;
+    padding: 15px 0 14px 40px;
+    background-color: rgba(232, 202, 138, 0.4);
 }
 
 

@@ -7,9 +7,11 @@
 <h1 id="gallery-title">{{ gallery.title }}</h1>
 <div id="gallery-photos">
 {% for photo in gallery.public %}
+    <div class="photo-display">
     <a href="{{ photo.get_absolute_url }}">
-         <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+         <img src="{{ photo.get_display_url }}" class="thumbnail" alt="{{ photo.title }}">
     </a>
+    </div>
 {% endfor %}
 </div>
 <div id="gallery-description">
