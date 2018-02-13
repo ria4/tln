@@ -1,5 +1,6 @@
 * page d'accueil / à propos
-* photos
+* photos carousel
+* descriptions galeries
 * display flex pour oeuvre_display
 
 # plus tard

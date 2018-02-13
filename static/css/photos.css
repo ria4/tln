@@ -78,7 +78,7 @@ body > header h1 #top_title {
     max-width: 150px;
     max-height: 150px;
     border: 1px solid #eee;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 .photo-display a img:hover {
     border: 1px solid rgba(0, 0, 255, 0.4);
