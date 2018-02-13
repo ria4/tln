@@ -15,8 +15,9 @@
 {% endfor %}
 </div>
 <div id="gallery-description">
-    <div id="desc-date">{{ gallery_custom.date_shooting|safe }}</div>
     <div id="desc-fr">{{ gallery_custom.description_fr|safe }}</div>
+    <div class="hseparator"></div>
     <div id="desc-en">{{ gallery_custom.description_en|safe }}</div>
+    <div id="desc-date">({{ gallery_custom.date_shooting }})</div>
 </div>
 {% endblock %}
