@@ -11,6 +11,7 @@ body {
     font-size: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 body > header {
@@ -32,6 +33,7 @@ body > header h1 #top_title {
 
 #content {
     flex: 1;
+    max-width: 850px;
     font-family: Alegreya, Palatino, serif;
     display: flex;
     flex-direction: column;
@@ -45,13 +47,12 @@ body > header h1 #top_title {
 #content #gallery-title {
     font-weight: bold;
     font-size: 50px;
-    margin-top: 40px;
-    margin-bottom: 34px;
+    margin-top: 24px;
+    margin-bottom: 30px;
 }
 
 #content #gallery-photos {
-    margin-bottom: 80px;
-    max-width: 800px;
+    margin-bottom: 6px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -80,8 +81,27 @@ body > header h1 #top_title {
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
 }
 
+#content #gallery-description {
+    font-size: 19px;
+    font-style: italic;
+    padding-left: 14px;
+}
+#content #gallery-description #desc-date {
+    margin-bottom: 40px;
+    padding-right: 30px;
+    text-align: right;
+}
+#content #gallery-description #desc-fr {
+    padding: 10px 0;
+}
+#content #gallery-description #desc-en {
+    padding-top: 10px;
+}
+
 
 body > footer {
+    margin-top: 25px;
+    width: 100%;
     font-family: AlegreyaSans;
     font-size: 16px;
     padding: 15px 0 14px 40px;
