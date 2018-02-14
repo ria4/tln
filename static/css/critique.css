@@ -58,16 +58,6 @@ body {
     font-size: 30px;
 }
 
-#content .oeuvres_display {
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: -3px;
-}
-
-/* weird margins around here, this could probably be cleaned up */
 #content .oeuvre_display {
     height: 290px;
     width: auto;
@@ -75,16 +65,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#content .mosaic_display .oeuvre_display {
-    margin: 12px 6px;
-    max-height: 290px;
-    height: auto;
-}
-
-#content .mosaic_display .oeuvre_display a {
-    max-height: 100%;
 }
 
 #content .oeuvre_display img {
@@ -104,9 +84,37 @@ body {
     border: 1px solid rgba(0, 0, 255, 0.4);
 }
 
+
+#content .oeuvres_display {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -3px;
+}
+
+#content .oeuvres_display .oeuvre_display {
+    margin: 6px;
+    height: auto;
+    max-width: 290px;
+    max-height: 290px;
+}
+
+#content .oeuvres_display .oeuvre_display a {
+    display: flex;
+}
+
+#content .oeuvres_display .oeuvre_display a img {
+    align-self: center;
+    max-width: 290px;
+    max-height: 290px;
+}
+
+
 /* Here is a dirty fix for borders/shadows of substitute displays...
- * Otherwise shadows would not appear when hovering over the inner p. */
-#content .oeuvre_display .substitute_display {
+ * Otherwise shadows would not appear when hovering over the inner p.
+ * Also, removing class names might mess with css priorities... */
+#content .oeuvres_display .oeuvre_display .substitute_display {
     transition: all 0.3s ease;
     position: relative;
     display: inline-flex;
@@ -116,22 +124,22 @@ body {
     max-height: 100%;
 }
 
-#content .oeuvre_display .substitute_display:hover {
+#content .oeuvres_display .oeuvre_display .substitute_display:hover {
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 255, 0.4);
 }
 
-#content .oeuvre_display .substitute_display img {
+#content .oeuvres_display .oeuvre_display .substitute_display img {
     border: none;
 }
 
-#content .oeuvre_display .substitute_display img:hover {
+#content .oeuvres_display .oeuvre_display .substitute_display img:hover {
     box-shadow: none;
     border: none;
 }
 
-#content .oeuvre_display .substitute_display p {
+#content .oeuvres_display .oeuvre_display .substitute_display p {
     position: absolute;
     width: 100%;
     text-align: center;
@@ -139,6 +147,7 @@ body {
     left: 50%;
     transform: translate(-50%, -70%);
 }
+
 
 #pagination {
     width: 100%;

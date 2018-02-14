@@ -17,16 +17,16 @@
     {% endfor %}
 </ul>
 
-<ul id="top_films" class="oeuvres_display mosaic_display {% if year == 2011 %}all_time{% endif %}">
+<ul id="top_films" class="oeuvres_display {% if year == 2011 %}all_time{% endif %}">
 {% for oeuvre in oeuvres %}
-    <li><div class="oeuvre_display">
+    <li class="oeuvre_display">
         <a href={% url "detail_oeuvre" oeuvre.id %}>
         {% if oeuvre.info.image_url %}
             <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
         {% else %}
             {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
         {% endif %}</a>
-    </div></li>
+    </li>
 {% endfor %}
 </ul>
 
