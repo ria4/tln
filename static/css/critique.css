@@ -94,10 +94,10 @@ body {
 }
 
 #content .oeuvres_display .oeuvre_display {
-    margin: 6px;
+    margin: 7px 6px;
     height: auto;
-    max-width: 290px;
-    max-height: 290px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 #content .oeuvres_display .oeuvre_display a {
@@ -106,8 +106,6 @@ body {
 
 #content .oeuvres_display .oeuvre_display a img {
     align-self: center;
-    max-width: 290px;
-    max-height: 290px;
 }
 
 
