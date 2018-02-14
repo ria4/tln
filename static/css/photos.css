@@ -113,7 +113,7 @@ body > header h1 #top_title {
 body > footer {
     margin-top: 42px;
     width: 100%;
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 16px;
     padding: 15px 0 14px 40px;
     background-color: rgba(232, 202, 138, 0.4);
@@ -185,6 +185,27 @@ body > footer {
 }
 
 
+
+/* Gallery Slick
+   ========================================================================== */
+
+#gallery-slick {
+    width: 90%;
+    height: 90%;
+}
+.slick-list, .slick-track {
+    width: 100%;
+    height: 100%;
+}
+#gallery-slick img {
+    max-width: 100%;
+    max-height: 100%;
+}
+#gallery-slick img:focus {
+    outline: none;
+}
+
+
 /* Forms
    ========================================================================== */
 
@@ -193,7 +214,6 @@ body > footer {
     width: 100%;
     height: 100%;
     top: 0;
-    background: grey;
     background-color: rgba(50, 50, 50, 0.8);
     position: fixed;
     display: flex;

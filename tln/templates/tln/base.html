@@ -72,11 +72,11 @@
     </div>
     {% endif %}
 
+    {% block import-scripts %}{% endblock %}
     <script type="text/javascript">
         var user_is_authenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
     </script>
     <script type="text/javascript" src="{% static 'js/tln.js' %}"></script>
-    {% block scripts %}{% endblock %}
 
   </body>
 
