@@ -631,41 +631,47 @@ if (gallery_photos) {
 // TODO remove this
 //document.addEventListener("click", function() {console.log(document.activeElement);});
 
-/* Photos Display - Slick overlay */
+/* Photos Display - Flexslider overlay */
 
-var gallery_slick = document.getElementById("gallery-slick");
-if (gallery_slick) {
-    var overlay_slick = gallery_slick.parentNode;
+var gallery_slider = document.getElementById("gallery-slider");
+if (gallery_slider) {
+    var slider;
+    var animationSpeed;
+
+    var overlay_slider = gallery_slider.parentNode;
     var photo_links = document.getElementsByClassName("photo-link");
-    var photos = gallery_slick.getElementsByTagName("img");
+    var photos = gallery_slider.getElementsByTagName("img");
 
-    function add_slick_start_listener(item) {
+    function add_slider_start_listener(item) {
         item.addEventListener("click", function (e) {
             e.preventDefault();
-            $("#gallery-slick").slick("slickGoTo", item.getAttribute("data-onclick"), true);
-            overlay_slick.classList.add("revealed");
-            photos[item.getAttribute("data-onclick")].focus();
+            slider.vars.animationSpeed = 0;
+            slider.flexAnimate(item.getAttribute("data-onclick"));
+            slider.vars.animationSpeed = animationSpeed;
+            overlay_slider.classList.add("revealed");
         });
     }
 
     for (var i=0; i<photo_links.length; i++) {
-        add_slick_start_listener(photo_links[i]);
+        add_slider_start_listener(photo_links[i]);
     }
 
-    // hide overlay_slick if click outside photo & arrows
+    // hide overlay_slider if click outside photo & arrows
     document.addEventListener("keydown", function (e) {
-        if (e.keyCode == 27) { overlay_slick.classList.remove("revealed"); }
+        if (e.keyCode == 27) {
+            overlay_slider.classList.remove("revealed");
+        }
     });
 
-    $(document).ready(function(){
-        $("#gallery-slick").slick({
-            //appendArrows: $(""),
-            draggable: false,
-            fade: true,
-            speed: 500,
-            variableWidth: true,
-            waitForAnimate: false,
+    $(document).ready(function() {
+        $('#gallery-slider').flexslider({
+            slideshow: false,
+            animationSpeed: 600,
+            controlNav: false,
+            //customDirectionNav: $(".custom-navigation a"),
         });
+        slider = $("#gallery-slider").data("flexslider");
+        animationSpeed = slider.vars.animationSpeed;
     });
 }
 
