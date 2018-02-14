@@ -31,5 +31,7 @@
 * 06-08/02 - Repos
 * 09/02 - Blog top navigation bar, recherche django-photologue & bootstrap carousel
 * 10/02 - Install photologue, think about photos display, remove useless urls, create initial galleries
-* 11/02 - Design section photos et home + about, menu global sur le site, dropdown menu photos
+* 11/02 - Design section photos et home + about, menu global sur le site, dropdown menu photos, begin css factory
 * 12/02 - Fin style dropdown menu photos
+* 13/02 - Customize Gallery model, style galleries, clean some style for critiques
+* 14/02 - Start integrating slick slider, far from working out-of-the-box (+ the dev seems like a jerk), so switch to flexslider

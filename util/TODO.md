@@ -1,5 +1,6 @@
 * page d'accueil / à propos
-* photos carousel
+* photos slider: flèches, légendes, clic hors zone
+* show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
 
 # plus tard
