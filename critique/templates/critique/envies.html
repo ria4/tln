@@ -15,9 +15,9 @@
     <!-- <li><a href={% url "list_envies" "bd" %}>bd</a></li> -->
 </ul>
 
-<ul class="oeuvres_display mosaic_display">
+<ul class="oeuvres_display">
 {% for oeuvre in oeuvres %}
-    <li><div class="oeuvre_display">
+    <li class="oeuvre_display">
         <a href={% url "detail_oeuvre" oeuvre.id %}>
         {% if oeuvre.info.image_url %}
             <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
@@ -27,7 +27,7 @@
                 <p>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</p>
             </div>
         {% endif %}</a>
-    </div></li>
+    </li>
 {% endfor %}
 </ul>
 
