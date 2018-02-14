@@ -646,7 +646,7 @@ if (gallery_slider) {
         item.addEventListener("click", function (e) {
             e.preventDefault();
             slider.vars.animationSpeed = 0;
-            slider.flexAnimate(item.getAttribute("data-onclick"));
+            slider.flexAnimate(parseInt(item.getAttribute("data-onclick"), 10));
             slider.vars.animationSpeed = animationSpeed;
             overlay_slider.classList.add("revealed");
         });
