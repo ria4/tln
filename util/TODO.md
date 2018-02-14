@@ -3,9 +3,10 @@
 * descriptions galeries
 
 # plus tard
-* clean css
 * ajout de séances
+* clean css (forms...)
 * pages 404, 403, 50X
+* use more aria-hidden
 * make it mobile-friendly
 * sitemap avec django framework ?
 * ordre cinés constant pour un jour donné

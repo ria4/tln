@@ -13,9 +13,9 @@
 <div id="gallery-photos">
 {% for photo in gallery_custom.gallery.public %}
     <div class="photo-display">
-    <a href="{{ photo.get_absolute_url }}">
-         <img src="{{ photo.get_display_url }}" class="thumbnail" alt="{{ photo.title }}">
-    </a>
+        <a class="photo-link" href="#" data-onclick={{ forloop.counter|add:"-1" }}>
+            <img src="{{ photo.get_display_url }}" class="thumbnail" alt="{{ photo.title }}">
+        </a>
     </div>
 {% endfor %}
 </div>
@@ -27,7 +27,17 @@
 </div>
 {% endblock %}
 
-{% block scripts %}
+{% block overlays %}
+<div class="overlay">
+    <div id="gallery-slick">
+        {% for photo in gallery_custom.gallery.public %}
+        <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block import-scripts %}
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
 {% endblock %}

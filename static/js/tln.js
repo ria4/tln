@@ -627,3 +627,45 @@ if (gallery_photos) {
         add_resize_listener(hseparators[i]);
     }
 }
+
+// TODO remove this
+//document.addEventListener("click", function() {console.log(document.activeElement);});
+
+/* Photos Display - Slick overlay */
+
+var gallery_slick = document.getElementById("gallery-slick");
+if (gallery_slick) {
+    var overlay_slick = gallery_slick.parentNode;
+    var photo_links = document.getElementsByClassName("photo-link");
+    var photos = gallery_slick.getElementsByTagName("img");
+
+    function add_slick_start_listener(item) {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            $("#gallery-slick").slick("slickGoTo", item.getAttribute("data-onclick"), true);
+            overlay_slick.classList.add("revealed");
+            photos[item.getAttribute("data-onclick")].focus();
+        });
+    }
+
+    for (var i=0; i<photo_links.length; i++) {
+        add_slick_start_listener(photo_links[i]);
+    }
+
+    // hide overlay_slick if click outside photo & arrows
+    document.addEventListener("keydown", function (e) {
+        if (e.keyCode == 27) { overlay_slick.classList.remove("revealed"); }
+    });
+
+    $(document).ready(function(){
+        $("#gallery-slick").slick({
+            //appendArrows: $(""),
+            draggable: false,
+            fade: true,
+            speed: 500,
+            variableWidth: true,
+            waitForAnimate: false,
+        });
+    });
+}
+
