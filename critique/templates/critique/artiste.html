@@ -16,7 +16,7 @@
     var oeuvres = [];
     {% for oeuvre in oeuvres %}
         oeuvres.push(["{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})",
-                      "{% url 'detail_oeuvre' oeuvre.id %}"]);
+                      "{% url 'detail_oeuvre' oeuvre.slug %}"]);
     {% endfor %}
 </script>
 

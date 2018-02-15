@@ -9,7 +9,7 @@
 
 <div id="notes_summaries">
 {% for oeuvre, texte in top_oeuvres %}
-    <a href="{% url 'detail_oeuvre' oeuvre.id %}" class="note_summary">
+    <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="note_summary">
         <div class="oeuvre_display">
         {% if oeuvre.info.image_url %}
         <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />

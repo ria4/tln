@@ -1,6 +1,7 @@
 {% extends "critique/base.html" %}
 
-{% block title %}{{ oeuvres.0.slug|lower }}{% endblock %}
+{# this will work with up to 9 homonyms #}
+{% block title %}{{ oeuvres.0.slug|lower|slice:":-2" }}{% endblock %}
 {% block meta-description-title %}résolution d'homonymie{% endblock %}
 
 {% block content %}
@@ -11,7 +12,7 @@
     var oeuvres = [];
     {% for oeuvre in oeuvres %}
         oeuvres.push(["{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})",
-                      "{% url 'detail_oeuvre' oeuvre.id %}"]);
+                      "{% url 'detail_oeuvre' oeuvre.slug %}"]);
     {% endfor %}
 </script>
 
