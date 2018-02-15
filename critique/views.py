@@ -295,7 +295,11 @@ def update_cinema(req, cinema, form):
 # Views
 
 def list_cinemas(req):
+    """
+    L'ordre des cinémas est aléatoire, mais constant pour un jour donné.
+    """
     cinemas = list(Cinema.objects.all())
+    random.seed(datetime.today().date())
     random.shuffle(cinemas)
     return render(req, 'critique/cinemas.html', {'cinemas': cinemas})
 
