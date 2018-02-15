@@ -597,189 +597,49 @@ body {
 }
 
 
-/* Forms
-   ========================================================================== */
-
-.overlay form {
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-color: white;
-    padding: 6px 20px 6px 13px;
-    border: 1px solid grey;
-    box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
-}
-
-.overlay form .form_inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.overlay form p {
-    margin: 4px 0;
-    display: flex;
-    align-items: center;
-}
-
-.overlay form p label {
-    text-align: right;
-    margin-right: 6px;
-}
-
-.overlay .form_inputs input:not([type="checkbox"]),
-.overlay .form_inputs textarea {
-    width: 100%;
-    padding: 1px 0 1px 4px;
-    border: 1px solid grey;
-    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
-    margin-left: -0.3px;
-}
-
-.overlay .form_inputs textarea {
-    font-family: Alegreya, Palatino, serif;
-    font-size: 100%;
-    resize: vertical;
-}
-
-.overlay .form_inputs input[type="checkbox"] {
-    margin-top: 2px;
-}
-
-.overlay .form_inputs input[type="date"] {
-    width: 160px;
-}
-
-.overlay .form_inputs input[type="date"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: none;
-}
-
-.overlay .form_inputs .bad_input {
-    /* fuck this */
-    border: 1px solid #db0000 !important;
-    transition: all 0.2s ease;
-}
-
-.overlay .form_inputs .errorlist {
-    display: none;
-}
-
-.overlay .form_buttons {
-    display: flex;
-    justify-content: center;
-    font-family: Abuget, Palatino, serif;
-    font-size: 40px;
-    margin-top: -4px;
-}
-
-.overlay .form_buttons input {
-    background-color: transparent;
-    border: 0px solid;
-}
-
-.overlay .form_buttons input.hidden {
-    display: none;
-}
-
-.overlay .form_buttons input:hover {
-    color: #f7a300;
-}
-
-
 /* Forms Oeuvre
    ========================================================================== */
 
 #oeuvre_form p,
-#oeuvre_form_empty p {
-    width: 350px;
-}
-
+#oeuvre_form_empty p { width: 350px; }
 #oeuvre_form p label,
-#oeuvre_form_empty p label {
-    width: 130px;
-}
-
+#oeuvre_form_empty p label { width: 130px; }
 #oeuvre_form p label[for="id_envie"],
 #oeuvre_form p label[for="id_type"],
 #oeuvre_form_empty p label[for="id_empty_envie"],
-#oeuvre_form_empty p label[for="id_empty_type"] {
-    /* fuck this */
-    width: 92.7px;
-}
-
-#oeuvre_form .form_buttons .filler {
-    width: 32px;
-}
-
-#oeuvre_form_empty .form_buttons .filler {
-    width: 44px;
-}
+#oeuvre_form_empty p label[for="id_empty_type"] { width: 92.7px; }
+#oeuvre_form .form_buttons .filler { width: 32px; }
+#oeuvre_form_empty .form_buttons .filler { width: 44px; }
 
 
 /* Forms Comment
    ========================================================================== */
 
+/* The textarea should mirror exactly the width of the text underneath. */
 #comment_form .form_inputs,
-#comment_form_empty .form_inputs {
-    margin-top: 3px;
-}
-
+#comment_form_empty .form_inputs { margin-top: 3px; }
 #comment_form p,
-#comment_form_empty p {
-    /* the textarea will mirror exactly the width of the text underneath */
-    /* /!\ this is linked to the widths below... */
-    width: 869px;
-}
-
+#comment_form_empty p { width: 869px; }
 #comment_form p label,
-#comment_form_empty p label {
-    width: 103px;
-}
-
+#comment_form_empty p label { width: 103px; }
 #comment_form p label[for="id_date"],
-#comment_form_empty p label[for="id_empty_date"] {
-    width: 91px;
-}
-
+#comment_form_empty p label[for="id_empty_date"] { width: 91px; }
 #comment_form p label[for="id_no_month"],
 #comment_form p label[for="id_no_day"],
 #comment_form_empty p label[for="id_empty_no_month"],
-#comment_form_empty p label[for="id_empty_no_day"] {
-    /* fuck this */
-    width: 91px;
-}
-
+#comment_form_empty p label[for="id_empty_no_day"] { width: 91px; }
 #comment_form .form_buttons,
-#comment_form_empty .form_buttons {
-    margin-top: -2px;
-}
-
+#comment_form_empty .form_buttons { margin-top: -2px; }
 #comment_form .form_buttons .filler,
-#comment_form_empty .form_buttons .filler {
-    width: 72px;
-}
+#comment_form_empty .form_buttons .filler { width: 72px; }
 
 
 /* Forms Cinema
    ========================================================================== */
 
-#cinema_form .form_inputs {
-    margin-top: 3px;
-}
-
-#cinema_form p {
-    /* the textarea will mirror exactly the width of the text underneath */
-    /* /!\ this is linked to the widths below... */
-    width: 863px;
-}
-
-#cinema_form p label {
-    width: 96px;
-}
-
-#cinema_form p label[for="id_visited"] {
-    width: 85px;
-}
-
-#cinema_form .form_buttons .filler {
-    width: 72px;
-}
+/* The textarea should mirror exactly the width of the text underneath. */
+#cinema_form .form_inputs { margin-top: 3px; }
+#cinema_form p { width: 863px; }
+#cinema_form p label { width: 96px; }
+#cinema_form p label[for="id_visited"] { width: 85px; }
+#cinema_form .form_buttons .filler { width: 72px; }
