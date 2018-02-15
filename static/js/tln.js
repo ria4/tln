@@ -334,11 +334,13 @@ document.addEventListener("keypress", function (e) {
                 active_code = "";
                 if (user_is_authenticated) { window.location.href = "/logout"; }
             } else {
-                codes[active_code].parentElement.classList.add("revealed");
+                var overlay = codes[active_code].parentElement;
+                overlay.classList.add("revealed");
                 if (active_code == "login") {
                     e.preventDefault();
                     name_input = document.getElementById("id_username");
-                    name_input.focus();
+                    $(overlay).one("transitionend",
+                        function(e) { name_input.focus(); });
                 }
             }
         }

@@ -625,6 +625,28 @@ textarea, input {
 }
 
 
+/* Overlay
+   ========================================================================== */
+
+.overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(50, 50, 50, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.overlay.revealed {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 /* Login Form
    ========================================================================== */
 
