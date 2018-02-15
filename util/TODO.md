@@ -2,7 +2,6 @@
 * photos slider: flèches, légendes, clic hors zone
 * show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
-* heures d'hiver pour les commentaires
 
 # plus tard
 * clean css
