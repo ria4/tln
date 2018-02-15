@@ -1,4 +1,3 @@
-
 import binascii
 import os
 import random
@@ -9,6 +8,7 @@ from PIL import Image
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, EmptyPage
+from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
 from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
@@ -23,8 +23,8 @@ def preambule(req):
 # Artiste
 
 def artiste(req, artist):
-    oeuvres = Oeuvre.objects(__raw__={"$query": {'info.artists': artist},
-                                      "$orderby": {'info.year': 1}})
+    oeuvres = Oeuvre.objects(__raw__={'$query': {'info.artists': artist},
+                                      '$orderby': {'info.year': 1}})
     context = {'oeuvres': oeuvres, 'artist': artist}
     return render(req, 'critique/artiste.html', context)
 
@@ -71,10 +71,6 @@ def get_oeuvre_form_data(oeuvre):
 
 @permission_required('critique.all_rights')
 def update_oeuvre(req, oeuvre, form):
-    """
-    /!\ This will NOT update the oeuvre info embedded in TopFilms documents.
-    Update a top film at your own risk.
-    """
     oeuvre.info.type = form.cleaned_data['type']
     oeuvre.info.titles.vf = form.cleaned_data['title_vf']
     if form.cleaned_data['title_vo']:
@@ -116,15 +112,15 @@ def get_comment_form_data(comment):
     return form_data
 
 @permission_required('critique.all_rights')
-def update_latest_comment(req, id):
+def update_latest_comment(req, slug):
     comment_form = OeuvreCommentForm(req.POST)
     if req.POST and comment_form.is_valid():
         # actually there should already have been client-side validation
-        oeuvre = get_object_or_404(Oeuvre, id=id)
+        oeuvre = get_object_or_404(Oeuvre, slug=slug)
         comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
         update_comment_with_form(comments[0], comment_form)
         oeuvre.save()
-    return redirect('detail_oeuvre', id=id)
+    return redirect('detail_oeuvre', slug=slug)
 
 def update_comment_with_form(comment, form):
     if form.cleaned_data['title']:
@@ -139,7 +135,7 @@ def update_comment_with_form(comment, form):
     comment.content = form.cleaned_data['content'].split('\r\n\r\n')
 
 @permission_required('critique.all_rights')
-def add_comment(req, id):
+def add_comment(req, slug):
     """
     The id here should be an oeuvre.id.
     Note that 'comment' being an EmbeddedDocument, it cannot be saved as such.
@@ -148,13 +144,13 @@ def add_comment(req, id):
     if form.is_valid():
         comment = OeuvreComment()
         update_comment_with_form(comment, form)
-        oeuvre = get_object_or_404(Oeuvre, id=id)
+        oeuvre = get_object_or_404(Oeuvre, slug=slug)
         if oeuvre.comments:
             oeuvre.comments.append(comment)
         else:
             oeuvre.comments = [comment]
         oeuvre.save()
-    return redirect('detail_oeuvre', id=id)
+    return redirect('detail_oeuvre', slug=slug)
 
 # Views
 
@@ -164,45 +160,42 @@ def add_oeuvre(req):
     oeuvre = Oeuvre()
     if form.is_valid():
         update_oeuvre(req, oeuvre, form)
-        return redirect('detail_oeuvre', id=oeuvre.id)
+        return redirect('detail_oeuvre', slug=oeuvre.slug)
 
 def render_oeuvre(req, oeuvre):
     """
     We need to order the comments by date before sending them to the template.
     For now, only the most recent comment may be edited.
     """
+    if oeuvre.comments:
+        comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
+        comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
         update_oeuvre(req, oeuvre, oeuvre_form)
-    if oeuvre.comments:
-        comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
-        comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
+        # we redirect just because the slug might change
+        return redirect('detail_oeuvre', slug=oeuvre.slug)
     return render(req, 'critique/oeuvre.html', locals())
 
-def detail_oeuvre(req, id):
-    """
-    In order to redirect to the shorter url with a slug, we need 3 db look-ups:
-    one looking for the id, one for a unique slug, then the detail_oeuvre_slug one.
-    """
-    oeuvre = get_object_or_404(Oeuvre, id=id)
-    try:
-        get_object_or_404(Oeuvre, slug=oeuvre.slug)
-        return redirect('detail_oeuvre_slug', slug=oeuvre.slug)
-    except Oeuvre.MultipleObjectsReturned:
-        return render_oeuvre(req, oeuvre)
-
-def detail_oeuvre_slug(req, slug):
-    try:
-        oeuvre = get_object_or_404(Oeuvre, slug=slug)
-    except Oeuvre.MultipleObjectsReturned:
-        oeuvres = Oeuvre.objects.filter(slug=slug)
-        return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
-    return render_oeuvre(req, oeuvre)
+def detail_oeuvre(req, slug):
+    oeuvres = Oeuvre.objects.filter(slug=slug)
+    if len(oeuvres) == 1:
+        return render_oeuvre(req, oeuvres[0])
+    elif len(oeuvres) == 0:
+        pattern = '^%s-\d+' % slug
+        oeuvres = Oeuvre.objects(__raw__={'$query': {'slug': {'$regex': pattern}},
+                                          '$orderby': {'info.year': -1}})
+        if len(oeuvres) > 0:
+            return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
+        raise Http404
+    elif len(oeuvres) > 1:
+        # the slug field should be unique
+        return HttpResponseServerError()
 
 @permission_required('critique.all_rights')
-def delete_oeuvre(req, id):
-    oeuvre = get_object_or_404(Oeuvre, id=id)
+def delete_oeuvre(req, slug):
+    oeuvre = get_object_or_404(Oeuvre, slug=slug)
     mtype = oeuvre.info.type
     if hasattr(oeuvre.info, 'image_url') and oeuvre.info.image_url:
         os.remove('critique/static/%s' % oeuvre.info.image_url)
@@ -210,14 +203,14 @@ def delete_oeuvre(req, id):
     return redirect('list_oeuvres', mtype)
 
 @permission_required('critique.all_rights')
-def delete_latest_comment(req, id):
-    oeuvre = get_object_or_404(Oeuvre, id=id)
+def delete_latest_comment(req, slug):
+    oeuvre = get_object_or_404(Oeuvre, slug=slug)
     n = len(oeuvre.comments)
     comments = sorted(enumerate(oeuvre.comments),
                       key=lambda p: p[1].date, reverse=True)
     del(oeuvre.comments[comments[0][0]])
     oeuvre.save()
-    return redirect('detail_oeuvre', id=id)
+    return redirect('detail_oeuvre', slug=slug)
 
 
 # Top Textes
@@ -347,4 +340,3 @@ def top_films(req, year=2011):
         oeuvres.append(Oeuvre.objects.filter(id=oeuvre_id)[0])
     year_range = range(2012, 2018)
     return render(req, 'critique/top_films.html', locals())
-

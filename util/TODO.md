@@ -5,6 +5,7 @@
 
 # plus tard
 * clean css
+* oeuvres style
 * ajout de séances
 * pages 404, 403, 50X
 * use more aria-hidden

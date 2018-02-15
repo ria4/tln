@@ -1,4 +1,3 @@
-
 import os
 from datetime import datetime
 from django.db import models
@@ -68,13 +67,12 @@ class OeuvreComment(EmbeddedDocument):
 class Oeuvre(Document):
     """
     Modèle pour une oeuvre.
-    Actuellement, le slug enregistré n'est pas forcément unique !
     """
     info = fields.EmbeddedDocumentField(OeuvreInfo)
     tags = fields.ListField(fields.StringField(max_length=100), blank=True, null=True)
     envie = fields.BooleanField(default=False)
     comments = fields.ListField(fields.EmbeddedDocumentField(OeuvreComment), blank=True, null=True)
-    slug = fields.StringField()
+    slug = fields.StringField(unique=True)
 
     def __init__(self, *args, **kwargs):
         super(Oeuvre, self).__init__(*args, **kwargs)
@@ -82,16 +80,41 @@ class Oeuvre(Document):
             self.info = OeuvreInfo()
             self.info.titles = OeuvreInfoTitres()
 
+    @classmethod
+    def get_safe_slug(cls, slug_base, updating=False):
+        """
+        Retourne un slug unique, en fonction des slugs existants.
+        Cela peut passer par la mise à jour d'un autre slug.
+        /!\ La suppression d'une oeuvre ne modifiera pas les homonymes.
+        """
+        oeuvres = cls.objects.filter(slug=slug_base)
+        if len(oeuvres) == 0:
+            slug_1 = "%s-1" % slug_base
+            oeuvres = cls.objects.filter(slug=slug_1)
+            if len(oeuvres) == 0:
+                return slug_base
+            elif len(oeuvres) == 1:
+                i = 2
+                slug = "%s-%d" % (slug_base, i)
+                while cls.objects.filter(slug=slug):
+                    i += 1
+                    slug = "%s-%d" % (slug_base, i)
+                return slug
+        elif len(oeuvres) == 1:
+            if updating:
+                return slug_base
+            else:
+                oeuvres[0].slug = "%s-1" % slug_base
+                oeuvres[0].save()
+                return "%s-2" % slug_base
+
     def save(self, *args, **kwargs):
-        """
-        Un slug est généré à la création et à chaque modification.
-        Par défaut, l'image est dupliquée et enregistrée dans static/critique/.
-        Cela vise à permettre la mise en cache d'images par les clients.
-        """
-        self.slug = slugify(self.info.titles.vf)
-        #if self.info.image.md5 and not self.info.image_url:
-        #    self.info.image_url = create_image_url(self.info.image)
-        super(Oeuvre, self).save(*args, **kwargs)
+        cls = self.__class__
+        if not self.id:
+            self.slug = cls.get_safe_slug(slugify(self.info.titles.vf))
+        elif self.info.titles.vf != cls.objects.filter(id=self.id)[0].info.titles.vf:
+            self.slug = cls.get_safe_slug(slugify(self.info.titles.vf), updating=True)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.info.titles.vf
@@ -115,4 +138,3 @@ class Seance(Document):
     date = fields.DateTimeField()
     date_day_unknown = fields.BooleanField(default=False)
     film = fields.StringField(max_length=500)
-

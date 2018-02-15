@@ -18,7 +18,7 @@
 <ul class="oeuvres_display">
 {% for oeuvre in oeuvres %}
     <li class="oeuvre_display">
-        <a href={% url "detail_oeuvre" oeuvre.id %}>
+        <a href={% url "detail_oeuvre" oeuvre.slug %}>
         {% if oeuvre.info.image_url %}
             <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
         {% else %}

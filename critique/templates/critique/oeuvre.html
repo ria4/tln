@@ -80,7 +80,7 @@
 {% block overlays %}
 {% if perms.critique.all_rights %}
 <div class="overlay">
-    <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.id %}" method="post">
+    <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.slug %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
             {{ oeuvre_form.as_p }}
