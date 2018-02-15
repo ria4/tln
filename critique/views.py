@@ -166,21 +166,31 @@ def add_oeuvre(req):
         update_oeuvre(req, oeuvre, form)
         return redirect('detail_oeuvre', id=oeuvre.id)
 
-def detail_oeuvre(req, id):
+def render_oeuvre(req, oeuvre):
     """
     We need to order the comments by date before sending them to the template.
-    Only the most recent comment may be edited.
+    For now, only the most recent comment may be edited.
     """
-    oeuvre = get_object_or_404(Oeuvre, id=id)
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
         update_oeuvre(req, oeuvre, oeuvre_form)
-    comments = comment_form = None
     if oeuvre.comments:
         comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
         comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
     return render(req, 'critique/oeuvre.html', locals())
+
+def detail_oeuvre(req, id):
+    """
+    In order to redirect to the shorter url with a slug, we need 3 db look-ups:
+    one looking for the id, one for a unique slug, then the detail_oeuvre_slug one.
+    """
+    oeuvre = get_object_or_404(Oeuvre, id=id)
+    try:
+        get_object_or_404(Oeuvre, slug=oeuvre.slug)
+        return redirect('detail_oeuvre_slug', slug=oeuvre.slug)
+    except Oeuvre.MultipleObjectsReturned:
+        return render_oeuvre(req, oeuvre)
 
 def detail_oeuvre_slug(req, slug):
     try:
@@ -188,11 +198,7 @@ def detail_oeuvre_slug(req, slug):
     except Oeuvre.MultipleObjectsReturned:
         oeuvres = Oeuvre.objects.filter(slug=slug)
         return render(req, 'critique/oeuvres.html', {'oeuvres': oeuvres})
-    oeuvre_form = OeuvreForm(get_oeuvre_form_data(oeuvre))
-    if oeuvre.comments:
-        comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
-        comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
-    return render(req, 'critique/oeuvre.html', locals())
+    return render_oeuvre(req, oeuvre)
 
 @permission_required('critique.all_rights')
 def delete_oeuvre(req, id):
