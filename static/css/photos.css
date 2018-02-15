@@ -189,6 +189,11 @@ body > footer {
 /* Gallery Slider
    ========================================================================== */
 
+#gallery-overlay {
+    background-color: rgba(30, 30, 30, 0.98);
+    transition-duration: 0.7s;
+}
+
 #gallery-slider {
     width: 90%;
     height: 90%;
@@ -219,28 +224,8 @@ body > footer {
 /* Forms
    ========================================================================== */
 
-.overlay {
-    visibility: hidden;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    /*background-color: rgba(50, 50, 50, 0.8);*/
-    background-color: rgba(30, 30, 30, 0.98);
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    transition: all 0.7s ease;
-}
-
-.overlay.revealed {
-    visibility: visible;
-    opacity: 1;
-}
-
 .overlay form {
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     background-color: rgb(255, 255, 255);
     padding: 6px 20px 6px 13px;
     border: 1px solid grey;
