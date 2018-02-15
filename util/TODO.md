@@ -2,10 +2,11 @@
 * photos slider: flèches, légendes, clic hors zone
 * show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
+* heures d'hiver pour les commentaires
 
 # plus tard
+* clean css
 * ajout de séances
-* clean css (forms...)
 * pages 404, 403, 50X
 * use more aria-hidden
 * make it mobile-friendly

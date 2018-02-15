@@ -6,7 +6,9 @@
   <p>Voulez-vous supprimer ce commentaire ?</p>
   <blockquote>{{ comment|linebreaks }}</blockquote>
   <form action="." method="post">{% csrf_token %}
-    <input type="hidden" name="next" value="{{ comment.get_absolute_url }}" id="next"/>
-    <input type="submit" name="submit" value="supprimer"/>
+    <div class="form_buttons">
+      <input type="hidden" name="next" value="{{ comment.get_absolute_url }}" id="next"/>
+      <input type="submit" name="submit" value="supprimer"/>
+    </div>
   </form>
 {% endblock %}

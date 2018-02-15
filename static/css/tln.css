@@ -647,11 +647,83 @@ textarea, input {
 }
 
 
+/* Forms
+   ========================================================================== */
+
+.overlay form {
+    border: 1px solid grey;
+    box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
+    padding: 6px 20px 6px 13px;
+    background-color: white;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.form_inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.form_inputs p {
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+}
+.form_inputs p label {
+    text-align: right;
+    margin-right: 6px;
+}
+
+.form_inputs input, .form_inputs textarea {
+    margin-left: -0.3px;
+    border: 1px solid grey;
+    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+    padding: 1px 0 1px 4px;
+    width: 100%;
+    transition: border 0.2s ease;
+}
+.form_inputs textarea {
+    font-family: Alegreya, Palatino, serif;
+    font-size: 100%;
+    resize: vertical;
+}
+.form_inputs input[type="checkbox"] {
+    margin-top: 2px;
+    margin-left: 0;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: auto;
+}
+.form_inputs input[type="date"] {
+    width: 160px;
+}
+.form_inputs input[type="date"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+.form_inputs .bad_input { border: 1px solid #db0000; }
+.form_inputs .errorlist { display: none; }
+
+.form_buttons {
+    margin-top: -4px;
+    font-family: Abuget, Palatino, serif;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+.form_buttons input {
+    background-color: transparent;
+    border: none;
+}
+.form_buttons input:hover { color: #f7a300; }
+.form_buttons input.hidden { display: none; }
+
+
 /* Login Form
    ========================================================================== */
 
 #login_form .form_inputs { margin-top: 3px; }
-#login_form p { width: 390px; }
-#login_form p label { width: 280px; }
+#login_form .form_inputs p { width: 390px; }
+#login_form .form_inputs p label { width: 280px; }
 #login_form .form_buttons { margin-top: -2px; }
 #login_form .form_buttons .filler { width: 44px; }

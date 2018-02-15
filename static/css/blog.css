@@ -452,169 +452,64 @@ body > header h1 #top_title {
 }
 
 
-/* Forms
-   ========================================================================== */
-
-.overlay form {
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-color: rgb(255, 255, 255);
-    padding: 6px 20px 6px 13px;
-    border: 1px solid grey;
-    box-shadow: 0 0 13px 0 rgba(2, 3, 3, 0.6);
-}
-
-form .form_inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-form p {
-    margin: 4px 0;
-    display: flex;
-    align-items: center;
-}
-
-form p label {
-    text-align: right;
-    margin-right: 6px;
-}
-
-form .form_inputs input:not([type="checkbox"]),
-form .form_inputs textarea {
-    width: 100%;
-    padding: 1px 0 1px 4px;
-    border: 1px solid grey;
-    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
-    margin-left: -0.3px;
-}
-
-form .form_inputs textarea {
-    font-family: Alegreya, Palatino, serif;
-    font-size: 100%;
-    resize: vertical;
-}
-
-form .form_inputs input[type="checkbox"] {
-    margin-top: 2px;
-}
-
-form .form_inputs input[type="date"] {
-    width: 160px;
-}
-
-form .form_inputs input[type="date"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: none;
-}
-
-form .form_inputs .bad_input {
-    /* fuck this */
-    border: 1px solid #db0000 !important;
-    transition: all 0.2s ease;
-}
-
-form .form_inputs .errorlist {
-    display: none;
-}
-
-form .form_buttons {
-    display: flex;
-    justify-content: center;
-    font-family: Abuget, Palatino, serif;
-    font-size: 40px;
-    margin-top: -4px;
-}
-
-form .form_buttons input {
-    background-color: transparent;
-    border: 0px solid;
-}
-
-form .form_buttons input.hidden {
-    display: none;
-}
-
-form .form_buttons input:hover {
-    color: #f7a300;
-}
-
-
 /* Form Comment
    ========================================================================== */
 
 #comment-form-wrap {
+    position: relative;
     margin-top: 6px;
-    text-align: right;
     min-height: 227px;
+    text-align: right;
 }
 
 #comment-form-trigger img {
-    height: 14px;
     margin-right: 4px;
     margin-bottom: -1px;
+    height: 14px;
 }
-
 #comment-form-trigger span {
-    font-style: italic;
-    text-align: right;
     padding-right: 8px;
+    text-align: right;
+    font-style: italic;
 }
 
 #comment_form_custom {
+    overflow: hidden;
     font-size: 18px;
     transition: all 0.6s linear;
-    overflow: hidden;
 }
-
 #comment_form_custom.expanded {
     visibility: visible;
-    max-height: 800px;
     opacity: 1;
+    max-height: 800px;
 }
-
 #comment_form_custom.collapsed {
     visibility: hidden;
-    max-height: 0px;
     opacity: 0;
+    max-height: 0px;
 }
 
 #comment_form_custom .form_inputs {
     margin-top: 3px;
     padding-left: 40px;
 }
-
-#comment_form_custom .form_inputs p label {
-    display: none;
-}
-
-#comment_form_custom .form_inputs p {
-    margin: 3px 0;
-}
-
+#comment_form_custom .form_inputs p { margin: 3px 0; }
+#comment_form_custom .form_inputs p label { display: none; }
 #comment_form_custom .form_inputs > p:first-of-type,
 #comment_form_custom .form_inputs > p:nth-of-type(2) {
     margin-left: 29px;
     max-width: 500px;
 }
-
-#comment_form_custom .form_inputs > p:first-of-type input {
-    font-weight: bold;
-}
-
+#comment_form_custom .form_inputs > p:first-of-type input { font-weight: bold; }
 #comment_form_custom .form_inputs > p:nth-of-type(3) textarea {
     z-index: 10;
-    min-height: 30px;
-    height: 80px;
     max-height: 680px;
+    height: 80px;
+    min-height: 30px;
 }
-
-::placeholder {
-    opacity: 0.8; }
-:-ms-input-placeholder {
-    opacity: 0.8; }
-::-ms-input-placeholder {
-    opacity: 0.8; }
+::placeholder { opacity: 0.8; }
+:-ms-input-placeholder { opacity: 0.8; }
+::-ms-input-placeholder { opacity: 0.8; }
 #comment_form_custom .form_inputs > p input:focus::-webkit-input-placeholder,
 #comment_form_custom .form_inputs > p textarea:focus::-webkit-input-placeholder {
     color: transparent; }
@@ -622,13 +517,10 @@ form .form_buttons input:hover {
 #comment_form_custom .form_buttons {
     z-index: 1;
     justify-content: flex-end;
-    margin-right: 10px;
-    margin-top: -12px; }
-
-#comment_form_custom .form_buttons input {
-    color: #bd4700; }
-#comment_form_custom .form_buttons input:hover {
-    color: #f7a300; }
+    margin-top: -12px;
+    margin-right: 10px; }
+#comment_form_custom .form_buttons input { color: #bd4700; }
+#comment_form_custom .form_buttons input:hover { color: #f7a300; }
 
 
 /* Form Comment Reaction
@@ -654,7 +546,6 @@ form .form_buttons input:hover {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(359deg); }
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(359deg); }
@@ -666,29 +557,20 @@ form .form_buttons input:hover {
     top: 47%;
     transform: translate(-44%);
     -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
     animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
     animation-duration: 1s;
 }
-
 @-webkit-keyframes animatebottom {
     from { top:95%; opacity:0; }
     to { top:47%; opacity:1; }
 }
-
 @keyframes animatebottom { 
     from { top:95%; opacity:0; }
     to { top:47%; opacity:1; }
 }
 
-#comment-form-wrap {
-    position: relative;
-}
-
-#comment-form-main {
-    transition: all 0.2s linear;
-}
-
+#comment-form-main { transition: all 0.2s linear; }
 #comment-form-main.waiting {
     z-index: 1;
     opacity: 0.12;
@@ -705,8 +587,8 @@ form .form_buttons input:hover {
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
     text-align: center;
+    font-size: 18px;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -717,29 +599,6 @@ form .form_buttons input:hover {
     flex-direction: column;
     text-align: center;
 }
-
-#post-result-info > * {
-    margin: 6px 0;
-}
-
-#post-result-info form {
-    display: flex;
-    justify-content: center;
-    font-family: Abuget, Palatino, serif;
-    font-size: 42px;
-    margin-top: -4px;
-}
-
-#post-result-info form input {
-    background-color: transparent;
-    border: 0px solid;
-    color: #bd4700;
-}
-
-#post-result-info form input.hidden {
-    display: none;
-}
-
-#post-result-info form input:hover {
-    color: #f7a300;
-}
+#post-result-info > blockquote { margin: 6px 0; }
+#post-result-info .form_buttons input { color: #bd4700; }
+#post-result-info .form_buttons input:hover { color: #f7a300; }
