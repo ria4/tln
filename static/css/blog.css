@@ -124,38 +124,21 @@ body > header h1 #top_title {
 /* Sidebar
    ========================================================================== */
 #sidebar {
+    border: 1px solid #deda99;
+    padding: 0 4px;
+    background-color: #fbf2bd;
+    width: 300px;
     font-family: Alegreya, Palatino, serif;
     font-size: 18px;
-    width: 300px;
-    padding: 0 4px;
-    border: 1px solid #deda99;
-    background-color: #fbf2bd;
 }
 
-.entry #sidebar {
-    opacity: 0.15;
-    transition: all 0.4s linear;
-}
-.entry #sidebar:hover {
-    opacity: 1;
-    transition: all 0.4s linear;
-}
-.entry #sidebar:hover #widget-tags:hover * {
-    transition: none;
-}
-.entry #sidebar:hover #widget-archives:hover * {
-    transition: none;
-}
-.entry #sidebar a {
-    color: black;
-    transition: all 0.4s linear;
-}
-.entry #sidebar:hover a {
-    color: #bd4700;
-}
-.entry #sidebar:hover a:hover {
-    color: #f7a300;
-}
+.entry-list #sidebar a { transition: all 0.12s linear; }
+.entry #sidebar { opacity: 0.15; transition: all 0.4s linear; }
+.entry #sidebar:hover { opacity: 1; }
+.entry #sidebar a { color: black; transition: all 0.4s linear; }
+.entry #sidebar:hover a { color: #bd4700; transition: all 0.12s linear; }
+.entry #sidebar:hover a:hover { color: #f7a300; }
+
 
 #sidebar h3 {
     padding: 0.5em 0 2px 0.5em;
