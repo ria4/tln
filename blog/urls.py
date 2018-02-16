@@ -1,9 +1,7 @@
 from django.conf.urls import url
 from django.urls import include, path
 
-from zinnia.views.archives import EntryIndex
-from zinnia.views.archives import EntryMonth
-from zinnia.views.archives import EntryYear
+from zinnia.views.archives import EntryIndex, EntryYear, EntryMonth, EntryDay
 from zinnia.views.tags import TagDetail
 from zinnia.urls import _
 from . import views
@@ -36,7 +34,17 @@ month_patterns = [
         name='entry_archive_month_paginated'),
 ]
 
-archives_urls = index_patterns + year_patterns + month_patterns
+day_patterns = [
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$',
+        EntryDay.as_view(),
+        name='entry_archive_day'),
+    url(_(r'^(?P<year>\d{4})/(?P<month>\d{2})/'
+          '(?P<day>\d{2})/page/(?P<page>\d+)/$'),
+        EntryDay.as_view(),
+        name='entry_archive_day_paginated'),
+]
+
+archives_urls = index_patterns + year_patterns + month_patterns + day_patterns
 
 tags_urls = [
     url(r'^(?P<tag>[^/]+(?u))/$', TagDetail.as_view(), name='tag_detail'),
@@ -51,6 +59,7 @@ blog_urls = ([
     path('', include(archives_urls)),
     path('', include('zinnia.urls.shortlink')),
     path('', include('zinnia.urls.quick_entry')),
+    path('<slug:slug>/', views.entry_detail_slug, name='entry_detail_slug'),
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/unsubscribe/(?P<h>[0-9a-f]{32})$',
         views.unsubscribe, name='unsubscribe'),
 ], 'zinnia')

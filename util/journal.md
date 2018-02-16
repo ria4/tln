@@ -35,4 +35,4 @@
 * 12/02 - Fin style dropdown menu photos
 * 13/02 - Customize Gallery model, style galleries, clean some style for critiques
 * 14/02 - Start integrating slick slider, far from working out-of-the-box (+ the dev seems like a jerk), so switch to flexslider
-* 15/02 - Factorize css, use unique slug for oeuvre urls, rework critique style
+* 15/02 - Factorize css, use unique slug for oeuvre urls, rework critique style, enable short slug-only blog urls (and struggle with timezones...)

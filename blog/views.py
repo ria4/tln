@@ -1,12 +1,24 @@
-
 import binascii
 import hashlib
+import pytz
+from tzlocal import get_localzone
+
 from django.apps import apps
 from django.contrib.auth.models import User
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
+from zinnia.models.entry import Entry
+
 from tln.utils import md5_2
 
+
+def entry_detail_slug(req, slug):
+    entry = Entry.objects.filter(slug=slug)[0]
+    date = entry.publication_date.astimezone(get_localzone())
+    year = date.year
+    month = "%.2d" % date.month
+    day = "%.2d" % date.day
+    return redirect('zinnia:entry_detail', year=year, month=month, day=day, slug=slug, permanent=True)
 
 def unsubscribe(req, year, month, day, slug, h):
     """
