@@ -16,19 +16,21 @@ header {
 }
 
 body {
-    height: auto;
-    min-height: 100%;
-    padding-bottom: 50px;
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
     font-size: 20px;
 }
 
 #content {
-    margin-top: 100px;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    padding-top: 100px;
+    padding-right: 24px;
+    padding-bottom: 50px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: Alegreya, Palatino, serif;
 }
 
@@ -59,7 +61,6 @@ body {
 }
 
 #content .oeuvre_display {
-    height: 290px;
     width: auto;
     max-width: 400px;
     display: flex;
@@ -331,6 +332,15 @@ body {
     margin-top: 7px;
 }
 
+.oeuvre_comments.centered {
+    margin-top: auto !important;
+    margin-bottom: auto;
+    padding-right: 3%;
+    padding-bottom: 4%;
+    height: 100%;
+    align-items: center;
+}
+
 
 /* Content Preambule
    ========================================================================== */
@@ -360,6 +370,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #content .info .oeuvre_display {
@@ -368,8 +379,7 @@ body {
 }
 
 #content .info .info_text {
-    height: 92%;
-    min-height: 220px;
+    padding-bottom: 1.5%;
     max-width: 480px;
     display: flex;
     flex-direction: column;
@@ -396,7 +406,7 @@ body {
 }
 
 #content #oeuvre_info {
-    min-height: 150px;
+    min-height: 286px;
 }
 
 #content .oeuvre_comments {
