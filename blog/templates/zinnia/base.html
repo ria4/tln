@@ -1,6 +1,7 @@
 {% extends "zinnia/skeleton.html" %}
 {% load i18n %}
 {% load zinnia %}
+{% load blog_extras %}
 
 {% block meta-keywords %}{% get_tags as entry_tags %}{{ entry_tags|join:", "}}{% endblock meta-keywords %}
 
@@ -36,7 +37,7 @@
       {# <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a> #}
     {% trans "Tags" %}
   </h3>
-  {% get_tag_cloud %}
+  {% get_tag_cloud_su_sensitive %}
 </aside>
 <aside id="widget-archives" class="widget">
   <h3>{% trans "Archives" %}</h3>

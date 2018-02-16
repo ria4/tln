@@ -1,12 +1,14 @@
 import binascii
 import hashlib
 import pytz
+
 from tzlocal import get_localzone
 
 from django.apps import apps
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
+
 from zinnia.models.entry import Entry
 
 from tln.utils import md5_2
@@ -49,3 +51,38 @@ def unsubscribe(req, year, month, day, slug, h):
                 comment.save()
 
     return render(req, 'comments/unsubscribed.html', locals())
+
+
+"""
+The part below enables showing non-published entries to the admin.
+"""
+
+from tagging.models import TaggedItem
+from tagging.utils import get_tag
+from zinnia.views.archives import EntryArchiveMixin
+from zinnia.views.tags import BaseTagDetail
+
+
+def get_queryset_base_tag_detail_su_sensitive(self):
+    self.tag = get_tag(self.kwargs['tag'])
+    if self.tag is None:
+        raise Http404(_('No Tag found matching "%s".') %
+                self.kwargs['tag'])
+    if self.request.user.is_superuser:
+        queryset = Entry.objects.all()
+    else:
+        queryset = Entry.published.all()
+    return TaggedItem.objects.get_by_model(queryset, self.tag)
+
+BaseTagDetail.get_queryset = get_queryset_base_tag_detail_su_sensitive
+
+
+class SUSensitiveMixin(object):
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            self.queryset = Entry.objects.all
+        else:
+            self.queryset = Entry.published.all
+        return super().get_queryset()
+
+EntryArchiveMixin.__bases__ = (SUSensitiveMixin,) + EntryArchiveMixin.__bases__
