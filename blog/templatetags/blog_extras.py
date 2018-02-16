@@ -1,4 +1,3 @@
-
 from datetime import datetime
 from django import template
 from zinnia.models.entry import Entry
@@ -15,4 +14,3 @@ def get_article_on_day(date):
                                  publication_date__day=date.day)[0]
     url = '/blog/%.4d/%.2d/%.2d/%s' % (date.year, date.month, date.day, entry.slug)
     return {'title': entry.title, 'url': url}
-
