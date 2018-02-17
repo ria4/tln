@@ -132,11 +132,11 @@ body > header h1 #top_title {
     font-size: 18px;
 }
 
-.entry-list #sidebar a { transition: all 0.12s linear; }
+.entry-list #sidebar a { transition: color 0.12s linear; }
 .entry #sidebar { opacity: 0.15; transition: all 0.4s linear; }
 .entry #sidebar:hover { opacity: 1; }
-.entry #sidebar a { color: black; transition: all 0.4s linear; }
-.entry #sidebar:hover a { color: #bd4700; transition: all 0.12s linear; }
+.entry #sidebar a { color: black; transition: color 0.4s linear; }
+.entry #sidebar:hover a { color: #bd4700; transition: color 0.12s linear; }
 .entry #sidebar:hover a:hover { color: #f7a300; }
 
 
