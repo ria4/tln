@@ -34,7 +34,17 @@
     <div id="gallery-slider">
         <ul class="slides">
             {% for photo in gallery_custom.gallery.public %}
-            <li><img src="{{ photo.image.url }}" alt="{{ photo.title }}"></li>
+            <li>
+            <div class="slide">
+                <div class="slide-img">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+                </div>
+                <div class="slide-info">
+                    <span class="slide-title">{{ photo.title }}</span>
+                    <span class="slide-index">{{ forloop.counter }} / {{ gallery_custom.gallery.public|length }}</span>
+                </div>
+            </div>
+            </li>
             {% endfor %}
         </ul>
     </div>
