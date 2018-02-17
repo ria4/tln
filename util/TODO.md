@@ -1,5 +1,5 @@
 * page d'accueil / à propos
-* photos slider: flèches, légendes, clic hors zone
+* photos slider: flèches, clic hors zone
 * show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
 
