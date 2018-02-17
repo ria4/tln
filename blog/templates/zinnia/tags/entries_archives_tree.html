@@ -27,14 +27,14 @@ If two entries were published on the same day, they would be counted only as one
         {% regroup month.list by day as day_list %}
         <ul>
           {% for day in day_list reversed %}
-          <li>
             {% with day_date=day.list.0 %}
-            {% get_article_on_day day_date as article %}
-            <a href="{{ article.url }}">
-              {{ article.title }}
-            </a>
+            {% get_articles_on_day day_date as articles %}
+            {% for article in articles %}
+            <li>
+                <a href="{{ article.url }}">{{ article.title }}</a>
+            </li>
+            {% endfor %}
             {% endwith %}
-          </li>
           {% endfor %}
         </ul>
       </li>

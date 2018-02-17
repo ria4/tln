@@ -12,15 +12,16 @@ register = template.Library()
 
 
 @register.simple_tag
-def get_article_on_day(date):
+def get_articles_on_day(date):
     """
     Do not use this on dates when no article was published!
     """
-    entry = Entry.objects.filter(publication_date__year=date.year,
-                                 publication_date__month=date.month,
-                                 publication_date__day=date.day)[0]
-    url = '/blog/%.4d/%.2d/%.2d/%s' % (date.year, date.month, date.day, entry.slug)
-    return {'title': entry.title, 'url': url}
+    entries = Entry.objects.filter(publication_date__year=date.year,
+                                   publication_date__month=date.month,
+                                   publication_date__day=date.day)
+    articles = [{'title': entry.title, 'url': '/blog/%s' % entry.slug}
+                 for entry in entries]
+    return articles
 
 @register.inclusion_tag('zinnia/tags/dummy.html', takes_context=True)
 def get_tag_cloud_su_sensitive(context, steps=6, min_count=None,
