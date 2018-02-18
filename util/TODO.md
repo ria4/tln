@@ -2,6 +2,7 @@
 * photos slider: flèches, clic hors zone
 * show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
+* cross-browsers
 
 # plus tard
 * ajout de séances

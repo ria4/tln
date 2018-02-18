@@ -669,11 +669,31 @@ if (gallery_slider) {
         $('#gallery-slider').flexslider({
             slideshow: false,
             animationSpeed: 600,
-            controlNav: false,
             //customDirectionNav: $(".custom-navigation a"),
         });
         slider = $("#gallery-slider").data("flexslider");
         animationSpeed = slider.vars.animationSpeed;
     });
-}
 
+
+    /* We need to set the height for the img container once its proper height
+     * has been computed, otherwise it fills the screen and repels the caption.
+     * Simultaneously we have to use height: 100% in order to user max-height then. */
+
+    function add_photo_resize_listener(photo) {
+        window.addEventListener("resize", function() {
+            photo.parentNode.parentNode.style.width = "100%";
+            photo.parentNode.style.width = "auto";
+            photo.parentNode.style.height = "100%";
+        }, true);
+        window.addEventListener("resize", function() {
+            photo.parentNode.parentNode.style.width = window.getComputedStyle(photo).width;
+            photo.parentNode.style.width = window.getComputedStyle(photo).width;
+            photo.parentNode.style.height = window.getComputedStyle(photo).height;
+        });
+    }
+
+    for (var i=0; i<photos.length; i++) {
+        add_photo_resize_listener(photos[i]);
+    }
+}
