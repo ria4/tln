@@ -677,6 +677,18 @@ if (gallery_slider) {
     });
 
 
+    /* Click outside the image to hide the slider. */
+
+    overlay_slider.addEventListener("click", function() {
+        overlay_slider.classList.remove("revealed");
+    });
+    for (var i=0; i<photos.length; i++) {
+        photos[i].addEventListener("click", function(e) {
+            e.stopPropagation();
+        });
+    }
+
+
     /* Chrome stays focused on the link after a click, which provokes autoslide.
      * That's why we use manual control for this action. */
 

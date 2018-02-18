@@ -1,5 +1,5 @@
 * page d'accueil / à propos
-* photos slider: flèches, clic hors zone
+* photos slider position at init page
 * show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
 * cross-browsers
