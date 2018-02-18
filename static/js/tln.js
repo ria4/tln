@@ -737,11 +737,12 @@ if (gallery_slider) {
     }
 
     for (var i=0; i<photos.length; i++) {
-        photos[i].onload = function() { set_photo_size(this); }
-        if (photos[i].naturalWidth != 0) {
-            /* the image has already been loaded from a previous visit */
-            set_photo_size(photos[i]);
+        var photo = photos[i];
+        photo.onload = function() { set_photo_size(this); }
+        if (photo.complete && (photo.naturalWidth !== 0)) {
+            /* the image has already been loaded so onload event won't be fired */
+            set_photo_size(photo);
         }
-        add_photo_resize_listener(photos[i]);
+        add_photo_resize_listener(photo);
     }
 }
