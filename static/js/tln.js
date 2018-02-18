@@ -702,31 +702,43 @@ if (gallery_slider) {
     });
 
 
-    /* We need to set the height for the img container once its proper height
-     * has been computed, otherwise it fills the screen and repels the caption.
-     * Simultaneously we have to use height: 100% in order to user max-height then. */
+    /* We need to set the height for the img container explicitly.
+     * Indeed we cannot rely on max-width or object-fit tools, because we want the image
+     * to fill as much height/width as possible depending on its ratio, yet preparing
+     * the image container with a maximal height repels the caption at the bottom... */
+
+    var maxSlideWidth = gallery_slider.clientWidth;
+    var slidesInfoHeight = document.getElementsByClassName("slide-info")[0].clientHeight;
+    var maxSlideHeight = gallery_slider.clientHeight - slidesInfoHeight;
+    var ratio_ref = 1.0 * maxSlideWidth / maxSlideHeight;
+
+    /* this is supposed to be fired before the photo_resize_listeners */
+    window.addEventListener("resize", function() {
+        maxSlideWidth = parseInt(window.getComputedStyle(gallery_slider).width, 10);
+        maxSlideHeight = parseInt(window.getComputedStyle(gallery_slider).height, 10) - slidesInfoHeight;
+        ratio_ref = 1.0 * maxSlideWidth / maxSlideHeight;
+    });
+
+    function set_photo_size(photo) {
+        var ratio_real = 1.0 * photo.naturalWidth / photo.naturalHeight;
+        if (ratio_real > ratio_ref) {
+            photo.style.width = Math.min(maxSlideWidth, photo.naturalWidth) + "px";
+            photo.style.height = "auto";
+        } else {
+            photo.style.height = Math.min(maxSlideHeight, photo.naturalHeight) + "px";
+            photo.style.width = "auto";
+        }
+        console.log(photo.naturalHeight);
+    }
 
     function add_photo_resize_listener(photo) {
         window.addEventListener("resize", function() {
-            photo.parentNode.parentNode.style.width = "100%";
-            photo.parentNode.style.width = "auto";
-            photo.parentNode.style.height = "100%";
-        }, true);
-        window.addEventListener("resize", function() {
-            photo.parentNode.parentNode.style.width = window.getComputedStyle(photo).width;
-            photo.parentNode.style.width = window.getComputedStyle(photo).width;
-            photo.parentNode.style.height = window.getComputedStyle(photo).height;
+            set_photo_size(photo);
         });
     }
 
     for (var i=0; i<photos.length; i++) {
-        var photo = photos[i];
-        add_photo_resize_listener(photo);
-        /*$(document).ready(function() {
-        /*    console.log(window.getComputedStyle(photo).height);
-        /*    $(photo).parent().parent().css('width', window.getComputedStyle(photo).width);
-        /*    $(photo).parent().css('width', window.getComputedStyle(photo).width);
-        /*    $(photo).parent().css('height', window.getComputedStyle(photo).height);
-        /*});*/
+        photos[i].onload = function() { set_photo_size(this); }
+        add_photo_resize_listener(photos[i]);
     }
 }

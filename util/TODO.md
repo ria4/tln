@@ -1,8 +1,7 @@
 * page d'accueil / à propos
-* photos slider position at init page
 * show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
-* cross-browsers
+* cross-browsers (do not display content until it is loaded?)
 
 # plus tard
 * ajout de séances
@@ -13,3 +12,4 @@
 * rework critique css for resize (see blog.css)
 * importer quelques articles dans le blog en ligne
 * clean css, use sass
+* clean js (camelcase)
