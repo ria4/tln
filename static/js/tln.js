@@ -728,7 +728,6 @@ if (gallery_slider) {
             photo.style.height = Math.min(maxSlideHeight, photo.naturalHeight) + "px";
             photo.style.width = "auto";
         }
-        console.log(photo.naturalHeight);
     }
 
     function add_photo_resize_listener(photo) {
@@ -739,6 +738,10 @@ if (gallery_slider) {
 
     for (var i=0; i<photos.length; i++) {
         photos[i].onload = function() { set_photo_size(this); }
+        if (photos[i].naturalWidth != 0) {
+            /* the image has already been loaded from a previous visit */
+            set_photo_size(photos[i]);
+        }
         add_photo_resize_listener(photos[i]);
     }
 }
