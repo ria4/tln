@@ -669,10 +669,24 @@ if (gallery_slider) {
         $('#gallery-slider').flexslider({
             slideshow: false,
             animationSpeed: 600,
-            //customDirectionNav: $(".custom-navigation a"),
+            controlNav: false,
+            directionNav: false,
         });
         slider = $("#gallery-slider").data("flexslider");
         animationSpeed = slider.vars.animationSpeed;
+    });
+
+
+    /* Chrome stays focused on the link after a click, which provokes autoslide.
+     * That's why we use manual control for this action. */
+
+    $(".flex-nav-prev").on('click', function() {
+        $("#gallery-slider").flexslider('prev');
+        return false;
+    });
+    $(".flex-nav-next").on('click', function() {
+        $("#gallery-slider").flexslider('next');
+        return false;
     });
 
 
@@ -694,6 +708,13 @@ if (gallery_slider) {
     }
 
     for (var i=0; i<photos.length; i++) {
-        add_photo_resize_listener(photos[i]);
+        var photo = photos[i];
+        add_photo_resize_listener(photo);
+        /*$(document).ready(function() {
+        /*    console.log(window.getComputedStyle(photo).height);
+        /*    $(photo).parent().parent().css('width', window.getComputedStyle(photo).width);
+        /*    $(photo).parent().css('width', window.getComputedStyle(photo).width);
+        /*    $(photo).parent().css('height', window.getComputedStyle(photo).height);
+        /*});*/
     }
 }

@@ -195,8 +195,8 @@ body > footer {
 }
 
 #gallery-slider {
-    width: 93%;
-    height: 93%;
+    width: 96%;
+    height: 91%;
 }
 #gallery-slider .slides {
     height: 100%;
@@ -231,4 +231,30 @@ body > footer {
     font-family: AlegreyaSans;
     display: flex;
     justify-content: space-between;
+}
+
+#gallery-slider .flex-direction-nav {
+    position: fixed;
+    z-index: 10;
+    margin: 0 2%;
+    top: 44%;
+    left: 0;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+}
+#gallery-slider .flex-direction-nav a {
+    opacity: 0.3;
+    color: #aaa;
+    text-decoration: none;
+    font-family: SoljikDambaek;
+    font-size: 90px;
+    transition: all 0.4s ease;
+}
+#gallery-slider .flex-direction-nav a:hover {
+    opacity: 0.6;
+    color: #ddd;
+}
+#gallery-slider .flex-direction-nav a:focus {
+    outline: none;
 }

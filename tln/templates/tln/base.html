@@ -75,6 +75,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% block import-scripts %}{% endblock %}
     <script>
+        <!-- this variable does not enable access to sensitive operations -->
+        <!-- it is only used for basic display tweaks meant for the admin -->
         var user_is_authenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
     </script>
     <script src="{% static 'js/tln.js' %}"></script>
