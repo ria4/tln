@@ -6,11 +6,14 @@ from django.db import models, migrations
 
 def initial_photosizes(apps, schema_editor):
 
-    PhotoSize.objects.create(name='tln_display',
+    PhotoSize = apps.get_model('photologue', 'PhotoSize')
+
+    PhotoSize.objects.create(name='vhigh_display',
                              width=1920,
                              height=1080,
                              crop=False,
                              upscale=False,
+                             quality=96,
                              pre_cache=True,
                              increment_count=True)
 
@@ -18,7 +21,7 @@ def initial_photosizes(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('photologue', '0001_initial'),
+        ('photos', '0001_initial'),
         ('contenttypes', '0001_initial'),
     ]
 
