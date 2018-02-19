@@ -9,7 +9,6 @@
 * sitemap avec django framework
 * rework critique css for resize (burger menu + see blog.css)
 * clean css, use sass
-* clean js
 * écriture articles : journal dev, nom trans, retour sur 2017
 * check search engine indexation
 * make it mobile-friendly

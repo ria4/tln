@@ -1,154 +1,27 @@
-/* Critique Navigation Bars - Hide/Reveal and Resize bars */
+/* Top Navigation - Navigation bar layout depends on window width */
 
 var widthTriggerTopNav = 900;
 var topNavigation = document.getElementById("top-navigation");
-var topNavigationTrigger = document.getElementById("top-navigation-trigger");
-if (topNavigationTrigger) {
-    var erranceBarTrigger = document.getElementById("errance-bar-trigger");
-    var erranceBar = document.getElementById("errance-bar");
-
-    topNavigationTrigger.addEventListener("click", function(e) {
-        e.preventDefault();
-        if (topNavigation.classList.contains("expanded")) {
-            topNavigation.classList.remove("expanded");
-        } else {
-            topNavigation.classList.add("expanded");
-        }
-
-        if (window.innerWidth < widthTriggerTopNav) {
-            topNavigation.setAttribute("expanded-size", "double");
-        } else {
-            topNavigation.setAttribute("expanded-size", "simple");
-        }
-    });
-
-    var widthTriggerErrance = 1104;
-    erranceBarTrigger.addEventListener("click", function(e) {
-        e.preventDefault();
-        if (erranceBar.classList.contains("expanded")) {
-            erranceBar.classList.remove("expanded");
-        } else {
-            erranceBar.classList.add("expanded");
-        }
-
-        if (window.innerWidth < widthTriggerErrance) {
-            erranceBar.setAttribute("expanded-size", "double");
-        } else {
-            erranceBar.setAttribute("expanded-size", "simple");
-        }
-    });
+if (topNavigation) {
+    if (window.innerWidth < widthTriggerTopNav) {
+        topNavigation.setAttribute("layout", "vertical");
+    } else {
+        topNavigation.setAttribute("layout", "horizontal");
+    }
 
     window.addEventListener("resize", function(e) {
         if (window.innerWidth < widthTriggerTopNav) {
-            topNavigation.setAttribute("expanded-size", "double");
+            topNavigation.setAttribute("layout", "vertical");
         } else {
-            topNavigation.setAttribute("expanded-size", "simple");
-        }
-        if (window.innerWidth < widthTriggerErrance) {
-            erranceBar.setAttribute("expanded-size", "double");
-        } else {
-            erranceBar.setAttribute("expanded-size", "simple");
+            topNavigation.setAttribute("layout", "horizontal");
         }
     });
 }
 
 
-/* Sub Bar - Highlight selected media type or year */
+/* Forms - Validate form inputs */
 
-var mediaBar = document.getElementById("media-bar");
-if (mediaBar) {
-    var hrefs = window.location.href.split('/');
-    var mtype = hrefs[hrefs.length - 1];
-    if (!isNaN(parseInt(mtype.charAt(0)))) {
-        mtype = hrefs[hrefs.length - 2];
-    }
-    links = mediaBar.getElementsByTagName("li");
-    for (var i=0; i<links.length; i++) {
-        link = links[i].getElementsByTagName("a")[0]
-        if (link.getAttribute("desc") == mtype) {
-            link.classList.add("selected");
-        }
-    }
-}
-
-
-/* Collection - Display oeuvres by chunks */
-
-var textDecoder = document.createElement("textarea");
-function decodeHtml(html) {
-    textDecoder.innerHTML = html;
-    return textDecoder.value;
-}
-
-var chunkSize = 25;
-var collection = document.getElementById("collection");
-if (collection) {
-    for (i=0; i<oeuvres.length/chunkSize; i++) {
-        var ul = document.createElement("ul");
-        collection.appendChild(ul);
-        for (j=0; j<chunkSize; j++) {
-            if (oeuvres[chunkSize*i+j]) {
-                var a = document.createElement("a");
-                var text = decodeHtml(oeuvres[chunkSize*i+j][0]);
-                var textNode = document.createTextNode(text);
-                a.href = oeuvres[chunkSize*i+j][1];
-                a.appendChild(textNode);
-                var li = document.createElement("li");
-                li.appendChild(a);
-                ul.appendChild(li);
-            }
-        }
-    }
-}
-
-
-/* Seances - Displays seances by chunks */
-
-var seancesDisplay = document.getElementById("seances");
-if (seancesDisplay) {
-    for (i=0; i<seances.length/chunkSize; i++) {
-        var ul = document.createElement("ul");
-        seancesDisplay.appendChild(ul);
-        for (j=0; j<chunkSize; j++) {
-            if (seances[chunkSize*i+j]) {
-                var li = document.createElement("li");
-                var text = decodeHtml(seances[chunkSize*i+j]);
-                var textNode = document.createTextNode(text);
-                li.appendChild(textNode);
-                ul.appendChild(li);
-            }
-        }
-    }
-}
-
-
-/* Cinemas - Displays cinemas by chunks */
-
-chunkSize = 21;
-var cinemas = document.getElementById("cinemas");
-if (cinemas) {
-    for (i=0; i<cines.length/chunkSize; i++) {
-        var ul = document.createElement("ul");
-        cinemas.appendChild(ul);
-        for (j=0; j<chunkSize; j++) {
-            if (cines[chunkSize*i+j]) {
-                var a = document.createElement("a");
-                var text = decodeHtml(cines[chunkSize*i+j][0]);
-                var textNode = document.createTextNode(text);
-                a.href = cines[chunkSize*i+j][1];
-                a.appendChild(textNode);
-                var li = document.createElement("li");
-                li.appendChild(a);
-                ul.appendChild(li);
-            }
-        }
-    }
-}
-
-
-/* Forms Validation */
-
-function validationMark(elem, test) {
+function setValidationClass(elem, test) {
     if (test) {
         elem.classList.add("bad-input");
     } else {
@@ -157,14 +30,15 @@ function validationMark(elem, test) {
 }
 
 function addInputListener(element, atInit) {
+    console.log(element);
     if (atInit) {
-        validationMark(element[0],
+        setValidationClass(element[0],
                        element[1](element[0].value));
     }
     element[0].addEventListener("blur", function (e) {
-        validationMark(e.target, element[1](e.target.value));});
+        setValidationClass(e.target, element[1](e.target.value));});
     element[0].addEventListener("input", function (e) {
-        validationMark(e.target, element[1](e.target.value));});
+        setValidationClass(e.target, element[1](e.target.value));});
 }
 
 function addInputsListener(validatedElements, atInit) {
@@ -188,124 +62,12 @@ function addSubmitListener(form, validatedElements) {
     });
 }
 
-var oeuvreForm = document.getElementById("oeuvre_form");
-if (oeuvreForm) {
-    titleVf = document.getElementById("id_title_vf");
-    titleVo = document.getElementById("id_title_vo");
-    titleAlt = document.getElementById("id_title_alt");
-    artists = document.getElementById("id_artists");
-    year = document.getElementById("id_year");
-    imdbId = document.getElementById("id_imdb_id");
-    validatedElements = [
-        [titleVf, x => ((x.length > 1000) || (x == ""))],
-        [titleVo, x => (x.length > 1000)],
-        [titleAlt, x => (x.length > 1000)],
-        [artists, x => ((x.length > 1000) || (x == ""))],
-        [year, x => ((x > 2100) || (x == ""))],
-        [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
-    ];
-    addInputsListener(validatedElements, true);
-    addSubmitListener(oeuvreForm, validatedElements);
-}
 
-var oeuvreFormEmpty = document.getElementById("oeuvre_form_empty");
-if (oeuvreFormEmpty) {
-    titleVf = document.getElementById("id_empty_title_vf");
-    titleVo = document.getElementById("id_empty_title_vo");
-    titleAlt = document.getElementById("id_empty_title_alt");
-    artists = document.getElementById("id_empty_artists");
-    year = document.getElementById("id_empty_year");
-    imdbId = document.getElementById("id_empty_imdb_id");
-    validatedElements = [
-        [titleVf, x => ((x.length > 1000) || (x == ""))],
-        [titleVo, x => (x.length > 1000)],
-        [titleAlt, x => (x.length > 1000)],
-        [artists, x => ((x.length > 1000) || (x == ""))],
-        [year, x => ((x > 2100) || (x == ""))],
-        [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
-    ];
-    addInputsListener(validatedElements, true);
-    addSubmitListener(oeuvreFormEmpty, validatedElements);
-}
-
-var cinemaForm = document.getElementById("cinema_form");
-if (cinemaForm) {
-    nameInput = document.getElementById("id_name");
-    comment = document.getElementById("id_comment");
-    visited = document.getElementById("id_visited");
-    validatedElements = [
-        [nameInput, x => (x == "")],
-        [comment, x => (x == "")],
-        [visited, x => (x == "")]
-    ];
-    addInputsListener(validatedElements, true);
-    addSubmitListener(cinemaForm, validatedElements);
-}
-
-var commentFormEmpty = document.getElementById("comment_form_empty");
-if (commentFormEmpty) {
-    date = document.getElementById("id_empty_date");
-    content = document.getElementById("id_empty_content");
-    validatedElements = [
-        [date, x => (x == "")],
-        [content, x => (x == "")]
-    ];
-    addInputsListener(validatedElements, true);
-    addSubmitListener(commentFormEmpty, validatedElements);
-}
-
-var commentForm = document.getElementById("comment_form");
-if (commentForm) {
-    date = document.getElementById("id_date");
-    content = document.getElementById("id_content");
-    validatedElements = [
-        [date, x => (x == "")],
-        [content, x => (x == "")]
-    ];
-    addInputsListener(validatedElements, true);
-    addSubmitListener(commentForm, validatedElements);
-}
-
-/* this is for the blog */
-var commentFormCustom = document.getElementById("comment_form_custom");
-if (commentFormCustom) {
-    username = document.getElementById("id_name");
-    email = document.getElementById("id_email");
-    comment = document.getElementById("id_comment");
-    validatedElements = [
-        [username, x => (x == "")],
-        [comment, x => (x == "")]
-    ];
-    addInputsListener(validatedElements, false);
-    addSubmitListener(commentFormCustom, validatedElements);
-
-    function validateEmail(x) {
-        return ((x.length > 0) &&
-                ((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1)))
-    }
-    var triedEmail = false;
-    email.addEventListener("blur", function (e) {
-        validationMark(e.target, validateEmail(e.target.value));
-        if (e.target.value.length > 0) {triedEmail = true;}});
-    email.addEventListener("input", function (e) {
-        if (triedEmail) {
-            validationMark(e.target, validateEmail(e.target.value));
-        }
-    });
-}
-
-
-/* Global - Reveal login, edit... through keyboard inputs */
+/* Overlays - Reveal appropriate overlay through keyboard inputs */
 
 var loginForm = document.getElementById("login_form");
-
 var codes = {"login": loginForm,
-             "logout": true,
-             "edito": oeuvreForm,
-             "addo": oeuvreFormEmpty,
-             "editc": commentForm,
-             "addc": commentFormEmpty,
-             "editi": cinemaForm};
+             "logout": true}
 
 var activeCode = "";
 var cachedCode = "";
@@ -346,24 +108,14 @@ document.addEventListener("keypress", function (e) {
     }
 });
 
-/* there is no keypress event for ESC... */
 document.addEventListener("keydown", function (e) {
+    /* there is no keypress event for ESC */
     if (activeCode && (e.keyCode == 27)) {
         codes[activeCode].parentElement.classList.remove("revealed");
         activeCode = "";
     }
 });
 
-for (var key in codes) {
-    if (codes.hasOwnProperty(key)) {
-        if ((key != "logout") && (codes[key])) {
-            codes[key].addEventListener("reset", function (e) {
-                e.target.parentElement.classList.remove("revealed");
-                activeCode = "";
-            });
-        }
-    }
-}
 
 /* Pagination - Navigate with arrow keys */
 
@@ -379,21 +131,248 @@ if (pagination) {
 }
 
 
-/* Blog - Menus positions depend on window width */
+/* Apps logic */
 
-var widthTriggerBlogSidebar = 1600;
-var topNavigation = document.getElementById("top-navigation");
-var blogContentWrap = document.getElementById("blog-content-wrap");
-if (blogContentWrap) {
-    if (window.innerWidth < widthTriggerBlogSidebar) {
-        blogContentWrap.setAttribute("layout", "vertical");
-        topNavigation.style.paddingRight = "0px";
-    } else {
-        blogContentWrap.setAttribute("layout", "horizontal");
-        topNavigation.style.paddingRight = "60px";
-    }
+var websiteApp = location.pathname.split("/")[1];
+
+if (websiteApp == "critique") {
+
+
+    /* Main Navigation Bars - Hide/reveal and resize bars */
+
+    var erranceBar = document.getElementById("errance-bar");
+
+    var topNavigationTrigger = document.getElementById("top-navigation-trigger");
+    topNavigationTrigger.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (topNavigation.classList.contains("expanded")) {
+            topNavigation.classList.remove("expanded");
+        } else {
+            topNavigation.classList.add("expanded");
+        }
+
+        if (window.innerWidth < widthTriggerTopNav) {
+            topNavigation.setAttribute("expanded-size", "double");
+        } else {
+            topNavigation.setAttribute("expanded-size", "simple");
+        }
+    });
+
+    var widthTriggerErrance = 1104;
+    var erranceBarTrigger = document.getElementById("errance-bar-trigger");
+    erranceBarTrigger.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (erranceBar.classList.contains("expanded")) {
+            erranceBar.classList.remove("expanded");
+        } else {
+            erranceBar.classList.add("expanded");
+        }
+
+        if (window.innerWidth < widthTriggerErrance) {
+            erranceBar.setAttribute("expanded-size", "double");
+        } else {
+            erranceBar.setAttribute("expanded-size", "simple");
+        }
+    });
 
     window.addEventListener("resize", function(e) {
+        if (window.innerWidth < widthTriggerTopNav) {
+            topNavigation.setAttribute("expanded-size", "double");
+        } else {
+            topNavigation.setAttribute("expanded-size", "simple");
+        }
+        if (window.innerWidth < widthTriggerErrance) {
+            erranceBar.setAttribute("expanded-size", "double");
+        } else {
+            erranceBar.setAttribute("expanded-size", "simple");
+        }
+    });
+
+
+    /* Filter Bar - Highlight selected media type or year */
+
+    var filterBar = document.getElementById("media-bar");
+    if (filterBar) {
+        var hrefs = window.location.href.split('/');
+        var mtype = hrefs[hrefs.length - 1];
+        if (!isNaN(parseInt(mtype.charAt(0)))) {
+            mtype = hrefs[hrefs.length - 2];
+        }
+        links = filterBar.getElementsByTagName("li");
+        for (var i=0; i<links.length; i++) {
+            link = links[i].getElementsByTagName("a")[0]
+            if (link.getAttribute("desc") == mtype) {
+                link.classList.add("selected");
+            }
+        }
+    }
+
+
+    /* Critique Layout - Display objects by chunks */
+
+    var textDecoder = document.createElement("textarea");
+    function decodeHtml(html) {
+        textDecoder.innerHTML = html;
+        return textDecoder.value;
+    }
+
+    var chunkSizeCollection = 25;
+    var collection = document.getElementById("collection");
+    if (collection) {
+        for (i=0; i<oeuvres.length/chunkSizeCollection; i++) {
+            var ul = document.createElement("ul");
+            collection.appendChild(ul);
+            for (j=0; j<chunkSizeCollection; j++) {
+                if (oeuvres[chunkSizeCollection*i+j]) {
+                    var a = document.createElement("a");
+                    var text = decodeHtml(oeuvres[chunkSizeCollection*i+j][0]);
+                    var textNode = document.createTextNode(text);
+                    a.href = oeuvres[chunkSizeCollection*i+j][1];
+                    a.appendChild(textNode);
+                    var li = document.createElement("li");
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                }
+            }
+        }
+    }
+
+    var chunkSizeSeances = 25;
+    var seancesDisplay = document.getElementById("seances");
+    if (seancesDisplay) {
+        for (i=0; i<seances.length/chunkSizeSeances; i++) {
+            var ul = document.createElement("ul");
+            seancesDisplay.appendChild(ul);
+            for (j=0; j<chunkSizeSeances; j++) {
+                if (seances[chunkSizeSeances*i+j]) {
+                    var li = document.createElement("li");
+                    var text = decodeHtml(seances[chunkSizeSeances*i+j]);
+                    var textNode = document.createTextNode(text);
+                    li.appendChild(textNode);
+                    ul.appendChild(li);
+                }
+            }
+        }
+    }
+
+    var chunkSizeCinemas = 21;
+    var cinemas = document.getElementById("cinemas");
+    if (cinemas) {
+        for (i=0; i<cines.length/chunkSizeCinemas; i++) {
+            var ul = document.createElement("ul");
+            cinemas.appendChild(ul);
+            for (j=0; j<chunkSizeCinemas; j++) {
+                if (cines[chunkSizeCinemas*i+j]) {
+                    var a = document.createElement("a");
+                    var text = decodeHtml(cines[chunkSizeCinemas*i+j][0]);
+                    var textNode = document.createTextNode(text);
+                    a.href = cines[chunkSizeCinemas*i+j][1];
+                    a.appendChild(textNode);
+                    var li = document.createElement("li");
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                }
+            }
+        }
+    }
+
+
+    /* Critique Update - Forms validation */
+
+    var oeuvreFormEmpty = document.getElementById("oeuvre_form_empty");
+    if (oeuvreFormEmpty) {
+        titleVf = document.getElementById("id_empty_title_vf");
+        titleVo = document.getElementById("id_empty_title_vo");
+        titleAlt = document.getElementById("id_empty_title_alt");
+        artists = document.getElementById("id_empty_artists");
+        year = document.getElementById("id_empty_year");
+        imdbId = document.getElementById("id_empty_imdb_id");
+        validatedElements = [
+            [titleVf, x => ((x.length > 1000) || (x == ""))],
+            [titleVo, x => (x.length > 1000)],
+            [titleAlt, x => (x.length > 1000)],
+            [artists, x => ((x.length > 1000) || (x == ""))],
+            [year, x => ((x > 2100) || (x == ""))],
+            [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
+        ];
+        addInputsListener(validatedElements, true);
+        addSubmitListener(oeuvreFormEmpty, validatedElements);
+    }
+
+    var oeuvreForm = document.getElementById("oeuvre_form");
+    if (oeuvreForm) {
+        titleVf = document.getElementById("id_title_vf");
+        titleVo = document.getElementById("id_title_vo");
+        titleAlt = document.getElementById("id_title_alt");
+        artists = document.getElementById("id_artists");
+        year = document.getElementById("id_year");
+        imdbId = document.getElementById("id_imdb_id");
+        validatedElements = [
+            [titleVf, x => ((x.length > 1000) || (x == ""))],
+            [titleVo, x => (x.length > 1000)],
+            [titleAlt, x => (x.length > 1000)],
+            [artists, x => ((x.length > 1000) || (x == ""))],
+            [year, x => ((x > 2100) || (x == ""))],
+            [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
+        ];
+        addInputsListener(validatedElements, true);
+        addSubmitListener(oeuvreForm, validatedElements);
+    }
+
+    var commentFormEmpty = document.getElementById("comment_form_empty");
+    if (commentFormEmpty) {
+        date = document.getElementById("id_empty_date");
+        content = document.getElementById("id_empty_content");
+        validatedElements = [
+            [date, x => (x == "")],
+            [content, x => (x == "")]
+        ];
+        addInputsListener(validatedElements, true);
+        addSubmitListener(commentFormEmpty, validatedElements);
+    }
+
+    var commentForm = document.getElementById("comment_form");
+    if (commentForm) {
+        date = document.getElementById("id_date");
+        content = document.getElementById("id_content");
+        validatedElements = [
+            [date, x => (x == "")],
+            [content, x => (x == "")]
+        ];
+        addInputsListener(validatedElements, true);
+        addSubmitListener(commentForm, validatedElements);
+    }
+
+    var cinemaForm = document.getElementById("cinema_form");
+    if (cinemaForm) {
+        nameInput = document.getElementById("id_name");
+        comment = document.getElementById("id_comment");
+        visited = document.getElementById("id_visited");
+        validatedElements = [
+            [nameInput, x => (x == "")],
+            [comment, x => (x == "")],
+            [visited, x => (x == "")]
+        ];
+        addInputsListener(validatedElements, true);
+        addSubmitListener(cinemaForm, validatedElements);
+    }
+
+    codes["edito"] = oeuvreForm;
+    codes["addo"] = oeuvreFormEmpty;
+    codes["editc"] = commentForm;
+    codes["addc"] = commentFormEmpty;
+    codes["editi"] = cinemaForm;
+
+
+} else if (websiteApp == "blog") {
+
+
+    /* Blog Layout - Sidebar position depends on window width */
+
+    var widthTriggerBlogSidebar = 1600;
+    var blogContentWrap = document.getElementById("blog-content-wrap");
+
+    function setBlogLayout() {
         if (window.innerWidth < widthTriggerBlogSidebar) {
             blogContentWrap.setAttribute("layout", "vertical");
             topNavigation.style.paddingRight = "0px";
@@ -401,30 +380,15 @@ if (blogContentWrap) {
             blogContentWrap.setAttribute("layout", "horizontal");
             topNavigation.style.paddingRight = "60px";
         }
-    });
-}
-
-if (topNavigation) {
-    if (window.innerWidth < widthTriggerTopNav) {
-        topNavigation.setAttribute("layout", "vertical");
-    } else {
-        topNavigation.setAttribute("layout", "horizontal");
     }
 
-    window.addEventListener("resize", function(e) {
-        if (window.innerWidth < widthTriggerTopNav) {
-            topNavigation.setAttribute("layout", "vertical");
-        } else {
-            topNavigation.setAttribute("layout", "horizontal");
-        }
-    });
-}
+    setBlogLayout();
+    window.addEventListener("resize", setBlogLayout);
 
 
-/* Blog Archive Widget - Expand/Collapse entries */
+    /* Blog Archive Widget - Expand/Collapse entries */
 
-var widgetArchives = document.getElementById("widget-archives");
-if (widgetArchives) {
+    var widgetArchives = document.getElementById("widget-archives");
 
     function addToggleListener(toggle) {
         toggle.addEventListener("click", function(e) {
@@ -441,154 +405,186 @@ if (widgetArchives) {
 
     toggles = widgetArchives.getElementsByClassName("toggle");
     [].forEach.call(toggles, addToggleListener);
-}
 
 
-/* Blog Comment - Reveal comment form */
+    /* Blog Comment */
 
-var commentForm = document.getElementById("comment_form_custom");
-if (commentForm) {
-    var commentFormTrigger = document.getElementById("comment-form-trigger");
-    var commentFormTriggerImg = commentFormTrigger.getElementsByTagName("img")[0];
-    commentFormTrigger.addEventListener("mouseover", function (e) {
-        commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link_hover.png");
-    });
-    commentFormTrigger.addEventListener("mouseout", function (e) {
-        commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link.png");
-    });
+    var commentForm = document.getElementById("comment_form_custom");
+    if (commentForm) {
 
-    commentForm.classList.add("collapsed");
-    commentFormTrigger.addEventListener("click", function (e) {
-        e.preventDefault();
-        if (commentForm.classList.contains("expanded")) {
-            commentForm.classList.add("collapsed");
-            commentForm.classList.remove("expanded");
-        } else {
-            commentForm.classList.add("expanded");
-            commentForm.classList.remove("collapsed");
-        }
-    });
+        /* Blog Comment - Reveal comment form */
 
+        var commentFormTrigger = document.getElementById("comment-form-trigger");
+        var commentFormTriggerImg = commentFormTrigger.getElementsByTagName("img")[0];
+        commentFormTrigger.addEventListener("mouseover", function (e) {
+            commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link_hover.png");
+        });
+        commentFormTrigger.addEventListener("mouseout", function (e) {
+            commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link.png");
+        });
 
-    /* this hackish part auto-scrolls to the bottom of the window
-     * when resizing the text area, for the horizontal layout
-     * (there is no textarea resize event support) */
-    function scrollToBottom(e) {
-        if ((window.innerHeight - event.clientY) < 50) {
-            window.scrollTo(0, document.body.scrollHeight);
-        }
-    }
-
-    var commentFormTextarea = commentForm.getElementsByTagName("textarea")[0];
-    var posInfo = commentFormTextarea.getBoundingClientRect()
-    commentFormTextarea.addEventListener("mousedown", function (e) {
-        if (window.innerWidth >= widthTriggerBlogSidebar) {
-            if (((posInfo.height - (e.pageY - this.offsetTop)) < 17) &&
-                ((posInfo.width - (e.pageX - this.offsetLeft)) < 17)) {
-                document.body.addEventListener("mousemove", scrollToBottom);
-            }
-        }
-    });
-    document.body.addEventListener("mouseup", function (e) {
-        document.body.removeEventListener("mousemove", scrollToBottom);
-    });
-
-
-    var currentlySubmitting = false;
-    var commentFormWrap = document.getElementById("comment-form-wrap");
-    var commentFormMain = document.getElementById("comment-form-main");
-    var commentPostLoader = document.getElementById("comment-post-loader");
-    var commentPostResult = document.getElementById("comment-post-result");
-    var commentPostResultText = commentPostResult.getElementsByTagName("p")[0];
-    var timeoutCleanForm;
-
-    commentFormWrap.addEventListener("click", function (e) {
-        if (!currentlySubmitting) {
-            clearTimeout(timeoutCleanForm);
-            commentFormMain.classList.remove("waiting");
-            commentPostResult.style.display = "none";
-        }
-    });
-
-    commentForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        commentFormMain.classList.add("waiting");
-        commentPostLoader.style.display = "block";
-
-        if (!currentlySubmitting) {
-            currentlySubmitting = true;
-            var request = new XMLHttpRequest();
-            request.open("POST", "/blog/comments/post/", true);
-            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-
-            function cleanCommentFormSuccess() {
-                commentPostResult.style.display = "none";
+        commentForm.classList.add("collapsed");
+        commentFormTrigger.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (commentForm.classList.contains("expanded")) {
                 commentForm.classList.add("collapsed");
                 commentForm.classList.remove("expanded");
-                setTimeout(function () { commentFormMain.classList.remove("waiting"); }, 500);
+            } else {
+                commentForm.classList.add("expanded");
+                commentForm.classList.remove("collapsed");
             }
+        });
 
-            request.onreadystatechange = function() {
-                /* allow to remove waiting screen after some time */
-                setTimeout(function() { currentlySubmitting = false; }, 2000);
-                commentPostLoader.style.display = "none";
-                if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-                    res = JSON.parse(request.responseText);
-                    var postCommentSuccess = res["post_comment_success"];
-                    if (postCommentSuccess) {
-                        if (userIsAuthenticated) {
-                            window.location.reload(false);
+        /* Blog Comment - Auto-scroll to the bottom of the window
+
+        /* There is no textarea resize event, hence we need this hackish part
+         * to auto-scroll when resizing the text area (horizontal layout only). */
+
+        function scrollToBottom(e) {
+            if ((window.innerHeight - event.clientY) < 50) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        }
+
+        var commentFormTextarea = commentForm.getElementsByTagName("textarea")[0];
+        var posInfo = commentFormTextarea.getBoundingClientRect()
+        commentFormTextarea.addEventListener("mousedown", function (e) {
+            if (window.innerWidth >= widthTriggerBlogSidebar) {
+                if (((posInfo.height - (e.pageY - this.offsetTop)) < 17) &&
+                    ((posInfo.width - (e.pageX - this.offsetLeft)) < 17)) {
+                    document.body.addEventListener("mousemove", scrollToBottom);
+                }
+            }
+        });
+        document.body.addEventListener("mouseup", function (e) {
+            document.body.removeEventListener("mousemove", scrollToBottom);
+        });
+
+        /* Blog Comment - Form validation */
+
+        username = document.getElementById("id_name");
+        email = document.getElementById("id_email");
+        comment = document.getElementById("id_comment");
+        validatedElements = [
+            [username, x => (x == "")],
+            [comment, x => (x == "")]
+        ];
+        addInputsListener(validatedElements, false);
+        addSubmitListener(commentForm, validatedElements);
+
+        function validateEmail(x) {
+            return ((x.length > 0) &&
+                    ((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1)))
+        }
+        var triedEmail = false;
+        email.addEventListener("blur", function (e) {
+            setValidationClass(e.target, validateEmail(e.target.value));
+            if (e.target.value.length > 0) {triedEmail = true;}});
+        email.addEventListener("input", function (e) {
+            if (triedEmail) {
+                setValidationClass(e.target, validateEmail(e.target.value));
+            }
+        });
+
+        /* Blog Comment - AJAX request */
+
+        var currentlySubmitting = false;
+        var commentFormWrap = document.getElementById("comment-form-wrap");
+        var commentFormMain = document.getElementById("comment-form-main");
+        var commentPostLoader = document.getElementById("comment-post-loader");
+        var commentPostResult = document.getElementById("comment-post-result");
+        var commentPostResultText = commentPostResult.getElementsByTagName("p")[0];
+        var timeoutCleanForm;
+
+        commentFormWrap.addEventListener("click", function (e) {
+            if (!currentlySubmitting) {
+                clearTimeout(timeoutCleanForm);
+                commentFormMain.classList.remove("waiting");
+                commentPostResult.style.display = "none";
+            }
+        });
+
+        commentForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            commentFormMain.classList.add("waiting");
+            commentPostLoader.style.display = "block";
+
+            if (!currentlySubmitting) {
+                currentlySubmitting = true;
+                var request = new XMLHttpRequest();
+                request.open("POST", "/blog/comments/post/", true);
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+
+                function cleanCommentFormSuccess() {
+                    commentPostResult.style.display = "none";
+                    commentForm.classList.add("collapsed");
+                    commentForm.classList.remove("expanded");
+                    setTimeout(function () { commentFormMain.classList.remove("waiting"); }, 500);
+                }
+
+                request.onreadystatechange = function() {
+                    /* allow to remove waiting screen after some time */
+                    setTimeout(function() { currentlySubmitting = false; }, 2000);
+                    commentPostLoader.style.display = "none";
+                    if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                        res = JSON.parse(request.responseText);
+                        var postCommentSuccess = res["post_comment_success"];
+                        if (postCommentSuccess) {
+                            if (userIsAuthenticated) {
+                                window.location.reload(false);
+                            } else {
+                            commentPostResultText.innerHTML = "Merci ! Votre commentaire sera publié après modération.";
+                            timeoutCleanForm = setTimeout(cleanCommentFormSuccess, 6000);
+                            }
                         } else {
-                        commentPostResultText.innerHTML = "Merci ! Votre commentaire sera publié après modération.";
-                        timeoutCleanForm = setTimeout(cleanCommentFormSuccess, 6000);
+                            commentPostResultText.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                         }
                     } else {
                         commentPostResultText.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                     }
-                } else {
-                    commentPostResultText.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
+                    commentPostResult.style.display = "flex";
                 }
-                commentPostResult.style.display = "flex";
-            }
 
-            // ?? I can't find a way to build the x-www-form-urlencoded string
-            // from the form data. And we can't use FormData because it would mess
-            // with django's post_comment method. I guess I shall do it myself,
-            // except it may break if the form changes...
-            var urlEncodedData = "";
-            var urlEncodedDataPairs = [];
-            var inputs = commentForm.getElementsByTagName("input");
-            for (var i=0; i<inputs.length; i++) {
-                var input = inputs[i];
-                name = input.getAttribute('name');
-                value = '';
-                if (name == "name") {
-                    if (input.value != null) { value = input.value; }
-                    else if (input.getAttribute('value') != null) {
-                        /* authenticated user only */
-                        value = input.getAttribute('value'); }
-                } else if ((name == "email") || (name == "honeypot")) {
-                    if (input.value != null) { value = input.value; }
-                } else {
-                    if (input.value != null) { value = input.getAttribute('value'); }
+                // ?? I can't find a way to build the x-www-form-urlencoded string
+                // from the form data. And we can't use FormData because it would mess
+                // with django's post_comment method. I guess I shall do it myself,
+                // except it may break if the form changes...
+                var urlEncodedData = "";
+                var urlEncodedDataPairs = [];
+                var inputs = commentForm.getElementsByTagName("input");
+                for (var i=0; i<inputs.length; i++) {
+                    var input = inputs[i];
+                    name = input.getAttribute('name');
+                    value = '';
+                    if (name == "name") {
+                        if (input.value != null) { value = input.value; }
+                        else if (input.getAttribute('value') != null) {
+                            /* authenticated user only */
+                            value = input.getAttribute('value'); }
+                    } else if ((name == "email") || (name == "honeypot")) {
+                        if (input.value != null) { value = input.value; }
+                    } else {
+                        if (input.value != null) { value = input.getAttribute('value'); }
+                    }
+                    urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
                 }
-                urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
+                var commentInput = commentForm.getElementsByTagName("textarea")[0];
+                urlEncodedDataPairs.push(encodeURIComponent(commentInput.getAttribute('name'))
+                    + '=' + encodeURIComponent(commentInput.value));
+                urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+                request.send(urlEncodedData);
             }
-            var commentInput = commentForm.getElementsByTagName("textarea")[0];
-            urlEncodedDataPairs.push(encodeURIComponent(commentInput.getAttribute('name'))
-                + '=' + encodeURIComponent(commentInput.value));
-            urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-            request.send(urlEncodedData);
-        }
-    });
-}
+        });
+    }
 
 
-/* Photos Display - Shrink-wrap container */
+} else if (websiteApp == "photos") {
 
-var galleryPhotos = document.getElementById("gallery-photos");
-if (galleryPhotos) {
+
+    /* Photos Display - Shrink-wrap container */
+
+    var galleryPhotos = document.getElementById("gallery-photos");
     var deltaMargin = 2*parseInt(window.getComputedStyle(galleryPhotos).marginLeft, 10);
     var deltaPadding = 2*(1+parseInt(window.getComputedStyle(galleryPhotos).paddingLeft, 10));    // border should be 1px wide
     var photoDisplay = galleryPhotos.getElementsByClassName("photo-display")[0];
@@ -627,13 +623,11 @@ if (galleryPhotos) {
         setHseparatorOverflow(hseparators[i]);
         addResizeListener(hseparators[i]);
     }
-}
 
 
-/* Photos Display - Flexslider overlay */
+    /* Photos Display - Flexslider overlay */
 
-var gallerySlider = document.getElementById("gallery-slider");
-if (gallerySlider) {
+    var gallerySlider = document.getElementById("gallery-slider");
     var slider;
     var animationSpeed;
 
@@ -741,5 +735,19 @@ if (gallerySlider) {
             setPhotoSize(photo);
         }
         addPhotoResizeListener(photo);
+    }
+}
+
+
+/* Global Forms - Define reset listeners once all codes have been registered */
+
+for (var key in codes) {
+    if (codes.hasOwnProperty(key)) {
+        if ((key != "logout") && (codes[key])) {
+            codes[key].addEventListener("reset", function (e) {
+                e.target.parentElement.classList.remove("revealed");
+                activeCode = "";
+            });
+        }
     }
 }
