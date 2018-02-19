@@ -30,7 +30,6 @@ function setValidationClass(elem, test) {
 }
 
 function addInputListener(element, atInit) {
-    console.log(element);
     if (atInit) {
         setValidationClass(element[0],
                        element[1](element[0].value));
