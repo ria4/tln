@@ -1,6 +1,6 @@
-
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+#from django.shortcuts import render
 
 
 # Login
@@ -18,3 +18,5 @@ def logout_view(req):
         logout(req)
     return HttpResponseRedirect(req.META.get('HTTP_REFERER'))
 
+#def error_404(req):
+#    return render(req, 'zinnia/error_404.html', {})
