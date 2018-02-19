@@ -1,54 +1,53 @@
-
 /* Critique Navigation Bars - Hide/Reveal and Resize bars */
 
-var width_trigger_topnav = 900;
-var top_navigation = document.getElementById("top-navigation");
-var top_navigation_trigger = document.getElementById("top-navigation-trigger");
-if (top_navigation_trigger) {
-    var errance_bar_trigger = document.getElementById("errance-bar-trigger");
-    var errance_bar = document.getElementById("errance-bar");
+var widthTriggerTopNav = 900;
+var topNavigation = document.getElementById("top-navigation");
+var topNavigationTrigger = document.getElementById("top-navigation-trigger");
+if (topNavigationTrigger) {
+    var erranceBarTrigger = document.getElementById("errance-bar-trigger");
+    var erranceBar = document.getElementById("errance-bar");
 
-    top_navigation_trigger.addEventListener("click", function(e) {
+    topNavigationTrigger.addEventListener("click", function(e) {
         e.preventDefault();
-        if (top_navigation.classList.contains("expanded")) {
-            top_navigation.classList.remove("expanded");
+        if (topNavigation.classList.contains("expanded")) {
+            topNavigation.classList.remove("expanded");
         } else {
-            top_navigation.classList.add("expanded");
+            topNavigation.classList.add("expanded");
         }
 
-        if (window.innerWidth < width_trigger_topnav) {
-            top_navigation.setAttribute("expanded_size", "double");
+        if (window.innerWidth < widthTriggerTopNav) {
+            topNavigation.setAttribute("expanded-size", "double");
         } else {
-            top_navigation.setAttribute("expanded_size", "simple");
+            topNavigation.setAttribute("expanded-size", "simple");
         }
     });
 
-    var width_trigger_errance = 1104;
-    errance_bar_trigger.addEventListener("click", function(e) {
+    var widthTriggerErrance = 1104;
+    erranceBarTrigger.addEventListener("click", function(e) {
         e.preventDefault();
-        if (errance_bar.classList.contains("expanded")) {
-            errance_bar.classList.remove("expanded");
+        if (erranceBar.classList.contains("expanded")) {
+            erranceBar.classList.remove("expanded");
         } else {
-            errance_bar.classList.add("expanded");
+            erranceBar.classList.add("expanded");
         }
 
-        if (window.innerWidth < width_trigger_errance) {
-            errance_bar.setAttribute("expanded_size", "double");
+        if (window.innerWidth < widthTriggerErrance) {
+            erranceBar.setAttribute("expanded-size", "double");
         } else {
-            errance_bar.setAttribute("expanded_size", "simple");
+            erranceBar.setAttribute("expanded-size", "simple");
         }
     });
 
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < width_trigger_topnav) {
-            top_navigation.setAttribute("expanded_size", "double");
+        if (window.innerWidth < widthTriggerTopNav) {
+            topNavigation.setAttribute("expanded-size", "double");
         } else {
-            top_navigation.setAttribute("expanded_size", "simple");
+            topNavigation.setAttribute("expanded-size", "simple");
         }
-        if (window.innerWidth < width_trigger_errance) {
-            errance_bar.setAttribute("expanded_size", "double");
+        if (window.innerWidth < widthTriggerErrance) {
+            erranceBar.setAttribute("expanded-size", "double");
         } else {
-            errance_bar.setAttribute("expanded_size", "simple");
+            erranceBar.setAttribute("expanded-size", "simple");
         }
     });
 }
@@ -56,14 +55,14 @@ if (top_navigation_trigger) {
 
 /* Sub Bar - Highlight selected media type or year */
 
-var media_bar = document.getElementById("media-bar");
-if (media_bar) {
+var mediaBar = document.getElementById("media-bar");
+if (mediaBar) {
     var hrefs = window.location.href.split('/');
     var mtype = hrefs[hrefs.length - 1];
     if (!isNaN(parseInt(mtype.charAt(0)))) {
         mtype = hrefs[hrefs.length - 2];
     }
-    links = media_bar.getElementsByTagName("li");
+    links = mediaBar.getElementsByTagName("li");
     for (var i=0; i<links.length; i++) {
         link = links[i].getElementsByTagName("a")[0]
         if (link.getAttribute("desc") == mtype) {
@@ -75,24 +74,24 @@ if (media_bar) {
 
 /* Collection - Display oeuvres by chunks */
 
-var txt_decoder = document.createElement("textarea");
+var textDecoder = document.createElement("textarea");
 function decodeHtml(html) {
-    txt_decoder.innerHTML = html;
-    return txt_decoder.value;
+    textDecoder.innerHTML = html;
+    return textDecoder.value;
 }
 
-var chunk_size = 25;
+var chunkSize = 25;
 var collection = document.getElementById("collection");
 if (collection) {
-    for (i=0; i<oeuvres.length/chunk_size; i++) {
+    for (i=0; i<oeuvres.length/chunkSize; i++) {
         var ul = document.createElement("ul");
         collection.appendChild(ul);
-        for (j=0; j<chunk_size; j++) {
-            if (oeuvres[chunk_size*i+j]) {
+        for (j=0; j<chunkSize; j++) {
+            if (oeuvres[chunkSize*i+j]) {
                 var a = document.createElement("a");
-                var text = decodeHtml(oeuvres[chunk_size*i+j][0]);
+                var text = decodeHtml(oeuvres[chunkSize*i+j][0]);
                 var textNode = document.createTextNode(text);
-                a.href = oeuvres[chunk_size*i+j][1];
+                a.href = oeuvres[chunkSize*i+j][1];
                 a.appendChild(textNode);
                 var li = document.createElement("li");
                 li.appendChild(a);
@@ -105,15 +104,15 @@ if (collection) {
 
 /* Seances - Displays seances by chunks */
 
-var seances_display = document.getElementById("seances");
-if (seances_display) {
-    for (i=0; i<seances.length/chunk_size; i++) {
+var seancesDisplay = document.getElementById("seances");
+if (seancesDisplay) {
+    for (i=0; i<seances.length/chunkSize; i++) {
         var ul = document.createElement("ul");
-        seances_display.appendChild(ul);
-        for (j=0; j<chunk_size; j++) {
-            if (seances[chunk_size*i+j]) {
+        seancesDisplay.appendChild(ul);
+        for (j=0; j<chunkSize; j++) {
+            if (seances[chunkSize*i+j]) {
                 var li = document.createElement("li");
-                var text = decodeHtml(seances[chunk_size*i+j]);
+                var text = decodeHtml(seances[chunkSize*i+j]);
                 var textNode = document.createTextNode(text);
                 li.appendChild(textNode);
                 ul.appendChild(li);
@@ -125,18 +124,18 @@ if (seances_display) {
 
 /* Cinemas - Displays cinemas by chunks */
 
-chunk_size = 21;
+chunkSize = 21;
 var cinemas = document.getElementById("cinemas");
 if (cinemas) {
-    for (i=0; i<cines.length/chunk_size; i++) {
+    for (i=0; i<cines.length/chunkSize; i++) {
         var ul = document.createElement("ul");
         cinemas.appendChild(ul);
-        for (j=0; j<chunk_size; j++) {
-            if (cines[chunk_size*i+j]) {
+        for (j=0; j<chunkSize; j++) {
+            if (cines[chunkSize*i+j]) {
                 var a = document.createElement("a");
-                var text = decodeHtml(cines[chunk_size*i+j][0]);
+                var text = decodeHtml(cines[chunkSize*i+j][0]);
                 var textNode = document.createTextNode(text);
-                a.href = cines[chunk_size*i+j][1];
+                a.href = cines[chunkSize*i+j][1];
                 a.appendChild(textNode);
                 var li = document.createElement("li");
                 li.appendChild(a);
@@ -149,148 +148,148 @@ if (cinemas) {
 
 /* Forms Validation */
 
-function validation_mark(elem, test) {
+function validationMark(elem, test) {
     if (test) {
-        elem.classList.add("bad_input");
+        elem.classList.add("bad-input");
     } else {
-        elem.classList.remove("bad_input");
+        elem.classList.remove("bad-input");
     }
 }
 
-function add_input_listener(element, at_init) {
-    if (at_init) {
-        validation_mark(element[0],
-                        element[1](element[0].value));
+function addInputListener(element, atInit) {
+    if (atInit) {
+        validationMark(element[0],
+                       element[1](element[0].value));
     }
     element[0].addEventListener("blur", function (e) {
-        validation_mark(e.target, element[1](e.target.value));});
+        validationMark(e.target, element[1](e.target.value));});
     element[0].addEventListener("input", function (e) {
-        validation_mark(e.target, element[1](e.target.value));});
+        validationMark(e.target, element[1](e.target.value));});
 }
 
-function add_inputs_listener(validated_elements, at_init) {
-    for (i=0; i<validated_elements.length; i++) {
+function addInputsListener(validatedElements, atInit) {
+    for (i=0; i<validatedElements.length; i++) {
         /* we need an auxiliary function to copy i */
-        add_input_listener(validated_elements[i], at_init);
+        addInputListener(validatedElements[i], atInit);
     }
 }
 
-function add_submit_listener(form, validated_elements) {
+function addSubmitListener(form, validatedElements) {
     form.addEventListener("submit", function (e) {
-        var data_ok = true;
-        for (i=0; i<validated_elements.length; i++) {
-            if (validated_elements[i][0].classList.contains("bad_input")) {
-                data_ok = false;
+        var dataOk = true;
+        for (i=0; i<validatedElements.length; i++) {
+            if (validatedElements[i][0].classList.contains("bad-input")) {
+                dataOk = false;
             }
         };
-        if (!data_ok) {
+        if (!dataOk) {
             e.preventDefault();
         }
     });
 }
 
-var oeuvre_form = document.getElementById("oeuvre_form");
-if (oeuvre_form) {
-    title_vf = document.getElementById("id_title_vf");
-    title_vo = document.getElementById("id_title_vo");
-    title_alt = document.getElementById("id_title_alt");
+var oeuvreForm = document.getElementById("oeuvre_form");
+if (oeuvreForm) {
+    titleVf = document.getElementById("id_title_vf");
+    titleVo = document.getElementById("id_title_vo");
+    titleAlt = document.getElementById("id_title_alt");
     artists = document.getElementById("id_artists");
     year = document.getElementById("id_year");
-    imdb_id = document.getElementById("id_imdb_id");
-    validated_elements = [
-        [title_vf, x => ((x.length > 1000) || (x == ""))],
-        [title_vo, x => (x.length > 1000)],
-        [title_alt, x => (x.length > 1000)],
+    imdbId = document.getElementById("id_imdb_id");
+    validatedElements = [
+        [titleVf, x => ((x.length > 1000) || (x == ""))],
+        [titleVo, x => (x.length > 1000)],
+        [titleAlt, x => (x.length > 1000)],
         [artists, x => ((x.length > 1000) || (x == ""))],
         [year, x => ((x > 2100) || (x == ""))],
-        [imdb_id, x => !x.match(/^tt\d{7}$|^$/)]
+        [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
     ];
-    add_inputs_listener(validated_elements, true);
-    add_submit_listener(oeuvre_form, validated_elements);
+    addInputsListener(validatedElements, true);
+    addSubmitListener(oeuvreForm, validatedElements);
 }
 
-var oeuvre_form_empty = document.getElementById("oeuvre_form_empty");
-if (oeuvre_form_empty) {
-    title_vf = document.getElementById("id_empty_title_vf");
-    title_vo = document.getElementById("id_empty_title_vo");
-    title_alt = document.getElementById("id_empty_title_alt");
+var oeuvreFormEmpty = document.getElementById("oeuvre_form_empty");
+if (oeuvreFormEmpty) {
+    titleVf = document.getElementById("id_empty_title_vf");
+    titleVo = document.getElementById("id_empty_title_vo");
+    titleAlt = document.getElementById("id_empty_title_alt");
     artists = document.getElementById("id_empty_artists");
     year = document.getElementById("id_empty_year");
-    imdb_id = document.getElementById("id_empty_imdb_id");
-    validated_elements = [
-        [title_vf, x => ((x.length > 1000) || (x == ""))],
-        [title_vo, x => (x.length > 1000)],
-        [title_alt, x => (x.length > 1000)],
+    imdbId = document.getElementById("id_empty_imdb_id");
+    validatedElements = [
+        [titleVf, x => ((x.length > 1000) || (x == ""))],
+        [titleVo, x => (x.length > 1000)],
+        [titleAlt, x => (x.length > 1000)],
         [artists, x => ((x.length > 1000) || (x == ""))],
         [year, x => ((x > 2100) || (x == ""))],
-        [imdb_id, x => !x.match(/^tt\d{7}$|^$/)]
+        [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
     ];
-    add_inputs_listener(validated_elements, true);
-    add_submit_listener(oeuvre_form_empty, validated_elements);
+    addInputsListener(validatedElements, true);
+    addSubmitListener(oeuvreFormEmpty, validatedElements);
 }
 
-var cinema_form = document.getElementById("cinema_form");
-if (cinema_form) {
-    name_input = document.getElementById("id_name");
+var cinemaForm = document.getElementById("cinema_form");
+if (cinemaForm) {
+    nameInput = document.getElementById("id_name");
     comment = document.getElementById("id_comment");
     visited = document.getElementById("id_visited");
-    validated_elements = [
-        [name_input, x => (x == "")],
+    validatedElements = [
+        [nameInput, x => (x == "")],
         [comment, x => (x == "")],
         [visited, x => (x == "")]
     ];
-    add_inputs_listener(validated_elements, true);
-    add_submit_listener(cinema_form, validated_elements);
+    addInputsListener(validatedElements, true);
+    addSubmitListener(cinemaForm, validatedElements);
 }
 
-var comment_form_empty = document.getElementById("comment_form_empty");
-if (comment_form_empty) {
+var commentFormEmpty = document.getElementById("comment_form_empty");
+if (commentFormEmpty) {
     date = document.getElementById("id_empty_date");
     content = document.getElementById("id_empty_content");
-    validated_elements = [
+    validatedElements = [
         [date, x => (x == "")],
         [content, x => (x == "")]
     ];
-    add_inputs_listener(validated_elements, true);
-    add_submit_listener(comment_form_empty, validated_elements);
+    addInputsListener(validatedElements, true);
+    addSubmitListener(commentFormEmpty, validatedElements);
 }
 
-var comment_form = document.getElementById("comment_form");
-if (comment_form) {
+var commentForm = document.getElementById("comment_form");
+if (commentForm) {
     date = document.getElementById("id_date");
     content = document.getElementById("id_content");
-    validated_elements = [
+    validatedElements = [
         [date, x => (x == "")],
         [content, x => (x == "")]
     ];
-    add_inputs_listener(validated_elements, true);
-    add_submit_listener(comment_form, validated_elements);
+    addInputsListener(validatedElements, true);
+    addSubmitListener(commentForm, validatedElements);
 }
 
 /* this is for the blog */
-var comment_form_custom = document.getElementById("comment_form_custom");
-if (comment_form_custom) {
+var commentFormCustom = document.getElementById("comment_form_custom");
+if (commentFormCustom) {
     username = document.getElementById("id_name");
     email = document.getElementById("id_email");
     comment = document.getElementById("id_comment");
-    validated_elements = [
+    validatedElements = [
         [username, x => (x == "")],
         [comment, x => (x == "")]
     ];
-    add_inputs_listener(validated_elements, false);
-    add_submit_listener(comment_form_custom, validated_elements);
+    addInputsListener(validatedElements, false);
+    addSubmitListener(commentFormCustom, validatedElements);
 
-    function validate_email(x) {
+    function validateEmail(x) {
         return ((x.length > 0) &&
                 ((x[x.length-2] == ".") || (x.indexOf(".") == -1) || (x.indexOf("@") == -1)))
     }
-    var tried_email = false;
+    var triedEmail = false;
     email.addEventListener("blur", function (e) {
-        validation_mark(e.target, validate_email(e.target.value));
-        if (e.target.value.length > 0) {tried_email = true;}});
+        validationMark(e.target, validateEmail(e.target.value));
+        if (e.target.value.length > 0) {triedEmail = true;}});
     email.addEventListener("input", function (e) {
-        if (tried_email) {
-            validation_mark(e.target, validate_email(e.target.value));
+        if (triedEmail) {
+            validationMark(e.target, validateEmail(e.target.value));
         }
     });
 }
@@ -298,49 +297,49 @@ if (comment_form_custom) {
 
 /* Global - Reveal login, edit... through keyboard inputs */
 
-var login_form = document.getElementById("login_form");
+var loginForm = document.getElementById("login_form");
 
-var codes = {"login": login_form,
+var codes = {"login": loginForm,
              "logout": true,
-             "edito": oeuvre_form,
-             "addo": oeuvre_form_empty,
-             "editc": comment_form,
-             "addc": comment_form_empty,
-             "editi": cinema_form};
+             "edito": oeuvreForm,
+             "addo": oeuvreFormEmpty,
+             "editc": commentForm,
+             "addc": commentFormEmpty,
+             "editi": cinemaForm};
 
-var active_code = "";
-var cached_code = "";
+var activeCode = "";
+var cachedCode = "";
 document.addEventListener("keypress", function (e) {
-    if (!active_code) {
-        cached_code += String.fromCharCode(e.charCode);
-        var possible_code = false;
-        var code_found = false;
+    if (!activeCode) {
+        cachedCode += String.fromCharCode(e.charCode);
+        var possibleCode = false;
+        var codeFound = false;
         for (var key in codes) {
             if (codes.hasOwnProperty(key)) {
-                if (key.startsWith(cached_code)) {
-                    possible_code = true;
-                    if ((cached_code === key) && (codes[key])) {
-                        active_code = key;
-                        code_found = true;
+                if (key.startsWith(cachedCode)) {
+                    possibleCode = true;
+                    if ((cachedCode === key) && (codes[key])) {
+                        activeCode = key;
+                        codeFound = true;
                     }
                 }
             }
         }
-        if (!possible_code) {
-            cached_code = "";
-        } else if (code_found) {
-            cached_code = "";
-            if (active_code == "logout") {
-                active_code = "";
-                if (user_is_authenticated) { window.location.href = "/logout"; }
+        if (!possibleCode) {
+            cachedCode = "";
+        } else if (codeFound) {
+            cachedCode = "";
+            if (activeCode == "logout") {
+                activeCode = "";
+                if (userIsAuthenticated) { window.location.href = "/logout"; }
             } else {
-                var overlay = codes[active_code].parentElement;
+                var overlay = codes[activeCode].parentElement;
                 overlay.classList.add("revealed");
-                if (active_code == "login") {
+                if (activeCode == "login") {
                     e.preventDefault();
-                    name_input = document.getElementById("id_username");
+                    nameInput = document.getElementById("id_username");
                     $(overlay).one("transitionend",
-                        function(e) { name_input.focus(); });
+                        function(e) { nameInput.focus(); });
                 }
             }
         }
@@ -349,9 +348,9 @@ document.addEventListener("keypress", function (e) {
 
 /* there is no keypress event for ESC... */
 document.addEventListener("keydown", function (e) {
-    if (active_code && (e.keyCode == 27)) {
-        codes[active_code].parentElement.classList.remove("revealed");
-        active_code = "";
+    if (activeCode && (e.keyCode == 27)) {
+        codes[activeCode].parentElement.classList.remove("revealed");
+        activeCode = "";
     }
 });
 
@@ -360,7 +359,7 @@ for (var key in codes) {
         if ((key != "logout") && (codes[key])) {
             codes[key].addEventListener("reset", function (e) {
                 e.target.parentElement.classList.remove("revealed");
-                active_code = "";
+                activeCode = "";
             });
         }
     }
@@ -371,10 +370,10 @@ for (var key in codes) {
 var pagination = document.getElementById("pagination");
 if (pagination) {
     document.addEventListener("keydown", function (e) {
-        if ((e.keyCode == 37) && previous_page_url && !(active_code)) {
-            window.location.href = previous_page_url;
-        } else if ((e.keyCode == 39) && next_page_url && !(active_code)) {
-            window.location.href = next_page_url;
+        if ((e.keyCode == 37) && prevPageUrl && !(activeCode)) {
+            window.location.href = prevPageUrl;
+        } else if ((e.keyCode == 39) && nextPageUrl && !(activeCode)) {
+            window.location.href = nextPageUrl;
         }
     });
 }
@@ -382,41 +381,41 @@ if (pagination) {
 
 /* Blog - Menus positions depend on window width */
 
-var width_trigger_blog_sidebar = 1600;
-var top_navigation = document.getElementById("top-navigation");
-var blog_content_wrap = document.getElementById("blog-content-wrap");
-if (blog_content_wrap) {
-    if (window.innerWidth < width_trigger_blog_sidebar) {
-        blog_content_wrap.setAttribute("layout", "vertical");
-        top_navigation.style.paddingRight = "0px";
+var widthTriggerBlogSidebar = 1600;
+var topNavigation = document.getElementById("top-navigation");
+var blogContentWrap = document.getElementById("blog-content-wrap");
+if (blogContentWrap) {
+    if (window.innerWidth < widthTriggerBlogSidebar) {
+        blogContentWrap.setAttribute("layout", "vertical");
+        topNavigation.style.paddingRight = "0px";
     } else {
-        blog_content_wrap.setAttribute("layout", "horizontal");
-        top_navigation.style.paddingRight = "60px";
+        blogContentWrap.setAttribute("layout", "horizontal");
+        topNavigation.style.paddingRight = "60px";
     }
 
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < width_trigger_blog_sidebar) {
-            blog_content_wrap.setAttribute("layout", "vertical");
-            top_navigation.style.paddingRight = "0px";
+        if (window.innerWidth < widthTriggerBlogSidebar) {
+            blogContentWrap.setAttribute("layout", "vertical");
+            topNavigation.style.paddingRight = "0px";
         } else {
-            blog_content_wrap.setAttribute("layout", "horizontal");
-            top_navigation.style.paddingRight = "60px";
+            blogContentWrap.setAttribute("layout", "horizontal");
+            topNavigation.style.paddingRight = "60px";
         }
     });
 }
 
-if (top_navigation) {
-    if (window.innerWidth < width_trigger_topnav) {
-        top_navigation.setAttribute("layout", "vertical");
+if (topNavigation) {
+    if (window.innerWidth < widthTriggerTopNav) {
+        topNavigation.setAttribute("layout", "vertical");
     } else {
-        top_navigation.setAttribute("layout", "horizontal");
+        topNavigation.setAttribute("layout", "horizontal");
     }
 
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < width_trigger_topnav) {
-            top_navigation.setAttribute("layout", "vertical");
+        if (window.innerWidth < widthTriggerTopNav) {
+            topNavigation.setAttribute("layout", "vertical");
         } else {
-            top_navigation.setAttribute("layout", "horizontal");
+            topNavigation.setAttribute("layout", "horizontal");
         }
     });
 }
@@ -424,10 +423,10 @@ if (top_navigation) {
 
 /* Blog Archive Widget - Expand/Collapse entries */
 
-var widget_archives = document.getElementById("widget-archives");
-if (widget_archives) {
+var widgetArchives = document.getElementById("widget-archives");
+if (widgetArchives) {
 
-    function add_toggle_listener(toggle) {
+    function addToggleListener(toggle) {
         toggle.addEventListener("click", function(e) {
             e.preventDefault();
             if (toggle.classList.contains("expanded")) {
@@ -440,33 +439,33 @@ if (widget_archives) {
         });
     }
 
-    toggles = widget_archives.getElementsByClassName("toggle");
-    [].forEach.call(toggles, add_toggle_listener);
+    toggles = widgetArchives.getElementsByClassName("toggle");
+    [].forEach.call(toggles, addToggleListener);
 }
 
 
 /* Blog Comment - Reveal comment form */
 
-var comment_form = document.getElementById("comment_form_custom");
-if (comment_form) {
-    var comment_form_trigger = document.getElementById("comment-form-trigger");
-    var comment_form_trigger_img = comment_form_trigger.getElementsByTagName("img")[0];
-    comment_form_trigger.addEventListener("mouseover", function (e) {
-        comment_form_trigger_img.setAttribute("src", "/static/blog/icon_comment_link_hover.png");
+var commentForm = document.getElementById("comment_form_custom");
+if (commentForm) {
+    var commentFormTrigger = document.getElementById("comment-form-trigger");
+    var commentFormTriggerImg = commentFormTrigger.getElementsByTagName("img")[0];
+    commentFormTrigger.addEventListener("mouseover", function (e) {
+        commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link_hover.png");
     });
-    comment_form_trigger.addEventListener("mouseout", function (e) {
-        comment_form_trigger_img.setAttribute("src", "/static/blog/icon_comment_link.png");
+    commentFormTrigger.addEventListener("mouseout", function (e) {
+        commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link.png");
     });
 
-    comment_form.classList.add("collapsed");
-    comment_form_trigger.addEventListener("click", function (e) {
+    commentForm.classList.add("collapsed");
+    commentFormTrigger.addEventListener("click", function (e) {
         e.preventDefault();
-        if (comment_form.classList.contains("expanded")) {
-            comment_form.classList.add("collapsed");
-            comment_form.classList.remove("expanded");
+        if (commentForm.classList.contains("expanded")) {
+            commentForm.classList.add("collapsed");
+            commentForm.classList.remove("expanded");
         } else {
-            comment_form.classList.add("expanded");
-            comment_form.classList.remove("collapsed");
+            commentForm.classList.add("expanded");
+            commentForm.classList.remove("collapsed");
         }
     });
 
@@ -474,82 +473,82 @@ if (comment_form) {
     /* this hackish part auto-scrolls to the bottom of the window
      * when resizing the text area, for the horizontal layout
      * (there is no textarea resize event support) */
-    function scroll_to_bottom(e) {
+    function scrollToBottom(e) {
         if ((window.innerHeight - event.clientY) < 50) {
             window.scrollTo(0, document.body.scrollHeight);
         }
     }
 
-    var comment_form_textarea = comment_form.getElementsByTagName("textarea")[0];
-    var pos_info = comment_form_textarea.getBoundingClientRect()
-    comment_form_textarea.addEventListener("mousedown", function (e) {
-        if (window.innerWidth >= width_trigger_blog_sidebar) {
-            if (((pos_info.height - (e.pageY - this.offsetTop)) < 17) &&
-                ((pos_info.width - (e.pageX - this.offsetLeft)) < 17)) {
-                document.body.addEventListener("mousemove", scroll_to_bottom);
+    var commentFormTextarea = commentForm.getElementsByTagName("textarea")[0];
+    var posInfo = commentFormTextarea.getBoundingClientRect()
+    commentFormTextarea.addEventListener("mousedown", function (e) {
+        if (window.innerWidth >= widthTriggerBlogSidebar) {
+            if (((posInfo.height - (e.pageY - this.offsetTop)) < 17) &&
+                ((posInfo.width - (e.pageX - this.offsetLeft)) < 17)) {
+                document.body.addEventListener("mousemove", scrollToBottom);
             }
         }
     });
     document.body.addEventListener("mouseup", function (e) {
-        document.body.removeEventListener("mousemove", scroll_to_bottom);
+        document.body.removeEventListener("mousemove", scrollToBottom);
     });
 
 
-    var currently_submitting = false;
-    var comment_form_wrap = document.getElementById("comment-form-wrap");
-    var comment_form_main = document.getElementById("comment-form-main");
-    var comment_post_loader = document.getElementById("comment-post-loader");
-    var comment_post_result = document.getElementById("comment-post-result");
-    var comment_post_result_text = comment_post_result.getElementsByTagName("p")[0];
-    var timeout_clean_form;
+    var currentlySubmitting = false;
+    var commentFormWrap = document.getElementById("comment-form-wrap");
+    var commentFormMain = document.getElementById("comment-form-main");
+    var commentPostLoader = document.getElementById("comment-post-loader");
+    var commentPostResult = document.getElementById("comment-post-result");
+    var commentPostResultText = commentPostResult.getElementsByTagName("p")[0];
+    var timeoutCleanForm;
 
-    comment_form_wrap.addEventListener("click", function (e) {
-        if (!currently_submitting) {
-            clearTimeout(timeout_clean_form);
-            comment_form_main.classList.remove("waiting");
-            comment_post_result.style.display = "none";
+    commentFormWrap.addEventListener("click", function (e) {
+        if (!currentlySubmitting) {
+            clearTimeout(timeoutCleanForm);
+            commentFormMain.classList.remove("waiting");
+            commentPostResult.style.display = "none";
         }
     });
 
-    comment_form.addEventListener("submit", function (e) {
+    commentForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        comment_form_main.classList.add("waiting");
-        comment_post_loader.style.display = "block";
+        commentFormMain.classList.add("waiting");
+        commentPostLoader.style.display = "block";
 
-        if (!currently_submitting) {
-            currently_submitting = true;
+        if (!currentlySubmitting) {
+            currentlySubmitting = true;
             var request = new XMLHttpRequest();
             request.open("POST", "/blog/comments/post/", true);
             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 
-            function clean_comment_form_success() {
-                comment_post_result.style.display = "none";
-                comment_form.classList.add("collapsed");
-                comment_form.classList.remove("expanded");
-                setTimeout(function () { comment_form_main.classList.remove("waiting"); }, 500);
+            function cleanCommentFormSuccess() {
+                commentPostResult.style.display = "none";
+                commentForm.classList.add("collapsed");
+                commentForm.classList.remove("expanded");
+                setTimeout(function () { commentFormMain.classList.remove("waiting"); }, 500);
             }
 
             request.onreadystatechange = function() {
                 /* allow to remove waiting screen after some time */
-                setTimeout(function() { currently_submitting = false; }, 2000);
-                comment_post_loader.style.display = "none";
+                setTimeout(function() { currentlySubmitting = false; }, 2000);
+                commentPostLoader.style.display = "none";
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                     res = JSON.parse(request.responseText);
-                    var post_comment_success = res["post_comment_success"];
-                    if (post_comment_success) {
-                        if (user_is_authenticated) {
+                    var postCommentSuccess = res["post_comment_success"];
+                    if (postCommentSuccess) {
+                        if (userIsAuthenticated) {
                             window.location.reload(false);
                         } else {
-                        comment_post_result_text.innerHTML = "Merci ! Votre commentaire sera publié après modération.";
-                        timeout_clean_form = setTimeout(clean_comment_form_success, 6000);
+                        commentPostResultText.innerHTML = "Merci ! Votre commentaire sera publié après modération.";
+                        timeoutCleanForm = setTimeout(cleanCommentFormSuccess, 6000);
                         }
                     } else {
-                        comment_post_result_text.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
+                        commentPostResultText.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                     }
                 } else {
-                    comment_post_result_text.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
+                    commentPostResultText.innerHTML = "Une erreur est survenue. Merci de réessayer plus tard.<br/>(et désolée pour le dérangement)";
                 }
-                comment_post_result.style.display = "flex";
+                commentPostResult.style.display = "flex";
             }
 
             // ?? I can't find a way to build the x-www-form-urlencoded string
@@ -558,7 +557,7 @@ if (comment_form) {
             // except it may break if the form changes...
             var urlEncodedData = "";
             var urlEncodedDataPairs = [];
-            var inputs = comment_form.getElementsByTagName("input");
+            var inputs = commentForm.getElementsByTagName("input");
             for (var i=0; i<inputs.length; i++) {
                 var input = inputs[i];
                 name = input.getAttribute('name');
@@ -575,9 +574,9 @@ if (comment_form) {
                 }
                 urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
             }
-            var comment_input = comment_form.getElementsByTagName("textarea")[0];
-            urlEncodedDataPairs.push(encodeURIComponent(comment_input.getAttribute('name'))
-                + '=' + encodeURIComponent(comment_input.value));
+            var commentInput = commentForm.getElementsByTagName("textarea")[0];
+            urlEncodedDataPairs.push(encodeURIComponent(commentInput.getAttribute('name'))
+                + '=' + encodeURIComponent(commentInput.value));
             urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
 
             request.send(urlEncodedData);
@@ -588,80 +587,78 @@ if (comment_form) {
 
 /* Photos Display - Shrink-wrap container */
 
-var gallery_photos = document.getElementById("gallery-photos");
-if (gallery_photos) {
-    var delta_margin = 2*parseInt(window.getComputedStyle(gallery_photos).marginLeft, 10);
-    var delta_padding = 2*(1+parseInt(window.getComputedStyle(gallery_photos).paddingLeft, 10));    // border should be 1px wide
-    var photo_display = gallery_photos.getElementsByClassName("photo-display")[0];
-    var item_width = parseInt(window.getComputedStyle(photo_display).width, 10) + 2*parseInt(window.getComputedStyle(photo_display).marginLeft, 10);
-    var max_width = parseInt(window.getComputedStyle(document.getElementById("content")).maxWidth, 10);
+var galleryPhotos = document.getElementById("gallery-photos");
+if (galleryPhotos) {
+    var deltaMargin = 2*parseInt(window.getComputedStyle(galleryPhotos).marginLeft, 10);
+    var deltaPadding = 2*(1+parseInt(window.getComputedStyle(galleryPhotos).paddingLeft, 10));    // border should be 1px wide
+    var photoDisplay = galleryPhotos.getElementsByClassName("photo-display")[0];
+    var itemWidth = parseInt(window.getComputedStyle(photoDisplay).width, 10) + 2*parseInt(window.getComputedStyle(photoDisplay).marginLeft, 10);
+    var contentMaxWidth = parseInt(window.getComputedStyle(document.getElementById("content")).maxWidth, 10);
 
-    function set_gallery_width() {
-        var width = Math.min(max_width, window.innerWidth - delta_margin);
-        var q = Math.floor((width - delta_margin - delta_padding)/item_width);     // number of photos on a single line
-        gallery_photos.style.width = q*item_width + delta_padding + "px";
+    function setGalleryWidth() {
+        var width = Math.min(contentMaxWidth, window.innerWidth - deltaMargin);
+        var q = Math.floor((width - deltaMargin - deltaPadding)/itemWidth);     // number of photos on a single line
+        galleryPhotos.style.width = q*itemWidth + deltaPadding + "px";
     }
 
-    set_gallery_width();
-    window.addEventListener("resize", set_gallery_width);
+    setGalleryWidth();
+    window.addEventListener("resize", setGalleryWidth);
 
 
     var hseparators = document.getElementsByClassName("hseparator");
 
-    function set_hseparator_overflow(item) {
+    function setHseparatorOverflow(item) {
         var container = item.parentNode;
-        var max_wiw = parseInt(window.getComputedStyle(container).width, 10)
+        var maxWiw = parseInt(window.getComputedStyle(container).width, 10)
                         - parseInt(window.getComputedStyle(item).marginLeft, 10)
                         - parseInt(window.getComputedStyle(item).marginRight, 10);
-        if (window.innerWidth < max_wiw) {
+        if (window.innerWidth < maxWiw) {
             container.style.overflow = "hidden";
         } else {
             container.style.overflow = "inherit";
         }
     }
 
-    function add_resize_listener(item) {
-        window.addEventListener("resize", function () { set_hseparator_overflow(item); });
+    function addResizeListener(item) {
+        window.addEventListener("resize", function () { setHseparatorOverflow(item); });
     }
 
     for (var i=0; i<hseparators.length; i++) {
-        set_hseparator_overflow(hseparators[i]);
-        add_resize_listener(hseparators[i]);
+        setHseparatorOverflow(hseparators[i]);
+        addResizeListener(hseparators[i]);
     }
 }
 
-// TODO remove this
-//document.addEventListener("click", function() {console.log(document.activeElement);});
 
 /* Photos Display - Flexslider overlay */
 
-var gallery_slider = document.getElementById("gallery-slider");
-if (gallery_slider) {
+var gallerySlider = document.getElementById("gallery-slider");
+if (gallerySlider) {
     var slider;
     var animationSpeed;
 
-    var overlay_slider = gallery_slider.parentNode;
-    var photo_links = document.getElementsByClassName("photo-link");
-    var photos = gallery_slider.getElementsByTagName("img");
+    var overlaySlider = gallerySlider.parentNode;
+    var photoLinks = document.getElementsByClassName("photo-link");
+    var photos = gallerySlider.getElementsByTagName("img");
 
-    function add_slider_start_listener(item) {
+    function addSliderStartListener(item) {
         item.addEventListener("click", function (e) {
             e.preventDefault();
             slider.vars.animationSpeed = 0;
             slider.flexAnimate(parseInt(item.getAttribute("data-onclick"), 10));
             slider.vars.animationSpeed = animationSpeed;
-            overlay_slider.classList.add("revealed");
+            overlaySlider.classList.add("revealed");
         });
     }
 
-    for (var i=0; i<photo_links.length; i++) {
-        add_slider_start_listener(photo_links[i]);
+    for (var i=0; i<photoLinks.length; i++) {
+        addSliderStartListener(photoLinks[i]);
     }
 
-    // hide overlay_slider if click outside photo & arrows
+    // hide overlaySlider if click outside photo & arrows
     document.addEventListener("keydown", function (e) {
         if (e.keyCode == 27) {
-            overlay_slider.classList.remove("revealed");
+            overlaySlider.classList.remove("revealed");
         }
     });
 
@@ -679,8 +676,8 @@ if (gallery_slider) {
 
     /* Click outside the image to hide the slider. */
 
-    overlay_slider.addEventListener("click", function() {
-        overlay_slider.classList.remove("revealed");
+    overlaySlider.addEventListener("click", function() {
+        overlaySlider.classList.remove("revealed");
     });
     for (var i=0; i<photos.length; i++) {
         photos[i].addEventListener("click", function(e) {
@@ -707,21 +704,21 @@ if (gallery_slider) {
      * to fill as much height/width as possible depending on its ratio, yet preparing
      * the image container with a maximal height repels the caption at the bottom... */
 
-    var maxSlideWidth = gallery_slider.clientWidth;
+    var maxSlideWidth = gallerySlider.clientWidth;
     var slidesInfoHeight = document.getElementsByClassName("slide-info")[0].clientHeight;
-    var maxSlideHeight = gallery_slider.clientHeight - slidesInfoHeight;
-    var ratio_ref = 1.0 * maxSlideWidth / maxSlideHeight;
+    var maxSlideHeight = gallerySlider.clientHeight - slidesInfoHeight;
+    var ratioRef = 1.0 * maxSlideWidth / maxSlideHeight;
 
-    /* this is supposed to be fired before the photo_resize_listeners */
+    /* this is supposed to be fired before the listeners from addPhotoResizeListener */
     window.addEventListener("resize", function() {
-        maxSlideWidth = parseInt(window.getComputedStyle(gallery_slider).width, 10);
-        maxSlideHeight = parseInt(window.getComputedStyle(gallery_slider).height, 10) - slidesInfoHeight;
-        ratio_ref = 1.0 * maxSlideWidth / maxSlideHeight;
+        maxSlideWidth = parseInt(window.getComputedStyle(gallerySlider).width, 10);
+        maxSlideHeight = parseInt(window.getComputedStyle(gallerySlider).height, 10) - slidesInfoHeight;
+        ratioRef = 1.0 * maxSlideWidth / maxSlideHeight;
     });
 
-    function set_photo_size(photo) {
-        var ratio_real = 1.0 * photo.naturalWidth / photo.naturalHeight;
-        if (ratio_real > ratio_ref) {
+    function setPhotoSize(photo) {
+        var ratioReal = 1.0 * photo.naturalWidth / photo.naturalHeight;
+        if (ratioReal > ratioRef) {
             photo.style.width = Math.min(maxSlideWidth, photo.naturalWidth) + "px";
             photo.style.height = "auto";
         } else {
@@ -730,19 +727,19 @@ if (gallery_slider) {
         }
     }
 
-    function add_photo_resize_listener(photo) {
+    function addPhotoResizeListener(photo) {
         window.addEventListener("resize", function() {
-            set_photo_size(photo);
+            setPhotoSize(photo);
         });
     }
 
     for (var i=0; i<photos.length; i++) {
         var photo = photos[i];
-        photo.onload = function() { set_photo_size(this); }
+        photo.onload = function() { setPhotoSize(this); }
         if (photo.complete && (photo.naturalWidth !== 0)) {
             /* the image has already been loaded so onload event won't be fired */
-            set_photo_size(photo);
+            setPhotoSize(photo);
         }
-        add_photo_resize_listener(photo);
+        addPhotoResizeListener(photo);
     }
 }
