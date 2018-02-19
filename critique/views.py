@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm
+from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm, SeanceForm
 from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
 
 
@@ -317,7 +317,34 @@ def delete_cinema(req, id):
 
 # Séances
 
+@permission_required('critique.all_rights')
+def update_seance(req, seance, data):
+    seance.cinema = data['cinema']
+    seance.date = data['date']
+    if 'no_month' in data:
+        seance.date_month_unknown = data['no_month']
+    if ('film_slug' not in data and
+        'seance_title' not in data):
+        return
+    if 'film_slug' in data and data['film_slug']:
+        seance.film_id = str(get_object_or_404(Oeuvre, slug=data['film_slug']).id)
+    elif 'seance_title' in data:
+        seance.seance_title = data['seance_title']
+    seance.save()
+
+@permission_required('critique.all_rights')
+def add_seance(req):
+    form = SeanceForm(req.POST)
+    seance = Seance()
+    if form.is_valid():
+        update_seance(req, seance, form.cleaned_data)
+        return redirect('list_seances', year=seance.date.year)
+
 def list_seances(req, year=2017):
+    form = SeanceForm(req.POST)
+    if req.POST and form.is_valid():
+        update_seances(req, form)
+
     if year > 2011:
         start = datetime(year, 1, 1)
         end = datetime(year, 12, 31)
@@ -326,7 +353,17 @@ def list_seances(req, year=2017):
         start = datetime(2000, 1, 1)
         end = datetime(2011, 12, 31)
     seances = Seance.objects(__raw__={'date': {'$gte': start, '$lte': end}}).order_by('date')
-    year_range = range(2012, 2018)
+
+    seances_enhanced = []
+    for seance in seances:
+        film = None
+        if seance.film_id:
+            films = Oeuvre.objects.filter(id=seance.film_id)
+            if len(films) > 0:      # and it should always be so
+                film = films[0]
+        seances_enhanced.append((seance, film))
+
+    year_range = range(2012, 2019)
     return render(req, 'critique/seances.html', locals())
 
 

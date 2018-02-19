@@ -1,4 +1,3 @@
-
 """
 BooleanField must be required=False, because of some django nonsense.
 Also, the validation data written here is mostly useless, thanks to client-side validation.
@@ -45,3 +44,9 @@ class CinemaForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
     visited = forms.DateField(widget=DateInput)
 
+class SeanceForm(forms.Form):
+    cinema = forms.CharField(max_length=100)
+    date = forms.DateField(widget=DateInput)
+    no_month = forms.BooleanField(required=False)
+    film_slug = forms.CharField(max_length=1000, required=False)
+    seance_title = forms.CharField(max_length=1000, required=False)

@@ -21,7 +21,7 @@ if (topNavigation) {
 
 /* Forms - Validate form inputs */
 
-function setValidationClass(elem, test) {
+function warningOnElementIf(elem, test) {
     if (test) {
         elem.classList.add("bad-input");
     } else {
@@ -31,13 +31,13 @@ function setValidationClass(elem, test) {
 
 function addInputListener(element, atInit) {
     if (atInit) {
-        setValidationClass(element[0],
-                       element[1](element[0].value));
+        warningOnElementIf(element[0],
+                           element[1](element[0].value));
     }
     element[0].addEventListener("blur", function (e) {
-        setValidationClass(e.target, element[1](e.target.value));});
+        warningOnElementIf(e.target, element[1](e.target.value));});
     element[0].addEventListener("input", function (e) {
-        setValidationClass(e.target, element[1](e.target.value));});
+        warningOnElementIf(e.target, element[1](e.target.value));});
 }
 
 function addInputsListener(validatedElements, atInit) {
@@ -246,8 +246,7 @@ if (websiteApp == "critique") {
                 if (seances[chunkSizeSeances*i+j]) {
                     var li = document.createElement("li");
                     var text = decodeHtml(seances[chunkSizeSeances*i+j]);
-                    var textNode = document.createTextNode(text);
-                    li.appendChild(textNode);
+                    li.innerHTML = text;
                     ul.appendChild(li);
                 }
             }
@@ -356,11 +355,57 @@ if (websiteApp == "critique") {
         addSubmitListener(cinemaForm, validatedElements);
     }
 
+    var seanceFormEmpty = document.getElementById("seance_form_empty");
+    if (seanceFormEmpty) {
+        cinema = document.getElementById("id_empty_seance_cinema");
+        date = document.getElementById("id_empty_seance_date");
+        validatedElements = [
+            [cinema, x => ((x.length > 1000) || (x == ""))],
+            [date, x => (x == "")],
+        ];
+        addInputsListener(validatedElements, true);
+
+        /* exactly one of these must be filled */
+        filmSlug = document.getElementById("id_empty_seance_film_slug");
+        seanceTitle = document.getElementById("id_empty_seance_seance_title");
+
+        validatedElementsComplete = validatedElements.slice()
+        validatedElementsComplete.push([filmSlug, null]);
+        validatedElementsComplete.push([seanceTitle, null]);
+        addSubmitListener(seanceFormEmpty, validatedElementsComplete);
+
+        filmSlug.addEventListener("blur", function(e) {
+            var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
+                                   ((filmSlug.value != "") && (seanceTitle.value != "")))
+            warningOnElementIf(filmSlug, seanceFormError);
+            warningOnElementIf(seanceTitle, seanceFormError);
+        });
+        seanceTitle.addEventListener("blur", function(e) {
+            var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
+                                   ((filmSlug.value != "") && (seanceTitle.value != "")))
+            warningOnElementIf(filmSlug, seanceFormError);
+            warningOnElementIf(seanceTitle, seanceFormError);
+        });
+        filmSlug.addEventListener("input", function(e) {
+            var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
+                                   ((filmSlug.value != "") && (seanceTitle.value != "")))
+            warningOnElementIf(filmSlug, seanceFormError);
+            warningOnElementIf(seanceTitle, seanceFormError);
+        });
+        seanceTitle.addEventListener("input", function(e) {
+            var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
+                                   ((filmSlug.value != "") && (seanceTitle.value != "")))
+            warningOnElementIf(filmSlug, seanceFormError);
+            warningOnElementIf(seanceTitle, seanceFormError);
+        });
+    }
+
     codes["edito"] = oeuvreForm;
     codes["addo"] = oeuvreFormEmpty;
     codes["editc"] = commentForm;
     codes["addc"] = commentFormEmpty;
     codes["editi"] = cinemaForm;
+    codes["adds"] = seanceFormEmpty;
 
 
 } else if (websiteApp == "blog") {
@@ -477,11 +522,11 @@ if (websiteApp == "critique") {
         }
         var triedEmail = false;
         email.addEventListener("blur", function (e) {
-            setValidationClass(e.target, validateEmail(e.target.value));
+            warningOnElementIf(e.target, validateEmail(e.target.value));
             if (e.target.value.length > 0) {triedEmail = true;}});
         email.addEventListener("input", function (e) {
             if (triedEmail) {
-                setValidationClass(e.target, validateEmail(e.target.value));
+                warningOnElementIf(e.target, validateEmail(e.target.value));
             }
         });
 

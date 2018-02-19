@@ -295,6 +295,7 @@ body {
 
 .subbar a {
     color: black !important;
+    white-space: nowrap;
 }
 
 .subbar a:hover {
@@ -636,7 +637,7 @@ body {
 #comment_form p label,
 #comment_form_empty p label { width: 103px; }
 #comment_form p label[for="id_date"],
-#comment_form_empty p label[for="id_empty_date"] { width: 91px; }
+#comment_form_empty p label[for="id_empty_date"],
 #comment_form p label[for="id_no_month"],
 #comment_form p label[for="id_no_day"],
 #comment_form_empty p label[for="id_empty_no_month"],
@@ -647,7 +648,7 @@ body {
 #comment_form_empty .form_buttons .filler { width: 72px; }
 
 
-/* Forms Cinema
+/* Form Cinema
    ========================================================================== */
 
 /* The textarea should mirror exactly the width of the text underneath. */
@@ -656,3 +657,15 @@ body {
 #cinema_form p label { width: 96px; }
 #cinema_form p label[for="id_visited"] { width: 85px; }
 #cinema_form .form_buttons .filler { width: 72px; }
+
+
+/* Form Seance
+   ========================================================================== */
+
+#seance_form_empty .form_inputs { margin-top: 3px; }
+#seance_form_empty .form_inputs p { width: 330px; }
+#seance_form_empty .form_inputs p label { width: 151px; }
+#seance_form_empty .form_inputs p label[for="id_empty_seance_date"],
+#seance_form_empty .form_inputs p label[for="id_empty_seance_no_month"] { width: 102px; }
+#seance_form_empty .form_buttons { margin-top: -2px; }
+#seance_form_empty .form_buttons .filler { width: 44px; }

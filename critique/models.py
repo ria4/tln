@@ -133,7 +133,14 @@ class Cinema(Document):
     visited = fields.DateTimeField()
 
 class Seance(Document):
+    """
+    Renseigner un film_id suffit pour la plupart des cas, mais pour des séances
+    spéciales, sans oeuvre correspondante, il est possible de donner un titre.
+    """
     cinema = fields.StringField(max_length=100)
     date = fields.DateTimeField()
-    date_day_unknown = fields.BooleanField(default=False)
-    film = fields.StringField(max_length=500)
+    date_day_unknown = fields.BooleanField(default=False)               #TODO clear this
+    date_month_unknown = fields.BooleanField(default=False)
+    film_id = fields.StringField(max_length=24, blank=True, null=True, unique=True, sparse=True)
+    seance_title = fields.StringField(max_length=255, blank=True, null=True)
+    film = fields.StringField(max_length=255, blank=True, null=True)    #TODO clear this
