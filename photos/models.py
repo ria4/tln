@@ -1,6 +1,88 @@
 from django.db import models
+from django.utils.functional import curry
 
-from photologue.models import Gallery
+from photologue.models import Gallery, Photo, PhotoSize, PhotoSizeCustom
+
+
+max_size_method_map = {}
+
+class PhotoMaxSize(PhotoSize):
+    max_width = models.PositiveIntegerField('max width', default=0)
+    max_height = models.PositiveIntegerField('max height', default=0)
+
+
+class PhotoMaxSizeCache(object):
+    __state = {"max_sizes": {}}
+
+    def __init__(self):
+        self.__dict__ = self.__state
+        if not len(self.max_sizes):
+            max_sizes = PhotoMaxSize.objects.all()
+            for max_size in max_sizes:
+                self.max_sizes[max_size.name] = max_size
+
+    def reset(self):
+        global max_size_method_map
+        max_size_method_map = {}
+        self.max_sizes = {}
+
+
+def init_max_size_method_map():
+    global max_size_method_map
+    for max_size in PhotoMaxSizeCache().max_sizes.keys():
+        max_size_method_map['get_%s_max_size' % max_size] = \
+            {'base_name': '_get_MAX_SIZE_max_size', 'max_size': max_size}
+        max_size_method_map['get_%s_photomax_size' % max_size] = \
+            {'base_name': '_get_MAX_SIZE_photomax_size', 'max_size': max_size}
+        max_size_method_map['get_%s_url' % max_size] = \
+            {'base_name': '_get_MAX_SIZE_url', 'max_size': max_size}
+        max_size_method_map['get_%s_filename' % max_size] = \
+            {'base_name': '_get_MAX_SIZE_filename', 'max_size': max_size}
+
+
+class PhotoCustom(Photo):
+
+    def _get_MAX_SIZE_photosize(self, size):
+        return PhotoMaxSizeCache().max_sizes.get(size)
+
+    def _get_MAX_SIZE_size(self, size):
+        photosize = PhotoMaxSizeCache().max_sizes.get(size)
+        if not self.size_exists(photosize):
+            self.create_size(photosize)
+        return Image.open(self.image.storage.open(
+            self._get_MAX_SIZE_filename(size))).size
+
+    def _get_MAX_SIZE_url(self, size):
+        photosize = PhotoMaxSizeCache().max_sizes.get(size)
+        if not self.size_exists(photosize):
+            self.create_size(photosize)
+        if photosize.increment_count:
+            self.increment_count()
+        return '/'.join([
+            self.cache_url(),
+            filepath_to_uri(self._get_filename_for_size(photosize.name))])
+
+    def _get_MAX_SIZE_filename(self, size):
+        photosize = PhotoMaxSizeCache().sizes.get(size)
+        return smart_str(os.path.join(self.cache_path(),
+                                      self._get_filename_for_size(photosize.name)))
+
+    def __getattr__(self, name):
+        global max_size_method_map
+        if not max_size_method_map:
+            init_max_size_method_map()
+        di = max_size_method_map.get(name, None)
+        if di is not None:
+            result = curry(getattr(self, di['base_name']), di['max_size'])
+            setattr(self, name, result)
+            return result
+        else:
+            return super().__getattr__(name)
+
+    def resize_image(self, im, photosize):
+        if not isinstance(photosize, PhotoMaxSize):
+            return super().resize_image(im, photosize)
+
 
 
 class GalleryCustom(models.Model):
