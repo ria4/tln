@@ -1,5 +1,4 @@
 * page d'accueil / à propos
-* show reduced photos (use exif rotation data for construction!)
 * descriptions galeries
 * cross-browsers (do not display content until it is loaded?)
 
