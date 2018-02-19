@@ -7,7 +7,7 @@
 * pages 404, 403, 50X
 * blog widget welcome
 * sitemap avec django framework
-* rework critique css for resize (hamburger menu + see blog.css)
+* rework critique css for resize (burger menu + see blog.css)
 * clean css, use sass
 * clean js (camelcase)
 * écriture articles : journal dev, nom trans, retour sur 2017
