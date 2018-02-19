@@ -36,3 +36,7 @@
 * 13/02 - Customize Gallery model, style galleries, clean some style for critiques
 * 14/02 - Start integrating slick slider, far from working out-of-the-box (+ the dev seems like a jerk), so switch to flexslider
 * 15/02 - Factorize css, use unique slug for oeuvre urls, rework critique style, enable short slug-only blog urls (and struggle with timezones...)
+* 16/02 - Rework some blog style, support same-day articles on archive widget, display non-published entries (and tags) to superuser, add/edit some blog articles
+* 17/02 - Photo captions: a mess, first loading on firefox: a mess
+* 18/02 - Fix photo display with manual dimensions js computation (image loading), add navigation arrows, click outside photo to leave slider, set jpeg display export dimensions
+* 19/02 - Add other initial blog articles, accessibility background
