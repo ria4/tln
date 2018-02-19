@@ -41,14 +41,13 @@ class OeuvreInfo(EmbeddedDocument):
     """
     Informations publiques sur l'oeuvre.
     L'attribut imdb_id ne devrait pas apparaître en dehors du type 'film'.
-    TODO: make artists & year mandatory once the db has been properly filled
     """
     type = fields.StringField(choices=OEUVRES_TYPES)
     titles = fields.EmbeddedDocumentField(OeuvreInfoTitres)
     #artists = fields.ListField(fields.StringField(max_length=100))
     #year = fields.IntField(max_value=2100)
-    artists = fields.ListField(fields.StringField(max_length=100), blank=True)
-    year = fields.IntField(max_value=2100, blank=True)
+    artists = fields.ListField(fields.StringField(max_length=100))
+    year = fields.IntField(max_value=2100)
     imdb_id = fields.StringField(regex='^tt[0-9]{7}$', blank=True, null=True)
     image_url = fields.StringField(regex='^critique/[a-f0-9]{32}.jpg', blank=True)
 
