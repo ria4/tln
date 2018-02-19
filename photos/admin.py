@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from photologue.admin import GalleryAdmin as GalleryAdminDefault, PhotoAdmin as PhotoAdminDefault
-from photologue.models import Gallery, Photo
-from .models import GalleryCustom, PhotoCustom
+from photologue.admin import GalleryAdmin as GalleryAdminDefault
+from photologue.models import Gallery
+from .models import GalleryCustom
 
 
 class GalleryCustomInline(admin.StackedInline):
@@ -14,14 +14,3 @@ class GalleryAdmin(GalleryAdminDefault):
 
 admin.site.unregister(Gallery)
 admin.site.register(Gallery, GalleryAdmin)
-
-
-class PhotoCustomInline(admin.StackedInline):
-    model = PhotoCustom
-    can_delete = False
-
-class PhotoAdmin(PhotoAdminDefault):
-    inlines = [PhotoCustomInline, ]
-
-admin.site.unregister(Photo)
-admin.site.register(Photo, PhotoAdmin)
