@@ -1,10 +1,12 @@
+from PIL import Image
+
 from django.db import models
 from django.utils.functional import curry
 
-from photologue.models import Gallery, Photo, PhotoSize, PhotoSizeCustom
-
+from photologue.models import Gallery, Photo, PhotoSize
 
 max_size_method_map = {}
+
 
 class PhotoMaxSize(PhotoSize):
     max_width = models.PositiveIntegerField('max width', default=0)
@@ -63,7 +65,7 @@ class PhotoCustom(Photo):
             filepath_to_uri(self._get_filename_for_size(photosize.name))])
 
     def _get_MAX_SIZE_filename(self, size):
-        photosize = PhotoMaxSizeCache().sizes.get(size)
+        photosize = PhotoMaxSizeCache().max_sizes.get(size)
         return smart_str(os.path.join(self.cache_path(),
                                       self._get_filename_for_size(photosize.name)))
 
@@ -80,8 +82,30 @@ class PhotoCustom(Photo):
             return super().__getattr__(name)
 
     def resize_image(self, im, photosize):
+        """
+        We ignore the width and height attributes which could have been passed
+        to a PhotoMaxSize model (this is a PhotoSize job).
+        Also, there is no cropping. (But note that the image lay be upscaled.)
+        """
         if not isinstance(photosize, PhotoMaxSize):
             return super().resize_image(im, photosize)
+
+        cur_width, cur_height = im.size
+        max_width, max_height = photosize.max_width, photosize.max_height
+        if not max_width == 0 and not max_height == 0:
+            ratio = min(float(max_width) / cur_width,
+                        float(max_height) / cur_height)
+        else:
+            # Setting only one of max_width or max_height is basically
+            # setting a width/height: use the Photo model...
+            return im
+        new_dimensions = (int(round(cur_width * ratio)),
+                          int(round(cur_height * ratio)))
+        if new_dimensions[0] > cur_width or \
+           new_dimensions[1] > cur_height:
+            if not photosize.upscale:
+                return im
+        return im.resize(new_dimensions, Image.ANTIALIAS)
 
 
 
