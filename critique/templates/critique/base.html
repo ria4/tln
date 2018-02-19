@@ -51,6 +51,20 @@
         </div>
     </form>
 </div>
+
+<div class="overlay">
+    <form id="seance_form_empty" action="{% url 'add_seance' %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ seance_form_empty.as_p }}
+        </div>
+        <div class="form_buttons">
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
 {% endif %}
 {% endblock %}
 

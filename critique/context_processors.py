@@ -1,6 +1,5 @@
 from datetime import datetime
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import OeuvreForm, OeuvreCommentForm
+from .forms import OeuvreForm, OeuvreCommentForm, SeanceForm
 
 def oeuvre_form(req):
     form = OeuvreForm(auto_id='id_empty_%s')
@@ -11,5 +10,7 @@ def comment_form(req):
     form = OeuvreCommentForm({'date': date}, auto_id='id_empty_%s')
     return {"comment_form_empty": form}
 
-def login_form(req):
-    return {"login_form": AuthenticationForm()}
+def seance_form(req):
+    date = datetime.now().strftime('%Y-%m-%d')
+    form = SeanceForm({'date': date}, auto_id='id_empty_seance_%s')
+    return {"seance_form_empty": form}

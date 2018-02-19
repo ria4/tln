@@ -4,9 +4,8 @@
 
 # plus tard
 * rework critique css for resize (burger menu + see blog.css)
-* écriture articles : journal dev, nom trans, retour sur 2017
+* écriture articles : journal dev, nom trans, retour sur 2017, langue française
 * clean css, use sass
-* ajout de séances
 * blog widget welcome
 * sitemap avec django framework
 

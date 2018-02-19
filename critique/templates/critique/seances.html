@@ -5,7 +5,6 @@
 {% block meta-description-page %}liste de séances cinéma{% endblock %}
 
 {% block content %}
-
 <ul class="navbar subbar">
     <li><a href={% url "list_seances" 2011 %}
         {% if year < 2012 %}class="selected"{% endif %}>
@@ -22,9 +21,9 @@
 <script type:"text/javascript">
     var seances = [];
     {% localize on %}
-    {% for seance in seances %}
+    {% for seance, film in seances_enhanced %}
         seances.push(`
-            {% if seance.date_day_unknown %}
+            {% if seance.date_month_unknown %}
                 en {{ seance.date|date:"Y" }} :
             {% else %}
                 {% if year < 2012 %}
@@ -41,10 +40,9 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-            {{ seance.cinema }} - {{ seance.film }}
-        `)
+            {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% else %}{{ seance.film }}{% endif %}{% endif %}
+        `)      /* TODO clear the end of this */
     {% endfor %}
     {% endlocalize %}
 </script>
-
 {% endblock %}
