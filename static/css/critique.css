@@ -553,6 +553,9 @@ body {
     margin: 0 30px;
 }
 
+#collection.chunks li, #cinemas.chunks li { color: #bd4700; }
+#collection.chunks li:hover, #cinemas.chunks li:hover { color: #f7a300; }
+
 #collection.chunks ul {
     width: 380px;
 }
