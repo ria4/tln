@@ -701,7 +701,7 @@ textarea, input {
     -webkit-appearance: none;
     display: none;
 }
-.form_inputs .bad_input { border: 1px solid #db0000; }
+.form_inputs .bad-input { border: 1px solid #db0000; }
 .form_inputs .errorlist { display: none; }
 
 .form_buttons {

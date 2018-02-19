@@ -47,13 +47,13 @@
 </div>
     
 <script type="text/javascript">
-    var previous_page_url = null;
+    var prevPageUrl = null;
     {% if oeuvres.has_previous %}
-    previous_page_url = '{% url "list_envies" mtype oeuvres.previous_page_number %}';
+    prevPageUrl = '{% url "list_envies" mtype oeuvres.previous_page_number %}';
     {% endif %}
-    var next_page_url = null;
+    var nextPageUrl = null;
     {% if oeuvres.has_next %}
-    next_page_url = '{% url "list_envies" mtype oeuvres.next_page_number %}';
+    nextPageUrl = '{% url "list_envies" mtype oeuvres.next_page_number %}';
     {% endif %}
 </script>
 
