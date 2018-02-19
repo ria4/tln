@@ -3,15 +3,17 @@
 * cross-browsers (do not display content until it is loaded?)
 
 # plus tard
+* rework critique css for resize (burger menu + see blog.css)
+* écriture articles : journal dev, nom trans, retour sur 2017
+* clean css, use sass
 * ajout de séances
-* pages 404, 403, 50X
 * blog widget welcome
 * sitemap avec django framework
-* rework critique css for resize (burger menu + see blog.css)
-* clean css, use sass
-* écriture articles : journal dev, nom trans, retour sur 2017
-* check search engine indexation
+
+# après déploiement
+* pages 404, 403, 50X
 * make it mobile-friendly
+* check search engine indexation
 
 * accessibility
   * check contrast ratios
