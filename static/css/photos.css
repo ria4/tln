@@ -44,7 +44,20 @@ body > header h1 #top_title {
 #content a:hover { color: #f7a300; }
 #content a:active, #content a:focus { outline: none }
 
-#content #gallery-title {
+body > footer {
+    margin-top: 42px;
+    width: 100%;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 16px;
+    padding: 15px 0 14px 40px;
+    background-color: rgba(232, 202, 138, 0.4);
+}
+
+
+/* Gallery Overview
+   ========================================================================== */
+
+#gallery-title {
     margin-top: 24px;
     padding: 0 16px;
     font-weight: bold;
@@ -52,7 +65,7 @@ body > header h1 #top_title {
     border-bottom: solid 1px #a57100;
 }
 
-#content #gallery-photos {
+#gallery-photos {
     margin: 40px 6px;
     padding: 6px;
     border: solid 1px #d3d4db;
@@ -85,105 +98,29 @@ body > header h1 #top_title {
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
 }
 
-#content #gallery-description {
+#gallery-description {
     margin-top: -3px;
     padding-left: 6px;
     padding-right: 4px;
     font-size: 19px;
     font-style: italic;
 }
-#content #gallery-description #desc-fr {
+#gallery-description #desc-fr {
     padding-bottom: 10px;
 }
-#content #gallery-description .hseparator {
+#gallery-description .hseparator {
     margin-left: -20px;
     margin-right: -16px;
     border-bottom: solid 1px #a57100;
 }
-#content #gallery-description #desc-en {
+#gallery-description #desc-en {
     padding: 10px 0;
 }
-#content #gallery-description #desc-date {
+#gallery-description #desc-date {
     margin-top: 2px;
     padding-right: 13px;
     text-align: right;
 }
-
-
-body > footer {
-    margin-top: 42px;
-    width: 100%;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 16px;
-    padding: 15px 0 14px 40px;
-    background-color: rgba(232, 202, 138, 0.4);
-}
-
-
-/* Content Oeuvres
-   ========================================================================== */
-#content .info {
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#content .info .oeuvre_display {
-    margin: 10px;
-    margin-right: 20px;
-}
-
-#content .info .info_text {
-    height: 92%;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#content .info_text .main_title {
-    max-width: 430px;
-    text-align: left;
-    margin-left: -1px;
-    padding-bottom: 2px;
-    display: block;
-    line-height: 1;
-    padding-top: 5px;
-    padding-right: 1px;
-}
-
-#content .info .alt_title {
-    margin-top: -12px;
-    padding-bottom: 8px;
-}
-#content .info .artists {
-    margin-top: 2px;
-}
-
-#content #oeuvre_info {
-    min-height: 150px;
-}
-
-.entry #content {
-    margin-top: 24px;
-    padding: 0 6px;
-}
-
-.entry #content .entry-content p {
-    text-align: justify;
-    margin: 18px 0;
-}
-
-.entry #content > :not(.divide) {
-    max-width: 820px;
-}
-
-.entry #content > .divide {
-    border-bottom: 1px solid #a57100;
-}
-
 
 
 /* Gallery Slider
