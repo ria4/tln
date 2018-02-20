@@ -8,7 +8,6 @@
 * clean css, use sass
 * blog widget welcome
 * sitemap avec django framework
-* hide errance bar with click or scroll bottom
 
 # après déploiement
 * pages 404, 403, 50X
