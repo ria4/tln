@@ -100,7 +100,12 @@ document.addEventListener("keypress", function (e) {
                     e.preventDefault();
                     nameInput = document.getElementById("id_username");
                     $(overlay).one("transitionend",
-                        function(e) { nameInput.focus(); });
+                        function() { nameInput.focus(); });
+                } else if (activeCode == "adds") {
+                    e.preventDefault();
+                    cinemaInput = document.getElementById("id_empty_seance_cinema");
+                    $(overlay).one("transitionend",
+                        function() { cinemaInput.focus(); });
                 }
             }
         }
@@ -374,6 +379,8 @@ if (websiteApp == "critique") {
         validatedElementsComplete.push([seanceTitle, null]);
         addSubmitListener(seanceFormEmpty, validatedElementsComplete);
 
+        warningOnElementIf(filmSlug, true);
+        warningOnElementIf(seanceTitle, true);
         filmSlug.addEventListener("blur", function(e) {
             var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
                                    ((filmSlug.value != "") && (seanceTitle.value != "")))

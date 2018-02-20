@@ -40,8 +40,8 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-            {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% else %}{{ seance.film }}{% endif %}{% endif %}
-        `)      /* TODO clear the end of this */
+            {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}
+        `)
     {% endfor %}
     {% endlocalize %}
 </script>
