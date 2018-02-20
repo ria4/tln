@@ -3,7 +3,7 @@ import os
 import random
 import requests
 import shutil
-from datetime import datetime
+from datetime import datetime, time
 from PIL import Image
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
@@ -327,7 +327,9 @@ def delete_cinema(req, id):
 @permission_required('critique.all_rights')
 def update_seance(req, seance, data):
     seance.cinema = data['cinema']
-    seance.date = data['date']
+    date = data['date']
+    dtime = time(int(data['hour'][:2]), int(data['hour'][3:5]))
+    seance.date = datetime.combine(date, dtime)
     if 'no_month' in data:
         seance.date_month_unknown = data['no_month']
     if ('film_slug' not in data and

@@ -364,9 +364,11 @@ if (websiteApp == "critique") {
     if (seanceFormEmpty) {
         cinema = document.getElementById("id_empty_seance_cinema");
         date = document.getElementById("id_empty_seance_date");
+        hour = document.getElementById("id_empty_seance_hour");
         validatedElements = [
             [cinema, x => ((x.length > 1000) || (x == ""))],
             [date, x => (x == "")],
+            [hour, x => ((x.length != 5) || (x.charAt(2) != ":") || (parseInt(x.charAt(0), 10) > 2) || (parseInt(x.charAt(3), 10) > 5))],
         ];
         addInputsListener(validatedElements, true);
 
