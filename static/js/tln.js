@@ -198,6 +198,7 @@ if (websiteApp == "critique") {
         if (!ticking) {
             window.requestAnimationFrame(function () {
                 if (window.scrollY > lastKnownScrollPosition) {
+                    topNavigation.classList.remove("expanded");
                     erranceBar.classList.remove("expanded");
                 }
                 lastKnownScrollPosition = window.scrollY;
@@ -209,6 +210,7 @@ if (websiteApp == "critique") {
 
     var content = document.getElementById("content");
     content.addEventListener("click", function () {
+        topNavigation.classList.remove("expanded");
         erranceBar.classList.remove("expanded");
     });
 
