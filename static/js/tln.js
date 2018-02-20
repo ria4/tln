@@ -192,6 +192,26 @@ if (websiteApp == "critique") {
         }
     });
 
+    var lastKnownScrollPosition = 0;
+    var ticking = false;
+    window.addEventListener("scroll", function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                if (window.scrollY > lastKnownScrollPosition) {
+                    erranceBar.classList.remove("expanded");
+                }
+                lastKnownScrollPosition = window.scrollY;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    var content = document.getElementById("content");
+    content.addEventListener("click", function () {
+        erranceBar.classList.remove("expanded");
+    });
+
 
     /* Filter Bar - Highlight selected media type or year */
 
@@ -325,10 +345,10 @@ if (websiteApp == "critique") {
     var commentFormEmpty = document.getElementById("comment_form_empty");
     if (commentFormEmpty) {
         date = document.getElementById("id_empty_date");
-        content = document.getElementById("id_empty_content");
+        comment_content = document.getElementById("id_empty_content");
         validatedElements = [
             [date, x => (x == "")],
-            [content, x => (x == "")]
+            [comment_content, x => (x == "")]
         ];
         addInputsListener(validatedElements, true);
         addSubmitListener(commentFormEmpty, validatedElements);
@@ -337,10 +357,10 @@ if (websiteApp == "critique") {
     var commentForm = document.getElementById("comment_form");
     if (commentForm) {
         date = document.getElementById("id_date");
-        content = document.getElementById("id_content");
+        comment_content = document.getElementById("id_content");
         validatedElements = [
             [date, x => (x == "")],
-            [content, x => (x == "")]
+            [comment_content, x => (x == "")]
         ];
         addInputsListener(validatedElements, true);
         addSubmitListener(commentForm, validatedElements);
