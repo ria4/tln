@@ -47,6 +47,7 @@ class CinemaForm(forms.Form):
 class SeanceForm(forms.Form):
     cinema = forms.CharField(max_length=100)
     date = forms.DateField(widget=DateInput)
+    hour = forms.CharField(max_length=5)
     no_month = forms.BooleanField(required=False)
     film_slug = forms.CharField(max_length=1000, required=False)
     seance_title = forms.CharField(max_length=1000, required=False)
