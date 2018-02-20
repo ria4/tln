@@ -25,6 +25,8 @@ def preambule(req):
 def artiste(req, artist):
     oeuvres = Oeuvre.objects(__raw__={'$query': {'info.artists': artist},
                                       '$orderby': {'info.year': 1}})
+    if len(oeuvres) == 0:
+        raise Http404
     context = {'oeuvres': oeuvres, 'artist': artist}
     return render(req, 'critique/artiste.html', context)
 
@@ -90,7 +92,10 @@ def update_oeuvre(req, oeuvre, form):
     if form.cleaned_data['image_link']:
         url = download_distant_image(form.cleaned_data['image_link'])
         if oeuvre.info.image_url:
-            os.remove('critique/static/%s' % oeuvre.info.image_url)
+            try:
+                os.remove('critique/static/%s' % oeuvre.info.image_url)
+            except FileNotFoundError:
+                pass
         oeuvre.info.image_url = url
     if form.cleaned_data['tags']:
         oeuvre.tags = form.cleaned_data['tags']
@@ -137,7 +142,6 @@ def update_comment_with_form(comment, form):
 @permission_required('critique.all_rights')
 def add_comment(req, slug):
     """
-    The id here should be an oeuvre.id.
     Note that 'comment' being an EmbeddedDocument, it cannot be saved as such.
     """
     form = OeuvreCommentForm(req.POST)
@@ -198,7 +202,10 @@ def delete_oeuvre(req, slug):
     oeuvre = get_object_or_404(Oeuvre, slug=slug)
     mtype = oeuvre.info.type
     if hasattr(oeuvre.info, 'image_url') and oeuvre.info.image_url:
-        os.remove('critique/static/%s' % oeuvre.info.image_url)
+        try:
+            os.remove('critique/static/%s' % oeuvre.info.image_url)
+        except FileNotFoundError:
+            pass
     oeuvre.delete()
     return redirect('list_oeuvres', mtype)
 
@@ -350,7 +357,7 @@ def list_seances(req, year=2017):
         end = datetime(year, 12, 31)
     else:
         year = 2011
-        start = datetime(2000, 1, 1)
+        start = datetime(1998, 1, 1)
         end = datetime(2011, 12, 31)
     seances = Seance.objects(__raw__={'date': {'$gte': start, '$lte': end}}).order_by('date')
 

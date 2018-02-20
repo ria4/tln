@@ -139,8 +139,6 @@ class Seance(Document):
     """
     cinema = fields.StringField(max_length=100)
     date = fields.DateTimeField()
-    date_day_unknown = fields.BooleanField(default=False)               #TODO clear this
-    date_month_unknown = fields.BooleanField(default=False)
-    film_id = fields.StringField(max_length=24, blank=True, null=True, unique=True, sparse=True)
+    date_month_unknown = fields.BooleanField(default=False, blank=True)
+    film_id = fields.StringField(max_length=24, blank=True, null=True, sparse=True)
     seance_title = fields.StringField(max_length=255, blank=True, null=True)
-    film = fields.StringField(max_length=255, blank=True, null=True)    #TODO clear this
