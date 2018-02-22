@@ -5,14 +5,19 @@ header {
     top: 0;
     width: 100%;
     z-index: 101;
-    box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
 }
 
-#header-more {
-    box-shadow: 0 -1px 14px 0 rgba(2, 3, 3, 0.16);
-    background-image: url("/static/img_base/critique_background_header.jpg");
-    background-size: 1920px; auto;
+#critique-header {
     background-position: right top;
+    min-width: 480px;
+}
+#critique-header.h {
+    background-image: url("/static/img_base/critique_background_header.jpg");
+    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23);
+}
+#critique-header.v #main-nav {
+    background-image: url("/static/img_base/critique_background_header_min.jpg");
+    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23);
 }
 
 body {
@@ -34,19 +39,8 @@ body {
     font-family: Alegreya, Palatino, serif;
 }
 
-#content a {
-    color: #bd4700;
-    text-decoration: none;
-}
-
-#content a:hover {
-    color: #f7a300;
-}
-
-#content a:active, #content a:focus,
-.navbar a:active, .navbar a:focus {
-    outline: none
-}
+#content a { color: #bd4700; }
+#content a:hover { color: #f7a300; }
 
 #content .top_title {
     font-weight: bold;
@@ -160,7 +154,8 @@ body {
 
 /* Top Navigation Bar
    ========================================================================== */
-#top-navigation {
+#top-nav {
+    /* TODO do not load this one on smartphones */
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
     visibility: hidden;
@@ -169,24 +164,24 @@ body {
     padding: 0;
     transition: all 0.4s ease;
 }
-#top-navigation.expanded {
+#top-nav.expanded {
     visibility: visible;
     padding: 7px 0 5px 0;
 }
-#top-navigation.expanded[expanded-size=simple] {
+#top-nav.expanded[expanded-size=simple] {
     height: 70px;
 }
-#top-navigation.expanded[expanded-size=double] {
+#top-nav.expanded[expanded-size=double] {
     height: 140px;
 }
-#top-navigation > * {
+#top-nav > * {
     transform: translateY(-35px);
     transition: all 0.4s ease;
 }
-#top-navigation.expanded > * {
+#top-nav.expanded > * {
     transform: translateY(0);
 }
-#top-navigation1 {
+#top-nav1 {
     z-index: 200;
 }
 
@@ -208,6 +203,7 @@ body {
 .navbar a {
     color: black;
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .navbar a:hover {
@@ -219,7 +215,7 @@ body {
 }
 
 
-#main-bar {
+#main-nav {
     margin: 0 auto;
     position: relative;
     display: flex;
@@ -228,56 +224,72 @@ body {
     min-width: 700px;
 }
 
-#main-bar #top-navigation-trigger {
+#main-nav #top-nav-trigger {
     margin-left: 50px;
     font-family: SoljikDambaek, "Times New Roman", Times, serif;
     font-size: 56px;
 }
 
-#main-bar ul {
-    margin-right: 80px;
+#main-nav ul {
     font-size: 46px;
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
 }
+#main-nav > nav > ul {
+    margin-right: 80px;
+}
 
-#main-bar li {
-    padding: 0 34px;
+#main-nav li {
+    margin: 0 34px;
 }
 
 
-#errance-bar {
+#sub-nav {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     visibility: hidden;
-    height: 0px;
     overflow: hidden;
     transition: all 0.4s ease;
     font-size: 40px;
-    min-width: 700px;
 }
-#errance-bar.expanded {
-    visibility: visible;
-}
-#errance-bar.expanded[expanded-size=simple] {
-    height: 44px;
-}
-#errance-bar.expanded[expanded-size=double] {
-    height: 88px;
-}
-#errance-bar ul {
+#sub-nav.h { align-items: center; }
+#sub-nav.v { align-items: flex-end; }
+#sub-nav.expanded { visibility: visible; }
+
+#sub-nav-links-h, #sub-nav-links-v {
+    height: 0;
+    transition: height 0.4s ease, margin 0s ease 0.4s;
     display: flex;
+}
+#sub-nav.expanded #sub-nav-links-h { transition: height 0.4s ease; }
+#sub-nav.expanded #sub-nav-links-h[size="simple"] { height: 44px; }
+#sub-nav.expanded #sub-nav-links-h[size="double"] { height: 96px; margin-top: -8px; }
+#sub-nav.expanded #sub-nav-links-v { height: 372px; }
+#sub-nav-links-h {
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-#errance-bar li {
-    padding: 0 42px;
+#sub-nav-links-v {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border: 1px solid #c1bd79;
+    background-color: #fbf2bd;
 }
+#sub-nav-links-v li {
+    width: 100%;
+    border-bottom: 1px solid #deda99;
+}
+#sub-nav-links-v li:last-child {
+    border-bottom: none;
+}
+
+#sub-nav li { padding: 0 42px; }
 
 
 .subbar {

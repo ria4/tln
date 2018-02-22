@@ -80,24 +80,6 @@ body {
 }
 
 /* ==========================================================================
-   Links
-   ========================================================================== */
-/*
- * Addresses `outline` inconsistency between Chrome and other browsers.
- */
-a:focus {
-    outline: thin dotted;
-}
-
-/*
- * Improves readability when focused and also mouse hovered in all browsers.
- */
-a:active,
-a:hover {
-    outline: 0;
-}
-
-/* ==========================================================================
    Typography
    ========================================================================== */
 /*
@@ -536,9 +518,16 @@ textarea, input {
 }
 
 
+/* Global
+   ========================================================================== */
+
+a { text-decoration: none; }
+a:active, a:focus { outline: none; }
+
 /* Main Navigation Bar
    ========================================================================== */
-#top-navigation {
+
+#top-nav {
     margin: 40px 0;
     padding-top: 5px;
     display: flex;
@@ -546,44 +535,44 @@ textarea, input {
     align-items: center;
     text-align: center;
 }
-#top-navigation[layout="vertical"] {
+#top-nav[layout="vertical"] {
     flex-direction: column;
 }
-#top-navigation[layout="vertical"] #top-navigation1 {
+#top-nav[layout="vertical"] #top-nav1 {
     padding-left: 19px;
 }
-#top-navigation ul {
+#top-nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#top-navigation .nav-separator-sub,
-#top-navigation[layout="horizontal"] .nav-separator {
+#top-nav .nav-separator-sub,
+#top-nav[layout="horizontal"] .nav-separator {
     height: 30px;
     border-right: 1px solid #a57100;
     margin-top: -2px;
 }
-#top-navigation li > a {
+#top-nav li > a {
     padding: 0 60px;
     font-size: 56px;
 }
-#top-navigation a {
+#top-nav a {
     text-decoration: none;
     font-family: Abuget;
     color: black;
     white-space: nowrap;
     transition: all 0.4s ease;
 }
-#top-navigation a:hover {
+#top-nav a:hover {
     color: #a40000;
 }
-#top-navigation a:active, #top-navigation a:focus {
+#top-nav a:active, #top-nav a:focus {
     outline: none;
 }
-#top-navigation .dropdown {
+#top-nav .dropdown {
     position: relative;
 }
-#top-navigation .dropdown-content {
+#top-nav .dropdown-content {
     z-index: 200;
     visibility: hidden;
     opacity: 0;
@@ -599,26 +588,26 @@ textarea, input {
     background-color: rgba(0, 5, 61, 0.85);
     box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9);
 }
-#top-navigation .dropdown-content a {
+#top-nav .dropdown-content a {
     margin-top: -6px;
     margin-bottom: -4px;
     color: #f8f8f8;
 }
-#top-navigation .dropdown-content a:first-child {
+#top-nav .dropdown-content a:first-child {
     margin-top: -8px;
 }
-#top-navigation .dropdown-content a:last-child {
+#top-nav .dropdown-content a:last-child {
     margin-bottom: -6px;
 }
-#top-navigation .dropdown-content a:hover {
+#top-nav .dropdown-content a:hover {
     color: #f7a300;
 }
-#top-navigation .dropdown:hover .dropdown-content {
+#top-nav .dropdown:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
     transform: translateY(-4px);
 }
-#top-navigation .dropdown-content .dropdown-separator {
+#top-nav .dropdown-content .dropdown-separator {
     margin: 0 20px;
     border-bottom: solid 1px #d0d0d0;
     height: 0;

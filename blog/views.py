@@ -66,8 +66,7 @@ from zinnia.views.tags import BaseTagDetail
 def get_queryset_base_tag_detail_su_sensitive(self):
     self.tag = get_tag(self.kwargs['tag'])
     if self.tag is None:
-        raise Http404(_('No Tag found matching "%s".') %
-                self.kwargs['tag'])
+        raise Http404
     if self.request.user.is_superuser:
         queryset = Entry.objects.all()
     else:

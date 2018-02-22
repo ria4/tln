@@ -1,6 +1,8 @@
-* descriptions galeries
 * page d'accueil / à propos
 * cross-browsers (do not display content until it is loaded?)
+* lignes head dans tln/base.html
+* meta-description dans photos
+* preambule : il n'y a pas de spoilers
 
 # plus tard
 * rework critique css for resize (burger menu + see blog.css)
@@ -8,6 +10,7 @@
 * clean css, use sass
 * blog widget welcome
 * sitemap avec django framework
+* raise 404 if empty entry-list
 
 # après déploiement
 * pages 404, 403, 50X

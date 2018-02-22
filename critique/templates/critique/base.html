@@ -6,22 +6,36 @@
 {% block title %}critiques{% endblock %}
 
 {% block header-more %}
-<div id="header-more">
-    <nav id="main-bar" class="navbar">
-        <a id="top-navigation-trigger" href="#">tln</a>
+<div id="critique-header" class="h">
+    <nav id="main-nav" class="navbar">
+        <a id="top-nav-trigger" href="#">tln</a>
         <nav role="navigation">
         <ul>
-            <li><a href={% url "preambule" %}>préambule</a></li>
-            <li><a href={% url "top_textes" %}>textes choisis</a></li>
-            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
-            <li id="errance-bar-trigger"><a href="#">errances</a></li>
-            {# <li>recherche</li> #}
+            <ul id="main-nav-links-h">
+                <li><a href={% url "preambule" %}>préambule</a></li>
+                <li><a href={% url "top_textes" %}>textes choisis</a></li>
+                <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
+            </ul>
+            <ul id="main-nav-links-v">
+                <li><a href={% url "top_textes" %}>textes</a></li>
+            </ul>
+                <li id="sub-nav-trigger"><a href="#">errances</a></li>
+                {# <li>recherche</li> #}
         </ul>
         </nav>
     </nav>
 
-    <nav id="errance-bar" class="navbar" expanded-size="simple">
-        <ul>
+    <nav id="sub-nav" class="navbar h">
+        <ul id="sub-nav-links-h">
+            <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
+            <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
+            <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
+            <li><a href={% url "list_seances" %}>liste des séances</a></li>
+            <li><a href={% url "top_films" %}>top films par année</a></li>
+        </ul>
+        <ul id="sub-nav-links-v">
+            <li><a href={% url "preambule" %}>préambule</a></li>
+            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
             <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
             <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
             <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
@@ -30,6 +44,32 @@
         </ul>
     </nav>
 </div>
+
+{% comment %}
+<div id="critique-header-vertical">
+    <nav class="main navbar">
+        <a class="top-nav-trigger" href="#">tln</a>
+        <nav role="navigation">
+        <ul>
+            <li><a href={% url "top_textes" %}>textes</a></li>
+            <li class="sub-nav-trigger"><a href="#">errances</a></li>
+        </ul>
+        </nav>
+    </nav>
+
+    <nav class="sub navbar-vertical">
+        <ul>
+            <li><a href={% url "preambule" %}>préambule</a></li>
+            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
+            <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
+            <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
+            <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
+            <li><a href={% url "list_seances" %}>liste des séances</a></li>
+            <li><a href={% url "top_films" %}>top films par année</a></li>
+        </ul>
+    </nav>
+</div>
+{% endcomment %}
 {% endblock %}
 
 {% block content-wrap %}
