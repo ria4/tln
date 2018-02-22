@@ -1,19 +1,19 @@
 /* Top Navigation - Navigation bar layout depends on window width */
 
-var widthTriggerTopNav = 900;
-var topNavigation = document.getElementById("top-navigation");
-if (topNavigation) {
-    if (window.innerWidth < widthTriggerTopNav) {
-        topNavigation.setAttribute("layout", "vertical");
+var widthTriggerTopNavLayout = 900;
+var topNavBar = document.getElementById("top-nav");
+if (topNavBar) {
+    if (window.innerWidth < widthTriggerTopNavLayout) {
+        topNavBar.setAttribute("layout", "vertical");
     } else {
-        topNavigation.setAttribute("layout", "horizontal");
+        topNavBar.setAttribute("layout", "horizontal");
     }
 
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < widthTriggerTopNav) {
-            topNavigation.setAttribute("layout", "vertical");
+        if (window.innerWidth < widthTriggerTopNavLayout) {
+            topNavBar.setAttribute("layout", "vertical");
         } else {
-            topNavigation.setAttribute("layout", "horizontal");
+            topNavBar.setAttribute("layout", "horizontal");
         }
     });
 }
@@ -144,62 +144,85 @@ if (websiteApp == "critique") {
 
     /* Main Navigation Bars - Hide/reveal and resize bars */
 
-    var erranceBar = document.getElementById("errance-bar");
+    var critiqueHeader = document.getElementById("critique-header");
+    var subNavBar = document.getElementById("sub-nav");
+    var mainNavLinksH = document.getElementById("main-nav-links-h");
+    var mainNavLinksV = document.getElementById("main-nav-links-v");
+    var subNavLinksH = document.getElementById("sub-nav-links-h");
+    var subNavLinksV = document.getElementById("sub-nav-links-v");
 
-    var topNavigationTrigger = document.getElementById("top-navigation-trigger");
-    topNavigationTrigger.addEventListener("click", function(e) {
+    /* Reveal the topNavBar on clicking the utmost left link */
+    var topNavTrigger = document.getElementById("top-nav-trigger");
+    topNavTrigger.addEventListener("click", function(e) {
         e.preventDefault();
-        if (topNavigation.classList.contains("expanded")) {
-            topNavigation.classList.remove("expanded");
-        } else {
-            topNavigation.classList.add("expanded");
-        }
-
-        if (window.innerWidth < widthTriggerTopNav) {
-            topNavigation.setAttribute("expanded-size", "double");
-        } else {
-            topNavigation.setAttribute("expanded-size", "simple");
-        }
+        topNavBar.classList.toggle("expanded");
     });
 
-    var widthTriggerErrance = 1104;
-    var erranceBarTrigger = document.getElementById("errance-bar-trigger");
-    erranceBarTrigger.addEventListener("click", function(e) {
+    /* Reveal the subNavBar on clicking the utmost right link */
+    var subNavBarTrigger = document.getElementById("sub-nav-trigger");
+    subNavBarTrigger.addEventListener("click", function(e) {
         e.preventDefault();
-        if (erranceBar.classList.contains("expanded")) {
-            erranceBar.classList.remove("expanded");
-        } else {
-            erranceBar.classList.add("expanded");
-        }
-
-        if (window.innerWidth < widthTriggerErrance) {
-            erranceBar.setAttribute("expanded-size", "double");
-        } else {
-            erranceBar.setAttribute("expanded-size", "simple");
-        }
+        subNavBar.classList.toggle("expanded");
     });
 
+    /* Tag and activate the right boxes according to the window width */
+    var widthTriggerMainNavLayout = 960;
+    function setMainNavLayout() {
+        if (window.innerWidth < widthTriggerMainNavLayout) {
+            critiqueHeader.classList.remove("h");
+            critiqueHeader.classList.add("v");
+            subNavBar.classList.remove("h");
+            subNavBar.classList.add("v");
+            mainNavLinksH.style.display = "none";
+            mainNavLinksV.style.display = "flex";
+            subNavLinksH.style.display = "none";
+            subNavLinksV.style.display = "flex";
+        } else {
+            critiqueHeader.classList.remove("v");
+            critiqueHeader.classList.add("h");
+            subNavBar.classList.remove("v");
+            subNavBar.classList.add("h");
+            mainNavLinksH.style.display = "flex";
+            mainNavLinksV.style.display = "none";
+            subNavLinksH.style.display = "flex";
+            subNavLinksV.style.display = "none";
+        }
+    }
+
+    /* Extend the topNavBar height when its content wraps */
+    function setTopNavSize() {
+        if (window.innerWidth < widthTriggerTopNavLayout) {
+            topNavBar.setAttribute("expanded-size", "double");
+        } else {
+            topNavBar.setAttribute("expanded-size", "simple");
+        }
+    }
+
+    /* Extend the subNavBar height when its content wraps */
+    var widthTriggerSubNavLayout = 1104;
+    function setSubNavSize() {
+        if (window.innerWidth < widthTriggerSubNavLayout) {
+            subNavLinksH.setAttribute("size", "double");
+        } else {
+            subNavLinksH.setAttribute("size", "simple");
+        }
+    }
+
+    /* Roll out previous functions */
+    setTopNavSize(); setMainNavLayout(); setSubNavSize();
     window.addEventListener("resize", function(e) {
-        if (window.innerWidth < widthTriggerTopNav) {
-            topNavigation.setAttribute("expanded-size", "double");
-        } else {
-            topNavigation.setAttribute("expanded-size", "simple");
-        }
-        if (window.innerWidth < widthTriggerErrance) {
-            erranceBar.setAttribute("expanded-size", "double");
-        } else {
-            erranceBar.setAttribute("expanded-size", "simple");
-        }
+        setTopNavSize(); setMainNavLayout(); setSubNavSize();
     });
 
+    /* Hide menus after scrolling down */
     var lastKnownScrollPosition = 0;
     var ticking = false;
     window.addEventListener("scroll", function() {
         if (!ticking) {
             window.requestAnimationFrame(function () {
                 if (window.scrollY > lastKnownScrollPosition) {
-                    topNavigation.classList.remove("expanded");
-                    erranceBar.classList.remove("expanded");
+                    topNavBar.classList.remove("expanded");
+                    subNavBar.classList.remove("expanded");
                 }
                 lastKnownScrollPosition = window.scrollY;
                 ticking = false;
@@ -208,10 +231,22 @@ if (websiteApp == "critique") {
         }
     });
 
+    /* Hide menus after clicking outside the menus */
     var content = document.getElementById("content");
     content.addEventListener("click", function () {
-        topNavigation.classList.remove("expanded");
-        erranceBar.classList.remove("expanded");
+        topNavBar.classList.remove("expanded");
+        subNavBar.classList.remove("expanded");
+    });
+
+    /* Hide menus after clicking on the transparent part of the subNavBar */
+    subNavLinksV.addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+    subNavBar.addEventListener("click", function () {
+        if (subNavBar.classList.contains("v")) {
+            topNavBar.classList.remove("expanded");
+            subNavBar.classList.remove("expanded");
+        }
     });
 
 
@@ -450,10 +485,10 @@ if (websiteApp == "critique") {
     function setBlogLayout() {
         if (window.innerWidth < widthTriggerBlogSidebar) {
             blogContentWrap.setAttribute("layout", "vertical");
-            topNavigation.style.paddingRight = "0px";
+            topNavBar.style.paddingRight = "0px";
         } else {
             blogContentWrap.setAttribute("layout", "horizontal");
-            topNavigation.style.paddingRight = "60px";
+            topNavBar.style.paddingRight = "60px";
         }
     }
 
