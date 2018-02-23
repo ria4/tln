@@ -46,7 +46,6 @@ body #blog-content-wrap[layout='vertical'] #sidebar-wrap #sidebar-balance {
     flex-direction: column;
     align-items: center;
     font-family: Alegreya, Palatino, serif;
-    min-width: 420px;
     width: 100%;
     max-width: 900px;
 }
