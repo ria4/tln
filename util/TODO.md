@@ -1,6 +1,5 @@
 * page d'accueil / à propos
 * cross-browsers (do not display content until it is loaded?)
-* lignes head dans tln/base.html
 * meta-description dans photos
 
 # plus tard
