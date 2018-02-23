@@ -5,11 +5,13 @@ header {
     top: 0;
     width: 100%;
     z-index: 101;
+    pointer-events: none;
 }
 
 #critique-header {
     background-position: right top;
     min-width: 480px;
+    pointer-events: auto;
 }
 #critique-header.h {
     background-image: url("/static/img_base/critique_background_header.jpg");
@@ -163,6 +165,7 @@ body {
     margin: 0;
     padding: 0;
     transition: all 0.4s ease;
+    pointer-events: auto;
 }
 #top-nav.expanded {
     visibility: visible;
@@ -247,16 +250,13 @@ body {
 
 #sub-nav {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     visibility: hidden;
     overflow: hidden;
     transition: all 0.4s ease;
     font-size: 40px;
 }
-#sub-nav.h { align-items: center; }
-#sub-nav.v { align-items: flex-end; }
+#sub-nav.h { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+#sub-nav.v { width: auto; float: right; }
 #sub-nav.expanded { visibility: visible; }
 
 #sub-nav-links-h, #sub-nav-links-v {
@@ -288,8 +288,8 @@ body {
 #sub-nav-links-v li:last-child {
     border-bottom: none;
 }
-
-#sub-nav li { padding: 0 42px; }
+#sub-nav-links-h li { padding: 0 42px; }
+#sub-nav-links-v li a { padding: 0 42px; display: block; }
 
 
 .subbar {
