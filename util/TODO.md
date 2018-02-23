@@ -1,6 +1,5 @@
 * page d'accueil / à propos
 * cross-browsers (do not display content until it is loaded?)
-* meta-description dans photos
 
 # plus tard
 * rework critique css for resize (burger menu + see blog.css)
