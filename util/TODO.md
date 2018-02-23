@@ -2,7 +2,7 @@
 * cross-browsers (do not display content until it is loaded?)
 
 # plus tard
-* rework critique css for resize (burger menu + see blog.css)
+* rework critique css for resize (see blog.css)
 * écriture articles : journal dev, nom trans, retour sur 2017, langue française
 * clean css, use sass
 * blog widget welcome
@@ -11,8 +11,9 @@
 
 # après déploiement
 * pages 404, 403, 50X
-* make it mobile-friendly
 * check search engine indexation
+* make it mobile-friendly
+  * hover on photos link
 
 * accessibility
   * check contrast ratios
