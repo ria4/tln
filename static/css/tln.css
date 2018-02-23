@@ -502,26 +502,12 @@ textarea, input {
     text-shadow: none;
 }
 
-/*
- * Hide visually and from screenreaders, but maintain layout:
- */
-.invisible {
-    visibility: hidden;
-}
-
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
 
 /* Global
    ========================================================================== */
 
 body { min-width: 320px; }
+body > header { width: 100%; }
 
 a { text-decoration: none; }
 a:active, a:focus { outline: none; }
@@ -538,7 +524,7 @@ a:active, a:focus { outline: none; }
     align-items: center;
     text-align: center;
 }
-#top-nav[layout="vertical"] { flex-direction: column; }
+#top-nav[layout="vertical"] { flex-direction: column; margin-right: 3px; }
 #top-nav ul { display: flex; justify-content: center; align-items: center; }
 #top-nav .nav-separator-sub,
 #top-nav[layout="horizontal"] .nav-separator {
@@ -547,11 +533,13 @@ a:active, a:focus { outline: none; }
     margin-top: -2px;
 }
 #top-nav[layout="horizontal"] li > a { padding: 0 60px; }
-#top-nav[layout="vertical"] li > a { padding: 0 20px; }
 #top-nav[layout="vertical"] #top-nav1,
 #top-nav[layout="vertical"] #top-nav2 { width: 100%; }
-#top-nav[layout="vertical"] #top-nav1 li { width: 100%; max-width: 218px; }
-#top-nav[layout="vertical"] #top-nav2 li { width: 100%; max-width: 233px; }
+#top-nav[layout="vertical"] li { width: 100%; max-width: 230px; }
+#top-nav[layout="vertical"] li:first-child { float: right; margin-right: 1px; }
+#top-nav[layout="vertical"] li:last-child { float: left; }
+#top-nav[layout="vertical"] li:first-child > a { float: right; padding-right: 22%; }
+#top-nav[layout="vertical"] li:last-child > a { float: left; padding-left: 22%; }
 
 #top-nav a {
     text-decoration: none;
@@ -563,8 +551,13 @@ a:active, a:focus { outline: none; }
 }
 #top-nav a:hover { color: #a40000; }
 #top-nav a:active, #top-nav a:focus { outline: none; }
+#top-nav .dropdown-content a { font-size: 46px; }
 
 #top-nav .dropdown { position: relative; }
+#top-nav[layout="vertical"] .dropdown-content {
+    width: 82%;
+    top: 100%;
+}
 #top-nav .dropdown-content {
     z-index: 200;
     visibility: hidden;
@@ -577,7 +570,6 @@ a:active, a:focus { outline: none; }
     position: absolute;
     width: 94%;
     left: 3.4%;
-    font-size: 46px;
     background-color: rgba(0, 5, 61, 0.85);
     box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9);
 }
