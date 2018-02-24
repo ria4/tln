@@ -6,7 +6,7 @@
 {% block title %}critiques{% endblock %}
 
 {% block header-more %}
-<div id="critique-header" class="h">
+<div id="critique-header" layout="h">
     <nav id="main-nav" class="navbar">
         <a id="top-nav-trigger" href="#">tln</a>
         <nav role="navigation">
@@ -25,8 +25,8 @@
         </nav>
     </nav>
 
-    <nav id="sub-nav" class="navbar h">
-        <ul id="sub-nav-links-h">
+    <nav id="sub-nav" class="navbar">
+        <ul id="sub-nav-links-h" layout="h">
             <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
             <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
             <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>

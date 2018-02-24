@@ -1,21 +1,25 @@
+/* Layout - Toggle between horizontal and vertical style */
+
+function setLayout(element, widthTrigger) {
+    function setElementLayout() {
+        if (window.innerWidth < widthTrigger) {
+            element.setAttribute("layout", "v");
+        } else {
+            element.setAttribute("layout", "h");
+        }
+    }
+    return setElementLayout;
+}
+
+
 /* Top Navigation - Navigation bar layout depends on window width */
 
 var widthTriggerTopNavLayout = 900;
 var topNavBar = document.getElementById("top-nav");
 if (topNavBar) {
-    if (window.innerWidth < widthTriggerTopNavLayout) {
-        topNavBar.setAttribute("layout", "vertical");
-    } else {
-        topNavBar.setAttribute("layout", "horizontal");
-    }
-
-    window.addEventListener("resize", function(e) {
-        if (window.innerWidth < widthTriggerTopNavLayout) {
-            topNavBar.setAttribute("layout", "vertical");
-        } else {
-            topNavBar.setAttribute("layout", "horizontal");
-        }
-    });
+    var setTopNavLayout = setLayout(topNavBar, widthTriggerTopNavLayout);
+    setTopNavLayout();
+    window.addEventListener("resize", setTopNavLayout);
 }
 
 
@@ -42,7 +46,6 @@ function addInputListener(element, atInit) {
 
 function addInputsListener(validatedElements, atInit) {
     for (i=0; i<validatedElements.length; i++) {
-        /* we need an auxiliary function to copy i */
         addInputListener(validatedElements[i], atInit);
     }
 }
@@ -144,7 +147,7 @@ if (websiteApp == "critique") {
 
     /* Main Navigation Bars - Hide/reveal and resize bars */
 
-    var critiqueHeader = document.getElementById("critique-header");
+    var mainNavBar = document.getElementById("main-nav");
     var subNavBar = document.getElementById("sub-nav");
     var mainNavLinksH = document.getElementById("main-nav-links-h");
     var mainNavLinksV = document.getElementById("main-nav-links-v");
@@ -165,53 +168,15 @@ if (websiteApp == "critique") {
         subNavBar.classList.toggle("expanded");
     });
 
-    /* Tag and activate the right boxes according to the window width */
-    var widthTriggerMainNavLayout = 960;
-    function setMainNavLayout() {
-        if (window.innerWidth < widthTriggerMainNavLayout) {
-            critiqueHeader.classList.remove("h");
-            critiqueHeader.classList.add("v");
-            subNavBar.classList.remove("h");
-            subNavBar.classList.add("v");
-            mainNavLinksH.style.display = "none";
-            mainNavLinksV.style.display = "flex";
-            subNavLinksH.style.display = "none";
-            subNavLinksV.style.display = "flex";
-        } else {
-            critiqueHeader.classList.remove("v");
-            critiqueHeader.classList.add("h");
-            subNavBar.classList.remove("v");
-            subNavBar.classList.add("h");
-            mainNavLinksH.style.display = "flex";
-            mainNavLinksV.style.display = "none";
-            subNavLinksH.style.display = "flex";
-            subNavLinksV.style.display = "none";
-        }
-    }
-
-    /* Extend the topNavBar height when its content wraps */
-    function setTopNavSize() {
-        if (window.innerWidth < widthTriggerTopNavLayout) {
-            topNavBar.setAttribute("expanded-size", "double");
-        } else {
-            topNavBar.setAttribute("expanded-size", "simple");
-        }
-    }
-
-    /* Extend the subNavBar height when its content wraps */
+    /* Tag and show/extend the right boxes according to the window width */
+    var critiqueNavBar = document.getElementById("critique-header");
+    var widthTriggerCritiqueNavLayout = 960;
+    var setCritiqueNavLayout = setLayout(critiqueNavBar, widthTriggerCritiqueNavLayout);
     var widthTriggerSubNavLayout = 1104;
-    function setSubNavSize() {
-        if (window.innerWidth < widthTriggerSubNavLayout) {
-            subNavLinksH.setAttribute("size", "double");
-        } else {
-            subNavLinksH.setAttribute("size", "simple");
-        }
-    }
-
-    /* Roll out previous functions */
-    setTopNavSize(); setMainNavLayout(); setSubNavSize();
+    var setSubNavHLayout = setLayout(subNavLinksH, widthTriggerSubNavLayout);
+    setCritiqueNavLayout(); setSubNavHLayout();
     window.addEventListener("resize", function(e) {
-        setTopNavSize(); setMainNavLayout(); setSubNavSize();
+        setCritiqueNavLayout(); setSubNavHLayout();
     });
 
     /* Hide menus after scrolling down */
@@ -480,18 +445,8 @@ if (websiteApp == "critique") {
     /* Blog Layout - Sidebar position depends on window width */
 
     var widthTriggerBlogSidebar = 1600;
-    var blogContentWrap = document.getElementById("blog-content-wrap");
-
-    function setBlogLayout() {
-        if (window.innerWidth < widthTriggerBlogSidebar) {
-            blogContentWrap.setAttribute("layout", "vertical");
-            topNavBar.style.paddingRight = "0px";
-        } else {
-            blogContentWrap.setAttribute("layout", "horizontal");
-            topNavBar.style.paddingRight = "60px";
-        }
-    }
-
+    var body = document.getElementsByTagName("body")[0];
+    var setBlogLayout = setLayout(body, widthTriggerBlogSidebar);
     setBlogLayout();
     window.addEventListener("resize", setBlogLayout);
 
