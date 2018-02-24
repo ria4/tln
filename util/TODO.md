@@ -1,6 +1,5 @@
 * page d'accueil / à propos
 * cross-browsers (do not display content until it is loaded?)
-* blog sidebar position
 
 # plus tard
 * rework critique css for resize (see blog.css)
