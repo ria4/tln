@@ -23,6 +23,20 @@ if (topNavBar) {
 }
 
 
+/* Top Navigation - Deactivate hoverable photos link for touchscreens */
+
+function isTouchDevice() {
+    return "ontouchstart" in window || navigator.maxTouchPoints;
+}
+
+var topNavPhotoButton = document.getElementById("photos-dropdown-link");
+topNavPhotoButton.addEventListener("click", function (e) {
+    if (isTouchDevice()) {
+        e.preventDefault();
+    }
+});
+
+
 /* Forms - Validate form inputs */
 
 function warningOnElementIf(elem, test) {
