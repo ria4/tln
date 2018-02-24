@@ -40,4 +40,8 @@
 * 17/02 - Photo captions: a mess, first loading on firefox: a mess
 * 18/02 - Fix photo display with manual dimensions js computation (image loading), add navigation arrows, click outside photo to leave slider, set jpeg display export dimensions
 * 19/02 - Add other initial blog articles, accessibility background & roadmap, clean & factorize js, add seances, devise script & workflow to update the seance collection
-* 20/02 - Update seance collection, clean seances registering
+* 20/02 - Update seance collection, clean/complete seances registering
+* 21/02 - Galleries descriptions
+* 22/02 - Rework top & critique navigation for narrow screens
+* 23/02 - Update preambule, update meta fields, fit menu & blog & photos to 320px-wide screens
+* 24/02 - Rework/clean js and some css, clean blog layout

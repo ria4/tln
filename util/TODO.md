@@ -13,7 +13,6 @@
 * pages 404, 403, 50X
 * check search engine indexation
 * make it mobile-friendly
-  * hover on photos link
 
 * accessibility
   * check contrast ratios
