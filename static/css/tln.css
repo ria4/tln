@@ -507,10 +507,12 @@ textarea, input {
    ========================================================================== */
 
 body { min-width: 320px; }
-body > header { width: 100%; }
+#header { width: 100%; }
 
 a { text-decoration: none; }
 a:active, a:focus { outline: none; }
+#content-wrap a { color: #bd4700; }
+#content-wrap a:hover { color: #f7a300; }
 
 
 /* Main Navigation Bar

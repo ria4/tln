@@ -17,7 +17,7 @@
 {% endblock breadcrumbs %}
 
 {% block sidebar %}
-<aside id="widget-welcome" class="widget">
+<div id="widget-welcome" class="widget">
   <div id="welcome-quote">
   At first just pretend<br/>
   But later for searching much further<br/>
@@ -27,20 +27,20 @@
   <div id="welcome-author">
   Deakin - Good House
   </div>
-</aside>
-<aside id="widget-tags" class="widget">
+</div>
+<div id="widget-tags" class="widget">
   <h3>
       {# <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a> #}
     {% trans "Tags" %}
   </h3>
   {% get_tag_cloud_su_sensitive %}
-</aside>
-<aside id="widget-archives" class="widget">
+</div>
+<div id="widget-archives" class="widget">
   <h3>{% trans "Archives" %}</h3>
   {% get_archives_entries_tree_su_sensitive %}
-</aside>
+</div>
 {% if user.is_authenticated %}
-<aside id="widget-tools" class="widget">
+<div id="widget-tools" class="widget">
   <h3>{% trans "Tools" %}</h3>
   <ul>
     {% if perms.zinnia %}
@@ -65,6 +65,6 @@
       </a>
     </li>
   </ul>
-</aside>
+</div>
 {% endif %}
 {% endblock sidebar %}

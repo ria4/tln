@@ -444,7 +444,7 @@ if (websiteApp == "critique") {
 
     /* Blog Layout - Sidebar position depends on window width */
 
-    var widthTriggerBlogSidebar = 1600;
+    var widthTriggerBlogSidebar = 1512;
     var body = document.getElementsByTagName("body")[0];
     var setBlogLayout = setLayout(body, widthTriggerBlogSidebar);
     setBlogLayout();
@@ -488,6 +488,18 @@ if (websiteApp == "critique") {
             commentFormTriggerImg.setAttribute("src", "/static/blog/icon_comment_link.png");
         });
 
+        var duration;
+        var delay = 20;
+        function scrollToBottomWhileHeightChanges() {
+            if (duration > 0) {
+                window.scrollTo(0, document.body.scrollHeight);
+                duration = duration - delay;
+                setTimeout(scrollToBottomWhileHeightChanges, delay);
+            }
+        }
+
+        /* Using a hardcoded time seems better than parsing CSS multi-transitionDuration */
+        var commentFormTransitionTime = 600;
         commentForm.classList.add("collapsed");
         commentFormTrigger.addEventListener("click", function (e) {
             e.preventDefault();
@@ -497,6 +509,11 @@ if (websiteApp == "critique") {
             } else {
                 commentForm.classList.add("expanded");
                 commentForm.classList.remove("collapsed");
+                if (body.getAttribute("layout") == "h") {
+                    /* Stick the viewport to the bottom of the document */
+                    duration = commentFormTransitionTime;
+                    scrollToBottomWhileHeightChanges();
+                }
             }
         });
 
