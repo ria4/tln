@@ -249,39 +249,6 @@ header {
 #sub-nav-links-v li a { padding: 0 42px; display: block; }
 
 
-.subbar {
-    font-size: 44px;
-    margin-top: -20px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.subbar li {
-    padding: 0 36px;
-}
-
-.subbar a {
-    color: black !important;
-    white-space: nowrap;
-}
-
-.subbar a:hover {
-    color: #f7a300 !important;
-}
-
-.subbar .selected {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    display: inline-block;
-    line-height: 0.55;
-}
-
-#media-bar .selected {
-    line-height: 0.88;
-}
-
 #content .title {
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-weight: bold;

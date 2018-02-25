@@ -231,7 +231,7 @@ if (websiteApp == "critique") {
 
     /* Filter Bar - Highlight selected media type or year */
 
-    var filterBar = document.getElementById("media-bar");
+    var filterBar = document.getElementsByClassName("filter-navbar")[0];
     if (filterBar) {
         var hrefs = window.location.href.split('/');
         var mtype = hrefs[hrefs.length - 1];

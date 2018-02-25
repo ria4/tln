@@ -301,12 +301,30 @@ a:active, a:focus { outline: none; }
 
 .navbar {
     text-align: center;
-    font-family: Abuget, Palatino, serif; }
+    font-family: Abuget, Palatino, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
 .navbar a {
     color: black;
     white-space: nowrap;
-    transition: all 0.2s ease-in-out; }
+    transition: all 0.2s ease; }
 .navbar a:hover { color: #a40000; }
+
+.filter-navbar {
+    margin-top: -20px;
+    margin-bottom: 10px;
+    font-size: 44px; }
+.filter-navbar li { padding: 0 36px; }
+.filter-navbar a { color: black !important; }
+.filter-navbar a:hover { color: #f7a300 !important; }
+.filter-navbar a.selected {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    display: inline-block;
+    line-height: 0.88; }
+
+.digits-filter-navbar a.selected { line-height: 0.55; }
 
 
 /* Top Navigation Bars
