@@ -15,7 +15,6 @@ body {
 }
 
 #content {
-    flex: 1;
     max-width: 850px;
     font-family: Alegreya, Palatino, serif;
     display: flex;
@@ -23,17 +22,13 @@ body {
     align-items: center;
 }
 
-#content a { color: #bd4700; text-decoration: none; }
-#content a:hover { color: #f7a300; }
-#content a:active, #content a:focus { outline: none }
-
 body > footer {
     margin-top: 42px;
+    padding: 15px 0 14px 40px;
     width: 100%;
+    background-color: rgba(232, 202, 138, 0.4);
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 16px;
-    padding: 15px 0 14px 40px;
-    background-color: rgba(232, 202, 138, 0.4);
 }
 
 
@@ -66,9 +61,7 @@ body > footer {
     align-items: center;
 }
 
-.photo-display a {
-    display: flex;
-}
+.photo-display a { display: flex; }
 .photo-display a img {
     align-self: center;
     max-width: 150px;
@@ -119,9 +112,7 @@ body > footer {
     width: 96%;
     height: 92.5%;
 }
-#gallery-slider .slides {
-    height: 100%;
-}
+#gallery-slider .slides { height: 100%; }
 #gallery-slider .slides li {
     height: 100%;
     display: flex !important;
@@ -129,13 +120,8 @@ body > footer {
     justify-content: center;
     align-items: center;
 }
-#gallery-slider .slides li .slide {
-    display: flex;
-    flex-direction: column;
-}
-#gallery-slider .slides li .slide .slide-img img {
-    display: block;
-}
+#gallery-slider .slides li .slide { display: flex; flex-direction: column; }
+#gallery-slider .slides li .slide .slide-img img { display: block; }
 #gallery-slider .slides li .slide .slide-info {
     padding: 0 2px;
     width: 100%;
@@ -152,7 +138,7 @@ body > footer {
     z-index: 10;
     top: 44%;
     left: 0;
-    margin: 0 2%;   /* linked to the gallery-slider width */
+    margin: 0 2%;   /* bound to the gallery-slider width */
     width: 96%;
     display: flex;
     justify-content: space-between;
@@ -165,10 +151,5 @@ body > footer {
     font-size: 90px;
     transition: all 0.4s ease;
 }
-#gallery-slider .flex-direction-nav a:hover {
-    opacity: 0.6;
-    color: #ddd;
-}
-#gallery-slider .flex-direction-nav a:focus {
-    outline: none;
-}
+#gallery-slider .flex-direction-nav a:hover { opacity: 0.6; color: #ddd; }
+#gallery-slider .flex-direction-nav a:focus { outline: none; }
