@@ -5,7 +5,7 @@
 {% block meta-description-page %}liste de séances cinéma{% endblock %}
 
 {% block content %}
-<ul class="navbar subbar">
+<ul class="navbar filter-navbar digits-filter-navbar">
     <li><a href={% url "list_seances" 2011 %}
         {% if year < 2012 %}class="selected"{% endif %}>
         avant 2012</a></li>
