@@ -506,13 +506,49 @@ textarea, input {
 /* Global
    ========================================================================== */
 
-body { min-width: 320px; }
-#header { width: 100%; }
+html { height: 100%; }
+body {
+    min-width: 320px;
+    min-height: 100%;
+    background-image: url("/static/img_base/critique_background_content.jpg");
+    background-size: 100% auto;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+
+body > header { width: 100%; }
+body > #content-wrap {
+    padding-bottom: 42px;
+    flex: 1;
+    font-family: Alegreya, Palatino, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+body > footer {
+    padding: 15px 0 14px 40px;
+    width: 100%;
+    background-color: rgba(232, 202, 138, 0.4);
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 16px; }
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
 
 a { text-decoration: none; }
 a:active, a:focus { outline: none; }
 #content-wrap a { color: #bd4700; }
 #content-wrap a:hover { color: #f7a300; }
+
+#pagination {
+    width: 100%;
+    margin-top: 10px;
+    font-family: Abuget, Palatino, serif;
+    font-size: 40px;
+    text-align: right;
+    padding-right: 96px; }
 
 
 /* Main Navigation Bar

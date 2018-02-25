@@ -1,116 +1,31 @@
 /* Main
    ========================================================================== */
-body {
-    height: auto;
-    min-height: 100%;
-    padding-bottom: 50px;
-    background-image: url("/static/img_base/critique_background_content.jpg");
-    background-size: 100% auto;
-    font-size: 20px;
-}
-
-
-body #blog-content-wrap[layout='horizontal'] #sidebar-wrap {
-    padding-top: 76px;
-    align-items: flex-start; }
-body #blog-content-wrap[layout='horizontal'] #sidebar-wrap #sidebar-balance {
-    width: 44px; }
-body #blog-content-wrap[layout='vertical'] #sidebar-wrap {
-    padding-top: 6px;
-    display: flex;
-    width: 300px; }
-
-
-#content-wrap {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 body[layout="h"] { margin-right: 60px; }    /* horizontal layout only (see js) */
 body[layout="h"] #content-wrap { padding-right: 11px; }
 
-
-#content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Alegreya, Palatino, serif;
-    width: 100%;
-    max-width: 900px;
-}
-
-#content > * {
-    width: 100%;
-}
-
-#content .par_title {
-    font-weight: bold;
-    font-size: 30px;
-}
-
-
-#pagination {
-    width: 100%;
-    margin-top: 10px;
-    font-family: Abuget, Palatino, serif;
-    font-size: 40px;
-    text-align: right;
-    padding-right: 96px;
-}
-
-
-.entry-title {
-    font-size: 34px;
-}
-
-.entry-list .entry-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 10px;
-}
-.entry-list .entry-title {
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    padding: 8px 0;
-    margin-right: 8px;
-    font-size: 26px;
-}
-
-.entry .entry-title {
-    font-weight: bold;
-    font-size: 40px;
-    text-align: center;
-    padding: 44px 8px 32px 0;
-}
+#content { max-width: 900px; }
+#content > * { width: 100%; }
 
 
 /* Sidebar
    ========================================================================== */
+
 #sidebar {
     border: 1px solid #deda99;
     padding: 0 4px;
-    background-color: #fbf2bd;
     width: 300px;
-    font-family: Alegreya, Palatino, serif;
-    font-size: 18px;
-}
+    background-color: #fbf2bd;
+    font-size: 18px; }
 
-body[layout="h"] #content-wrap #sidebar {
+body[layout="h"] #sidebar {
     position: absolute;
     top: 163px;
     right: 44.6%;
-    transform: translateX(644px);
-}
-body[layout="v"] #content-wrap #sidebar {
+    transform: translateX(644px); }
+body[layout="v"] #sidebar {
     position: relative;
-    top: 30px;
-}
+    top: 30px; }
 
 .entry-list #sidebar a { transition: color 0.12s linear; }
 .entry #sidebar { opacity: 0.15; transition: all 0.4s linear; }
@@ -125,113 +40,52 @@ body[layout="v"] #content-wrap #sidebar {
 #sidebar ul, #sidebar ol { margin-left: 1em; }
 #sidebar ul ul, #sidebar ul ol, #sidebar ol ul, #sidebar ol ol { margin-left: 0em; }
 
-#sidebar #widget-welcome { padding: 10px 8px 0 8px; }
-#sidebar #widget-welcome #welcome-quote {
+#widget-welcome { padding: 10px 8px 0 8px; }
+#widget-welcome #welcome-quote {
     font-size: 19px;
     font-style: italic;
     text-align: left; }
-#sidebar #widget-welcome #welcome-author {
+#widget-welcome #welcome-author {
     margin-top: 3px;
     font-style: italic;
     text-align: right; }
 
-#sidebar #widget-tags li { display: inline; }
-#sidebar #widget-tags li::after { content: ","; margin-left: -4px; }
-#sidebar #widget-tags li:last-child::after { content: ""; }
+#widget-tags li { display: inline; }
+#widget-tags li::after { content: ","; margin-left: -4px; }
+#widget-tags li:last-child::after { content: ""; }
 
-#sidebar #widget-archives ul ul { padding-left: 20px; }
-#sidebar #widget-archives ul ul ul { padding-left: 38px; list-style-type: none; }
-#sidebar #widget-archives li { text-indent: -4px; }
-#sidebar #widget-archives li li li { vertical-align: middle; text-indent: -15px; }
-#sidebar #widget-archives li li li:before { font-size: 17px; content: "●"; }
-#sidebar #widget-archives a.expanded+a+ul { visibility: visible; height: auto; }
-#sidebar #widget-archives a+a+ul { visibility: hidden; height: 0px; }
-#sidebar #widget-archives a.collapsed+a+ul a.expanded+a+ul { visibility: hidden; height: 0px; }
-#sidebar #widget-archives a+a+ul a.expanded+a+ul { visibility: visible; height: auto; }
-#sidebar #widget-archives .toggle { color: black; }
-#sidebar #widget-archives .toggle .toggle-in:after { content: '►'; }
-#sidebar #widget-archives .toggle.expanded .toggle-in:after { content: '▼'; }
+#widget-archives ul ul { padding-left: 20px; }
+#widget-archives ul ul ul { padding-left: 38px; list-style-type: none; }
+#widget-archives li { text-indent: -4px; }
+#widget-archives li li li { vertical-align: middle; text-indent: -15px; }
+#widget-archives li li li:before { font-size: 17px; content: "●"; }
+#widget-archives a.expanded+a+ul { visibility: visible; height: auto; }
+#widget-archives a+a+ul { visibility: hidden; height: 0px; }
+#widget-archives a.collapsed+a+ul a.expanded+a+ul { visibility: hidden; height: 0px; }
+#widget-archives a+a+ul a.expanded+a+ul { visibility: visible; height: auto; }
+#widget-archives .toggle { color: black !important; }
+#widget-archives .toggle .toggle-in:after { content: '►'; }
+#widget-archives .toggle.expanded .toggle-in:after { content: '▼'; }
 
 
-/* Content Oeuvres
+/* Entry
    ========================================================================== */
-#content .info {
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#content .info .oeuvre_display {
-    margin: 10px;
-    margin-right: 20px;
-}
-
-#content .info .info_text {
-    height: 92%;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#content .info_text .main_title {
-    max-width: 430px;
-    text-align: left;
-    margin-left: -1px;
-    padding-bottom: 2px;
-    display: block;
-    line-height: 1;
-    padding-top: 5px;
-    padding-right: 1px;
-}
-
-#content .info .alt_title {
-    margin-top: -12px;
-    padding-bottom: 8px;
-}
-#content .info .artists {
-    margin-top: 2px;
-}
-
-#content #oeuvre_info {
-    min-height: 150px;
-}
 
 .entry #content {
     margin-top: 24px;
-    padding: 0 6px;
-}
-
+    padding: 0 6px; }
 .entry #content .entry-content p {
-    text-align: justify;
     margin: 18px 0;
-}
-
-.entry #content > :not(.divide) {
-    max-width: 820px;
-}
-
-.entry #content > .divide {
-    border-bottom: 1px solid #a57100;
-}
+    text-align: justify; }
+.entry #content > :not(.divide) { max-width: 820px; }
+.entry #content > .divide { border-bottom: 1px solid #a57100; }
 
 
 /* Entry-list
    ========================================================================== */
 
-.entry-list #content {
-    padding: 0 20px;
-}
-
-.entry-list #content a {
-    color: black;
-}
-
-.entry-list #content a:hover {
-    color: black;
-}
+.entry-list #content { padding: 0 20px; }
+.entry-list #content a { color: black; }
 
 .entry-list #content article {
     margin: 6px 0;
@@ -243,17 +97,10 @@ body[layout="v"] #content-wrap #sidebar {
     transition: all 0.4s ease;
     background-color: #fffddb;
     display: flex;
-    flex-direction: column;
-}
-
+    flex-direction: column; }
 .entry-list #content article:hover {
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    transition: all 0.4s ease;
-}
-
-.entry-list #content article .entry-body {
-    flex: 1;
-}
+    transition: all 0.4s ease; }
 
 .entry-list #content article .entry-body .entry-content {
     margin-left: 20px;
@@ -261,23 +108,41 @@ body[layout="v"] #content-wrap #sidebar {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-}
+    -webkit-box-orient: vertical; }
+
+
+/* Entry Header
+   ========================================================================== */
+
+.entry-title {
+    font-weight: bold;
+    font-size: 34px;
+    text-align: center; }
+.entry-list .entry-title {
+    margin-left: 10px;
+    margin-right: 18px;
+    padding: 8px 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 26px; }
+.entry .entry-title {
+    padding: 44px 8px 32px 0;
+    font-size: 40px; }
+
+
+/* Entry Footer
+   ========================================================================== */
 
 .entry-footer {
     padding-top: 6px;
     display: flex;
     align-items: center;
-    white-space: nowrap;
-}
-
-.entry-list .entry-footer {
-    margin: 0 20px;
-}
-
-.entry .entry-footer {
-    margin: 60px 0 10px 0;
-}
+    white-space: nowrap; }
+.entry-list .entry-footer { margin: 0 20px; }
+.entry .entry-footer { margin: 60px 0 10px 0; }
 
 .entry-footer .entry-tags {
     font-size: 17px;
@@ -285,16 +150,11 @@ body[layout="v"] #content-wrap #sidebar {
     overflow: hidden;
     text-overflow: ellipsis;
     color: #929292;
-    margin-right: -60px;
-}
-
-#content .entry-footer .entry-tags a {
+    margin-right: -30px; }
+#content-wrap .entry-footer .entry-tags a {
     color: inherit;
-    transition: color 0.1s ease-in-out;
-}
-#content .entry-footer .entry-tags a:hover {
-    color: #f7a300;
-}
+    transition: color 0.1s ease-in-out; }
+#content-wrap .entry-footer .entry-tags a:hover { color: #f7a300; }
 
 .entry-footer .entry-discussions {
     flex: 1;
@@ -302,18 +162,14 @@ body[layout="v"] #content-wrap #sidebar {
     justify-content: flex-end;
     align-items: center;
     margin-right: 7px;
-    min-width: 80px;
-}
-
+    min-width: 80px; }
 .entry-footer .entry-discussions img {
-    height: 14px;
     margin: 3px 8px 0 4px;
-}
+    height: 14px; }
 
 .entry-footer time {
     font-style: italic;
-    text-align: right;
-}
+    text-align: right; }
 
 
 /* Comments
@@ -336,62 +192,53 @@ body[layout="v"] #content-wrap #sidebar {
 #comments .comment .comment-content p { padding: 3px 0; line-height: 1.2; }
 
 
-/* Form Comment
+/* Comment Form
    ========================================================================== */
 
 #comment-form-wrap {
     position: relative;
     margin-top: 6px;
-    text-align: right;
-}
+    text-align: right; }
 
 #comment-form-trigger img {
     margin-right: 4px;
     margin-bottom: -1px;
-    height: 14px;
-}
+    height: 14px; }
 #comment-form-trigger span {
     padding-right: 8px;
     text-align: right;
-    font-style: italic;
-}
+    font-style: italic; }
 
 #comment_form_custom {
     overflow: hidden;
     font-size: 18px;
-    transition: all 0.6s linear, margin 0.1s ease 0.5s;
-}
+    transition: all 0.6s linear, margin 0.1s ease 0.5s; }
 #comment_form_custom.expanded {
     visibility: visible;
     opacity: 1;
     max-height: 800px;
     margin-bottom: -20px;
-    transition: all 0.6s linear, margin 0.1s ease;
-}
+    transition: all 0.6s linear, margin 0.1s ease; }
 #comment_form_custom.collapsed {
     visibility: hidden;
     opacity: 0;
-    max-height: 0px;
-}
+    max-height: 0px; }
 
 #comment_form_custom .form_inputs {
     margin-top: 3px;
-    padding-left: 40px;
-}
+    padding-left: 40px; }
 #comment_form_custom .form_inputs p { margin: 3px 0; }
 #comment_form_custom .form_inputs p label { display: none; }
 #comment_form_custom .form_inputs > p:first-of-type,
 #comment_form_custom .form_inputs > p:nth-of-type(2) {
     margin-left: 29px;
-    max-width: 500px;
-}
+    max-width: 500px; }
 #comment_form_custom .form_inputs > p:first-of-type input { font-weight: bold; }
 #comment_form_custom .form_inputs > p:nth-of-type(3) textarea {
     z-index: 10;
     max-height: 680px;
     height: 80px;
-    min-height: 30px;
-}
+    min-height: 30px; }
 ::placeholder { opacity: 0.8; }
 :-ms-input-placeholder { opacity: 0.8; }
 ::-ms-input-placeholder { opacity: 0.8; }
@@ -408,7 +255,7 @@ body[layout="v"] #content-wrap #sidebar {
 #comment_form_custom .form_buttons input:hover { color: #f7a300; }
 
 
-/* Form Comment Reaction
+/* Comment Form Reaction
    ========================================================================== */
 
 .loader {
