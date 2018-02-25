@@ -296,7 +296,20 @@ a:active, a:focus { outline: none; }
     text-shadow: none; }
 
 
-/* Main Navigation Bar
+/* Navigation Bars
+   ========================================================================== */
+
+.navbar {
+    text-align: center;
+    font-family: Abuget, Palatino, serif; }
+.navbar a {
+    color: black;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out; }
+.navbar a:hover { color: #a40000; }
+
+
+/* Top Navigation Bars
    ========================================================================== */
 
 #top-nav {
@@ -304,8 +317,7 @@ a:active, a:focus { outline: none; }
     padding-top: 5px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center; }
+    align-items: center; }
 #top-nav[layout="v"] { margin-right: 3px; flex-direction: column; }
 #top-nav ul { display: flex; justify-content: center; align-items: center; }
 #top-nav .nav-separator-sub,
@@ -323,14 +335,8 @@ a:active, a:focus { outline: none; }
 #top-nav[layout="v"] li:last-child > a { float: left; padding-left: 22%; }
 
 #top-nav a {
-    text-decoration: none;
-    font-family: Abuget;
     font-size: 56px;
-    color: black;
-    white-space: nowrap;
     transition: all 0.4s ease; }
-#top-nav a:hover { color: #a40000; }
-#top-nav a:active, #top-nav a:focus { outline: none; }
 #top-nav .dropdown-content a { font-size: 46px; }
 
 #top-nav .dropdown { position: relative; }
