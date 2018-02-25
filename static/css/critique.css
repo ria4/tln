@@ -4,134 +4,35 @@ header {
     position: fixed;
     top: 0;
     z-index: 101;
-    pointer-events: none;
-}
+    pointer-events: none; }
 
 #critique-header {
     background-position: right top;
     min-width: 480px;
-    pointer-events: auto;
-}
+    pointer-events: auto; }
 #critique-header[layout="h"] {
     background-image: url("/static/img_base/critique_background_header.jpg");
-    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23);
-}
+    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 #critique-header[layout="v"] #main-nav {
     background-image: url("/static/img_base/critique_background_header_min.jpg");
-    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23);
-}
+    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 
-#content {
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-    padding-top: 100px;
-    padding-right: 24px;
-    padding-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#content .top_title {
-    font-weight: bold;
-    font-size: 40px;
-    text-align: center;
-    padding: 44px 8px 12px 0;
-}
-
-#content .par_title {
-    font-weight: bold;
-    font-size: 30px;
-}
-
-#content .oeuvre_display {
-    width: auto;
-    max-width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#content .oeuvre_display img {
-    padding: 0;
-    border: 1px solid #eee;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#content .oeuvre_display a img {
-    transition: all 0.3s ease;
-}
-
-#content .oeuvre_display a img:hover {
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 255, 0.4);
-}
+#content-wrap { margin-top: 64px; }
+    /* for text content and layout="v" { margin-right: 20px; }
 
 
-#content .oeuvres_display {
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: -3px;
-}
-
-#content .oeuvres_display .oeuvre_display {
-    margin: 7px 6px;
-    height: auto;
-    max-width: 300px;
-    max-height: 300px;
-}
-
-#content .oeuvres_display .oeuvre_display a {
-    display: flex;
-}
-
-#content .oeuvres_display .oeuvre_display a img {
-    align-self: center;
-}
-
-
-/* Here is a dirty fix for borders/shadows of substitute displays...
- * Otherwise shadows would not appear when hovering over the inner p.
- * Also, removing class names might mess with css specificities... */
-#content .oeuvres_display .oeuvre_display .substitute_display {
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-flex;
-    padding: 0;
-    border: 1px solid #eee;
-    max-width: 100%;
-    max-height: 100%; }
-#content .oeuvres_display .oeuvre_display .substitute_display:hover {
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 255, 0.4); }
-#content .oeuvres_display .oeuvre_display .substitute_display img {
-    border: none; }
-#content .oeuvres_display .oeuvre_display .substitute_display img:hover {
-    box-shadow: none;
-    border: none; }
-#content .oeuvres_display .oeuvre_display .substitute_display p {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -70%); }
-
+/* ==========================================================================
+/* Navigation Bars
+/* ========================================================================== */
 
 /* Top Navigation Bar
    ========================================================================== */
 
 #top-nav {
+    visibility: hidden;
     /* TODO do not load this one on smartphones */
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
-    visibility: hidden;
     height: 0;
     margin: 0;
     padding: 0;
@@ -155,32 +56,21 @@ header {
 
 #main-nav {
     margin: 0 auto;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     min-width: 700px;
-}
+    justify-content: space-between; }
 
 #main-nav #top-nav-trigger {
     margin-left: 50px;
     font-family: SoljikDambaek, "Times New Roman", Times, serif;
-    font-size: 56px;
-}
+    font-size: 56px; }
 
+#main-nav > nav > ul { margin-right: 80px; }
 #main-nav ul {
     font-size: 46px;
     display: flex;
     justify-content: flex-end;
-    flex-wrap: wrap;
-}
-#main-nav > nav > ul {
-    margin-right: 80px;
-}
-
-#main-nav li {
-    margin: 0 34px;
-}
+    flex-wrap: wrap; }
+#main-nav li { margin: 0 34px; }
 
 #critique-header[layout="h"] #main-nav #main-nav-links-h { display: flex; }
 #critique-header[layout="h"] #main-nav #main-nav-links-v { display: none; }
@@ -192,23 +82,17 @@ header {
    ========================================================================== */
 
 #sub-nav {
-    position: relative;
     visibility: hidden;
+    position: relative;
     overflow: hidden;
-    transition: all 0.4s ease;
     font-size: 40px;
-}
+    transition: all 0.4s ease; }
 #critique-header[layout="h"] #sub-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    flex-direction: column; }
 #critique-header[layout="v"] #sub-nav {
     float: right;
     width: auto;
-    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23);
-}
+    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 #sub-nav.expanded { visibility: visible; }
 
 #critique-header[layout="h"] #sub-nav #sub-nav-links-h { display: flex; }
@@ -218,36 +102,113 @@ header {
 
 #sub-nav-links-h, #sub-nav-links-v {
     height: 0;
-    transition: height 0.4s ease, margin 0s ease 0.4s;
     display: flex;
-}
+    transition: height 0.4s ease, margin 0s ease 0.4s; }
 #sub-nav.expanded #sub-nav-links-h { transition: height 0.4s ease; }
 #sub-nav.expanded #sub-nav-links-h[layout="h"] { height: 44px; }
 #sub-nav.expanded #sub-nav-links-h[layout="v"] { height: 96px; margin-top: -8px; }
 #sub-nav.expanded #sub-nav-links-v { height: 372px; }
 #sub-nav-links-h {
-    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
+    flex-wrap: wrap; }
 #sub-nav-links-v {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
     border: 1px solid #c1bd79;
-    background-color: #fbf2bd;
-}
+    background-color: #fbf2bd; }
 #sub-nav-links-v li {
     width: 100%;
-    border-bottom: 1px solid #deda99;
-}
+    border-bottom: 1px solid #deda99; }
 #sub-nav-links-v li:last-child {
-    border-bottom: none;
-}
+    border-bottom: none; }
 #sub-nav-links-h li { padding: 0 42px; }
 #sub-nav-links-v li a { padding: 0 42px; display: block; }
 
+
+/* ==========================================================================
+/* Content
+/* ========================================================================== */
+
+/* Oeuvre Display
+   ========================================================================== */
+
+.oeuvre_display {
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+.oeuvre_display img {
+    border: 1px solid #eee;
+    max-width: 100%;
+    max-height: 100%; }
+.oeuvre_display a img {
+    transition: all 0.3s ease; }
+.oeuvre_display a img:hover {
+    border: 1px solid rgba(0, 0, 255, 0.4);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7); }
+
+.oeuvres_display .oeuvre_display {
+    margin: 7px 6px;
+    max-width: 300px;
+    max-height: 300px; }
+.oeuvres_display .oeuvre_display a {
+    display: flex; }
+.oeuvres_display .oeuvre_display a img {
+    align-self: center; }
+
+
+/* Here is a dirty fix for borders/shadows of substitute displays...
+ * Otherwise shadows would not appear when hovering over the inner p.
+ * Also, removing class names might mess with css specificities... */
+.oeuvre_display .substitute_display {
+    position: relative;
+    border: 1px solid #eee;
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-flex;
+    transition: all 0.3s ease; }
+.oeuvre_display .substitute_display:hover {
+    border: 1px solid rgba(0, 0, 255, 0.4);
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    transition: all 0.3s ease; }
+.oeuvre_display .substitute_display img {
+    border: none; }
+.oeuvre_display .substitute_display img:hover {
+    border: none;
+    box-shadow: none; }
+.oeuvre_display .substitute_display p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -70%); }
+
+
+/* XXXXX
+   ========================================================================== */
+
+#content .top_title {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    padding: 44px 8px 12px 0;
+}
+
+#content .par_title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.oeuvres_display {
+    margin-top: -3px;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
 
 #content .title {
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -281,6 +242,7 @@ header {
 
 /* Content Preambule
    ========================================================================== */
+
 #preambule.oeuvre_comments {
     margin-top: -10px;
 }
@@ -302,6 +264,7 @@ header {
 
 /* Content Oeuvres
    ========================================================================== */
+
 #content .info {
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     width: 100%;
@@ -390,6 +353,7 @@ header {
 
 /* Content Artiste
    ========================================================================== */
+
 #content .oeuvre_comments.collection_artist {
     width: 1200px;
 }
@@ -496,6 +460,7 @@ header {
 
 /* Content Cinemas
    ========================================================================== */
+
 #content #cinemas_intro.oeuvre_comments {
     margin-top: -10px;
     margin-bottom: 20px; }
@@ -512,9 +477,14 @@ header {
 
 /* Content Top Films
    ========================================================================== */
+
 #content #top_films { max-width: 1320px; }
 #content #top_films.all_time { max-width: 1400px; }
 
+
+/* ==========================================================================
+/* Forms
+/* ========================================================================== */
 
 /* Forms Oeuvre
    ========================================================================== */

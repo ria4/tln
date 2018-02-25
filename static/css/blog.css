@@ -1,7 +1,7 @@
 /* Main
    ========================================================================== */
 
-body[layout="h"] { margin-right: 60px; }    /* horizontal layout only (see js) */
+body[layout="h"] { margin-right: 60px; }
 body[layout="h"] #content-wrap { padding-right: 11px; }
 
 #content { max-width: 900px; }
@@ -91,16 +91,14 @@ body[layout="v"] #sidebar {
     margin: 6px 0;
     padding: 10px;
     border: 1px solid #d3d4db;
-    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
     max-height: 210px;
-    display: flex;
-    transition: all 0.4s ease;
     background-color: #fffddb;
+    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
     display: flex;
-    flex-direction: column; }
-.entry-list #content article:hover {
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
+    flex-direction: column;
     transition: all 0.4s ease; }
+.entry-list #content article:hover {
+    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7); }
 
 .entry-list #content article .entry-body .entry-content {
     margin-left: 20px;
