@@ -144,16 +144,6 @@ body {
 }
 
 
-#pagination {
-    width: 100%;
-    margin-top: 10px;
-    font-family: Abuget, Palatino, serif;
-    font-size: 40px;
-    text-align: right;
-    padding-right: 96px;
-}
-
-
 /* Top Navigation Bar
    ========================================================================== */
 #top-nav {
