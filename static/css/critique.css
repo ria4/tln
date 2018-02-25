@@ -3,7 +3,6 @@
 header {
     position: fixed;
     top: 0;
-    width: 100%;
     z-index: 101;
     pointer-events: none;
 }
@@ -22,12 +21,6 @@ header {
     box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23);
 }
 
-body {
-    background-image: url("/static/img_base/critique_background_content.jpg");
-    background-size: 100% auto;
-    font-size: 20px;
-}
-
 #content {
     position: absolute;
     width: 100%;
@@ -38,11 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Alegreya, Palatino, serif;
 }
-
-#content a { color: #bd4700; }
-#content a:hover { color: #f7a300; }
 
 #content .top_title {
     font-weight: bold;
@@ -108,7 +97,7 @@ body {
 
 /* Here is a dirty fix for borders/shadows of substitute displays...
  * Otherwise shadows would not appear when hovering over the inner p.
- * Also, removing class names might mess with css priorities... */
+ * Also, removing class names might mess with css specificities... */
 #content .oeuvres_display .oeuvre_display .substitute_display {
     transition: all 0.3s ease;
     position: relative;
@@ -116,36 +105,28 @@ body {
     padding: 0;
     border: 1px solid #eee;
     max-width: 100%;
-    max-height: 100%;
-}
-
+    max-height: 100%; }
 #content .oeuvres_display .oeuvre_display .substitute_display:hover {
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 255, 0.4);
-}
-
+    border: 1px solid rgba(0, 0, 255, 0.4); }
 #content .oeuvres_display .oeuvre_display .substitute_display img {
-    border: none;
-}
-
+    border: none; }
 #content .oeuvres_display .oeuvre_display .substitute_display img:hover {
     box-shadow: none;
-    border: none;
-}
-
+    border: none; }
 #content .oeuvres_display .oeuvre_display .substitute_display p {
     position: absolute;
     width: 100%;
     text-align: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -70%);
-}
+    transform: translate(-50%, -70%); }
 
 
 /* Top Navigation Bar
    ========================================================================== */
+
 #top-nav {
     /* TODO do not load this one on smartphones */
     background-image: url("/static/img_base/critique_background_content.jpg");
@@ -155,50 +136,22 @@ body {
     margin: 0;
     padding: 0;
     transition: all 0.4s ease;
-    pointer-events: auto;
-}
+    pointer-events: auto; }
 #top-nav.expanded {
     visibility: visible;
-    padding: 7px 0 5px 0;
-}
+    padding: 7px 0 5px 0; }
 #top-nav.expanded[layout="h"] { height: 70px; }
 #top-nav.expanded[layout="v"] { height: 140px; }
 #top-nav > * {
     transform: translateY(-35px);
-    transition: all 0.4s ease;
-}
+    transition: all 0.4s ease; }
 #top-nav.expanded > * {
-    transform: translateY(0);
-}
-#top-nav1 {
-    z-index: 200;
-}
+    transform: translateY(0); }
+#top-nav1 { z-index: 200; }
 
 
-/* Navigation Bars
+/* Main Navigation Bar
    ========================================================================== */
-.navbar {
-    width: 100%;
-}
-
-.navbar li {
-    float: left;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-family: Abuget, Palatino, serif;
-}
-
-.navbar a {
-    color: black;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.navbar a:hover {
-    color: #a40000;
-}
-
 
 #main-nav {
     margin: 0 auto;
@@ -234,6 +187,9 @@ body {
 #critique-header[layout="v"] #main-nav #main-nav-links-h { display: none; }
 #critique-header[layout="v"] #main-nav #main-nav-links-v { display: flex; }
 
+
+/* Sub Navigation Bar
+   ========================================================================== */
 
 #sub-nav {
     position: relative;
@@ -544,84 +500,53 @@ body {
 }
 
 
-/* Content Collection
+/* Chunks
    ========================================================================== */
 
 .chunks {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-}
-
+    justify-content: center; }
 .chunks ul {
     padding: 10px 0;
     margin: 0 -16px -1px -16px;
     border-top: 1px solid #a57100;
     border-bottom: 1px solid #a57100;
-}
-
+    width: 100%; }
 .chunks li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0 30px;
-}
+    margin: 0 30px; }
+.chunks li { color: #bd4700 !important; }
+.chunks li:hover { color: #f7a300 !important; }
 
-#collection.chunks li, #cinemas.chunks li { color: #bd4700; }
-#collection.chunks li:hover, #cinemas.chunks li:hover { color: #f7a300; }
-
-#collection.chunks ul {
-    width: 380px;
-}
-
-#collection.collection_artist.chunks ul {
-    width: 520px;
-}
-
-#seances.chunks ul {
-    width: 600px;
-}
-
-#cinemas.chunks ul {
-    width: 440px;
-}
+#collection.chunks ul { max-width: 380px; }
+#collection.collection_artist.chunks ul { max-width: 520px; }
+#seances.chunks ul { max-width: 600px; }
+#cinemas.chunks ul { max-width: 440px; }
 
 
 /* Content Cinemas
    ========================================================================== */
 #content #cinemas_intro.oeuvre_comments {
     margin-top: -10px;
-    margin-bottom: 20px;
-}
-
+    margin-bottom: 20px; }
 #content #cinemas_intro ul {
-    list-style: square;
     padding-left: 40px;
-}
-
+    list-style: square; }
 #content #cinemas_intro li {
-    list-style: square;
-}
-
+    list-style: square; }
 #content .oeuvre_comments #cinemas_total {
-    margin-top: 28px;
-}
-
-#content #cinema_info,
-#content #artist_info {
-    margin-top: 38px;
-}
+    margin-top: 28px; }
+#content #cinema_info, #content #artist_info {
+    margin-top: 38px; }
 
 
 /* Content Top Films
    ========================================================================== */
-#content #top_films {
-    max-width: 1320px;
-}
-
-#content #top_films.all_time {
-    max-width: 1400px;
-}
+#content #top_films { max-width: 1320px; }
+#content #top_films.all_time { max-width: 1400px; }
 
 
 /* Forms Oeuvre
