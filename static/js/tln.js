@@ -159,7 +159,7 @@ var websiteApp = location.pathname.split("/")[1];
 if (websiteApp == "critique") {
 
 
-    /* Main Navigation Bars - Hide/reveal and resize bars */
+    /* Critique Navigation Bars - Hide/reveal and resize bars */
 
     var mainNavBar = document.getElementById("main-nav");
     var subNavBar = document.getElementById("sub-nav");
@@ -211,8 +211,8 @@ if (websiteApp == "critique") {
     });
 
     /* Hide menus after clicking outside the menus */
-    var content = document.getElementById("content");
-    content.addEventListener("click", function () {
+    var contentWrap = document.getElementById("content-wrap");
+    contentWrap.addEventListener("click", function () {
         topNavBar.classList.remove("expanded");
         subNavBar.classList.remove("expanded");
     });
