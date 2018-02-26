@@ -308,6 +308,10 @@ a:active, a:focus { outline: none; }
     display: flex;
     justify-content: center;
     align-items: center; }
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
 .navbar a {
     color: black;
     white-space: nowrap;
@@ -315,6 +319,8 @@ a:active, a:focus { outline: none; }
 .navbar a:hover { color: #a40000; }
 
 .filter-navbar {
+    flex-wrap: wrap;
+    overflow-x: hidden;
     margin-top: 16px;
     margin-bottom: 11px;
     font-size: 44px; }
@@ -337,7 +343,6 @@ a:active, a:focus { outline: none; }
     margin: 40px 0;
     padding-top: 5px; }
 #top-nav[layout="v"] { padding-right: 3px; flex-direction: column; }
-#top-nav ul { display: flex; justify-content: center; align-items: center; }
 #top-nav .nav-separator-sub,
 #top-nav[layout="h"] .nav-separator {
     height: 30px;

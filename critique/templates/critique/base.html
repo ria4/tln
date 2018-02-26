@@ -14,7 +14,7 @@
             <ul id="main-nav-links-h">
                 <li><a href={% url "preambule" %}>préambule</a></li>
                 <li><a href={% url "top_textes" %}>textes choisis</a></li>
-                <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
+                <li><a href={% url "list_notes" %}>carnet de notes</a></li>
             </ul>
             <ul id="main-nav-links-v">
                 <li><a href={% url "top_textes" %}>textes choisis</a></li>
@@ -27,17 +27,17 @@
 
     <nav id="sub-nav" class="navbar">
         <ul id="sub-nav-links-h" layout="h">
-            <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
-            <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
+            <li><a href={% url "list_oeuvres" %}>rencontres passées</a></li>
+            <li><a href={% url "list_envies" %}>en ligne de mire</a></li>
             <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
             <li><a href={% url "list_seances" %}>liste des séances</a></li>
             <li><a href={% url "top_films" %}>top films par année</a></li>
         </ul>
         <ul id="sub-nav-links-v">
             <li><a href={% url "preambule" %}>préambule</a></li>
-            <li><a href={% url "list_notes" "all" %}>carnet de notes</a></li>
-            <li><a href={% url "list_oeuvres" "film" %}>rencontres passées</a></li>
-            <li><a href={% url "list_envies" "film" %}>en ligne de mire</a></li>
+            <li><a href={% url "list_notes" %}>carnet de notes</a></li>
+            <li><a href={% url "list_oeuvres" %}>rencontres passées</a></li>
+            <li><a href={% url "list_envies" %}>en ligne de mire</a></li>
             <li><a href={% url "list_cinemas" %}>cinémas parisiens</a></li>
             <li><a href={% url "list_seances" %}>liste des séances</a></li>
             <li><a href={% url "top_films" %}>top films par année</a></li>

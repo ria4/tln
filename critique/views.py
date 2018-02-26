@@ -255,7 +255,7 @@ def list_notes(req, mtype="all", page=1):
 
 # Collection
 
-def list_oeuvres(req, mtype, page=1):
+def list_oeuvres(req, mtype="film", page=1):
     """
     Liste les oeuvres qui ne sont pas marquées en tant qu'envies.
     (Les "re-" envies ne sont pas prises en charge.)
@@ -268,7 +268,7 @@ def list_oeuvres(req, mtype, page=1):
 
 # Envies
 
-def list_envies(req, mtype, page=1):
+def list_envies(req, mtype="film", page=1):
     oeuvres_list = Oeuvre.objects(__raw__={'envie': True, 'info.type': mtype})
     oeuvres = oeuvres_list.order_by('-info__year')
     paginator = Paginator(oeuvres, 22)
