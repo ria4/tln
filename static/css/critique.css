@@ -212,22 +212,15 @@ body > header {
     flex-wrap: wrap;
     justify-content: center; }
 
-#content .title {
+.critique-title {
+    margin: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-weight: bold;
     font-size: 34px;
-    text-align: center;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-}
-
-#content .sub_title {
-    padding-right: 22px;
-}
+    text-align: center; }
 
 .oeuvre_comments.centered {
     margin-top: auto !important;
@@ -346,9 +339,8 @@ body > header {
 /* Content Artiste
    ========================================================================== */
 
-#content .oeuvre_comments.collection_artist {
-    width: 1200px;
-}
+#artiste-info { margin-top: 38px; margin-bottom: 24px; }
+.artiste-oeuvres { max-width: 1200px; }
 
 
 /* Oeuvre Previews
@@ -395,7 +387,7 @@ body > header {
 .chunks li span { color: black !important; }
 
 #collection.chunks ul { max-width: 380px; }
-#collection.collection_artist.chunks ul { max-width: 520px; }
+#collection.artiste-oeuvres.chunks ul { max-width: 520px; }
 #seances.chunks ul { max-width: 600px; }
 #cinemas.chunks ul { max-width: 440px; }
 
@@ -403,25 +395,25 @@ body > header {
 /* Content Cinemas
    ========================================================================== */
 
-#content #cinemas_intro.oeuvre_comments {
+#cinemas_intro.oeuvre_comments {
     margin-top: -10px;
     margin-bottom: 20px; }
-#content #cinemas_intro ul {
+#cinemas_intro ul {
     padding-left: 40px;
     list-style: square; }
-#content #cinemas_intro li {
+#cinemas_intro li {
     list-style: square; }
 #content .oeuvre_comments #cinemas_total {
     margin-top: 28px; }
-#content #cinema_info, #content #artist_info {
+#cinema_info, #artist_info {
     margin-top: 38px; }
 
 
 /* Content Top Films
    ========================================================================== */
 
-#content #top_films { max-width: 1320px; }
-#content #top_films.all_time { max-width: 1400px; }
+#top_films { max-width: 1320px; }
+#top_films.all_time { max-width: 1400px; }
 
 
 /* ==========================================================================
