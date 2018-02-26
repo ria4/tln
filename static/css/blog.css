@@ -76,6 +76,11 @@ body[layout="v"] #sidebar {
 .entry-list .entry-body {
     margin-left: 20px;
     margin-right: 12px; }
+.entry-list .entry-footer { margin-left: 20px; }
+.entry-list .entry-footer .entry-discussions {
+    margin-right: 7px;
+    min-width: 80px; }
+
 
 /* Entry
    ========================================================================== */

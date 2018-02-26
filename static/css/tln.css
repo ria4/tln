@@ -453,7 +453,7 @@ a:active, a:focus { outline: none; }
     display: flex;
     align-items: center;
     white-space: nowrap; }
-.entry-list .entry-footer { margin: 0 20px; }
+.entry-list .entry-footer { margin-right: 20px; }
 .entry .entry-footer { margin: 60px 0 10px 0; }
 
 .entry-footer .entry-tags {
@@ -472,9 +472,7 @@ a:active, a:focus { outline: none; }
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    margin-right: 7px;
-    min-width: 80px; }
+    align-items: center; }
 .entry-footer .entry-discussions img {
     margin: 3px 8px 0 4px;
     height: 14px; }
