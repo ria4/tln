@@ -15,14 +15,14 @@
     <!-- <li><a href={% url "list_envies" "bd" %}>bd</a></li> -->
 </ul>
 
-<ul class="oeuvres_display">
+<ul class="oeuvres-display">
 {% for oeuvre in oeuvres %}
-    <li class="oeuvre_display">
+    <li class="oeuvre-display">
         <a href={% url "detail_oeuvre" oeuvre.slug %}>
         {% if oeuvre.info.image_url %}
             <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
         {% else %}
-            <div class="substitute_display">
+            <div class="substitute-display">
                 <img src="{% static 'critique/substitute.jpg' %}" alt="{{ oeuvre.info.titles.vf }}" />
                 <p>{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</p>
             </div>
