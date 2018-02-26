@@ -7,7 +7,9 @@
 {% block meta-description %}série photographique '{{ gallery_custom.gallery.title }}', par max tury{% endblock meta-description %}
 
 {% block content %}
-<h1 id="gallery-title">{{ gallery_custom.gallery.title }}</h1>
+<div id="gallery-title">
+    <h1>{{ gallery_custom.gallery.title }}</h1>
+</div>
 <div id="gallery-photos">
 {% for photo in gallery_custom.gallery.public %}
     <div class="photo-display">
