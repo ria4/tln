@@ -76,7 +76,8 @@ body[layout="v"] #sidebar {
 .entry-list .entry-body {
     margin-left: 20px;
     margin-right: 12px; }
-.entry-list .entry-footer { margin-left: 20px; }
+.entry-list .entry-footer {
+    margin: 0 20px; }
 .entry-list .entry-footer .entry-discussions {
     margin-right: 7px;
     min-width: 80px; }
@@ -85,14 +86,12 @@ body[layout="v"] #sidebar {
 /* Entry
    ========================================================================== */
 
-.entry #content {
-    margin-top: 24px;
-    padding: 0 6px; }
-.entry #content .entry-content p {
-    margin: 18px 0;
-    text-align: justify; }
-.entry #content > :not(.hseparator) { max-width: 820px; }
+.entry #content { margin-top: 24px; padding: 0 6px; }
+.entry #content > * { max-width: 820px; }
 .entry #content > .hseparator { max-width: 889px; margin-left: 1px; }
+.entry .entry-title { padding: 44px 8px 32px 0; font-size: 40px; }
+.entry .entry-content p { text-align: justify; }
+.entry .entry-footer { margin: 60px 0 10px 0; }
 
 
 /* Comments

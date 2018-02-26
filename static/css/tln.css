@@ -241,8 +241,9 @@ textarea, input { outline: none; }
     src: url("../fonts/soljik-dambaek/Soljik-Dambaek.ttf") format("truetype"); }
 
 
-/* TLN Global
-   ========================================================================== */
+/* ==========================================================================
+/* Site Global
+/* ========================================================================== */
 
 html { height: 100%; }
 body {
@@ -285,12 +286,12 @@ a:active, a:focus { outline: none; }
 #content-wrap a:hover { color: #f7a300; }
 
 #pagination {
-    width: 100%;
     margin-top: 10px;
+    padding-right: 96px;
+    width: 100%;
     font-family: Abuget, Palatino, serif;
     font-size: 40px;
-    text-align: right;
-    padding-right: 96px; }
+    text-align: right; }
 
 .hidden {
     background-color: transparent;
@@ -300,7 +301,11 @@ a:active, a:focus { outline: none; }
     text-shadow: none; }
 
 
+/* ==========================================================================
 /* Navigation Bars
+/* ========================================================================== */
+
+/* Generic Navigation Bars
    ========================================================================== */
 
 .navbar {
@@ -337,7 +342,7 @@ a:active, a:focus { outline: none; }
 .digits-filter-navbar a.selected { line-height: 0.55; }
 
 
-/* Top Navigation Bars
+/* Top Navigation Bar
    ========================================================================== */
 
 #top-nav {
@@ -396,6 +401,10 @@ a:active, a:focus { outline: none; }
     height: 0; }
 
 
+/* ==========================================================================
+/* Entries Display
+/* ========================================================================== */
+
 /* Entry Previews
    ========================================================================== */
 
@@ -436,7 +445,6 @@ a:active, a:focus { outline: none; }
 
 .entry-title, .collection-title {
     font-weight: bold;
-    font-size: 34px;
     text-align: center; }
 .entry-list .entry-title, .collection-title {
     padding: 8px 0;
@@ -444,11 +452,13 @@ a:active, a:focus { outline: none; }
     white-space: nowrap;
     text-overflow: ellipsis;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
-.entry-list .entry-title {
-    font-size: 26px; }
-.entry .entry-title {
-    padding: 44px 8px 32px 0;
-    font-size: 40px; }
+.entry-list .entry-title { font-size: 26px; }
+
+
+/* Entry Body
+   ========================================================================== */
+
+.entry #content .entry-content p { margin: 18px 0; }
 
 
 /* Entry Footer
@@ -459,8 +469,6 @@ a:active, a:focus { outline: none; }
     display: flex;
     align-items: center;
     white-space: nowrap; }
-.entry-list .entry-footer { margin-right: 20px; }
-.entry .entry-footer { margin: 60px 0 10px 0; }
 
 .entry-footer .entry-tags {
     font-size: 17px;
@@ -487,6 +495,10 @@ a:active, a:focus { outline: none; }
     font-style: italic;
     text-align: right; }
 
+
+/* ==========================================================================
+/* Interact
+/* ========================================================================== */
 
 /* Overlay
    ========================================================================== */

@@ -7,12 +7,14 @@
 * blog widget welcome
 * sitemap avec django framework
 * raise 404 if empty entry-list
+* brouillon fata morgana
 
 # après déploiement
 * pages 404, 403, 50X
 * check search engine indexation
 * make it mobile-friendly ('hovered' menu links color?)
 * check blog pagination
+* entry ul/li style (update juste prix)
 
 * accessibility
   * check contrast ratios

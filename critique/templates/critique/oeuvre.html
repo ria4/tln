@@ -5,6 +5,8 @@
 {% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
 {% block meta-description-page %}informations, voire commentaires, au sujet de {{ oeuvre.info.titles.vf|lower }}{% endblock %}
 
+{% block body-class %}entry{% endblock %}
+
 {% block content %}
 
 <div id="oeuvre_info" class="info">
@@ -44,18 +46,28 @@
 </div>
 
 {% if comments|length > 0 %}
-<div class="oeuvre_comments">
-    {% for comment in comments %}
-        <article class="comment">
-            {% if comment.title %}
-            <h2 class="comment_title">{{ comment.title }}</h2>
-            {% endif %}
-            <div>
+<div id="comments">
+{% for comment in comments %}
+    <div class="hseparator"></div>
+    <article class="hentry">
+        {% if comment.title %}
+        <header class="entry-header">
+            <h2 class="entry-title">{{ comment.title }}</h2>
+        </header>
+        {% endif %}
+
+        <div class="entry-body">
+            <div class="entry-content">
             {% for p in comment.content %}
-                <p class="comment_par">{{ p|safe }}</p>
+            <p>{{ p|safe }}</p>
             {% endfor %}
             </div>
-            <p class="comment_date">écrit 
+        </div>
+
+        <footer class="entry-footer">
+            <div class="entry-discussions" role="none"></div>
+            <time>
+                écrit
                 {% localize on %}
                 {% if comment.date_month_unknown %}
                     en {{ comment.date|date:"Y" }}
@@ -69,9 +81,10 @@
                     {% endif %}
                 {% endif %}
                 {% endlocalize %}
-            </p>
-        </article>
-    {% endfor %}
+            </time>
+        </footer>
+    </article>
+{% endfor %}
 </div>
 {% endif %}
 {% endblock %}
