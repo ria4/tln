@@ -2,7 +2,7 @@
 * cross-browsers (do not display content until it is loaded?)
 
 # plus tard
-* rework critique.css  (see blog.css)
+* rework critique.css (see blog.css)
 * écriture articles : journal dev, nom trans, retour sur 2017, langue française
 * blog widget welcome
 * sitemap avec django framework
@@ -11,7 +11,7 @@
 # après déploiement
 * pages 404, 403, 50X
 * check search engine indexation
-* make it mobile-friendly
+* make it mobile-friendly ('hovered' menu links color?)
 * check blog pagination
 
 * accessibility

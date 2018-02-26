@@ -237,28 +237,6 @@ body > header {
 }
 
 
-/* Content Preambule
-   ========================================================================== */
-
-#preambule.oeuvre_comments {
-    margin-top: -10px;
-}
-
-#preambule div:first-of-type {
-    margin-top: -14px;
-}
-
-#preambule > div {
-    border-bottom: 1px solid #a57100;
-    margin: 0 -50px;
-    padding: 20px 50px;
-}
-
-#preambule > div p:last-child {
-    margin-bottom: 2px;
-}
-
-
 /* Content Oeuvres
    ========================================================================== */
 
@@ -395,6 +373,21 @@ body > header {
 #collection.artiste-oeuvres.chunks ul { max-width: 520px; }
 #seances.chunks ul { max-width: 600px; }
 #cinemas.chunks ul { max-width: 440px; }
+
+
+/* Content Preambule
+   ========================================================================== */
+
+#preambule.oeuvre_comments {
+    margin-top: -10px; }
+#preambule div:first-of-type {
+    margin-top: -14px; }
+#preambule > div {
+    border-bottom: 1px solid #a57100;
+    margin: 0 -50px;
+    padding: 20px 50px; }
+#preambule > div p:last-child {
+    margin-bottom: 2px; }
 
 
 /* Content Cinemas
