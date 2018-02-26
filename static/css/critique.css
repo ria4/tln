@@ -17,7 +17,7 @@ body > header {
     box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 
 #content-wrap { margin-top: 64px; }
-#content-wrap[layout="h"] { margin-right: 1.2%; }
+#content-wrap[layout="h"] { margin-right: 1.4%; }
 #content { margin-top: 36px; }
 .filter-navbar { margin-top: -20px; }
 
@@ -282,48 +282,45 @@ body > header {
 
 #content #oeuvre_info {
     min-height: 286px;
+    margin-bottom: 24px;
 }
 
 #content .oeuvre_comments {
-    margin-top: 24px;
     width: 750px;
 }
 
-#content .comment {
-    border-top: 1px solid black;
-    padding-top: 4px;
-}
 
-/* TODO clean this (see juste prix text) */
-#content .comment ul {
-    margin: initial;
-    padding: initial;
-    list-style: initial;
-    vertical-align: initial;
-}
-
-#content .comment li {
-    margin: initial;
-    padding: initial;
-}
-
-#content .comment_title {
-    font-weight: bold;
-    font-size: 30px;
-    text-align: center;
-    padding: 44px 8px 12px 0;
-}
-
-#content .oeuvre_comments p {
-    margin: 18px 0;
-}
-
-
-/* Content Artiste
+/* Oeuvre Info
    ========================================================================== */
 
-#artiste-info { margin-top: 38px; margin-bottom: 24px; }
-.artiste-oeuvres { max-width: 1200px; }
+
+/* Oeuvre Comments
+   ========================================================================== */
+
+#comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+#comments .hseparator {
+    margin-top: 46px;
+    margin-left: -1px;
+    max-width: 777px;
+    width: 100%;
+    border-bottom-color: black; }
+#comments .hseparator:first-child {
+    margin-top: 0; }
+#comments .hentry {
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 6px;
+    max-width: 760px; }
+#comments .hentry .entry-title {
+    padding: 44px 8px 12px 0;
+    font-size: 30px; }
+#comments .hentry .entry-footer {
+    padding-top: 0;
+    padding-right: 20px;
+    margin-bottom: 10px; }
 
 
 /* Oeuvre Previews
@@ -345,6 +342,13 @@ body > header {
 .entry-list .entry-title { padding-right: 26px; }
 .entry-list .entry-body { flex: 1; }
 .entry-list .entry-footer { margin-right: 24px; }
+
+
+/* Content Artiste
+   ========================================================================== */
+
+#artiste-info { margin-top: 38px; margin-bottom: 24px; }
+.artiste-oeuvres { max-width: 1200px; }
 
 
 /* Chunks
