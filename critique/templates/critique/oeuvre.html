@@ -5,11 +5,12 @@
 {% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
 {% block meta-description-page %}informations, voire commentaires, au sujet de {{ oeuvre.info.titles.vf|lower }}{% endblock %}
 
+{% block content-wrap-class %}decenter{% endblock %}
 {% block body-class %}entry{% endblock %}
 
 {% block content %}
 
-<div id="oeuvre_info" class="info">
+<div id="oeuvre-info" class="critique-info">
     {% if oeuvre.info.image_url %}
     <div class="oeuvre-display">
     <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
@@ -17,10 +18,10 @@
     {# <img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /> #}
     {% endif %}
 
-    <div class="info_text">
-        <h1 class="title main_title">{{ oeuvre.info.titles.vf }}</h1>
+    <div class="critique-info-text">
+        <h1 class="critique-title">{{ oeuvre.info.titles.vf }}</h1>
         {% if oeuvre.info.titles.vo %}
-        <p class="alt_title">{{ oeuvre.info.titles.vo }}</p>
+        <p class="alt-title">{{ oeuvre.info.titles.vo }}</p>
         {% endif %}
 
         {% if oeuvre.info.artists|length > 0 %}
@@ -48,7 +49,7 @@
 {% if comments|length > 0 %}
 <div id="comments">
 {% for comment in comments %}
-    <div class="hseparator"></div>
+    <div class="hseparator" role="none"></div>
     <article class="hentry">
         {% if comment.title %}
         <header class="entry-header">

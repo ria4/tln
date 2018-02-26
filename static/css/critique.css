@@ -17,7 +17,7 @@ body > header {
     box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 
 #content-wrap { margin-top: 64px; }
-#content-wrap[layout="h"] { margin-right: 1.4%; }
+#content-wrap.decenter[layout="h"] { margin-right: 1.4%; }
 #content { margin-top: 36px; }
 .filter-navbar { margin-top: -20px; }
 
@@ -139,11 +139,67 @@ body > header {
 /* Content
 /* ========================================================================== */
 
+/* Content Assets
+   ========================================================================== */
+
+.critique-title {
+    margin: 8px 0;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: bold;
+    font-size: 34px;
+    text-align: center; }
+.entry-list .critique-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+
+.critique-info {
+    width: 100%;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+.critique-info-text {
+    padding-bottom: 1.5%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+
+
+/* XXXXX
+   ========================================================================== */
+
+#content .top_title {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    padding: 44px 8px 12px 0;
+}
+
+#content .par_title {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#content .oeuvre_comments {
+    width: 750px;
+}
+
+.oeuvre_comments.centered {
+    margin-top: auto !important;
+    margin-bottom: auto;
+    padding-right: 3%;
+    padding-bottom: 4%;
+    height: 100%;
+    align-items: center;
+}
+
+
 /* Oeuvre Display
    ========================================================================== */
 
 .oeuvre-display {
-    max-width: 400px;
     display: flex;
     justify-content: center;
     align-items: center; }
@@ -156,6 +212,13 @@ body > header {
 .oeuvre-display a img:hover {
     border: 1px solid rgba(0, 0, 255, 0.4);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7); }
+
+#content .oeuvres-display {
+    margin-top: -3px;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
 
 .oeuvres-display .oeuvre-display {
     margin: 7px 6px;
@@ -195,103 +258,32 @@ body > header {
     transform: translate(-50%, -70%); }
 
 
-/* XXXXX
+/* Oeuvre Info
    ========================================================================== */
 
-#content .top_title {
-    font-weight: bold;
-    font-size: 40px;
-    text-align: center;
-    padding: 44px 8px 12px 0;
-}
+#oeuvre-info {
+    min-height: 286px;
+    margin-bottom: 24px; }
 
-#content .par_title {
-    font-weight: bold;
-    font-size: 30px;
-}
-
-.oeuvres-display {
-    margin-top: -3px;
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; }
-
-.critique-title {
-    margin: 8px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-weight: bold;
-    font-size: 34px;
-    text-align: center; }
-
-.oeuvre_comments.centered {
-    margin-top: auto !important;
-    margin-bottom: auto;
-    padding-right: 3%;
-    padding-bottom: 4%;
-    height: 100%;
-    align-items: center;
-}
-
-
-/* Content Oeuvres
-   ========================================================================== */
-
-#content .info {
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#content .info .oeuvre-display {
+#oeuvre-info .oeuvre-display {
     margin: 10px;
     margin-right: 20px;
-}
+    max-width: 350px; }
 
-#content .info .info_text {
-    padding-bottom: 1.3%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#content .info_text .main_title {
+#oeuvre-info .critique-title {
     text-align: left;
     margin-left: -1px;
     padding-bottom: 2px;
     display: block;
     line-height: 1;
     padding-top: 5px;
-    padding-right: 1px;
-}
-
-#content .info .alt_title {
-    margin-top: -12px;
-    padding-bottom: 8px;
-}
-#content .info .artists {
+    padding-right: 1px; }
+#oeuvre-info .alt-title {
+    margin-top: -13px;
+    padding-bottom: 8px; }
+#oeuvre-info .artists {
     margin-top: 2px;
-    line-height: 1;
-}
-
-#content #oeuvre_info {
-    min-height: 286px;
-    margin-bottom: 24px;
-}
-
-#content .oeuvre_comments {
-    width: 750px;
-}
-
-
-/* Oeuvre Info
-   ========================================================================== */
+    line-height: 1; }
 
 
 /* Oeuvre Comments
@@ -330,7 +322,6 @@ body > header {
 .entry-links.no-filter-nav-bar { margin-top: 6px; }
 
 .entry-links .oeuvre-display {
-    max-width: none;
     width: 140px;
     min-width: 140px;
     display: flex;
@@ -342,13 +333,6 @@ body > header {
 .entry-list .entry-title { padding-right: 26px; }
 .entry-list .entry-body { flex: 1; }
 .entry-list .entry-footer { margin-right: 24px; }
-
-
-/* Content Artiste
-   ========================================================================== */
-
-#artiste-info { margin-top: 38px; margin-bottom: 24px; }
-.artiste-oeuvres { max-width: 1200px; }
 
 
 /* Chunks
@@ -392,6 +376,13 @@ body > header {
     padding: 20px 50px; }
 #preambule > div p:last-child {
     margin-bottom: 2px; }
+
+
+/* Content Artiste
+   ========================================================================== */
+
+#artiste-info { margin-top: 38px; margin-bottom: 24px; }
+.artiste-oeuvres { max-width: 1200px; }
 
 
 /* Content Cinemas
