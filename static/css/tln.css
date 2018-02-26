@@ -428,16 +428,17 @@ a:active, a:focus { outline: none; }
 /* Entry Header
    ========================================================================== */
 
-.entry-title {
+.entry-title, .collection-title {
     font-weight: bold;
     font-size: 34px;
     text-align: center; }
-.entry-list .entry-title {
+.entry-list .entry-title, .collection-title {
     padding: 8px 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
+.entry-list .entry-title {
     font-size: 26px; }
 .entry .entry-title {
     padding: 44px 8px 32px 0;

@@ -257,63 +257,43 @@ if (websiteApp == "critique") {
         return textDecoder.value;
     }
 
-    var chunkSizeCollection = 25;
+    function fillChunksBy(container, collection, chunkSize, wholeLinks) {
+        for (i=0; i<collection.length/chunkSize; i++) {
+            var ul = document.createElement("ul");
+            container.appendChild(ul);
+            for (j=0; j<chunkSize; j++) {
+                if (collection[chunkSize*i+j]) {
+                    var li = document.createElement("li");
+                    if (wholeLinks) {
+                        var a = document.createElement("a");
+                        var text = decodeHtml(collection[chunkSize*i+j][0]);
+                        var textNode = document.createTextNode(text);
+                        a.href = collection[chunkSize*i+j][1];
+                        a.appendChild(textNode);
+                        li.appendChild(a);
+                    } else {
+                        var text = decodeHtml(collection[chunkSize*i+j]);
+                        li.innerHTML = text;
+                    }
+                    ul.appendChild(li);
+                }
+            }
+        }
+    }
+
     var collection = document.getElementById("collection");
     if (collection) {
-        for (i=0; i<oeuvres.length/chunkSizeCollection; i++) {
-            var ul = document.createElement("ul");
-            collection.appendChild(ul);
-            for (j=0; j<chunkSizeCollection; j++) {
-                if (oeuvres[chunkSizeCollection*i+j]) {
-                    var a = document.createElement("a");
-                    var text = decodeHtml(oeuvres[chunkSizeCollection*i+j][0]);
-                    var textNode = document.createTextNode(text);
-                    a.href = oeuvres[chunkSizeCollection*i+j][1];
-                    a.appendChild(textNode);
-                    var li = document.createElement("li");
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                }
-            }
-        }
+        fillChunksBy(collection, oeuvres, 25, true);
     }
 
-    var chunkSizeSeances = 25;
-    var seancesDisplay = document.getElementById("seances");
-    if (seancesDisplay) {
-        for (i=0; i<seances.length/chunkSizeSeances; i++) {
-            var ul = document.createElement("ul");
-            seancesDisplay.appendChild(ul);
-            for (j=0; j<chunkSizeSeances; j++) {
-                if (seances[chunkSizeSeances*i+j]) {
-                    var li = document.createElement("li");
-                    var text = decodeHtml(seances[chunkSizeSeances*i+j]);
-                    li.innerHTML = text;
-                    ul.appendChild(li);
-                }
-            }
-        }
-    }
-
-    var chunkSizeCinemas = 21;
     var cinemas = document.getElementById("cinemas");
     if (cinemas) {
-        for (i=0; i<cines.length/chunkSizeCinemas; i++) {
-            var ul = document.createElement("ul");
-            cinemas.appendChild(ul);
-            for (j=0; j<chunkSizeCinemas; j++) {
-                if (cines[chunkSizeCinemas*i+j]) {
-                    var a = document.createElement("a");
-                    var text = decodeHtml(cines[chunkSizeCinemas*i+j][0]);
-                    var textNode = document.createTextNode(text);
-                    a.href = cines[chunkSizeCinemas*i+j][1];
-                    a.appendChild(textNode);
-                    var li = document.createElement("li");
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                }
-            }
-        }
+        fillChunksBy(cinemas, cines, 21, true);
+    }
+
+    var seancesDisplay = document.getElementById("seances");
+    if (seancesDisplay) {
+        fillChunksBy(seancesDisplay, seances, 25, false);
     }
 
 
