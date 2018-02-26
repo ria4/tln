@@ -8,7 +8,7 @@
 {% block body-class %}entry-list{% endblock %}
 
 {% block content %}
-<div class="entry-links">
+<div class="entry-links no-filter-nav-bar">
 {% for oeuvre, texte in top_oeuvres %}
     <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="entry-link">
         <div class="oeuvre-display">

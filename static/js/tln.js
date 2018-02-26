@@ -188,9 +188,11 @@ if (websiteApp == "critique") {
     var setCritiqueNavLayout = setLayout(critiqueNavBar, widthTriggerCritiqueNavLayout);
     var widthTriggerSubNavLayout = 1104;
     var setSubNavHLayout = setLayout(subNavLinksH, widthTriggerSubNavLayout);
-    setCritiqueNavLayout(); setSubNavHLayout();
+    var contentWrap = document.getElementById("content-wrap");
+    var setCritiqueContentWrapLayout = setLayout(contentWrap, widthTriggerCritiqueNavLayout);
+    setCritiqueNavLayout(); setSubNavHLayout(); setCritiqueContentWrapLayout();
     window.addEventListener("resize", function(e) {
-        setCritiqueNavLayout(); setSubNavHLayout();
+        setCritiqueNavLayout(); setSubNavHLayout(); setCritiqueContentWrapLayout();
     });
 
     /* Hide menus after scrolling down */
@@ -211,7 +213,6 @@ if (websiteApp == "critique") {
     });
 
     /* Hide menus after clicking outside the menus */
-    var contentWrap = document.getElementById("content-wrap");
     contentWrap.addEventListener("click", function () {
         topNavBar.classList.remove("expanded");
         subNavBar.classList.remove("expanded");
