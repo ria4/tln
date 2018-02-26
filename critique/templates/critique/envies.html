@@ -6,14 +6,17 @@
 
 {% block content %}
 
-<ul class="navbar filter-navbar">
-    <li><a desc="film" href={% url "list_envies" "film" %}>films</a></li>
-    <li><a desc="serie" href={% url "list_envies" "serie" %}>séries</a></li>
-    <li><a desc="album" href={% url "list_envies" "album" %}>musique</a></li>
-    <li><a desc="jeu" href={% url "list_envies" "jeu" %}>jeux</a></li>
-    <li><a desc="livre" href={% url "list_envies" "livre" %}>livres</a></li>
-    <!-- <li><a href={% url "list_envies" "bd" %}>bd</a></li> -->
-</ul>
+<nav class="navbar filter-navbar {{ mtype }}">
+    <ul>
+        <li><a desc="film" href={% url "list_envies" "film" %}>films</a></li>
+        <li><a desc="serie" href={% url "list_envies" "serie" %}>séries</a></li>
+        <li><a desc="album" href={% url "list_envies" "album" %}>musique</a></li>
+    </ul>
+    <ul>
+        <li><a desc="jeu" href={% url "list_envies" "jeu" %}>jeux</a></li>
+        <li><a desc="livre" href={% url "list_envies" "livre" %}>livres</a></li>
+    </ul>
+</nav>
 
 <ul class="oeuvres-display">
 {% for oeuvre in oeuvres %}

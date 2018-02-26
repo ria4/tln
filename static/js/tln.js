@@ -37,6 +37,32 @@ topNavPhotoButton.addEventListener("click", function (e) {
 });
 
 
+/* HSeparators - Hide overflows on narrow screens */
+
+var hseparators = document.getElementsByClassName("hseparator");
+
+function setHseparatorOverflow(item) {
+    var container = item.parentNode;
+    var maxWiw = parseInt(window.getComputedStyle(container).width, 10)
+                    - parseInt(window.getComputedStyle(item).marginLeft, 10)
+                    - parseInt(window.getComputedStyle(item).marginRight, 10);
+    if (window.innerWidth < maxWiw) {
+        container.style.overflow = "hidden";
+    } else {
+        container.style.overflow = "inherit";
+    }
+}
+
+function addResizeListener(item) {
+    window.addEventListener("resize", function () { setHseparatorOverflow(item); });
+}
+
+for (var i=0; i<hseparators.length; i++) {
+    setHseparatorOverflow(hseparators[i]);
+    addResizeListener(hseparators[i]);
+}
+
+
 /* Forms - Validate form inputs */
 
 function warningOnElementIf(elem, test) {
@@ -256,15 +282,11 @@ if (websiteApp == "critique") {
 
     var filterBar = document.getElementsByClassName("filter-navbar")[0];
     if (filterBar) {
-        var hrefs = window.location.href.split('/');
-        var mtype = hrefs[hrefs.length - 1];
-        if (!isNaN(parseInt(mtype.charAt(0)))) {
-            mtype = hrefs[hrefs.length - 2];
-        }
-        links = filterBar.getElementsByTagName("li");
+        var filter = filterBar.classList[2];
+        var links = filterBar.getElementsByTagName("li");
         for (var i=0; i<links.length; i++) {
-            link = links[i].getElementsByTagName("a")[0]
-            if (link.getAttribute("desc") == mtype) {
+            var link = links[i].getElementsByTagName("a")[0]
+            if (link.getAttribute("desc") == filter) {
                 link.classList.add("selected");
             }
         }
@@ -304,19 +326,11 @@ if (websiteApp == "critique") {
     }
 
     var collection = document.getElementById("collection");
-    if (collection) {
-        fillChunksBy(collection, oeuvres, 25, true);
-    }
-
+    if (collection) { fillChunksBy(collection, oeuvres, 25, true); }
     var cinemas = document.getElementById("cinemas");
-    if (cinemas) {
-        fillChunksBy(cinemas, cines, 21, true);
-    }
-
+    if (cinemas) { fillChunksBy(cinemas, cines, 21, true); }
     var seancesDisplay = document.getElementById("seances");
-    if (seancesDisplay) {
-        fillChunksBy(seancesDisplay, seances, 25, false);
-    }
+    if (seancesDisplay) { fillChunksBy(seancesDisplay, seances, 25, false); }
 
 
     /* Critique Update - Forms validation */
@@ -698,30 +712,6 @@ if (websiteApp == "critique") {
 
     setGalleryWidth();
     window.addEventListener("resize", setGalleryWidth);
-
-
-    var hseparators = document.getElementsByClassName("hseparator");
-
-    function setHseparatorOverflow(item) {
-        var container = item.parentNode;
-        var maxWiw = parseInt(window.getComputedStyle(container).width, 10)
-                        - parseInt(window.getComputedStyle(item).marginLeft, 10)
-                        - parseInt(window.getComputedStyle(item).marginRight, 10);
-        if (window.innerWidth < maxWiw) {
-            container.style.overflow = "hidden";
-        } else {
-            container.style.overflow = "inherit";
-        }
-    }
-
-    function addResizeListener(item) {
-        window.addEventListener("resize", function () { setHseparatorOverflow(item); });
-    }
-
-    for (var i=0; i<hseparators.length; i++) {
-        setHseparatorOverflow(hseparators[i]);
-        addResizeListener(hseparators[i]);
-    }
 
 
     /* Photos Display - Flexslider overlay */
