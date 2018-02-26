@@ -190,9 +190,31 @@ if (websiteApp == "critique") {
     var setSubNavHLayout = setLayout(subNavLinksH, widthTriggerSubNavLayout);
     var contentWrap = document.getElementById("content-wrap");
     var setCritiqueContentWrapLayout = setLayout(contentWrap, widthTriggerCritiqueNavLayout);
-    setCritiqueNavLayout(); setSubNavHLayout(); setCritiqueContentWrapLayout();
+
+    var widthTriggerTopTextesPosition = 600;
+    function setTopTextesPosition() {
+        if (window.innerWidth < widthTriggerCritiqueNavLayout) {
+            if (window.innerWidth < widthTriggerTopTextesPosition) {
+                if (mainNavLinksV.children.length > 0) {
+                    var topTextesLink = mainNavLinksV.children[0];
+                    var oldTopTextesLink = mainNavLinksV.removeChild(topTextesLink);
+                    subNavLinksV.insertBefore(oldTopTextesLink, subNavLinksV.children[1]);
+                }
+            } else {
+                if (mainNavLinksV.children.length == 0) {
+                    var topTextesLink = subNavLinksV.children[1];
+                    var oldTopTextesLink = subNavLinksV.removeChild(topTextesLink);
+                    mainNavLinksV.append(oldTopTextesLink);
+                }
+            }
+        }
+    }
+
+    setCritiqueNavLayout(); setTopTextesPosition();
+    setSubNavHLayout(); setCritiqueContentWrapLayout();
     window.addEventListener("resize", function(e) {
-        setCritiqueNavLayout(); setSubNavHLayout(); setCritiqueContentWrapLayout();
+        setCritiqueNavLayout(); setTopTextesPosition();
+        setSubNavHLayout(); setCritiqueContentWrapLayout();
     });
 
     /* Hide menus after scrolling down */
