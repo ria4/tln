@@ -17,8 +17,8 @@ body > header {
     background-image: url("/static/img_base/critique_background_header_min.jpg");
     box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 
-/* TODO for text content and layout="v" { margin-right: 20px; } */
 #content-wrap { margin-top: 64px; }
+#content-wrap[layout="h"] { margin-right: 1.2%; }
 #content { margin-top: 36px; }
 .filter-navbar { margin-top: -20px; }
 
@@ -355,6 +355,7 @@ body > header {
    ========================================================================== */
 
 .entry-links { max-width: 940px; }
+.entry-links.no-filter-nav-bar { margin-top: 6px; }
 
 .entry-links .oeuvre-display {
     max-width: none;
