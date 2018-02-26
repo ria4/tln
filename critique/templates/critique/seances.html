@@ -22,7 +22,7 @@
     var seances = [];
     {% localize on %}
     {% for seance, film in seances_enhanced %}
-        seances.push(`
+        seances.push(`<span>
             {% if seance.date_month_unknown %}
                 en {{ seance.date|date:"Y" }} :
             {% else %}
@@ -40,7 +40,7 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-            {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}
+            {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}</span>
         `)
     {% endfor %}
     {% endlocalize %}

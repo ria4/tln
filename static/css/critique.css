@@ -137,51 +137,51 @@ body > header {
 /* Oeuvre Display
    ========================================================================== */
 
-.oeuvre_display {
+.oeuvre-display {
     max-width: 400px;
     display: flex;
     justify-content: center;
     align-items: center; }
-.oeuvre_display img {
+.oeuvre-display img {
     border: 1px solid #eee;
     max-width: 100%;
     max-height: 100%; }
-.oeuvre_display a img {
+.oeuvre-display a img {
     transition: all 0.3s ease; }
-.oeuvre_display a img:hover {
+.oeuvre-display a img:hover {
     border: 1px solid rgba(0, 0, 255, 0.4);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7); }
 
-.oeuvres_display .oeuvre_display {
+.oeuvres-display .oeuvre-display {
     margin: 7px 6px;
     max-width: 300px;
     max-height: 300px; }
-.oeuvres_display .oeuvre_display a {
+.oeuvres-display .oeuvre-display a {
     display: flex; }
-.oeuvres_display .oeuvre_display a img {
+.oeuvres-display .oeuvre-display a img {
     align-self: center; }
 
 
 /* Here is a dirty fix for borders/shadows of substitute displays...
  * Otherwise shadows would not appear when hovering over the inner p.
  * Also, removing class names might mess with css specificities... */
-.oeuvre_display .substitute_display {
+.oeuvre-display .substitute-display {
     position: relative;
     border: 1px solid #eee;
     max-width: 100%;
     max-height: 100%;
     display: inline-flex;
     transition: all 0.3s ease; }
-.oeuvre_display .substitute_display:hover {
+.oeuvre-display .substitute-display:hover {
     border: 1px solid rgba(0, 0, 255, 0.4);
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
     transition: all 0.3s ease; }
-.oeuvre_display .substitute_display img {
+.oeuvre-display .substitute-display img {
     border: none; }
-.oeuvre_display .substitute_display img:hover {
+.oeuvre-display .substitute-display img:hover {
     border: none;
     box-shadow: none; }
-.oeuvre_display .substitute_display p {
+.oeuvre-display .substitute-display p {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -205,7 +205,7 @@ body > header {
     font-size: 30px;
 }
 
-.oeuvres_display {
+.oeuvres-display {
     margin-top: -3px;
     width: 95%;
     display: flex;
@@ -272,7 +272,7 @@ body > header {
     align-items: center;
 }
 
-#content .info .oeuvre_display {
+#content .info .oeuvre-display {
     margin: 10px;
     margin-right: 20px;
 }
@@ -356,7 +356,7 @@ body > header {
 
 .entry-links { max-width: 940px; }
 
-.entry-links .oeuvre_display {
+.entry-links .oeuvre-display {
     max-width: none;
     width: 140px;
     min-width: 140px;
@@ -391,6 +391,7 @@ body > header {
     margin: 0 30px; }
 .chunks li { color: #bd4700 !important; }
 .chunks li:hover { color: #f7a300 !important; }
+.chunks li span { color: black !important; }
 
 #collection.chunks ul { max-width: 380px; }
 #collection.collection_artist.chunks ul { max-width: 520px; }
