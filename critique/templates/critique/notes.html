@@ -5,6 +5,8 @@
 {% block title %}notes{% endblock %}
 {% block meta-description-page %}commentaires au sujet d'œuvres diverses{% endblock %}
 
+{% block body-class %}entry-list{% endblock %}
+
 {% block content %}
 
 <ul class="navbar filter-navbar">
@@ -17,28 +19,31 @@
     <li><a desc="all" href={% url "list_notes" "all" %}>tout</a></li>
 </ul>
 
-<div id="notes_summaries">
+<div class="entry-links">
 {% for oeuvre in oeuvres %}
-    <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="note_summary">
+    <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="entry-link">
         <div class="oeuvre_display">
         {% if oeuvre.info.image_url %}
         <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
         {% endif %}
         </div>
 
-        <div class="note_summary_text">
-            <div class="info_text">
-                <h2 class="title sub_title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h2>
-            </div>
+        <article class="hentry">
+            <header class="entry-header">
+                <h2 class="entry-title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h2>
+            </header>
 
             {% with oeuvre.comments.0 as comment %}
-            <article class="note_content_summary">
-                <div class="comment_text">
+            <div class="entry-body">
+                <div class="entry-content">
                     {% for p in comment.content %}
                     {{ p|striptags }}
                     {% endfor %}
                 </div>
-                <p class="comment_date">
+            </div>
+            <footer class="entry-footer">
+                <div class="entry-discussions" role="none"></div>
+                <time>
                     {% localize on %}
                     {% if comment.date_month_unknown %}
                         {{ comment.date|date:"Y" }}
@@ -52,10 +57,10 @@
                         {% endif %}
                     {% endif %}
                     {% endlocalize %}
-                </p>
-            </article>
+                </time>
+            </footer>
             {% endwith %}
-        </div>
+        </article>
     </a>
 {% endfor %}
 </div>

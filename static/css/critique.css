@@ -1,6 +1,6 @@
 /* Main
    ========================================================================== */
-header {
+body > header {
     position: fixed;
     top: 0;
     z-index: 101;
@@ -17,8 +17,10 @@ header {
     background-image: url("/static/img_base/critique_background_header_min.jpg");
     box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); }
 
+/* TODO for text content and layout="v" { margin-right: 20px; } */
 #content-wrap { margin-top: 64px; }
-    /* for text content and layout="v" { margin-right: 20px; }
+#content { margin-top: 36px; }
+.filter-navbar { margin-top: -20px; }
 
 
 /* ==========================================================================
@@ -225,9 +227,6 @@ header {
 
 #content .sub_title {
     padding-right: 22px;
-    font-size: 26px;
-    padding-top: 1px;
-    margin-top: 7px;
 }
 
 .oeuvre_comments.centered {
@@ -279,7 +278,7 @@ header {
 }
 
 #content .info .info_text {
-    padding-bottom: 1.5%;
+    padding-bottom: 1.3%;
     max-width: 480px;
     display: flex;
     flex-direction: column;
@@ -343,13 +342,6 @@ header {
     margin: 18px 0;
 }
 
-#content .comment_date {
-    margin-top: -4px;
-    font-style: italic;
-    text-align: right;
-    padding-right: 20px;
-}    
-
 
 /* Content Artiste
    ========================================================================== */
@@ -359,76 +351,24 @@ header {
 }
 
 
-/* Content Notes
+/* Oeuvre Previews
    ========================================================================== */
 
-#content #notes_summaries {
-    padding: 0 20px;
-}
+.entry-links { max-width: 940px; }
 
-#content #notes_summaries a {
-    color: black;
-}
-
-#content #notes_summaries a:hover {
-    color: black;
-}
-
-#content #notes_summaries .oeuvre_display {
+.entry-links .oeuvre_display {
+    max-width: none;
+    width: 140px;
+    min-width: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
+    align-items: center; }
 
-#content .note_summary {
-    margin: 12px 0;
-    padding: 10px;
-    border: 1px solid #d3d4db;
-    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
-    width: 900px;
-    max-height: 210px;
-    display: flex;
-    transition: all 0.4s ease;
-    background-color: #fffddb;
-}
-
-#content .note_summary:hover {
-    box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7);
-    transition: all 0.4s ease;
-}
-
-#content .note_summary .oeuvre_display {
-    width: 140px;
-    height: auto;
-    max-width: none;
-}
-
-#content .note_summary_text {
-    margin-left: 10px;
-    padding-right: 4px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-#content .note_content_summary {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-#content #notes_summaries .comment_text {
-    flex: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-}
-
-#content #notes_summaries .comment_date {
-    margin-top: 4px;
-}
+.entry-list .hentry { margin-left: 10px; margin-right: 2px; }
+.entry-list .entry-title { padding-right: 26px; }
+.entry-list .entry-body { flex: 1; }
+.entry-list .entry-footer { margin-right: 24px; }
 
 
 /* Chunks

@@ -12,6 +12,10 @@
     padding: 0 16px;
     font-weight: bold;
     font-size: 50px;
+    text-align: center;
+}
+#gallery-title h1 {
+    display: inline;
     border-bottom: solid 1px #a57100;
 }
 

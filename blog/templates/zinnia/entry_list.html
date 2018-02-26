@@ -30,16 +30,18 @@
 {% block content %}
 
 {% block content-loop %}
+<div class="entry-links">
 {% for object in object_list %}
-<a href="{{ object.get_absolute_url }}" rel="bookmark" itemprop="url">
+<a href="{{ object.get_absolute_url }}" class="entry-link" rel="bookmark" itemprop="url">
   {% zinnia_loop_template object.content_template as template %}
   {% include template with object_content=object.html_preview|striptags before_published='' comments_count_display=True continue_reading=1 entry_list=1 %}
 </a>
 {% empty %}
 <p class="info">      {# TODO style (accéder avec via tags/null) #}
     Il n'y a rien ici !
-  </p>
+</p>
 {% endfor %}
+</div>
 {% endblock content-loop %}
 
 {% block content-pagination %}
