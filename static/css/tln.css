@@ -466,6 +466,19 @@ a:active, a:focus { outline: none; }
 .entry-content li { list-style: square; }
 
 
+/* Entry Sections
+   ========================================================================== */
+
+.entry .entry-section:first-child {
+    margin-top: -14px; }
+.entry .entry-section {
+    padding-top: 20px;
+    padding-bottom: 4px; }
+.entry .entry-section-title {
+    font-weight: bold;
+    font-size: 30px; }
+
+
 /* Entry Footer
    ========================================================================== */
 

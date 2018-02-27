@@ -2,12 +2,12 @@
 * cross-browsers (do not display content until it is loaded?)
 
 # plus tard
-* rework critique.css (see blog.css)
 * écriture articles : journal dev, nom trans, retour sur 2017, langue française
 * blog widget welcome
 * sitemap avec django framework
 * raise 404 if empty entry-list
 * brouillon fata morgana
+* listes juste prix
 * blog shortlinks fail
 
 # après déploiement
@@ -15,7 +15,6 @@
 * check search engine indexation
 * make it mobile-friendly ('hovered' menu links color?)
 * check blog pagination
-* entry ul/li style (update juste prix)
 
 * accessibility
   * check contrast ratios
