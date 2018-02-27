@@ -446,6 +446,9 @@ a:active, a:focus { outline: none; }
 .entry-title, .collection-title {
     font-weight: bold;
     text-align: center; }
+.entry .entry-title {
+    padding: 44px 8px 32px 0;
+    font-size: 40px; }
 .entry-list .entry-title, .collection-title {
     padding: 8px 0;
     overflow: hidden;
