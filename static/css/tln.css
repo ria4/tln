@@ -278,7 +278,7 @@ body > footer {
     flex-direction: column;
     align-items: center; }
 #content > * { width: 100%; }
-#content .hseparator { border-bottom: solid 1px #a57100; }
+.hseparator { border-bottom: solid 1px #a57100; }
 
 a { text-decoration: none; }
 a:active, a:focus { outline: none; }
@@ -467,6 +467,7 @@ a:active, a:focus { outline: none; }
 .entry-footer {
     padding-top: 6px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     white-space: nowrap; }
 

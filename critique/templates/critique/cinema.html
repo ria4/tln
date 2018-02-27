@@ -4,26 +4,35 @@
 {% block title %}{{ cinema.name|lower }}{% endblock %}
 {% block meta-description-page %}informations sur le cinéma {{ cinema.name|lower }}{% endblock %}
 
+{% block body-class %}entry{% endblock %}
 {% block content-wrap-class %}decenter{% endblock %}
 
 {% block content %}
 
-<div id="cinema_info" class="info">
-    <h1 class="title">{{ cinema.name }}</h1>
+<div id="cinema-info" class="critique-info">
+    <h1 class="critique-title">{{ cinema.name }}</h1>
 </div>
 
-<div class="oeuvre_comments">
-    <article class="comment">
-        <div>
-        {% for p in cinema.comment %}
-            <p class="comment_par">{{ p|safe }}</p>
-        {% endfor %}
+<div class="hseparator" role="none"></div>
+
+<div class="critique-perso">
+    <article class="hentry">
+        <div class="entry-body">
+            <div class="entry-content">
+            {% for p in cinema.comment %}
+            <p>{{ p|safe }}</p>
+            {% endfor %}
+            </div>
         </div>
-        <p class="comment_date">visité le
-            {% localize on %}
-            {{ cinema.visited|date:"j F Y" }}
-            {% endlocalize %}
-        </p>
+
+        <footer class="entry-footer">
+            <time>
+                visité le
+                {% localize on %}
+                {{ cinema.visited|date:"j F Y" }}
+                {% endlocalize %}
+            </time>
+        </footer>
     </article>
 </div>
 {% endblock %}
