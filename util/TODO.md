@@ -6,9 +6,6 @@
 * blog widget welcome
 * sitemap avec django framework
 * raise 404 if empty entry-list
-* brouillon fata morgana
-* listes juste prix
-* blog shortlinks fail
 
 # après déploiement
 * pages 404, 403, 50X
