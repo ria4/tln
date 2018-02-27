@@ -209,15 +209,6 @@ body > header {
     width: 750px;
 }
 
-.oeuvre_comments.centered {
-    margin-top: auto !important;
-    margin-bottom: auto;
-    padding-right: 3%;
-    padding-bottom: 4%;
-    height: 100%;
-    align-items: center;
-}
-
 
 /* Oeuvre Display
    ========================================================================== */
@@ -386,6 +377,16 @@ body > header {
 
 #artiste-info { margin-top: 38px; margin-bottom: 24px; }
 .artiste-oeuvres { max-width: 1200px; }
+
+
+/* Content Oeuvres
+   ========================================================================== */
+
+#collection.oeuvres-homonymes {
+    position: absolute;
+    top: 42.8%;
+    left: -1.2%;
+    width: 100%; }
 
 
 /* Content Cinemas
