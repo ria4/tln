@@ -111,7 +111,7 @@
 #gallery-slider .flex-direction-nav {
     position: fixed;
     z-index: 10;
-    top: 44%;
+    top: 40%;
     left: 0;
     margin: 0 2%;   /* bound to the gallery-slider width */
     width: 96%;
@@ -123,7 +123,7 @@
     color: #aaa;
     text-decoration: none;
     font-family: SoljikDambaek;
-    font-size: 90px;
+    font-size: 160px;
     transition: all 0.4s ease;
 }
 #gallery-slider .flex-direction-nav a:hover { opacity: 0.6; color: #ddd; }
