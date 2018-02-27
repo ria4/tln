@@ -21,6 +21,12 @@ body > header {
 #content { margin-top: 36px; }
 .filter-navbar { margin-top: -20px; }
 
+.hseparator {
+    margin-left: -1px;
+    max-width: 777px;
+    width: 100%;
+    border-bottom-color: black; }
+
 
 /* ==========================================================================
 /* Navigation Bars
@@ -166,6 +172,23 @@ body > header {
     flex-direction: column;
     justify-content: center; }
 
+.critique-perso {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+.critique-perso .hentry {
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 6px;
+    max-width: 760px; }
+.critique-perso .hentry .entry-title {
+    padding: 44px 8px 12px 0;
+    font-size: 30px; }
+.critique-perso .hentry .entry-footer {
+    padding-top: 0;
+    padding-right: 20px;
+    margin-bottom: 10px; }
+
 
 /* XXXXX
    ========================================================================== */
@@ -289,30 +312,10 @@ body > header {
 /* Oeuvre Comments
    ========================================================================== */
 
-#comments {
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-#comments .hseparator {
-    margin-top: 46px;
-    margin-left: -1px;
-    max-width: 777px;
-    width: 100%;
-    border-bottom-color: black; }
 #comments .hseparator:first-child {
     margin-top: 0; }
-#comments .hentry {
-    padding-top: 4px;
-    padding-right: 4px;
-    padding-left: 6px;
-    max-width: 760px; }
-#comments .hentry .entry-title {
-    padding: 44px 8px 12px 0;
-    font-size: 30px; }
-#comments .hentry .entry-footer {
-    padding-top: 0;
-    padding-right: 20px;
-    margin-bottom: 10px; }
+#comments .hseparator {
+    margin-top: 46px; }
 
 
 /* Oeuvre Previews
@@ -398,8 +401,9 @@ body > header {
     list-style: square; }
 #content .oeuvre_comments #cinemas_total {
     margin-top: 28px; }
-#cinema_info, #artist_info {
-    margin-top: 38px; }
+#cinema-info, #artiste-info {
+    margin-top: 38px;
+    margin-bottom: 24px; }
 
 
 /* Content Top Films
