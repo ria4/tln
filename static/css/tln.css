@@ -467,7 +467,6 @@ a:active, a:focus { outline: none; }
 .entry-footer {
     padding-top: 6px;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     white-space: nowrap; }
 
