@@ -461,7 +461,9 @@ a:active, a:focus { outline: none; }
 /* Entry Body
    ========================================================================== */
 
-.entry #content .entry-content p { margin: 18px 0; }
+.entry .entry-content p { margin: 18px 0; }
+.entry-content ul { list-style: square; padding-left: 40px; }
+.entry-content li { list-style: square; }
 
 
 /* Entry Footer

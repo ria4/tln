@@ -369,8 +369,8 @@ body > header {
 /* Content Artiste
    ========================================================================== */
 
-#artiste-info { margin-top: 38px; margin-bottom: 24px; }
 .artiste-oeuvres { max-width: 1200px; }
+#artiste-info { margin-top: 38px; margin-bottom: 24px; }
 
 
 /* Content Oeuvres
@@ -386,19 +386,13 @@ body > header {
 /* Content Cinemas
    ========================================================================== */
 
-#cinemas_intro.oeuvre_comments {
-    margin-top: -10px;
-    margin-bottom: 20px; }
-#cinemas_intro ul {
-    padding-left: 40px;
-    list-style: square; }
-#cinemas_intro li {
-    list-style: square; }
-#content .oeuvre_comments #cinemas_total {
-    margin-top: 28px; }
-#cinema-info, #artiste-info {
-    margin-top: 38px;
-    margin-bottom: 24px; }
+#cinemas-intro1 { margin-top: -14px; margin-bottom: 20px; }
+#cinemas-intro1 .entry-title { padding-bottom: 12px; }
+#cinemas-intro2 { margin-top: 20px; }
+#cinemas-intro2 .hentry { width: 100%; }
+#cinemas-intro2 .entry-footer { overflow-x: hidden; }
+#cinemas-intro2 #cinemas_total { margin-top: 8px; }
+#cinema-info { margin-top: 38px; margin-bottom: 24px; }
 
 
 /* Content Top Films
