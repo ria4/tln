@@ -159,6 +159,7 @@ body > header {
     white-space: nowrap;
     text-overflow: ellipsis; }
 
+
 .critique-info {
     width: 100%;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -181,9 +182,6 @@ body > header {
     padding-right: 4px;
     padding-left: 6px;
     max-width: 760px; }
-.critique-perso .hentry .entry-title {
-    padding: 44px 8px 12px 0;
-    font-size: 30px; }
 .critique-perso .hentry .entry-footer {
     padding-top: 0;
     padding-right: 20px;
@@ -192,13 +190,6 @@ body > header {
 
 /* XXXXX
    ========================================================================== */
-
-#content .top_title {
-    font-weight: bold;
-    font-size: 40px;
-    text-align: center;
-    padding: 44px 8px 12px 0;
-}
 
 #content .par_title {
     font-weight: bold;
@@ -307,6 +298,9 @@ body > header {
     margin-top: 0; }
 #comments .hseparator {
     margin-top: 46px; }
+#comments .entry-title {
+    padding: 44px 8px 12px 0;
+    font-size: 30px; }
 
 
 /* Oeuvre Previews
