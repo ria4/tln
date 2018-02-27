@@ -188,19 +188,6 @@ body > header {
     margin-bottom: 10px; }
 
 
-/* XXXXX
-   ========================================================================== */
-
-#content .par_title {
-    font-weight: bold;
-    font-size: 30px;
-}
-
-#content .oeuvre_comments {
-    width: 750px;
-}
-
-
 /* Oeuvre Display
    ========================================================================== */
 
@@ -354,16 +341,19 @@ body > header {
 /* Content Preambule
    ========================================================================== */
 
-#preambule.oeuvre_comments {
-    margin-top: -10px; }
-#preambule div:first-of-type {
-    margin-top: -14px; }
-#preambule > div {
-    border-bottom: 1px solid #a57100;
-    margin: 0 -50px;
-    padding: 20px 50px; }
-#preambule > div p:last-child {
-    margin-bottom: 2px; }
+#preambule { margin-top: -14px; margin-bottom: 20px; }
+#preambule .hentry { max-width: 860px; width: 100%; }
+#preambule .entry-title { padding-bottom: 12px; }
+#preambule .entry-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+#preambule .entry-section {
+    max-width: 750px;
+    width: 100%; }
+#preambule .hseparator {
+    max-width: none;
+    border-bottom-color: #a57100; }
 
 
 /* Content Artiste
