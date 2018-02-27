@@ -4,9 +4,11 @@
 {% block title %}{{ artist|lower }}{% endblock %}
 {% block meta-description-page %}liste d'œuvres par {{ artist|lower }}{% endblock %}
 
+{% block content-wrap-class %}decenter{% endblock %}
+
 {% block content %}
 <div id="artiste-info">
-    <h1 class="collection-title">{{ artist }}</h1>
+    <h1 class="critique-title">{{ artist }}</h1>
 </div>
 
 <div id="collection" class="chunks artiste-oeuvres"></div>
