@@ -5,12 +5,14 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('login', views.login_view, name='login'),
-    path('logout', views.logout_view, name='logout'),
-    path('admin/', admin.site.urls),
-    path('critique/', include('critique.urls')),
+    path('', include('home.urls')),
     path('blog/', include('blog.urls')),
     path('photos/', include('photos.urls')),
+    path('critique/', include('critique.urls')),
+
+    path('admin/', admin.site.urls),
+    path('login', views.login_view, name='login'),
+    path('logout', views.logout_view, name='logout'),
 ]
 
 #TODO remove for production

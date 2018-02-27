@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css-path %}{% static 'css/home.css' %}{% endblock %}
+{% block title-between %} - {% endblock %}
+{% block title %}max tury{% endblock %}
+{% block meta-keywords %}{% endblock %}
+
+{% block header %}
+<header id="header" role="banner">
+    <nav id="top-nav" class="navbar">
+        <ul>
+            <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
+            <li class="dropdown">
+                <a id="photos-dropdown-link" href="/photos">Photos</a>
+                <div class="dropdown-content">
+                    {% for gallerycustom in gallery_list %}
+                    <a href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a>
+                    {% if not forloop.last %}
+                    <div class="dropdown-separator"></div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+            <li><a href="/critique">Critique</a></li>
+            <li><a href="/#info">À propos</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock %}
+
+{% block content-wrap %}
+<main id="content" role="main">
+    <section id="info">
+    </section>
+</main>
+{% endblock %}

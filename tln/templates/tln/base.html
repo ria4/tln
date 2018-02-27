@@ -21,10 +21,11 @@
 
   <body class="{% block body-class %}{% endblock body-class %}" layout="h">
 
+    {% block header %}
     <header id="header" role="banner">
       <nav id="top-nav" class="navbar" layout="h">
         <ul id="top-nav1">
-          <li><a href="{% url 'zinnia:entry_archive_index' %}" rel="home">Blog</a></li>
+          <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
           <span class="nav-separator-sub"></span>
           <li class="dropdown">
               <a id="photos-dropdown-link" href="/photos">Photos</a>
@@ -42,11 +43,12 @@
         <ul id="top-nav2">
           <li><a href="/critique">Critique</a></li>
           <span class="nav-separator-sub"></span>
-          <li><a href="/info">À propos</a></li>
+          <li><a href="/#info">À propos</a></li>
         </ul>
       </nav>
       {% block header-more %}{% endblock %}
     </header>
+    {% endblock %}
 
     <div id="content-wrap" layout="h" class="{% block content-wrap-class %}{% endblock %}">
         {% block content-wrap %}{% endblock %}
