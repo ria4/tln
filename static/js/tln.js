@@ -12,17 +12,6 @@ function setLayout(element, widthTrigger) {
 }
 
 
-/* Top Navigation - Navigation bar layout depends on window width */
-
-var widthTriggerTopNavLayout = 900;
-var topNavBar = document.getElementById("top-nav");
-if (topNavBar) {
-    var setTopNavLayout = setLayout(topNavBar, widthTriggerTopNavLayout);
-    setTopNavLayout();
-    window.addEventListener("resize", setTopNavLayout);
-}
-
-
 /* Top Navigation - Deactivate hoverable photos link for touchscreens */
 
 function isTouchDevice() {
@@ -181,6 +170,33 @@ if (pagination) {
 /* Apps logic */
 
 var websiteApp = location.pathname.split("/")[1];
+
+
+if (websiteApp == "") {
+
+    /* Homepage - Smooth scroll to info anchor */
+
+    $("#info-anchor").click( function (event) {
+        event.preventDefault();
+        var href = $.attr(this, 'href');
+        $('html, body').animate({
+            scrollTop: $(href).offset().top
+        }, 500, function () { window.location.hash = href; });
+    });
+
+} else {
+
+    /* Top Navigation - Navigation bar layout depends on window width */
+
+    var widthTriggerTopNavLayout = 900;
+    var topNavBar = document.getElementById("top-nav");
+    if (topNavBar) {
+        var setTopNavLayout = setLayout(topNavBar, widthTriggerTopNavLayout);
+        setTopNavLayout();
+        window.addEventListener("resize", setTopNavLayout);
+    }
+}
+
 
 if (websiteApp == "critique") {
 
