@@ -1,5 +1,10 @@
-* page d'accueil / à propos
+* page d'accueil
+* à propos
+* homepage link
 * cross-browsers (do not display content until it is loaded?)
+* page titles redundancy
+* replace js layout with media queries
+* clean js (undefined refs) for homepage
 
 # plus tard
 * écriture articles : journal dev, nom trans, retour sur 2017, langue française
