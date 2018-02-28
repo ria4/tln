@@ -8,15 +8,16 @@
 
 {% block header %}
 <header id="header" role="banner">
-    <!--<img id="logo-tln" src={% static 'img_base/tln_logo.png' %} alt="logo tln"></img>-->
-
+    <div id="logos">
     <img id="logo-mtu" src={% static 'img_base/max_tury_darkviolet_blur.png' %} alt="max tury"></img>
+    <img id="logo-tln" src={% static 'img_base/tln_logo.png' %} alt="logo tln"></img>
+    </div>
 
     <nav id="top-nav" class="navbar">
         <ul>
             <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
             <li class="dropdown">
-                <a id="photos-dropdown-link" href="/photos">Photos</a>
+                <a id="photos-dropdown-link" href="/photos/">Photos</a>
                 <div class="dropdown-content">
                     {% for gallerycustom in gallery_list %}
                     <a href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a>
@@ -26,10 +27,12 @@
                     {% endfor %}
                 </div>
             </li>
-            <li><a href="/critique">Critique</a></li>
-            <li><a id="info-anchor" href="#info">À propos</a></li>
+            <li><a href="/critique/">Critique</a></li>
+            <li><a href="#info">À propos</a></li>
         </ul>
     </nav>
+
+    <div id="goto-info"><a href="#info">⌄</a></div>
 </header>
 {% endblock %}
 
