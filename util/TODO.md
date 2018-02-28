@@ -1,4 +1,3 @@
-* page d'accueil
 * à propos
 * homepage link
 * cross-browsers (do not display content until it is loaded?)
@@ -15,7 +14,10 @@
 # après déploiement
 * pages 404, 403, 50X
 * check search engine indexation
-* make it mobile-friendly ('hovered' menu links color?)
+* make it mobile-friendly
+    * font sizes
+    * hovered menu links color
+    * dropdown overflow-x on homepage
 * check blog pagination
 
 * accessibility
