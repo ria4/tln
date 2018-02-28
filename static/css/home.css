@@ -7,49 +7,68 @@ html {
     background-repeat: no-repeat;
     background-size: cover; }
 
-body { background-image: none; }
+body { background-image: none; overflow-x: hidden; height: 100%; }
 
-#content-wrap { height: 100%; }
+body > #content-wrap { margin-bottom: 0; height: 100%; }
 #content { flex: 1; }
 
-#header { height: 100%; }
+#header {
+    z-index: 1;
+    position: relative;
+    left: -47%;
+    margin-top: 116px;
+    margin-bottom: 78px;
+    width: auto;
+    height: 100%;
+    min-height: 396px;
+    transform: translateX(50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+@media (max-width: 850px) {
+#header { position: relative; left: 0; transform: none; } }
+@media (max-height: 740px) {
+#header { justify-content: flex-start; margin-top: 20px; margin-bottom: 64px; } }
 
 
 /* Logos
    ========================================================================== */
 
 #logos {
-    position: absolute;
-    left: 1.8%;
-    top: 16.2%;
+    padding: 5px;
     max-width: 400px;
-    background-color: rgba(235, 235, 235, 0.31);
-    box-shadow: 0 0 10px 6px rgba(235, 235, 235, 0.31);
+    background-color: rgba(220, 220, 235, 0.36);
+    box-shadow: 0 0 10px 6px rgba(220, 220, 235, 0.36);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+@media (max-height: 740px) {
+#logos { margin-bottom: 20px; height: 115px; max-width: 250px; } }
+
+#logo-mtu { max-width: 100%; max-height: 100%; }
+@media (max-height: 740px) {
+#logo-mtu { max-height: 80%; } }
 
 #logo-tln {
-    width: 100px;
-    margin-left: 40%;
-    margin-top: -40px;
-}
-#logo-mtu {
-    max-width: 100%;
-}
+    max-width: 126px;
+    margin-left: 0.7%;
+    margin-top: -30px; }
+@media (max-height: 740px) {
+#logo-tln { max-height: 70%; margin-top: -40px; } }
 
 
 /* Site Navigation
    ========================================================================== */
 
 #top-nav {
-    position: absolute;
-    left: 5%;
-    bottom: 6%;
     margin: 0;
     padding: 0;
     background-color: rgba(0, 5, 61, 0.85);
     box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9); }
 #top-nav > ul { flex-direction: column; }
-#top-nav li{ width: 100%; padding: 0 36px; }
+#top-nav li{ width: 100%; margin: 0 36px; }
 #top-nav li > a { color: #f8f8f8; }
 #top-nav li > a:hover { color: #f7a300; }
 
@@ -69,13 +88,13 @@ body { background-image: none; }
     bottom: 0.3%;
     padding-right: 0.8%;
     width: 100%;
-    text-align: center;
-    pointer-events: none; }
+    text-align: center; }
+@media (max-width: 850px) { #goto-info { padding-right: 0; } }
+
 #goto-info a {
     color: rgba(0, 5, 61, 0.64);
     font-size: 110px;
-    transition: color 0.4s ease;
-    pointer-events: auto; }
+    transition: color 0.4s ease; }
 #goto-info a:hover { color: rgba(247, 163, 0, 0.64); }
 
 
