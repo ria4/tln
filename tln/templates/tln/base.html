@@ -28,7 +28,7 @@
           <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
           <span class="nav-separator-sub"></span>
           <li class="dropdown">
-              <a id="photos-dropdown-link" href="/photos">Photos</a>
+              <a id="photos-dropdown-link" href="/photos/">Photos</a>
               <div class="dropdown-content">
                   {% for gallerycustom in gallery_list %}
                   <a href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a>
@@ -41,7 +41,7 @@
         </ul>
           <span class="nav-separator"></span>
         <ul id="top-nav2">
-          <li><a href="/critique">Critique</a></li>
+          <li><a href="/critique/">Critique</a></li>
           <span class="nav-separator-sub"></span>
           <li><a href="/#info">À propos</a></li>
         </ul>

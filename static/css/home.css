@@ -18,14 +18,7 @@ body { background-image: none; }
 /* Logos
    ========================================================================== */
 
-#logo-tln {
-    position: absolute;
-    left: 8%;
-    top: 10%;
-    max-width: 100px;
-}
-
-#logo-mtu {
+#logos {
     position: absolute;
     left: 1.8%;
     top: 16.2%;
@@ -34,8 +27,17 @@ body { background-image: none; }
     box-shadow: 0 0 10px 6px rgba(235, 235, 235, 0.31);
 }
 
+#logo-tln {
+    width: 100px;
+    margin-left: 40%;
+    margin-top: -40px;
+}
+#logo-mtu {
+    max-width: 100%;
+}
 
-/* Navigation
+
+/* Site Navigation
    ========================================================================== */
 
 #top-nav {
@@ -57,6 +59,24 @@ body { background-image: none; }
     box-shadow: 0 0 4px 3px rgba(0, 5, 61, 0.9);
     transform: translateX(16px); }
 #top-nav .dropdown:hover .dropdown-content { transform: none; }
+
+
+/* Info Anchor Arrow
+   ========================================================================== */
+
+#goto-info {
+    position: absolute;
+    bottom: 0.3%;
+    padding-right: 0.8%;
+    width: 100%;
+    text-align: center;
+    pointer-events: none; }
+#goto-info a {
+    color: rgba(0, 5, 61, 0.64);
+    font-size: 110px;
+    transition: color 0.4s ease;
+    pointer-events: auto; }
+#goto-info a:hover { color: rgba(247, 163, 0, 0.64); }
 
 
 /* Info

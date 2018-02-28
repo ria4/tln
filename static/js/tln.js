@@ -176,7 +176,7 @@ if (websiteApp == "") {
 
     /* Homepage - Smooth scroll to info anchor */
 
-    $("#info-anchor").click( function (event) {
+    $('a[href^="#"]').click( function (event) {
         event.preventDefault();
         var href = $.attr(this, 'href');
         $('html, body').animate({
