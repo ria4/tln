@@ -1,17 +1,3 @@
-/* Layout - Toggle between horizontal and vertical style */
-
-function setLayout(element, widthTrigger) {
-    function setElementLayout() {
-        if (window.innerWidth < widthTrigger) {
-            element.setAttribute("layout", "v");
-        } else {
-            element.setAttribute("layout", "h");
-        }
-    }
-    return setElementLayout;
-}
-
-
 /* Top Navigation - Deactivate hoverable photos link for touchscreens */
 
 function isTouchDevice() {
@@ -192,7 +178,7 @@ if (websiteApp == "critique") {
 
     /* Critique Navigation Bars - Hide/reveal and resize bars */
 
-    var topNavBar = document.getElementById("top-nav");
+    var topNavBar = document.getElementById("top-nav-h");
     var mainNavBar = document.getElementById("main-nav");
     var subNavBar = document.getElementById("sub-nav");
     var mainNavLinksH = document.getElementById("main-nav-links-h");
@@ -214,15 +200,8 @@ if (websiteApp == "critique") {
         subNavBar.classList.toggle("expanded");
     });
 
-    /* Tag and show/extend the right boxes according to the window width */
-    var critiqueNavBar = document.getElementById("critique-header");
+    /* Place the top texts link according to window width */
     var widthTriggerCritiqueNavLayout = 960;
-    var setCritiqueNavLayout = setLayout(critiqueNavBar, widthTriggerCritiqueNavLayout);
-    var widthTriggerSubNavLayout = 1104;
-    var setSubNavHLayout = setLayout(subNavLinksH, widthTriggerSubNavLayout);
-    var contentWrap = document.getElementById("content-wrap");
-    var setCritiqueContentWrapLayout = setLayout(contentWrap, widthTriggerCritiqueNavLayout);
-
     var widthTriggerTopTextesPosition = 600;
     function setTopTextesPosition() {
         if (window.innerWidth < widthTriggerCritiqueNavLayout) {
@@ -241,15 +220,10 @@ if (websiteApp == "critique") {
             }
         }
     }
+    setTopTextesPosition();
+    window.addEventListener("resize", setTopTextesPosition);
 
-    setCritiqueNavLayout(); setTopTextesPosition();
-    setSubNavHLayout(); setCritiqueContentWrapLayout();
-    window.addEventListener("resize", function(e) {
-        setCritiqueNavLayout(); setTopTextesPosition();
-        setSubNavHLayout(); setCritiqueContentWrapLayout();
-    });
-
-    /* Hide menus after scrolling down */
+    /* Hide menus when scrolling down */
     var lastKnownScrollPosition = 0;
     var ticking = false;
     window.addEventListener("scroll", function() {
@@ -266,13 +240,14 @@ if (websiteApp == "critique") {
         }
     });
 
-    /* Hide menus after clicking outside the menus */
+    /* Hide menus when clicking outside the menus */
+    var contentWrap = document.getElementById("content-wrap");
     contentWrap.addEventListener("click", function () {
         topNavBar.classList.remove("expanded");
         subNavBar.classList.remove("expanded");
     });
 
-    /* Hide menus after clicking on the transparent part of the subNavBar */
+    /* Hide menus when clicking on the transparent part of the subNavBar */
     subNavLinksV.addEventListener("click", function (e) {
         e.stopPropagation();
     });

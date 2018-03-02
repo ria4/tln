@@ -1,7 +1,6 @@
 * homepage link
 * cross-browsers (do not display content until it is loaded?)
 * page titles redundancy
-* replace js layout with media queries
 
 # plus tard
 * écriture articles : journal dev, nom trans, retour sur 2017, langue française
