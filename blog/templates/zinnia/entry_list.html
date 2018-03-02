@@ -4,13 +4,13 @@
 
 {% block title %}{% spaceless %}
 {% if tag %}
-{% blocktrans with object=tag %}tag {{ object }}{% endblocktrans %}
+{% blocktrans with object=tag %}blog - {{ object }}{% endblocktrans %}
 {% endif %}
 {% endspaceless %}{% endblock title %}
 
 {% block meta-description %}j'aime le point médian et l'inénarrable{% endblock %}
 
-{% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %}
+{# {% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %} #}
 
 {% block link %}
   {{ block.super }}

@@ -1,9 +1,8 @@
 * homepage link
 * cross-browsers (do not display content until it is loaded?)
-* page titles redundancy
 
 # plus tard
-* écriture articles : journal dev, nom trans, retour sur 2017, langue française
+* écriture articles : journal dev, nom trans, 2017, langue fr
 * blog widget welcome
 * sitemap avec django framework
 * raise 404 if empty entry-list

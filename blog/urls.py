@@ -14,13 +14,14 @@ tags_urls = [
     url(r'^(?P<tag>[^/]+(?u))/page/(?P<page>\d+)/$', TagDetail.as_view(), name='tag_detail_paginated'),
 ]
 
+# blog/<archive_year> --> blog/<shortlink> --> blog/<slug>
 blog_urls = ([
     path('feeds/', include('zinnia.urls.feeds')),
     path('tags/', include(tags_urls)),
+    path('', include(archive_patterns)),
     path('', include('zinnia.urls.shortlink')),
     path('<slug:slug>/', views.entry_detail_slug, name='entry_detail_slug'),
     path('', include('zinnia.urls.entries')),
-    path('', include(archive_patterns)),
     path('', include('zinnia.urls.quick_entry')),
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/unsubscribe/(?P<h>[0-9a-f]{32})$',
         views.unsubscribe, name='unsubscribe'),
