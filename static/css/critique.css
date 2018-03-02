@@ -45,11 +45,15 @@ body > header {
     padding: 0;
     transition: all 0.4s ease;
     pointer-events: auto; }
+
 #top-nav.expanded {
     visibility: visible;
     padding: 7px 0 5px 0; }
-#top-nav.expanded[layout="h"] { height: 70px; }
-#top-nav.expanded[layout="v"] { height: 140px; }
+@media (min-width: 900px) {
+#top-nav.expanded { height: 70px; } }
+@media (max-width: 900px) {
+#top-nav.expanded { height: 140px; } }
+
 #top-nav > * {
     transform: translateY(-35px);
     transition: all 0.4s ease; }

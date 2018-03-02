@@ -184,17 +184,6 @@ if (websiteApp == "") {
         }, 500, function () { window.location.hash = href; });
     });
 
-} else {
-
-    /* Top Navigation - Navigation bar layout depends on window width */
-
-    var widthTriggerTopNavLayout = 900;
-    var topNavBar = document.getElementById("top-nav");
-    if (topNavBar) {
-        var setTopNavLayout = setLayout(topNavBar, widthTriggerTopNavLayout);
-        setTopNavLayout();
-        window.addEventListener("resize", setTopNavLayout);
-    }
 }
 
 
@@ -203,6 +192,7 @@ if (websiteApp == "critique") {
 
     /* Critique Navigation Bars - Hide/reveal and resize bars */
 
+    var topNavBar = document.getElementById("top-nav");
     var mainNavBar = document.getElementById("main-nav");
     var subNavBar = document.getElementById("sub-nav");
     var mainNavLinksH = document.getElementById("main-nav-links-h");
