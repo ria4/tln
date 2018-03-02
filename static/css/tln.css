@@ -265,7 +265,7 @@ body > #content-wrap {
     display: flex;
     flex-direction: column;
     align-items: center; }
-body > footer {
+#footer {
     padding: 15px 0 14px 40px;
     width: 100%;
     background-color: rgba(232, 202, 138, 0.4);
