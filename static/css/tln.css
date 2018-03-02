@@ -348,20 +348,27 @@ a:active, a:focus { outline: none; }
 #top-nav {
     margin: 40px 0;
     padding-top: 5px; }
-#top-nav[layout="v"] { padding-right: 3px; flex-direction: column; }
-#top-nav .nav-separator-sub,
-#top-nav[layout="h"] .nav-separator {
+#top-nav .nav-separator-sub {
     height: 30px;
     border-right: 1px solid #a57100;
     margin-top: -2px; }
-#top-nav[layout="h"] li > a { padding: 0 60px; }
-#top-nav[layout="v"] #top-nav1,
-#top-nav[layout="v"] #top-nav2 { width: 100%; }
-#top-nav[layout="v"] li { width: 100%; max-width: 230px; }
-#top-nav[layout="v"] li:first-child { float: right; margin-right: 1px; }
-#top-nav[layout="v"] li:last-child { float: left; }
-#top-nav[layout="v"] li:first-child > a { float: right; padding-right: 22%; }
-#top-nav[layout="v"] li:last-child > a { float: left; padding-left: 22%; }
+
+@media (min-width: 900px) {
+#top-nav .nav-separator {
+    height: 30px;
+    border-right: 1px solid #a57100;
+    margin-top: -2px; }
+#top-nav li > a { padding: 0 60px; } }
+
+@media (max-width: 900px) {
+#top-nav { padding-right: 3px; flex-direction: column; }
+#top-nav #top-nav1,
+#top-nav #top-nav2 { width: 100%; }
+#top-nav li { width: 100%; max-width: 230px; }
+#top-nav li:first-child { float: right; margin-right: 1px; }
+#top-nav li:last-child { float: left; }
+#top-nav li:first-child > a { float: right; padding-right: 22%; }
+#top-nav li:last-child > a { float: left; padding-left: 22%; } }
 
 #top-nav a {
     font-size: 56px;
@@ -369,7 +376,6 @@ a:active, a:focus { outline: none; }
 #top-nav .dropdown-content a { font-size: 46px; }
 
 #top-nav .dropdown { position: relative; }
-#top-nav[layout="v"] .dropdown-content { width: 82%; top: 100%; }
 #top-nav .dropdown-content {
     z-index: 200;
     visibility: hidden;
@@ -384,6 +390,8 @@ a:active, a:focus { outline: none; }
     left: 3.4%;
     background-color: rgba(0, 5, 61, 0.85);
     box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9); }
+@media (max-width: 900px) {
+#top-nav .dropdown-content { width: 82%; top: 100%; } }
 #top-nav .dropdown-content a {
     margin-top: -6px;
     margin-bottom: -4px;
