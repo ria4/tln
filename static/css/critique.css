@@ -54,11 +54,14 @@ body > header {
 @media (min-width: 900px) { #top-nav-h.expanded { height: 70px; } }
 @media (max-width: 900px) { #top-nav-h.expanded { height: 140px; } }
 
+#top-nav-h a, #top-nav-h span { opacity: 0; }
+#top-nav-h.expanded a, #top-nav-h.expanded span { opacity: 1; }
+
 #top-nav-h > * {
     transform: translateY(-35px);
     transition: all 0.4s ease; }
 #top-nav-h.expanded > * {
-    transform: translateY(0); }
+    transform: none; }
 #top-nav1 { z-index: 200; }
 
 
@@ -66,6 +69,7 @@ body > header {
    ========================================================================== */
 
 #main-nav {
+    line-height: 1.15;
     justify-content: space-between; }
 
 #main-nav #top-nav-trigger {
@@ -98,6 +102,7 @@ body > header {
    ========================================================================== */
 
 #sub-nav {
+    line-height: 1.15;
     visibility: hidden;
     position: relative;
     overflow: hidden;
@@ -105,12 +110,13 @@ body > header {
     transition: all 0.4s ease; }
 @media (min-width: 960px) {
 #critique-header #sub-nav {
+    height: 0;
     flex-direction: column; } }
 @media (max-width: 960px) {
 #critique-header #sub-nav {
     float: right;
     width: auto;
-    box-shadow: 0 3px 13px 0px rgba(1, 1, 1, 0.23); } }
+    box-shadow: 0 3px 13px 0px rgba(0, 0, 0, 0.23); } }
 #sub-nav.expanded { visibility: visible; }
 
 #critique-header #sub-nav > ul { display: none; }
@@ -119,31 +125,30 @@ body > header {
 @media (max-width: 960px) {
 #critique-header #sub-nav > #sub-nav-links-v { display: flex; } }
 
-#sub-nav-links-h {
-    height: 0;
-    display: flex;
-    transition: height 0.4s ease, margin 0s ease 0.4s; }
-#sub-nav-links-v {
-    max-height: 0;
-    display: flex;
-    transition: max-height 0.4s ease, margin 0s ease 0.4s; }
-#sub-nav.expanded #sub-nav-links-h { transition: height 0.4s ease; }
 @media (min-width: 1104px) {
-#sub-nav.expanded #sub-nav-links-h { height: 44px; } }
-@media (max-width: 1104px) {
-#sub-nav.expanded #sub-nav-links-h { height: 96px; margin-top: -8px; } }
-#sub-nav.expanded #sub-nav-links-v { max-height: 425px; }
+#critique-header #sub-nav.expanded { height: 46px; } }
+@media (max-width: 1104px) and (min-width: 960px) {
+#critique-header #sub-nav.expanded { height: 92px; } }
+@media (max-width: 960px) {
+#critique-header #sub-nav.expanded { height: auto; }
+#critique-header #sub-nav.expanded #sub-nav-links-v { max-height: 425px; } }
+
 #sub-nav-links-h {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; }
 #sub-nav-links-v {
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
+    max-height: 0;
     border: 1px solid #c1bd79;
-    background-color: #fbf2bd; }
+    background-color: #fbf2bd;
+    line-height: 1.3;
+    transition: max-height 0.4s ease; }
 #sub-nav-links-v li {
     width: 100%;
     height: 53px;
