@@ -479,15 +479,6 @@ if (websiteApp == "critique") {
 } else if (websiteApp == "blog") {
 
 
-    /* Blog Layout - Sidebar position depends on window width */
-
-    var widthTriggerBlogSidebar = 1512;
-    var body = document.getElementsByTagName("body")[0];
-    var setBlogLayout = setLayout(body, widthTriggerBlogSidebar);
-    setBlogLayout();
-    window.addEventListener("resize", setBlogLayout);
-
-
     /* Blog Archive Widget - Expand/Collapse entries */
 
     var widgetArchives = document.getElementById("widget-archives");
@@ -511,6 +502,7 @@ if (websiteApp == "critique") {
 
     /* Blog Comment */
 
+    var widthTriggerBlogSidebar = 1512;
     var commentForm = document.getElementById("comment_form_custom");
     if (commentForm) {
 
@@ -546,7 +538,7 @@ if (websiteApp == "critique") {
             } else {
                 commentForm.classList.add("expanded");
                 commentForm.classList.remove("collapsed");
-                if (body.getAttribute("layout") == "h") {
+                if (window.innerWidth > widthTriggerBlogSidebar) {
                     /* Stick the viewport to the bottom of the document */
                     duration = commentFormTransitionTime;
                     scrollToBottomWhileHeightChanges();

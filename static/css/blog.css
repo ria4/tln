@@ -1,8 +1,9 @@
 /* Main
    ========================================================================== */
 
-body[layout="h"] { margin-right: 60px; }
-body[layout="h"] #content-wrap { padding-right: 11px; }
+@media (min-width: 1512px) {
+body { margin-right: 60px; }
+body #content-wrap { padding-right: 11px; } }
 
 
 /* Sidebar
@@ -15,14 +16,16 @@ body[layout="h"] #content-wrap { padding-right: 11px; }
     background-color: #fbf2bd;
     font-size: 18px; }
 
-body[layout="h"] #sidebar {
+@media (min-width: 1512px) {
+body #sidebar {
     position: absolute;
     top: 163px;
     right: 44.6%;
-    transform: translateX(644px); }
-body[layout="v"] #sidebar {
+    transform: translateX(644px); } }
+@media (max-width: 1512px) {
+body #sidebar {
     position: relative;
-    top: 30px; }
+    top: 30px; } }
 
 .entry-list #sidebar a { transition: color 0.12s linear; }
 .entry #sidebar { opacity: 0.15; transition: all 0.4s linear; }

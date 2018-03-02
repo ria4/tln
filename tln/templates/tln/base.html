@@ -19,11 +19,11 @@
     {% block script %}{% endblock script %}
   </head>
 
-  <body class="{% block body-class %}{% endblock body-class %}" layout="h">
+  <body class="{% block body-class %}{% endblock body-class %}">
 
     {% block header %}
     <header id="header" role="banner">
-      <nav id="top-nav" class="navbar" layout="h">
+      <nav id="top-nav" class="navbar">
         <ul id="top-nav1">
           <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
           <span class="nav-separator-sub"></span>
@@ -50,7 +50,7 @@
     </header>
     {% endblock %}
 
-    <div id="content-wrap" layout="h" class="{% block content-wrap-class %}{% endblock %}">
+    <div id="content-wrap" class="{% block content-wrap-class %}{% endblock %}">
         {% block content-wrap %}{% endblock %}
     </div>
 
