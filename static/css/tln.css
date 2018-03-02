@@ -390,11 +390,12 @@ a:active, a:focus { outline: none; }
 .dropdown-content { width: 82%; top: 100%; } }
 .dropdown-content a {
     font-size: 46px !important;
-    margin-top: -6px;
-    margin-bottom: -4px;
+    margin-top: -1px;
+    padding-bottom: 1px;
+    line-height: 1.1;
     color: #f8f8f8; }
-.dropdown-content a:first-child { margin-top: -8px; }
-.dropdown-content a:last-child { margin-bottom: -6px; }
+.dropdown-content a:first-child { margin-top: -3px; }
+.dropdown-content a:last-child { margin-bottom: -2px; }
 .dropdown-content a:hover { color: #f7a300; }
 .dropdown:hover .dropdown-content {
     visibility: visible;
