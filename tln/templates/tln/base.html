@@ -17,9 +17,16 @@
     <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />
     {% block link %}{% endblock link %}
     {% block script %}{% endblock script %}
+    <noscript><style>#overlay-loader { display: none; }</style></noscript>
   </head>
 
   <body class="{% block body-class %}{% endblock body-class %}">
+
+    <div id="overlay-loader" class="overlay revealed">
+        <div class="loader-wrap">
+            <div class="loader"></div>
+        </div>
+    </div>
 
     {% block header %}
     <header id="header" role="banner">
@@ -77,9 +84,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% block import-scripts %}{% endblock %}
     <script>
-        <!-- this variable does not enable access to sensitive operations -->
-        <!-- it is only used for basic display tweaks meant for the admin -->
-        var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
+        var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %}; <!-- display tweaks for the admin -->
     </script>
     <script src="{% static 'js/tln.js' %}"></script>
 
