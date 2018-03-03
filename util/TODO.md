@@ -1,8 +1,6 @@
 * homepage link
 * cross-browsers
-    * do not display content until it is loaded
     * safari
-* css loader
 
 # plus tard
 * écriture articles : journal dev, nom trans, 2017, langue fr
