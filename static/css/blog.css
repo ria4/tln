@@ -58,14 +58,14 @@ body #sidebar {
 #widget-archives ul ul ul { padding-left: 38px; list-style-type: none; }
 #widget-archives li { text-indent: -4px; }
 #widget-archives li li li { vertical-align: middle; text-indent: -15px; }
-#widget-archives li li li:before { font-size: 17px; content: "●"; }
+#widget-archives li li li:before { font-family: Arial; font-size: 17px; content: "●"; }
 #widget-archives a.expanded+a+ul { visibility: visible; height: auto; }
 #widget-archives a+a+ul { visibility: hidden; height: 0px; }
 #widget-archives a.collapsed+a+ul a.expanded+a+ul { visibility: hidden; height: 0px; }
 #widget-archives a+a+ul a.expanded+a+ul { visibility: visible; height: auto; }
 #widget-archives .toggle { color: black !important; }
-#widget-archives .toggle .toggle-in:after { content: '►'; }
-#widget-archives .toggle.expanded .toggle-in:after { content: '▼'; }
+#widget-archives .toggle .toggle-in:after { font-family: Arial; content: "►"; }
+#widget-archives .toggle.expanded .toggle-in:after { font-family: Arial; content: "▼"; }
 
 
 /* Entry Previews
