@@ -231,6 +231,15 @@ textarea, input { outline: none; }
     font-family: 'AlegreyaSans';
     src: url("../fonts/alegreya-sans/AlegreyaSans-MediumItalic.otf") format("opentype");
     font-style: italic; }
+/*@font-face {
+    font-family: 'AlegreyaSans';
+    src: url("../fonts/alegreya-sans/AlegreyaSans-Bold.otf") format("opentype");
+    font-weight: bold; }
+@font-face {
+    font-family: 'AlegreyaSans';
+    src: url("../fonts/alegreya-sans/AlegreyaSans-BoldItalic.otf") format("opentype");
+    font-weight: bold;
+    font-style: italic; }*/
 
 @font-face {
     font-family: 'Abuget';
@@ -475,19 +484,21 @@ a:active, a:focus { outline: none; }
 /* Entry Header
    ========================================================================== */
 
-.entry-title, .collection-title {
+.entry-title {
     font-weight: bold;
     text-align: center; }
 .entry .entry-title {
     padding: 44px 8px 32px 0;
     font-size: 40px; }
-.entry-list .entry-title, .collection-title {
+.entry-list .entry-title {
     padding: 8px 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
-.entry-list .entry-title { font-size: 26px; }
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 26px; }
+@supports (-moz-appearance:meterbar) {      /* targets Firefox 16+ */
+.entry-list .entry-title { letter-spacing: -1px; } }
 
 
 /* Entry Body
