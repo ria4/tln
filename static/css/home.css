@@ -83,7 +83,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 
 #goto-info {
     position: absolute;
-    bottom: 0.3%;
+    bottom: 0.4%;
     padding-right: 0.8%;
     width: 100%;
     text-align: center; }
@@ -91,6 +91,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 
 #goto-info a {
     color: rgba(0, 5, 61, 0.64);
+    font-family: "DejaVu Sans";
     font-size: 110px;
     transition: color 0.4s ease; }
 #goto-info a:hover { color: rgba(247, 163, 0, 0.64); }
