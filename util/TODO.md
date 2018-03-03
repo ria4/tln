@@ -1,11 +1,14 @@
 * homepage link
-* cross-browsers (do not display content until it is loaded?)
+* cross-browsers
+    * do not display content until it is loaded
+    * safari
 
 # plus tard
 * écriture articles : journal dev, nom trans, 2017, langue fr
 * blog widget welcome
 * sitemap avec django framework
 * raise 404 if empty entry-list
+* rendu ie, edge
 
 # après déploiement
 * pages 404, 403, 50X
