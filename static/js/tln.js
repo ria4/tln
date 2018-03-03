@@ -1,3 +1,20 @@
+/* Loading - Show page once assets have been loaded */
+
+var overlayLoader = document.getElementById("overlay-loader");
+if (overlayLoader) {
+    function removeLoader() {
+        overlayLoader.remove();
+    }
+
+    $(document).ready( function() {
+        var loaderTransitionTime = 500;
+        overlayLoader.style.opacity = 0;
+        overlayLoader.style.pointerEvents = "none";
+        setTimeout(removeLoader, 500);
+    });
+}
+
+
 /* Top Navigation - Deactivate hoverable photos link for touchscreens */
 
 function isTouchDevice() {
