@@ -173,8 +173,16 @@ body > header {
     font-weight: bold;
     font-size: 34px;
     text-align: center; }
-@supports (-moz-appearance:meterbar) {      /* targets Firefox 16+ */
+@supports (-moz-appearance:meterbar) { /* targets Firefox 16+ */
 .critique-title { letter-spacing: -1px; } }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+.critique-title {
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
+@supports (-ms-ime-align:auto) {
+.critique-title {
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
 
 .critique-info {
     width: 100%;
