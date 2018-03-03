@@ -54,7 +54,7 @@ body > header {
 @media (min-width: 900px) { #top-nav-h.expanded { height: 70px; } }
 @media (max-width: 900px) { #top-nav-h.expanded { height: 140px; } }
 
-#top-nav-h a, #top-nav-h span { opacity: 0; }
+#top-nav-h a, #top-nav-h span { opacity: 0; line-height: 1.15; }
 #top-nav-h.expanded a, #top-nav-h.expanded span { opacity: 1; }
 
 #top-nav-h > * {
