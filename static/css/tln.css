@@ -379,10 +379,7 @@ a:active, a:focus { outline: none; }
 #top-nav-h li:first-child > a { float: right; padding-right: 22%; }
 #top-nav-h li:last-child > a { float: left; padding-left: 22%; } }
 
-#top-nav-h a, #top-nav-h span {
-    font-size: 56px;
-    line-height: 1.15; }
-#top-nav-h a { transition: color 0.4s ease, opacity 0.4s ease; }
+#top-nav-h a { font-size: 56px; transition: color 0.4s ease, opacity 0.4s ease; }
 #top-nav-h span { transition: all 0.4s ease; }
 
 .dropdown { position: relative; }
