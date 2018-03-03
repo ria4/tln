@@ -231,12 +231,12 @@ textarea, input { outline: none; }
     font-family: 'AlegreyaSans';
     src: url("../fonts/alegreya-sans/AlegreyaSans-MediumItalic.otf") format("opentype");
     font-style: italic; }
-/*@font-face {
-    font-family: 'AlegreyaSans';
+@font-face {
+    font-family: 'AlegreyaSansBold';
     src: url("../fonts/alegreya-sans/AlegreyaSans-Bold.otf") format("opentype");
     font-weight: bold; }
-@font-face {
-    font-family: 'AlegreyaSans';
+/*@font-face {
+    font-family: 'AlegreyaSansBold';
     src: url("../fonts/alegreya-sans/AlegreyaSans-BoldItalic.otf") format("opentype");
     font-weight: bold;
     font-style: italic; }*/
@@ -249,6 +249,10 @@ textarea, input { outline: none; }
     font-family: 'SoljikDambaek';
     src: url("../fonts/soljik-dambaek/Soljik-Dambaek.ttf") format("truetype"); }
 
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: local("DejaVu Sans"),
+         url("../fonts/dejavu-sans/dejavu-sans.book.ttf") format("truetype"); }
 
 /* ==========================================================================
 /* Site Global
@@ -494,8 +498,16 @@ a:active, a:focus { outline: none; }
     text-overflow: ellipsis;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 26px; }
-@supports (-moz-appearance:meterbar) {      /* targets Firefox 16+ */
+@supports (-moz-appearance:meterbar) { /* targets Firefox 16+ */
 .entry-list .entry-title { letter-spacing: -1px; } }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+.entry-list .entry-title {
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
+@supports (-ms-ime-align:auto) {
+.entry-list .entry-title {
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
 
 
 /* Entry Body
