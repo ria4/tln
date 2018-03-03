@@ -463,8 +463,7 @@ a:active, a:focus { outline: none; }
     position: relative;
     padding: 0 !important;
     overflow: hidden;
-    text-overflow: ellipsis;
-}
+    text-overflow: ellipsis; }
 .entry-link .hentry .entry-content:after {
     display: block;
     position: absolute;
@@ -474,9 +473,7 @@ a:active, a:focus { outline: none; }
     height: 27px;
     content: "";
     text-align: right;
-    background: linear-gradient(to right, rgba(255, 253, 219, 0), rgba(255, 253, 219, 1) 85%);
-}
-
+    background: linear-gradient(to right, rgba(255, 253, 219, 0), rgba(255, 253, 219, 1) 85%); }
 @supports (-webkit-line-clamp: 1) {
 .entry-link .hentry .entry-content:after { display: none; } }
 

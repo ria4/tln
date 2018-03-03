@@ -45,3 +45,10 @@
 * 22/02 - Rework top & critique navigation for narrow screens
 * 23/02 - Update preambule, update meta fields, fit menu & blog & photos to 320px-wide screens
 * 24/02 - Rework/clean js and some css, clean blog layout
+* 25/02 - Clean blog, photos and global css, css fixes; begin factoring critique and blog css
+* 26/02 - Critique menu for narrow screens, clean/refactor critique css for making it resizable, css fixes
+* 27/02 - Homepage design and logos and placement
+* 28/02 - Homepage resizing
+* 01/03 - Homepage info
+* 02/03 - Replace setLayout with css media queries, various fixes/tweaks, begin ff unification
+* 03/03 - End ff unification (abandon page loader because ff shooting transitions at loading was a bug)
