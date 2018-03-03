@@ -426,6 +426,23 @@ a:active, a:focus { outline: none; }
     height: 0; }
 
 
+/* IE/Edge Fix
+   ========================================================================== */
+/* Sometimes there may be a 1px gap between the element border and its shadow
+ * This seems to be due to arcane antialiasing computations and odd/even numbers... */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+.shadow-up { position: absolute; width: 100%; top: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-right { position: absolute; height: 100%; right: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-down { position: absolute; width: 100%; bottom: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-left { position: absolute; height: 100%; left: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); } }
+@supports (-ms-ime-align:auto) { /* targets Edge 12+ */
+.shadow-up { position: absolute; width: 100%; top: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-right { position: absolute; height: 100%; right: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-down { position: absolute; width: 100%; bottom: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-left { position: absolute; height: 100%; left: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); } }
+
+
 /* ==========================================================================
 /* Entries Display
 /* ========================================================================== */
@@ -504,7 +521,7 @@ a:active, a:focus { outline: none; }
 .entry-list .entry-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
-@supports (-ms-ime-align:auto) {
+@supports (-ms-ime-align:auto) { /* targets Edge 12+ */
 .entry-list .entry-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }

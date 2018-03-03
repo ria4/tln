@@ -61,6 +61,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
    ========================================================================== */
 
 #top-nav-v {
+    position: relative;
     flex-direction: column;
     background-color: rgba(0, 5, 61, 0.85);
     box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9); }

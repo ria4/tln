@@ -179,7 +179,7 @@ body > header {
 .critique-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
-@supports (-ms-ime-align:auto) {
+@supports (-ms-ime-align:auto) { /* targets Edge 12+ */
 .critique-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }

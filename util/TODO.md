@@ -1,6 +1,6 @@
 * hseparator via css plutôt que js
 * homepage link
-* rendu edge, ie
+* rendu ie
 
 # après déploiement
 * rendu safari
@@ -21,7 +21,6 @@
     * set a semi-visible skip link to main content
 
 # plus tard
-* rendu ie
 * écriture articles : journal dev, nom trans, 2017, langue fr
 * blog widget welcome
 * sitemap avec django framework
