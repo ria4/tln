@@ -29,6 +29,10 @@
           <li class="dropdown">
               <a id="photos-dropdown-link" href="/photos/">Photos</a>
               <div class="dropdown-content">
+                  <div class="shadow-up"></div>
+                  <div class="shadow-right"></div>
+                  <div class="shadow-down"></div>
+                  <div class="shadow-left"></div>
                   {% for gallerycustom in gallery_list %}
                   <a href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a>
                   {% if not forloop.last %}
