@@ -173,11 +173,8 @@ body > header {
     font-weight: bold;
     font-size: 34px;
     text-align: center; }
-.entry-list .critique-title {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
-
+@supports (-moz-appearance:meterbar) {      /* targets Firefox 16+ */
+.critique-title { letter-spacing: -1px; } }
 
 .critique-info {
     width: 100%;
