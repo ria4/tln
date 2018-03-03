@@ -9,24 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{% block meta-description %}{% endblock meta-description %}{% block meta-description-page %}{% endblock meta-description-page %}" />
     <meta name="author" content="max tury" />
-    <meta name="keywords" content="{% block meta-keywords %}photos, blog, cinema, film, critique, review{% endblock meta-keywords %}" />
-    {% block meta %}{% endblock meta %}
+    <meta name="keywords" content="{% block meta-keywords %}photos, blog, cinema, film, critique, review{% endblock meta-keywords %}" />{% block meta %}{% endblock meta %}
     <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
     <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/tln.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />
-    {% block link %}{% endblock link %}
-    {% block script %}{% endblock script %}
-    <noscript><style>#overlay-loader { display: none; }</style></noscript>
+    <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />{% block link %}{% endblock link %}{% block script %}{% endblock script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>{% block import-scripts %}{% endblock %}
+    <script>var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};</script> <!-- display tweaks for the admin -->
   </head>
 
   <body class="{% block body-class %}{% endblock body-class %}">
-
-    <div id="overlay-loader" class="overlay revealed">
-        <div class="loader-wrap">
-            <div class="loader"></div>
-        </div>
-    </div>
 
     {% block header %}
     <header id="header" role="banner">
@@ -81,11 +73,6 @@
     </div>
     {% endif %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    {% block import-scripts %}{% endblock %}
-    <script>
-        var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %}; <!-- display tweaks for the admin -->
-    </script>
     <script src="{% static 'js/tln.js' %}"></script>
 
   </body>
