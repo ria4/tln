@@ -1,10 +1,9 @@
-* raise 404 if empty entry-list
+* hseparator via css plutôt que js
 * homepage link
-* cross-browsers
-    * safari
-    * edge
+* rendu edge, ie
 
 # après déploiement
+* rendu safari
 * lazy-load photos
 * make it mobile-friendly
     * font sizes
@@ -23,7 +22,6 @@
 
 # plus tard
 * rendu ie
-* hseparator via css plutôt que js
 * écriture articles : journal dev, nom trans, 2017, langue fr
 * blog widget welcome
 * sitemap avec django framework
