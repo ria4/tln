@@ -25,30 +25,11 @@
 
 <div id="seances" class="chunks"></div>
 
-<script type:"text/javascript">
+<script>
     var seances = [];
     {% localize on %}
     {% for seance, film in seances_enhanced %}
-        seances.push(`<span>
-            {% if seance.date_month_unknown %}
-                en {{ seance.date|date:"Y" }} :
-            {% else %}
-                {% if year < 2012 %}
-                    {% if seance.date|date:"j" == "1" %}
-                        1er {{ seance.date|date:"F Y" }} :
-                    {% else %}
-                        {{ seance.date|date:"j F Y" }} :
-                    {% endif %}
-                {% else %}
-                    {% if seance.date|date:"j" == "1" %}
-                        1er {{ seance.date|date:"F" }} :
-                    {% else %}
-                        {{ seance.date|date:"j F" }} :
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-            {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}</span>
-        `)
+        seances.push('<span>{% if seance.date_month_unknown %}en {{ seance.date|date:"Y" }} : {% else %}{% if year < 2012 %}{% if seance.date|date:"j" == "1" %}   1er {{ seance.date|date:"F Y" }} : {% else %}{{ seance.date|date:"j F Y" }} : {% endif %}{% else %}{% if seance.date|date:"j" == "1" %}1er {{ seance.date|date:"F" }} : {% else %}{{ seance.date|date:"j F" }} : {% endif %}{% endif %}{% endif %}{{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}</span>')
     {% endfor %}
     {% endlocalize %}
 </script>
