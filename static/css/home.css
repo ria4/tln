@@ -13,6 +13,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 
 #header {
     position: relative;
+    z-index: 1;
     left: -47%;
     padding-top: 116px;
     padding-bottom: 78px;
@@ -27,7 +28,8 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     -ms-flex-pack: justify;
     justify-content: space-between;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    pointer-events: none; }
 @media (max-width: 850px) {
 #header { position: relative; left: 0; transform: none; } }
 @media (max-height: 740px) {
@@ -77,11 +79,11 @@ _:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
 
 #top-nav-v {
     position: relative;
-    z-index: 1;
     -ms-flex-direction: column;
     flex-direction: column;
     background-color: rgba(0, 5, 61, 0.85);
-    box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9); }
+    box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9);
+    pointer-events: auto; }
 #top-nav-v > ul { -ms-flex-direction: column; flex-direction: column; }
 #top-nav-v li { width: 100%; }
 #top-nav-v li > a { color: #f8f8f8; padding: 0 36px; }
@@ -105,17 +107,14 @@ _:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
     bottom: 0.4%;
     padding-right: 0.8%;
     width: 100%;
-    text-align: center;
-    pointer-events: none; }
-_:-ms-fullscreen, :root #goto-info { pointer-events: auto; }
+    text-align: center; }
 @media (max-width: 850px) { #goto-info { padding-right: 0; } }
 
 #goto-info a {
     color: rgba(0, 5, 61, 0.64);
     font-family: "DejaVu Sans";
     font-size: 110px;
-    transition: color 0.4s ease;
-    pointer-events: auto; }
+    transition: color 0.4s ease; }
 #goto-info a:hover { color: rgba(247, 163, 0, 0.64); }
 
 
