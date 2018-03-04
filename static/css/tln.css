@@ -396,7 +396,7 @@ a:active, a:focus { outline: none; }
 #top-nav-h li > a { padding: 0 60px; } }
 
 @media (max-width: 900px) {
-#top-nav-h { padding-right: 3px; flex-direction: column; }
+#top-nav-h { padding-right: 3px; -ms-flex-direction: column; flex-direction: column; }
 #top-nav-h #top-nav1,
 #top-nav-h #top-nav2 { width: 100%; }
 #top-nav-h li { width: 100%; max-width: 230px; }
