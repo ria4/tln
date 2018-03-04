@@ -1,6 +1,5 @@
-* hseparator via css plutôt que js
 * homepage link
-* rendu ie
+* rendu ie 10, ie 11
 
 # après déploiement
 * rendu safari

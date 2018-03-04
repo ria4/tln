@@ -144,6 +144,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 #info .info-perso { max-width: 870px; }
 #info #info-en { margin-top: -18px; }
 #info .hseparator { margin: 50px -20px 51px -20px; }
+@media (max-width: 976px) { #info .hseparator { margin: 50px 6px 51px 6px; } }
 
 #info blockquote {
     float: right;

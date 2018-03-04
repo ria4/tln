@@ -71,6 +71,8 @@
     margin-left: -20px;
     margin-right: -16px;
 }
+@media (max-width: 896px) {
+#gallery-description .hseparator { margin-left: 6px; margin-right: 6px; } }
 #gallery-description #desc-en {
     padding: 10px 0;
 }

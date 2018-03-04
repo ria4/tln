@@ -29,6 +29,7 @@ body > header {
     max-width: 777px;
     width: 100%;
     border-bottom-color: black; }
+@media (max-width: 799px) { .hseparator { width: 68%; margin-left: 0; } }
 
 
 /* ==========================================================================
@@ -371,6 +372,7 @@ body > header {
    ========================================================================== */
 
 .chunks {
+    padding: 0 20px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
