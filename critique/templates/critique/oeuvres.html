@@ -8,7 +8,7 @@
 
 <div id="collection" class="chunks oeuvres-homonymes"></div>
 
-<script type="text/javascript">
+<script>
     var oeuvres = [];
     {% for oeuvre in oeuvres %}
         oeuvres.push(["{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})",

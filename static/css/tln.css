@@ -247,7 +247,8 @@ textarea, input { outline: none; }
 
 @font-face {
     font-family: 'SoljikDambaek';
-    src: url("../fonts/soljik-dambaek/Soljik-Dambaek.ttf") format("truetype"); }
+    src: url("../fonts/soljik-dambaek/Soljik-Dambaek.ttf") format("truetype"),
+         url("../fonts/soljik-dambaek/Soljik-Dambaek.woff") format("woff"); }
 
 @font-face {
     font-family: 'DejaVu Sans';
@@ -265,8 +266,11 @@ body {
     background-image: url("/static/img_base/critique_background_content.jpg");
     background-size: 100% auto;
     font-size: 20px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-align: center;
     align-items: center; }
 
 /* https://bugs.chromium.org/p/chromium/issues/detail?id=332189 */
@@ -276,10 +280,16 @@ body > header { width: 100%; }
 body > #content-wrap {
     margin-bottom: 46px;
     width: 100%;
+    max-height: 100%
+    -ms-flex-grow: 1;
+    -ms-flex-shrink: 1;
     flex: 1;
     font-family: Alegreya, Palatino, serif;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-align: center;
     align-items: center; }
 #footer {
     padding: 15px 0 14px 40px;
@@ -290,8 +300,11 @@ body > #content-wrap {
 
 #content {
     width: 100%;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-align: center;
     align-items: center; }
 #content > * { width: 100%; }
 .hseparator { border-bottom: solid 1px #a57100; }
@@ -327,12 +340,18 @@ a:active, a:focus { outline: none; }
 .navbar {
     text-align: center;
     font-family: Abuget, Palatino, serif;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center; }
 .navbar ul {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center; }
 .navbar a {
     color: black;
@@ -394,10 +413,13 @@ a:active, a:focus { outline: none; }
     z-index: 200;
     visibility: hidden;
     opacity: 0;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
     transform: translateY(-14px);
     transition: all 0.4s ease-in-out 0s;
+    -ms-flex-direction: column;
     flex-direction: column;
     position: absolute;
     width: 94%;
@@ -432,9 +454,7 @@ a:active, a:focus { outline: none; }
  * This seems to be due to arcane antialiasing computations and odd/even numbers... */
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
-.shadow-up { position: absolute; width: 100%; top: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
 .shadow-right { position: absolute; height: 100%; right: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); }
-.shadow-down { position: absolute; width: 100%; bottom: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
 .shadow-left { position: absolute; height: 100%; left: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); } }
 @supports (-ms-ime-align:auto) { /* targets Edge 12+ */
 .shadow-up { position: absolute; width: 100%; top: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
@@ -452,8 +472,11 @@ a:active, a:focus { outline: none; }
 
 .entry-links {
     padding: 0 20px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-align: center;
     align-items: center; }
 
 .entry-link {
@@ -465,15 +488,19 @@ a:active, a:focus { outline: none; }
     background-color: #fffddb;
     color: black !important;
     box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.2);
+    display: -ms-flexbox;
     display: flex;
     transition: all 0.4s ease; }
 .entry-link:hover {
     box-shadow: 0 0 12px 0 rgba(0, 13, 181, 0.7); }
 
 .entry-link .hentry {
+    -ms-flex: 1;
     flex: 1;
     overflow: hidden;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column; }
 .entry-link .hentry .entry-content {
     max-height: 108px;
@@ -554,7 +581,9 @@ a:active, a:focus { outline: none; }
 
 .entry-footer {
     padding-top: 6px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-align: center;
     align-items: center;
     white-space: nowrap; }
 
@@ -571,9 +600,13 @@ a:active, a:focus { outline: none; }
 #content-wrap .entry-footer .entry-tags a:hover { color: #f7a300; }
 
 .entry-footer .entry-discussions {
+    -ms-flex: 1;
     flex: 1;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: end;
     justify-content: flex-end;
+    -ms-flex-align: center;
     align-items: center; }
 .entry-footer .entry-discussions img {
     margin: 3px 8px 0 4px;
@@ -595,12 +628,16 @@ a:active, a:focus { outline: none; }
     visibility: hidden;
     opacity: 0;
     position: fixed;
+    left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(50, 50, 50, 0.8);
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center;
     transition: all 0.3s ease; }
 .overlay.revealed {
@@ -619,12 +656,17 @@ a:active, a:focus { outline: none; }
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 
 .form_inputs {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: start;
     justify-content: flex-start; }
 .form_inputs p {
     margin: 4px 0;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-align: center;
     align-items: center; }
 .form_inputs p label {
     text-align: right;
@@ -658,7 +700,9 @@ a:active, a:focus { outline: none; }
     margin-top: -4px;
     font-family: Abuget, Palatino, serif;
     font-size: 40px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center; }
 .form_buttons input {
     background-color: transparent;

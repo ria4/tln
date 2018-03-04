@@ -3,6 +3,7 @@
 body > header {
     position: fixed;
     top: 0;
+    left: 0;
     z-index: 101;
     pointer-events: none; }
 
@@ -70,6 +71,7 @@ body > header {
 
 #main-nav {
     line-height: 1.15;
+    -ms-flex-pack: justify;
     justify-content: space-between; }
 
 #main-nav #top-nav-trigger {
@@ -79,23 +81,25 @@ body > header {
 
 #main-nav ul {
     font-size: 46px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: end;
     justify-content: flex-end; }
 
 @media (min-width: 960px) {
 #critique-header #main-nav > nav > ul { margin-right: 80px; }
 #critique-header #main-nav li { margin: 0 34px; } }
 @media (max-width: 960px) {
-#critique-header #main-nav > nav { flex: 1; }
+#critique-header #main-nav > nav { -ms-flex-grow: 1; -ms-flex-shrink: 1; flex: 1; }
 #critique-header #main-nav > nav > ul { margin-right: 10%; }
 #critique-header #main-nav li { margin: 0 34px; } }
 
 @media (min-width: 960px) {
-#critique-header #main-nav #main-nav-links-h { display: flex; }
+#critique-header #main-nav #main-nav-links-h { display: -ms-flexbox; display: flex; }
 #critique-header #main-nav #main-nav-links-v { display: none; } }
 @media (max-width: 960px) {
 #critique-header #main-nav #main-nav-links-h { display: none; }
-#critique-header #main-nav #main-nav-links-v { display: flex; } }
+#critique-header #main-nav #main-nav-links-v { display: -ms-flexbox; display: flex; } }
 
 
 /* Sub Navigation Bar
@@ -111,6 +115,7 @@ body > header {
 @media (min-width: 960px) {
 #critique-header #sub-nav {
     height: 0;
+    -ms-flex-direction: column;
     flex-direction: column; } }
 @media (max-width: 960px) {
 #critique-header #sub-nav {
@@ -121,9 +126,9 @@ body > header {
 
 #critique-header #sub-nav > ul { display: none; }
 @media (min-width: 960px) {
-#critique-header #sub-nav > #sub-nav-links-h { display: flex; } }
+#critique-header #sub-nav > #sub-nav-links-h { display: -ms-flexbox; display: flex; } }
 @media (max-width: 960px) {
-#critique-header #sub-nav > #sub-nav-links-v { display: flex; } }
+#critique-header #sub-nav > #sub-nav-links-v { display: -ms-flexbox; display: flex; } }
 
 @media (min-width: 1104px) {
 #critique-header #sub-nav.expanded { height: 46px; } }
@@ -134,15 +139,24 @@ body > header {
 #critique-header #sub-nav.expanded #sub-nav-links-v { max-height: 425px; } }
 
 #sub-nav-links-h {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
 #sub-nav-links-v {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: start;
     justify-content: flex-start;
+    -ms-flex-align: end;
     align-items: flex-end;
     max-height: 0;
     border: 1px solid #c1bd79;
@@ -187,19 +201,28 @@ body > header {
 .critique-info {
     width: 100%;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center; }
 .critique-info-text {
     padding-bottom: 1.5%;
     max-width: 480px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: center;
     justify-content: center; }
 
 .critique-perso {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-align: center;
     align-items: center; }
 .critique-perso .hentry {
     padding-top: 4px;
@@ -216,8 +239,11 @@ body > header {
    ========================================================================== */
 
 .oeuvre-display {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center; }
 .oeuvre-display img {
     border: 1px solid #eee;
@@ -232,8 +258,11 @@ body > header {
 #content .oeuvres-display {
     margin-top: -3px;
     width: 95%;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -ms-flex-pack: center;
     justify-content: center; }
 
 .oeuvres-display .oeuvre-display {
@@ -241,9 +270,9 @@ body > header {
     max-width: 300px;
     max-height: 300px; }
 .oeuvres-display .oeuvre-display a {
-    display: flex; }
+    display: -ms-flexbox; display: flex; }
 .oeuvres-display .oeuvre-display a img {
-    align-self: center; }
+    -ms-flex-item-align: center; align-self: center; }
 
 
 /* Here is a dirty fix for borders/shadows of substitute displays...
@@ -323,14 +352,18 @@ body > header {
 .entry-links .oeuvre-display {
     width: 140px;
     min-width: 140px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
     align-items: center; }
 
 .entry-list .hentry { margin-left: 10px; margin-right: 2px; }
 .entry-list .entry-title { padding-right: 26px; }
-.entry-list .entry-body { flex: 1; }
+.entry-list .entry-body { -ms-flex: 1; flex: 1; }
 .entry-list .entry-footer { margin-right: 24px; }
 
 
@@ -338,8 +371,11 @@ body > header {
    ========================================================================== */
 
 .chunks {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -ms-flex-pack: center;
     justify-content: center; }
 .chunks ul {
     padding: 10px 0;
@@ -369,8 +405,11 @@ body > header {
 #preambule .hentry { max-width: 860px; width: 100%; }
 #preambule .entry-title { padding-bottom: 12px; }
 #preambule .entry-content {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-align: center;
     align-items: center; }
 #preambule .entry-section {
     max-width: 750px;
