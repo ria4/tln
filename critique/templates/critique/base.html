@@ -15,7 +15,7 @@
                 <li><a href={% url "list_notes" %}>carnet de notes</a></li>
             </ul>
             <ul id="main-nav-links-v">
-                <li><a href={% url "top_textes" %}>textes choisis</a></li>
+                <li class="top-textes"><a href={% url "top_textes" %}>textes choisis</a></li>
             </ul>
                 <li id="sub-nav-trigger"><a href="#">errances</a></li>
                 {# <li>recherche</li> #}
@@ -33,6 +33,7 @@
         </ul>
         <ul id="sub-nav-links-v">
             <li><a href={% url "preambule" %}>préambule</a></li>
+            <li class="top-textes" style="display: none;"><a href={% url "top_textes" %}>textes choisis</a></li>
             <li><a href={% url "list_notes" %}>carnet de notes</a></li>
             <li><a href={% url "list_oeuvres" %}>rencontres passées</a></li>
             <li><a href={% url "list_envies" %}>en ligne de mire</a></li>

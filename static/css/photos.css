@@ -64,6 +64,7 @@
     font-size: 19px;
     font-style: italic;
 }
+_:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 */
 #gallery-description #desc-fr {
     padding-bottom: 10px;
 }

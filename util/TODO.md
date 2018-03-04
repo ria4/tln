@@ -1,8 +1,8 @@
 * homepage link
-* rendu ie 11
 
 # après déploiement
 * rendu safari
+* rendu retina
 * lazy-load photos
 * make it mobile-friendly
     * font sizes

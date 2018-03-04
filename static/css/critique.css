@@ -188,13 +188,13 @@ body > header {
     font-weight: bold;
     font-size: 34px;
     text-align: center; }
-@supports (-moz-appearance:meterbar) { /* targets Firefox 16+ */
+@supports (-moz-appearance:meterbar) { /* Firefox 16+ */
 .critique-title { letter-spacing: -1px; } }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 .critique-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
-@supports (-ms-ime-align:auto) { /* targets Edge 12+ */
+@supports (-ms-ime-align:auto) { /* Edge 12+ */
 .critique-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
@@ -226,6 +226,7 @@ body > header {
     -ms-flex-align: center;
     align-items: center; }
 .critique-perso .hentry {
+    width: 100%;
     padding-top: 4px;
     padding-right: 4px;
     padding-left: 6px;
@@ -250,8 +251,8 @@ body > header {
     border: 1px solid #eee;
     max-width: 100%;
     max-height: 100%; }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
-.entry-list .oeuvre-display img { max-height: 184px; } }
+_:-ms-input-placeholder, :root .entry-list .oeuvre-display img { max-height: 184px; } /* IE 10 */
+_:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 .oeuvre-display a img {
     transition: all 0.3s ease; }
 .oeuvre-display a img:hover {
@@ -276,7 +277,7 @@ body > header {
     display: -ms-flexbox; display: flex; }
 .oeuvres-display .oeuvre-display a img {
     -ms-flex-item-align: center; align-self: center; }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 .oeuvres-display .oeuvre-display a img { max-width: 300px; } }
 
 
@@ -367,7 +368,7 @@ body > header {
     align-items: center; }
 
 .entry-list .hentry { margin-left: 10px; margin-right: 2px; }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 .entry-list .hentry { height: 188px; } }
 .entry-list .entry-title { padding-right: 26px; }
 .entry-list .entry-body { -ms-flex: 1; flex: 1; }
@@ -404,6 +405,11 @@ body > header {
 #collection.artiste-oeuvres.chunks ul { max-width: 520px; }
 #seances.chunks ul { max-width: 600px; }
 #cinemas.chunks ul { max-width: 440px; }
+_:-ms-fullscreen, :root #cinemas.chunks { height: 2298px; } /* IE 11 */
+@media (min-width: 870px) {
+_:-ms-fullscreen, :root #cinemas.chunks { height: 1176px; } /* IE 11 */ }
+@media (min-width: 1800px) {
+_:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 
 
 /* Content Preambule
