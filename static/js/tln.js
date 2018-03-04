@@ -1,3 +1,6 @@
+var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' in document.documentElement.style;
+
+
 /* Top Navigation - Deactivate hoverable photos link for touchscreens */
 
 function isTouchDevice() {
@@ -316,6 +319,13 @@ if (websiteApp == "critique") {
             }
         });
 
+        /* Blog Comment - Warn IE10 users (loader won't appear) */
+
+        submitButton = commentForm.getElementsByClassName("submit-post")[0];
+        if (isIE10) {
+            submitButton.value = "envoyer (le message sera en attente de modération)";
+        }
+
         /* Blog Comment - Auto-scroll to the bottom of the window
 
         /* There is no textarea resize event, hence we need this hackish part
@@ -561,7 +571,6 @@ if (websiteApp == "critique") {
     for (var i=0; i<photos.length; i++) {
         var photo = photos[i];
         photo.onload = function() { setPhotoSize(this); }
-        var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' in document.documentElement.style;
         if ((photo.complete && (photo.naturalWidth !== 0)) || isIE10) {
             /* the image has already been loaded so onload event won't be fired */
             setPhotoSize(photo);

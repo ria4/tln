@@ -250,6 +250,8 @@ body > header {
     border: 1px solid #eee;
     max-width: 100%;
     max-height: 100%; }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+.entry-list .oeuvre-display img { max-height: 184px; } }
 .oeuvre-display a img {
     transition: all 0.3s ease; }
 .oeuvre-display a img:hover {
@@ -274,6 +276,8 @@ body > header {
     display: -ms-flexbox; display: flex; }
 .oeuvres-display .oeuvre-display a img {
     -ms-flex-item-align: center; align-self: center; }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+.oeuvres-display .oeuvre-display a img { max-width: 300px; } }
 
 
 /* Here is a dirty fix for borders/shadows of substitute displays...
@@ -363,6 +367,8 @@ body > header {
     align-items: center; }
 
 .entry-list .hentry { margin-left: 10px; margin-right: 2px; }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+.entry-list .hentry { height: 188px; } }
 .entry-list .entry-title { padding-right: 26px; }
 .entry-list .entry-body { -ms-flex: 1; flex: 1; }
 .entry-list .entry-footer { margin-right: 24px; }

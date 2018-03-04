@@ -1,5 +1,5 @@
 * homepage link
-* rendu ie 10, ie 11
+* rendu ie 11
 
 # après déploiement
 * rendu safari
