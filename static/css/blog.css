@@ -92,6 +92,7 @@ body #sidebar {
 .entry #content { margin-top: 24px; padding: 0 6px; }
 .entry #content > * { max-width: 820px; }
 .entry #content > .hseparator { max-width: 889px; margin-left: 1px; }
+@media (max-width: 911px) { .entry #content > .hseparator { width: 68%; margin-left: 0px } }
 .entry .entry-content p { text-align: justify; }
 .entry .entry-footer { margin: 60px 0 10px 0; }
 

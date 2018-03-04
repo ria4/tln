@@ -12,32 +12,6 @@ topNavPhotoButton.addEventListener("click", function (e) {
 });
 
 
-/* HSeparators - Hide overflows on narrow screens */
-
-var hseparators = document.getElementsByClassName("hseparator");
-
-function setHseparatorOverflow(item) {
-    var container = item.parentNode;
-    var maxWiw = parseInt(window.getComputedStyle(container).width, 10)
-                    - parseInt(window.getComputedStyle(item).marginLeft, 10)
-                    - parseInt(window.getComputedStyle(item).marginRight, 10);
-    if (window.innerWidth < maxWiw) {
-        container.style.overflow = "hidden";
-    } else {
-        container.style.overflow = "inherit";
-    }
-}
-
-function addResizeListener(item) {
-    window.addEventListener("resize", function () { setHseparatorOverflow(item); });
-}
-
-for (var i=0; i<hseparators.length; i++) {
-    setHseparatorOverflow(hseparators[i]);
-    addResizeListener(hseparators[i]);
-}
-
-
 /* Overlays - Reveal appropriate overlay through keyboard inputs */
 
 var loginForm = document.getElementById("login_form");
@@ -587,12 +561,14 @@ if (websiteApp == "critique") {
     for (var i=0; i<photos.length; i++) {
         var photo = photos[i];
         photo.onload = function() { setPhotoSize(this); }
-        if (photo.complete && (photo.naturalWidth !== 0)) {
+        var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' in document.documentElement.style;
+        if ((photo.complete && (photo.naturalWidth !== 0)) || isIE10) {
             /* the image has already been loaded so onload event won't be fired */
             setPhotoSize(photo);
         }
         addPhotoResizeListener(photo);
     }
+
 }
 
 
