@@ -1,4 +1,5 @@
 var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' in document.documentElement.style;
+var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
 
 
 /* Top Navigation - Deactivate hoverable photos link for touchscreens */
@@ -138,20 +139,16 @@ if (websiteApp == "critique") {
     /* Place the top texts link according to window width */
     var widthTriggerCritiqueNavLayout = 960;
     var widthTriggerTopTextesPosition = 600;
+    var topTextesMain = mainNavLinksV.getElementsByClassName("top-textes")[0];
+    var topTextesSub = subNavLinksV.getElementsByClassName("top-textes")[0];
     function setTopTextesPosition() {
         if (window.innerWidth < widthTriggerCritiqueNavLayout) {
             if (window.innerWidth < widthTriggerTopTextesPosition) {
-                if (mainNavLinksV.children.length > 0) {
-                    var topTextesLink = mainNavLinksV.children[0];
-                    var oldTopTextesLink = mainNavLinksV.removeChild(topTextesLink);
-                    subNavLinksV.insertBefore(oldTopTextesLink, subNavLinksV.children[1]);
-                }
+                topTextesMain.style.display = "none";
+                topTextesSub.style.display = "list-item";
             } else {
-                if (mainNavLinksV.children.length == 0) {
-                    var topTextesLink = subNavLinksV.children[1];
-                    var oldTopTextesLink = subNavLinksV.removeChild(topTextesLink);
-                    mainNavLinksV.append(oldTopTextesLink);
-                }
+                topTextesMain.style.display = "list-item";
+                topTextesSub.style.display = "none";
             }
         }
     }

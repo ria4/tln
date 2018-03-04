@@ -72,6 +72,9 @@ body #sidebar {
    ========================================================================== */
 
 .entry-links { max-width: 900px; }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
+.entry-list .hentry { height: 188px; }
+.entry-list .entry-body { flex: 1; -ms-flex: 1; } }
 .entry-list .entry-title {
     padding-top: 7px;
     padding-right: 18px;

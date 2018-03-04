@@ -280,7 +280,7 @@ body > header { width: 100%; }
 body > #content-wrap {
     margin-bottom: 46px;
     width: 100%;
-    max-height: 100%
+    max-height: 100%;
     -ms-flex-grow: 1;
     -ms-flex-shrink: 1;
     flex: 1;
@@ -291,6 +291,7 @@ body > #content-wrap {
     flex-direction: column;
     -ms-flex-align: center;
     align-items: center; }
+_:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 #footer {
     padding: 15px 0 14px 40px;
     width: 100%;
@@ -365,6 +366,7 @@ a:active, a:focus { outline: none; }
     margin-top: 16px;
     margin-bottom: 11px;
     font-size: 44px; }
+_:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
 .filter-navbar li { padding: 0 36px; }
 .filter-navbar a { color: black !important; }
 .filter-navbar a:hover { color: #f7a300 !important; }
@@ -453,10 +455,12 @@ a:active, a:focus { outline: none; }
 /* Sometimes there may be a 1px gap between the element border and its shadow
  * This seems to be due to arcane antialiasing computations and odd/even numbers... */
 
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
+.shadow-up { position: absolute; width: 100%; left: 0; top: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
 .shadow-right { position: absolute; height: 100%; right: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); }
+.shadow-down { position: absolute; width: 100%; left: 0; bottom: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
 .shadow-left { position: absolute; height: 100%; left: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); } }
-@supports (-ms-ime-align:auto) { /* targets Edge 12+ */
+@supports (-ms-ime-align:auto) { /* Edge 12+ */
 .shadow-up { position: absolute; width: 100%; top: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
 .shadow-right { position: absolute; height: 100%; right: -1px; border-right: solid 1px rgba(0, 5, 61, 0.7); }
 .shadow-down { position: absolute; width: 100%; bottom: -1px; border-bottom: solid 1px rgba(0, 5, 61, 0.7); }
@@ -542,13 +546,13 @@ a:active, a:focus { outline: none; }
     text-overflow: ellipsis;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 26px; }
-@supports (-moz-appearance:meterbar) { /* targets Firefox 16+ */
+@supports (-moz-appearance:meterbar) { /* Firefox 16+ */
 .entry-list .entry-title { letter-spacing: -1px; } }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 .entry-list .entry-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
-@supports (-ms-ime-align:auto) { /* targets Edge 12+ */
+@supports (-ms-ime-align:auto) { /* Edge 12+ */
 .entry-list .entry-title {
     letter-spacing: -1px;
     font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }

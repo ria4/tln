@@ -35,7 +35,8 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     -ms-flex-pack: start;
     justify-content: flex-start;
     padding-top: 20px;
-    padding-bottom: 64px; } }
+    padding-bottom: 64px; }
+_:-ms-fullscreen, :root #header { min-height: 0; height: auto; } }
 
 
 /* Logos
@@ -52,12 +53,16 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     flex-direction: column;
     -ms-flex-align: center;
     align-items: center; }
+@media (min-height: 740px) {
+_:-ms-fullscreen, :root #logos { margin-bottom: 30px; } /* IE 11 */ }
 @media (max-height: 740px) {
 #logos { margin-bottom: 20px; height: 115px; max-width: 250px; } }
 
 #logo-mtu { max-width: 100%; max-height: 100%; }
+_:-ms-fullscreen, :root #logo-mtu { max-height: 121px; } /* IE 11 */
 @media (max-height: 740px) {
-#logo-mtu { max-height: 80%; } }
+#logo-mtu { max-height: 80%; }
+_:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
 
 #logo-tln {
     max-width: 126px;
@@ -102,6 +107,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     width: 100%;
     text-align: center;
     pointer-events: none; }
+_:-ms-fullscreen, :root #goto-info { pointer-events: auto; }
 @media (max-width: 850px) { #goto-info { padding-right: 0; } }
 
 #goto-info a {
@@ -134,8 +140,8 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     display: flex;
     flex-direction: column;
     justify-content: center; }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
-#info { padding-top: 90px; padding-bottom: 50px; } }
+_:-ms-input-placeholder, :root #info { padding-top: 90px; padding-bottom: 50px; } /* IE 10 */
+_:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
 @media (min-width: 1200px) { #info { margin-right: 1.8%; } }
 #info .info-perso { max-width: 870px; }
 #info #info-en { margin-top: -18px; }
@@ -162,5 +168,4 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     padding-right: 40px;
     font-size: 17px;
     text-align: right; }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* targets IE 10/11 */
-#footer { position: absolute; left: 0; bottom: 0; }
+_:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0; } /* IE 10 */
