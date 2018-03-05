@@ -385,29 +385,36 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
 #top-nav-h {
     margin: 40px 0;
     padding-top: 5px; }
-#top-nav-h span { border-right: 1px solid #a57100; }
 #top-nav-h .nav-separator-sub {
+    border-right: solid 1px #a57100;
     height: 30px;
     margin-top: -2px; }
 
 #top-nav-h #homepage-link { position: relative; }
+_:-ms-input-placeholder, :root #top-nav-h #homepage-link { display: block; } /* IE 10 */
 #top-nav-h #homepage-link img {
     position: absolute;
     left: 0;
     top: 0;
     transition: opacity 0.5s ease-in-out;
     max-height: 100%; }
+_:-ms-input-placeholder, :root #top-nav-h #homepage-link img { max-height: none; } /* IE 10 */
 #top-nav-h #homepage-link img.img-bottom { opacity: 0; }
 #top-nav-h #homepage-link img.img-top:hover { opacity: 0; }
 #top-nav-h #homepage-link img.img-bottom:hover { opacity: 1; }
 
 @media (min-width: 1080px) {
 #top-nav-h #homepage-link { left: -92px; height: 60px; }
+_:-ms-input-placeholder, :root #top-nav-h #homepage-link img { /* IE 10 */
+    width: 63px; height: 60px; }
 #top-nav-h .nav-separator-homepage {
     position: relative;
+    border-right: solid 1px #a57100;
     left: -21px;
     height: 56px; }
+_:-ms-input-placeholder, :root #top-nav-h .nav-separator-homepage { display: block; } /* IE 10 */
 #top-nav-h .nav-separator {
+    border-right: solid 1px #a57100;
     height: 30px;
     margin-top: -2px; }
 #top-nav-h li > a { padding: 0 60px; } }
@@ -415,7 +422,9 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
 @media (max-width: 1080px) {
 #top-nav-h { padding-right: 3px; -ms-flex-direction: column; flex-direction: column; }
 #top-nav-h #homepage-link { top: -6px; left: 6px; height: 83px; }
+_:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /* IE 10 */
 #top-nav-h #homepage-link img { transform: translateX(-50%); }
+#top-nav-h .nav-separator-homepage { display: none; }
 #top-nav-h #top-nav1,
 #top-nav-h #top-nav2 { width: 100%; }
 #top-nav-h li { width: 100%; max-width: 230px; }
