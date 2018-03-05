@@ -1,5 +1,3 @@
-* homepage link
-
 # après déploiement
 * rendu safari
 * lazy-load photos
