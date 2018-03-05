@@ -23,6 +23,11 @@
     {% block header %}
     <header id="header" role="banner">
       <nav id="top-nav-h" class="navbar">
+        <a id="homepage-link" href="/">
+            <img class="img-top" src={% static 'img_base/tln_logo_rust_light_mini.png' %} alt="tln"/>
+            <img class="img-bottom" src={% static 'img_base/tln_logo_blue_glow_mini.png' %} alt="tln"/>
+        </a>
+        <span class="nav-separator-homepage"></span>
         <ul id="top-nav1">
           <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
           <span class="nav-separator-sub"></span>

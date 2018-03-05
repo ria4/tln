@@ -58,8 +58,8 @@ body > header {
 #top-nav-h.expanded {
     visibility: visible;
     padding: 7px 0 5px 0; }
-@media (min-width: 900px) { #top-nav-h.expanded { height: 70px; } }
-@media (max-width: 900px) { #top-nav-h.expanded { height: 140px; } }
+@media (min-width: 1080px) { #top-nav-h.expanded { height: 70px; } }
+@media (max-width: 1080px) { #top-nav-h.expanded { height: 216px; } }
 
 #top-nav-h a, #top-nav-h span { opacity: 0; line-height: 1.15; }
 #top-nav-h.expanded a, #top-nav-h.expanded span { opacity: 1; }

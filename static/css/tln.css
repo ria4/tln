@@ -385,20 +385,37 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
 #top-nav-h {
     margin: 40px 0;
     padding-top: 5px; }
+#top-nav-h span { border-right: 1px solid #a57100; }
 #top-nav-h .nav-separator-sub {
     height: 30px;
-    border-right: 1px solid #a57100;
     margin-top: -2px; }
 
-@media (min-width: 900px) {
+#top-nav-h #homepage-link { position: relative; }
+#top-nav-h #homepage-link img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: opacity 0.5s ease-in-out;
+    max-height: 100%; }
+#top-nav-h #homepage-link img.img-bottom { opacity: 0; }
+#top-nav-h #homepage-link img.img-top:hover { opacity: 0; }
+#top-nav-h #homepage-link img.img-bottom:hover { opacity: 1; }
+
+@media (min-width: 1080px) {
+#top-nav-h #homepage-link { left: -92px; height: 60px; }
+#top-nav-h .nav-separator-homepage {
+    position: relative;
+    left: -21px;
+    height: 56px; }
 #top-nav-h .nav-separator {
     height: 30px;
-    border-right: 1px solid #a57100;
     margin-top: -2px; }
 #top-nav-h li > a { padding: 0 60px; } }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
 #top-nav-h { padding-right: 3px; -ms-flex-direction: column; flex-direction: column; }
+#top-nav-h #homepage-link { top: -6px; left: 6px; height: 83px; }
+#top-nav-h #homepage-link img { transform: translateX(-50%); }
 #top-nav-h #top-nav1,
 #top-nav-h #top-nav2 { width: 100%; }
 #top-nav-h li { width: 100%; max-width: 230px; }
@@ -407,7 +424,7 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
 #top-nav-h li:first-child > a { float: right; padding-right: 22%; }
 #top-nav-h li:last-child > a { float: left; padding-left: 22%; } }
 
-#top-nav-h a { font-size: 56px; transition: color 0.4s ease, opacity 0.4s ease; }
+#top-nav-h li > a { font-size: 56px; transition: color 0.4s ease, opacity 0.4s ease; }
 #top-nav-h span { transition: all 0.4s ease; }
 
 .dropdown { position: relative; }
@@ -429,7 +446,7 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
     margin-top: 4px;
     background-color: rgba(0, 5, 61, 0.85);
     box-shadow: 0 0 6px 3px rgba(0, 5, 61, 0.9); }
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
 .dropdown-content { width: 82%; top: 100%; } }
 .dropdown-content a {
     font-size: 46px !important;
