@@ -1,6 +1,7 @@
 # après déploiement
 * rendu safari
 * lazy-load photos
+* comment ok even if mail unavailable
 * make it mobile-friendly
     * font sizes
     * hovered menu links color
