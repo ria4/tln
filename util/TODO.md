@@ -1,3 +1,7 @@
+# déploiement
+* interface nginx-django
+* messagerie no-reply@tln.ink
+
 # après déploiement
 * rendu safari
 * lazy-load photos
