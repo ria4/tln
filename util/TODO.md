@@ -2,7 +2,6 @@
 * messagerie no-reply@tln.ink
 * rendu safari
 * lazy-load photos
-* comment ok even if mail unavailable
 * blog entries title overflow
 * make it mobile-friendly
     * hovered menu links color
