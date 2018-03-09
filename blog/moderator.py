@@ -6,6 +6,7 @@ apps.apps_ready = True
 
 
 import binascii
+import signal
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage
@@ -16,6 +17,26 @@ from zinnia.settings import PROTOCOL
 from tln.utils import md5_2
 
 apps.apps_ready = apps_ready_snap
+
+
+class Timeout():
+    """Timeout class using ALARM signal."""
+    class Timeout(Exception):
+        pass
+
+    def __init__(self, sec):
+        self.sec = sec
+
+    def __enter__(self):
+        signal.signal(signal.SIGALRM, self.raise_timeout)
+        signal.alarm(self.sec)
+
+    def __exit__(self, *args):
+        signal.alarm(0)    # disable alarm
+
+    def raise_timeout(self, *args):
+        raise Timeout.Timeout()
+
 
 class EntryCommentModeratorCustom(EntryCommentModerator):
 
@@ -30,16 +51,19 @@ class EntryCommentModeratorCustom(EntryCommentModerator):
         """
         current_language = get_language()
         try:
-            activate(settings.LANGUAGE_CODE)
-            site = Site.objects.get_current()
-            #if self.auto_moderate_comments or comment.is_public:
-            if (self.auto_moderate_comments and
-                not comment.is_public and
-                not request.user.is_authenticated):
-                self.do_email_notification(comment, entry, site)
-            if comment.is_public:
-                self.do_email_authors(comment, entry, site)
-                self.do_email_reply(comment, entry, site)
+            with Timeout(5):
+                activate(settings.LANGUAGE_CODE)
+                site = Site.objects.get_current()
+                #if self.auto_moderate_comments or comment.is_public:
+                if (self.auto_moderate_comments and
+                    not comment.is_public and
+                    not request.user.is_authenticated):
+                    self.do_email_notification(comment, entry, site)
+                if comment.is_public:
+                    self.do_email_authors(comment, entry, site)
+                    self.do_email_reply(comment, entry, site)
+        except Timeout.Timeout:
+            pass
         finally:
             activate(current_language)
 
