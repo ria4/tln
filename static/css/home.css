@@ -2,10 +2,13 @@
    ========================================================================== */
 
 html {
-    background-image: url("/static/img_base/IMG_7213_home.JPG");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover; }
+@media (min-device-width: 960px) {
+html { background-image: url("/static/img_base/IMG_7213_home.JPG"); } }
+@media (max-device-width: 960px) {
+html { background-image: url("/static/img_base/IMG_7213_home_min.JPG"); } }
 
 body { background-image: none; overflow-x: hidden; height: 100%; }
 

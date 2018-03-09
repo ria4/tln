@@ -1,10 +1,8 @@
 # déploiement
 * lazy-load photos
-* make it mobile-friendly
-    * filter menu items margins
-    * hovered menu links color
-    * dropdown overflow-x on homepage
-    * reduce image sizes
+* mobile-friendly
+    * photos dropdown on homepage
+    * shadow gap
 
 # accessibility
 * check contrast ratios
