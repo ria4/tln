@@ -1,15 +1,13 @@
 # déploiement
-* interface nginx-django
 * messagerie no-reply@tln.ink
-
-# après déploiement
 * rendu safari
 * lazy-load photos
 * comment ok even if mail unavailable
+* blog entries title overflow
 * make it mobile-friendly
-    * font sizes
     * hovered menu links color
     * dropdown overflow-x on homepage
+    * reduce image sizes
 
 # accessibility
 * check contrast ratios
