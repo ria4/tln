@@ -565,6 +565,7 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
 .entry .entry-title {
     padding: 44px 8px 32px 0;
     font-size: 40px; }
+@media (max-width: 960px) { .entry .entry-title { padding: 44px 0 32px 0; } }
 .entry-list .entry-title {
     padding: 8px 0;
     overflow: hidden;
