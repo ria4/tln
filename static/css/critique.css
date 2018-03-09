@@ -34,7 +34,7 @@ body > header {
     max-width: 777px;
     width: 100%;
     border-bottom-color: black; }
-@media (max-width: 799px) { .hseparator { width: 68%; margin-left: 0; } }
+@media (max-width: 799px) { .hseparator { width: 68% !important; margin-left: 0; } }
 
 
 /* ==========================================================================
