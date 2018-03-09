@@ -195,6 +195,9 @@ body > header {
     text-align: center; }
 @supports (-moz-appearance:meterbar) { /* Firefox 16+ */
 .critique-title { letter-spacing: -1px; } }
+_::-webkit-full-page-media, _:future, :root .critique-title { /* Safari 7.1+ */
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 .critique-title {
     letter-spacing: -1px;

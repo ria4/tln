@@ -575,6 +575,9 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
     font-size: 26px; }
 @supports (-moz-appearance:meterbar) { /* Firefox 16+ */
 .entry-list .entry-title { letter-spacing: -1px; } }
+_::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari 7.1+ */
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 .entry-list .entry-title {
     letter-spacing: -1px;

@@ -1,7 +1,7 @@
 # déploiement
-* rendu safari
 * lazy-load photos
 * make it mobile-friendly
+    * filter menu items margins
     * hovered menu links color
     * dropdown overflow-x on homepage
     * reduce image sizes
