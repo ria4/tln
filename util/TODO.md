@@ -1,8 +1,6 @@
 # déploiement
-* messagerie no-reply@tln.ink
 * rendu safari
 * lazy-load photos
-* blog entries title overflow
 * make it mobile-friendly
     * hovered menu links color
     * dropdown overflow-x on homepage
