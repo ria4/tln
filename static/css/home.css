@@ -34,14 +34,18 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     align-items: center;
     pointer-events: none; }
 @media (max-width: 850px) {
-#header { position: relative; left: 0; transform: none; } }
+#header { left: 0; transform: none; } }
 @media (max-height: 740px) {
 #header {
     -ms-flex-pack: start;
     justify-content: flex-start;
     padding-top: 20px;
     padding-bottom: 64px; }
-_:-ms-fullscreen, :root #header { min-height: 0; height: auto; } }
+_:-ms-fullscreen, :root #header { min-height: 0; height: auto; } } /* IE 11 */
+@media (max-device-width: 600px) and (orientation: portrait) {
+#header { top: -1px; } }
+@media (max-device-height: 400px) and (orientation: landscape) {
+#header { top: -10px; } }
 
 
 /* Logos
@@ -62,6 +66,10 @@ _:-ms-fullscreen, :root #header { min-height: 0; height: auto; } }
 _:-ms-fullscreen, :root #logos { margin-bottom: 30px; } /* IE 11 */ }
 @media (max-height: 740px) {
 #logos { margin-bottom: 20px; height: 115px; max-width: 250px; } }
+@media (max-device-width: 600px) and (orientation: portrait) {
+#logos { height: 114px; position: relative; top: -1px; left: -1px; } }
+@media (max-device-height: 400px) and (orientation: landscape) {
+#logos { max-height: 100px; } }
 
 #logo-mtu { max-width: 100%; max-height: 100%; }
 _:-ms-fullscreen, :root #logo-mtu { max-height: 121px; } /* IE 11 */
@@ -89,9 +97,15 @@ _:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
     pointer-events: auto; }
 #top-nav-v > ul { -ms-flex-direction: column; flex-direction: column; }
 #top-nav-v li { width: 100%; }
-#top-nav-v li > a { color: #f8f8f8; padding: 0 36px; }
+#top-nav-v li > a { font-size: 56px; color: #f8f8f8; padding: 0 36px; }
 #top-nav-v li > a:hover { color: #f7a300; }
-#top-nav-v a { font-size: 56px; transition: all 0.4s ease; }
+#top-nav-v a { transition: all 0.4s ease; }
+@media (max-device-width: 600px) and (orientation: portrait) {
+#top-nav-v { left: -53px; top: -1px; }
+#top-nav-v li > a { font-size: 46px; padding: 0 26px; } }
+@media (max-device-height: 400px) and (orientation: landscape) {
+#top-nav-v { top: -4px; left: -1px; }
+#top-nav-v li > a { padding: 0 20px; line-height: 1.2; font-size: 30px; } }
 
 .dropdown-content {
     top: 0;
@@ -99,6 +113,12 @@ _:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
     box-shadow: 0 0 4px 3px rgba(0, 5, 61, 0.9);
     transform: translateX(16px); }
 .dropdown:hover .dropdown-content { transform: none; }
+@media (max-device-width: 600px) and (orientation: portrait) {
+.dropdown-content { left: 150px; top: -1px; width: 74%; transform: none; }
+.dropdown-content a { font-size: 38px; } }
+@media (max-device-height: 400px) and (orientation: landscape) {
+.dropdown-content { left: 104px; width: 74%; transform: none; }
+.dropdown-content a { font-size: 26px; } }
 
 
 /* Info Anchor Arrow
@@ -112,6 +132,8 @@ _:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
     width: 100%;
     text-align: center; }
 @media (max-width: 850px) { #goto-info { padding-right: 0; } }
+@media (max-device-height: 400px) and (orientation: landscape) {
+#goto-info { display: none; } }
 
 #goto-info a {
     color: rgba(0, 5, 61, 0.64);
