@@ -65,7 +65,9 @@ body #sidebar {
 #widget-archives a+a+ul a.expanded+a+ul { visibility: visible; height: auto; }
 #widget-archives .toggle { color: black !important; }
 #widget-archives .toggle .toggle-in:after { font-family: Arial; content: "►"; }
+#widget-archives.android .toggle .toggle-in:after { font-size: 14px; content: "▶"; }
 #widget-archives .toggle.expanded .toggle-in:after { font-family: Arial; content: "▼"; }
+#widget-archives.android .toggle.expanded .toggle-in:after { font-size: 14px; }
 
 
 /* Entry Previews
