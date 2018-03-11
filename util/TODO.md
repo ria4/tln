@@ -1,9 +1,3 @@
-# déploiement
-* lazy-load photos
-* mobile-friendly
-    * photos dropdown on homepage
-    * shadow gap
-
 # accessibility
 * check contrast ratios
 * make it keyboard-friendly
@@ -15,6 +9,7 @@
     * set a semi-visible skip link to main content
 
 # plus tard
+* auto collectstatic
 * écriture articles : journal dev, nom trans, 2017, langue fr
 * blog widget welcome
 * sitemap avec django framework
