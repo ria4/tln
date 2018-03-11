@@ -54,6 +54,7 @@ _:-ms-fullscreen, :root #header { min-height: 0; height: auto; } } /* IE 11 */
 #logos {
     padding: 5px;
     max-width: 400px;
+    min-height: 98px;
     background-color: rgba(220, 220, 235, 0.36);
     box-shadow: 0 0 10px 6px rgba(220, 220, 235, 0.36);
     display: -ms-flexbox;
@@ -90,6 +91,7 @@ _:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
 
 #top-nav-v {
     position: relative;
+    min-height: 268px;
     -ms-flex-direction: column;
     flex-direction: column;
     background-color: rgba(0, 5, 61, 0.85);
