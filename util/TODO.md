@@ -10,8 +10,13 @@
 
 # plus tard
 * auto collectstatic
-* écriture articles : journal dev, nom trans, 2017, langue fr
 * blog widget welcome
 * sitemap avec django framework
 * check blog pagination
 * check search engine indexation
+* écriture articles
+    * journal dev
+    * nom trans
+    * langue fr
+    * modération
+    * 2017
