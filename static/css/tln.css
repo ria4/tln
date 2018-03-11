@@ -271,9 +271,9 @@ body {
     flex-direction: column;
     -ms-flex-align: center;
     align-items: center; }
-@media (min-device-width: 960px) {
+@media (min-width: 960px) {
 body { background-image: url("/static/img_base/critique_background_content_norm.jpg"); } }
-@media (max-device-width: 960px) {
+@media (max-width: 960px) {
 body { background-image: url("/static/img_base/critique_background_content_min.jpg"); } }
 
 /* https://bugs.chromium.org/p/chromium/issues/detail?id=332189 */

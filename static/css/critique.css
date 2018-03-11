@@ -10,16 +10,16 @@ body > header {
 #critique-header {
     box-shadow: 0 3px 13px 0px rgba(0, 0, 0, 0.23);
     pointer-events: auto; }
-@media (min-device-width: 1921px) {
+@media (min-width: 1921px) {
 #critique-header {
     background-position: right top;
     background-size: 100% auto;
     background-image: url("/static/img_base/critique_background_header.jpg"); } }
-@media (min-device-width: 960px) {
+@media (min-width: 960px) {
 #critique-header {
     background-position: right top;
     background-image: url("/static/img_base/critique_background_header.jpg"); } }
-@media (max-device-width: 960px) {
+@media (max-width: 960px) {
 #critique-header #main-nav {
     background-position: right top;
     background-image: url("/static/img_base/critique_background_header_min.jpg"); } }
