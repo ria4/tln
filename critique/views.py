@@ -41,15 +41,15 @@ def download_distant_image(url):
         r.raw.decode_content = True
         h = binascii.hexlify(os.urandom(16))
         local_url = h.decode('ascii')
-        with open('critique/static/critique/tmp/%s' % local_url, 'wb') as f:
+        with open('static/critique/tmp/%s' % local_url, 'wb') as f:
             shutil.copyfileobj(r.raw, f)
         baseheight = 300
-        img = Image.open('critique/static/critique/tmp/%s' % local_url)
+        img = Image.open('static/critique/tmp/%s' % local_url)
         hpercent = baseheight/float(img.size[1])
         wsize = int(float(img.size[0])*float(hpercent))
         img = img.resize((wsize, baseheight), Image.ANTIALIAS)
-        img.save('critique/static/critique/%s.jpg' % local_url)
-        os.remove('critique/static/critique/tmp/%s' % local_url)
+        img.save('static/critique/%s.jpg' % local_url)
+        os.remove('static/critique/tmp/%s' % local_url)
         return 'critique/%s.jpg' % local_url
     return ''
 
@@ -93,7 +93,7 @@ def update_oeuvre(req, oeuvre, form):
         url = download_distant_image(form.cleaned_data['image_link'])
         if oeuvre.info.image_url:
             try:
-                os.remove('critique/static/%s' % oeuvre.info.image_url)
+                os.remove('static/%s' % oeuvre.info.image_url)
             except FileNotFoundError:
                 pass
         oeuvre.info.image_url = url
@@ -203,7 +203,7 @@ def delete_oeuvre(req, slug):
     mtype = oeuvre.info.type
     if hasattr(oeuvre.info, 'image_url') and oeuvre.info.image_url:
         try:
-            os.remove('critique/static/%s' % oeuvre.info.image_url)
+            os.remove('static/%s' % oeuvre.info.image_url)
         except FileNotFoundError:
             pass
     oeuvre.delete()
