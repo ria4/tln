@@ -13,6 +13,7 @@ photos_urls = ([
         name='pl-photologue-root'),
     #url(r'^all$', GalleryListView.as_view(), name='gallery-list'),
     url(r'^(?P<slug>[\-\d\w]+)$', GalleryCustomDetailView.as_view(), name='pl-gallery'),
+    url(r'^photo/(?P<slug>[\-\d\w]+)/$', PhotoDetailView.as_view(), name='pl-photo'),
 ], 'photologue')
 
 
