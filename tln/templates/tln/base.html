@@ -8,15 +8,14 @@
     <title>{% block title-before %}{% endblock %}{% block title %}{% endblock %}{% block title-after %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{% block meta-description %}{% endblock meta-description %}{% block meta-description-page %}{% endblock meta-description-page %}" />
-    <meta property="og:title" content="tln - max tury" />
+    <meta property="og:title" content="{% block og-title %}{% endblock %}" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="https://trompe-la-nuit.ink/static/img_base/tln_logo_rust.png" />
-    <meta property="og:url" content="https://trompe-la-nuit.ink" />
+    <meta property="og:image" content="https://trompe-la-nuit.ink/static/img_base/tln_logo_blue_glow_fb.png" />
     <meta property="og:description" content="{% block og-description %}{% endblock og-description %}" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="tln - max tury" />
+    <meta name="twitter:title" content="{% block tw-title %}{% endblock %}" />
     <meta name="twitter:description" content="{% block tw-description %}{% endblock tw-description %}" />
-    <meta name="twitter:image" content="https://trompe-la-nuit.ink/static/img_base/tln_logo_rust.png" />
+    <meta name="twitter:image" content="https://trompe-la-nuit.ink/static/img_base/tln_logo_blue_glow_tw.png" />
     <meta name="author" content="max tury" />
     <meta name="keywords" content="{% block meta-keywords %}photos, blog, cinema, film, critique, review{% endblock meta-keywords %}" />{% block meta %}{% endblock meta %}
     <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
