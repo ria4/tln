@@ -98,6 +98,7 @@ body #sidebar {
 .entry #content > * { max-width: 820px; }
 .entry #content > .hseparator { max-width: 889px; margin-left: 1px; }
 @media (max-width: 911px) { .entry #content > .hseparator { width: 68%; margin-left: 0px } }
+.entry .entry-content h3 { margin-top: 40px; font-size: 28px; }
 .entry .entry-content p { text-align: justify; }
 .entry .entry-footer { margin: 60px 0 10px 0; }
 .entry .entry-footer .entry-discussions { min-width: 40px; }
