@@ -6,9 +6,14 @@
 {% load comments_custom %}
 
 {% block title %}{{ object.title|lower }}{% endblock title %}
+{% block og-title %}{{ object.title }}{% endblock %}
+{% block tw-title %}{{ object.title }}{% endblock %}
 
 {% block meta-description %}blog de max tury - {% endblock meta-description %}
 {% block meta-description-page %}article '{{ object.title }}'{% endblock meta-description-page %}
+
+{% block og-description %}{{ object.html_preview|striptags }}{% endblock %}
+{% block tw-description %}{{ object.html_preview|striptags }}{% endblock %}
 
 {% block meta-keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
 
