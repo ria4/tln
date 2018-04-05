@@ -9,8 +9,6 @@
     * set a semi-visible skip link to main content
 
 # plus tard
-* auto collectstatic
-* blog widget welcome
 * sitemap avec django framework
 * check blog pagination
 * check search engine indexation
