@@ -16,5 +16,3 @@
     * journal dev
     * nom trans
     * langue fr
-    * modération
-    * 2017
