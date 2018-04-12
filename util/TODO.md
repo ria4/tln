@@ -10,7 +10,6 @@
 
 # plus tard
 * sitemap avec django framework
-* check blog pagination
 * check search engine indexation
 * écriture articles
     * journal dev

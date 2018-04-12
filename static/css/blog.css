@@ -5,6 +5,8 @@
 body { margin-right: 60px; }
 body #content-wrap { padding-right: 11px; } }
 
+#pagination { margin-top: 2px; text-align: center; }
+
 
 /* Sidebar
    ========================================================================== */

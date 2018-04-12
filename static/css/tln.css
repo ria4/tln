@@ -319,12 +319,10 @@ a:active, a:focus { outline: none; }
 #content-wrap a:hover { color: #f7a300; }
 
 #pagination {
-    margin-top: 10px;
-    padding-right: 96px;
     width: 100%;
     font-family: Abuget, Palatino, serif;
-    font-size: 40px;
-    text-align: right; }
+    font-size: 40px; }
+#pagination a { transition: color 0.12s linear; }
 
 .hidden {
     background-color: transparent;

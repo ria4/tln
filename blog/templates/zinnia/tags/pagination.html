@@ -1,0 +1,25 @@
+{% load i18n %}
+<nav id="pagination">
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}{{ GET_string }}"><-</a>
+    {% endif %}
+
+    <span class="current">
+        page {{ page.number }} sur {{ page.paginator.num_pages }}
+    </span>
+
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}{{ GET_string }}">-></a>
+    {% endif %}
+</nav>
+
+<script>
+    var prevPageUrl = null;
+    {% if page.has_previous %}
+    prevPageUrl = '?page={{ page.previous_page_number }}{{ GET_string }}';
+    {% endif %}
+    var nextPageUrl = null;
+    {% if page.has_next %}
+    nextPageUrl = '?page={{ page.next_page_number }}{{ GET_string }}';
+    {% endif %}
+</script>

@@ -41,14 +41,15 @@
     Il n'y a rien ici !
 </p>
 {% endfor %}
-</div>
-{% endblock content-loop %}
 
 {% block content-pagination %}
 {% if is_paginated %}
   {% zinnia_pagination page_obj %}
 {% endif %}
 {% endblock content-pagination %}
+
+</div>
+{% endblock content-loop %}
 
 {% endblock content %}
 
