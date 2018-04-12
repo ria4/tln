@@ -35,7 +35,7 @@
 </ul>
 
 
-<div id="pagination">
+<nav id="pagination">
     {% if oeuvres.has_previous %}
         <a href={% url "list_envies" mtype oeuvres.previous_page_number %}><-</a>
     {% endif %}
@@ -47,7 +47,7 @@
     {% if oeuvres.has_next %}
         <a href={% url "list_envies" mtype oeuvres.next_page_number %}>-></a>
     {% endif %}
-</div>
+</nav>
     
 <script>
     var prevPageUrl = null;

@@ -36,6 +36,8 @@ body > header {
     border-bottom-color: black; }
 @media (max-width: 799px) { .hseparator { width: 68% !important; margin-left: 0; } }
 
+#pagination { margin-top: 10px; padding-right: 96px; text-align: right; }
+
 
 /* ==========================================================================
 /* Navigation Bars
