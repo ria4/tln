@@ -2,7 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.preambule, name='preambule'),
+    path('', views.list_notes, name='list_notes'),
+    path('notes/', views.list_notes, name='list_notes'),
+    path('notes/<int:page>', views.list_notes, name='list_notes'),
+    path('notes/<str:mtype>', views.list_notes, name='list_notes'),
+    path('notes/<str:mtype>/<int:page>', views.list_notes, name='list_notes'),
+    path('preambule/', views.preambule, name='preambule'),
     path('oeuvre/add', views.add_oeuvre, name='add_oeuvre'),
     path('oeuvre/<slug:slug>', views.detail_oeuvre, name='detail_oeuvre'),
     path('oeuvre/<slug:slug>/delete', views.delete_oeuvre, name='delete_oeuvre'),
@@ -16,10 +21,6 @@ urlpatterns = [
     path('collection/', views.list_oeuvres, name='list_oeuvres'),
     path('collection/<str:mtype>', views.list_oeuvres, name='list_oeuvres'),
     path('collection/<str:mtype>/<int:page>', views.list_oeuvres, name='list_oeuvres'),
-    path('notes/', views.list_notes, name='list_notes'),
-    path('notes/<int:page>', views.list_notes, name='list_notes'),
-    path('notes/<str:mtype>', views.list_notes, name='list_notes'),
-    path('notes/<str:mtype>/<int:page>', views.list_notes, name='list_notes'),
     path('top_films/', views.top_films, name='top_films'),
     path('top_films/<int:year>', views.top_films, name='top_films'),
     path('textes/', views.top_textes, name='top_textes'),
