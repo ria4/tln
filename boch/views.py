@@ -9,7 +9,7 @@ def get_boch(req, day=None):
         d = date.today() - timedelta(6)
         day = d.strftime('%Y%m%d')
 
-    subprocess.call(['scrapy runspider /home/max/tln/boch/ent_spider.py -t json --nolog -a date="%s" -o - > /home/max/tln/static/boch/boxoffice_ch.json' % day], shell=True)
+    subprocess.call(['/home/max/.virtualenvs/tln/bin/scrapy runspider /home/max/tln/boch/ent_spider.py -t json --nolog -a date=%s -o - > /home/max/tln/static/boch/boxoffice_ch.json' % day], shell=True)
 
     bo = {}
     with open('static/boch/boxoffice_ch.json', 'r') as f:
