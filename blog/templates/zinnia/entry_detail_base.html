@@ -275,6 +275,7 @@
       <img src="{% static 'blog/icon_comment_link.png' %}" alt="">
       <span> écrire un commentaire</span>
     </a>
+    <!--icon made by Dave Gandy, from www.flaticon.com-->
     {% if object.comments_are_open %}
       {% render_comment_form_with_auth_info for object %}
     {% endif %}
