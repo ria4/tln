@@ -3,7 +3,15 @@
 {% load l10n %}
 
 {% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
-{% block meta-description-page %}informations, voire commentaires, au sujet de {{ oeuvre.info.titles.vf|lower }}{% endblock %}
+{% block og-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
+{% block tw-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
+{% block meta-description-page %}infos et/ou commentaires sur {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
+
+{% block og-image %}{% if oeuvre.info.image_url %}https://trompe-la-nuit.ink{% static oeuvre.info.image_url %}{% endif %}{% endblock %}
+{% block tw-image %}{% if oeuvre.info.image_url %}https://trompe-la-nuit.ink{% static oeuvre.info.image_url %}{% endif %}{% endblock %}
+
+{% block og-description %}{% if oeuvre.comments %}{% for p in oeuvre.comments.0.content %}{{ p|striptags }}{% endfor %}{% endif %}{% endblock %}
+{% block tw-description %}{% if oeuvre.comments %}{% for p in oeuvre.comments.0.content %}{{ p|striptags }}{% endfor %}{% endif %}{% endblock %}
 
 {% block content-wrap-class %}decenter{% endblock %}
 {% block body-class %}entry{% endblock %}
