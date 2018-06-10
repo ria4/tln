@@ -65,18 +65,14 @@
     font-style: italic;
 }
 _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 */
-#gallery-description #desc-fr {
-    padding-bottom: 10px;
-}
-#gallery-description .hseparator {
-    margin-left: -20px;
-    margin-right: -16px;
-}
+#gallery-description #desc-fr { padding-top: 4px; padding-bottom: 16px; }
+#gallery-description .hseparator { margin-left: -20px; margin-right: -16px; }
 @media (max-width: 896px) {
 #gallery-description .hseparator { margin-left: 6px; margin-right: 6px; } }
-#gallery-description #desc-en {
-    padding: 10px 0;
-}
+#gallery-description #desc-en { padding-top: 16px; padding-bottom: 10px; }
+#gallery-description #desc-fr p:first-child, #gallery-description #desc-en p:first-child { padding-top: 0; padding-bottom: 4px; }
+#gallery-description #desc-fr p, #gallery-description #desc-en p { padding-top: 4px; padding-bottom: 4px; }
+#gallery-description #desc-fr p:last-child, #gallery-description #desc-en p:last-child { padding-top: 4px; padding-bottom: 0; }
 #gallery-description #desc-date {
     margin-top: 2px;
     padding-right: 13px;
