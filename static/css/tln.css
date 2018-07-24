@@ -271,8 +271,7 @@ body {
     flex-direction: column;
     -ms-flex-align: center;
     align-items: center; }
-@media (min-width: 960px) {
-body { background-image: url("/static/img_base/critique_background_content_norm.jpg"); } }
+body { background-image: url("/static/img_base/critique_background_content_norm.jpg"); }
 @media (max-width: 960px) {
 body { background-image: url("/static/img_base/critique_background_content_min.jpg"); } }
 
@@ -627,7 +626,7 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #929292;
+    color: #737373;
     margin-right: -30px; }
 #content-wrap .entry-footer .entry-tags a {
     color: inherit;
