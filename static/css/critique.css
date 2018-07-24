@@ -59,8 +59,8 @@ body > header {
 
 #top-nav-h.expanded {
     visibility: visible;
-    padding: 7px 0 5px 0; }
-@media (min-width: 1080px) { #top-nav-h.expanded { height: 70px; } }
+    padding: 7px 0 5px 0;
+    height: 70px; }
 @media (max-width: 1080px) { #top-nav-h.expanded { height: 216px; } }
 
 #top-nav-h a, #top-nav-h span { opacity: 0; line-height: 1.15; }
@@ -94,17 +94,15 @@ body > header {
     -ms-flex-pack: end;
     justify-content: flex-end; }
 
-@media (min-width: 960px) {
 #critique-header #main-nav > nav > ul { margin-right: 80px; }
-#critique-header #main-nav li { margin: 0 34px; } }
 @media (max-width: 960px) {
 #critique-header #main-nav > nav { -ms-flex-grow: 1; -ms-flex-shrink: 1; flex: 1; }
-#critique-header #main-nav > nav > ul { margin-right: 10%; }
-#critique-header #main-nav li { margin: 0 34px; } }
+#critique-header #main-nav > nav > ul { margin-right: 10%; } }
 
-@media (min-width: 960px) {
+#critique-header #main-nav li { margin: 0 34px; }
+
 #critique-header #main-nav #main-nav-links-h { display: -ms-flexbox; display: flex; }
-#critique-header #main-nav #main-nav-links-v { display: none; } }
+#critique-header #main-nav #main-nav-links-v { display: none; }
 @media (max-width: 960px) {
 #critique-header #main-nav #main-nav-links-h { display: none; }
 #critique-header #main-nav #main-nav-links-v { display: -ms-flexbox; display: flex; } }
@@ -120,11 +118,10 @@ body > header {
     overflow: hidden;
     font-size: 40px;
     transition: all 0.4s ease; }
-@media (min-width: 960px) {
 #critique-header #sub-nav {
     height: 0;
     -ms-flex-direction: column;
-    flex-direction: column; } }
+    flex-direction: column; }
 @media (max-width: 960px) {
 #critique-header #sub-nav {
     float: right;
@@ -132,15 +129,14 @@ body > header {
     box-shadow: 0 3px 13px 0px rgba(0, 0, 0, 0.23); } }
 #sub-nav.expanded { visibility: visible; }
 
-#critique-header #sub-nav > ul { display: none; }
-@media (min-width: 960px) {
-#critique-header #sub-nav > #sub-nav-links-h { display: -ms-flexbox; display: flex; } }
+#critique-header #sub-nav > #sub-nav-links-h { display: -ms-flexbox; display: flex; }
+#critique-header #sub-nav > #sub-nav-links-v { display: none; }
 @media (max-width: 960px) {
+#critique-header #sub-nav > #sub-nav-links-h { display: none; }
 #critique-header #sub-nav > #sub-nav-links-v { display: -ms-flexbox; display: flex; } }
 
-@media (min-width: 1104px) {
-#critique-header #sub-nav.expanded { height: 46px; } }
-@media (max-width: 1104px) and (min-width: 960px) {
+#critique-header #sub-nav.expanded { height: 46px; }
+@media (max-width: 1104px) {
 #critique-header #sub-nav.expanded { height: 92px; } }
 @media (max-width: 960px) {
 #critique-header #sub-nav.expanded { height: auto; }
