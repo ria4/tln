@@ -18,16 +18,17 @@ body #content-wrap { padding-right: 11px; } }
     background-color: #fbf2bd;
     font-size: 18px; }
 
-@media (min-width: 1512px) {
 body #sidebar {
     position: absolute;
     top: 163px;
     right: 44.6%;
-    transform: translateX(644px); } }
+    transform: translateX(644px); }
 @media (max-width: 1512px) {
 body #sidebar {
     position: relative;
-    top: 30px; } }
+    top: 30px;
+    right: auto;
+    transform: none; } }
 
 .entry-list #sidebar a { transition: color 0.12s linear; }
 .entry #sidebar { opacity: 0.15; transition: all 0.4s linear; }
