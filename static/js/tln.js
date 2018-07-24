@@ -249,6 +249,20 @@ if (websiteApp == "critique") {
 } else if (websiteApp == "blog") {
 
 
+    /* Blog Side Menu - On a wide entry page, lower opacity when scrolling down */
+
+    if (document.body.classList.contains("entry")) {
+        var sidebar = document.getElementById("sidebar");
+        window.addEventListener("scroll", function() {
+            if (window.scrollY == 0) {
+                sidebar.classList.remove("semihidden");
+            } else {
+                sidebar.classList.add("semihidden");
+            }
+        });
+    }
+
+
     /* Blog Archive Widget - Expand/Collapse entries */
 
     var widgetArchives = document.getElementById("widget-archives");
