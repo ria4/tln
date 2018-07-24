@@ -21,9 +21,8 @@
 <div id="oeuvre-info" class="critique-info">
     {% if oeuvre.info.image_url %}
     <div class="oeuvre-display">
-    <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
+    <img src="{% static oeuvre.info.image_url %}" alt="" />
     </div>
-    {# <img src="data:image/jpeg;base64,{{img_b64}}" alt="cover" /> #}
     {% endif %}
 
     <div class="critique-info-text">
