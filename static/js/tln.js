@@ -208,6 +208,16 @@ if (websiteApp == "critique") {
         }
     });
 
+    /* Hide menus when tab-navigating outside of them */
+    document.addEventListener("focusin", function () {
+        if (!topNavBar.contains(document.activeElement)) {
+            topNavBar.classList.remove("expanded");
+        }
+        if (!subNavBar.contains(document.activeElement)) {
+            subNavBar.classList.remove("expanded");
+        }
+    });
+
 
     /* Filter Bar - Highlight selected media type or year */
 
