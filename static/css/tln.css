@@ -465,7 +465,7 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
 .dropdown-content a:first-child { margin-top: -3px; }
 .dropdown-content a:last-child { margin-bottom: -2px; }
 .dropdown-content a:hover { color: #f7a300; }
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content, .dropdown.expanded .dropdown-content {
     visibility: visible;
     opacity: 1;
     transform: translateY(-4px); }

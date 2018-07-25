@@ -16,6 +16,24 @@ topNavPhotoButton.addEventListener("click", function (e) {
 });
 
 
+/* Top Navigation - Enable tab navigation with photos dropdown menu */
+
+var photosDropdownMenu = document.getElementById("photos-dropdown-menu");
+
+topNavPhotoButton.addEventListener("focus", function () {
+    photosDropdownMenu.classList.add("expanded");
+});
+
+function collapseDropdownMenu () {
+    if (!photosDropdownMenu.contains(document.activeElement)) {
+        photosDropdownMenu.classList.remove("expanded");
+    }
+}
+
+document.addEventListener("click", collapseDropdownMenu)
+document.addEventListener("focusin", collapseDropdownMenu)
+
+
 /* Overlays - Reveal appropriate overlay through keyboard inputs */
 
 var loginForm = document.getElementById("login_form");
