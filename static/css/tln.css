@@ -202,7 +202,7 @@ textarea, button {
     -webkit-appearance: none;
     border-radius: 0; }
 
-textarea, input { outline: none; }
+textarea { outline: none; }
 
 
 /* Custom Font Icon Library
@@ -313,7 +313,6 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 .hseparator { border-bottom: solid 1px #a57100; }
 
 a { text-decoration: none; }
-a:active, a:focus { outline: none; }
 #content-wrap a { color: #bd4700; }
 #content-wrap a:hover { color: #f7a300; }
 
