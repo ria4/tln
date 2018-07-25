@@ -42,7 +42,7 @@ def get_entries_on_day(date, is_superuser=False):
     entries = queryset.filter(publication_date__year=date.year,
                               publication_date__month=date.month,
                               publication_date__day=date.day)
-    entries_clean = [{'title': entry.title, 'url': '/blog/%s' % entry.slug}
+    entries_clean = [{'title': entry.title, 'url': '/blog/%s' % entry.slug, 'lang': entry.lang}
                      for entry in entries]
     return entries_clean
 
