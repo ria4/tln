@@ -5,7 +5,7 @@
   {% block entry-header %}
   <header class="entry-header">
     {% block entry-title %}
-    <h2 class="entry-title" itemprop="name">
+    <h2 class="entry-title" itemprop="name" {% if not object.lang == 'fr-FR' %}lang="{{ object.lang }}"{% endif %}>
         {{ object.title }}
     </h2>
     {% endblock entry-title %}
@@ -83,14 +83,14 @@
 
     {% block entry-lead %}
     {% if not continue_reading and object.lead %}
-    <div class="entry-summary" itemprop="headline">
+    <div class="entry-summary" itemprop="headline" {% if not object.lang == 'fr-FR' %}lang="{{ object.lang }}"{% endif %}>
       {{ object.html_lead|safe }}
     </div>
     {% endif %}
     {% endblock entry-lead %}
 
     {% block entry-content %}
-    <div class="entry-content" itemprop="articleBody">
+    <div class="entry-content" itemprop="articleBody" {% if not object.lang == 'fr-FR' %}lang="{{ object.lang }}"{% endif %}>
       {{ object_content|safe }}
     </div>
     {% endblock entry-content %}
