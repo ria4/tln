@@ -130,6 +130,16 @@ if (websiteApp == "") {
 if (websiteApp == "critique") {
 
 
+    /* Critique Skip-to-main Link - Avoid header covering content */
+
+    var skipLink = document.getElementById("skip-link");
+    skipLink.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("content").focus();
+        window.scrollTo(0, 0);
+    });
+
+
     /* Critique Navigation Bars - Hide/reveal and resize bars */
 
     var topNavBar = document.getElementById("top-nav-h");

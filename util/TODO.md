@@ -1,6 +1,5 @@
 # accessibility
 * screenreader-friendly:
-    * skip to main content
     * avoid visibility:hidden and display:none
     * aria landmarks (menus, ajax comment, widgets...)
 
