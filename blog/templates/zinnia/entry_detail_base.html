@@ -44,7 +44,7 @@
 {% block content %}
 
 {% block entry-content %}
-  {% include object.content_template with object_content=object.html_content before_published='écrit le ' comments_count_display=False continue_reading=True %}
+  {% include object.content_template with object_content=object.html_content before_published='écrit le ' comments_count_display=False entry_list=False %}
 {% endblock entry-content %}
 
 {% comment %}

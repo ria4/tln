@@ -34,7 +34,7 @@
 {% for object in object_list %}
 <a href="{{ object.get_absolute_url }}" class="entry-link" rel="bookmark" itemprop="url">
   {% zinnia_loop_template object.content_template as template %}
-  {% include template with object_content=object.html_preview|striptags before_published='' comments_count_display=True continue_reading=1 entry_list=1 %}
+  {% include template with object_content=object.html_preview|striptags before_published='' comments_count_display=True entry_list=True %}
 </a>
 {% empty %}
 <p class="info">      {# TODO style (accéder avec via tags/null) #}
