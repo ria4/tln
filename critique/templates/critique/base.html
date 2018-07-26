@@ -3,6 +3,8 @@
 
 {% block css-path %}{% static 'css/critique.css' %}{% endblock %}
 
+{% block skip-link %}<a id="skip-link" class="hidden" href="#content">Skip to main content</a>{% endblock %}
+
 {% block header-more %}
 <div id="critique-header">
     <nav id="main-nav" class="navbar">
@@ -72,7 +74,7 @@
 {% endblock %}
 
 {% block content-wrap %}
-<main id="content">
+<main id="content" tabindex="-1">
     {% block content %}{% endblock %}
 </main>
 

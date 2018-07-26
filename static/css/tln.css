@@ -255,6 +255,7 @@ textarea { outline: none; }
     src: local("DejaVu Sans"),
          url("../fonts/dejavu-sans/dejavu-sans.book.ttf") format("truetype"); }
 
+
 /* ==========================================================================
 /* Site Global
 /* ========================================================================== */
@@ -323,11 +324,12 @@ a { text-decoration: none; }
 #pagination a { transition: color 0.12s linear; }
 
 .hidden {
-    background-color: transparent;
-    border: 0;
-    color: transparent;
-    font: 0/0 a;
-    text-shadow: none; }
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden; }
 
 
 /* ==========================================================================
@@ -473,6 +475,29 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
     margin: 0 20px;
     border-bottom: solid 1px #d0d0d0;
     height: 0; }
+
+
+/* Skip-to-main Link
+   ========================================================================== */
+
+#skip-link {
+    position: fixed;
+    margin: 6px;
+    padding: 10px 17px 11px 17px;
+    border: 1px solid #d3d4db;
+    background-color: #fbf2bd;
+    box-shadow: 0 0 8px 0 rgba(0, 13, 181, 0.6);
+    color: rgb(0, 13, 181);
+    text-decoration: underline;
+    font-family: Alegreya, Palatino, serif;
+    transition: box-shadow 0.4s ease; }
+#skip-link:hover { box-shadow: 0 0 14px 0 rgba(0, 13, 181, 0.8); }
+#skip-link:focus, #skip-link:active {
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    z-index: 1000 }
 
 
 /* IE/Edge Fix
@@ -676,6 +701,7 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 .overlay.revealed {
     visibility: visible;
     opacity: 1; }
+.overlay input { outline: none; }
 
 
 /* Forms
