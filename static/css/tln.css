@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+b, u, i, center, hr,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -311,7 +311,7 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
     -ms-flex-align: center;
     align-items: center; }
 #content > * { width: 100%; }
-.hseparator { border-bottom: solid 1px #a57100; }
+hr, .hseparator { border-bottom: solid 1px #a57100; }
 
 a { text-decoration: none; }
 #content-wrap a { color: #bd4700; }

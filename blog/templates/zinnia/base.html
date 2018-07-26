@@ -28,17 +28,17 @@
   Deakin - Good House
   </div>
 </div>
-<div id="widget-tags" class="widget">
+<nav id="widget-tags" class="widget">
   <h3>
       {# <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a> #}
     {% trans "Tags" %}
   </h3>
   {% get_tag_cloud_su_sensitive %}
-</div>
-<div id="widget-archives" class="widget{% if android %} android{% endif %}">
+</nav>
+<nav id="widget-archives" class="widget{% if android %} android{% endif %}">
   <h3>{% trans "Archives" %}</h3>
   {% get_archives_entries_tree_su_sensitive %}
-</div>
+</nav>
 {% if user.is_authenticated %}
 <div id="widget-tools" class="widget">
   <h3>{% trans "Tools" %}</h3>
