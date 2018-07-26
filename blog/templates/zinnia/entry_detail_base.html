@@ -210,7 +210,7 @@
   <ol id="comment-list">
     {% for comment in comment_list %}
     <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
-        class="comment vcard {% cycle 'box1' 'box2' %}{% if comment.user %} authenticated-comment{% if comment.user.is_staff %} staff-comment{% endif %}{% if comment.user.is_superuser %} superuser-comment{% endif %}{% endif %}">
+        class="comment vcard {% cycle 'box1' 'box2' %}{% if comment.user %} authenticated-comment{% if comment.user.is_staff %} staff-comment{% endif %}{% if comment.user.is_superuser %} superuser-comment{% endif %}{% endif %}" role="article">
       {% comment %}
       {% block comment-image %}
       <img src="{% get_gravatar comment.email 60 "G" %}"
@@ -271,8 +271,8 @@
 {% block entry-comments-form %}
 <div id="comment-form-wrap">
   <div id="comment-form-main">
-    <a href="#" id="comment-form-trigger">
-      <img src="{% static 'blog/icon_comment_link.png' %}" alt="">
+    <a href="#" id="comment-form-trigger" role="button">
+      <img src="{% static 'blog/icon_comment_link.png' %}" alt="" role="presentation">
       <span> écrire un commentaire</span>
     </a>
     <!--icon by Dave Gandy, from www.flaticon.com-->
@@ -283,9 +283,9 @@
   <div id="comment-post-loader">
     <span class="loader"></span>
   </div>
-  <div id="comment-post-result" class="animate-bottom">
+  <output id="comment-post-result" class="animate-bottom" form="comment_form_custom" aria-live="polite">
       <p id="comment-post-info"></p>
-  </div>
+  </output>
 </div>
 {% endblock entry-comments-form %}
 
