@@ -165,7 +165,13 @@ body #sidebar {
     margin-top: 3px;
     padding-left: 40px; }
 #comment_form_custom .form_inputs p { margin: 3px 0; }
-#comment_form_custom .form_inputs p label { display: none; }
+#comment_form_custom .form_inputs p label {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden; }
 #comment_form_custom .form_inputs > p:first-of-type,
 #comment_form_custom .form_inputs > p:nth-of-type(2) {
     margin-left: 29px;
