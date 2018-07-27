@@ -7,7 +7,7 @@
   <li>
       <a class='toggle
         {% if forloop.first %} expanded{% else %} collapsed{% endif %}
-        ' href="#"><span class='toggle-in'></span></a>
+        ' href="#" role="button"><span class='toggle-in'></span></a>
       {% with year_date=year.list.0 %}
       {% get_entries_on_year_length year_date is_superuser as entries_year_length %}
       <a rel="archives" href="{% url 'zinnia:entry_archive_year' year.grouper %}">{{ year.grouper }} ({{ entries_year_length }})</a>
@@ -18,7 +18,7 @@
       <li>
         <a class='toggle
           {% if forloop.parentloop.first and forloop.first %} expanded{% else %} collapsed{% endif %}
-          ' href="#"><span class='toggle-in'></span></a>
+          ' href="#" role="button"><span class='toggle-in'></span></a>
         {% with month_date=month.list.0 %}
         {% get_entries_on_month_length month_date is_superuser as entries_month_length %}
         <a rel="archives" href="{% url 'zinnia:entry_archive_month' month_date|date:"Y" month_date|date:"m" %}">{{ month_date|date:"F" }} ({{ entries_month_length }})</a>

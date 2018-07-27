@@ -32,7 +32,20 @@
 
     {% block header %}
     <header id="header" role="banner">
-      <nav id="top-nav-h" class="navbar">
+      <nav id="top-nav-h-access" class="hidden"><ul>
+          <li><a tabindex="-1" href="/">Home</a></li>
+          <li><a tabindex="-1" href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
+          <li><a tabindex="-1" href="/photos/">Photos</a>
+              <ul>
+              {% for gallerycustom in gallery_list %}
+              <li><a tabindex="-1" href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a></li>
+              {% endfor %}
+              </ul></li>
+          <li><a tabindex="-1" href="/critique/">Critique</a></li>
+          <li><a tabindex="-1" href="/#info">À propos</a></li>
+      </ul></nav>
+
+      <nav id="top-nav-h" class="navbar" role="presentation">
         <a id="homepage-link" href="/">
             <img class="img-top" src={% static 'img_base/tln_logo_rust_light_mini.png' %} alt="tln"/>
             <img class="img-bottom" src={% static 'img_base/tln_logo_blue_glow_mini.png' %} alt="tln"/>

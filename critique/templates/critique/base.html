@@ -6,7 +6,18 @@
 {% block skip-link %}<a id="skip-link" class="hidden" href="#content">Skip to main content</a>{% endblock %}
 
 {% block header-more %}
-<div id="critique-header">
+<nav id="critique-header-access" class="hidden"><ul>
+    <li><a tabindex="-1" href={% url "preambule" %}>préambule</a></li>
+    <li><a tabindex="-1" href={% url "top_textes" %}>textes choisis</a></li>
+    <li><a tabindex="-1" href={% url "list_notes" %}>carnet de notes</a></li>
+    <li><a tabindex="-1" href={% url "list_oeuvres" %}>rencontres passées</a></li>
+    <li><a tabindex="-1" href={% url "list_envies" %}>en ligne de mire</a></li>
+    <li><a tabindex="-1" href={% url "list_cinemas" %}>cinémas parisiens</a></li>
+    <li><a tabindex="-1" href={% url "list_seances" %}>liste des séances</a></li>
+    <li><a tabindex="-1" href={% url "top_films" %}>top films par année</a></li>
+</ul></nav>
+
+<div id="critique-header" role="presentation">
     <nav id="main-nav" class="navbar">
         <a id="top-nav-trigger" href="#">tln</a>
         <nav role="navigation">
