@@ -147,7 +147,6 @@ if (websiteApp == "critique") {
     var subNavBar = document.getElementById("sub-nav");
     var mainNavLinksH = document.getElementById("main-nav-links-h");
     var mainNavLinksV = document.getElementById("main-nav-links-v");
-    var subNavLinksH = document.getElementById("sub-nav-links-h");
     var subNavLinksV = document.getElementById("sub-nav-links-v");
 
     /* Reveal the topNavBar on clicking the utmost left link */
