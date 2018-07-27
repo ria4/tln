@@ -1,6 +1,6 @@
 {% load comments %}
 {% load i18n %}
-<form id="comment_form_custom" action="{% comment_form_target %}" method="post">{% csrf_token %}
+<form id="comment_form_custom" action="{% comment_form_target %}" method="post" aria-live="polite">{% csrf_token %}
   {% if next %}
     <div><input type="hidden" name="next" value="{{ next }}"/></div>{% endif %}
   <div class="form_inputs">

@@ -18,7 +18,19 @@
     <img id="logo-tln" src={% static 'img_base/tln_logo_rust.png' %} alt="logo tln">
     </div>
 
-    <nav id="top-nav-v" class="navbar">
+    <nav id="top-nav-v-access" class="hidden"><ul>
+        <li><a tabindex="-1" href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
+        <li><a tabindex="-1" href="/photos/">Photos</a>
+            <ul>
+            {% for gallerycustom in gallery_list %}
+            <li><a tabindex="-1" href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a></li>
+            {% endfor %}
+            </ul></li>
+        <li><a tabindex="-1" href="/critique/">Critique</a></li>
+        <li><a tabindex="-1" href="/#info">À propos</a></li>
+    </ul></nav>
+
+    <nav id="top-nav-v" class="navbar" role="presentation">
         <div class="shadow-up"></div>
         <div class="shadow-right"></div>
         <div class="shadow-down"></div>
@@ -47,7 +59,7 @@
 
 </header>
 
-<div id="goto-info"><a href="#info">⌄</a></div>
+<div id="goto-info" role="presentation"><a href="#info">⌄</a></div>
 {% endblock %}
 
 {% block content-wrap %}
@@ -66,7 +78,7 @@
                             <p>Je m'appelle Max Tury, je suis non-binaire (et j'utilise les pronoms féminins). Ces derniers mois, j'ai pu m'accorder de mener des projets personnels, dont la construction de <strong><em>trompe-la-nuit</em></strong>. La patience et l'observation me tiennent à cœur. Pour le reste, je préfère laisser parler le contenu du site.</p>
                         </div>
                     </div>
-                    <div class="hseparator"></div>
+                    <div class="hseparator" role="presentation"></div>
                     <div id="info-en" lang="en">
                         <blockquote>
                             <p class="quote-content">Being a star means specializing in the seemingly lived; the star is the object of identification with the shallow seeming life that has to compensate for the fragmented productive specializations which are actually lived.</p>
