@@ -48,14 +48,15 @@ hr, .hseparator {
 
 #top-nav-h {
     visibility: hidden;
-    /* TODO do not load this one on smartphones */
-    background-image: url("/static/img_base/critique_background_content.jpg");
+    background-image: url("/static/img_base/critique_background_content_norm.jpg");
     background-size: 100% auto;
     height: 0;
     margin: 0;
     padding: 0;
     transition: all 0.4s ease;
     pointer-events: auto; }
+@media (max-width: 960px) {
+#top-nav-h { background-image: url("/static/img_base/critique_background_content_min.jpg"); } }
 
 #top-nav-h.expanded {
     visibility: visible;
