@@ -61,7 +61,7 @@ class OeuvreComment(EmbeddedDocument):
     date = fields.DateTimeField(default=datetime.now())
     date_month_unknown = fields.BooleanField(default=False)
     date_day_unknown = fields.BooleanField(default=False)
-    content = fields.ListField(fields.StringField(), blank=True)
+    content = fields.StringField(blank=True)
 
 class Oeuvre(Document):
     """
