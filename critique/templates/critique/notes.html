@@ -39,9 +39,12 @@
             {% with oeuvre.comments.0 as comment %}
             <div class="entry-body">
                 <div class="entry-content">
-                    {% for p in comment.content %}
-                    {{ p|striptags }}
-                    {% endfor %}
+                    {# hack for printing linebreaks #}
+                    {% if comment.content|slice:"-3:" == '!!!' %}
+                    {{ comment.content|slice:":-3"|striptags|truncatechars:420|linebreaks }}
+                    {% else %}
+                    {{ comment.content|striptags|truncatechars:420 }}
+                    {% endif %}
                 </div>
             </div>
             <footer class="entry-footer">

@@ -113,7 +113,7 @@ def get_comment_form_data(comment):
         form_data['no_month'] = comment.date_month_unknown
     if hasattr(comment, 'date_day_unknown'):
         form_data['no_day'] = comment.date_day_unknown
-    form_data['content'] = '\n\n'.join(comment.content)
+    form_data['content'] = comment.content
     return form_data
 
 @permission_required('critique.all_rights')
@@ -137,7 +137,7 @@ def update_comment_with_form(comment, form):
         comment.date_month_unknown = form.cleaned_data['no_month']
     if 'no_day' in form.cleaned_data:
         comment.date_day_unknown = form.cleaned_data['no_day']
-    comment.content = form.cleaned_data['content'].split('\r\n\r\n')
+    comment.content = form.cleaned_data['content']
 
 @permission_required('critique.all_rights')
 def add_comment(req, slug):
