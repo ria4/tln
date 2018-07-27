@@ -73,6 +73,7 @@ tln/__pycache__/
 tln/settings.py
 tln/wsgi.py
 util/crawlers/
+util/mongodumps/
 util/old/
 blog/templatetags/__pycache__/
 django_comments_custom/__pycache__/
@@ -87,9 +88,7 @@ static/favicon/favicon6.ico
 static/favicon/favicon7.ico
 media/
 photos/__pycache__/
-photos/apps.py
 photos/migrations/
-photos/tests.py
 static/css/flexslider.css
 static/js/jquery.flexslider.js
 static/js/woocommerce-FlexSlider-2.7.0-0-g91e323d.zip
