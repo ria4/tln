@@ -1,0 +1,64 @@
+{% extends "critique/base.html" %}
+{% load staticfiles %}
+{% load l10n %}
+
+{% block title %}recherche '{{ match }}'{% endblock %}
+{% block meta-description-page %}recherche œuvre ou artiste '{{ match }}'{% endblock %}
+
+{% block body-class %}entry-list{% endblock %}
+
+{% block content %}
+<div class="entry-links no-filter-nav-bar">
+{% for oeuvre in oeuvres %}
+    <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="entry-link">
+        <div class="oeuvre-display">
+        {% if oeuvre.info.image_url %}
+        <img src="{% static oeuvre.info.image_url %}" alt="" />
+        {% endif %}
+        </div>
+
+        <article class="hentry">
+            <header class="entry-header">
+                <h2 class="entry-title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h2>
+            </header>
+
+            {% if oeuvre.comments.0 %}
+            {% with oeuvre.comments|last as comment %}
+            <div class="entry-body">
+                <div class="entry-content">
+                    {# hack for printing linebreaks #}
+                    {% if comment.content|slice:"-3:" == '!!!' %}
+                    {{ comment.content|slice:":-3"|striptags|truncatechars:420|linebreaks }}
+                    {% else %}
+                    {{ comment.content|striptags|truncatechars:420 }}
+                    {% endif %}
+                </div>
+            </div>
+            <footer class="entry-footer">
+                <!--[if !IE]><!--><div class="entry-discussions" role="presentation"></div><!--<![endif]-->
+                <time>
+                    {% localize on %}
+                    {% if comment.date_month_unknown %}
+                        {{ comment.date|date:"Y" }}
+                    {% elif comment.date_day_unknown %}
+                        {{ comment.date|date:"F Y" }}
+                    {% else %}
+                        {% if comment.date|date:"j" == "1" %}
+                            1er {{ comment.date|date:"F Y" }}
+                        {% else %}
+                            {{ comment.date|date:"j F Y" }}
+                        {% endif %}
+                    {% endif %}
+                    {% endlocalize %}
+                </time>
+            </footer>
+            {% endwith %}
+            {% endif %}
+        </article>
+    </a>
+{% empty %}
+<p>Aucun résultat...</p><br/>
+<p>L'outil de recherche est un peu bête, il ne faut pas lui en vouloir.</p>
+{% endfor %}
+</div>
+{% endblock %}
