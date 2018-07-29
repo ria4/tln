@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
+from mongoengine.queryset.visitor import Q
 from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm, SeanceForm
 from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
 
@@ -218,6 +219,39 @@ def delete_latest_comment(req, slug):
     del(oeuvre.comments[comments[0][0]])
     oeuvre.save()
     return redirect('detail_oeuvre', slug=slug)
+
+
+# Search Oeuvres
+
+def add_no_dup(oeuvres, new_oeuvres):
+    ids = [oeuvre.id for oeuvre in oeuvres]
+    for oeuvre in new_oeuvres:
+        if oeuvre.id not in ids:
+            oeuvres.append(oeuvre)
+
+def mongo_search_oeuvres(match):
+    # use objects.only('info.titles.vf') for search bar
+    oeuvres = []
+    oeuvres += Oeuvre.objects(info__artists__iexact=match) \
+                     .order_by('-info__year')
+    if oeuvres:
+        return oeuvres
+    else:
+        oeuvres += Oeuvre.objects \
+                         .filter(Q(comments__exists=True) &
+                                   (Q(info__titles__vo__icontains=match) |
+                                    Q(info__titles__vf__icontains=match))) \
+                         .order_by('-comments__date')[:10]
+        if len(oeuvres) < 10:
+            add_no_dup(oeuvres, Oeuvre.objects \
+                                      .filter(Q(info__titles__vo__icontains=match) |
+                                              Q(info__titles__vf__icontains=match)) \
+                                      .order_by('-info__year')[:10])
+        return oeuvres[:10]
+
+def search_oeuvres(req, match):
+    oeuvres = mongo_search_oeuvres(match)
+    return render(req, 'critique/search_oeuvres.html', locals())
 
 
 # Top Textes
