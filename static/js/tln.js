@@ -228,6 +228,30 @@ if (websiteApp == "critique") {
     });
 
 
+    /* Critique Search Bar - AJAX Search */
+
+    // eventListener input : ajax
+    // eventListener submit : goto critique/search/
+
+    var searchInput = document.getElementById("critique-search-input");
+    var currentSearchRequest = new XMLHttpRequest();
+    searchInput.addEventListener("input", function (e) {
+        if (e.target.value.length > 3) {
+            currentSearchRequest.abort();
+            var request = new XMLHttpRequest();
+            request.open("GET", "/critique/search/" + e.target.value, true);
+            request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            request.onreadystatechange = function() {
+                if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                    console.log(request.responseText);
+                }
+            }
+            currentSearchRequest = request;
+            request.send();
+        }
+    });
+
+
     /* Filter Bar - Highlight selected media type or year */
 
     var filterBar = document.getElementsByClassName("filter-navbar")[0];
