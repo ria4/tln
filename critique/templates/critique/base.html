@@ -39,12 +39,19 @@
                 <li id="sub-nav-trigger"><a href="#">errances</a></li>
                 <li id="critique-search">
                     <div id="critique-search-field">
-                        <form id="critique-search-form" action="{% url "search_oeuvres" %}" method="get">
-                            <input id="critique-search-input" type="text" name="match"/>
+                        <form id="critique-search-form" action="{% url "search_oeuvres" %}" method="get" autocomplete="off">
+                            <input id="critique-search-input" type="text" name="match" autocomplete="off"/>
                         </form>
-                        <button tabindex="-1" id="critique-search-button" type="button">
-                            <img src="{% static 'img_base/search_icon.png' %}" alt="">
-                        </button>
+                        <a href="#" tabindex="-1" id="critique-search-button" type="button">
+                            <img class="img-top" src="{% static 'img_base/search_icon.png' %}" alt="">
+                            <img class="img-bottom" src="{% static 'img_base/search_icon_hover.png' %}" alt="">
+                        </a>
+                        <!--icon by Google, from www.flaticon.com-->
+                        <a href="#" tabindex="-1" id="critique-searchend-button" type="button">
+                            <img class="img-top" src="{% static 'img_base/searchend_icon.png' %}" alt="">
+                            <img class="img-bottom" src="{% static 'img_base/searchend_icon_hover.png' %}" alt="">
+                        </a>
+                        <!--icon by Balraj Chana, from www.flaticon.com-->
                     </div>
                     <div id="critique-search-results">
                         <ul id="critique-search-results-list">
