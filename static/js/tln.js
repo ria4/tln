@@ -69,8 +69,10 @@ document.addEventListener("keypress", function (e) {
                 if (userIsAuthenticated) { window.location.href = "/logout"; }
             } else if (activeCode == "s") {
                 activeCode = "";
-                e.preventDefault();
-                searchInput.focus();
+                if (document.activeElement != searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
             } else {
                 var overlay = codes[activeCode].parentElement;
                 overlay.classList.add("revealed");
@@ -233,21 +235,33 @@ if (websiteApp == "critique") {
     /* Critique Search Bar - Reveal search bar */
 
     var critiqueSearchButton = document.getElementById("critique-search-button");
-    var critiqueSearchButtonImg = critiqueSearchButton.getElementsByTagName("img")[0];
-    critiqueSearchButton.addEventListener("mouseover", function (e) {
-        critiqueSearchButtonImg.setAttribute("src", "/static/img_base/search_icon_hover.png");
-    });
-    critiqueSearchButton.addEventListener("mouseout", function (e) {
-        critiqueSearchButtonImg.setAttribute("src", "/static/img_base/search_icon.png");
-    });
+    var critiqueSearchImg = critiqueSearchButton.getElementsByTagName("img")[0];
+    var critiqueSearchEndButton = document.getElementById("critique-searchend-button");
+    var critiqueSearchEndImg = critiqueSearchEndButton.getElementsByTagName("img")[0];
 
     searchInput = document.getElementById("critique-search-input");
     critiqueSearchButton.addEventListener("click", function (e) {
-        searchInput.classList.toggle("expanded");
+        searchInput.focus();
+    });
+    critiqueSearchEndButton.addEventListener("click", function (e) {
+        searchInput.blur();
     });
     searchInput.addEventListener("focus", function (e) {
         searchInput.classList.add("expanded");
+        critiqueSearchButton.style.zIndex = "-1";
+        critiqueSearchImg.style.opacity = "0";
+        critiqueSearchEndButton.style.zIndex = "1";
+        critiqueSearchEndImg.style.opacity = "1";
     });
+
+    searchInput.addEventListener("blur", function (e) {
+        searchInput.classList.remove("expanded");
+        critiqueSearchEndButton.style.zIndex = "-1";
+        critiqueSearchEndImg.style.opacity = "0";
+        critiqueSearchButton.style.zIndex = "1";
+        critiqueSearchImg.style.opacity = "1";
+    });
+
 
     /* Critique Search Bar - AJAX Search */
 

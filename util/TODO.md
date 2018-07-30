@@ -1,2 +1,2 @@
 * update home text and check google preview
-* oeuvre search - no mongodb/haystack compatibility for now
+* search oeuvres with haystack -if it's ever available for mongodb
