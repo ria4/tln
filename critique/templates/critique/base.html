@@ -24,6 +24,23 @@
 </ul></nav>
 
 <div id="critique-header" role="presentation">
+    <div id="critique-search-m">
+        <div id="critique-search-field-m">
+            <form id="critique-search-form-m" action="{% url "search_oeuvres" %}" method="get" autocomplete="off">
+                <input tabindex="-1" id="critique-search-input-m" type="text" name="match" autocomplete="off">
+            </form>
+            <a href="#" tabindex="-1" id="critique-searchend-button-m" type="button">
+                <img class="img-top" src="{% static 'img_base/searchend_icon.png' %}" alt="">
+                <img class="img-bottom" src="{% static 'img_base/searchend_icon_hover.png' %}" alt="">
+            </a>
+            <!--icon by Balraj Chana, from www.flaticon.com-->
+        </div>
+        <div id="critique-search-results-m">
+            <ul id="critique-search-results-list-m">
+            </ul>
+        </div>
+    </div>
+
     <nav id="main-nav" class="navbar">
         <a id="top-nav-trigger" href="#">tln</a>
         <nav role="navigation">

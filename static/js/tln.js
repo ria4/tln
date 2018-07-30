@@ -36,6 +36,10 @@ document.addEventListener("focusin", collapseDropdownMenu)
 
 /* Overlays - Reveal appropriate overlay through keyboard inputs */
 
+function getSearchInput() {
+    return null;
+}
+
 var loginForm = document.getElementById("login_form");
 var codes = {"login": loginForm,
              "logout": true,
@@ -43,7 +47,6 @@ var codes = {"login": loginForm,
 
 var activeCode = "";
 var cachedCode = "";
-var searchInput;
 document.addEventListener("keypress", function (e) {
     if (!activeCode) {
         cachedCode += String.fromCharCode(e.charCode);
@@ -69,9 +72,12 @@ document.addEventListener("keypress", function (e) {
                 if (userIsAuthenticated) { window.location.href = "/logout"; }
             } else if (activeCode == "s") {
                 activeCode = "";
-                if (document.activeElement != searchInput) {
+                if (document.activeElement != getSearchInput()) {
                     e.preventDefault();
-                    searchInput.focus();
+                    var input = getSearchInput();
+                    if (input != null) {
+                        input.focus();
+                    }
                 }
             } else {
                 var overlay = codes[activeCode].parentElement;
@@ -238,11 +244,23 @@ if (websiteApp == "critique") {
     var critiqueSearchImg = critiqueSearchButton.getElementsByTagName("img")[0];
     var critiqueSearchEndButton = document.getElementById("critique-searchend-button");
     var critiqueSearchEndImg = critiqueSearchEndButton.getElementsByTagName("img")[0];
-    var widthTriggerMobileSearch = 700;
+    var critiqueSearchM = document.getElementById("critique-search-m");
+    var critiqueSearchEndButtonM = document.getElementById("critique-searchend-button-m");
+    var critiqueSearchEndImgM = critiqueSearchEndButtonM.getElementsByTagName("img")[0];
 
-    searchInput = document.getElementById("critique-search-input");
+    var searchInput = document.getElementById("critique-search-input");
+    var searchInputM = document.getElementById("critique-search-input-m");
+    var widthTriggerMobileSearch = 700;
+    getSearchInput = function() {
+        if (window.innerWidth > widthTriggerMobileSearch) {
+            return searchInput;
+        } else {
+            return searchInputM;
+        }
+    }
+
     critiqueSearchButton.addEventListener("click", function (e) {
-        searchInput.focus();
+        getSearchInput().focus();
     });
     critiqueSearchEndButton.addEventListener("click", function (e) {
         subNavTrigger.classList.remove("reduced");
@@ -252,13 +270,51 @@ if (websiteApp == "critique") {
         critiqueSearchButton.style.zIndex = "1";
         critiqueSearchImg.style.opacity = "1";
     });
+    critiqueSearchEndButtonM.addEventListener("click", function (e) {
+        critiqueSearchM.classList.remove("expanded");
+        critiqueSearchButton.style.zIndex = "1";
+        critiqueSearchImg.style.opacity = "1";
+    });
+
+    var searchInputMBlurred = false;
     searchInput.addEventListener("focus", function (e) {
-        subNavTrigger.classList.add("reduced");
-        searchInput.classList.add("expanded");
+        if (getSearchInput() === searchInputM) {
+            if (!searchInputMBlurred) {
+                searchInputM.focus();
+            } else {
+                searchInputMBlurred = false;
+            }
+        } else {
+            subNavTrigger.classList.add("reduced");
+            searchInput.classList.add("expanded");
+            critiqueSearchButton.style.zIndex = "-1";
+            critiqueSearchImg.style.opacity = "0";
+            critiqueSearchEndButton.style.zIndex = "1";
+            critiqueSearchEndImg.style.opacity = "1";
+        }
+    });
+    searchInputM.addEventListener("focus", function (e) {
+        critiqueSearchM.classList.add("expanded");
         critiqueSearchButton.style.zIndex = "-1";
         critiqueSearchImg.style.opacity = "0";
-        critiqueSearchEndButton.style.zIndex = "1";
-        critiqueSearchEndImg.style.opacity = "1";
+    });
+    searchInputM.addEventListener("blur", function (e) {
+        critiqueSearchM.classList.remove("expanded");
+        critiqueSearchButton.style.zIndex = "1";
+        critiqueSearchImg.style.opacity = "1";
+        searchInputMBlurred = true;
+        searchInput.focus();
+    });
+
+    window.addEventListener("resize", function () {
+        if (window.innerWidth < widthTriggerMobileSearch) {
+            subNavTrigger.classList.remove("reduced");
+            searchInput.classList.remove("expanded");
+            critiqueSearchEndButton.style.zIndex = "-1";
+            critiqueSearchEndImg.style.opacity = "0";
+            critiqueSearchButton.style.zIndex = "1";
+            critiqueSearchImg.style.opacity = "1";
+        }
     });
 
 
