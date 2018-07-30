@@ -236,7 +236,7 @@ def mongo_search_oeuvres_ajax(match):
     oeuvres = Oeuvre.objects(info__artists__iexact=match) \
                     .order_by('-info__year') \
                     .limit(5) \
-                    .only('info.titles.vf', 'info.titles.vo', 'info.year')
+                    .only('info.titles.vf', 'info.titles.vo', 'info.year', 'slug')
 
     if oeuvres:
         return oeuvres.to_json()
@@ -247,7 +247,7 @@ def mongo_search_oeuvres_ajax(match):
                                    Q(info__titles__vf__icontains=match))) \
                         .order_by('-comments__date') \
                         .limit(5) \
-                        .only('info.titles.vf', 'info.titles.vo', 'info.year')
+                        .only('info.titles.vf', 'info.titles.vo', 'info.year', 'slug')
 
         if len(oeuvres) == 5:
             return oeuvres.to_json()
@@ -258,7 +258,7 @@ def mongo_search_oeuvres_ajax(match):
                                         Q(info__titles__vf__icontains=match))) \
                              .order_by('-info__year') \
                              .limit(5-len(oeuvres)) \
-                             .only('info.titles.vf', 'info.titles.vo', 'info.year')
+                             .only('info.titles.vf', 'info.titles.vo', 'info.year', 'slug')
 
             if oeuvres:
                 if oeuvres2:

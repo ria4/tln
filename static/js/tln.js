@@ -228,22 +228,64 @@ if (websiteApp == "critique") {
     });
 
 
+    /* Critique Search Bar - Reveal search bar */
+
+    var critiqueSearchButton = document.getElementById("critique-search-button");
+    var critiqueSearchButtonImg = critiqueSearchButton.getElementsByTagName("img")[0];
+    critiqueSearchButton.addEventListener("mouseover", function (e) {
+        critiqueSearchButtonImg.setAttribute("src", "/static/img_base/search_icon_hover.png");
+    });
+    critiqueSearchButton.addEventListener("mouseout", function (e) {
+        critiqueSearchButtonImg.setAttribute("src", "/static/img_base/search_icon.png");
+    });
+
+    var critiqueSearchForm = document.getElementById("critique-search-form");
+    critiqueSearchForm.classList.add("collapsed");
+    critiqueSearchButton.addEventListener("click", function (e) {
+        if (critiqueSearchForm.classList.contains("expanded")) {
+            critiqueSearchForm.classList.add("collapsed");
+            critiqueSearchForm.classList.remove("expanded");
+        } else {
+            critiqueSearchForm.classList.add("expanded");
+            critiqueSearchForm.classList.remove("collapsed");
+        }
+    });
+
     /* Critique Search Bar - AJAX Search */
 
-    // eventListener input : ajax
-    // eventListener submit : goto critique/search/
-
     var searchInput = document.getElementById("critique-search-input");
+    var searchResultsList = document.getElementById("critique-search-results-list");
     var currentSearchRequest = new XMLHttpRequest();
     searchInput.addEventListener("input", function (e) {
         if (e.target.value.length > 3) {
             currentSearchRequest.abort();
             var request = new XMLHttpRequest();
             request.open("GET", "/critique/search/" + e.target.value, true);
-            request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             request.onreadystatechange = function() {
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-                    console.log(request.responseText);
+                    var response = JSON.parse(request.responseText);
+
+                    var diff = response.length - searchResultsList.children.length;
+                    if (diff > 0) {
+                        for (var i=0; i<diff; i++) {
+                            var li = document.createElement("li");
+                            var a = document.createElement("a");
+                            li.appendChild(a);
+                            searchResultsList.appendChild(li);
+                        }
+                    } else if (diff < 0) {
+                        for (var i=diff; i<0; i++) {
+                            console.log(searchResultsList.lastChild);
+                            searchResultsList.removeChild(searchResultsList.lastChild);
+                        }
+                    }
+
+                    for (var i=0; i<response.length; i++) {
+                        var a = searchResultsList.children[i].firstChild;
+                        a.setAttribute("href", "/critique/oeuvre/" + response[i]["slug"]);
+                        a.innerHTML = response[i].info.titles.vf;
+                    }
                 }
             }
             currentSearchRequest = request;

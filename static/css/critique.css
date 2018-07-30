@@ -109,6 +109,27 @@ hr, .hseparator {
 #critique-header #main-nav #main-nav-links-v { display: -ms-flexbox; display: flex; } }
 
 
+/* Search Button
+   ========================================================================== */
+
+#critique-search {
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
+#critique-search a {
+    font-weight: bold;
+    font-size: 22px; }
+#critique-search-form {
+    font-size: 20px; }
+#critique-search-results {
+    position: relative;
+}
+#critique-search-results-list {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+
 /* Sub Navigation Bar
    ========================================================================== */
 
