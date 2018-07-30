@@ -203,6 +203,7 @@ textarea, button {
     border-radius: 0; }
 
 button { background-color: transparent; padding: 0; border: 0; }
+button:focus { outline: none; }
 textarea { outline: none; }
 
 
