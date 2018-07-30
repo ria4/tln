@@ -178,8 +178,8 @@ if (websiteApp == "critique") {
     });
 
     /* Place the top texts link according to window width */
-    var widthTriggerCritiqueNavLayout = 960;
-    var widthTriggerTopTextesPosition = 600;
+    var widthTriggerCritiqueNavLayout = 1210;
+    var widthTriggerTopTextesPosition = 880;
     var topTextesMain = mainNavLinksV.getElementsByClassName("top-textes")[0];
     var topTextesSub = subNavLinksV.getElementsByClassName("top-textes")[0];
     function setTopTextesPosition() {
@@ -238,28 +238,27 @@ if (websiteApp == "critique") {
     var critiqueSearchImg = critiqueSearchButton.getElementsByTagName("img")[0];
     var critiqueSearchEndButton = document.getElementById("critique-searchend-button");
     var critiqueSearchEndImg = critiqueSearchEndButton.getElementsByTagName("img")[0];
+    var widthTriggerMobileSearch = 700;
 
     searchInput = document.getElementById("critique-search-input");
     critiqueSearchButton.addEventListener("click", function (e) {
         searchInput.focus();
     });
     critiqueSearchEndButton.addEventListener("click", function (e) {
-        searchInput.blur();
-    });
-    searchInput.addEventListener("focus", function (e) {
-        searchInput.classList.add("expanded");
-        critiqueSearchButton.style.zIndex = "-1";
-        critiqueSearchImg.style.opacity = "0";
-        critiqueSearchEndButton.style.zIndex = "1";
-        critiqueSearchEndImg.style.opacity = "1";
-    });
-
-    searchInput.addEventListener("blur", function (e) {
+        subNavTrigger.classList.remove("reduced");
         searchInput.classList.remove("expanded");
         critiqueSearchEndButton.style.zIndex = "-1";
         critiqueSearchEndImg.style.opacity = "0";
         critiqueSearchButton.style.zIndex = "1";
         critiqueSearchImg.style.opacity = "1";
+    });
+    searchInput.addEventListener("focus", function (e) {
+        subNavTrigger.classList.add("reduced");
+        searchInput.classList.add("expanded");
+        critiqueSearchButton.style.zIndex = "-1";
+        critiqueSearchImg.style.opacity = "0";
+        critiqueSearchEndButton.style.zIndex = "1";
+        critiqueSearchEndImg.style.opacity = "1";
     });
 
 
