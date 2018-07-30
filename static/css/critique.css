@@ -118,15 +118,22 @@ hr, .hseparator {
     font-weight: bold;
     font-size: 22px; }
 #critique-search-form {
+}
+#critique-search-input {
     font-size: 20px; }
+
 #critique-search-results {
-    position: relative;
+    position: absolute;
 }
 #critique-search-results-list {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+#critique-search-results-list li {
+    width: 100%;
+    text-align: left;
 }
 
 

@@ -179,7 +179,19 @@ if (websiteApp == "critique") {
     codes["editc"] = commentForm;
     codes["addc"] = commentFormEmpty;
     codes["editi"] = cinemaForm;
-    codes["adds"] = seanceFormEmpty;
+    codes["adde"] = seanceFormEmpty;
+
+    for (var key in codes) {
+        if (codes.hasOwnProperty(key)) {
+            if ((key != "login") && (key != "logout") && (key != "s") && (codes[key])) {
+                codes[key].addEventListener("reset", function (e) {
+                    e.preventDefault();
+                    e.target.parentElement.classList.remove("revealed");
+                    activeCode = "";
+                });
+            }
+        }
+    }
 
 
 } else if (websiteApp == "blog") {
