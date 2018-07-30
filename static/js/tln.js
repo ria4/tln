@@ -143,22 +143,22 @@ if (websiteApp == "critique") {
     /* Critique Navigation Bars - Hide/reveal and resize bars */
 
     var topNavBar = document.getElementById("top-nav-h");
+    var topNavTrigger = document.getElementById("top-nav-trigger");
     var mainNavBar = document.getElementById("main-nav");
+    var subNavTrigger = document.getElementById("sub-nav-trigger");
     var subNavBar = document.getElementById("sub-nav");
     var mainNavLinksH = document.getElementById("main-nav-links-h");
     var mainNavLinksV = document.getElementById("main-nav-links-v");
     var subNavLinksV = document.getElementById("sub-nav-links-v");
 
     /* Reveal the topNavBar on clicking the utmost left link */
-    var topNavTrigger = document.getElementById("top-nav-trigger");
     topNavTrigger.addEventListener("click", function(e) {
         e.preventDefault();
         topNavBar.classList.toggle("expanded");
     });
 
     /* Reveal the subNavBar on clicking the utmost right link */
-    var subNavBarTrigger = document.getElementById("sub-nav-trigger");
-    subNavBarTrigger.addEventListener("click", function(e) {
+    subNavTrigger.addEventListener("click", function (e) {
         e.preventDefault();
         subNavBar.classList.toggle("expanded");
     });
@@ -185,7 +185,7 @@ if (websiteApp == "critique") {
     /* Hide menus when scrolling down */
     var lastKnownScrollPosition = 0;
     var ticking = false;
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
         if (!ticking) {
             window.requestAnimationFrame(function () {
                 if (window.scrollY > lastKnownScrollPosition) {
@@ -213,16 +213,6 @@ if (websiteApp == "critique") {
     subNavBar.addEventListener("click", function () {
         if (subNavBar.classList.contains("v")) {
             topNavBar.classList.remove("expanded");
-            subNavBar.classList.remove("expanded");
-        }
-    });
-
-    /* Hide menus when tab-navigating outside of them */
-    document.addEventListener("focusin", function () {
-        if (!topNavBar.contains(document.activeElement)) {
-            topNavBar.classList.remove("expanded");
-        }
-        if (!subNavBar.contains(document.activeElement)) {
             subNavBar.classList.remove("expanded");
         }
     });
