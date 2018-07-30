@@ -38,10 +38,12 @@ document.addEventListener("focusin", collapseDropdownMenu)
 
 var loginForm = document.getElementById("login_form");
 var codes = {"login": loginForm,
-             "logout": true}
+             "logout": true,
+             "s": true }
 
 var activeCode = "";
 var cachedCode = "";
+var searchInput;
 document.addEventListener("keypress", function (e) {
     if (!activeCode) {
         cachedCode += String.fromCharCode(e.charCode);
@@ -65,6 +67,10 @@ document.addEventListener("keypress", function (e) {
             if (activeCode == "logout") {
                 activeCode = "";
                 if (userIsAuthenticated) { window.location.href = "/logout"; }
+            } else if (activeCode == "s") {
+                activeCode = "";
+                e.preventDefault();
+                searchInput.focus();
             } else {
                 var overlay = codes[activeCode].parentElement;
                 overlay.classList.add("revealed");
@@ -92,6 +98,12 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
+if (loginForm) {
+    loginForm.addEventListener("reset", function (e) {
+        e.target.parentElement.classList.remove("revealed");
+        activeCode = "";
+    });
+}
 
 /* Pagination - Navigate with arrow keys */
 
@@ -243,7 +255,7 @@ if (websiteApp == "critique") {
 
     /* Critique Search Bar - AJAX Search */
 
-    var searchInput = document.getElementById("critique-search-input");
+    searchInput = document.getElementById("critique-search-input");
     var searchResultsList = document.getElementById("critique-search-results-list");
     var currentSearchRequest = new XMLHttpRequest();
     searchInput.addEventListener("input", function (e) {
@@ -280,6 +292,10 @@ if (websiteApp == "critique") {
             }
             currentSearchRequest = request;
             request.send();
+        } else {
+            while (searchResultsList.lastChild) {
+                searchResultsList.removeChild(searchResultsList.lastChild);
+            }
         }
     });
 
@@ -689,18 +705,4 @@ if (websiteApp == "critique") {
         addPhotoResizeListener(photo);
     }
 
-}
-
-
-/* Global Forms - Define reset listeners once all codes have been registered */
-
-for (var key in codes) {
-    if (codes.hasOwnProperty(key)) {
-        if ((key != "logout") && (codes[key])) {
-            codes[key].addEventListener("reset", function (e) {
-                e.target.parentElement.classList.remove("revealed");
-                activeCode = "";
-            });
-        }
-    }
 }
