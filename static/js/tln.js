@@ -241,21 +241,16 @@ if (websiteApp == "critique") {
         critiqueSearchButtonImg.setAttribute("src", "/static/img_base/search_icon.png");
     });
 
-    var critiqueSearchForm = document.getElementById("critique-search-form");
-    critiqueSearchForm.classList.add("collapsed");
+    searchInput = document.getElementById("critique-search-input");
     critiqueSearchButton.addEventListener("click", function (e) {
-        if (critiqueSearchForm.classList.contains("expanded")) {
-            critiqueSearchForm.classList.add("collapsed");
-            critiqueSearchForm.classList.remove("expanded");
-        } else {
-            critiqueSearchForm.classList.add("expanded");
-            critiqueSearchForm.classList.remove("collapsed");
-        }
+        searchInput.classList.toggle("expanded");
+    });
+    searchInput.addEventListener("focus", function (e) {
+        searchInput.classList.add("expanded");
     });
 
     /* Critique Search Bar - AJAX Search */
 
-    searchInput = document.getElementById("critique-search-input");
     var searchResultsList = document.getElementById("critique-search-results-list");
     var currentSearchRequest = new XMLHttpRequest();
     searchInput.addEventListener("input", function (e) {
