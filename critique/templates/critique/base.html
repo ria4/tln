@@ -15,6 +15,12 @@
     <li><a tabindex="-1" href={% url "list_cinemas" %}>cinémas parisiens</a></li>
     <li><a tabindex="-1" href={% url "list_seances" %}>liste des séances</a></li>
     <li><a tabindex="-1" href={% url "top_films" %}>top films par année</a></li>
+    <li>
+        <form action="{% url "search_oeuvres" %}" method="get" role="search">
+            <label for="critique-search-input-access">Recherche d'œuvre ou d'artiste :</label>
+            <input tabindex="-1" id="critique-search-input-access" type="text" name="match"/>
+        </form>
+    </li>
 </ul></nav>
 
 <div id="critique-header" role="presentation">
@@ -32,9 +38,18 @@
             </ul>
                 <li id="sub-nav-trigger"><a href="#">errances</a></li>
                 <li id="critique-search">
-                    <form id="critique-search-form" action="{% url "search_oeuvres" %}" method="get">
-                        <input id="critique-search-input" type="text" name="match"/>
-                    </form>
+                    <div id="critique-search-field">
+                        <form id="critique-search-form" action="{% url "search_oeuvres" %}" method="get">
+                            <input id="critique-search-input" type="text" name="match"/>
+                        </form>
+                        <button id="critique-search-button" type="button">
+                            <img src="{% static 'img_base/search_icon.png' %}" alt="">
+                        </button>
+                    </div>
+                    <div id="critique-search-results">
+                        <ul id="critique-search-results-list">
+                        </ul>
+                    </div>
                 </li>
         </ul>
         </nav>
