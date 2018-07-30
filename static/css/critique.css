@@ -95,16 +95,15 @@ hr, .hseparator {
     -ms-flex-pack: end;
     justify-content: flex-end; }
 
-#critique-header #main-nav > nav > ul { margin-right: 80px; }
-@media (max-width: 960px) {
-#critique-header #main-nav > nav { -ms-flex-grow: 1; -ms-flex-shrink: 1; flex: 1; }
-#critique-header #main-nav > nav > ul { margin-right: 10%; } }
+#critique-header #main-nav > nav > ul { margin-right: 0; }
+@media (max-width: 1210px) {
+#critique-header #main-nav > nav { -ms-flex-grow: 1; -ms-flex-shrink: 1; flex: 1; } }
 
 #critique-header #main-nav li { margin: 0 34px; }
 
 #critique-header #main-nav #main-nav-links-h { display: -ms-flexbox; display: flex; }
 #critique-header #main-nav #main-nav-links-v { display: none; }
-@media (max-width: 960px) {
+@media (max-width: 1210px) {
 #critique-header #main-nav #main-nav-links-h { display: none; }
 #critique-header #main-nav #main-nav-links-v { display: -ms-flexbox; display: flex; } }
 
@@ -112,46 +111,45 @@ hr, .hseparator {
 /* Search Button
    ========================================================================== */
 
-#critique-search {
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
+#sub-nav-trigger { padding-right: 26px; transition: padding 0.4s ease; }
+#sub-nav-trigger.reduced { padding-right: 0; }
 
+#critique-search {
+    margin-right: 12px !important;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 #critique-search-field {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: center;
-}
+    align-items: center; }
+
 #critique-search-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
+    justify-content: center; }
 #critique-search-input {
     border: 2px solid transparent;
     padding: 6px 0;
     width: 1px;
     background-color: transparent;
     font-size: 20px;
-    transition: padding 0.4s ease, width 0.4s ease, border 0s ease 0.4s, background-color 0s ease 0.4s;
-}
-#critique-search-input:focus { outline: none; }
+    transition: padding 0.4s ease, width 0.4s ease, border 0s ease 0.4s, background-color 0s ease 0.4s; }
 #critique-search-input.expanded {
-    width: 240px;
+    width: 300px;
     border: 2px solid #deda99;
     background-color: #fffddb;
     padding: 6px 24px 6px 4px;
-    transition: padding 0.4s ease, width 0.4s ease, border 0.4s ease, border-color 0s ease;
-}
+    transition: padding 0.4s ease, width 0.4s ease, border 0.4s ease, border-color 0s ease; }
+#critique-search-input:focus { outline: none; }
 
 #critique-search-field a {
     position: relative;
     left: -11px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-}
-
+    justify-content: flex-end; }
+#critique-search-field a:focus { outline: none; }
 #critique-search-button { z-index: 1; }
 #critique-searchend-button { z-index: -1; }
 
@@ -161,7 +159,6 @@ hr, .hseparator {
 #critique-search img.img-bottom { opacity: 0; }
 #critique-search img.img-top:hover { opacity: 0; }
 #critique-search img.img-bottom:hover { opacity: 1; }
-#critique-search a:focus { outline: none; }
 #critique-search-button img { height: 24px; }
 #critique-searchend-button img { height: 17px; }
 
@@ -197,7 +194,7 @@ hr, .hseparator {
     height: 0;
     -ms-flex-direction: column;
     flex-direction: column; }
-@media (max-width: 960px) {
+@media (max-width: 1210px) {
 #critique-header #sub-nav {
     float: right;
     width: auto;
@@ -206,14 +203,12 @@ hr, .hseparator {
 
 #critique-header #sub-nav > #sub-nav-links-h { display: -ms-flexbox; display: flex; }
 #critique-header #sub-nav > #sub-nav-links-v { display: none; }
-@media (max-width: 960px) {
+@media (max-width: 1210px) {
 #critique-header #sub-nav > #sub-nav-links-h { display: none; }
 #critique-header #sub-nav > #sub-nav-links-v { display: -ms-flexbox; display: flex; } }
 
 #critique-header #sub-nav.expanded { height: 46px; }
-@media (max-width: 1104px) {
-#critique-header #sub-nav.expanded { height: 92px; } }
-@media (max-width: 960px) {
+@media (max-width: 1210px) {
 #critique-header #sub-nav.expanded { height: 372px; } }
 @media (max-width: 600px) {
 #critique-header #sub-nav.expanded { height: 425px; } }
