@@ -72,10 +72,13 @@ document.addEventListener("keypress", function (e) {
                 if (userIsAuthenticated) { window.location.href = "/logout"; }
             } else if (activeCode == "s") {
                 activeCode = "";
-                if (document.activeElement != getSearchInput()) {
-                    e.preventDefault();
-                    var input = getSearchInput();
-                    if (input != null) {
+                var input = getSearchInput();
+                if (input != null) {
+                    var searchFocusAfterEsc = ((document.activeElement == input) &&
+                                               (!input.classList.contains("expanded")));
+                    if ((document.activeElement != input) | searchFocusAfterEsc) {
+                        e.preventDefault();
+                        if (searchFocusAfterEsc) { input.blur(); }
                         input.focus();
                     }
                 }
@@ -118,10 +121,12 @@ if (loginForm) {
 var pagination = document.getElementById("pagination");
 if (pagination) {
     document.addEventListener("keydown", function (e) {
-        if ((e.keyCode == 37) && prevPageUrl && !(activeCode)) {
-            window.location.href = prevPageUrl;
-        } else if ((e.keyCode == 39) && nextPageUrl && !(activeCode)) {
-            window.location.href = nextPageUrl;
+        if (getSearchInput() != document.activeElement) {
+            if ((e.keyCode == 37) && prevPageUrl && !(activeCode)) {
+                window.location.href = prevPageUrl;
+            } else if ((e.keyCode == 39) && nextPageUrl && !(activeCode)) {
+                window.location.href = nextPageUrl;
+            }
         }
     });
 }
@@ -258,15 +263,15 @@ if (websiteApp == "critique") {
     var widthTriggerMobileSearch = 700;
     getSearchInput = function() {
         return ((window.innerWidth > widthTriggerMobileSearch)? searchInput : searchInputM ) }
-    function getCritiqueSearch(searchInputX) {
-        return searchInputX.parentElement.parentElement.parentElement }
-    function getSearchResultsList(searchInputX) {
-        return getCritiqueSearch(searchInputX).lastElementChild.firstElementChild }
+    function updateAgnosticSearchElements() {
+        searchInputX = getSearchInput();
+        critiqueSearchX = searchInputX.parentElement.parentElement.parentElement;
+        searchResultsListX = critiqueSearchX.lastElementChild.firstElementChild;
+    }
 
 
     function hideSearchInput() {
-        searchInputX = getSearchInput();
-        searchResultsListX = getSearchResultsList(searchInputX);
+        updateAgnosticSearchElements();
         while (searchResultsListX.lastChild) {
             searchResultsListX.removeChild(searchResultsListX.lastChild);
         }
@@ -280,6 +285,8 @@ if (websiteApp == "critique") {
             critiqueSearchEndImg.style.opacity = "0";
         } else {
             critiqueSearchM.classList.remove("expanded");
+            searchInputMBlurred = true;
+            searchInput.focus();
         }
     }
 
@@ -291,7 +298,7 @@ if (websiteApp == "critique") {
 
     var searchInputMBlurred = false;
     searchInput.addEventListener("focus", function () {
-        if (getSearchInput() === searchInputM) {
+        if (getSearchInput() == searchInputM) {
             if (!searchInputMBlurred) {
                 searchInputM.focus();
             } else {
@@ -305,6 +312,7 @@ if (websiteApp == "critique") {
             critiqueSearchEndButton.style.zIndex = "1";
             critiqueSearchEndImg.style.opacity = "1";
             searchResults.style.display = "block";
+            searchResultsList.classList.add("highlight-ok");
         }
     });
     searchInputM.addEventListener("focus", function () {
@@ -312,20 +320,22 @@ if (websiteApp == "critique") {
         critiqueSearchButton.style.zIndex = "-1";
         critiqueSearchImg.style.opacity = "0";
     });
-    searchInputM.addEventListener("blur", function () {
-        critiqueSearchM.classList.remove("expanded");
-        critiqueSearchButton.style.zIndex = "1";
-        critiqueSearchImg.style.opacity = "1";
-        searchInputMBlurred = true;
-        searchInput.focus();
-    });
 
     document.addEventListener("click", function () {
-        if (!critiqueSearch.contains(document.activeElement)) {
-            searchResults.style.display = "none";
+        updateAgnosticSearchElements();
+        if (!critiqueSearchX.contains(document.activeElement)) {
+            if (critiqueSearchX == critiqueSearch) {
+                searchResultsListX.parentElement.style.display = "none";
+            } else {
+                hideSearchInput();
+            }
         }
     });
     window.addEventListener("resize", hideSearchInput);
+
+    searchResultsList.addEventListener("mouseleave", function () {
+        searchResultsList.classList.remove("highlight-ok");
+    });
 
 
     /* Critique Search Bar - Navigate with arrow keys and ESC */
@@ -335,14 +345,12 @@ if (websiteApp == "critique") {
         if (e.keyCode == 27) { hideSearchInput(); return }
 
         activeElementSearch = document.activeElement;
-        searchInputX = getSearchInput();
-        critiqueSearchX = getCritiqueSearch(searchInputX);
-        searchResultsListX = getSearchResultsList(searchInputX);
+        updateAgnosticSearchElements();
         if (critiqueSearchX.contains(activeElementSearch)) {
             if (e.keyCode == 38) {
                 e.preventDefault();
                 if (activeElementSearch != searchInputX) {
-                    if (activeElementSearch == searchResultsList.firstChild.firstChild) {
+                    if (activeElementSearch == searchResultsListX.firstChild.firstChild) {
                         searchInputX.focus();
                     } else {
                         activeElementSearch.parentElement.previousSibling.firstChild.focus();
@@ -396,11 +404,14 @@ if (websiteApp == "critique") {
         a.addEventListener("mouseenter", function (e) {
             e.target.focus();
         });
+        a.addEventListener("focus", function (e) {
+            e.target.parentElement.parentElement.classList.add("highlight-ok");
+        });
     }
 
     var currentSearchRequest = new XMLHttpRequest();
     function displaySearchResults(e) {
-        searchResultsListX = getSearchResultsList(getSearchInput());
+        updateAgnosticSearchElements();
 
         if (e.target.value.length > 2) {
 
