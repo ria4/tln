@@ -242,53 +242,55 @@ if (websiteApp == "critique") {
 
     var critiqueSearch = document.getElementById("critique-search");
     var critiqueSearchButton = document.getElementById("critique-search-button");
-    var critiqueSearchImg = critiqueSearchButton.getElementsByTagName("img")[0];
+    var critiqueSearchImg = critiqueSearchButton.firstElementChild;
     var critiqueSearchEndButton = document.getElementById("critique-searchend-button");
-    var critiqueSearchEndImg = critiqueSearchEndButton.getElementsByTagName("img")[0];
+    var critiqueSearchEndImg = critiqueSearchEndButton.firstElementChild;
     var critiqueSearchM = document.getElementById("critique-search-m");
     var critiqueSearchEndButtonM = document.getElementById("critique-searchend-button-m");
-    var critiqueSearchEndImgM = critiqueSearchEndButtonM.getElementsByTagName("img")[0];
+    var critiqueSearchEndImgM = critiqueSearchEndButtonM.firstElementChild;
 
     var searchInput = document.getElementById("critique-search-input");
     var searchInputM = document.getElementById("critique-search-input-m");
     var searchResults = document.getElementById("critique-search-results");
     var searchResultsList = document.getElementById("critique-search-results-list");
+    var critiqueSearchX; var searchInputX; var searchResultsListX;   /* agnostic versions */
+
     var widthTriggerMobileSearch = 700;
     getSearchInput = function() {
-        if (window.innerWidth > widthTriggerMobileSearch) {
-            return searchInput;
-        } else {
-            return searchInputM;
-        }
-    }
+        return ((window.innerWidth > widthTriggerMobileSearch)? searchInput : searchInputM ) }
+    function getCritiqueSearch(searchInputX) {
+        return searchInputX.parentElement.parentElement.parentElement }
+    function getSearchResultsList(searchInputX) {
+        return getCritiqueSearch(searchInputX).lastElementChild.firstElementChild }
+
 
     function hideSearchInput() {
-        subNavTrigger.classList.remove("reduced");
-        searchInput.classList.remove("expanded");
-        searchInput.value = "";
-        while (searchResultsList.lastChild) {
-            searchResultsList.removeChild(searchResultsList.lastChild);
+        searchInputX = getSearchInput();
+        searchResultsListX = getSearchResultsList(searchInputX);
+        while (searchResultsListX.lastChild) {
+            searchResultsListX.removeChild(searchResultsListX.lastChild);
         }
-        critiqueSearchEndButton.style.zIndex = "-1";
-        critiqueSearchEndImg.style.opacity = "0";
+        searchInputX.value = "";
         critiqueSearchButton.style.zIndex = "1";
         critiqueSearchImg.style.opacity = "1";
+        if (searchInputX == searchInput) {
+            searchInput.classList.remove("expanded");
+            subNavTrigger.classList.remove("reduced");
+            critiqueSearchEndButton.style.zIndex = "-1";
+            critiqueSearchEndImg.style.opacity = "0";
+        } else {
+            critiqueSearchM.classList.remove("expanded");
+        }
     }
 
-    critiqueSearchButton.addEventListener("click", function (e) {
+    critiqueSearchButton.addEventListener("click", function () {
         getSearchInput().focus();
     });
-    critiqueSearchEndButton.addEventListener("click", function (e) {
-        hideSearchInput();
-    });
-    critiqueSearchEndButtonM.addEventListener("click", function (e) {
-        critiqueSearchM.classList.remove("expanded");
-        critiqueSearchButton.style.zIndex = "1";
-        critiqueSearchImg.style.opacity = "1";
-    });
+    critiqueSearchEndButton.addEventListener("click", hideSearchInput);
+    critiqueSearchEndButtonM.addEventListener("click", hideSearchInput);
 
     var searchInputMBlurred = false;
-    searchInput.addEventListener("focus", function (e) {
+    searchInput.addEventListener("focus", function () {
         if (getSearchInput() === searchInputM) {
             if (!searchInputMBlurred) {
                 searchInputM.focus();
@@ -305,12 +307,12 @@ if (websiteApp == "critique") {
             searchResults.style.display = "block";
         }
     });
-    searchInputM.addEventListener("focus", function (e) {
+    searchInputM.addEventListener("focus", function () {
         critiqueSearchM.classList.add("expanded");
         critiqueSearchButton.style.zIndex = "-1";
         critiqueSearchImg.style.opacity = "0";
     });
-    searchInputM.addEventListener("blur", function (e) {
+    searchInputM.addEventListener("blur", function () {
         critiqueSearchM.classList.remove("expanded");
         critiqueSearchButton.style.zIndex = "1";
         critiqueSearchImg.style.opacity = "1";
@@ -318,42 +320,43 @@ if (websiteApp == "critique") {
         searchInput.focus();
     });
 
-    window.addEventListener("resize", function () {
-        if (window.innerWidth < widthTriggerMobileSearch) {
-            hideSearchInput();
-        }
-    });
     document.addEventListener("click", function () {
         if (!critiqueSearch.contains(document.activeElement)) {
             searchResults.style.display = "none";
         }
     });
+    window.addEventListener("resize", hideSearchInput);
 
 
-    /* Critique Search Bar - Navigate with arrow keys */
+    /* Critique Search Bar - Navigate with arrow keys and ESC */
 
     var activeElementSearch;
     document.addEventListener("keydown", function (e) {
+        if (e.keyCode == 27) { hideSearchInput(); return }
+
         activeElementSearch = document.activeElement;
-        if (critiqueSearch.contains(activeElementSearch)) {
+        searchInputX = getSearchInput();
+        critiqueSearchX = getCritiqueSearch(searchInputX);
+        searchResultsListX = getSearchResultsList(searchInputX);
+        if (critiqueSearchX.contains(activeElementSearch)) {
             if (e.keyCode == 38) {
                 e.preventDefault();
-                if (activeElementSearch != searchInput) {
+                if (activeElementSearch != searchInputX) {
                     if (activeElementSearch == searchResultsList.firstChild.firstChild) {
-                        searchInput.focus();
+                        searchInputX.focus();
                     } else {
-                        activeElementSearch.parentNode.previousSibling.firstChild.focus();
+                        activeElementSearch.parentElement.previousSibling.firstChild.focus();
                     }
                 }
             } else if (e.keyCode == 40) {
                 e.preventDefault();
-                if (activeElementSearch == searchInput) {
-                    if (!searchResultsList.firstChild.classList.contains("empty")) {
-                        searchResultsList.firstChild.firstChild.focus();
+                if (activeElementSearch == searchInputX) {
+                    if (!searchResultsListX.firstChild.classList.contains("empty")) {
+                        searchResultsListX.firstChild.firstChild.focus();
                     }
                 } else {
-                    if (activeElementSearch != searchResultsList.lastChild.firstChild) {
-                        activeElementSearch.parentNode.nextSibling.firstChild.focus();
+                    if (activeElementSearch != searchResultsListX.lastChild.firstChild) {
+                        activeElementSearch.parentElement.nextSibling.firstChild.focus();
                     }
                 }
             }
@@ -396,60 +399,69 @@ if (websiteApp == "critique") {
     }
 
     var currentSearchRequest = new XMLHttpRequest();
-    searchInput.addEventListener("input", function (e) {
+    function displaySearchResults(e) {
+        searchResultsListX = getSearchResultsList(getSearchInput());
+
         if (e.target.value.length > 2) {
+
             currentSearchRequest.abort();
             var request = new XMLHttpRequest();
             request.open("GET", "/critique/search/" + e.target.value, true);
             request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
             request.onreadystatechange = function() {
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                     var response = JSON.parse(request.responseText);
 
                     if (response.length == 0) {
 
-                        if ((!searchResultsList.firstChild) ||
-                            ((searchResultsList.firstChild) &&
-                             (!searchResultsList.firstChild.classList.contains("empty")))) {
-                            while (searchResultsList.lastChild) {
-                                searchResultsList.removeChild(searchResultsList.lastChild);
+                        if ((!searchResultsListX.firstChild) ||
+                            ((searchResultsListX.firstChild) &&
+                             (!searchResultsListX.firstChild.classList.contains("empty")))) {
+                            while (searchResultsListX.lastChild) {
+                                searchResultsListX.removeChild(searchResultsListX.lastChild);
                             }
-                            searchResultsList.appendChild(emptyElementSearchResult);
+                            searchResultsListX.appendChild(emptyElementSearchResult);
                         }
 
                     } else {
 
-                        if ((searchResultsList.firstChild) &&
-                            (searchResultsList.firstChild.classList.contains("empty"))) {
-                            searchResultsList.removeChild(searchResultsList.firstChild);
+                        if ((searchResultsListX.firstChild) &&
+                            (searchResultsListX.firstChild.classList.contains("empty"))) {
+                            searchResultsListX.removeChild(searchResultsListX.firstChild);
                         }
 
-                        var diff = response.length - searchResultsList.children.length;
+                        var diff = response.length - searchResultsListX.children.length;
                         if (diff > 0) {
                             for (var i=0; i<diff; i++) {
-                                searchResultsList.appendChild(createElementSearchResult());
+                                searchResultsListX.appendChild(createElementSearchResult());
                             }
                         } else if (diff < 0) {
                             for (var i=diff; i<0; i++) {
-                                searchResultsList.removeChild(searchResultsList.lastChild);
+                                searchResultsListX.removeChild(searchResultsListX.lastChild);
                             }
                         }
 
                         for (var i=0; i<response.length; i++) {
-                            var li = searchResultsList.children[i];
+                            var li = searchResultsListX.children[i];
                             setElementSearchResult(li, response[i]);
                         }
                     }
                 }
             }
+
             currentSearchRequest = request;
             request.send();
+
         } else {
-            while (searchResultsList.lastChild) {
-                searchResultsList.removeChild(searchResultsList.lastChild);
+            while (searchResultsListX.lastChild) {
+                searchResultsListX.removeChild(searchResultsListX.lastChild);
             }
         }
-    });
+    }
+
+    searchInput.addEventListener("input", displaySearchResults);
+    searchInputM.addEventListener("input", displaySearchResults);
 
 
     /* Filter Bar - Highlight selected media type or year */
