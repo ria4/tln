@@ -109,7 +109,7 @@ hr, .hseparator {
 /* Search Button
    ========================================================================== */
 
-#sub-nav-trigger { padding-right: 26px; transition: padding 0.4s ease; }
+#sub-nav-trigger { padding: 0 26px 0 21px; transition: padding 0.4s ease; }
 #sub-nav-trigger.reduced { padding-right: 0; }
 
 #critique-search {
