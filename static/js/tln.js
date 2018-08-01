@@ -258,6 +258,7 @@ if (websiteApp == "critique") {
     var searchInputM = document.getElementById("critique-search-input-m");
     var searchResults = document.getElementById("critique-search-results");
     var searchResultsList = document.getElementById("critique-search-results-list");
+    var searchResultsListM = document.getElementById("critique-search-results-list-m");
     var critiqueSearchX; var searchInputX; var searchResultsListX;   /* agnostic versions */
 
     var widthTriggerMobileSearch = 700;
@@ -285,6 +286,8 @@ if (websiteApp == "critique") {
             critiqueSearchEndImg.style.opacity = "0";
         } else {
             critiqueSearchM.classList.remove("expanded");
+            searchInputM.classList.remove("expanded");
+            searchInputM.setAttribute("tabindex", "-1");
             searchInputMBlurred = true;
             searchInput.focus();
         }
@@ -315,12 +318,25 @@ if (websiteApp == "critique") {
             searchResultsList.classList.add("highlight-ok");
         }
     });
+    searchInput.addEventListener("blur", function () {
+        searchInputMBlurred = false;
+    });
     searchInputM.addEventListener("focus", function () {
         critiqueSearchM.classList.add("expanded");
+        searchInputM.classList.add("expanded");
+        searchInputM.setAttribute("tabindex", "0");
         critiqueSearchButton.style.zIndex = "-1";
         critiqueSearchImg.style.opacity = "0";
     });
 
+    searchInputM.addEventListener("keydown", function (e) {
+        if (e.keyCode == 9) {
+            updateAgnosticSearchElements();
+            if (e.shiftKey | (searchResultsListX.children.length == 0)) {
+                hideSearchInput();
+            }
+        }
+    });
     document.addEventListener("click", function () {
         updateAgnosticSearchElements();
         if (!critiqueSearchX.contains(document.activeElement)) {
@@ -334,8 +350,9 @@ if (websiteApp == "critique") {
     window.addEventListener("resize", hideSearchInput);
 
     searchResultsList.addEventListener("mouseleave", function () {
-        searchResultsList.classList.remove("highlight-ok");
-    });
+        searchResultsList.classList.remove("highlight-ok"); });
+    searchResultsListM.addEventListener("mouseleave", function () {
+        searchResultsListM.classList.remove("highlight-ok"); });
 
 
     /* Critique Search Bar - Navigate with arrow keys and ESC */
@@ -402,7 +419,11 @@ if (websiteApp == "critique") {
         p2.innerHTML = "(" + oeuvre.info.year + ")";
 
         a.addEventListener("mouseenter", function (e) {
-            e.target.focus();
+            if (document.activeElement == e.target) {
+                e.target.parentElement.parentElement.classList.add("highlight-ok");
+            } else {
+                e.target.focus();
+            }
         });
         a.addEventListener("focus", function (e) {
             e.target.parentElement.parentElement.classList.add("highlight-ok");
@@ -447,9 +468,17 @@ if (websiteApp == "critique") {
                             for (var i=0; i<diff; i++) {
                                 searchResultsListX.appendChild(createElementSearchResult());
                             }
+                            if (searchResultsListX == searchResultsListM) {
+                                var lastLink = searchResultsListX.lastChild.firstChild;
+                                lastLink.addEventListener("keydown", function (e) {
+                                    if (!e.shiftKey && (e.keyCode == 9)) {
+                                        hideSearchInput();
+                                    }
+                                });
+                            }
                         } else if (diff < 0) {
                             for (var i=diff; i<0; i++) {
-                                searchResultsListX.removeChild(searchResultsListX.lastChild);
+                                searchResultsListX.removeChild(searchResultsListX.firstChild);
                             }
                         }
 

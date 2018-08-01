@@ -97,6 +97,7 @@ hr, .hseparator {
 #critique-header #main-nav > nav { -ms-flex-grow: 1; -ms-flex-shrink: 1; flex: 1; } }
 
 #critique-header #main-nav li { margin: 0 34px; }
+#critique-header #main-nav li:last-child { margin-right: 12px; }
 
 #critique-header #main-nav #main-nav-links-h { display: -ms-flexbox; display: flex; }
 #critique-header #main-nav #main-nav-links-v { display: none; }
@@ -113,7 +114,6 @@ hr, .hseparator {
 
 #critique-search {
     position: relative;
-    margin-right: 12px !important;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 #critique-search-field {
     position: relative;
@@ -210,7 +210,7 @@ hr, .hseparator {
 
 #critique-search-results-list li, #critique-search-results-list-m li {
     position: relative;
-    margin: 0 !important; /*TODO remove important*/
+    margin: 0 !important;   /* actually, it isn't */
     width: 100%;
     text-align: left; }
 #critique-search-results-list li.empty, #critique-search-results-list-m li.empty {
@@ -219,7 +219,7 @@ hr, .hseparator {
     text-align: center; }
 #critique-search-results-list-m li.empty { border-width: 4px; }
 #critique-search-results-list li.empty { padding: 6px 0; font-size: 20px; }
-#critique-search-results-list-m li.empty { padding: 6px 0; font-size: 32px; }
+#critique-search-results-list-m li.empty { padding: 8px 0; font-size: 34px; }
 #critique-search-results-list a, #critique-search-results-list-m a {
     display: block;
     margin: 0;
@@ -250,23 +250,16 @@ hr, .hseparator {
     position: relative;
     outline: none; }
 #critique-search-results-list.highlight-ok a:focus { padding-left: 7px; padding-right: 7px; }
-#critique-search-results-list-m.highlight-ok a:focus { padding-left: 12px; padding-right: 12px; }
 #critique-search-results-list.highlight-ok a:focus {
     box-shadow: 0 0 14px 0 rgba(0, 13, 181, 0.8);
     border-left-width: 1px; border-right-width: 1px; }
 #critique-search-results-list-m.highlight-ok a:focus {
-    box-shadow: inset 0 0 10px 0 rgba(0, 13, 181, 0.8);
-    border-left-width: 2px; border-right-width: 2px; }
+    box-shadow: inset 0 0 14px 0 rgba(0, 13, 181, 0.8); }
 #critique-search-results-list.highlight-ok li:first-child a:focus {
     margin-top: 1px;
     border-top-width: 1px; }
-#critique-search-results-list-m.highlight-ok li:first-child a:focus {
-    margin-top: 2px;
-    border-top-width: 2px; }
 #critique-search-results-list.highlight-ok li:last-child a:focus {
     border-bottom-width: 1px; }
-#critique-search-results-list-m.highlight-ok li:last-child a:focus {
-    border-bottom-width: 2px; }
 
 #critique-search-results p, #critique-search-results-m p {
     white-space: nowrap;
