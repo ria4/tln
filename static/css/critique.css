@@ -168,18 +168,16 @@ hr, .hseparator {
     background-color: #fffddb;
     font-size: 32px; }
 
-#critique-search-field a {
+#critique-search-field a, #critique-search-field-m a {
     position: relative;
-    left: -11px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-align: center;
     align-items: center;
+    -ms-flex-pack: end;
     justify-content: flex-end; }
-#critique-search-field-m a {
-    position: relative;
-    left: -15px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; }
+#critique-search-field a { left: -11px; }
+#critique-search-field-m a { left: -15px; }
 #critique-search-field a:focus, #critique-search-field-m a:focus { outline: none; }
 
 #critique-search-button { z-index: 1; }
@@ -207,18 +205,21 @@ hr, .hseparator {
     -ms-flex-direction: column;
     flex-direction: column; }
 
-#critique-search-results-list li {
+#critique-search-results-m { height: 0; }
+#critique-search-m.expanded #critique-search-results-m { height: auto; }
+
+#critique-search-results-list li, #critique-search-results-list-m li {
     position: relative;
     margin: 0 !important; /*TODO remove important*/
     width: 100%;
     text-align: left; }
-#critique-search-results-list li.empty {
+#critique-search-results-list li.empty, #critique-search-results-list-m li.empty {
     border: 2px solid #d3d4db;
-    padding: 6px 0;
     background-color: #fffddb;
-    font-size: 20px;
     text-align: center; }
-#critique-search-results-list a {
+#critique-search-results-list li.empty { padding: 6px 0; font-size: 20px; }
+#critique-search-results-list-m li.empty { padding: 6px 0; font-size: 20px; }
+#critique-search-results-list a, #critique-search-results-list-m a {
     display: block;
     margin: 0;
     border-top: 1px solid #d3d4db;
@@ -230,10 +231,15 @@ hr, .hseparator {
     background-color: #fffddb;
     color: black;
     transition: box-shadow 0.2s ease; }
-#critique-search-results-list li:first-child a { border-top: 2px solid #d3d4db; }
-#critique-search-results-list li:last-child a { border-bottom: 2px solid #d3d4db; }
+#critique-search-results-list a { padding: 6px 6px 4px 6px; }
+#critique-search-results-list-m a { padding: 6px 6px 4px 6px; }
+#critique-search-results-list li:first-child a,
+#critique-search-results-list-m li:first-child a { border-top: 2px solid #d3d4db; }
+#critique-search-results-list li:last-child a,
+#critique-search-results-list-m li:last-child a { border-bottom: 2px solid #d3d4db; }
 
-#critique-search-results-list a:focus {
+#critique-search-results-list a:focus,
+#critique-search-results-list-m a:focus {
     position: relative;
     z-index: 11;
     padding-left: 7px;
@@ -242,26 +248,36 @@ hr, .hseparator {
     border-right-width: 1px;
     outline: none;
     box-shadow: 0 0 14px 0 rgba(0, 13, 181, 0.8); }
-#critique-search-results-list li:first-child a:focus {
+#critique-search-results-list li:first-child a:focus,
+#critique-search-results-list-m li:first-child a:focus {
     margin-top: 1px;
     border-top-width: 1px; }
-#critique-search-results-list li:last-child a:focus {
+#critique-search-results-list li:last-child a:focus,
+#critique-search-results-list-m li:last-child a:focus {
     border-bottom-width: 1px; }
 
-#critique-search-results p {
+#critique-search-results p, #critique-search-results-m p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
-#critique-search-results a > p { font-size: 22px; font-weight: bold; }
-#critique-search-results a > div {
+#critique-search-results a > p, #critique-search-results-m a > p { font-weight: bold; }
+#critique-search-results a > p { font-size: 22px; }
+#critique-search-results-m a > p { font-size: 22px; }
+#critique-search-results a > div, #critique-search-results-m a > div {
     margin-top: -1px;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-align: center;
     align-items: center;
-    color: #737373;
-    font-size: 16px; }
-#critique-search-results a > div > p { display: inline; }
-#critique-search-results a > div > p:first-child { flex: 1; margin-right: 12px; }
-#critique-search-results a > div > p:last-child { font-style: italic; }
+    color: #737373; }
+#critique-search-results a > div { font-size: 16px; }
+#critique-search-results-m a > div { font-size: 16px; }
+#critique-search-results a > div > p,
+#critique-search-results-m a > div > p { display: inline; }
+#critique-search-results a > div > p:first-child,
+#critique-search-results-m a > div > p:first-child { -ms-flex: 1; flex: 1; margin-right: 12px; }
+#critique-search-results a > div > p:last-child,
+#critique-search-results-m a > div > p:last-child { font-style: italic; }
 
 
 /* Sub Navigation Bar
