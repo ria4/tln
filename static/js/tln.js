@@ -160,7 +160,7 @@ if (websiteApp == "critique") {
     });
 
 
-    /* Critique Navigation Bars - Hide/reveal and resize bars */
+    /* Critique Navigation Bars - Reveal and resize bars */
 
     var topNavBar = document.getElementById("top-nav-h");
     var topNavTrigger = document.getElementById("top-nav-trigger");
@@ -326,6 +326,37 @@ if (websiteApp == "critique") {
     document.addEventListener("click", function () {
         if (!critiqueSearch.contains(document.activeElement)) {
             searchResults.style.display = "none";
+        }
+    });
+
+
+    /* Critique Search Bar - Navigate with arrow keys */
+
+    var activeElementSearch;
+    document.addEventListener("keydown", function (e) {
+        activeElementSearch = document.activeElement;
+        if (critiqueSearch.contains(activeElementSearch)) {
+            if (e.keyCode == 38) {
+                e.preventDefault();
+                if (activeElementSearch != searchInput) {
+                    if (activeElementSearch == searchResultsList.firstChild.firstChild) {
+                        searchInput.focus();
+                    } else {
+                        activeElementSearch.parentNode.previousSibling.firstChild.focus();
+                    }
+                }
+            } else if (e.keyCode == 40) {
+                e.preventDefault();
+                if (activeElementSearch == searchInput) {
+                    if (searchResultsList.firstChild) {
+                        searchResultsList.firstChild.firstChild.focus();
+                    }
+                } else {
+                    if (activeElementSearch != searchResultsList.lastChild.firstChild) {
+                        activeElementSearch.parentNode.nextSibling.firstChild.focus();
+                    }
+                }
+            }
         }
     });
 
