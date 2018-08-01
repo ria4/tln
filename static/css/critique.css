@@ -209,15 +209,26 @@ hr, .hseparator {
 
 #critique-search-results-list li {
     position: relative;
+    margin: 0 !important; /*TODO remove important*/
     width: 100%;
     text-align: left; }
+#critique-search-results-list li.empty {
+    border: 2px solid #d3d4db;
+    padding: 6px 0;
+    background-color: #fffddb;
+    font-size: 20px;
+    text-align: center; }
 #critique-search-results-list a {
-    margin: 0 !important; /*TODO remove !important? */
+    display: block;
+    margin: 0;
     border-top: 1px solid #d3d4db;
     border-bottom: 1px solid #d3d4db;
     border-left: 2px solid #d3d4db;
     border-right: 2px solid #d3d4db;
+    padding: 6px 6px 4px 6px;
+    width: 100%;
     background-color: #fffddb;
+    color: black;
     transition: box-shadow 0.2s ease; }
 #critique-search-results-list li:first-child a { border-top: 2px solid #d3d4db; }
 #critique-search-results-list li:last-child a { border-bottom: 2px solid #d3d4db; }
@@ -229,19 +240,14 @@ hr, .hseparator {
     padding-right: 7px;
     border-left-width: 1px;
     border-right-width: 1px;
+    outline: none;
     box-shadow: 0 0 14px 0 rgba(0, 13, 181, 0.8); }
 #critique-search-results-list li:first-child a:focus {
-    margin-top: 1px !important;
+    margin-top: 1px;
     border-top-width: 1px; }
 #critique-search-results-list li:last-child a:focus {
     border-bottom-width: 1px; }
 
-#critique-search-results a {
-    display: block;
-    padding: 6px 6px 4px 6px;
-    width: 100%;
-    color: black; }
-#critique-search-results a:focus { outline: none; }
 #critique-search-results p {
     white-space: nowrap;
     overflow: hidden;

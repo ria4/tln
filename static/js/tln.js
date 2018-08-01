@@ -332,6 +332,10 @@ if (websiteApp == "critique") {
 
     /* Critique Search Bar - AJAX Search */
 
+    var emptyElementSearchResult = document.createElement("li");
+    emptyElementSearchResult.classList.add("empty");
+    emptyElementSearchResult.innerHTML = "Aucun résultat";
+
     function createElementSearchResult() {
         var li = document.createElement("li");
         var a = document.createElement("a"); li.appendChild(a);
@@ -371,20 +375,39 @@ if (websiteApp == "critique") {
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                     var response = JSON.parse(request.responseText);
 
-                    var diff = response.length - searchResultsList.children.length;
-                    if (diff > 0) {
-                        for (var i=0; i<diff; i++) {
-                            searchResultsList.appendChild(createElementSearchResult());
-                        }
-                    } else if (diff < 0) {
-                        for (var i=diff; i<0; i++) {
-                            searchResultsList.removeChild(searchResultsList.lastChild);
-                        }
-                    }
+                    if (response.length == 0) {
 
-                    for (var i=0; i<response.length; i++) {
-                        var li = searchResultsList.children[i];
-                        setElementSearchResult(li, response[i]);
+                        if ((!searchResultsList.firstChild) ||
+                            ((searchResultsList.firstChild) &&
+                             (!searchResultsList.firstChild.classList.contains("empty")))) {
+                            while (searchResultsList.lastChild) {
+                                searchResultsList.removeChild(searchResultsList.lastChild);
+                            }
+                            searchResultsList.appendChild(emptyElementSearchResult);
+                        }
+
+                    } else {
+
+                        if ((searchResultsList.firstChild) &&
+                            (searchResultsList.firstChild.classList.contains("empty"))) {
+                            searchResultsList.removeChild(searchResultsList.firstChild);
+                        }
+
+                        var diff = response.length - searchResultsList.children.length;
+                        if (diff > 0) {
+                            for (var i=0; i<diff; i++) {
+                                searchResultsList.appendChild(createElementSearchResult());
+                            }
+                        } else if (diff < 0) {
+                            for (var i=diff; i<0; i++) {
+                                searchResultsList.removeChild(searchResultsList.lastChild);
+                            }
+                        }
+
+                        for (var i=0; i<response.length; i++) {
+                            var li = searchResultsList.children[i];
+                            setElementSearchResult(li, response[i]);
+                        }
                     }
                 }
             }

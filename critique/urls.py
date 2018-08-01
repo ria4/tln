@@ -30,7 +30,7 @@ urlpatterns = [
     path('seances/', views.list_seances, name='list_seances'),
     path('seances/add', views.add_seance, name='add_seance'),
     path('seances/<int:year>', views.list_seances, name='list_seances'),
-    path('search', views.search_oeuvres, name='search_oeuvres'),
+    path('search/', views.search_oeuvres, name='search_oeuvres'),
     path('search/<str:match>', views.search_oeuvres, name='search_oeuvres'),
 ]
 
