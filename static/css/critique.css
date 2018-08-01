@@ -185,6 +185,9 @@ hr, .hseparator {
 
 #critique-search img, #critique-search-m img {
     position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-100%, -50%);
     transition: opacity 0.4s ease-in-out; }
 #critique-search img.img-bottom, #critique-search-m img.img-bottom { opacity: 0; }
 #critique-search img.img-top:hover, #critique-search-m img.img-top:hover { opacity: 0; }
@@ -317,7 +320,7 @@ hr, .hseparator {
 #critique-header #sub-nav.expanded { height: 46px; }
 @media (max-width: 1210px) {
 #critique-header #sub-nav.expanded { height: 372px; } }
-@media (max-width: 600px) {
+@media (max-width: 880px) {
 #critique-header #sub-nav.expanded { height: 425px; } }
 
 #sub-nav-links-h {
