@@ -112,6 +112,7 @@ hr, .hseparator {
 #sub-nav-trigger.reduced { padding-right: 0; }
 
 #critique-search {
+    position: relative;
     margin-right: 12px !important;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 #critique-search-field {
@@ -195,21 +196,66 @@ hr, .hseparator {
 #critique-searchend-button-m img { height: 34px; }
 
 #critique-search-results {
+    z-index: 9;
     position: absolute;
-}
+    top: 108%;
+    width: 100%; }
 #critique-search-results-list {
+    z-index: 10;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
-    flex-direction: column;
-}
+    flex-direction: column; }
+
 #critique-search-results-list li {
+    position: relative;
     width: 100%;
-    text-align: left;
-}
+    text-align: left; }
+#critique-search-results-list a {
+    margin: 0 !important; /*TODO remove !important? */
+    border-top: 1px solid #d3d4db;
+    border-bottom: 1px solid #d3d4db;
+    border-left: 2px solid #d3d4db;
+    border-right: 2px solid #d3d4db;
+    background-color: #fffddb;
+    transition: box-shadow 0.2s ease; }
+#critique-search-results-list li:first-child a { border-top: 2px solid #d3d4db; }
+#critique-search-results-list li:last-child a { border-bottom: 2px solid #d3d4db; }
+
+#critique-search-results-list a:focus {
+    position: relative;
+    z-index: 11;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    box-shadow: 0 0 14px 0 rgba(0, 13, 181, 0.8); }
+#critique-search-results-list li:first-child a:focus {
+    margin-top: 1px !important;
+    border-top-width: 1px; }
+#critique-search-results-list li:last-child a:focus {
+    border-bottom-width: 1px; }
+
 #critique-search-results a {
-    font-weight: bold;
-    font-size: 22px; }
+    display: block;
+    padding: 6px 6px 4px 6px;
+    width: 100%;
+    color: black; }
+#critique-search-results a:focus { outline: none; }
+#critique-search-results p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+#critique-search-results a > p { font-size: 22px; font-weight: bold; }
+#critique-search-results a > div {
+    margin-top: -1px;
+    display: flex;
+    align-items: center;
+    color: #737373;
+    font-size: 16px; }
+#critique-search-results a > div > p { display: inline; }
+#critique-search-results a > div > p:first-child { flex: 1; margin-right: 12px; }
+#critique-search-results a > div > p:last-child { font-style: italic; }
 
 
 /* Sub Navigation Bar

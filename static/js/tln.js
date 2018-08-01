@@ -240,6 +240,7 @@ if (websiteApp == "critique") {
 
     /* Critique Search Bar - Reveal search bar */
 
+    var critiqueSearch = document.getElementById("critique-search");
     var critiqueSearchButton = document.getElementById("critique-search-button");
     var critiqueSearchImg = critiqueSearchButton.getElementsByTagName("img")[0];
     var critiqueSearchEndButton = document.getElementById("critique-searchend-button");
@@ -250,6 +251,8 @@ if (websiteApp == "critique") {
 
     var searchInput = document.getElementById("critique-search-input");
     var searchInputM = document.getElementById("critique-search-input-m");
+    var searchResults = document.getElementById("critique-search-results");
+    var searchResultsList = document.getElementById("critique-search-results-list");
     var widthTriggerMobileSearch = 700;
     getSearchInput = function() {
         if (window.innerWidth > widthTriggerMobileSearch) {
@@ -259,16 +262,24 @@ if (websiteApp == "critique") {
         }
     }
 
-    critiqueSearchButton.addEventListener("click", function (e) {
-        getSearchInput().focus();
-    });
-    critiqueSearchEndButton.addEventListener("click", function (e) {
+    function hideSearchInput() {
         subNavTrigger.classList.remove("reduced");
         searchInput.classList.remove("expanded");
+        searchInput.value = "";
+        while (searchResultsList.lastChild) {
+            searchResultsList.removeChild(searchResultsList.lastChild);
+        }
         critiqueSearchEndButton.style.zIndex = "-1";
         critiqueSearchEndImg.style.opacity = "0";
         critiqueSearchButton.style.zIndex = "1";
         critiqueSearchImg.style.opacity = "1";
+    }
+
+    critiqueSearchButton.addEventListener("click", function (e) {
+        getSearchInput().focus();
+    });
+    critiqueSearchEndButton.addEventListener("click", function (e) {
+        hideSearchInput();
     });
     critiqueSearchEndButtonM.addEventListener("click", function (e) {
         critiqueSearchM.classList.remove("expanded");
@@ -291,6 +302,7 @@ if (websiteApp == "critique") {
             critiqueSearchImg.style.opacity = "0";
             critiqueSearchEndButton.style.zIndex = "1";
             critiqueSearchEndImg.style.opacity = "1";
+            searchResults.style.display = "block";
         }
     });
     searchInputM.addEventListener("focus", function (e) {
@@ -308,22 +320,49 @@ if (websiteApp == "critique") {
 
     window.addEventListener("resize", function () {
         if (window.innerWidth < widthTriggerMobileSearch) {
-            subNavTrigger.classList.remove("reduced");
-            searchInput.classList.remove("expanded");
-            critiqueSearchEndButton.style.zIndex = "-1";
-            critiqueSearchEndImg.style.opacity = "0";
-            critiqueSearchButton.style.zIndex = "1";
-            critiqueSearchImg.style.opacity = "1";
+            hideSearchInput();
+        }
+    });
+    document.addEventListener("click", function () {
+        if (!critiqueSearch.contains(document.activeElement)) {
+            searchResults.style.display = "none";
         }
     });
 
 
     /* Critique Search Bar - AJAX Search */
 
-    var searchResultsList = document.getElementById("critique-search-results-list");
+    function createElementSearchResult() {
+        var li = document.createElement("li");
+        var a = document.createElement("a"); li.appendChild(a);
+        var p0 = document.createElement("p"); a.appendChild(p0);
+        var div = document.createElement("div"); a.appendChild(div);
+        var p1 = document.createElement("p"); div.appendChild(p1);
+        var p2 = document.createElement("p"); div.appendChild(p2);
+        return li
+    }
+
+    function setElementSearchResult(li, oeuvre) {
+        var a = li.firstChild;
+        a.setAttribute("href", "/critique/oeuvre/" + oeuvre.slug);
+        var p0 = a.firstChild;
+        p0.innerHTML = oeuvre.info.titles.vf;
+        var div = a.lastChild; var p1 = div.firstChild; var p2 = div.lastChild;
+        if (oeuvre.info.titles.vo) {
+            p1.innerHTML = oeuvre.info.titles.vo;
+        } else {
+            p1.innerHTML = "";
+        }
+        p2.innerHTML = "(" + oeuvre.info.year + ")";
+
+        a.addEventListener("mouseenter", function (e) {
+            e.target.focus();
+        });
+    }
+
     var currentSearchRequest = new XMLHttpRequest();
     searchInput.addEventListener("input", function (e) {
-        if (e.target.value.length > 3) {
+        if (e.target.value.length > 2) {
             currentSearchRequest.abort();
             var request = new XMLHttpRequest();
             request.open("GET", "/critique/search/" + e.target.value, true);
@@ -335,22 +374,17 @@ if (websiteApp == "critique") {
                     var diff = response.length - searchResultsList.children.length;
                     if (diff > 0) {
                         for (var i=0; i<diff; i++) {
-                            var li = document.createElement("li");
-                            var a = document.createElement("a");
-                            li.appendChild(a);
-                            searchResultsList.appendChild(li);
+                            searchResultsList.appendChild(createElementSearchResult());
                         }
                     } else if (diff < 0) {
                         for (var i=diff; i<0; i++) {
-                            console.log(searchResultsList.lastChild);
                             searchResultsList.removeChild(searchResultsList.lastChild);
                         }
                     }
 
                     for (var i=0; i<response.length; i++) {
-                        var a = searchResultsList.children[i].firstChild;
-                        a.setAttribute("href", "/critique/oeuvre/" + response[i]["slug"]);
-                        a.innerHTML = response[i].info.titles.vf;
+                        var li = searchResultsList.children[i];
+                        setElementSearchResult(li, response[i]);
                     }
                 }
             }
