@@ -348,7 +348,7 @@ if (websiteApp == "critique") {
             } else if (e.keyCode == 40) {
                 e.preventDefault();
                 if (activeElementSearch == searchInput) {
-                    if (searchResultsList.firstChild) {
+                    if (!searchResultsList.firstChild.classList.contains("empty")) {
                         searchResultsList.firstChild.firstChild.focus();
                     }
                 } else {
