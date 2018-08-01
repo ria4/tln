@@ -297,9 +297,13 @@ def mongo_search_oeuvres(match):
             return oeuvres
 
 
-def search_oeuvres(req, match=None):
-    if match is None:
-        return redirect('search_oeuvres', match=req.GET.get('match', ''))
+def search_oeuvres(req, match=''):
+    get_match = req.GET.get('match', None)
+    if get_match is not None:
+        if get_match:
+            return redirect('search_oeuvres', match=get_match)
+        else:
+            return redirect('search_oeuvres')
 
     if req.is_ajax():
         oeuvres = mongo_search_oeuvres_ajax(match)

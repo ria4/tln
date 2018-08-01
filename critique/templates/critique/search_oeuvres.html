@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% load l10n %}
 
-{% block title %}recherche '{{ match }}'{% endblock %}
-{% block meta-description-page %}recherche œuvre ou artiste '{{ match }}'{% endblock %}
+{% block title %}recherche{% if match %} '{{ match }}'{% endif %}{% endblock %}
+{% block meta-description-page %}recherche œuvre ou artiste{% if match %} '{{ match }}'{% endif %}{% endblock %}
 
 {% block body-class %}entry-list{% endblock %}
 
