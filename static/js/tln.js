@@ -322,6 +322,8 @@ if (websiteApp == "critique") {
         searchInputMBlurred = false;
     });
     searchInputM.addEventListener("focus", function () {
+        topNavBar.classList.remove("expanded");
+        subNavBar.classList.remove("expanded");
         critiqueSearchM.classList.add("expanded");
         searchInputM.classList.add("expanded");
         searchInputM.setAttribute("tabindex", "0");
