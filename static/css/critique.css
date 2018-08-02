@@ -119,6 +119,8 @@ hr, .hseparator {
     position: relative;
     display: flex;
     flex-direction: row; }
+_:-ms-input-placeholder, :root #critique-search { /* IE 10 */
+    top: -7px; }
 
 #critique-search-m {
     z-index: -1;
@@ -193,8 +195,11 @@ hr, .hseparator {
 #critique-search img.img-top:hover, #critique-search-m img.img-top:hover { opacity: 0; }
 #critique-search img.img-bottom:hover, #critique-search-m img.img-bottom:hover { opacity: 1; }
 #critique-search-button img { height: 24px; }
+_:-ms-input-placeholder, :root #critique-search-button img { top: -19px; } /* IE 10 */
 #critique-searchend-button img { height: 17px; }
+_:-ms-input-placeholder, :root #critique-searchend-button img { top: -20px; left: 100%; } /* IE 10 */
 #critique-searchend-button-m img { height: 34px; }
+_:-ms-input-placeholder, :root #critique-searchend-button-m img { top: -32px; left: 100%; } /* IE 10 */
 
 #critique-search-results {
     z-index: 9;
@@ -269,6 +274,17 @@ hr, .hseparator {
     overflow: hidden;
     text-overflow: ellipsis; }
 #critique-search-results a > p, #critique-search-results-m a > p { font-weight: bold; }
+@supports (-moz-appearance:meterbar) { /* Firefox 16+ */
+#critique-search-results a > p, #critique-search-results-m a > p {
+    letter-spacing: -1px; } }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
+#critique-search-results a > p, #critique-search-results-m a > p {
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
+@supports (-ms-ime-align:auto) { /* Edge 12+ */
+#critique-search-results a > p, #critique-search-results-m a > p {
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; } }
 #critique-search-results a > p { font-size: 22px; }
 #critique-search-results-m a > p { font-size: 25px; }
 #critique-search-results a > div, #critique-search-results-m a > div {
@@ -284,6 +300,8 @@ hr, .hseparator {
 #critique-search-results-m a > div > p { display: inline; }
 #critique-search-results a > div > p:first-child,
 #critique-search-results-m a > div > p:first-child { -ms-flex: 1; flex: 1; }
+_:-ms-input-placeholder, :root #critique-search-results-m a > div > p:first-child { /* IE 10 */
+    display: inline-block; }
 #critique-search-results a > div > p:first-child { margin-right: 12px; }
 #critique-search-results-m a > div > p:first-child { margin-right: 16px; }
 #critique-search-results a > div > p:last-child,
