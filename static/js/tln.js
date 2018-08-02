@@ -256,6 +256,8 @@ if (websiteApp == "critique") {
 
     var searchInput = document.getElementById("critique-search-input");
     var searchInputM = document.getElementById("critique-search-input-m");
+    var searchPlaceholderPrev = document.getElementById("critique-search-placeholder-prev");
+    var searchPlaceholderNext = document.getElementById("critique-search-placeholder-next");
     var searchResults = document.getElementById("critique-search-results");
     var searchResultsList = document.getElementById("critique-search-results-list");
     var searchResultsListM = document.getElementById("critique-search-results-list-m");
@@ -267,11 +269,11 @@ if (websiteApp == "critique") {
     function updateAgnosticSearchElements() {
         searchInputX = getSearchInput();
         critiqueSearchX = searchInputX.parentElement.parentElement.parentElement;
-        searchResultsListX = critiqueSearchX.lastElementChild.firstElementChild;
+        searchResultsListX = critiqueSearchX.getElementsByTagName("div")[1].firstElementChild;
     }
 
 
-    function hideSearchInput() {
+    function hideSearchInput(prev) {
         if (!(searchInput.classList.contains("expanded") |
               critiqueSearchM.classList.contains("expanded"))) {
             return
@@ -293,10 +295,11 @@ if (websiteApp == "critique") {
             critiqueSearchM.classList.remove("expanded");
             searchInputM.classList.remove("expanded");
             searchInputM.setAttribute("tabindex", "-1");
-            searchInputMBlurred = true;
-            searchInput.parentElement.focus();
-            /* we cannot use searchInput.focus(), otherwise it would
-             * activate the virtual keyboard on mobile devices */
+            if (prev) {
+                searchPlaceholderPrev.focus();
+            } else {
+                searchPlaceholderNext.focus();
+            }
         }
     }
 
@@ -306,14 +309,9 @@ if (websiteApp == "critique") {
     critiqueSearchEndButton.addEventListener("click", hideSearchInput);
     critiqueSearchEndButtonM.addEventListener("click", hideSearchInput);
 
-    var searchInputMBlurred = false;
     searchInput.addEventListener("focus", function () {
         if (getSearchInput() == searchInputM) {
-            if (!searchInputMBlurred) {
-                searchInputM.focus();
-            } else {
-                searchInputMBlurred = false;
-            }
+            searchInputM.focus();
         } else {
             subNavTrigger.classList.add("reduced");
             searchInput.classList.add("expanded");
@@ -324,9 +322,6 @@ if (websiteApp == "critique") {
             searchResults.style.display = "block";
             searchResultsList.classList.add("highlight-ok");
         }
-    });
-    searchInput.addEventListener("blur", function () {
-        searchInputMBlurred = false;
     });
     searchInputM.addEventListener("focus", function () {
         topNavBar.classList.remove("expanded");
@@ -341,8 +336,10 @@ if (websiteApp == "critique") {
     searchInputM.addEventListener("keydown", function (e) {
         if (e.keyCode == 9) {
             updateAgnosticSearchElements();
-            if (e.shiftKey | (searchResultsListX.children.length == 0)) {
-                hideSearchInput();
+            if (e.shiftKey) {
+                hideSearchInput(true);
+            } else if (searchResultsListX.children.length == 0) {
+                hideSearchInput(false);
             }
         }
     });
