@@ -55,8 +55,9 @@
             </ul>
                 <li id="sub-nav-trigger"><a href="#">errances</a></li>
                 <li id="critique-search">
+                    <span id="critique-search-placeholder-prev" tabindex="-1"></span>
                     <div id="critique-search-field">
-                        <form tabindex="-1" id="critique-search-form" action="{% url "search_oeuvres" %}" method="get" autocomplete="off" role="search">
+                        <form id="critique-search-form" action="{% url "search_oeuvres" %}" method="get" autocomplete="off" role="search">
                             <input id="critique-search-input" type="text" name="match" autocomplete="off"/>
                         </form>
                         <a href="#" tabindex="-1" id="critique-search-button" type="button">
@@ -74,6 +75,7 @@
                         <ul id="critique-search-results-list">
                         </ul>
                     </div>
+                    <span id="critique-search-placeholder-next" tabindex="-1"></span>
                 </li>
         </ul>
         </nav>
