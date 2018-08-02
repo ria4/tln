@@ -119,8 +119,8 @@ hr, .hseparator {
     position: relative;
     display: flex;
     flex-direction: row; }
-_:-ms-input-placeholder, :root #critique-search { /* IE 10 */
-    top: -7px; }
+_:-ms-input-placeholder, :root #critique-search { top: -7px } /* IE 10 */
+_:-ms-fullscreen, :root #critique-search { top: 0; } /* IE 11 */
 
 #critique-search-m {
     z-index: -1;
@@ -202,10 +202,13 @@ _:-ms-input-placeholder, :root #critique-search { /* IE 10 */
 #critique-search img.img-bottom:hover, #critique-search-m img.img-bottom:hover { opacity: 1; }
 #critique-search-button img { height: 24px; }
 _:-ms-input-placeholder, :root #critique-search-button img { top: -19px; } /* IE 10 */
+_:-ms-fullscreen, :root #critique-search-button img { top: 8px; transform: translate(-100%, 0);} /* IE 11 */
 #critique-searchend-button img { height: 17px; }
 _:-ms-input-placeholder, :root #critique-searchend-button img { top: -20px; left: 100%; } /* IE 10 */
+_:-ms-fullscreen, :root #critique-searchend-button img { top: 50%; left: 0; } /* IE 11 */
 #critique-searchend-button-m img { height: 34px; }
 _:-ms-input-placeholder, :root #critique-searchend-button-m img { top: -32px; left: 100%; } /* IE 10 */
+_:-ms-fullscreen, :root #critique-searchend-button-m img { top: 50%; left: 0; } /* IE 11 */
 
 #critique-search-results {
     z-index: 9;
