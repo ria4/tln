@@ -272,6 +272,11 @@ if (websiteApp == "critique") {
 
 
     function hideSearchInput() {
+        if (!(searchInput.classList.contains("expanded") |
+              critiqueSearchM.classList.contains("expanded"))) {
+            return
+        }
+
         updateAgnosticSearchElements();
         while (searchResultsListX.lastChild) {
             searchResultsListX.removeChild(searchResultsListX.lastChild);
@@ -289,7 +294,9 @@ if (websiteApp == "critique") {
             searchInputM.classList.remove("expanded");
             searchInputM.setAttribute("tabindex", "-1");
             searchInputMBlurred = true;
-            searchInput.focus();
+            searchInput.parentElement.focus();
+            /* we cannot use searchInput.focus(), otherwise it would
+             * activate the virtual keyboard on mobile devices */
         }
     }
 
