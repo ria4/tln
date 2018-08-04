@@ -290,6 +290,10 @@ _:-ms-fullscreen, :root #critique-searchend-button-m img { top: 50%; left: 0; } 
 @supports (-moz-appearance:meterbar) { /* Firefox 16+ */
 #critique-search-results a > p, #critique-search-results-m a > p {
     letter-spacing: -1px; } }
+_::-webkit-full-page-media, _:future, :root #critique-search-results a > p,
+_::-webkit-full-page-media, _:future, :root #critique-search-results-m a > p { /* Safari 7.1+ */
+    letter-spacing: -1px;
+    font-family: AlegreyaSansBold, AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
 #critique-search-results a > p, #critique-search-results-m a > p {
     letter-spacing: -1px;
