@@ -27,7 +27,7 @@
     <div id="critique-search-m">
         <div id="critique-search-field-m">
             <form id="critique-search-form-m" action="{% url "search_oeuvres" %}" method="get" autocomplete="off">
-                <input tabindex="-1" id="critique-search-input-m" type="text" name="match" autocomplete="off">
+                <input tabindex="-1" id="critique-search-input-m" type="text" name="match" autocomplete="off" spellcheck="false">
             </form>
             <a href="#" tabindex="-1" id="critique-searchend-button-m" type="button">
                 <img class="img-top" src="{% static 'img_base/searchend_icon.png' %}" alt="">
@@ -58,7 +58,7 @@
                     <span id="critique-search-placeholder-prev" tabindex="-1"></span>
                     <div id="critique-search-field">
                         <form id="critique-search-form" action="{% url "search_oeuvres" %}" method="get" autocomplete="off" role="search">
-                            <input id="critique-search-input" type="text" name="match" autocomplete="off"/>
+                            <input id="critique-search-input" type="text" name="match" autocomplete="off" spellcheck="false"/>
                         </form>
                         <a href="#" tabindex="-1" id="critique-search-button" type="button">
                             <img class="img-top" src="{% static 'img_base/search_icon.png' %}" alt="">
