@@ -571,6 +571,8 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     font-size: 30px; }
 @media (max-width: 960px) { #comments .entry-title { padding: 44px 0 12px 0; } }
 
+#comments img { max-width: 92%; display: block; margin: 34px auto; }
+
 
 /* Oeuvre Previews
    ========================================================================== */
