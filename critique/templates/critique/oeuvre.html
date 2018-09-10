@@ -1,6 +1,7 @@
 {% extends "critique/base.html" %}
 {% load staticfiles %}
 {% load l10n %}
+{% load critique_extras %}
 
 {% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
 {% block og-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
@@ -10,8 +11,8 @@
 {% block og-image %}{% if oeuvre.info.image_url %}https://trompe-la-nuit.ink{% static oeuvre.info.image_url %}{% endif %}{% endblock %}
 {% block tw-image %}{% if oeuvre.info.image_url %}https://trompe-la-nuit.ink{% static oeuvre.info.image_url %}{% endif %}{% endblock %}
 
-{% block og-description %}{% if oeuvre.comments %}{{ oeuvre.comments.0.content|striptags|truncatechars:300 }}{% endif %}{% endblock %}
-{% block tw-description %}{% if oeuvre.comments %}{{ oeuvre.comments.0.content|striptags|truncatechars:300 }}{% endif %}{% endblock %}
+{% block og-description %}{% if oeuvre.comments %}{{ oeuvre.comments.0.content|striptags|truncatedesc:250 }}{% endif %}{% endblock %}
+{% block tw-description %}{% if oeuvre.comments %}{{ oeuvre.comments.0.content|striptags|truncatedesc:160 }}{% endif %}{% endblock %}
 
 {% block content-wrap-class %}decenter{% endblock %}
 {% block body-class %}entry{% endblock %}
