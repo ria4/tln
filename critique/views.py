@@ -133,7 +133,10 @@ def update_comment_with_form(comment, form):
         comment.title = form.cleaned_data['title']
     else:
         comment.title = None
-    comment.date = form.cleaned_data['date']
+    d = form.cleaned_data['date']
+    # we combine the user-provided date with the current time
+    t = datetime.now().timetz()
+    comment.date = datetime.combine(d, t)
     if 'no_month' in form.cleaned_data:
         comment.date_month_unknown = form.cleaned_data['no_month']
     if 'no_day' in form.cleaned_data:
