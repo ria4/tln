@@ -468,7 +468,6 @@ def list_seances(req, year=2018):
                 film = films[0]
         seances_enhanced.append((seance, film))
 
-    year_range = range(2012, 2019)
     return render(req, 'critique/seances.html', locals())
 
 
@@ -480,5 +479,4 @@ def top_films(req, year=2011):
     oeuvres = []
     for oeuvre_id in oeuvres_id:
         oeuvres.append(Oeuvre.objects.filter(id=oeuvre_id)[0])
-    year_range = range(2012, 2018)
     return render(req, 'critique/top_films.html', locals())
