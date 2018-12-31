@@ -2,4 +2,4 @@
 
 A website, powered by django.
 
-Copyright Max Tury <max.tury@trompe-la-nuit.ink>
+Copyright Oriane Tury <oriane.tury@trompe-la-nuit.ink>
