@@ -197,3 +197,4 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
     font-size: 17px;
     text-align: right; }
 _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0; } /* IE 10 */
+@media (max-width: 540px) { #footer { padding-right: 0; text-align: center; } }
