@@ -66,24 +66,24 @@ _:-ms-fullscreen, :root #header { min-height: 0; height: auto; } } /* IE 11 */
 @media (min-height: 740px) {
 _:-ms-fullscreen, :root #logos { min-height: 0; margin-bottom: 30px; } /* IE 11 */ }
 @media (max-height: 740px) {
-#logos { margin-bottom: 20px; height: 115px; max-width: 250px; } }
+#logos { margin-bottom: 20px; height: 130px; max-width: 250px; } }
 @media (max-device-width: 600px) and (orientation: portrait) {
 #logos { height: 114px; position: relative; top: -1px; left: -1px; } }
 @media (max-device-height: 400px) and (orientation: landscape) {
 #logos { max-height: 100px; } }
 
-#logo-mtu { max-width: 100%; max-height: 100%; }
-_:-ms-fullscreen, :root #logo-mtu { max-height: 121px; } /* IE 11 */
+#logo-otu { max-width: 100%; max-height: 100%; margin-top: -2px; }
+_:-ms-fullscreen, :root #logo-otu { max-height: 121px; } /* IE 11 */
 @media (max-height: 740px) {
-#logo-mtu { max-height: 80%; }
-_:-ms-fullscreen, :root #logo-mtu { max-height: 75px; } /* IE 11 */ }
+#logo-otu { max-height: 80%; }
+_:-ms-fullscreen, :root #logo-otu { max-height: 75px; } /* IE 11 */ }
 
 #logo-tln {
     max-width: 126px;
     margin-left: 0.7%;
     margin-top: -30px; }
 @media (max-height: 740px) {
-#logo-tln { max-height: 70%; margin-top: -40px; } }
+#logo-tln { max-height: 57%; margin-top: -26px; margin-left: 6px; } }
 
 
 /* Site Navigation
