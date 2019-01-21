@@ -1,6 +1,6 @@
 {% load i18n %}Bonjour,
 
-Un nouveau commentaire a été publié pour l'article {{ entry.title }}, sur le blog trompe-la-nuit.
+Un nouveau commentaire a été publié pour l'article {{ entry.title }}, sur le blog oriane.ink.
 
 #~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#~#
 
