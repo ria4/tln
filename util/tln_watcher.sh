@@ -1,6 +1,6 @@
 RECEIVERS="receiver1@mail.com receiver2@mail.com"
 HTTPS_URL="https://oriane.ink"
-CURL_CMD="curl -s -o /dev/null -w %{http_code}"
+CURL_CMD="curl -I -s -o /dev/null -w %{http_code}"
 CURL_MAX_CONNECTION_TIMEOUT="-m 30"
 
 CURL_RETURN_CODE=0
