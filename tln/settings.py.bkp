@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'sortedm2m',
     'tagging',
     'mptt',
-    'critique',
+    'home',
     'blog',
     'photos',
+    'critique',
+    'boch',
 ]
 
 COMMENTS_APP = 'django_comments_custom'
@@ -70,6 +72,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'tln/templates/tln'),
+                 os.path.join(BASE_DIR, 'home/templates'),
                  os.path.join(BASE_DIR, 'blog/templates'),
                  os.path.join(BASE_DIR, 'photos/templates'),
                  os.path.join(BASE_DIR, 'django_comments_custom/templates')],
@@ -82,9 +85,11 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'tln.context_processors.login_form',
+                'tln.context_processors.android',
                 'critique.context_processors.oeuvre_form',
                 'critique.context_processors.comment_form',
-                'critique.context_processors.login_form',
+                'critique.context_processors.seance_form',
                 'zinnia.context_processors.version',
                 'photos.context_processors.gallery_list',
             ],
@@ -140,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'Europe/Paris'
 
@@ -153,6 +158,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+#STATIC_ROOT = os.path.join(BASE_DIR, "static/")   # uncomment for prod server
 
 STATIC_URL = '/static/'
 
@@ -176,20 +183,42 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 SITE_ID = 1
 
-# Email configuration, 
-# TODO change this before production
+# Email configuration,   # fill in for prod server
 
-EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST = 'mail.gandi.net'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ####
-EMAIL_HOST_PASSWORD = ####
+EMAIL_HOST_USER = 'no-reply@####'
+EMAIL_HOST_PASSWORD = '####'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = ####
+DEFAULT_FROM_EMAIL = 'no-reply@####'
 
-# Zinnia configuration
+# Zinnia configuration   # fill in for prod server
 
+ZINNIA_ENTRY_BASE_MODEL = 'blog.models.EntryLang'
 ZINNIA_PREVIEW_MAX_WORDS = 100
-ZINNIA_MAIL_COMMENT_NOTIFICATION_RECIPIENTS = [####]
+ZINNIA_MAIL_COMMENT_NOTIFICATION_RECIPIENTS = ['no-reply@####']
 ZINNIA_AUTO_MODERATE_COMMENTS = True
 ZINNIA_MAIL_COMMENT_AUTHORS = False
 ZINNIA_MAIL_COMMENT_REPLY = True
+ZINNIA_PROTOCOL = 'https'
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/ria/tln/net/django_debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
