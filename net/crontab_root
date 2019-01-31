@@ -24,4 +24,4 @@
 # 
 # m h  dom mon dow   command
 
-0 3 * * * rsync -az --delete-after /home/ria/tln -e "ssh -p 1992" root@minuscheri.com:/home/DATA/MAX_BAK
+0 3 * * * rsync -az --delete-after /home/ria/tln -e "ssh -p 1992" root@minuscheri.com:/home/DATA/oriane_bak
