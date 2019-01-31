@@ -175,6 +175,7 @@ def render_oeuvre(req, oeuvre):
     We need to order the comments by date before sending them to the template.
     For now, only the most recent comment may be edited.
     """
+    comments = comment_form = None
     if oeuvre.comments:
         comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
         comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))

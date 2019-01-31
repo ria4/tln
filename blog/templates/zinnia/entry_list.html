@@ -12,19 +12,6 @@
 
 {# {% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %} #}
 
-{% block link %}
-  {{ block.super }}
-  {% if category %}
-    <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=category %}RSS feed of {{ object }}{% endblocktrans %}" href="{% url 'zinnia:category_feed' category.tree_path %}" />
-  {% endif %}
-  {% if tag %}
-    <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=tag %}RSS feed of {{ object }}{% endblocktrans %}" href="{% url 'zinnia:tag_feed' tag.name %}" />
-  {% endif %}
-  {% if author %}
-    <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=author %}RSS feed of {{ object }}{% endblocktrans %}" href="{% url 'zinnia:author_feed' author.get_username %}" />
-  {% endif %}
-{% endblock link %}
-
 {% block body-class %}entry-list{% if page_obj %} paginated page-{{ page_obj.number }}{% endif %}{% if category %} category category-{{ category.slug }}{% endif %}{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% if author %} author author-{{ author|slugify }}{% endif %}{% endblock body-class %}
 
 {% block content %}
