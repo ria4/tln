@@ -89,9 +89,8 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 }
 
 #gallery-slider {
-    padding-top: 0.4%;
     width: 96%;
-    height: 92.5%;
+    height: 96.5%;
 }
 #gallery-slider .slides { height: 100%; }
 #gallery-slider .slides li {
@@ -125,7 +124,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #gallery-slider .flex-direction-nav {
     position: fixed;
     z-index: 10;
-    top: 40%;
+    top: 39.5%;
     left: 0;
     margin: 0 2%;   /* bound to the gallery-slider width */
     width: 96%;
