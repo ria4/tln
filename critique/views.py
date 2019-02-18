@@ -367,7 +367,7 @@ def list_oeuvres(req, mtype="film", page=1):
 
 def list_envies(req, mtype="film", page=1):
     oeuvres_list = Oeuvre.objects(__raw__={'envie': True, 'info.type': mtype})
-    oeuvres = oeuvres_list.order_by('-info__year')
+    oeuvres = oeuvres_list.order_by('-info__year', '-id')
     paginator = Paginator(oeuvres, 22)
     try:
         oeuvres_page = paginator.page(page)
