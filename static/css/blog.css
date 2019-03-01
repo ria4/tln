@@ -14,7 +14,7 @@ body #content-wrap { padding-right: 11px; } }
 #sidebar {
     border: 1px solid #deda99;
     padding: 0 4px;
-    width: 300px;
+    width: 305px;
     background-color: #fbf2bd;
     font-size: 18px; }
 
@@ -22,7 +22,7 @@ body #sidebar {
     position: absolute;
     top: 163px;
     right: 44.6%;
-    transform: translateX(644px); }
+    transform: translateX(649px); }
 @media (max-width: 1512px) {
 body #sidebar {
     position: relative;
