@@ -173,8 +173,8 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
 @media (min-width: 1200px) { #info { margin-right: 1.8%; } }
 #info .info-perso { max-width: 870px; }
 #info #info-en { margin-top: -18px; }
-#info .hseparator { margin: 50px -20px 51px -20px; }
-@media (max-width: 976px) { #info .hseparator { margin: 50px 6px 51px 6px; } }
+#info .hseparator { margin: 54px -20px 55px -20px; }
+@media (max-width: 976px) { #info .hseparator { margin: 54px 6px 55px 6px; } }
 
 #info blockquote {
     float: right;
