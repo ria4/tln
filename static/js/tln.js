@@ -786,11 +786,16 @@ if (websiteApp == "critique") {
 
     var gallerySlider = document.getElementById("gallery-slider");
     var slider;
-    var animationSpeed;
+    var animationSpeed = 600;
 
     var overlaySlider = gallerySlider.parentNode;
     var photoLinks = document.getElementsByClassName("photo-link");
     var photos = gallerySlider.getElementsByTagName("img");
+
+    var photoSlugs = [];
+    for (var i=0; i<photos.length; i++) {
+        photoSlugs.push(photos[i].getAttribute("slug"));
+    }
 
     function addSliderStartListener(item) {
         item.addEventListener("click", function (e) {
@@ -806,7 +811,7 @@ if (websiteApp == "critique") {
         addSliderStartListener(photoLinks[i]);
     }
 
-    // hide overlaySlider if click outside photo & arrows
+    // hide overlaySlider on hitting ESC
     document.addEventListener("keydown", function (e) {
         if (e.keyCode == 27) {
             overlaySlider.classList.remove("revealed");
@@ -816,12 +821,23 @@ if (websiteApp == "critique") {
     $(document).ready(function() {
         $('#gallery-slider').flexslider({
             slideshow: false,
-            animationSpeed: 600,
+            animationSpeed: 0,
             controlNav: false,
             directionNav: false,
         });
+
         slider = $("#gallery-slider").data("flexslider");
-        animationSpeed = slider.vars.animationSpeed;
+
+        // display the slider when loading from an anchored link
+        var hash = window.location.hash.substr(1);
+        photoIdx = photoSlugs.indexOf(hash);
+        if (photoIdx != -1) {
+            slider.vars.animationSpeed = 0;
+            slider.flexAnimate(photoIdx);
+            overlaySlider.classList.add("revealed");
+        }
+
+        slider.vars.animationSpeed = animationSpeed;
     });
 
 
