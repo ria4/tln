@@ -35,6 +35,8 @@ function addSubmitListener(form, validatedElements) {
         };
         if (!dataOk) {
             e.preventDefault();
+            // stop the AJAX submit handler in tln.js
+            e.stopImmediatePropagation();
         }
     });
 }
@@ -207,7 +209,8 @@ if (websiteApp == "critique") {
         comment = document.getElementById("id_comment");
         validatedElements = [
             [username, x => (x == "")],
-            [comment, x => (x == "")]
+            [email, x => false],        // email format is checked below
+            [comment, x => ((x == "") || (x.indexOf("http://") != -1) || (x.indexOf("https://") != -1))]
         ];
         addInputsListener(validatedElements, false);
         addSubmitListener(commentForm, validatedElements);
@@ -223,6 +226,12 @@ if (websiteApp == "critique") {
         email.addEventListener("input", function (e) {
             if (triedEmail) {
                 warningOnElementIf(e.target, validateEmail(e.target.value));
+            }
+        });
+
+        comment.addEventListener("blur", function (e) {
+            if ((e.target.value.indexOf("http://") != -1) || (e.target.value.indexOf("https://") != -1)) {
+                alert("Merci de retirer tout lien de votre message, afin qu'il ne soit pas considéré comme du spam !");
             }
         });
 
