@@ -213,7 +213,11 @@ if (websiteApp == "critique") {
             [comment, x => ((x == "") || (x.indexOf("http://") != -1) || (x.indexOf("https://") != -1))]
         ];
         addInputsListener(validatedElements, false);
+
+        // awkward solution to enable this script to stop the AJAX submit handler
+        commentForm.removeEventListener("submit", commentFormSubmitHandler);
         addSubmitListener(commentForm, validatedElements);
+        commentForm.addEventListener("submit", commentFormSubmitHandler);
 
         function validateEmail(x) {
             return ((x.length > 0) &&
