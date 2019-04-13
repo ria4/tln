@@ -685,7 +685,7 @@ if (websiteApp == "critique") {
             }
         });
 
-        commentForm.addEventListener("submit", function (e) {
+        function commentFormSubmitHandler(e) {
             e.preventDefault();
             commentFormMain.classList.add("waiting");
             commentPostLoader.style.display = "block";
@@ -756,7 +756,9 @@ if (websiteApp == "critique") {
 
                 request.send(urlEncodedData);
             }
-        });
+        }
+
+        commentForm.addEventListener("submit", commentFormSubmitHandler);
     }
 
 
