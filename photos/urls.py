@@ -9,7 +9,7 @@ from .views import GalleryCustomDetailView
 
 photos_urls = ([
     url(r'^$', RedirectView.as_view(url=reverse_lazy('photologue:pl-gallery',
-                                                     kwargs={'slug':'en-cours'})),
+                                                     kwargs={'slug':'errance'})),
         name='pl-photologue-root'),
     #url(r'^all$', GalleryListView.as_view(), name='gallery-list'),
     url(r'^(?P<slug>[\-\d\w]+)$', GalleryCustomDetailView.as_view(), name='pl-gallery'),
