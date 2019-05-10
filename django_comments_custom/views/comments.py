@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, JsonResponse
-from django_comments.views.comments import CommentPostBadRequest, post_comment as _post_comment
+from django_comments.views.comments import post_comment as _post_comment
 
 
 def post_comment(request, next=None, using=None):
