@@ -28,7 +28,7 @@ class CommentFormCustom(CommentForm):
     def __init__(self, target_object, data=None, initial=None, is_user_authenticated=False, **kwargs):
         super().__init__(target_object, data=data, initial=initial, **kwargs)
         if is_user_authenticated:
-            self.fields['name'].initial = 'mtu'
+            self.fields['name'].initial = 'ria'
 
     def get_comment_create_data(self, site_id=None):
         from django.contrib.contenttypes.models import ContentType

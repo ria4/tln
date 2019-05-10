@@ -203,6 +203,11 @@ ZINNIA_MAIL_COMMENT_AUTHORS = False
 ZINNIA_MAIL_COMMENT_REPLY = True
 ZINNIA_PROTOCOL = 'https'
 
+# Comments configuration (prevent referral spam)
+
+COMMENTS_ALLOW_PROFANITIES = False
+PROFANITIES_LIST = ['http://', 'https://']
+
 # Logging
 
 LOGGING = {
