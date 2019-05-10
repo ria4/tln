@@ -63,7 +63,7 @@ if (websiteApp == "critique") {
             [titleAlt, x => (x.length > 1000)],
             [artists, x => ((x.length > 1000) || (x == ""))],
             [year, x => ((x > 2100) || (x == ""))],
-            [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
+            [imdbId, x => !x.match(/^tt\d{7,8}$|^$/)]
         ];
         addInputsListener(validatedElements, true);
         addSubmitListener(oeuvreFormEmpty, validatedElements);
@@ -83,7 +83,7 @@ if (websiteApp == "critique") {
             [titleAlt, x => (x.length > 1000)],
             [artists, x => ((x.length > 1000) || (x == ""))],
             [year, x => ((x > 2100) || (x == ""))],
-            [imdbId, x => !x.match(/^tt\d{7}$|^$/)]
+            [imdbId, x => !x.match(/^tt\d{7,8}$|^$/)]
         ];
         addInputsListener(validatedElements, true);
         addSubmitListener(oeuvreForm, validatedElements);

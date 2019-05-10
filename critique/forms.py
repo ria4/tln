@@ -27,7 +27,7 @@ class OeuvreForm(forms.Form):
     title_alt = forms.CharField(max_length=1000, required=False)
     artists = forms.CharField(max_length=1000)
     year = forms.IntegerField(max_value=2100)
-    imdb_id = forms.RegexField(regex='^tt[0-9]{7}$', required=False)
+    imdb_id = forms.RegexField(regex='^tt[0-9]{7,8}$', required=False)
     image_link = forms.URLField(required=False)
     tags = forms.CharField(required=False)
     envie = forms.BooleanField(required=False)
