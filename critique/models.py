@@ -44,11 +44,9 @@ class OeuvreInfo(EmbeddedDocument):
     """
     type = fields.StringField(choices=OEUVRES_TYPES)
     titles = fields.EmbeddedDocumentField(OeuvreInfoTitres)
-    #artists = fields.ListField(fields.StringField(max_length=100))
-    #year = fields.IntField(max_value=2100)
     artists = fields.ListField(fields.StringField(max_length=100))
     year = fields.IntField(max_value=2100)
-    imdb_id = fields.StringField(regex='^tt[0-9]{7}$', blank=True, null=True)
+    imdb_id = fields.StringField(regex='^tt[0-9]{7,8}$', blank=True, null=True)
     image_url = fields.StringField(regex='^critique/[a-f0-9]{32}.jpg', blank=True)
 
 class OeuvreComment(EmbeddedDocument):
