@@ -41,7 +41,7 @@ class Timeout():
 class EntryCommentModeratorCustom(EntryCommentModerator):
 
     def moderate(self, comment, content_object, request):
-        if request.user.is_authenticated:
+        if request.user.is_superuser:
             return False
         return super().moderate(comment, content_object, request)
 
@@ -57,7 +57,7 @@ class EntryCommentModeratorCustom(EntryCommentModerator):
                 #if self.auto_moderate_comments or comment.is_public:
                 if (self.auto_moderate_comments and
                     not comment.is_public and
-                    not request.user.is_authenticated):
+                    not request.user.is_superuser):
                     self.do_email_notification(comment, entry, site)
                 if comment.is_public:
                     self.do_email_authors(comment, entry, site)

@@ -711,7 +711,7 @@ if (websiteApp == "critique") {
                         res = JSON.parse(request.responseText);
                         var postCommentSuccess = res["post_comment_success"];
                         if (postCommentSuccess) {
-                            if (userIsAuthenticated) {
+                            if (userIsSuperuser) {
                                 window.location.reload(false);
                             } else {
                             commentPostResultText.innerHTML = "Merci ! Votre commentaire sera publié après modération.";

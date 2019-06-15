@@ -39,7 +39,7 @@
   <h3>{% trans "Archives" %}</h3>
   {% get_archives_entries_tree_su_sensitive %}
 </nav>
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <div id="widget-tools" class="widget">
   <h3>{% trans "Tools" %}</h3>
   <ul>

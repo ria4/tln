@@ -8,9 +8,9 @@ register = template.Library()
 class RenderCommentFormNodeWithAuthInfo(RenderCommentFormNode):
     def get_form(self, context):
         obj = self.get_object(context)
-        is_authenticated = context['request'].user.is_authenticated
+        is_superuser = context['request'].user.is_superuser
         if obj:
-            return django_comments.get_form()(obj, is_user_authenticated=is_authenticated)
+            return django_comments.get_form()(obj, is_user_superuser=is_superuser)
         else:
             return None
 
