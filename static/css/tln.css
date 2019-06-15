@@ -704,7 +704,8 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     transition: all 0.3s ease; }
 .overlay.revealed {
     visibility: visible;
-    opacity: 1; }
+    opacity: 1;
+    z-index: 500; }
 .overlay input { outline: none; }
 
 
