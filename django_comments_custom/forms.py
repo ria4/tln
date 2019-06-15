@@ -25,9 +25,9 @@ class CommentFormCustom(CommentForm):
     comment = forms.CharField(label=_('Comment'), max_length=COMMENT_MAX_LENGTH,
                               widget=forms.Textarea(attrs={"placeholder": "~commentaire~"}))
 
-    def __init__(self, target_object, data=None, initial=None, is_user_authenticated=False, **kwargs):
+    def __init__(self, target_object, data=None, initial=None, is_user_superuser=False, **kwargs):
         super().__init__(target_object, data=data, initial=initial, **kwargs)
-        if is_user_authenticated:
+        if is_user_superuser:
             self.fields['name'].initial = 'ria'
 
     def get_comment_create_data(self, site_id=None):

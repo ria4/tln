@@ -23,7 +23,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/tln.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />{% block link %}{% endblock link %}{% block script %}{% endblock script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>{% block import-scripts %}{% endblock %}
-    <script>var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};</script> <!-- display tweaks for the admin -->
+    <script>var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};</script>
+    <script>var userIsSuperuser = {% if user.is_superuser %}true{% else %}false{% endif %};</script> <!-- display tweaks for the admin -->
   </head>
 
   <body class="{% block body-class %}{% endblock body-class %}">
