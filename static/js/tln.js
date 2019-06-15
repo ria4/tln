@@ -40,6 +40,12 @@ function getSearchInput() {
     return null;
 }
 
+function focusOn(overlay, objId) {
+    objInput = document.getElementById(objId);
+    $(overlay).one("transitionend",
+        function() { objInput.focus(); });
+}
+
 var loginForm = document.getElementById("login_form");
 var codes = {"login": loginForm,
              "logout": true,
@@ -85,17 +91,8 @@ document.addEventListener("keypress", function (e) {
             } else {
                 var overlay = codes[activeCode].parentElement;
                 overlay.classList.add("revealed");
-                if (activeCode == "login") {
-                    e.preventDefault();
-                    nameInput = document.getElementById("id_username");
-                    $(overlay).one("transitionend",
-                        function() { nameInput.focus(); });
-                } else if (activeCode == "adds") {
-                    e.preventDefault();
-                    cinemaInput = document.getElementById("id_empty_seance_cinema");
-                    $(overlay).one("transitionend",
-                        function() { cinemaInput.focus(); });
-                }
+                if (activeCode == "login") { e.preventDefault(); focusOn(overlay, "id_username"); }
+                else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
             }
         }
     }
@@ -115,6 +112,18 @@ if (loginForm) {
         activeCode = "";
     });
 }
+
+
+/* Login - Show login prompt on appropriate URLs */
+
+var hash = window.location.hash.substr(1);
+
+if (hash == "login") {
+    loginForm.parentElement.classList.add("revealed");
+    focusOn(loginForm.parentElement, "id_username");
+    activeCode = "login";
+}
+
 
 /* Pagination - Navigate with arrow keys */
 
@@ -831,7 +840,6 @@ if (websiteApp == "critique") {
         slider = $("#gallery-slider").data("flexslider");
 
         // display the slider when loading from an anchored link
-        var hash = window.location.hash.substr(1);
         photoIdx = photoSlugs.indexOf(hash);
         if (photoIdx != -1) {
             slider.vars.animationSpeed = 0;
