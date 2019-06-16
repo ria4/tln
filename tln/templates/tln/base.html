@@ -95,6 +95,8 @@
         <form id="login_form" action="{% url 'login' %}" method="post">
             {% if request.GET.loginfail == '1' %}
             <div class="form_error">Identifiant inconnu, ou mot de passe invalide.</div>
+            {% elif request.GET.loginfail == '2' %}
+            <div class="form_error">Identifiant invalide pour cette galerie.</div>
             {% endif %}
             <div class="form_inputs">
                 {% csrf_token %}
@@ -104,6 +106,9 @@
                 <input type="submit" value="envoyer"/>
                 <div class="filler"></div>
                 <input type="reset" value="annuler"/>
+                {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+                {% endif %}
             </div>
         </form>
     </div>
