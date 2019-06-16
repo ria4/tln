@@ -10,7 +10,7 @@ class GalleryCustom(models.Model):
     date_shooting = models.CharField('Date du projet', max_length=31)
     description_fr = models.TextField('Description FR', blank=True)
     description_en = models.TextField('Description EN', blank=True)
-    allowed_users = models.ManyToManyField(User)
+    allowed_users = models.ManyToManyField(User, blank=True)
 
     class Meta:
         verbose_name = u'Gallery Custom'
