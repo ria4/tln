@@ -789,3 +789,11 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 #login_form .form_inputs p input { max-width: 225px; }
 #login_form .form_buttons { margin-top: -2px; }
 #login_form .form_buttons .filler { width: 42px; }
+@media (max-width: 400px) {
+#login_form { padding: 2px 13px 2px 12px; font-size: 16px; }
+#login_form .form_error { margin: 9px 3px 12px 4px; }
+#login_form .form_inputs p { margin: 3px 0; }
+#login_form .form_inputs p label { width: 98px; }
+#login_form .form_inputs p input { max-width: 170px; }
+#login_form .form_buttons { font-size: 35px; }
+#login_form .form_buttons .filler { width: 42px; }}
