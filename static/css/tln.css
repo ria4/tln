@@ -719,6 +719,12 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     background-color: white;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 
+.form_error {
+    margin: 14px 0 18px 6px;
+    color: #a40000;
+    font-style: italic;
+    text-align: center; }
+
 .form_inputs {
     display: -ms-flexbox;
     display: flex;
@@ -779,7 +785,7 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
    ========================================================================== */
 
 #login_form .form_inputs { margin-top: 3px; }
-#login_form .form_inputs p { width: 390px; }
-#login_form .form_inputs p label { width: 280px; }
+#login_form .form_inputs p label { width: 140px; }
+#login_form .form_inputs p input { max-width: 225px; }
 #login_form .form_buttons { margin-top: -2px; }
-#login_form .form_buttons .filler { width: 44px; }
+#login_form .form_buttons .filler { width: 42px; }
