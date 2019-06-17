@@ -21,6 +21,9 @@ def update_query_param(url, attr, val):
 def remove_query_param(url, attr):
     (scheme, netloc, path, params, query, fragment) = urlparse(url)
     query_dict = QueryDict(query).copy()
-    query_dict.pop(attr, None)
+    try:
+        query_dict.pop(attr)
+    except KeyError:
+        pass
     query = query_dict.urlencode(safe="/")
     return urlunparse((scheme, netloc, path, params, query, fragment))
