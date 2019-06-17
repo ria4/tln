@@ -46,6 +46,8 @@ _:-ms-fullscreen, :root #header { min-height: 0; height: auto; } } /* IE 11 */
 #header { top: -1px; } }
 @media (max-device-height: 400px) and (orientation: landscape) {
 #header { top: -10px; } }
+@media (max-width: 520px) {
+#header { top: -1px; } }
 
 
 /* Logos
@@ -71,6 +73,8 @@ _:-ms-fullscreen, :root #logos { min-height: 0; margin-bottom: 30px; } /* IE 11 
 #logos { height: 114px; position: relative; top: -1px; left: -1px; } }
 @media (max-device-height: 400px) and (orientation: landscape) {
 #logos { max-height: 100px; } }
+@media (max-width: 520px) {
+#logos { height: 114px; position: relative; top: -1px; left: -1px; } }
 
 #logo-otu { max-width: 100%; max-height: 100%; margin-top: -2px; }
 _:-ms-fullscreen, :root #logo-otu { max-height: 121px; } /* IE 11 */
@@ -106,10 +110,13 @@ _:-ms-fullscreen, :root #logo-otu { max-height: 75px; } /* IE 11 */ }
 _:-ms-fullscreen, :root #top-nav-v { min-height: 0; } /* IE 11 */ }
 @media (max-device-width: 600px) and (orientation: portrait) {
 #top-nav-v { left: -53px; top: -1px; min-height: 0; }
-#top-nav-v li > a { font-size: 46px; padding: 0 26px; } }
+#top-nav-v li > a { padding: 0 26px; font-size: 46px; } }
 @media (max-device-height: 400px) and (orientation: landscape) {
 #top-nav-v { left: -1px; top: -4px; min-height: 0; }
 #top-nav-v li > a { padding: 0 20px; line-height: 1.2; font-size: 30px; } }
+@media (max-width: 520px) {
+#top-nav-v { left: -53px; top: -1px; min-height: 0; }
+#top-nav-v li > a { padding: 0 26px; font-size: 46px; } }
 
 .dropdown-content {
     top: 0;
@@ -123,6 +130,9 @@ _:-ms-fullscreen, :root #top-nav-v { min-height: 0; } /* IE 11 */ }
 @media (max-device-height: 400px) and (orientation: landscape) {
 .dropdown-content { left: 104px; width: 74%; transform: none; }
 .dropdown-content a { font-size: 26px; } }
+@media (max-width: 520px) {
+.dropdown-content { left: 150px; top: -1px; width: 74%; transform: none; }
+.dropdown-content a { font-size: 38px; } }
 
 
 /* Info Anchor Arrow
