@@ -49,6 +49,7 @@ function focusOn(overlay, objId) {
 var loginForm = document.getElementById("login_form");
 var codes = {"login": loginForm,
              "logout": true,
+             "admin": true,
              "s": true }
 
 var activeCode = "";
@@ -73,12 +74,9 @@ document.addEventListener("keypress", function (e) {
             cachedCode = "";
         } else if (codeFound) {
             cachedCode = "";
-            if (activeCode == "logout") {
+            var input = getSearchInput();
+            if (activeCode == "s") {
                 activeCode = "";
-                if (userIsAuthenticated) { window.location.href = "/logout"; }
-            } else if (activeCode == "s") {
-                activeCode = "";
-                var input = getSearchInput();
                 if (input != null) {
                     var searchFocusAfterEsc = ((document.activeElement == input) &&
                                                (!input.parentElement.parentElement.parentElement.classList.contains("expanded")));
@@ -89,10 +87,21 @@ document.addEventListener("keypress", function (e) {
                     }
                 }
             } else {
-                var overlay = codes[activeCode].parentElement;
-                overlay.classList.add("revealed");
-                if (activeCode == "login") { e.preventDefault(); focusOn(overlay, "id_username"); }
-                else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
+                if ((input != null) &&
+                    (document.activeElement == input) &&
+                    (input.parentElement.parentElement.parentElement.classList.contains("expanded"))) { return }
+                if (activeCode == "logout") {
+                    activeCode = "";
+                    if (userIsAuthenticated) { window.location.href = "/logout"; }
+                } else if (activeCode == "admin") {
+                    activeCode = "";
+                    if (userIsSuperuser) { window.location.href = "/admin"; }
+                } else {
+                    var overlay = codes[activeCode].parentElement;
+                    overlay.classList.add("revealed");
+                    if (activeCode == "login") { e.preventDefault(); focusOn(overlay, "id_username"); }
+                    else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
+                }
             }
         }
     }
