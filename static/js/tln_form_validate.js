@@ -185,7 +185,7 @@ if (websiteApp == "critique") {
 
     for (var key in codes) {
         if (codes.hasOwnProperty(key)) {
-            if ((key != "login") && (key != "logout") && (key != "s") && (codes[key])) {
+            if ((["s", "login", "logout", "admin"].indexOf(key) < 0) && (codes[key])) {
                 codes[key].addEventListener("reset", function (e) {
                     e.preventDefault();
                     e.target.parentElement.classList.remove("revealed");
