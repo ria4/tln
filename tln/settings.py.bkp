@@ -215,10 +215,17 @@ PROFANITIES_LIST = ['http://', 'https://']
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[{levelname}] ({asctime}) {message}',
+            'style': '{',
+            },
+        },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
+            'formatter': 'simple',
             'filename': '/home/ria/tln/net/django_debug.log',
         },
     },
