@@ -34,6 +34,26 @@ document.addEventListener("click", collapseDropdownMenu)
 document.addEventListener("focusin", collapseDropdownMenu)
 
 
+/* Overlays - Access the mobile capture input with a long touch */
+
+var dummyInput = document.getElementById("dummy_input");
+var touchTimeout;
+
+function dummyInputFocus() { dummyInput.focus(); }
+function handleTouchStart(e) { touchTimeout = setTimeout(dummyInputFocus, 1000); }
+function handleTouchEnd(e) { clearTimeout(touchTimeout); }
+function handleTouchCancel(e) { clearTimeout(touchTimeout); }
+
+initTouchListeners = function() {};
+if (isTouchDevice()) {
+    initTouchListeners = function() {
+        document.addEventListener("touchstart", handleTouchStart, false);
+        document.addEventListener("touchend", handleTouchEnd, false);
+        document.addEventListener("touchcancel", handleTouchCancel, false);
+    }
+}
+
+
 /* Overlays - Reveal appropriate overlay through keyboard inputs */
 
 function getSearchInput() {
@@ -54,29 +74,50 @@ var codes = {"login": loginForm,
 
 var activeCode = "";
 var cachedCode = "";
-document.addEventListener("keypress", function (e) {
-    if (!activeCode) {
-        cachedCode += String.fromCharCode(e.charCode);
-        var possibleCode = false;
-        var codeFound = false;
-        for (var key in codes) {
-            if (codes.hasOwnProperty(key)) {
-                if (key.startsWith(cachedCode)) {
-                    possibleCode = true;
-                    if ((cachedCode === key) && (codes[key])) {
-                        activeCode = key;
-                        codeFound = true;
-                    }
+
+function activateOverlayIf(e) {
+    var possibleCode = false;
+    var codeFound = false;
+    for (var key in codes) {
+        if (codes.hasOwnProperty(key)) {
+            if (key.startsWith(cachedCode)) {
+                possibleCode = true;
+                if ((cachedCode === key) && (codes[key])) {
+                    activeCode = key;
+                    codeFound = true;
                 }
             }
         }
-        if (!possibleCode) {
-            cachedCode = "";
-        } else if (codeFound) {
-            cachedCode = "";
-            var input = getSearchInput();
-            if (activeCode == "s") {
+    }
+    if (!possibleCode) {
+        cachedCode = "";
+    } else if (codeFound) {
+        cachedCode = "";
+        var input = getSearchInput();
+        if (activeCode == "s") {
+            activeCode = "";
+            if (input != null) {
+                var searchFocusAfterEsc = ((document.activeElement == input) &&
+                                           (!input.parentElement.parentElement.parentElement.classList.contains("expanded")));
+                if ((document.activeElement != input) | searchFocusAfterEsc) {
+                    e.preventDefault();
+                    if (searchFocusAfterEsc) { input.blur(); }
+                    input.focus();
+                }
+            }
+        } else {
+            if ((input != null) &&
+                (document.activeElement == input) &&
+                (input.parentElement.parentElement.parentElement.classList.contains("expanded"))) { return }
+            if (activeCode == "logout") {
                 activeCode = "";
+                if (userIsAuthenticated) { window.location.href = "/logout"; }
+            } else if (activeCode == "admin") {
+                activeCode = "";
+                if (userIsSuperuser) { window.location.href = "/admin"; }
+            } else if (activeCode == "s") {
+                activeCode = "";
+                var input = getSearchInput();
                 if (input != null) {
                     var searchFocusAfterEsc = ((document.activeElement == input) &&
                                                (!input.parentElement.parentElement.parentElement.classList.contains("expanded")));
@@ -87,29 +128,34 @@ document.addEventListener("keypress", function (e) {
                     }
                 }
             } else {
-                if ((input != null) &&
-                    (document.activeElement == input) &&
-                    (input.parentElement.parentElement.parentElement.classList.contains("expanded"))) { return }
-                if (activeCode == "logout") {
-                    activeCode = "";
-                    if (userIsAuthenticated) { window.location.href = "/logout"; }
-                } else if (activeCode == "admin") {
-                    activeCode = "";
-                    if (userIsSuperuser) { window.location.href = "/admin"; }
-                } else {
-                    var overlay = codes[activeCode].parentElement;
-                    overlay.classList.add("revealed");
-                    if (activeCode == "login") { e.preventDefault(); focusOn(overlay, "id_username"); }
-                    else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
-                }
+                var overlay = codes[activeCode].parentElement;
+                overlay.classList.add("revealed");
+                if (activeCode == "login") { e.preventDefault(); focusOn(overlay, "id_username"); }
+                else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
             }
         }
     }
-});
+}
+
+if (isTouchDevice()) {
+    dummyInput.addEventListener("input", function (e) {
+        cachedCode += e.target.value;
+        e.target.value = ""
+        activateOverlayIf(e);
+    });
+} else {
+    document.addEventListener("keydown", function (e) {
+        if (!activeCode) {
+            var k = e.keyCode;
+            var keyCode = (96 <= k && k <= 105)? k-48 : k;
+            cachedCode += String.fromCharCode(keyCode).toLowerCase();
+            activateOverlayIf(e);
+        }
+    });
+}
 
 document.addEventListener("keydown", function (e) {
-    /* there is no keypress event for ESC */
-    if (activeCode && (e.keyCode == 27)) {
+    if (activeCode && (e.keyCode == 27)) {      // ESC keyCode
         codes[activeCode].parentElement.classList.remove("revealed");
         activeCode = "";
     }
@@ -929,4 +975,11 @@ if (websiteApp == "critique") {
         addPhotoResizeListener(photo);
     }
 
+}
+
+
+/* Initializers */
+
+window.onload = function() {
+    initTouchListeners();
 }
