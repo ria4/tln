@@ -701,6 +701,8 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 /* Forms Oeuvre
    ========================================================================== */
 
+#oeuvre_form .form_inputs,
+#oeuvre_form_empty .form_inputs { margin-top: 0; }
 #oeuvre_form p,
 #oeuvre_form_empty p { width: 350px; }
 #oeuvre_form p label,
@@ -709,16 +711,26 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form p label[for="id_type"],
 #oeuvre_form_empty p label[for="id_empty_envie"],
 #oeuvre_form_empty p label[for="id_empty_type"] { width: 92.7px; }
+#oeuvre_form .form_buttons,
+#oeuvre_form_empty .form_buttons { margin-top: -4px; }
 #oeuvre_form .form_buttons .filler { width: 32px; }
 #oeuvre_form_empty .form_buttons .filler { width: 44px; }
+@media (max-width: 400px) {
+#oeuvre_form p,
+#oeuvre_form_empty p { width: 265px; }
+#oeuvre_form p label,
+#oeuvre_form_empty p label { width: 108px; }
+#oeuvre_form p label[for="id_envie"],
+#oeuvre_form p label[for="id_type"],
+#oeuvre_form_empty p label[for="id_empty_envie"],
+#oeuvre_form_empty p label[for="id_empty_type"] { width: 74.8px; }
+#oeuvre_form .form_buttons .filler { width: 18px; }}
 
 
 /* Forms Comment
    ========================================================================== */
 
 /* The textarea should mirror exactly the width of the text underneath. */
-#comment_form .form_inputs,
-#comment_form_empty .form_inputs { margin-top: 3px; }
 #comment_form p,
 #comment_form_empty p { width: 869px; }
 #comment_form p label,
@@ -729,30 +741,48 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #comment_form p label[for="id_no_day"],
 #comment_form_empty p label[for="id_empty_no_month"],
 #comment_form_empty p label[for="id_empty_no_day"] { width: 91px; }
-#comment_form .form_buttons,
-#comment_form_empty .form_buttons { margin-top: -2px; }
 #comment_form .form_buttons .filler,
 #comment_form_empty .form_buttons .filler { width: 72px; }
+@media (max-width: 400px) {
+#comment_form p,
+#comment_form_empty p { width: 290px; }
+#comment_form p label,
+#comment_form_empty p label { width: 96px; }
+#comment_form p label[for="id_date"],
+#comment_form_empty p label[for="id_empty_date"],
+#comment_form p label[for="id_no_month"],
+#comment_form p label[for="id_no_day"],
+#comment_form_empty p label[for="id_empty_no_month"],
+#comment_form_empty p label[for="id_empty_no_day"] { width: 71px; }
+#comment_form .form_buttons .filler { width: 31px; }}
 
 
 /* Form Cinema
    ========================================================================== */
 
 /* The textarea should mirror exactly the width of the text underneath. */
-#cinema_form .form_inputs { margin-top: 3px; }
 #cinema_form p { width: 863px; }
 #cinema_form p label { width: 96px; }
 #cinema_form p label[for="id_visited"] { width: 85px; }
+#cinema_form .form_buttons { margin-top: -4px; }
 #cinema_form .form_buttons .filler { width: 72px; }
+@media (max-width: 400px) {
+#cinema_form p { width: 290px; }
+#cinema_form p label { width: 94px; }
+#cinema_form p label[for="id_visited"] { width: 69px; }
+#cinema_form .form_buttons .filler { width: 31px; }}
 
 
 /* Form Seance
    ========================================================================== */
 
-#seance_form_empty .form_inputs { margin-top: 3px; }
-#seance_form_empty .form_inputs p { width: 330px; }
-#seance_form_empty .form_inputs p label { width: 151px; }
-#seance_form_empty .form_inputs p label[for="id_empty_seance_date"],
-#seance_form_empty .form_inputs p label[for="id_empty_seance_no_month"] { width: 102px; }
-#seance_form_empty .form_buttons { margin-top: -2px; }
+#seance_form_empty p { width: 330px; }
+#seance_form_empty p label { width: 151px; }
+#seance_form_empty p label[for="id_empty_seance_date"],
+#seance_form_empty p label[for="id_empty_seance_no_month"] { width: 102px; }
 #seance_form_empty .form_buttons .filler { width: 44px; }
+@media (max-width: 400px) {
+#seance_form_empty p { width: 265px; }
+#seance_form_empty p label { width: 121px; }
+#seance_form_empty p label[for="id_empty_seance_date"],
+#seance_form_empty p label[for="id_empty_seance_no_month"] { width: 80.6px; }}

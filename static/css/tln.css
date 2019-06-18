@@ -718,14 +718,16 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     padding: 6px 20px 6px 13px;
     background-color: white;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
+@media (max-width: 400px) {
+.overlay form { padding: 2px 13px 2px 12px; font-size: 16px; }}
 
 .form_error {
-    margin: 14px 0 18px 6px;
     color: #a40000;
     font-style: italic;
     text-align: center; }
 
 .form_inputs {
+    margin-top: 3px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
@@ -738,6 +740,8 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     display: flex;
     -ms-flex-align: center;
     align-items: center; }
+@media (max-width: 400px) {
+.form_inputs p { margin: 3px 0; }}
 .form_inputs p label {
     text-align: right;
     margin-right: 6px; }
@@ -751,7 +755,6 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     transition: border 0.2s ease; }
 .form_inputs textarea {
     font-family: Alegreya, Palatino, serif;
-    font-size: 100%;
     resize: vertical; }
 .form_inputs input[type="checkbox"] {
     margin-top: 2px;
@@ -767,13 +770,15 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 .form_inputs .errorlist { display: none; }
 
 .form_buttons {
-    margin-top: -4px;
+    margin-top: -2px;
     font-family: Abuget, Palatino, serif;
     font-size: 40px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
     justify-content: center; }
+@media (max-width: 400px) {
+.form_buttons input { font-size: 35px; }}
 .form_buttons input {
     background-color: transparent;
     border: none; }
@@ -784,16 +789,11 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 /* Login Form
    ========================================================================== */
 
-#login_form .form_inputs { margin-top: 3px; }
-#login_form .form_inputs p label { width: 140px; }
-#login_form .form_inputs p input { max-width: 225px; }
-#login_form .form_buttons { margin-top: -2px; }
+#login_form .form_error { margin: 14px 0 18px 6px; }
+#login_form p { width: 351px; }
+#login_form p label { width: 190px; }
 #login_form .form_buttons .filler { width: 42px; }
 @media (max-width: 400px) {
-#login_form { padding: 2px 13px 2px 12px; font-size: 16px; }
-#login_form .form_error { margin: 9px 3px 12px 4px; }
-#login_form .form_inputs p { margin: 3px 0; }
-#login_form .form_inputs p label { width: 98px; }
-#login_form .form_inputs p input { max-width: 170px; }
-#login_form .form_buttons { font-size: 35px; }
-#login_form .form_buttons .filler { width: 42px; }}
+#login_form p { width: 265px; }
+#login_form p label { width: 142px; }
+#login_form .form_error { margin: 9px 0 12px 3px; }}
