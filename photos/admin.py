@@ -4,6 +4,7 @@ from django.forms.models import BaseInlineFormSet
 
 from photologue.admin import GalleryAdmin as GalleryAdminDefault
 from photologue.models import Gallery
+
 from .models import GalleryCustom
 
 

@@ -23,7 +23,7 @@
         <li><a tabindex="-1" href="/photos/">Photos</a>
             <ul>
             {% for gallerycustom in gallery_list %}
-            <li><a tabindex="-1" href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a></li>
+            <li><a tabindex="-1" href="{{ gallerycustom.gallery.get_absolute_url }}">{% if gallerycustom.nav_title %}{{ gallerycustom.nav_title }}{% else %}{{ gallerycustom.gallery.title }}{% endif %}</a></li>
             {% endfor %}
             </ul></li>
         <li><a tabindex="-1" href="/critique/">Critique</a></li>
@@ -45,7 +45,7 @@
                     <div class="shadow-down"></div>
                     <div class="shadow-left"></div>
                     {% for gallerycustom in gallery_list %}
-                    <a href="{{ gallerycustom.gallery.get_absolute_url }}">{{ gallerycustom.gallery.title }}</a>
+                    <a href="{{ gallerycustom.gallery.get_absolute_url }}">{% if gallerycustom.nav_title %}{{ gallerycustom.nav_title }}{% else %}{{ gallerycustom.gallery.title }}{% endif %}</a>
                     {% if not forloop.last %}
                     <div class="dropdown-separator"></div>
                     {% endif %}
