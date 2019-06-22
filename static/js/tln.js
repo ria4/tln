@@ -950,13 +950,13 @@ if (websiteApp == "critique") {
 
     function setPhotoSize(photo) {
         var ratioReal = 1.0 * photo.naturalWidth / photo.naturalHeight;
+        var slideWidth;
         if (ratioReal > ratioRef) {
-            photo.style.width = Math.min(maxSlideWidth, photo.naturalWidth) + "px";
-            photo.style.height = "auto";
+            slideWidth = Math.min(maxSlideWidth, photo.naturalWidth);
         } else {
-            photo.style.height = Math.min(maxSlideHeight, photo.naturalHeight) + "px";
-            photo.style.width = "auto";
+            slideWidth = Math.min(maxSlideHeight, photo.naturalHeight) * ratioReal;
         }
+        photo.closest(".slide").style.width = slideWidth + "px";
     }
 
     function addPhotoResizeListener(photo) {
