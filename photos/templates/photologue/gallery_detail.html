@@ -1,9 +1,18 @@
 {% extends "photologue/root.html" %}
 {% load staticfiles %}
 {% load i18n %}
+{% load tln_extras %}
 
 {% block title %}{{ gallery_custom.gallery.title }}{% endblock %}
+{% block og-title %}{{ gallery_custom.gallery.title }}{% endblock %}
+{% block tw-title %}{{ gallery_custom.gallery.title }}{% endblock %}
 {% block meta-description %}série photographique '{{ gallery_custom.gallery.title }}', par oriane tury{% endblock meta-description %}
+
+{% block og-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
+{% block tw-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
+
+{% block og-description %}{{ gallery_custom.description_fr|striptags|truncatedesc:250 }}{% endblock %}
+{% block tw-description %}{{ gallery_custom.description_fr|striptags|truncatedesc:160 }}{% endblock %}
 
 {% block content %}
 <div id="gallery-title">
