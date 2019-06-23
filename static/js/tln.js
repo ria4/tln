@@ -40,7 +40,7 @@ var dummyInput = document.getElementById("dummy_input");
 var touchTimeout;
 
 function dummyInputFocus() { dummyInput.focus(); }
-function handleTouchStart(e) { touchTimeout = setTimeout(dummyInputFocus, 1000); }
+function handleTouchStart(e) { touchTimeout = setTimeout(dummyInputFocus, 3000); }
 function handleTouchEnd(e) { clearTimeout(touchTimeout); }
 function handleTouchCancel(e) { clearTimeout(touchTimeout); }
 
