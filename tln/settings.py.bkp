@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'photos',
     'critique',
     'boch',
+    'tln',
 ]
 
 COMMENTS_APP = 'django_comments_custom'
