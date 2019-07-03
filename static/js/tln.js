@@ -890,6 +890,7 @@ if (websiteApp == "critique") {
             animationSpeed: 0,
             controlNav: false,
             directionNav: false,
+            touch: false,
         });
 
         slider = $("#gallery-slider").data("flexslider");
