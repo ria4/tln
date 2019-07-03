@@ -118,8 +118,8 @@
 
     <input id="dummy_input" class="hidden" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"/>
 
-    <script src="{% static 'js/tln.js' %}"></script>
-    <script src="{% static 'js/tln_form_validate.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block app-js %}{% endblock %}
 
   </body>
 
