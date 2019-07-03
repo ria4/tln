@@ -2,18 +2,31 @@ var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' i
 var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
 
 
-/* Top Navigation - Deactivate hoverable photos link for touchscreens */
+/* Top Navigation - Deactivate hoverable photos link on mobile devices*/
 
 function isTouchDevice() {
     return "ontouchstart" in window || navigator.maxTouchPoints;
 }
 
 var topNavPhotoButton = document.getElementById("photos-dropdown-link");
-topNavPhotoButton.addEventListener("click", function (e) {
-    if (isTouchDevice()) {
+if (isTouchDevice()) {
+    topNavPhotoButton.addEventListener("click", function (e) {
         e.preventDefault();
-    }
-});
+    });
+}
+
+
+/* Top Navigation - Access admin codes input on mobile devices */
+
+var dummyInput = document.getElementById("dummy_input");
+if (isTouchDevice()) {
+    topNavPhotoButton.addEventListener("touchstart", function (e) {
+        if (document.activeElement == e.target) {
+            e.preventDefault();
+            dummyInput.focus();
+        }
+    });
+}
 
 
 /* Top Navigation - Enable tab navigation with photos dropdown menu */
@@ -32,26 +45,6 @@ function collapseDropdownMenu () {
 
 document.addEventListener("click", collapseDropdownMenu)
 document.addEventListener("focusin", collapseDropdownMenu)
-
-
-/* Overlays - Access the mobile capture input with a long touch */
-
-var dummyInput = document.getElementById("dummy_input");
-var touchTimeout;
-
-function dummyInputFocus() { dummyInput.focus(); }
-function handleTouchStart(e) { touchTimeout = setTimeout(dummyInputFocus, 12000); }
-function handleTouchEnd(e) { clearTimeout(touchTimeout); }
-function handleTouchCancel(e) { clearTimeout(touchTimeout); }
-
-initTouchListeners = function() {};
-if (isTouchDevice()) {
-    initTouchListeners = function() {
-        document.addEventListener("touchstart", handleTouchStart, false);
-        document.addEventListener("touchend", handleTouchEnd, false);
-        document.addEventListener("touchcancel", handleTouchCancel, false);
-    }
-}
 
 
 /* Overlays - Reveal appropriate overlay through keyboard inputs */
@@ -976,11 +969,4 @@ if (websiteApp == "critique") {
         addPhotoResizeListener(photo);
     }
 
-}
-
-
-/* Initializers */
-
-window.onload = function() {
-    initTouchListeners();
 }
