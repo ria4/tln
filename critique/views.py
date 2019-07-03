@@ -358,7 +358,7 @@ def list_oeuvres(req, mtype="film", page=1):
     (Les "re-" envies ne sont pas prises en charge.)
     """
     oeuvres_list = Oeuvre.objects(__raw__={'envie': False, 'info.type': mtype})
-    oeuvres = oeuvres_list.order_by('-info__year')
+    oeuvres = oeuvres_list.order_by('-info__year', '-id')
     context = {'oeuvres': oeuvres, 'mtype': mtype}
     return render(req, 'critique/collection.html', context)
 
