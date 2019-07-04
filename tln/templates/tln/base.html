@@ -22,7 +22,7 @@
     <meta name="keywords" content="{% block meta-keywords %}photos, blog, cinema, film, critique, reviews, vérités extatiques{% endblock meta-keywords %}" />{% block meta %}{% endblock meta %}
     <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
     <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/tln.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />{% block link %}{% endblock link %}{% block script %}{% endblock script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>{% block import-scripts %}{% endblock %}
     <script>var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};</script>
