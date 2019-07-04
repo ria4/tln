@@ -12,11 +12,13 @@ body #content-wrap { padding-right: 11px; } }
    ========================================================================== */
 
 #sidebar {
+    margin-bottom: 36px;
     border: 1px solid #deda99;
     padding: 0 4px;
     width: 305px;
     background-color: #fbf2bd;
-    font-size: 18px; }
+    font-size: 18px;
+    overflow-y: hidden; }
 
 body #sidebar {
     position: absolute;
