@@ -38,6 +38,7 @@ function addSliderStartListener(item) {
         slider.vars.animationSpeed = 0;
         slider.flexAnimate(parseInt(item.getAttribute("data-onclick"), 10));
         slider.vars.animationSpeed = animationSpeed;
+        if (isTouchDevice()) { window.location.hash = "display"; }
         overlaySlider.classList.add("revealed");
     });
 }
@@ -80,12 +81,23 @@ $(document).ready(function() {
 
 overlaySlider.addEventListener("click", function() {
     overlaySlider.classList.remove("revealed");
+    if (isTouchDevice()) { window.location.hash = ""; }
 });
 for (var i=0; i<photos.length; i++) {
     photos[i].addEventListener("click", function(e) {
         e.stopPropagation();
     });
 }
+
+
+/* On mobile devices, hit 'return' to hide the slider */
+
+function hideSlider() {
+    if (window.location.hash == "") {
+        overlaySlider.classList.remove("revealed");
+    }
+}
+if (isTouchDevice()) { window.onhashchange = hideSlider; }
 
 
 /* Chrome stays focused on the link after a click, which provokes autoslide.
