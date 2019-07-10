@@ -47,13 +47,6 @@ for (var i=0; i<photoLinks.length; i++) {
     addSliderStartListener(photoLinks[i]);
 }
 
-// hide overlaySlider on hitting ESC
-document.addEventListener("keydown", function (e) {
-    if (e.keyCode == 27) {
-        overlaySlider.classList.remove("revealed");
-    }
-});
-
 $(document).ready(function() {
     $('#gallery-slider').flexslider({
         slideshow: false,
@@ -77,7 +70,56 @@ $(document).ready(function() {
 });
 
 
-/* Click outside the image to hide the slider. */
+/* Photos Display - Allow swipe while retaining zoom */
+
+if (isTouchDevice()) {
+    var swipeXStart = swipeXEnd = 0;
+    var swipeXStartPage; var swipeXEndPage;
+    var swipeTStart; var swipeTEnd;
+    var swipeXDelta = 20;
+    var swipeXVelocity = 0.3;
+    var direction = "";
+
+    gallerySlider.addEventListener('touchstart', function(e) {
+        if (e.touches.length == 1) {
+            swipeXStart = swipeXEnd = e.touches[0].screenX;
+            swipeXStartPage = e.touches[0].pageX;
+            swipeTStart = Date.now();
+            swipeTEnd = Date.now(); }
+    });
+
+    gallerySlider.addEventListener('touchmove', function(e) {
+        if (e.touches.length == 1) {
+            swipeXEnd = e.touches[0].screenX;
+            swipeXEndPage = e.touches[0].pageX;
+            swipeTEnd = Date.now(); }
+    });
+
+    gallerySlider.addEventListener('touchend', function(e) {
+        if (e.touches.length == 0) {
+            if ((Math.abs(swipeXEnd - swipeXStart) > swipeXDelta) &&
+                (swipeTEnd > swipeTStart) &&
+                (Math.abs(swipeXEnd - swipeXStart) / (swipeTEnd - swipeTStart) > swipeXVelocity)) {
+                if (swipeXEnd > swipeXStart) { direction = "r"; }
+                else { direction = "l"; }
+            }
+            if ((direction == "r") && (swipeXStart == swipeXStartPage)) {
+                $("#gallery-slider").flexslider('prev');
+            } else if ((direction == "l") && (swipeXEnd == swipeXEndPage)) {
+                $("#gallery-slider").flexslider('next');
+            }
+            swipeXStart = swipeXEnd = 0; direction = ""; }
+    });
+}
+
+
+/* Photos Display - Hide slider with either ESC or click outside the image */
+
+document.addEventListener("keydown", function (e) {
+    if (e.keyCode == 27) {
+        overlaySlider.classList.remove("revealed");
+    }
+});
 
 overlaySlider.addEventListener("click", function() {
     overlaySlider.classList.remove("revealed");
