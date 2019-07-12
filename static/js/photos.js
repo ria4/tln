@@ -74,11 +74,10 @@ $(document).ready(function() {
 
 if (isTouchDevice()) {
     var swipeXStart = swipeXEnd = 0;
-    var swipeXStartPage; var swipeXEndPage;
+    var swipeXStartPage;
     var swipeTStart; var swipeTEnd;
     var swipeXDelta = 20;
     var swipeXVelocity = 0.3;
-    var direction = "";
 
     gallerySlider.addEventListener('touchstart', function(e) {
         if (e.touches.length == 1) {
@@ -91,24 +90,19 @@ if (isTouchDevice()) {
     gallerySlider.addEventListener('touchmove', function(e) {
         if (e.touches.length == 1) {
             swipeXEnd = e.touches[0].screenX;
-            swipeXEndPage = e.touches[0].pageX;
             swipeTEnd = Date.now(); }
     });
 
     gallerySlider.addEventListener('touchend', function(e) {
-        if (e.touches.length == 0) {
+        if ((e.touches.length == 0) && (swipeXStart == swipeXStartPage)) {
             if ((Math.abs(swipeXEnd - swipeXStart) > swipeXDelta) &&
                 (swipeTEnd > swipeTStart) &&
                 (Math.abs(swipeXEnd - swipeXStart) / (swipeTEnd - swipeTStart) > swipeXVelocity)) {
-                if (swipeXEnd > swipeXStart) { direction = "r"; }
-                else { direction = "l"; }
+                if (swipeXEnd > swipeXStart) { $("#gallery-slider").flexslider('prev'); }
+                else { $("#gallery-slider").flexslider('next'); }
             }
-            if ((direction == "r") && (swipeXStart == swipeXStartPage)) {
-                $("#gallery-slider").flexslider('prev');
-            } else if ((direction == "l") && (swipeXEnd == swipeXEndPage)) {
-                $("#gallery-slider").flexslider('next');
-            }
-            swipeXStart = swipeXEnd = 0; direction = ""; }
+            swipeXStart = swipeXEnd = 0;
+        }
     });
 }
 
