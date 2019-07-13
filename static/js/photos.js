@@ -48,7 +48,7 @@ for (var i=0; i<photoLinks.length; i++) {
 }
 
 $(document).ready(function() {
-    $('#gallery-slider').flexslider({
+    $("#gallery-slider").flexslider({
         slideshow: false,
         animationSpeed: 0,
         controlNav: false,
@@ -79,7 +79,7 @@ if (isTouchDevice()) {
     var swipeXDelta = 20;
     var swipeXVelocity = 0.3;
 
-    gallerySlider.addEventListener('touchstart', function(e) {
+    gallerySlider.addEventListener("touchstart", function(e) {
         if (e.touches.length == 1) {
             swipeXStart = swipeXEnd = e.touches[0].screenX;
             swipeXStartPage = e.touches[0].pageX;
@@ -87,19 +87,19 @@ if (isTouchDevice()) {
             swipeTEnd = Date.now(); }
     });
 
-    gallerySlider.addEventListener('touchmove', function(e) {
+    gallerySlider.addEventListener("touchmove", function(e) {
         if (e.touches.length == 1) {
             swipeXEnd = e.touches[0].screenX;
             swipeTEnd = Date.now(); }
     });
 
-    gallerySlider.addEventListener('touchend', function(e) {
+    gallerySlider.addEventListener("touchend", function(e) {
         if ((e.touches.length == 0) && (swipeXStart == swipeXStartPage)) {
             if ((Math.abs(swipeXEnd - swipeXStart) > swipeXDelta) &&
                 (swipeTEnd > swipeTStart) &&
                 (Math.abs(swipeXEnd - swipeXStart) / (swipeTEnd - swipeTStart) > swipeXVelocity)) {
-                if (swipeXEnd > swipeXStart) { $("#gallery-slider").flexslider('prev'); }
-                else { $("#gallery-slider").flexslider('next'); }
+                if (swipeXEnd > swipeXStart) { $("#gallery-slider").flexslider("prev"); }
+                else { $("#gallery-slider").flexslider("next"); }
             }
             swipeXStart = swipeXEnd = 0;
         }
@@ -139,12 +139,12 @@ if (isTouchDevice()) { window.onhashchange = hideSlider; }
 /* Chrome stays focused on the link after a click, which provokes autoslide.
  * That's why we use manual control for this action. */
 
-$(".flex-nav-prev").on('click', function() {
-    $("#gallery-slider").flexslider('prev');
+$(".flex-nav-prev").on("click", function() {
+    $("#gallery-slider").flexslider("prev");
     return false;
 });
-$(".flex-nav-next").on('click', function() {
-    $("#gallery-slider").flexslider('next');
+$(".flex-nav-next").on("click", function() {
+    $("#gallery-slider").flexslider("next");
     return false;
 });
 
