@@ -110,6 +110,7 @@ static/mptt/
 static/sortedm2m/
 static/zinnia/
 tln/__pycache__/
+tln/templatetags/__pycache__/
 tln/settings.py
 util/crawlers/
 util/mongodumps/
