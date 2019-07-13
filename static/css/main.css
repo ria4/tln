@@ -40,7 +40,7 @@ mark { background: #ff0; color: #000; }
 
 /* Corrects font family set oddly in Safari 5 and Chrome. */
 code, kbd, pre, samp {
-    font-family: monospace, serif;
+    font-family: monospace;
     font-size: 1em; }
 
 /* Improves readability of pre-formatted text in all browsers. */
