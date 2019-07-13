@@ -2,7 +2,7 @@ var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' i
 var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
 
 
-/* Top Navigation - Deactivate hoverable photos link on mobile devices*/
+/* Top Navigation - Deactivate hoverable photos link on mobile devices */
 
 function isTouchDevice() {
     return "ontouchstart" in window || navigator.maxTouchPoints;
