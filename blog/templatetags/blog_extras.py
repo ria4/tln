@@ -50,13 +50,16 @@ def get_entries_on_day(date, is_superuser=False):
 @register.inclusion_tag('zinnia/tags/dummy.html', takes_context=True)
 def get_archives_entries_tree_su_sensitive(context,
         template='zinnia/tags/entries_archives_tree.html'):
+    queryset = Entry.published
     if context['request'].user.is_superuser:
         queryset = Entry.objects
-    else:
-        queryset = Entry.published
+    publication_date = None
+    if 'object' in context:
+        publication_date = context['object'].publication_date
     return {'template': template,
             'archives': queryset.datetimes(
                 'publication_date', 'day', order='ASC'),
+            'publication_date': publication_date,
             'is_superuser': context['request'].user.is_superuser}
 
 
