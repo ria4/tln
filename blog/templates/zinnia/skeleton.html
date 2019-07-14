@@ -6,32 +6,6 @@
 
 {% block skip-link %}<a id="skip-link" class="hidden" href="#content">Skip to main content</a>{% endblock %}
 
-{% comment %}
-<header id="header" role="banner">
-  <nav>
-    <ul class="top-navigation">
-      <li>
-        <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}" class="sitemap" rel="sitemap">
-          {% trans "Sitemap" %}
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'zinnia:entry_feed' %}" title="{% trans "RSS feed of last entries" %}" class="feeds">
-          {% trans "RSS feed" %}
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <form method="get" action="{% url 'zinnia:entry_search' %}">
-    <p>
-      <input type="text" name="pattern" placeholder="{% trans "Keywords..." %}" {% if pattern %}value="{{ pattern }}"{% endif %} />
-      <input type="submit" class="submitbutton" value="OK" />
-    </p>
-  </form>
-  {% block breadcrumbs %}{% endblock breadcrumbs %}
-</header>
-{% endcomment %}
-
 {% block content-wrap %}
   {% block slider %}{% endblock slider %}
 
