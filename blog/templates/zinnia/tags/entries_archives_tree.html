@@ -6,7 +6,11 @@
   {% for year in year_list reversed %}
   <li>
       <a class='toggle
-        {% if forloop.first %} expanded{% else %} collapsed{% endif %}
+        {% if publication_date %}
+          {% if publication_date|date:"Y" == year.grouper|stringformat:"d" %} expanded{% else %} collapsed{% endif %}
+        {% else %}
+          {% if forloop.first %} expanded{% else %} collapsed{% endif %}
+        {% endif %}
         ' href="#" role="button"><span class='toggle-in'></span></a>
       {% with year_date=year.list.0 %}
       {% get_entries_on_year_length year_date is_superuser as entries_year_length %}
@@ -17,7 +21,11 @@
       {% for month in month_list reversed %}
       <li>
         <a class='toggle
-          {% if forloop.parentloop.first and forloop.first %} expanded{% else %} collapsed{% endif %}
+          {% if publication_date %}
+            {% if publication_date|date:"Y" == year.grouper|stringformat:"d" and publication_date|date:"n" == month.grouper|stringformat:"d" %} expanded{% else %} collapsed{% endif %}
+          {% else %}
+            {% if forloop.parentloop.first and forloop.first %} expanded{% else %} collapsed{% endif %}
+          {% endif %}
           ' href="#" role="button"><span class='toggle-in'></span></a>
         {% with month_date=month.list.0 %}
         {% get_entries_on_month_length month_date is_superuser as entries_month_length %}
