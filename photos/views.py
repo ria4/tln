@@ -3,7 +3,7 @@ from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import get_object_or_404, redirect
 
 from photologue.models import Gallery
-from photologue.views import GalleryDetailView, PhotoDetailView
+from photologue.views import GalleryDetailView
 
 from tln import settings
 from tln.utils import remove_query_param, update_query_param
