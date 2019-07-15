@@ -2,10 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.forms.models import BaseInlineFormSet
 
-from photologue.admin import GalleryAdmin as GalleryAdminDefault
-from photologue.models import Gallery
+from photologue.admin import GalleryAdmin as GalleryAdminDefault, PhotoAdmin as PhotoAdminDefault
+from photologue.models import Gallery, Photo
 
-from .models import GalleryCustom
+from .models import GalleryCustom, PhotoCustom
 
 
 class GalleryCustomFormSet(BaseInlineFormSet):
@@ -32,5 +32,14 @@ class GalleryCustomInline(admin.StackedInline):
 class GalleryAdmin(GalleryAdminDefault):
     inlines = [GalleryCustomInline, ]
 
+class PhotoCustomInline(admin.StackedInline):
+    model = PhotoCustom
+    can_delete = False
+
+class PhotoAdmin(PhotoAdminDefault):
+    inlines = [PhotoCustomInline, ]
+
 admin.site.unregister(Gallery)
 admin.site.register(Gallery, GalleryAdmin)
+admin.site.unregister(Photo)
+admin.site.register(Photo, PhotoAdmin)
