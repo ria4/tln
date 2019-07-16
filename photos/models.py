@@ -36,9 +36,9 @@ class PhotoCustom(models.Model):
     photo = models.OneToOneField(Photo, related_name='custom',
                                  on_delete=models.CASCADE)
     placeholder_width = models.IntegerField(default=0)
-    placeholder_primitive_mode = models.IntegerField(default=2)
-    placeholder_primitive_number = models.IntegerField(default=70)
-    placeholder_blur = models.IntegerField(default=4)
+    placeholder_primitive_mode = models.IntegerField(default=1)
+    placeholder_primitive_number = models.IntegerField(default=80)
+    placeholder_blur = models.IntegerField(default=3)
 
     class Meta:
         verbose_name = u'Photo Custom'
