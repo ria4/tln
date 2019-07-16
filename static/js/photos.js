@@ -1,4 +1,4 @@
-/* Photos Display - Shrink-wrap container */
+/* Gallery Display - Shrink-wrap container */
 
 var galleryPhotos = document.getElementById("gallery-photos");
 var deltaMargin = 2*parseInt(window.getComputedStyle(galleryPhotos).marginLeft, 10);
@@ -17,7 +17,7 @@ setGalleryWidth();
 window.addEventListener("resize", setGalleryWidth);
 
 
-/* Photos Display - Flexslider overlay */
+/* Slides Loading - Lazy-loading helpers for high-res pictures */
 
 var gallerySlider = document.getElementById("gallery-slider");
 var slider;
@@ -26,6 +26,27 @@ var animationSpeed = 600;
 var overlaySlider = gallerySlider.parentNode;
 var photoLinks = document.getElementsByClassName("photo-link");
 var photos = gallerySlider.getElementsByTagName("img");
+
+function loadPhoto(idx) {
+    function loadPhotoIdx() {
+        photo = photos[idx];
+        if (photo.hasAttribute("data-src")) {
+            photo.setAttribute("src", photo.getAttribute("data-src"));
+            photo.removeAttribute("data-src");
+        }
+    }
+    return loadPhotoIdx;
+}
+
+Number.prototype.mod = function(n) { return ((this%n)+n)%n; };
+function loadPhotoPPrev() { var prevIdx = slider.currentSlide-2; loadPhoto(prevIdx.mod(photos.length))(); }
+function loadPhotoPrev() { var prevIdx = slider.currentSlide-1; loadPhoto(prevIdx.mod(photos.length))(); }
+function loadPhotoNext() { loadPhoto((slider.currentSlide+1) % photos.length)(); }
+function loadPhotoNNext() { loadPhoto((slider.currentSlide+2) % photos.length)(); }
+function loadPhotoPrevNext() { loadPhotoNext(); loadPhotoPrev(); }
+
+
+/* Slider Display - Launch slider from clicked or anchored image */
 
 var photoSlugs = [];
 for (var i=0; i<photos.length; i++) {
@@ -36,7 +57,16 @@ function addSliderStartListener(item) {
     item.addEventListener("click", function (e) {
         e.preventDefault();
         slider.vars.animationSpeed = 0;
-        slider.flexAnimate(parseInt(item.getAttribute("data-onclick"), 10));
+
+        var photoIdx = parseInt(item.getAttribute("data-onclick"), 10);
+        if (photoIdx == 0) {
+            loadPhotoPrevNext();
+        } else {
+            photos[photoIdx].onload = loadPhotoPrevNext;
+            loadPhoto(photoIdx)();
+        }
+
+        slider.flexAnimate(photoIdx);
         slider.vars.animationSpeed = animationSpeed;
         if (isTouchDevice()) { window.location.hash = "display"; }
         overlaySlider.classList.add("revealed");
@@ -62,15 +92,71 @@ $(document).ready(function() {
     photoIdx = photoSlugs.indexOf(hash);
     if (photoIdx != -1) {
         slider.vars.animationSpeed = 0;
+        photos[photoIdx].onload = loadPhotoPrevNext;
+        loadPhoto(photoIdx)();
         slider.flexAnimate(photoIdx);
         overlaySlider.classList.add("revealed");
+    } else {
+        if (photos.length > 0) { loadPhoto(0)(); }
     }
 
     slider.vars.animationSpeed = animationSpeed;
 });
 
 
-/* Photos Display - Allow swipe while retaining zoom */
+/* Slider Display - Hide slider with either ESC or click outside the image */
+
+document.addEventListener("keydown", function(e) {
+    if (e.keyCode == 27) {
+        overlaySlider.classList.remove("revealed");
+    }
+});
+
+overlaySlider.addEventListener("click", function() {
+    overlaySlider.classList.remove("revealed");
+    if (isTouchDevice()) { window.location.hash = ""; }
+});
+for (var i=0; i<photos.length; i++) {
+    photos[i].addEventListener("click", function(e) {
+        e.stopPropagation();
+    });
+}
+
+
+/* Slider Display - On mobile, hide slider by hitting 'return' */
+
+if (isTouchDevice()) {
+    window.onhashchange = function() {
+        if (window.location.hash == "") {
+            overlaySlider.classList.remove("revealed");
+        }
+    }
+}
+
+
+/* Slider Navigation - Update slides according to click or keyboard arrows */
+
+/* Chrome stays focused on the link after a click, which provokes autoslide.
+ * That's why we use manual control for this action. */
+
+$(".flex-nav-prev").on("click", function() {
+    $("#gallery-slider").flexslider("prev");
+    loadPhotoPPrev();
+    return false;
+});
+$(".flex-nav-next").on("click", function() {
+    $("#gallery-slider").flexslider("next");
+    loadPhotoNNext();
+    return false;
+});
+
+document.addEventListener("keydown", function(e) {
+    if (e.keyCode == 37) { loadPhotoPPrev(); }
+    else if (e.keyCode == 39) { loadPhotoNNext(); }
+});
+
+
+/* Slider Navigation - On mobile, allow swipe while retaining zoom */
 
 if (isTouchDevice()) {
     var swipeXStart = swipeXEnd = 0;
@@ -98,8 +184,13 @@ if (isTouchDevice()) {
             if ((Math.abs(swipeXEnd - swipeXStart) > swipeXDelta) &&
                 (swipeTEnd > swipeTStart) &&
                 (Math.abs(swipeXEnd - swipeXStart) / (swipeTEnd - swipeTStart) > swipeXVelocity)) {
-                if (swipeXEnd > swipeXStart) { $("#gallery-slider").flexslider("prev"); }
-                else { $("#gallery-slider").flexslider("next"); }
+                if (swipeXEnd > swipeXStart) {
+                    $("#gallery-slider").flexslider("prev");
+                    loadPhotoPPrev();
+                } else {
+                    $("#gallery-slider").flexslider("next");
+                    loadPhotoNNext();
+                }
             }
             swipeXStart = swipeXEnd = 0;
         }
@@ -107,47 +198,7 @@ if (isTouchDevice()) {
 }
 
 
-/* Photos Display - Hide slider with either ESC or click outside the image */
-
-document.addEventListener("keydown", function (e) {
-    if (e.keyCode == 27) {
-        overlaySlider.classList.remove("revealed");
-    }
-});
-
-overlaySlider.addEventListener("click", function() {
-    overlaySlider.classList.remove("revealed");
-    if (isTouchDevice()) { window.location.hash = ""; }
-});
-for (var i=0; i<photos.length; i++) {
-    photos[i].addEventListener("click", function(e) {
-        e.stopPropagation();
-    });
-}
-
-
-/* On mobile devices, hit 'return' to hide the slider */
-
-function hideSlider() {
-    if (window.location.hash == "") {
-        overlaySlider.classList.remove("revealed");
-    }
-}
-if (isTouchDevice()) { window.onhashchange = hideSlider; }
-
-
-/* Chrome stays focused on the link after a click, which provokes autoslide.
- * That's why we use manual control for this action. */
-
-$(".flex-nav-prev").on("click", function() {
-    $("#gallery-slider").flexslider("prev");
-    return false;
-});
-$(".flex-nav-next").on("click", function() {
-    $("#gallery-slider").flexslider("next");
-    return false;
-});
-
+/* Slide Sizing - Compute slide sizes by comparing client & photo sizes */
 
 /* We need to set the height for the img container explicitly.
  * Indeed we cannot rely on max-width or object-fit tools, because we want the image

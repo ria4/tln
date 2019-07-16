@@ -44,7 +44,9 @@
             <div class="slide">
                 <div class="slide-img">
                     {% if gallery_custom.gallery.title == "test" %}
-                    <img src="{{ photo.custom.get_vhigh_display_placeholder_url }}" alt="" slug="{{ photo.slug }}">
+                    <img src="{{ photo.custom.get_vhigh_display_placeholder_url }}"
+                         data-src="{{ photo.get_vhigh_display_url }}" alt="" slug="{{ photo.slug }}">
+                    <noscript><img src="{{ photo.get_vhigh_display_url }}" alt="" slug="{{ photo.slug }}"></noscript>
                     {% else %}
                     <img src="{{ photo.get_vhigh_display_url }}" alt="" slug="{{ photo.slug }}">
                     {% endif %}
