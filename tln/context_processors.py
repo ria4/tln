@@ -10,4 +10,8 @@ def login_form(req):
     return {"login_form": f}
 
 def android(req):
-    return {"android": "android" in req.META["HTTP_USER_AGENT"].lower()}
+    user_agent = req.META.get("HTTP_USER_AGENT")
+    if user_agent:
+        return {"android": "android" in user_agent.lower()}
+    else:
+        return {"android": False}
