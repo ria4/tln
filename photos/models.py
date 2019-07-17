@@ -12,6 +12,8 @@ from photologue.models import Gallery, Photo, PhotoSizeCache
 
 logger = logging.getLogger(__name__)
 
+ET.register_namespace('', 'http://www.w3.org/2000/svg')
+
 size_method_map_custom = {}
 
 
@@ -37,8 +39,8 @@ class PhotoCustom(models.Model):
                                  on_delete=models.CASCADE)
     placeholder_width = models.IntegerField(default=0)
     placeholder_primitive_mode = models.IntegerField(default=1)
-    placeholder_primitive_number = models.IntegerField(default=80)
-    placeholder_blur = models.IntegerField(default=3)
+    placeholder_primitive_number = models.IntegerField(default=120)
+    placeholder_blur = models.IntegerField(default=1)
 
     class Meta:
         verbose_name = u'Photo Custom'
@@ -125,7 +127,7 @@ class PhotoCustom(models.Model):
                     self.placeholder_primitive_number,
                     self.placeholder_blur)
         try:
-            subprocess.run(cmd.split(), timeout=60, check=True)
+            subprocess.run(cmd.split(), timeout=180, check=True)
         except subprocess.CalledProcessError:
             logger.error('Creating a placeholder for %s returned a non-zero exit status!' % i_path)
         except subprocess.TimeoutExpired:
