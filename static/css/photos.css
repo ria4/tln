@@ -109,8 +109,10 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column; }
-#gallery-slider .slides li .slide .slide-img { width: 100%; }
+#gallery-slider .slides li .slide .slide-img { position: relative; width: 100%; }
 #gallery-slider .slides li .slide .slide-img img { width: 100%; display: block; }
+#gallery-slider .slides li .slide .slide-img img:first-child { position: relative; }
+#gallery-slider .slides li .slide .slide-img img:not(:first-child) { position: absolute; top: 0; left: 0; }
 #gallery-slider .slides li .slide .slide-info {
     padding: 0 2px;
     width: 100%;
