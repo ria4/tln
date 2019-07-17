@@ -25,31 +25,46 @@ var animationSpeed = 600;
 
 var overlaySlider = gallerySlider.parentNode;
 var photoLinks = document.getElementsByClassName("photo-link");
-var photos = gallerySlider.getElementsByTagName("img");
+var slides = gallerySlider.getElementsByClassName("slide");
+var photosHTMLCollection = gallerySlider.getElementsByTagName("img");
+var photos = Array.prototype.slice.call(photosHTMLCollection);
+var photosN = photos.length;
+
 
 function loadPhoto(idx) {
-    function loadPhotoIdx() {
-        photo = photos[idx];
-        if (photo.hasAttribute("data-src")) {
-            photo.setAttribute("src", photo.getAttribute("data-src"));
-            photo.removeAttribute("data-src");
+    function loadPhotoIdx(loadNeighbours) {
+        var placeholder = photos[idx];
+        if (placeholder.hasAttribute("data-src")) {
+            var photo = document.createElement("img");
+            photo.setAttribute("src", placeholder.getAttribute("data-src"));
+            photo.setAttribute("slug", placeholder.getAttribute("slug"));
+            photo.setAttribute("alt", placeholder.getAttribute(""));
+            photo.setAttribute("draggable", "false");
+            placeholder.insertAdjacentElement("afterend", photo);
+            photo.addEventListener("load", function() {
+                placeholder.remove();
+                photos[idx] = photo;
+                if (loadNeighbours) { loadPhotoNext(idx)(false); loadPhotoPrev(idx)(false); }
+            });
+        } else if (loadNeighbours) {
+            loadPhotoNext(idx)(false); loadPhotoPrev(idx)(false);
         }
     }
     return loadPhotoIdx;
 }
 
 Number.prototype.mod = function(n) { return ((this%n)+n)%n; };
-function loadPhotoPPrev() { var prevIdx = slider.currentSlide-2; loadPhoto(prevIdx.mod(photos.length))(); }
-function loadPhotoPrev() { var prevIdx = slider.currentSlide-1; loadPhoto(prevIdx.mod(photos.length))(); }
-function loadPhotoNext() { loadPhoto((slider.currentSlide+1) % photos.length)(); }
-function loadPhotoNNext() { loadPhoto((slider.currentSlide+2) % photos.length)(); }
-function loadPhotoPrevNext() { loadPhotoNext(); loadPhotoPrev(); }
+function loadPhotoPPrev(idx) { var pprevIdx = idx-2; return loadPhoto(pprevIdx.mod(photosN)); }
+function loadPhotoPrev(idx) { var prevIdx = idx-1; return loadPhoto(prevIdx.mod(photosN)); }
+function loadPhotoNext(idx) { return loadPhoto((idx+1) % photosN); }
+function loadPhotoNNext(idx) { return loadPhoto((idx+2) % photosN); }
+function loadPhotoPrevNext(idx) { return function() { loadPhotoNext(idx)(); loadPhotoPrev(idx)(); }}
 
 
 /* Slider Display - Launch slider from clicked or anchored image */
 
 var photoSlugs = [];
-for (var i=0; i<photos.length; i++) {
+for (var i=0; i<photosN; i++) {
     photoSlugs.push(photos[i].getAttribute("slug"));
 }
 
@@ -59,12 +74,7 @@ function addSliderStartListener(item) {
         slider.vars.animationSpeed = 0;
 
         var photoIdx = parseInt(item.getAttribute("data-onclick"), 10);
-        if (photoIdx == 0) {
-            loadPhotoPrevNext();
-        } else {
-            photos[photoIdx].onload = loadPhotoPrevNext;
-            loadPhoto(photoIdx)();
-        }
+        loadPhoto(photoIdx)(true);
 
         slider.flexAnimate(photoIdx);
         slider.vars.animationSpeed = animationSpeed;
@@ -92,12 +102,11 @@ $(document).ready(function() {
     photoIdx = photoSlugs.indexOf(hash);
     if (photoIdx != -1) {
         slider.vars.animationSpeed = 0;
-        photos[photoIdx].onload = loadPhotoPrevNext;
-        loadPhoto(photoIdx)();
+        loadPhoto(photoIdx)(true);
         slider.flexAnimate(photoIdx);
         overlaySlider.classList.add("revealed");
     } else {
-        if (photos.length > 0) { loadPhoto(0)(); }
+        if (photosN > 0) { loadPhoto(0)(false); }
     }
 
     slider.vars.animationSpeed = animationSpeed;
@@ -116,8 +125,8 @@ overlaySlider.addEventListener("click", function() {
     overlaySlider.classList.remove("revealed");
     if (isTouchDevice()) { window.location.hash = ""; }
 });
-for (var i=0; i<photos.length; i++) {
-    photos[i].addEventListener("click", function(e) {
+for (var i=0; i<slides.length; i++) {
+    slides[i].addEventListener("click", function(e) {
         e.stopPropagation();
     });
 }
@@ -141,18 +150,18 @@ if (isTouchDevice()) {
 
 $(".flex-nav-prev").on("click", function() {
     $("#gallery-slider").flexslider("prev");
-    loadPhotoPPrev();
+    loadPhotoPPrev(slider.currentSlide)(false);
     return false;
 });
 $(".flex-nav-next").on("click", function() {
     $("#gallery-slider").flexslider("next");
-    loadPhotoNNext();
+    loadPhotoNNext(slider.currentSlide)(false);
     return false;
 });
 
 document.addEventListener("keydown", function(e) {
-    if (e.keyCode == 37) { loadPhotoPPrev(); }
-    else if (e.keyCode == 39) { loadPhotoNNext(); }
+    if (e.keyCode == 37) { loadPhotoPPrev(slider.currentSlide)(false); }
+    else if (e.keyCode == 39) { loadPhotoNNext(slider.currentSlide)(false); }
 });
 
 
@@ -186,10 +195,10 @@ if (isTouchDevice()) {
                 (Math.abs(swipeXEnd - swipeXStart) / (swipeTEnd - swipeTStart) > swipeXVelocity)) {
                 if (swipeXEnd > swipeXStart) {
                     $("#gallery-slider").flexslider("prev");
-                    loadPhotoPPrev();
+                    loadPhotoPPrev(slider.currentSlide)();
                 } else {
                     $("#gallery-slider").flexslider("next");
-                    loadPhotoNNext();
+                    loadPhotoNNext(slider.currentSlide)();
                 }
             }
             swipeXStart = swipeXEnd = 0;
@@ -210,13 +219,6 @@ var slidesInfoHeight = document.getElementsByClassName("slide-info")[0].clientHe
 var maxSlideHeight = gallerySlider.clientHeight - slidesInfoHeight;
 var ratioRef = 1.0 * maxSlideWidth / maxSlideHeight;
 
-/* this is supposed to be fired before the listeners from addPhotoResizeListener */
-window.addEventListener("resize", function() {
-    maxSlideWidth = parseInt(window.getComputedStyle(gallerySlider).width, 10);
-    maxSlideHeight = parseInt(window.getComputedStyle(gallerySlider).height, 10) - slidesInfoHeight;
-    ratioRef = 1.0 * maxSlideWidth / maxSlideHeight;
-});
-
 function setPhotoSize(photo) {
     var ratioReal = 1.0 * photo.naturalWidth / photo.naturalHeight;
     var slideWidth;
@@ -228,18 +230,21 @@ function setPhotoSize(photo) {
     photo.closest(".slide").style.width = slideWidth + "px";
 }
 
-function addPhotoResizeListener(photo) {
-    window.addEventListener("resize", function() {
-        setPhotoSize(photo);
-    });
-}
-
-for (var i=0; i<photos.length; i++) {
-    var photo = photos[i];
-    photo.onload = function() { setPhotoSize(this); }
-    if ((photo.complete && (photo.naturalWidth !== 0)) || isIE10) {
-        /* the image has already been loaded so onload event won't be fired */
-        setPhotoSize(photo);
+/* this is supposed to be fired before the listeners from addPhotoResizeListener */
+window.addEventListener("resize", function() {
+    maxSlideWidth = parseInt(window.getComputedStyle(gallerySlider).width, 10);
+    maxSlideHeight = parseInt(window.getComputedStyle(gallerySlider).height, 10) - slidesInfoHeight;
+    ratioRef = 1.0 * maxSlideWidth / maxSlideHeight;
+    for (var i=0; i<photosN; i++) {
+        setPhotoSize(photos[i]);
     }
-    addPhotoResizeListener(photo);
+});
+
+for (var i=0; i<photosN; i++) {
+    var placeholder = photos[i];
+    placeholder.addEventListener("load", function() { setPhotoSize(this); });
+    if ((placeholder.complete && (placeholder.naturalWidth !== 0)) || isIE10) {
+        /* the image has already been loaded so onload event won't be fired */
+        setPhotoSize(placeholder);
+    }
 }
