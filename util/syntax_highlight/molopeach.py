@@ -4,29 +4,29 @@ from pygments.token import Token, Comment, Name, Keyword, Generic, Number, Opera
 
 class MolopeachStyle(Style):
 
-    background_color = '#101010'
+    background_color = '#080808'
     styles = {
-        Token:              '#d0d0d0 bg:#101010',
-        String:             '#960050',
-        Comment:            '#3636b0',
+        Token:              '#fafafa bg:#080808',
+        String:             '#eb007d',
+        Comment:            '#6a6ad1',
 
-        Name.Builtin:       '#3579a8',
-        Name.Constant:      '#960050',
-        Name.Entity:        '#7e40a5',
-        Name.Tag:           '#c47f2c',
-        #Name.Variable:      '#66aa11',
+        Name.Builtin:       '#64a3ce',
+        Name.Constant:      '#eb007d',
+        Name.Entity:        '#a772c8',
+        Name.Tag:           '#ff9a00',
+        #Name.Variable:      '#93e927',
 
-        Keyword:            '#c47f2c',
-        Keyword.Constant:   '#3579a8',
-        Keyword.Declaration:'#66aa11',
-        #Keyword.Type:       '#66aa11',
+        Keyword:            '#ff9a00',
+        Keyword.Constant:   '#64a3ce',
+        Keyword.Declaration:'#93e927',
+        #Keyword.Type:       '#93e927',
 
-        Comment.Preproc:    '#7e40a5',
-        Generic.Error:      '#9999aa bg:#960050',
-        Generic.Inserted:   'bg:#3636b0',
-        Generic.Traceback:  '#9999aa bg:#960050',
-        Generic.Deleted:    '#3636b0 bg:#3579a8',
-        Generic.Subheading: '#7e40a5',
-        Generic.Heading:    '#7e40a5',
-        Generic.Output:     '#3636b0',
+        Comment.Preproc:    '#a772c8',
+        Generic.Error:      '#dadae0 bg:#eb007d',
+        Generic.Inserted:   'bg:#6a6ad1',
+        Generic.Traceback:  '#dadae0 bg:#eb007d',
+        Generic.Deleted:    '#6a6ad1 bg:#64a3ce',
+        Generic.Subheading: '#a772c8',
+        Generic.Heading:    '#a772c8',
+        Generic.Output:     '#6a6ad1',
     }
