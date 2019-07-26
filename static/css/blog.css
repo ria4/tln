@@ -65,6 +65,8 @@ body #sidebar {
 #widget-archives li { text-indent: -4px; }
 #widget-archives li li li { vertical-align: middle; text-indent: -15px; }
 #widget-archives li li li:before { font-family: Arial; font-size: 17px; content: "●"; }
+.android #widget-archives li li li:before { font-size: 9px; vertical-align: middle; }
+.android.webkit #widget-archives li li li:before { font-size: 17px; vertical-align: unset; }
 #widget-archives a.expanded+a+ul { visibility: visible; height: auto; }
 #widget-archives a+a+ul { visibility: hidden; height: 0px; }
 #widget-archives a.collapsed+a+ul a.expanded+a+ul { visibility: hidden; height: 0px; }
