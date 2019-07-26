@@ -15,3 +15,10 @@ def android(req):
         return {"android": "android" in user_agent.lower()}
     else:
         return {"android": False}
+
+def webkit(req):
+    user_agent = req.META.get("HTTP_USER_AGENT")
+    if user_agent:
+        return {"webkit": "webkit" in user_agent.lower()}
+    else:
+        return {"webkit": False}

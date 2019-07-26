@@ -753,6 +753,8 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     padding: 1px 0 1px 4px;
     width: 100%;
     transition: border 0.2s ease; }
+.form_inputs input[type="number"] { width: 72%; }
+.webkit .form_inputs input[type="number"] { width: 100%; }
 .form_inputs textarea {
     font-family: Alegreya, Palatino, serif;
     resize: vertical; }
@@ -790,7 +792,8 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
    ========================================================================== */
 
 #login_form .form_error { margin: 14px 0 18px 6px; }
-#login_form p { width: 351px; }
+#login_form p { width: 368px; }
+.webkit #login_form p { width: 351px; }
 #login_form p label { width: 190px; }
 #login_form .form_buttons .filler { width: 42px; }
 @media (max-width: 400px) {

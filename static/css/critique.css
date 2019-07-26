@@ -776,7 +776,8 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 /* Form Seance
    ========================================================================== */
 
-#seance_form_empty p { width: 330px; }
+#seance_form_empty p { width: 353px; }
+.webkit #seance_form_empty p { width: 330px; }
 #seance_form_empty p label { width: 151px; }
 #seance_form_empty p label[for="id_empty_seance_date"],
 #seance_form_empty p label[for="id_empty_seance_no_month"] { width: 102px; }
