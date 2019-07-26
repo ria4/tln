@@ -93,6 +93,7 @@ TEMPLATES = [
                 'photos.context_processors.gallery_list',
                 'tln.context_processors.login_form',
                 'tln.context_processors.android',
+                'tln.context_processors.webkit',
                 'zinnia.context_processors.version',
             ],
         },

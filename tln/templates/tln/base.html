@@ -3,7 +3,7 @@
      le saviez-vous ? l'insigne 'tln' fait référence à l'ancien nom du site : trompe-la-nuit.ink -->
 
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="{{ LANGUAGE_CODE }}" {% if webkit or android %}class="{% if webkit %}webkit{% endif %} {% if android %}android{% endif %}"{% endif %}>
 
   <head>
     <meta charset="utf-8" />
