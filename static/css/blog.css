@@ -314,7 +314,13 @@ div.molopeach {
     background: #080808;
     color: #fafafa;
     font-size: 12px;
+    overflow-x: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: #00366a #c4c4c4;
 }
+div.molopeach::-webkit-scrollbar { height: 6px; background-color: #c4c4c4; }
+div.molopeach::-webkit-scrollbar-thumb { background: #00366a; }
+
 div.molopeach .hll { background-color: #ffffcc }
 div.molopeach .c { color: #6a6ad1; background-color: #080808 } /* Comment */
 div.molopeach .err { color: #fafafa; background-color: #080808 } /* Error */
