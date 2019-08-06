@@ -797,6 +797,6 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 #login_form p label { width: 190px; }
 #login_form .form_buttons .filler { width: 42px; }
 @media (max-width: 400px) {
-#login_form p { width: 265px; }
+#login_form p, .webkit #login_form p { width: 265px; }
 #login_form p label { width: 142px; }
 #login_form .form_error { margin: 9px 0 12px 3px; }}
