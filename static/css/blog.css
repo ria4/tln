@@ -72,10 +72,10 @@ body #sidebar {
 #widget-archives a.collapsed+a+ul a.expanded+a+ul { visibility: hidden; height: 0px; }
 #widget-archives a+a+ul a.expanded+a+ul { visibility: visible; height: auto; }
 #widget-archives .toggle { color: black !important; }
-#widget-archives .toggle .toggle-in:after { font-family: Arial; content: "►"; }
-.android #widget-archives .toggle .toggle-in:after { font-size: 14px; content: "▶"; }
-#widget-archives .toggle.expanded .toggle-in:after { font-family: Arial; content: "▼"; }
-.android #widget-archives .toggle.expanded .toggle-in:after { font-size: 14px; }
+#widget-archives .toggle .toggle-in::after { font-family: Arial; content: "►"; }
+.android #widget-archives .toggle .toggle-in::after { font-size: 14px; content: "▶"; }
+#widget-archives .toggle.expanded .toggle-in::after { font-family: Arial; content: "▼"; }
+.android #widget-archives .toggle.expanded .toggle-in::after { font-size: 14px; }
 
 
 /* Entry Previews
@@ -310,16 +310,27 @@ code.molopeach {
 div.molopeach {
     border: 1px solid #a57100;
     border-radius: 4px;
-    padding: 12px 9px 11px 9px;
+    padding: 12px 9px 10px 9px;
     background: #080808;
     color: #fafafa;
     font-size: 12px;
     overflow-x: auto !important;
     scrollbar-width: thin;
     scrollbar-color: #00366a #c4c4c4;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
 }
 div.molopeach::-webkit-scrollbar { height: 6px; background-color: #c4c4c4; }
 div.molopeach::-webkit-scrollbar-thumb { background: #00366a; }
+div.molopeach pre::after {
+    display: block;
+    position: relative;
+    left: 100%;
+    height: 1px;
+    width: 11px;
+    content: "";
+}
 
 div.molopeach .hll { background-color: #ffffcc }
 div.molopeach .c { color: #6a6ad1; background-color: #080808 } /* Comment */
