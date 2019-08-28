@@ -100,7 +100,7 @@ class PhotoCustom(models.Model):
             self.photo.create_size(photosize)
             return
 
-        if self.photo.size_exists(photosize):
+        if self.size_exists(photosize):
             return
 
         namesplit = photosize.name.split('_')
