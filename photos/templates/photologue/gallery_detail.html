@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load tln_extras %}
+{% load photos_extras %}
 
 {% block title %}{{ gallery_custom.gallery.title }}{% endblock %}
 {% block og-title %}{{ gallery_custom.gallery.title }}{% endblock %}
@@ -22,7 +23,7 @@
 {% for photo in gallery_custom.gallery.public %}
     <div class="photo-display">
         <a class="photo-link" href="#" data-onclick={{ forloop.counter|add:"-1" }}>
-            <img src="{{ photo.get_display_url }}" class="thumbnail" alt="{{ photo.title }}">
+            <img src="{{ photo.get_display_url }}" class="thumbnail" alt="{{ photo.title|stripgallery }}">
         </a>
     </div>
 {% endfor %}
@@ -48,7 +49,7 @@
                     <noscript><img src="{{ photo.get_vhigh_display_url }}" alt="" slug="{{ photo.slug }}"></noscript>
                 </div>
                 <div class="slide-info">
-                    <span class="slide-title">{% if "***" not in photo.title %}{{ photo.title }}{% endif %}</span>
+                    <span class="slide-title">{% if "___" not in photo.title %}{{ photo.title|stripgallery }}{% endif %}</span>
                     <span class="slide-index">{{ forloop.counter }} / {{ gallery_custom.gallery.public|length }}</span>
                 </div>
             </div>
