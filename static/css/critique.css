@@ -449,10 +449,9 @@ _::-webkit-full-page-media, _:future, :root .critique-title { /* Safari 7.1+ */
     align-items: center; }
 .critique-perso .hentry {
     width: 100%;
-    padding-top: 4px;
-    padding-right: 4px;
-    padding-left: 6px;
+    padding: 4px 4px 0 6px;
     max-width: 760px; }
+@media (max-width: 700px) { .critique-perso .hentry { padding: 4px 23px 0 22.2px; } }
 .critique-perso .hentry .entry-footer {
     padding-top: 0;
     padding-right: 20px;

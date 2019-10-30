@@ -616,6 +616,7 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
    ========================================================================== */
 
 .entry-content { line-height: 1.35; }
+@media (max-width: 700px) { .entry-content { font-size: 19px; } }
 .entry .entry-content p { margin: 18px 0; }
 .entry-content ul { list-style: square; padding-left: 40px; }
 .entry-content li { list-style: square; }
@@ -646,6 +647,8 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     -ms-flex-align: center;
     align-items: center;
     white-space: nowrap; }
+@media (max-width: 700px) {
+.entry-footer { font-size: 19px; } }
 
 .entry-footer .entry-tags {
     font-size: 17px;
@@ -658,6 +661,8 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
     color: inherit;
     transition: color 0.1s ease-in-out; }
 #content-wrap .entry-footer .entry-tags a:hover { color: #f7a300; }
+@media (max-width: 700px) {
+.entry-footer .entry-tags { font-size: 16px; } }
 
 .entry-footer .entry-discussions {
     -ms-flex: 1;
