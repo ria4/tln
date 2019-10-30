@@ -148,10 +148,12 @@ _:-ms-fullscreen, :root #top-nav-v { min-height: 0; } } /* IE 11 */
 _:-ms-input-placeholder, :root #info { padding-top: 90px; padding-bottom: 50px; } /* IE 10 */
 _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
 @media (min-width: 1200px) { #info { margin-right: 1.8%; } }
+@media (max-width: 700px) { #info { font-size: 19px; } }
 #info .info-perso { max-width: 870px; }
 #info #info-en { margin-top: -18px; }
 #info .hseparator { margin: 54px -20px 55px -20px; }
 @media (max-width: 976px) { #info .hseparator { margin: 54px 6px 55px 6px; } }
+@media (max-width: 700px) { #info .hseparator { margin: 34px 80px 35px 80px; } }
 
 #info blockquote {
     float: right;
@@ -159,8 +161,11 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
     text-align: right;
     font-style: italic;
     line-height: 1.15; }
+@media (max-width: 700px) { #info blockquote { padding: 0 8px 0 36px; } }
 #info blockquote .quote-author { margin-top: -12px; font-size: 19px; }
+@media (max-width: 700px) { #info blockquote .quote-author { font-size: 18px; } }
 #info .info-perso { clear: right; text-align: justify; }
+@media (max-width: 700px) { #info .info-perso { padding: 0 17px 0 16.2px; } }
 #info #info-fr blockquote { max-width: 780px; }
 #info #info-en blockquote { max-width: 820px; }
 
