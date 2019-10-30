@@ -1,0 +1,888 @@
+
+Le Gone du Chaâba
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52a7')}, {$set: {film_id: doc._id.str}})})
+
+Harry Potter et le prisonnier d'Azkaban
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52b0')}, {$set: {film_id: doc._id.str}})})
+
+Les Choristes
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52b1')}, {$set: {film_id: doc._id.str}})})
+
+Star Wars: Episode III
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52a8')}, {$set: {film_id: doc._id.str}})})
+
+Corpse Bride
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52a9')}, {$set: {film_id: doc._id.str}})})
+
+The Number 23
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52bf')}, {$set: {film_id: doc._id.str}})})
+
+Grindhouse: Death Proof
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52c0')}, {$set: {film_id: doc._id.str}})})
+
+Le Premier jour du reste de ta vie
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52c5')}, {$set: {film_id: doc._id.str}})})
+
+Sweeny Todd
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52c1')}, {$set: {film_id: doc._id.str}})})
+
+Be Kind Rewind
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52c3')}, {$set: {film_id: doc._id.str}})})
+
+Hellboy II: The Golden Army
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52c8')}, {$set: {film_id: doc._id.str}})})
+
+Watchmen
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52b5')}, {$set: {film_id: doc._id.str}})})
+
+Los Abrazos Rotos
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52b7')}, {$set: {film_id: doc._id.str}})})
+
+Drag Me to Hell
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52b8')}, {$set: {film_id: doc._id.str}})})
+
+Up
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52b9')}, {$set: {film_id: doc._id.str}})})
+
+Tron: Legacy
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52ca')}, {$set: {film_id: doc._id.str}})})
+
+Harry Potter and the Deathly Hallows Pt.2
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52cf')}, {$set: {film_id: doc._id.str}})})
+
+The Adventures of Tintin Pt.1
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52d4')}, {$set: {film_id: doc._id.str}})})
+
+Sherlock Holmes: A Game of Shadows
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a525e')}, {$set: {film_id: doc._id.str}})})
+
+The Girl with the Dragon Tatoo
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a525f')}, {$set: {film_id: doc._id.str}})})
+
+Hugo
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5260')}, {$set: {film_id: doc._id.str}})})
+
+Tucker & Dale vs. Evil
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5261')}, {$set: {film_id: doc._id.str}})})
+
+Tinker, Tailor, Soldier, Spy
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5262')}, {$set: {film_id: doc._id.str}})})
+
+Star Wars: Episode I
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5263')}, {$set: {film_id: doc._id.str}})})
+
+War Horse
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5266')}, {$set: {film_id: doc._id.str}})})
+
+I Wish
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a526b')}, {$set: {film_id: doc._id.str}})})
+
+The Avengers
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a526c')}, {$set: {film_id: doc._id.str}})})
+
+The Avengers
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a526d')}, {$set: {film_id: doc._id.str}})})
+
+The Cabin in the Woods
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a526e')}, {$set: {film_id: doc._id.str}})})
+
+The Best Exotic Marigold Hotel
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5271')}, {$set: {film_id: doc._id.str}})})
+
+The Cabin in the Woods
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5274')}, {$set: {film_id: doc._id.str}})})
+
+On the Road
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5275')}, {$set: {film_id: doc._id.str}})})
+
+Weekend
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a527b')}, {$set: {film_id: doc._id.str}})})
+
+Faust
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a527e')}, {$set: {film_id: doc._id.str}})})
+
+Adieu Berthe
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a527f')}, {$set: {film_id: doc._id.str}})})
+
+The Expendables 2
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5284')}, {$set: {film_id: doc._id.str}})})
+
+Reality
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a528b')}, {$set: {film_id: doc._id.str}})})
+
+The Bourne Legacy
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a528d')}, {$set: {film_id: doc._id.str}})})
+
+Lawless
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5292')}, {$set: {film_id: doc._id.str}})})
+
+The Hobbit Pt.1
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a529f')}, {$set: {film_id: doc._id.str}})})
+
+Beasts of the Southern Wild
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52a1')}, {$set: {film_id: doc._id.str}})})
+
+La Chispa de la vida
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52a4')}, {$set: {film_id: doc._id.str}})})
+
+Tabou
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52a6')}, {$set: {film_id: doc._id.str}})})
+
+The Hobbit Pt.1
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5211')}, {$set: {film_id: doc._id.str}})})
+
+Searching for Sugar Man
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5212')}, {$set: {film_id: doc._id.str}})})
+
+Heaven's Gate
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5219')}, {$set: {film_id: doc._id.str}})})
+
+To the Wonder
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a521b')}, {$set: {film_id: doc._id.str}})})
+
+Mud
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5220')}, {$set: {film_id: doc._id.str}})})
+
+The Great Gatsby
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5222')}, {$set: {film_id: doc._id.str}})})
+
+The World's End
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5232')}, {$set: {film_id: doc._id.str}})})
+
+Jimmy P.
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5233')}, {$set: {film_id: doc._id.str}})})
+
+The Butler
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5238')}, {$set: {film_id: doc._id.str}})})
+
+Behind the Candelabra
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a523d')}, {$set: {film_id: doc._id.str}})})
+
+Thor: The Dark World
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5241')}, {$set: {film_id: doc._id.str}})})
+
+The Young and Prodigious T.S. Spivet
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5244')}, {$set: {film_id: doc._id.str}})})
+
+Heimat : Chronique d'un rêve
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5245')}, {$set: {film_id: doc._id.str}})})
+
+Heimat : L'Exode
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5246')}, {$set: {film_id: doc._id.str}})})
+
+Snowpiercer
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5247')}, {$set: {film_id: doc._id.str}})})
+
+Les Garçons et Guillaume...
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a524a')}, {$set: {film_id: doc._id.str}})})
+
+Dario Argento's Dracula
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a524c')}, {$set: {film_id: doc._id.str}})})
+
+Frozen
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a524f')}, {$set: {film_id: doc._id.str}})})
+
+Captain Phillips
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5250')}, {$set: {film_id: doc._id.str}})})
+
+The Hobbit Pt.2
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5252')}, {$set: {film_id: doc._id.str}})})
+
+Court-métrages expérimentaux
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5255')}, {$set: {film_id: doc._id.str}})})
+
+The Wolf of Wall Street
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5257')}, {$set: {film_id: doc._id.str}})})
+
+Le vent se lève
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52da')}, {$set: {film_id: doc._id.str}})})
+
+Much Ado About Nothing
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52de')}, {$set: {film_id: doc._id.str}})})
+
+American Hustle
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52e2')}, {$set: {film_id: doc._id.str}})})
+
+M
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52e6')}, {$set: {film_id: doc._id.str}})})
+
+Captain America: The Winter Soldier
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52ee')}, {$set: {film_id: doc._id.str}})})
+
+The General
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a52f3')}, {$set: {film_id: doc._id.str}})})
+
+Finding Vivian Maier
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5302')}, {$set: {film_id: doc._id.str}})})
+
+How to Train Your Dragon 2
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950312a693063e97a5306')}, {$set: {film_id: doc._id.str}})})
+
+The Zero Theorem
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5308')}, {$set: {film_id: doc._id.str}})})
+
+The Grapes of Wrath
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5316')}, {$set: {film_id: doc._id.str}})})
+
+Mange tes morts
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a531b')}, {$set: {film_id: doc._id.str}})})
+
+Sin City: A Dame to Kill For
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a531e')}, {$set: {film_id: doc._id.str}})})
+
+Kind Hearts and Coronets
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5329')}, {$set: {film_id: doc._id.str}})})
+
+Teenage Mutant Ninja Turtles
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a532a')}, {$set: {film_id: doc._id.str}})})
+
+Hunger Games : La Révolte 1
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5330')}, {$set: {film_id: doc._id.str}})})
+
+Nightcrawler
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5332')}, {$set: {film_id: doc._id.str}})})
+
+La Soufrière, Gasherbrum
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a533a')}, {$set: {film_id: doc._id.str}})})
+
+The Hobbit Pt.3
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a533c')}, {$set: {film_id: doc._id.str}})})
+
+Charlie's Country
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a533e')}, {$set: {film_id: doc._id.str}})})
+
+A Hard Day's Night
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5341')}, {$set: {film_id: doc._id.str}})})
+
+It's a Wonderful Life
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5342')}, {$set: {film_id: doc._id.str}})})
+
+Singin' in the Rain
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5344')}, {$set: {film_id: doc._id.str}})})
+
+20,000 Days on Earth
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5345')}, {$set: {film_id: doc._id.str}})})
+
+Invasion of the Body Snatchers
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a534e')}, {$set: {film_id: doc._id.str}})})
+
+Wild at Heart
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a534f')}, {$set: {film_id: doc._id.str}})})
+
+Goodfellas
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5350')}, {$set: {film_id: doc._id.str}})})
+
+The Straight Story
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5353')}, {$set: {film_id: doc._id.str}})})
+
+Jupiter Ascending
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5358')}, {$set: {film_id: doc._id.str}})})
+
+It Happened One Night
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a535c')}, {$set: {film_id: doc._id.str}})})
+
+2014 Cannes Lions Festival
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5360')}, {$set: {film_id: doc._id.str}})})
+
+Spartacus & Cassandra
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5363')}, {$set: {film_id: doc._id.str}})})
+
+To Be or Not to Be
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5364')}, {$set: {film_id: doc._id.str}})})
+
+To Die For
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5365')}, {$set: {film_id: doc._id.str}})})
+
+The Misfits
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a536c')}, {$set: {film_id: doc._id.str}})})
+
+Faust
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a536d')}, {$set: {film_id: doc._id.str}})})
+
+Blackhat
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a536f')}, {$set: {film_id: doc._id.str}})})
+
+Le Parrain, 2e partie
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5374')}, {$set: {film_id: doc._id.str}})})
+
+Pulp, a film about life, death & supermarkets
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5375')}, {$set: {film_id: doc._id.str}})})
+
+The Man Who Fell to Earth
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5379')}, {$set: {film_id: doc._id.str}})})
+
+The Piano
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a537c')}, {$set: {film_id: doc._id.str}})})
+
+Shaun the Sheep
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a537e')}, {$set: {film_id: doc._id.str}})})
+
+Avengers: Age of Ultron
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5381')}, {$set: {film_id: doc._id.str}})})
+
+Le Parrain, 3e partie
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5382')}, {$set: {film_id: doc._id.str}})})
+
+Sayat Nova
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5383')}, {$set: {film_id: doc._id.str}})})
+
+Thief
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5384')}, {$set: {film_id: doc._id.str}})})
+
+Mountains May Depart
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a538c')}, {$set: {film_id: doc._id.str}})})
+
+Depardieu, grandeur nature
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a538e')}, {$set: {film_id: doc._id.str}})})
+
+Court-métrages en compétition
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5392')}, {$set: {film_id: doc._id.str}})})
+
+Tomorrowland
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a539d')}, {$set: {film_id: doc._id.str}})})
+
+The Lady from Shanghai
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a539f')}, {$set: {film_id: doc._id.str}})})
+
+Les mille et une nuits - L'Inquiet
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53a1')}, {$set: {film_id: doc._id.str}})})
+
+Inside Out
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53a2')}, {$set: {film_id: doc._id.str}})})
+
+The Invisible Man
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53a4')}, {$set: {film_id: doc._id.str}})})
+
+The Night of the Hunter
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53a8')}, {$set: {film_id: doc._id.str}})})
+
+Sorcerer
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53a9')}, {$set: {film_id: doc._id.str}})})
+
+Week-end
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53aa')}, {$set: {film_id: doc._id.str}})})
+
+Psycho
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ab')}, {$set: {film_id: doc._id.str}})})
+
+Baleines
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ad')}, {$set: {film_id: doc._id.str}})})
+
+Breakfast at Tiffany's
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53af')}, {$set: {film_id: doc._id.str}})})
+
+The Third Man
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53b1')}, {$set: {film_id: doc._id.str}})})
+
+Les mille et une nuits - Le Désolé
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53b3')}, {$set: {film_id: doc._id.str}})})
+
+Touch of Evil
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53b4')}, {$set: {film_id: doc._id.str}})})
+
+Dangerous Liaisons
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53b8')}, {$set: {film_id: doc._id.str}})})
+
+Cruising
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53b9')}, {$set: {film_id: doc._id.str}})})
+
+Idioterne
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ba')}, {$set: {film_id: doc._id.str}})})
+
+MI: Rogue Nation
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53bb')}, {$set: {film_id: doc._id.str}})})
+
+The French Connection
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53be')}, {$set: {film_id: doc._id.str}})})
+
+Les mille et une nuits - L'Enchanté
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53bf')}, {$set: {film_id: doc._id.str}})})
+
+Julius Caesar
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53c2')}, {$set: {film_id: doc._id.str}})})
+
+The Wild Bunch
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53c7')}, {$set: {film_id: doc._id.str}})})
+
+To Live and Die in L.A.
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53cf')}, {$set: {film_id: doc._id.str}})})
+
+Midnight Cowboy
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53d2')}, {$set: {film_id: doc._id.str}})})
+
+Deliverance
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53d5')}, {$set: {film_id: doc._id.str}})})
+
+Straw Dogs
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53d6')}, {$set: {film_id: doc._id.str}})})
+
+The Apartment
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53d7')}, {$set: {film_id: doc._id.str}})})
+
+Le Gosse des rues
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53d8')}, {$set: {film_id: doc._id.str}})})
+
+The Getaway
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53db')}, {$set: {film_id: doc._id.str}})})
+
+Double Indemnity
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53df')}, {$set: {film_id: doc._id.str}})})
+
+Alice Doesn't Live Here Anymore
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53e1')}, {$set: {film_id: doc._id.str}})})
+
+Ride the High Country
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53e9')}, {$set: {film_id: doc._id.str}})})
+
+The Departed
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ea')}, {$set: {film_id: doc._id.str}})})
+
+Spectre
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ec')}, {$set: {film_id: doc._id.str}})})
+
+Bring Me the Head of Alfredo Garcia
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ed')}, {$set: {film_id: doc._id.str}})})
+
+Une histoire d'amour suédoise
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53ee')}, {$set: {film_id: doc._id.str}})})
+
+La stanza del figlio
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53f7')}, {$set: {film_id: doc._id.str}})})
+
+Down by Law
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53fa')}, {$set: {film_id: doc._id.str}})})
+
+Star Wars VII
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a53fe')}, {$set: {film_id: doc._id.str}})})
+
+Cpt Thomas Sankara
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5400')}, {$set: {film_id: doc._id.str}})})
+
+The Hateful Eight
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5403')}, {$set: {film_id: doc._id.str}})})
+
+Anatomy of a Murder
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5404')}, {$set: {film_id: doc._id.str}})})
+
+Toto et ses sœurs
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5406')}, {$set: {film_id: doc._id.str}})})
+
+Brief Encounter
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a540b')}, {$set: {film_id: doc._id.str}})})
+
+The Day He Arrives
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a540d')}, {$set: {film_id: doc._id.str}})})
+
+Escape From New York
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5412')}, {$set: {film_id: doc._id.str}})})
+
+45 Years
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5413')}, {$set: {film_id: doc._id.str}})})
+
+The Fog
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5415')}, {$set: {film_id: doc._id.str}})})
+
+Prince of Darkness
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5417')}, {$set: {film_id: doc._id.str}})})
+
+Badlands
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a541b')}, {$set: {film_id: doc._id.str}})})
+
+My Life Directed by NWR
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a541d')}, {$set: {film_id: doc._id.str}})})
+
+The Party
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a541f')}, {$set: {film_id: doc._id.str}})})
+
+Eva no duerme
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5424')}, {$set: {film_id: doc._id.str}})})
+
+Yōjinbō
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5425')}, {$set: {film_id: doc._id.str}})})
+
+Batman
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5427')}, {$set: {film_id: doc._id.str}})})
+
+We Own the Night
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a542f')}, {$set: {film_id: doc._id.str}})})
+
+Carlito's Way
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5433')}, {$set: {film_id: doc._id.str}})})
+
+Rohmer - Préludes
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5434')}, {$set: {film_id: doc._id.str}})})
+
+All About Eve
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5439')}, {$set: {film_id: doc._id.str}})})
+
+Sweet Smell of Success
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a543a')}, {$set: {film_id: doc._id.str}})})
+
+UGC Les Halles
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5441')}, {$set: {film_id: doc._id.str}})})
+
+Year of the Dragon
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5449')}, {$set: {film_id: doc._id.str}})})
+
+All That Heaven Allows
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a544f')}, {$set: {film_id: doc._id.str}})})
+
+Summertime
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5450')}, {$set: {film_id: doc._id.str}})})
+
+The Thin Red Line
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5451')}, {$set: {film_id: doc._id.str}})})
+
+Days of Heaven
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5457')}, {$set: {film_id: doc._id.str}})})
+
+Brain Damage
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a545c')}, {$set: {film_id: doc._id.str}})})
+
+The Wizard of Oz (commenté pat Jodo)
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a545d')}, {$set: {film_id: doc._id.str}})})
+
+Jolie chanson + Musique brute
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5460')}, {$set: {film_id: doc._id.str}})})
+
+Mon deuxième frère
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5462')}, {$set: {film_id: doc._id.str}})})
+
+Psycho Raman
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5463')}, {$set: {film_id: doc._id.str}})})
+
+Sam Was Here
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5467')}, {$set: {film_id: doc._id.str}})})
+
+Profond désir des dieux
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a546b')}, {$set: {film_id: doc._id.str}})})
+
+The New World
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a546c')}, {$set: {film_id: doc._id.str}})})
+
+Imitation of Life
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a546f')}, {$set: {film_id: doc._id.str}})})
+
+The Last Picture Show
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5470')}, {$set: {film_id: doc._id.str}})})
+
+Lo and Behold
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5471')}, {$set: {film_id: doc._id.str}})})
+
+Sunrise: A Song of Two Humans
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5474')}, {$set: {film_id: doc._id.str}})})
+
+L'épine dans le cœur
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5477')}, {$set: {film_id: doc._id.str}})})
+
+Blissfully Yours
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5478')}, {$set: {film_id: doc._id.str}})})
+
+Hacksaw Ridge
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a547b')}, {$set: {film_id: doc._id.str}})})
+
+Freaks
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a547c')}, {$set: {film_id: doc._id.str}})})
+
+Arrival
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5481')}, {$set: {film_id: doc._id.str}})})
+
+Rogue One
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5482')}, {$set: {film_id: doc._id.str}})})
+
+Vaiana
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5483')}, {$set: {film_id: doc._id.str}})})
+
+Ghost Dog
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a548e')}, {$set: {film_id: doc._id.str}})})
+
+Resident Evil: The Final Chapter
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5493')}, {$set: {film_id: doc._id.str}})})
+
+Night on Earth
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a5494')}, {$set: {film_id: doc._id.str}})})
+
+Certain Women
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a549d')}, {$set: {film_id: doc._id.str}})})
+
+Two for the Road
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54a1')}, {$set: {film_id: doc._id.str}})})
+
+Voyage of Time
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54a3')}, {$set: {film_id: doc._id.str}})})
+
+Ponyo sur le falaise
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54a7')}, {$set: {film_id: doc._id.str}})})
+
+Sélection Cinéfondation 3
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54aa')}, {$set: {film_id: doc._id.str}})})
+
+The Beguiled
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54ab')}, {$set: {film_id: doc._id.str}})})
+
+Courts-métrages en compétition
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54ae')}, {$set: {film_id: doc._id.str}})})
+
+You Were Never Really Here
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54b0')}, {$set: {film_id: doc._id.str}})})
+
+Jeannette
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54b5')}, {$set: {film_id: doc._id.str}})})
+
+Point Blank
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54b6')}, {$set: {film_id: doc._id.str}})})
+
+The Graduate
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54c1')}, {$set: {film_id: doc._id.str}})})
+
+The Passenger
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54c2')}, {$set: {film_id: doc._id.str}})})
+
+Courts métrages - Programme 1 : Politique expérimentale
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54c5')}, {$set: {film_id: doc._id.str}})})
+
+Peter et Sabine
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54d1')}, {$set: {film_id: doc._id.str}})})
+
+Courts métrages - Programme 6 : Improbables voyages
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54d3')}, {$set: {film_id: doc._id.str}})})
+
+Le Dispositif (épisodes 46 et 47)
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54d5')}, {$set: {film_id: doc._id.str}})})
+
+Kodoku: Meatball Machine
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54d8')}, {$set: {film_id: doc._id.str}})})
+
+Courts métrages - Programme 3 : Mais qu'est-ce que sexe ?
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54d9')}, {$set: {film_id: doc._id.str}})})
+
+Mad God
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54df')}, {$set: {film_id: doc._id.str}})})
+
+Les Amours d'Astrée et Céladon
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54e4')}, {$set: {film_id: doc._id.str}})})
+
+Mother!
+db.oeuvre.find({slug:
+},{_id:1}).forEach(function(doc){db.seance.update({_id:ObjectId('5a5950322a693063e97a54e5')}, {$set: {film_id: doc._id.str}})})

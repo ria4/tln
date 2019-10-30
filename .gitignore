@@ -1,4 +1,3 @@
-blog/__init__.py
 blog/__pycache__/
 blog/migrations/
 blog/static/blog/icon_comment.xcf
@@ -114,4 +113,3 @@ tln/templatetags/__pycache__/
 tln/settings.py
 util/crawlers/
 util/mongodumps/
-util/old/
