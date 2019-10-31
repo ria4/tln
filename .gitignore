@@ -1,6 +1,3 @@
-**/__pycache__/
-**/*.pyc
-**/*.swp
 critique/static/
 db.sqlite3
 manage.py
@@ -15,6 +12,7 @@ static/admin/
 static/boch/
 static/critique/
 static/css/flexslider.css
+static/debian_setup/
 static/django_extensions/
 static/favicon/old/
 static/fonts/unused/
@@ -24,4 +22,9 @@ static/js/woocommerce-FlexSlider-2.7.0-0-g91e323d.zip
 static/mptt/
 static/sortedm2m/
 static/zinnia/
+static/CV_OrianeTury_nobg.pdf
 tln/settings.py
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+**/*.swp
