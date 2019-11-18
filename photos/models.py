@@ -5,6 +5,8 @@ import xml.etree.ElementTree as ET
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save, pre_delete
+from django.dispatch import receiver
 from django.utils.encoding import smart_str, filepath_to_uri
 from django.utils.functional import curry
 
@@ -169,10 +171,33 @@ class PhotoCustom(models.Model):
                                  self.placeholder_primitive_number,
                                  self.placeholder_blur):
             self.clear_cache_placeholder()
+            self._old_ph_data = (self.placeholder_width,
+                                 self.placeholder_primitive_mode,
+                                 self.placeholder_primitive_number,
+                                 self.placeholder_blur)
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.clear_cache_placeholder()
+        self.photo.clear_cache()
+        self.photo.image.storage.delete(self.photo.image.name)
 
     def __str__(self):
         return self.photo.title
+
+
+@receiver(post_save, sender=Photo)
+def create_photo_custom(sender, instance, created, **kwargs):
+    if created:
+        PhotoCustom.objects.create(photo=instance)
+
+@receiver(post_save, sender=Photo)
+def save_photo_custom(sender, instance, **kwargs):
+    instance.custom.save()
+
+@receiver(pre_delete, sender=Photo)
+def clear_photo_custom(sender, instance, **kwargs):
+    instance.custom.delete()
 
 
 def init_size_method_map_custom():
