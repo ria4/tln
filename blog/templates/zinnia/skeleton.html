@@ -13,9 +13,13 @@
     {% block content %}{% endblock content %}
   </main>
 
-  <aside id="sidebar">
-    {% block sidebar %}{% endblock sidebar %}
-  </aside>
+  <div id="sidebar-column">
+    <aside id="sidebar">
+        <div id="sidebar-cruncher">
+            {% block sidebar %}{% endblock sidebar %}
+        </div>
+    </aside>
+  </div>
 {% endblock %}
 
 {% block app-js %}<script src="{% static 'js/blog.js' %}"></script>{% endblock %}
