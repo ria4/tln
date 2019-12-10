@@ -3,7 +3,7 @@
 
 @media (min-width: 1512px) {
 body { margin-right: 60px; }
-body #content-wrap { padding-right: 11px; } }
+body #content-wrap { position: relative; padding-right: 11px; } }
 
 #pagination { margin-top: 2px; text-align: center; }
 
@@ -17,20 +17,33 @@ body #content-wrap { padding-right: 11px; } }
     padding: 0 4px;
     width: 305px;
     background-color: #fbf2bd;
-    font-size: 18px;
+    font-size: 18px; }
+#sidebar::-webkit-scrollbar { width: 0px; }
+#sidebar-cruncher {
     overflow-y: hidden; }
 
-body #sidebar {
+body #sidebar-column {
     position: absolute;
-    top: 163px;
-    right: 44.6%;
+    top: 7px;
+    right: 42.8%;
+    height: 100%;
     transform: translateX(649px); }
-@media (max-width: 1512px) {
 body #sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 42px;
+    will-change: transform;
+    max-height: 82vh;
+    overflow-y: scroll;
+    scrollbar-width: none; }
+@media (max-width: 1512px) {
+body #sidebar-column {
     position: relative;
     top: 30px;
     right: auto;
-    transform: none; } }
+    transform: none; }
+body #sidebar {
+    max-height: none; } }
 
 .entry-list #sidebar a { transition: color 0.12s linear; }
 .entry #sidebar { transition: all 0.4s linear; }

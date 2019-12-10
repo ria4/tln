@@ -3,6 +3,7 @@
 if (document.body.classList.contains("entry")) {
     var header = document.getElementById("header");
     var sidebar = document.getElementById("sidebar");
+
     window.addEventListener("scroll", function() {
         if (sidebar.contains(document.activeElement) ||
             header.contains(document.activeElement)) {
@@ -11,6 +12,17 @@ if (document.body.classList.contains("entry")) {
         } else {
             if (window.scrollY == 0) {
                 sidebar.classList.remove("semihidden");
+            } else {
+                sidebar.classList.add("semihidden");
+            }
+        }
+    });
+
+    window.addEventListener("click", function() {
+        if (window.scrollY != 0) {
+            if (sidebar.contains(document.activeElement) ||
+                header.contains(document.activeElement)) {
+                    sidebar.classList.remove("semihidden");
             } else {
                 sidebar.classList.add("semihidden");
             }
