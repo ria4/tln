@@ -8,7 +8,6 @@
 {% block link %}
     <link rel="index" href="{% url 'zinnia:entry_archive_index' %}" />
     <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed of last entries" %}" href="{% url 'zinnia:entry_feed' %}" />
-    <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed of last discussions" %}" href="{% url 'zinnia:discussion_feed' %}" />
 {% endblock link %}
 
 {% block breadcrumbs %}
