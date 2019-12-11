@@ -1,4 +1,5 @@
 {% extends "photologue/root.html" %}
+{% load i18n %}
 {% load photos_extras %}
 
 {% block sidebar %}
@@ -15,7 +16,7 @@
 
 <div class="hseparator" role="presentation"></div>
 
-<nav id="widget-galeries" class="widget">
+<nav id="widget-galleries" class="widget">
   <h3>Galeries</h3>
   {% get_public_photo_galleries %}
 </nav>
@@ -23,7 +24,7 @@
 {% if user.is_authenticated %}
 {% get_private_photo_galleries_num as priv_gal_num %}
 {% if priv_gal_num > 0 %}
-<nav id="widget-galeries-private" class="widget">
+<nav id="widget-galleries-private" class="widget">
   <h3>Galerie{{ priv_gal_num|pluralize }} privée{{ priv_gal_num|pluralize }}</h3>
   {% get_private_photo_galleries %}
 </nav>
@@ -39,6 +40,11 @@
     <li>
       <a href="#">tirages / prints</a>
     </li>
+    {% if user.is_authenticated %}
+    <li>
+      <a href="/logout" title="déconnexion">déconnexion</a>
+    </li>
+    {% endif %}
   </ul>
 </nav>
 {% endblock %}

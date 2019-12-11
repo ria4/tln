@@ -1,7 +1,0 @@
-<ul>
-{% for galleryc in galleries %}
-<li>
-  <a href="{{ galleryc.gallery.slug }}">{{ galleryc.gallery.title|slice:":-8" }}</a>
-</li>
-{% endfor %}
-</ul>

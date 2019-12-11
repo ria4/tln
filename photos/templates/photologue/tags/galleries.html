@@ -1,7 +1,7 @@
 <ul>
 {% for galleryc in galleries %}
 <li>
-  <a href="{{ galleryc.gallery.slug }}">{{ galleryc.gallery.title }}</a>
+  <a href="{{ galleryc.gallery.slug }}">{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</a>
 </li>
 {% endfor %}
 </ul>
