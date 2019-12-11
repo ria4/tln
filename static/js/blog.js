@@ -28,6 +28,17 @@ if (document.body.classList.contains("entry")) {
             }
         }
     });
+
+    document.addEventListener("keyup", function(e) {
+        if ((e.keyCode == 9) && (window.scrollY != 0)) {
+            if (sidebar.contains(document.activeElement) ||
+                header.contains(document.activeElement)) {
+                    sidebar.classList.remove("semihidden");
+            } else {
+                sidebar.classList.add("semihidden");
+            }
+        }
+    });
 }
 
 
