@@ -53,22 +53,26 @@ body #sidebar {
 .entry #sidebar:hover a { color: #bd4700; transition: color 0.12s linear; }
 .entry #sidebar:hover a:hover { color: #f7a300; }
 
-#sidebar .widget { margin-bottom: 10px; }
+#sidebar .widget { margin-bottom: 4px; padding-left: 2px; }
 #sidebar h3 { padding: 0.5em 0 2px 0.5em; }
 #sidebar p { text-align: center; padding-right: 20px; }
-#sidebar ul, #sidebar ol { margin-left: 1em; }
+#sidebar ul { margin-left: 1.2em; }
+#sidebar { padding-bottom: 29px; }
 
-#widget-welcome {
-    padding: 10px 8px 0 8px;
+#sidebar #widget-welcome {
+    margin-top: 20px;
+    margin-bottom: 21px;
+    padding: 0 8px;
+    font-size: 19px;
     font-style: italic; }
-#widget-welcome #welcome-quote {
-    font-size: 19px; }
 
 #sidebar .hseparator {
-    margin: 20px auto;
-    width: 60%;
-    border-bottom-color: #deda99;
-}
+    margin: 0 auto;
+    width: 55%;
+    border-bottom-color: #deda99; }
+
+#sidebar #widget-galleries {
+    margin-top: 20px; }
 
 #sidebar li:before { font-family: Arial; font-size: 17px; content: "●"; }
 .android #sidebar li:before { font-size: 9px; vertical-align: middle; }

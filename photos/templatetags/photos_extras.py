@@ -37,7 +37,7 @@ def get_private_photo_galleries_num(context):
     """
     return len(get_private_photo_galleries_array(context['user']))
 
-@register.inclusion_tag('photologue/tags/galleries_private.html', takes_context=True)
+@register.inclusion_tag('photologue/tags/galleries.html', takes_context=True)
 def get_private_photo_galleries(context):
     """
     Return all private galleries accessible to the user as an HTML ul element.
