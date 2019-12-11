@@ -8,13 +8,6 @@ function isTouchDevice() {
     return "ontouchstart" in window || navigator.maxTouchPoints;
 }
 
-var topNavPhotoButton = document.getElementById("photos-dropdown-link");
-if (isTouchDevice()) {
-    topNavPhotoButton.addEventListener("click", function (e) {
-        e.preventDefault();
-    });
-}
-
 
 /* Top Navigation - Access admin codes input on mobile devices */
 
@@ -27,24 +20,6 @@ if (isTouchDevice()) {
         }
     });
 }
-
-
-/* Top Navigation - Enable tab navigation with photos dropdown menu */
-
-var photosDropdownMenu = document.getElementById("photos-dropdown-menu");
-
-topNavPhotoButton.addEventListener("focus", function () {
-    photosDropdownMenu.classList.add("expanded");
-});
-
-function collapseDropdownMenu () {
-    if (!photosDropdownMenu.contains(document.activeElement)) {
-        photosDropdownMenu.classList.remove("expanded");
-    }
-}
-
-document.addEventListener("click", collapseDropdownMenu)
-document.addEventListener("focusin", collapseDropdownMenu)
 
 
 /* Overlays - Reveal appropriate overlay through keyboard inputs */

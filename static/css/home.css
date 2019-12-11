@@ -91,18 +91,6 @@ _:-ms-fullscreen, :root #top-nav-v { min-height: 0; } } /* IE 11 */
 @media (max-width: 600px), (max-height: 520px) {
 #top-nav-v li > a { padding: 0 20px; line-height: 1.2; font-size: 46px; } }
 
-.dropdown-content {
-    top: 0;
-    left: 188px;
-    box-shadow: 0 0 4px 3px rgba(0, 5, 61, 0.9);
-    transform: translateX(16px); }
-.dropdown:hover .dropdown-content { transform: none; }
-@media (max-width: 600px), (max-height: 520px) {
-.dropdown-content { top: -1px; left: 137px; width: 74%; }
-.dropdown-content a { font-size: 38px; } }
-@media (max-width: 600px) {
-.dropdown-content { transform: none; } }
-
 
 /* Info Anchor Arrow
    ========================================================================== */

@@ -41,11 +41,6 @@
           <li><a tabindex="-1" href="/">Home</a></li>
           <li><a tabindex="-1" href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
           <li><a tabindex="-1" href="/photos/">Photos</a>
-              <ul>
-              {% for gallerycustom in gallery_list %}
-              <li><a tabindex="-1" href="{{ gallerycustom.gallery.get_absolute_url }}">{% if gallerycustom.nav_title %}{{ gallerycustom.nav_title }}{% else %}{{ gallerycustom.gallery.title }}{% endif %}</a></li>
-              {% endfor %}
-              </ul></li>
           <li><a tabindex="-1" href="/critique/">Critique</a></li>
           <li><a tabindex="-1" href="/#info">À propos</a></li>
       </ul></nav>
@@ -59,21 +54,7 @@
         <ul id="top-nav1">
           <li><a href="{% url 'zinnia:entry_archive_index' %}">Blog</a></li>
           <span class="nav-separator-sub"></span>
-          <li id="photos-dropdown-menu" class="dropdown">
-              <a id="photos-dropdown-link" href="/photos/">Photos</a>
-              <div class="dropdown-content">
-                  <div class="shadow-up"></div>
-                  <div class="shadow-right"></div>
-                  <div class="shadow-down"></div>
-                  <div class="shadow-left"></div>
-                  {% for gallerycustom in gallery_list %}
-                  <a href="{{ gallerycustom.gallery.get_absolute_url }}">{% if gallerycustom.nav_title %}{{ gallerycustom.nav_title }}{% else %}{{ gallerycustom.gallery.title }}{% endif %}</a>
-                  {% if not forloop.last %}
-                  <div class="dropdown-separator"></div>
-                  {% endif %}
-                  {% endfor %}
-              </div>
-          </li>
+          <li><a href="/photos/">Photos</a></li>
         </ul>
           <span class="nav-separator"></span>
         <ul id="top-nav2">
