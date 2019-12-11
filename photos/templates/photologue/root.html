@@ -8,9 +8,17 @@
 {% block skip-link %}<a id="skip-link" class="hidden" href="#content">Skip to main content</a>{% endblock %}
 
 {% block content-wrap %}
-<main id="content" role="main">
-{% block content %}{% endblock content %}
-</main>
+  <main id="content" role="main">
+    {% block content %}{% endblock content %}
+  </main>
+
+  <div id="sidebar-column">
+    <aside id="sidebar">
+      <div id="sidebar-cruncher">
+        {% block sidebar %}{% endblock sidebar %}
+      </div>
+    </aside>
+  </div>
 {% endblock %}
 
 {% block footer %}

@@ -1,7 +1,78 @@
 /* Main
    ========================================================================== */
 
+@media (min-width: 1512px) {
+body { margin-right: 60px; }
+body #content-wrap { position: relative; padding-right: 11px; } }
+
 #content { max-width: 850px; }
+
+
+/* Sidebar
+   ========================================================================== */
+
+#sidebar {
+    margin-bottom: 36px;
+    border: 1px solid #deda99;
+    padding: 0 4px;
+    width: 305px;
+    background-color: #fbf2bd;
+    font-size: 18px; }
+#sidebar::-webkit-scrollbar { width: 0px; }
+#sidebar-cruncher {
+    overflow-y: hidden; }
+
+body #sidebar-column {
+    position: absolute;
+    top: 7px;
+    right: 42.8%;
+    height: 100%;
+    transform: translateX(649px); }
+body #sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 42px;
+    will-change: transform;
+    max-height: 82vh;
+    overflow-y: scroll;
+    scrollbar-width: none; }
+@media (max-width: 1512px) {
+body #sidebar-column {
+    position: relative;
+    top: 30px;
+    right: auto;
+    transform: none; }
+body #sidebar {
+    max-height: none; } }
+
+.entry-list #sidebar a { transition: color 0.12s linear; }
+.entry #sidebar { transition: all 0.4s linear; }
+@media (min-width: 1512px) { .entry #sidebar.semihidden { opacity: 0.15; } }
+.entry #sidebar:hover { opacity: 1; }
+@media (min-width: 1512px) { .entry #sidebar.semihidden a { color: black; transition: color 0.4s linear; } }
+.entry #sidebar:hover a { color: #bd4700; transition: color 0.12s linear; }
+.entry #sidebar:hover a:hover { color: #f7a300; }
+
+#sidebar .widget { margin-bottom: 10px; }
+#sidebar h3 { padding: 0.5em 0 2px 0.5em; }
+#sidebar p { text-align: center; padding-right: 20px; }
+#sidebar ul, #sidebar ol { margin-left: 1em; }
+
+#widget-welcome {
+    padding: 10px 8px 0 8px;
+    font-style: italic; }
+#widget-welcome #welcome-quote {
+    font-size: 19px; }
+
+#sidebar .hseparator {
+    margin: 20px auto;
+    width: 60%;
+    border-bottom-color: #deda99;
+}
+
+#sidebar li:before { font-family: Arial; font-size: 17px; content: "●"; }
+.android #sidebar li:before { font-size: 9px; vertical-align: middle; }
+.android.webkit #sidebar li:before { font-size: 17px; vertical-align: unset; }
 
 
 /* Gallery Overview
