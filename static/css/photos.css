@@ -2,8 +2,8 @@
    ========================================================================== */
 
 @media (min-width: 1512px) {
-body { margin-right: 60px; }
-body #content-wrap { position: relative; padding-right: 11px; } }
+#header { margin-right: 60px; }
+body #content-wrap { position: relative; margin-right: 71px; } }
 
 #content { max-width: 850px; }
 
@@ -24,8 +24,8 @@ body #content-wrap { position: relative; padding-right: 11px; } }
 
 body #sidebar-column {
     position: absolute;
-    top: 7px;
-    right: 42.8%;
+    top: 132px;
+    right: 42.76%;
     height: 100%;
     transform: translateX(649px); }
 body #sidebar {
@@ -45,13 +45,9 @@ body #sidebar-column {
 body #sidebar {
     max-height: none; } }
 
-.entry-list #sidebar a { transition: color 0.12s linear; }
-.entry #sidebar { transition: all 0.4s linear; }
-@media (min-width: 1512px) { .entry #sidebar.semihidden { opacity: 0.15; } }
-.entry #sidebar:hover { opacity: 1; }
-@media (min-width: 1512px) { .entry #sidebar.semihidden a { color: black; transition: color 0.4s linear; } }
-.entry #sidebar:hover a { color: #bd4700; transition: color 0.12s linear; }
-.entry #sidebar:hover a:hover { color: #f7a300; }
+#sidebar a { transition: color 0.12s linear; }
+#sidebar #sidebar-photos-link { color: black; }
+#sidebar #sidebar-photos-link:hover { color: #f7a300; }
 
 #sidebar .widget { margin-bottom: 4px; padding-left: 2px; }
 #sidebar h3 { padding: 0.5em 0 2px 0.5em; }
