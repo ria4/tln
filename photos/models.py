@@ -19,23 +19,6 @@ ET.register_namespace('', 'http://www.w3.org/2000/svg')
 size_method_map_custom = {}
 
 
-class GalleryCustom(models.Model):
-    gallery = models.OneToOneField(Gallery, related_name='custom',
-                                   on_delete=models.CASCADE)
-    nav_title = models.CharField('Titre-menu du projet', max_length=63, blank=True)
-    date_shooting = models.CharField('Date du projet', max_length=31)
-    description_fr = models.TextField('Description FR', blank=True)
-    description_en = models.TextField('Description EN', blank=True)
-    allowed_users = models.ManyToManyField(User, blank=True)
-
-    class Meta:
-        verbose_name = u'Gallery Custom'
-        verbose_name_plural = u'Galleries Custom'
-
-    def __str__(self):
-        return self.gallery.title
-
-
 class PhotoCustom(models.Model):
     photo = models.OneToOneField(Photo, related_name='custom',
                                  on_delete=models.CASCADE)
@@ -210,3 +193,22 @@ def init_size_method_map_custom():
                 {'base_name': '_get_SIZE_url', 'size': size}
             size_method_map_custom['get_%s_filename' % size] = \
                 {'base_name': '_get_SIZE_filename', 'size': size}
+
+
+class GalleryCustom(models.Model):
+    gallery = models.OneToOneField(Gallery, related_name='custom',
+                                   on_delete=models.CASCADE)
+    nav_title = models.CharField('Titre-menu du projet', max_length=63, blank=True)
+    date_shooting = models.CharField('Date du projet', max_length=31)
+    description_fr = models.TextField('Description FR', blank=True)
+    description_en = models.TextField('Description EN', blank=True)
+    allowed_users = models.ManyToManyField(User, blank=True)
+    thumbnail_photo = models.OneToOneField(Photo, blank=True, null=True,
+                                           on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name = u'Gallery Custom'
+        verbose_name_plural = u'Galleries Custom'
+
+    def __str__(self):
+        return self.gallery.title

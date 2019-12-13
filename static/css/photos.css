@@ -24,10 +24,14 @@ body #content-wrap { position: relative; margin-right: 71px; } }
 
 body #sidebar-column {
     position: absolute;
-    top: 132px;
     right: 42.76%;
-    height: calc(100% - 132px);
     transform: translateX(649px); }
+body.gallery #sidebar-column {
+    top: 132px;
+    height: calc(100% - 132px); }
+body.gallery-list #sidebar-column {
+    top: 51px;
+    height: calc(100% - 51px); }
 body #sidebar {
     position: -webkit-sticky;
     position: sticky;
@@ -36,10 +40,12 @@ body #sidebar {
     max-height: 82vh;
     overflow-y: scroll;
     scrollbar-width: none; }
+@media (max-height: 990px) {
+body #sidebar { max-height: 100%; } }
 @media (max-width: 1512px) {
 body #sidebar-column {
     position: relative;
-    top: 30px;
+    top: 42px !important;
     right: auto;
     transform: none; }
 body #sidebar {
@@ -53,26 +59,50 @@ body #sidebar {
 #sidebar h3 { padding: 0.5em 0 2px 0.5em; }
 #sidebar p { text-align: center; padding-right: 20px; }
 #sidebar ul { margin-left: 1.2em; }
-#sidebar { padding-bottom: 29px; }
 
 #sidebar #widget-welcome {
-    margin-top: 20px;
     margin-bottom: 21px;
-    padding: 0 8px;
+    padding: 20px 8px 0 8px;
     font-size: 19px;
     font-style: italic; }
-
 #sidebar .hseparator {
     margin: 0 auto;
     width: 55%;
     border-bottom-color: #deda99; }
-
 #sidebar #widget-galleries {
     margin-top: 20px; }
+#sidebar .widget:last-child {
+    padding-bottom: 33px;
+    margin-bottom: 0; }
 
 #sidebar li:before { font-family: Arial; font-size: 17px; content: "●"; }
 .android #sidebar li:before { font-size: 9px; vertical-align: middle; }
 .android.webkit #sidebar li:before { font-size: 17px; vertical-align: unset; }
+
+
+/* Galleries
+   ========================================================================== */
+
+#galleries {
+    height: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+@media (min-width: 1512px) {
+#galleries { margin-top: 42px; } }
+#galleries a {
+    margin: 10px 10px;
+}
+#galleries a img {
+    display: block;
+    height: 174px;
+}
 
 
 /* Gallery Overview
