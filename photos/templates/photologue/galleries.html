@@ -18,8 +18,8 @@
 <div id="galleries">
 {% for galleryc in galleries %}
   <a class="gallery-link" href="{{ galleryc.gallery.get_absolute_url }}">
-    <img src="{{ galleryc.thumbnail_photo.get_display_url }}" class="thumbnail" alt="{{ galleryc.gallery.title }}">
-    <span><h2>{{ galleryc.gallery.title }}</h2></span>
+    <img src="{{ galleryc.thumbnail_photo.get_display_url }}" class="thumbnail" alt="{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}">
+    <span><h2>{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</h2></span>
   </a>
 {% endfor %}
 </div>

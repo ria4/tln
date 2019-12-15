@@ -1,3 +1,6 @@
+if (document.body.classList.contains("gallery")) {
+
+
 /* Gallery Display - Shrink-wrap container */
 
 var galleryPhotos = document.getElementById("gallery-photos");
@@ -247,4 +250,7 @@ for (var i=0; i<photosN; i++) {
         /* the image has already been loaded so onload event won't be fired */
         setPhotoSize(placeholder);
     }
+}
+
+
 }
