@@ -1,4 +1,32 @@
-if (document.body.classList.contains("gallery")) {
+if (document.body.classList.contains("galleries")) {
+
+
+/* Gallery Title Display - Show titles when scrolling on touch devices */
+
+if (isTouchDevice()) {
+    var galleries = document.getElementById("galleries");
+    var galleryLinks = galleries.getElementsByTagName("a");
+    var highestY = window.innerHeight*4/10;
+    var lowestY = window.innerHeight*6/10;
+
+    function displayGalleryTitle(e) {
+        for (i=0; i<galleryLinks.length; i++) {
+            var rect = galleryLinks[i].getBoundingClientRect();
+            var y = rect.top + rect.height/2;
+            if ((highestY < y) && (y < lowestY)) {
+                galleryLinks[i].classList.add("mobile-center");
+            } else {
+                galleryLinks[i].classList.remove("mobile-center");
+            }
+        }
+    }
+
+    document.addEventListener("onload", displayGalleryTitle, false);
+    document.addEventListener("touchmove", displayGalleryTitle, false);
+}
+
+
+} else if (document.body.classList.contains("gallery")) {
 
 
 /* Gallery Display - Shrink-wrap container */
