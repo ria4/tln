@@ -9,19 +9,6 @@ function isTouchDevice() {
 }
 
 
-/* Top Navigation - Access admin codes input on mobile devices */
-
-var dummyInput = document.getElementById("dummy_input");
-if (isTouchDevice()) {
-    topNavPhotoButton.addEventListener("touchstart", function (e) {
-        if (document.activeElement == e.target) {
-            e.preventDefault();
-            dummyInput.focus();
-        }
-    });
-}
-
-
 /* Overlays - Reveal appropriate overlay through keyboard inputs */
 
 function getSearchInput() {
@@ -106,6 +93,7 @@ function activateOverlayIf(e) {
 }
 
 if (isTouchDevice()) {
+    var dummyInput = document.getElementById("dummy_input");
     dummyInput.addEventListener("input", function (e) {
         cachedCode += e.target.value;
         e.target.value = ""
