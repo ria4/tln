@@ -6,23 +6,51 @@ if (document.body.classList.contains("gallery-list")) {
 if (isTouchDevice()) {
     var galleries = document.getElementById("galleries");
     var galleryLinks = galleries.getElementsByTagName("a");
+    var galN = galleryLinks.length;
     var highestY = window.innerHeight*3/10;
     var lowestY = window.innerHeight*7/10;
+    var semiLinkHeight = galleryLinks[0].clientHeight;
 
-    function displayGalleryTitle(e) {
-        for (i=0; i<galleryLinks.length; i++) {
-            var rect = galleryLinks[i].getBoundingClientRect();
-            var y = rect.top + rect.height/2;
-            if ((highestY < y) && (y < lowestY)) {
-                galleryLinks[i].classList.add("mobile-center");
-            } else {
-                galleryLinks[i].classList.remove("mobile-center");
+    if (((galleryLinks[0].offsetTop + semiLinkHeight) > window.innerHeight*3/10) &&
+        ((galleryLinks[galN-1].offsetTop + semiLinkHeight) < (document.body.scrollHeight - window.innerHeight*3/10))) {
+
+        // titles appear when the link is approx. vertically centered
+
+        function displayGalleryTitle(e) {
+            for (i=0; i<galN; i++) {
+                var rect = galleryLinks[i].getBoundingClientRect();
+                var y = rect.top + rect.height/2;
+                if ((highestY < y) && (y < lowestY)) {
+                    galleryLinks[i].classList.add("display-title");
+                } else {
+                    galleryLinks[i].classList.remove("display-title");
+                }
             }
         }
-    }
 
-    document.addEventListener("onload", displayGalleryTitle, false);
-    document.addEventListener("touchmove", displayGalleryTitle, false);
+        document.addEventListener("touchmove", displayGalleryTitle, false);
+
+    } else {
+
+        // titles appear for two seconds every six seconds
+
+        for (i=0; i<galN; i++) {
+            galleryLinks[i].classList.add("slow-transition");
+        }
+
+        function displayGalleryTitle() {
+            galleryLinks[(counter+1) % galN].classList.add("display-title");
+            if (counter >= 0) {
+                galleryLinks[counter].classList.remove("display-title");
+            }
+            counter = (counter+1) % galN;
+        }
+
+        var counter = -1;
+        displayGalleryTitle();
+        setInterval(displayGalleryTitle, 3000);
+
+    }
 }
 
 
