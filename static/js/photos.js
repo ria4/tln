@@ -1,4 +1,4 @@
-if (document.body.classList.contains("galleries")) {
+if (document.body.classList.contains("gallery-list")) {
 
 
 /* Gallery Title Display - Show titles when scrolling on touch devices */
@@ -6,8 +6,8 @@ if (document.body.classList.contains("galleries")) {
 if (isTouchDevice()) {
     var galleries = document.getElementById("galleries");
     var galleryLinks = galleries.getElementsByTagName("a");
-    var highestY = window.innerHeight*4/10;
-    var lowestY = window.innerHeight*6/10;
+    var highestY = window.innerHeight*3/10;
+    var lowestY = window.innerHeight*7/10;
 
     function displayGalleryTitle(e) {
         for (i=0; i<galleryLinks.length; i++) {
