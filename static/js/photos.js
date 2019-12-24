@@ -9,7 +9,7 @@ if (isTouchDevice()) {
     var galN = galleryLinks.length;
     var highestY = window.innerHeight*3/10;
     var lowestY = window.innerHeight*7/10;
-    var semiLinkHeight = galleryLinks[0].clientHeight;
+    var semiLinkHeight = galleryLinks[0].clientHeight/2;
 
     if (((galleryLinks[0].offsetTop + semiLinkHeight) > window.innerHeight*3/10) &&
         ((galleryLinks[galN-1].offsetTop + semiLinkHeight) < (document.body.scrollHeight - window.innerHeight*3/10))) {
@@ -29,6 +29,12 @@ if (isTouchDevice()) {
         }
 
         document.addEventListener("touchmove", displayGalleryTitle, false);
+
+        var isScrolling;
+        window.addEventListener("scroll", function() {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(displayGalleryTitle, 100);
+        }, false);
 
     } else {
 
