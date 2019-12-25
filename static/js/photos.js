@@ -1,62 +1,80 @@
 if (document.body.classList.contains("gallery-list")) {
 
 
-/* Gallery Title Display - Show titles when scrolling on touch devices */
+/* Gallery Title Display - Show & animate titles on touch devices */
 
 if (isTouchDevice()) {
     var galleries = document.getElementById("galleries");
     var galleryLinks = galleries.getElementsByTagName("a");
     var galN = galleryLinks.length;
-    var highestY = window.innerHeight*3/10;
-    var lowestY = window.innerHeight*7/10;
-    var semiLinkHeight = galleryLinks[0].clientHeight/2;
 
-    if (((galleryLinks[0].offsetTop + semiLinkHeight) > window.innerHeight*3/10) &&
-        ((galleryLinks[galN-1].offsetTop + semiLinkHeight) < (document.body.scrollHeight - window.innerHeight*3/10))) {
-
-        // titles appear when the link is approx. vertically centered
-
-        function displayGalleryTitle(e) {
-            for (i=0; i<galN; i++) {
-                var rect = galleryLinks[i].getBoundingClientRect();
-                var y = rect.top + rect.height/2;
-                if ((highestY < y) && (y < lowestY)) {
-                    galleryLinks[i].classList.add("display-title");
-                } else {
-                    galleryLinks[i].classList.remove("display-title");
-                }
-            }
-        }
-
-        document.addEventListener("touchmove", displayGalleryTitle, false);
-
-        var isScrolling;
-        window.addEventListener("scroll", function() {
-            window.clearTimeout(isScrolling);
-            isScrolling = setTimeout(displayGalleryTitle, 100);
-        }, false);
-
-    } else {
-
-        // titles appear for two seconds every six seconds
-
+    function displayGalleryTitleSmallScreen(e) {
         for (i=0; i<galN; i++) {
-            galleryLinks[i].classList.add("slow-transition");
-        }
-
-        function displayGalleryTitle() {
-            galleryLinks[(counter+1) % galN].classList.add("display-title");
-            if (counter >= 0) {
-                galleryLinks[counter].classList.remove("display-title");
+            var rect = galleryLinks[i].getBoundingClientRect();
+            var y = rect.top + rect.height/2;
+            var highestY = window.innerHeight*3/10;
+            var lowestY = window.innerHeight*(10-3)/10;
+            if ((highestY < y) && (y < lowestY)) {
+                galleryLinks[i].classList.add("display-title");
+            } else {
+                galleryLinks[i].classList.remove("display-title");
             }
-            counter = (counter+1) % galN;
         }
-
-        var counter = -1;
-        displayGalleryTitle();
-        setInterval(displayGalleryTitle, 3000);
-
     }
+
+    function displayGalleryTitleLargeScreen() {
+        galleryLinks[(counter+1) % galN].classList.add("display-title");
+        if (counter >= 0) {
+            galleryLinks[counter].classList.remove("display-title");
+        }
+        counter = (counter+1) % galN;
+    }
+
+    var first = true;
+    var isSmallScreen;
+    var counter = -1;
+    var interval;
+    var isScrolling;
+    function scrollHandler() {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(displayGalleryTitleSmallScreen, 100);
+    }
+
+    function setTitleHandlers() {
+        if (parseInt(window.getComputedStyle(galleries)["height"], 10) > window.innerHeight*1.5) {
+            if (first || !isSmallScreen) {
+                // remove any previous handlers
+                for (i=0; i<galN; i++) { galleryLinks[i].classList.remove("display-title", "slow-transition"); }
+                if (interval) { clearInterval(interval); }
+                // titles appear when the link is approx. vertically centered
+                displayGalleryTitleSmallScreen();
+                document.addEventListener("touchmove", displayGalleryTitleSmallScreen);
+                window.addEventListener("scroll", scrollHandler);
+            }
+            isSmallScreen = true;
+        } else {
+            if (first || isSmallScreen) {
+                // remove any previous handlers
+                for (i=0; i<galN; i++) { galleryLinks[i].classList.remove("display-title"); }
+                document.removeEventListener("touchmove", displayGalleryTitleSmallScreen);
+                window.removeEventListener("scroll", scrollHandler);
+                // titles appear for two seconds every six seconds
+                for (i=0; i<galN; i++) { galleryLinks[i].classList.add("slow-transition"); }
+                displayGalleryTitleLargeScreen();
+                if (interval) { clearInterval(interval); }
+                interval = setInterval(displayGalleryTitleLargeScreen, 3000);
+            }
+            isSmallScreen = false;
+        }
+        first = false;
+    }
+
+    setTimeout(setTitleHandlers, 500);
+    var isResizing;
+    window.addEventListener("resize", function() {
+        window.clearTimeout(isResizing);
+        isResizing = setTimeout(setTitleHandlers, 200)
+    });
 }
 
 
