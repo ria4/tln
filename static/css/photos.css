@@ -26,12 +26,15 @@ body #sidebar-column {
     position: absolute;
     right: 42.76%;
     transform: translateX(649px); }
-body.gallery #sidebar-column, body.infos #sidebar-column {
-    top: 132px;
-    height: calc(100% - 132px); }
 body.gallery-list #sidebar-column {
     top: 51px;
     height: calc(100% - 51px); }
+body.gallery #sidebar-column {
+    top: 132px;
+    height: calc(100% - 132px); }
+body.infos #sidebar-column {
+    top: 140px;
+    height: calc(100% - 140px); }
 body #sidebar {
     position: -webkit-sticky;
     position: sticky;
@@ -299,6 +302,9 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 /* Informations
    ========================================================================== */
 
+.infos #gallery-title {
+    margin-bottom: 28px; }
+
 .infos #gallery-title h1 {
     font-family: Alegreya; }
 
@@ -306,7 +312,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     text-align: right; }
 
 #infos > div {
-    margin: 6px 6px;
+    margin: 20px 6px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
