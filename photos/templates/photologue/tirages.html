@@ -1,13 +1,13 @@
 {% extends "photologue/base.html" %}
 
+{% block title %}tirages{% endblock %}
+{% block og-title %}tirages{% endblock %}
+{% block tw-title %}tirages{% endblock %}
+
+{% block og-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
+{% block tw-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
+
 {% comment %}
-{% block title %}photos{% endblock %}
-{% block og-title %}photos{% endblock %}
-{% block tw-title %}photos{% endblock %}
-
-{% block og-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
-{% block tw-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
-
 {% block og-description %}séries photographiques, par oriane tury{% endblock %}
 {% block tw-description %}séries photographiques, par oriane tury{% endblock %}
 {% endcomment %}
@@ -16,9 +16,11 @@
 
 {% block content %}
 <div id="gallery-title">
-    <h1>vente de tirages</h1>
+    <h1>tirages</h1>
 </div>
+{% comment %}
 <div id="locale"><a href="#">fr</a> | <a href="#">en</a></div>
+{% endcomment %}
 <div id="infos">
     <div>
         <a href="/media/photologue/photos/cache/20191210_20191123_0001_vhigh_display.jpg">
@@ -36,13 +38,14 @@
         <a href="/media/photologue/photos/cache/20191210_20191125_0179_vhigh_display.jpg">
             <img src="/media/photologue/photos/cache/20191210_20191125_0179_blog_display.jpg"/>
         </a>
-        <p>jajoujaj</p>
+        <p>Les tirages livrés dos nu peuvent être fixés aux murs à l'aide de languettes adhésives réutilisables (non fournies). Sur demande et sans supplément, une attache peut être collée au dos du tirage, à combiner avec un support mural ou des crochets (non fournis).<br>L'option de châssis rentrant, d'environ 2cm d'épaisseur, permet de décoller l'image du mur pour mieux la mettre en valeur. Cette option est disponible entre 30€ et 80€, selon les dimensions du tirage.</p>
     </div>
     <div>
         <a href="/media/photologue/photos/cache/20191210__MG_0528_vhigh_display.jpg">
             <img src="/media/photologue/photos/cache/20191210__MG_0528_blog_display.jpg"/>
         </a>
-        <p>jajoujaj</p>
+        <p>Une dernière solution d'accrochage est prop
+        Certaines images seront particulièrement mises en valeur par une caisse américaine. Avec cette finition, le tirage sur Dibond est fixé dans un cadre de telle sorte à</p>
     </div>
     <div>
         <a href="/media/photologue/photos/cache/20191210__MG_0509_vhigh_display.jpg">
