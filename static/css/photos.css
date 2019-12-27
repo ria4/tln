@@ -26,7 +26,7 @@ body #sidebar-column {
     position: absolute;
     right: 42.76%;
     transform: translateX(649px); }
-body.gallery #sidebar-column {
+body.gallery #sidebar-column, body.infos #sidebar-column {
     top: 132px;
     height: calc(100% - 132px); }
 body.gallery-list #sidebar-column {
@@ -294,3 +294,26 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 }
 #gallery-slider .flex-direction-nav a:hover { opacity: 0.6; color: #ddd; }
 #gallery-slider .flex-direction-nav a:focus { outline: none; }
+
+
+/* Informations
+   ========================================================================== */
+
+#infos p {
+    min-width: 700px; }
+@media (max-width: 700px) { #infos p { min-width: 0; } }
+
+#infos p a {
+    display: inline-block;
+    float: left; }
+@media (max-width: 700px) { #infos p a { float: none; } }
+
+#infos img {
+    display: block;
+    width: 400px; }
+
+#infos p span {
+    display: block;
+    min-height: 267px;
+    text-align: justify;
+    font-family: AlegreyaSans; }

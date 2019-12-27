@@ -1,0 +1,26 @@
+{% extends "photologue/base.html" %}
+
+{% block title %}photos{% endblock %}
+{% block og-title %}photos{% endblock %}
+{% block tw-title %}photos{% endblock %}
+
+{% comment %}
+{% block og-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
+{% block tw-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
+{% endcomment %}
+
+{% block og-description %}séries photographiques, par oriane tury{% endblock %}
+{% block tw-description %}séries photographiques, par oriane tury{% endblock %}
+
+{% block body-class %}gallery-list{% endblock %}
+
+{% block content %}
+<div id="galleries">
+{% for galleryc in galleries %}
+  <a class="gallery-link" href="{{ galleryc.gallery.get_absolute_url }}">
+    <img src="{{ galleryc.thumbnail_photo.get_display_url }}" class="thumbnail" alt="{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}">
+    <span><h2>{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</h2></span>
+  </a>
+{% endfor %}
+</div>
+{% endblock %}
