@@ -299,21 +299,44 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 /* Informations
    ========================================================================== */
 
-#infos p {
-    min-width: 700px; }
-@media (max-width: 700px) { #infos p { min-width: 0; } }
+.infos #gallery-title h1 {
+    font-family: Alegreya; }
 
-#infos p a {
-    display: inline-block;
-    float: left; }
-@media (max-width: 700px) { #infos p a { float: none; } }
+#locale {
+    text-align: right; }
+
+#infos > div {
+    margin: 6px 6px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; }
+
+@media (min-width: 900px) {
+#infos > div:nth-child(even) {
+    flex-direction: row-reverse; } }
+
+#infos a {
+    display: inline-block; }
 
 #infos img {
     display: block;
-    width: 400px; }
+    width: 340px;
+    border: 1px solid #deda99; }
 
-#infos p span {
-    display: block;
-    min-height: 267px;
+#infos p {
     text-align: justify;
+    font-size: 18px;
     font-family: AlegreyaSans; }
+@media (min-width: 900px) {
+#infos > div:nth-child(odd) p {
+    padding-left: 12px; }
+#infos > div:nth-child(even) p {
+    padding-right: 12px; }
+#infos p {
+    width: 498px; } }
+
+#infos br {
+    margin: 6px;
+    display: block;
+    content: ""; }
