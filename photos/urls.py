@@ -24,5 +24,8 @@ extra_context_galleries = {'galleries': GalleryCustom.objects.filter(gallery__is
 urlpatterns = [
     path('', TemplateView.as_view(template_name='photologue/galleries.html',
                                   extra_context=extra_context_galleries)),
+    path('lightpainting', TemplateView.as_view(template_name='photologue/lightpainting.html')),
+    path('tirages', TemplateView.as_view(template_name='photologue/tirages.html')),
+    path('prints', TemplateView.as_view(template_name='photologue/tirages.html')),
     path('', include(photos_urls)),
 ]
