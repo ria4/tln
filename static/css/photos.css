@@ -305,21 +305,25 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 .infos #gallery-title {
     margin-bottom: 28px; }
 
-.infos #gallery-title h1 {
-    font-family: Alegreya; }
-
 #locale {
     text-align: right; }
 
-#infos > div {
+#infos div {
     margin: 20px 6px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center; }
+#infos div.with-tables {
+    margin-top: 34px; }
+#infos div:last-child {
+    margin-top: 35px;
+    margin-bottom: 30px; }
 
 @media (min-width: 900px) {
-#infos > div:nth-child(even) {
+#infos div.last-with-img {
+    margin-bottom: 38px; }
+#infos div.with-img:nth-child(even) {
     flex-direction: row-reverse; } }
 
 #infos a {
@@ -335,14 +339,29 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     font-size: 18px;
     font-family: AlegreyaSans; }
 @media (min-width: 900px) {
-#infos > div:nth-child(odd) p {
+#infos div.with-img:nth-child(odd) p {
     padding-left: 12px; }
-#infos > div:nth-child(even) p {
+#infos div.with-img:nth-child(even) p {
     padding-right: 12px; }
-#infos p {
+#infos div.with-img p {
     width: 498px; } }
 
 #infos br {
     margin: 6px;
     display: block;
     content: ""; }
+
+#infos table {
+    border-collapse: collapse;
+    border: 1px solid #a57100;
+    font-size: 18px;
+    font-family: AlegreyaSans; }
+#infos table:first-child {
+    margin-right: 50px; }
+#infos td, #infos th {
+    border: 1px solid #a57100;
+    padding: 4px 8px;
+    text-align: center }
+#infos tr:nth-child(even) { background-color: rgba(200, 200, 200, 0.2); }
+#infos th {
+    font-weight: normal; text-decoration: underline; }
