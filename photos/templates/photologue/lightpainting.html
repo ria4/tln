@@ -1,26 +1,28 @@
 {% extends "photologue/base.html" %}
 
-{% block title %}photos{% endblock %}
-{% block og-title %}photos{% endblock %}
-{% block tw-title %}photos{% endblock %}
+{% block title %}light painting{% endblock %}
+{% block og-title %}light painting{% endblock %}
+{% block tw-title %}light painting{% endblock %}
+
+{% block og-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
+{% block tw-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
 
 {% comment %}
-{% block og-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
-{% block tw-image %}https://oriane.ink{{ gallery_custom.gallery.public.0.get_display_url }}{% endblock %}
-{% endcomment %}
-
 {% block og-description %}séries photographiques, par oriane tury{% endblock %}
 {% block tw-description %}séries photographiques, par oriane tury{% endblock %}
+{% endcomment %}
 
-{% block body-class %}gallery-list{% endblock %}
+{% block body-class %}infos{% endblock %}
 
 {% block content %}
-<div id="galleries">
-{% for galleryc in galleries %}
-  <a class="gallery-link" href="{{ galleryc.gallery.get_absolute_url }}">
-    <img src="{{ galleryc.thumbnail_photo.get_display_url }}" class="thumbnail" alt="{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}">
-    <span><h2>{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</h2></span>
-  </a>
-{% endfor %}
+<div id="gallery-title">
+    <h1>light painting</h1>
+</div>
+{% comment %}
+<div id="locale"><a href="#">fr</a> | <a href="#">en</a></div>
+{% endcomment %}
+<div id="lightpainting">
+    <img style="border: 1px solid #deda99;" src="/media/photologue/photos/cache/20191226__MG_0620_blog_display.jpg"/>
+    <div>page en construction<br>revenez un peu plus tard :)</div>
 </div>
 {% endblock %}

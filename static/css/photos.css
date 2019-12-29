@@ -302,8 +302,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 /* Informations
    ========================================================================== */
 
-.infos #gallery-title {
-    margin-bottom: 28px; }
+.infos #gallery-title { margin-bottom: 28px; }
 
 #locale {
     text-align: right; }
@@ -314,20 +313,14 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     flex-wrap: wrap;
     justify-content: center;
     align-items: center; }
-#infos div.with-tables {
-    margin-top: 34px; }
-#infos div:last-child {
-    margin-top: 35px;
-    margin-bottom: 30px; }
-
+#infos div.with-tables { margin-top: 34px; }
+#infos div:last-child { margin-top: 35px; margin-bottom: 30px; }
+#infos div:last-child p { text-align: center; }
 @media (min-width: 900px) {
-#infos div.last-with-img {
-    margin-bottom: 38px; }
-#infos div.with-img:nth-child(even) {
-    flex-direction: row-reverse; } }
-
-#infos a {
-    display: inline-block; }
+#infos div.last-with-img { margin-bottom: 38px; }
+#infos div.with-img:nth-child(even) { flex-direction: row-reverse; } }
+@media (max-width: 1512px) {
+#infos div:last-child { margin-bottom: 6px; } }
 
 #infos img {
     display: block;
@@ -338,30 +331,27 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     text-align: justify;
     font-size: 18px;
     font-family: AlegreyaSans; }
+#infos p br { margin: 6px; display: block; content: ""; }
 @media (min-width: 900px) {
-#infos div.with-img:nth-child(odd) p {
-    padding-left: 12px; }
-#infos div.with-img:nth-child(even) p {
-    padding-right: 12px; }
-#infos div.with-img p {
-    width: 498px; } }
-
-#infos br {
-    margin: 6px;
-    display: block;
-    content: ""; }
+#infos div.with-img:nth-child(odd) p { padding-left: 12px; }
+#infos div.with-img:nth-child(even) p { padding-right: 12px; }
+#infos div.with-img p { width: 498px; } }
+@media (max-width: 900px) {
+#infos p { margin-top: 19px; }
+#infos div.first-without-img { margin: -8px 6px; }
+#infos div.with-tables { margin-top: 32px; }
+#infos div:not(.with-img) p { margin-top: 0; } }
 
 #infos table {
     border-collapse: collapse;
     border: 1px solid #a57100;
     font-size: 18px;
     font-family: AlegreyaSans; }
-#infos table:first-child {
-    margin-right: 50px; }
+#infos table:first-child { margin-right: 50px; }
 #infos td, #infos th {
     border: 1px solid #a57100;
     padding: 4px 8px;
     text-align: center }
-#infos tr:nth-child(even) { background-color: rgba(200, 200, 200, 0.2); }
-#infos th {
-    font-weight: normal; text-decoration: underline; }
+#infos tr:nth-child(odd) { background-color: rgba(251, 242, 189, 0.9); }
+#infos tr:first-child { background-color: rgba(247, 163, 0, 0.3); }
+#infos th { font-weight: normal; text-decoration: underline; }
