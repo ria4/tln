@@ -121,7 +121,7 @@ function loadPhoto(idx) {
             var photo = document.createElement("img");
             photo.setAttribute("src", placeholder.getAttribute("data-src"));
             photo.setAttribute("slug", placeholder.getAttribute("slug"));
-            photo.setAttribute("alt", placeholder.getAttribute(""));
+            photo.setAttribute("alt", placeholder.getAttribute("alt"));
             photo.setAttribute("draggable", "false");
             placeholder.insertAdjacentElement("afterend", photo);
             photo.addEventListener("load", function() {
@@ -330,6 +330,57 @@ for (var i=0; i<photosN; i++) {
         /* the image has already been loaded so onload event won't be fired */
         setPhotoSize(placeholder);
     }
+}
+
+
+} else if (document.body.classList.contains("infos")) {
+
+
+var imgDivs = document.getElementsByClassName("with-img");
+
+if (isTouchDevice()) {
+
+    for (i=0; i<imgDivs.length; i++) {
+        imgDivs[i].removeChild(imgDivs[i].children[0]);
+        imgDivs[i].children[0].style.display = "inline-block";
+    }
+
+} else {
+
+    for (i=0; i<imgDivs.length; i++) {
+        imgDivs[i].removeChild(imgDivs[i].children[1]);
+    }
+
+    var placeholders = [];
+
+    for (i=0; i<imgDivs.length; i++) {
+        placeholders.push(imgDivs[i].children[0].children[0]);
+    }
+
+    function setPhotoPosition(i) {
+        var isVhigh = placeholders[i].getAttribute("src").includes("vhigh");
+        function setPhotoPos(e) {
+            var posX = e.offsetX;
+            var posY = e.offsetY;
+            if (isVhigh) {
+                placeholders[i].style.left = -3.76*posX+"px";
+                placeholders[i].style.top = -3.76*posY+"px";
+            } else {
+                placeholders[i].style.left = -1.5*posX+"px";
+                placeholders[i].style.top = -1.5*posY+"px";
+            }
+        }
+        return setPhotoPos;
+    }
+
+    $(document).ready(function() {
+        for (i=0; i<placeholders.length; i++) {
+            placeholders[i].setAttribute("src", placeholders[i].getAttribute("data-src"));
+            placeholders[i].removeAttribute("data-src");
+            imgDivs[i].children[0].addEventListener("mousemove", setPhotoPosition(i));
+        }
+    });
+
 }
 
 
