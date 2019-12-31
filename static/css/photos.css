@@ -86,7 +86,7 @@ body #sidebar {
 /* Galleries
    ========================================================================== */
 
-#galleries {
+#gallery-list {
     height: 100%;
     display: -ms-flexbox;
     display: flex;
@@ -97,24 +97,24 @@ body #sidebar {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
 @media (min-width: 1512px) {
-#galleries { margin-top: 42px; } }
+#gallery-list { margin-top: 42px; } }
 
-#galleries a {
+#gallery-list a {
     position: relative;
     margin: 10px 10px;
     border: 1px solid #eee;
     transition: all 0.4s ease; }
-#galleries a.slow-transition {
+#gallery-list a.slow-transition {
     transition: all 1.5s ease; }
-#galleries a:hover, #galleries a.display-title {
+#gallery-list a:hover, #gallery-list a.display-title {
     border: 1px solid rgba(0, 0, 255, 0.4);
     box-shadow: 0 0 6px rgba(0, 13, 181, 0.5) }
-#galleries a img {
+#gallery-list a img {
     display: block;
     position: relative;
     height: 172px;
     z-index: -2; }
-#galleries a span {
+#gallery-list a span {
     opacity: 0;
     position: absolute;
     top: 0;
@@ -125,11 +125,11 @@ body #sidebar {
     background: content-box rgba(20, 23, 91, 0.8);
     box-shadow: inset 0 0 4px 24px rgba(0, 13, 181, 0.08);
     transition: all 0.4s ease; }
-#galleries a.slow-transition span {
+#gallery-list a.slow-transition span {
     transition: all 1.5s ease; }
-#galleries a span:hover, #galleries a.display-title span {
+#gallery-list a span:hover, #gallery-list a.display-title span {
     opacity: 1; }
-#galleries a span h2 {
+#gallery-list a span h2 {
     position: absolute;
     top: 49%;
     left: 50%;
