@@ -304,72 +304,107 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 
 .infos #gallery-title { margin-bottom: 28px; }
 
+.infos p {
+    text-align: justify;
+    font-size: 18px;
+    font-family: AlegreyaSans; }
+
 #locale {
     text-align: right; }
 
-#infos > div {
+
+/* Informations Light Painting
+   ========================================================================== */
+
+#infos-lp img {
+    display: block;
+    margin: 32px auto;
+    width: 92%;
+    border: 1px solid #deda99; }
+#infos-lp img:first-child { margin-top: 22px; }
+#infos-lp img:not(:first-child) { margin-top: 30px; }
+
+#infos-lp div { margin-left: 6px; margin-right: 6px; }
+#infos-lp div:not(:first-child) { margin-top: 28px; }
+#infos-lp p:first-child {
+    margin-bottom: 8px;
+    text-indent: 50px;
+    font-weight: bold;
+    font-size: 20px; }
+#infos-lp div:last-child p {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    text-align: center;
+    text-indent: 0;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 18px; }
+@media (max-width: 1512px) {
+#infos-lp div:last-child p { margin-bottom: 20px; } }
+
+
+/* Informations Tirages
+   ========================================================================== */
+
+#infos-tirages > div {
     margin: 20px 6px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center; }
-#infos > div.with-tables { margin-top: 34px; }
-#infos > div:last-child { margin-top: 35px; margin-bottom: 30px; }
-#infos > div:last-child p { text-align: center; }
+#infos-tirages > div.with-tables { margin-top: 34px; }
+#infos-tirages > div:last-child { margin-top: 35px; margin-bottom: 30px; }
+#infos-tirages > div:last-child p { text-align: center; }
 @media (min-width: 900px) {
-#infos > div.last-with-img { margin-bottom: 38px; }
-#infos > div.with-img:nth-child(even) { flex-direction: row-reverse; } }
+#infos-tirages > div.last-with-img { margin-bottom: 38px; }
+#infos-tirages > div.with-img:nth-child(even) { flex-direction: row-reverse; } }
 @media (max-width: 1512px) {
-#infos > div:last-child { margin-bottom: 6px; } }
+#infos-tirages > div:last-child { margin-bottom: 6px; } }
 
-#infos div.zoomable {
+#infos-tirages div.zoomable {
     position: relative;
     height: 227px;
     width: 340px;
     border: 1px solid #deda99;
     overflow: hidden; }
-#infos div.zoomable img:last-child {
+#infos-tirages div.zoomable img:last-child {
     position: relative;
     height: 100%;
     width: 100%;
     transition: opacity 0.15s ease; }
-#infos div.zoomable:hover img:last-child {
+#infos-tirages div.zoomable:hover img:last-child {
     opacity: 0; }
-#infos div.zoomable img:first-child {
+#infos-tirages div.zoomable img:first-child {
     position: absolute; }
 
-#infos div.with-img a {
+#infos-tirages div.with-img a {
     display: none; }
-#infos div.with-img a img {
+#infos-tirages div.with-img a img {
     display: block;
     width: 340px;
     border: 1px solid #deda99; }
 
-#infos p {
-    text-align: justify;
-    font-size: 18px;
-    font-family: AlegreyaSans; }
-#infos div.text p:first-child { margin-bottom: 12px; }
+#infos-tirages div.text p:first-child { margin-bottom: 12px; }
 @media (min-width: 900px) {
-#infos div.with-img:nth-child(odd) p { padding-left: 12px; }
-#infos div.with-img:nth-child(even) p { padding-right: 12px; }
-#infos div.with-img p { width: 498px; } }
+#infos-tirages div.with-img:nth-child(odd) p { padding-left: 12px; }
+#infos-tirages div.with-img:nth-child(even) p { padding-right: 12px; }
+#infos-tirages div.with-img p { width: 498px; } }
 @media (max-width: 900px) {
-#infos p:first-child { margin-top: 19px; }
-#infos > div.first-without-img { margin: -8px 6px; }
-#infos > div.with-tables { margin-top: 32px; }
-#infos > div:not(.with-img) p { margin-top: 0; } }
+#infos-tirages p:first-child { margin-top: 19px; }
+#infos-tirages > div.first-without-img { margin: -8px 6px; }
+#infos-tirages > div.with-tables { margin-top: 32px; }
+#infos-tirages > div:not(.with-img) p { margin-top: 0; } }
 
-#infos table {
+#infos-tirages table {
     border-collapse: collapse;
     border: 1px solid #a57100;
     font-size: 18px;
     font-family: AlegreyaSans; }
-#infos table:first-child { margin-right: 50px; }
-#infos td, #infos th {
+#infos-tirages table:first-child { margin-right: 50px; }
+#infos-tirages td, #infos-tirages th {
     border: 1px solid #a57100;
     padding: 4px 8px;
     text-align: center }
-#infos tr:nth-child(odd) { background-color: rgba(251, 242, 189, 0.9); }
-#infos tr:first-child { background-color: rgba(247, 163, 0, 0.3); }
-#infos th { font-weight: normal; text-decoration: underline; }
+#infos-tirages tr:nth-child(odd) { background-color: rgba(251, 242, 189, 0.9); }
+#infos-tirages tr:first-child { background-color: rgba(247, 163, 0, 0.3); }
+#infos-tirages th { font-weight: normal; text-decoration: underline; }
