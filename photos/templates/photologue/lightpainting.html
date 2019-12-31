@@ -1,28 +1,66 @@
 {% extends "photologue/base.html" %}
 
-{% block title %}light painting{% endblock %}
-{% block og-title %}light painting{% endblock %}
-{% block tw-title %}light painting{% endblock %}
+{% block title %}¿light painting?{% endblock %}
+{% block og-title %}¿light painting?{% endblock %}
+{% block tw-title %}¿light painting?{% endblock %}
 
 {% block og-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
 {% block tw-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
 
-{% comment %}
-{% block og-description %}séries photographiques, par oriane tury{% endblock %}
-{% block tw-description %}séries photographiques, par oriane tury{% endblock %}
-{% endcomment %}
+{% block og-description %}Quelques explications sur le light painting et les outils que j'utilise.{% endblock %}
+{% block tw-description %}Quelques explications sur le light painting et les outils que j'utilise.{% endblock %}
 
 {% block body-class %}infos{% endblock %}
 
 {% block content %}
 <div id="gallery-title">
-    <h1>light painting</h1>
+    <h1>¿light painting?</h1>
 </div>
 {% comment %}
 <div id="locale"><a href="#">fr</a> | <a href="#">en</a></div>
 {% endcomment %}
 <div id="lightpainting">
     <img style="border: 1px solid #deda99;" src="/media/photologue/photos/cache/20191226__MG_0620_blog_display.jpg"/>
-    <div>page en construction<br>revenez un peu plus tard :)</div>
+    <div>
+        <p>Qu'est-ce que c'est, le <em lang="en">light painting</em> ?</p>
+        <p>Ces deux mots désignent une ensemble de pratiques photographiques qui ont en commun, d'une part l'utilisation de sources de lumières artificielles, et d'autre part des temps d'exposition longs. Par exemple, l'artiste trace un mot en l'air à l'aide d'une lampe torche. L'appareil photo capte la lumière pendant quelques secondes, le temps du tracé. Sur l'image finale, qui combine toute la lumière accumulée, le mot apparaît au complet.</p>
+    <div>
+        <p>Mais quel est le rapport entre une lampe torche et tes photos ?</p>
+        <p>J'utilise un équipement plus complexe qu'une lampe torche, mais la logique reste la même. Mon outil principal est une bande de 144 LEDs, fixée sur une barre de plus d'un mètre de long. À tout instant, la couleur de chaque LED dépend des instructions envoyées par un petit ordinateur, logé dans un boîtier à côté de la batterie. Déplacer cette barre devant un appareil photo permet de créer des motifs lumineux.</p>
+    </div>
+    <div>
+        <p>C'est vraiment surprenant, on dirait que les lumières ont été ajoutées avec un logiciel !</p>
+        <p>Non. Les motifs lumineux sont tracés sur place, en direct devant l'appareil photo. Pour moi, l'intérêt est double : non seulement ces motifs seraient difficiles (et parfois impossibles) à créer et intégrer à l'aide d'un logiciel, mais cela leur donne surtout une existence <em>en dehors de l'image</em>. C'est une manifestation physique, éphémère mais concrète, remplie d'efforts et de vie, que révèle la photographie.
+    </div>
+    <div>
+        <p>Alors rien n'est fait sur ordinateur ?</p>
+        <p>Pas exactement. Une fois la photo prise, je la « développe » avec <em lang="en"><a href="https://www.darktable.org/">darktable</a></em>. Je ne retouche pas les formes des motifs lumineux, mais j'effectue un certain nombre d'ajustements techniques assez communs : réduction du bruit, rééquilibrage des couleurs, suppression des pixels chauds... Le sens de la photo est fixé dès la fin de la prise de vue, et le développement consiste à en révéler une partie.</p>
+    </div>
+    <div>
+        <p>Mais comment est-ce que tu n'apparais pas sur les photos ?</p>
+        <p>L'image finale est composée par tous les éléments qui ont envoyé (de manière directe ou bien réfléchie) de la lumière vers l'appareil photo. Si je reste derrière la barre de LEDs, comme c'est le cas la plupart du temps, alors je ne suis pas éclairée, donc je n'apparais pas. À l'inverse, la photo en haut de page a été prise avec un flash déclenché à la fin du déplacement des LEDs.</p>
+    </div>
+    <div>
+        <p>Combien de temps dure une photo, en moyenne ?</p>
+        <p>Si on parle juste du temps d'exposition, il se situe en général autour de quinze secondes. Mes photos les plus longues tournent autour de deux minutes. La préparation de la photo, par contre, c'est une autre affaire. En comptant le cadrage, la recherche du motif lumineux, l'éclairage de la scène, le paramétrage de l'appareil, et enfin les multiples tentatives pour réaliser les bons mouvements, je dépasse souvent les deux heures pour chaque image ! Et c'est sans compter le repérage, ni la programmation des LEDs, ni le développement...</p>
+    </div>
+    <img style="border: 1px solid #deda99;" src="/media/photologue/photos/cache/20191217__MG_0556_blog_display.jpg"/>
+    <div>
+        <p>Quand tu as décidé d'un endroit, est-ce que tu sais déjà quel dessin tu vas tracer ?</p>
+        <p>Des fois oui, mais la plupart du temps non. Sur le petit ordinateur qui contrôle les LEDs, je charge plusieurs programmes écrits au préalable. Il s'agit par exemple, pour les plus simples, de faire clignoter la barre en blanc à intervalles réguliers, ou bien d'y mettre un dégradé du rouge au vert. Ensuite, une fois sur place, je suis susceptible d'en essayer deux ou trois avant de trouver celui qui va s'inscrire dans une image qui m'intéresse.</p>
+    </div>
+    <div>
+        <p>Avec ces programmes, est-ce que tous les dessins lumineux sont fixés à l'avance ?</p>
+        <p>Plusieurs des algorithmes que j'ai écrits font intervenir des éléments aléatoires. Je prépare la logique des motifs qui vont être générés, mais il y a aussi une part de hasard. Par le passé, il m'est arrivé d'utiliser une carte SD préchargée avec quelques images (plutôt que les dessins soient calculés en temps réel par l'ordinateur), mais ce procédé m'intéresse moins désormais.</p>
+    </div>
+    <div>
+        <p>Peut-on voir quelque part des tirages de tes photos ?</p>
+        <p>J'ai commencé à exposer en 2019, mais je ne dispose pas d'un espace dédié permanent. Vous pouvez m'écrire à <a href="mailto:contact@oriane.ink">contact@oriane.ink</a> pour essayer d'arranger une rencontre.</p>
+    </div>
+    <div>
+        <p>Il y a une photo qui me plaît beaucoup et j'aimerais en posséder un exemplaire, est-ce que c'est possible ?</p>
+        <p>Oui ! Pour tout savoir sur les commandes de tirages, <a href="/photos/tirages">c'est par ici</a>.
+    </div>
+    <div><p>Vous pouvez trouver plus d'informations techniques sur un de mes articles de blog (en anglais) : <a href="/blog/2018/06/23/light-painting-workflow/" lang="en">silhouettes & silences: a light painting workflow</a>.</p></div>
 </div>
 {% endblock %}
