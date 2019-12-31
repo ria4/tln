@@ -13,7 +13,7 @@
 {% block body-class %}gallery-list{% endblock %}
 
 {% block content %}
-<div id="galleries">
+<div id="gallery-list">
 {% for galleryc in galleries %}
   <a class="gallery-link" href="{{ galleryc.gallery.get_absolute_url }}">
     <img src="{{ galleryc.thumbnail_photo.get_display_url }}" class="thumbnail" alt="{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}">
