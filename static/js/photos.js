@@ -4,7 +4,7 @@ if (document.body.classList.contains("gallery-list")) {
 /* Gallery Title Display - Show & animate titles on touch devices */
 
 if (isTouchDevice()) {
-    var galleries = document.getElementById("galleries");
+    var galleries = document.getElementById("gallery-list");
     var galleryLinks = galleries.getElementsByTagName("a");
     var galN = galleryLinks.length;
 
