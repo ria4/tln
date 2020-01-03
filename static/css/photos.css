@@ -403,6 +403,8 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     font-size: 18px;
     font-family: AlegreyaSans; }
 #infos-tirages table:first-child { margin-right: 50px; }
+@media (max-width: 600px) {
+#infos-tirages table { margin: auto 3% !important; } }
 #infos-tirages td, #infos-tirages th {
     border: 1px solid #a57100;
     padding: 4px 8px;
