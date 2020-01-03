@@ -446,7 +446,7 @@ def add_seance(req):
         update_seance(req, seance, form.cleaned_data)
         return redirect('list_seances', year=seance.date.year)
 
-def list_seances(req, year=2019):
+def list_seances(req, year=2020):
     form = SeanceForm(req.POST)
     if req.POST and form.is_valid():
         update_seances(req, form)
