@@ -22,7 +22,11 @@ var subNavLinksV = document.getElementById("sub-nav-links-v");
 /* Reveal the topNavBar on clicking the utmost left link */
 topNavTrigger.addEventListener("click", function(e) {
     e.preventDefault();
-    topNavBar.classList.toggle("expanded");
+    if (!topNavTrigger.displayAdminInput) {
+        topNavBar.classList.toggle("expanded");
+    } else {
+        adminInput.focus();
+    }
 });
 
 /* Reveal the subNavBar on clicking the utmost right link */
@@ -515,6 +519,31 @@ if (seanceFormEmpty) {
         warningOnElementIf(seanceTitle, seanceFormError);
     });
 }
+
+
+/* Critique Admin Codes - Register admin inputs */
+
+function deployAdminInputLogic() {
+    function displayAdminInput() {
+        topNavTrigger.displayAdminInput = true;
+        adminInput.style.display = "initial"; }
+    function hideAdminInput() {
+        adminInput.style.display = "none"; }
+
+    var timer;
+    topNavTrigger.addEventListener("touchstart", function (e) {
+        timer = setTimeout(displayAdminInput, 2000); });
+    topNavTrigger.addEventListener("touchmove", function (e) {
+        if (timer) { clearTimeout(timer); } });
+    topNavTrigger.addEventListener("touchend", function (e) {
+        if (timer) { clearTimeout(timer); } });
+
+    adminInput.addEventListener("input", function (e) {
+        cachedCode = e.target.value;
+        if (activateOverlayIf(e)) { hideAdminInput(); }
+    });
+}
+
 
 codes["edito"] = oeuvreForm;
 codes["addo"] = oeuvreFormEmpty;
