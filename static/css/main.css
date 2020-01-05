@@ -708,7 +708,7 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 .form_inputs p { margin: 3px 0; }}
 .form_inputs p label {
     text-align: right;
-    margin-right: 6px; }
+    margin-right: 8px; }
 
 .form_inputs input, .form_inputs textarea {
     margin-left: -0.3px;
