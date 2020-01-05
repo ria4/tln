@@ -98,25 +98,10 @@ function activateOverlayIf(e) {
 if (isTouchDevice()) {
 
     var adminInput = document.getElementById("admin-codes");
-    if (adminInput) {       // we're supposed to be in /critique
-
-        function displayAdminInput() { adminInput.style.display = "initial"; }
-        function hideAdminInput() { adminInput.style.display = "none"; }
-
-        var timer;
-        var topNavTrigger = document.getElementById("top-nav-trigger");
-        topNavTrigger.addEventListener("touchstart", function (e) {
-            timer = setTimeout(displayAdminInput, 3000); });
-        topNavTrigger.addEventListener("touchmove", function (e) {
-            if (timer) { clearTimeout(timer); } });
-        topNavTrigger.addEventListener("touchend", function (e) {
-            if (timer) { clearTimeout(timer); } });
-
-        adminInput.addEventListener("input", function (e) {
-            cachedCode = e.target.value;
-            if (activateOverlayIf(e)) { hideAdminInput(); }
-        });
-
+    if (adminInput) {
+        // wait 1s for critique.js to load with deployAdminInputLogic
+        function deployAdminInputLogicDummy() { deployAdminInputLogic() };
+        setTimeout(deployAdminInputLogicDummy, 1000);
     }
 
 } else {
