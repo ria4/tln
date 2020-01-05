@@ -532,7 +532,7 @@ function deployAdminInputLogic() {
 
     var timer;
     topNavTrigger.addEventListener("touchstart", function (e) {
-        timer = setTimeout(displayAdminInput, 2000); });
+        timer = setTimeout(displayAdminInput, 1000); });
     topNavTrigger.addEventListener("touchmove", function (e) {
         if (timer) { clearTimeout(timer); } });
     topNavTrigger.addEventListener("touchend", function (e) {
