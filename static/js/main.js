@@ -46,6 +46,7 @@ function activateOverlayIf(e) {
     }
     if (!possibleCode) {
         cachedCode = "";
+        return false;
     } else if (codeFound) {
         cachedCode = "";
         var input = getSearchInput();
@@ -89,17 +90,37 @@ function activateOverlayIf(e) {
                 else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
             }
         }
+        return true;
     }
+    return false;
 }
 
 if (isTouchDevice()) {
-    var dummyInput = document.getElementById("dummy_input");
-    dummyInput.addEventListener("input", function (e) {
-        cachedCode += e.target.value;
-        e.target.value = ""
-        activateOverlayIf(e);
-    });
+
+    var adminInput = document.getElementById("admin-codes");
+    if (adminInput) {       // we're supposed to be in /critique
+
+        function displayAdminInput() { adminInput.style.display = "initial"; }
+        function hideAdminInput() { adminInput.style.display = "none"; }
+
+        var timer;
+        var topNavTrigger = document.getElementById("top-nav-trigger");
+        topNavTrigger.addEventListener("touchstart", function (e) {
+            timer = setTimeout(displayAdminInput, 3000); });
+        topNavTrigger.addEventListener("touchmove", function (e) {
+            if (timer) { clearTimeout(timer); } });
+        topNavTrigger.addEventListener("touchend", function (e) {
+            if (timer) { clearTimeout(timer); } });
+
+        adminInput.addEventListener("input", function (e) {
+            cachedCode = e.target.value;
+            if (activateOverlayIf(e)) { hideAdminInput(); }
+        });
+
+    }
+
 } else {
+
     document.addEventListener("keydown", function (e) {
         if (!activeCode) {
             var k = e.keyCode;
@@ -108,6 +129,7 @@ if (isTouchDevice()) {
             activateOverlayIf(e);
         }
     });
+
 }
 
 document.addEventListener("keydown", function (e) {

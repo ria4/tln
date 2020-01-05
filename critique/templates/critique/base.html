@@ -135,6 +135,8 @@
 </main>
 
 {% if perms.critique.all_rights %}
+<input id="admin-codes" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"/>
+
 <div class="overlay">
     <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
         <div class="form_inputs">

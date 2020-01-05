@@ -786,3 +786,17 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #seance_form_empty p label { width: 121px; }
 #seance_form_empty p label[for="id_empty_seance_date"],
 #seance_form_empty p label[for="id_empty_seance_no_month"] { width: 80.6px; }}
+
+
+/* Admin Codes
+   ========================================================================== */
+
+#admin-codes {
+    display: none;
+    position: fixed;
+    right: 1px;
+    bottom: 1px;
+    padding-left: 2px;
+    width: 120px;
+    height: 30px;
+    font-family: AlegreyaSans; }
