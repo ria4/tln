@@ -1,10 +1,19 @@
 import os
+
 from datetime import datetime
 from django.db import models
 from django.template.defaultfilters import slugify
-from django_mongoengine import Document, EmbeddedDocument, fields
+from django.utils import timezone
 
-OEUVRES_TYPES = ('film', 'serie', 'album', 'jeu', 'livre', 'bd')
+
+OEUVRES_TYPES = [
+    ('film', 'Film'),
+    ('serie', 'Série'),
+    ('album', 'Album'),
+    ('jeu', 'Jeu'),
+    ('livre', 'Livre'),
+    ('bd', 'BD'),
+]
 
 
 class RightsSupport(models.Model):
@@ -26,50 +35,57 @@ def create_image_url(image):
     return img_url
 
 
-class OeuvreInfoTitres(EmbeddedDocument):
+class OeuvreInfoTitres(models.Model):
     """
     Titres possibles de l'oeuvre.
     Dans le cas d'un titre non traduit (e.g. pour les albums...)
     ou d'une production française, 'vf' est rempli mais 'vo' est laissé vide.
-    L'attribut 'alt' peut être utilisé pour contenir d'autres titres.
+    L'attribut 'alt' peut être utilisé pour contenir un autre titre.
     """
-    vf = fields.StringField(max_length=1000)
-    vo = fields.StringField(max_length=1000, blank=True)
-    alt = fields.ListField(fields.StringField(max_length=1000), blank=True, null=True)
+    vf = models.CharField(max_length=200)
+    vo = models.CharField(max_length=200, blank=True)
+    alt = models.CharField(max_length=200, blank=True)
 
-class OeuvreInfo(EmbeddedDocument):
+class OeuvreArtist(models.Model):
+    name = models.CharField(max_length=100)
+
+class OeuvreInfo(models.Model):
     """
     Informations publiques sur l'oeuvre.
     L'attribut imdb_id ne devrait pas apparaître en dehors du type 'film'.
     """
-    type = fields.StringField(choices=OEUVRES_TYPES)
-    titles = fields.EmbeddedDocumentField(OeuvreInfoTitres)
-    artists = fields.ListField(fields.StringField(max_length=100))
-    year = fields.IntField(max_value=2100)
-    imdb_id = fields.StringField(regex='^tt[0-9]{7,8}$', blank=True, null=True)
-    image_url = fields.StringField(regex='^critique/[a-f0-9]{32}.jpg', blank=True)
+    mtype = models.CharField(max_length=5, choices=OEUVRES_TYPES)
+    titles = models.OneToOneField(OeuvreInfoTitres, on_delete=models.CASCADE)
+    artists = models.ManyToManyField(OeuvreArtist)
+    year = models.SmallIntegerField()
+    imdb_id = models.CharField(max_length=10, blank=True)
+    image_url = models.CharField(max_length=45, blank=True)
+    # use Validator for regexes '^tt[0-9]{7,8}$' & '^critique/[a-f0-9]{32}.jpg'
 
-class OeuvreComment(EmbeddedDocument):
+class OeuvreComment(models.Model):
     """
     Commentaire personnel sur l'oeuvre, avec titre optionnel.
     Certaines dates ont été importées avec le jour ou le mois fixé à 01.
     Elles sont identifiées par date_{day|month}_unknown à True.
     """
-    title = fields.StringField(max_length=500, blank=True)
-    date = fields.DateTimeField(default=datetime.now())
-    date_month_unknown = fields.BooleanField(default=False)
-    date_day_unknown = fields.BooleanField(default=False)
-    content = fields.StringField(blank=True)
+    title = models.CharField(max_length=200, blank=True)
+    date = models.DateTimeField(default=timezone.now)
+    date_month_unknown = models.BooleanField(default=False)
+    date_day_unknown = models.BooleanField(default=False)
+    content = models.TextField(blank=True)
 
-class Oeuvre(Document):
+class OeuvreTag(models.Model):
+    tag = models.CharField(max_length=100)
+
+class Oeuvre(models.Model):
     """
     Modèle pour une oeuvre.
     """
-    info = fields.EmbeddedDocumentField(OeuvreInfo)
-    tags = fields.ListField(fields.StringField(max_length=100), blank=True, null=True)
-    envie = fields.BooleanField(default=False)
-    comments = fields.ListField(fields.EmbeddedDocumentField(OeuvreComment), blank=True, null=True)
-    slug = fields.StringField(unique=True)
+    info = models.OneToOneField(OeuvreInfo, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(OeuvreTag, blank=True)
+    envie = models.BooleanField(default=False)
+    comments = models.ManyToManyField(OeuvreComment, blank=True)
+    slug = models.CharField(max_length=200, unique=True)
 
     def __init__(self, *args, **kwargs):
         super(Oeuvre, self).__init__(*args, **kwargs)
@@ -81,7 +97,6 @@ class Oeuvre(Document):
     def get_safe_slug(cls, slug_base, updating=False):
         """
         Retourne un slug unique, en fonction des slugs existants.
-        Cela peut passer par la mise à jour d'un autre slug.
         /!\ La suppression d'une oeuvre ne modifiera pas les homonymes.
         """
         oeuvres = cls.objects.filter(slug=slug_base)
@@ -117,26 +132,26 @@ class Oeuvre(Document):
         return self.info.titles.vf
 
 
-class TopFilms(Document):
-    year = fields.IntField(max_value=2100, unique=True)
-    top = fields.ListField(fields.StringField(max_length=24))
+class TopFilms(models.Model):
+    year = models.SmallIntegerField(unique=True)
+    top = models.ManyToManyField(Oeuvre)
 
-class TopTextes(Document):
-    oeuvre_id = fields.StringField(max_length=24)
-    comment_idx = fields.IntField(default=0)
+class TopTextes(models.Model):
+    oeuvre_id = models.ForeignKey(Oeuvre, on_delete=models.CASCADE)
+    comment_idx = models.SmallIntegerField(blank=True, null=True)
 
-class Cinema(Document):
-    name = fields.StringField(max_length=100)
-    comment = fields.ListField(fields.StringField())
-    visited = fields.DateTimeField()
+class Cinema(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    comment = models.TextField()
+    visited = models.DateField()
 
-class Seance(Document):
+class Seance(models.Model):
     """
     Renseigner un film_id suffit pour la plupart des cas, mais pour des séances
     spéciales, sans oeuvre correspondante, il est possible de donner un titre.
     """
-    cinema = fields.StringField(max_length=100)
-    date = fields.DateTimeField()
-    date_month_unknown = fields.BooleanField(default=False, blank=True)
-    film_id = fields.StringField(max_length=24, blank=True, null=True, sparse=True)
-    seance_title = fields.StringField(max_length=255, blank=True, null=True)
+    cinema = models.CharField(max_length=100)
+    date = models.DateTimeField()
+    date_month_unknown = models.BooleanField(default=False)
+    film_id = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL, blank=True, null=True)
+    seance_title = models.CharField(max_length=200, blank=True)
