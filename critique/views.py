@@ -227,14 +227,6 @@ def delete_latest_comment(req, slug):
 
 # Search Oeuvres
 
-def add_no_dup(oeuvres, new_oeuvres):
-    # Union between mongoengine querysets
-    ids = [oeuvre.id for oeuvre in oeuvres]
-    for oeuvre in new_oeuvres:
-        if oeuvre.id not in ids:
-            oeuvres.append(oeuvre)
-
-
 def mongo_search_oeuvres_ajax(match):
     # Returns a JSON string
     oeuvres = Oeuvre.objects(info__artists__iexact=match) \

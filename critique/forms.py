@@ -5,12 +5,15 @@ Also, the validation data written here is mostly useless, thanks to client-side 
 
 from django import forms
 
-OEUVRES_TYPES = [('film', 'Film'),
-                 ('serie', 'Série'),
-                 ('album', 'Album'),
-                 ('jeu', 'Jeu'),
-                 ('livre', 'Livre'),
-                 ('bd', 'BD')]
+
+OEUVRES_TYPES = [
+    ('film', 'Film'),
+    ('serie', 'Série'),
+    ('album', 'Album'),
+    ('jeu', 'Jeu'),
+    ('livre', 'Livre'),
+    ('bd', 'BD')
+ ]
 
 
 class DateInput(forms.DateInput):
@@ -21,7 +24,7 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 class OeuvreForm(forms.Form):
-    type = forms.ChoiceField(choices=OEUVRES_TYPES)
+    mtype = forms.ChoiceField(choices=OEUVRES_TYPES)
     title_vf = forms.CharField(max_length=1000)
     title_vo = forms.CharField(max_length=1000, required=False)
     title_alt = forms.CharField(max_length=1000, required=False)
