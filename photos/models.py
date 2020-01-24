@@ -8,7 +8,7 @@ from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from django.utils.encoding import smart_str, filepath_to_uri
-from django.utils.functional import curry
+from functools import partial
 
 from photologue.models import Gallery, Photo, PhotoSizeCache
 
@@ -66,7 +66,7 @@ class PhotoCustom(models.Model):
             init_size_method_map_custom()
         di = size_method_map_custom.get(name, None)
         if di is not None:
-            result = curry(getattr(self, di['base_name']), di['size'])
+            result = partial(getattr(self, di['base_name']), di['size'])
             setattr(self, name, result)
             return result
         else:
