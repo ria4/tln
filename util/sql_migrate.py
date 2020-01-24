@@ -16,6 +16,10 @@ def migrate_oeuvre():
     oeuvre = cli.critique_django.oeuvre
     oeuvres = oeuvre.find()
 
+    toptextes = cli.critique_django.top_textes
+    toptextess = toptextes.find()
+    topcomments_oeuvres_id = [o["oeuvre_id"] for o in toptextess]
+
     i = 0
     for o in oeuvres:
         i += 1
@@ -27,17 +31,17 @@ def migrate_oeuvre():
         alt = ""
         if o["info"]["titles"].get("alt"):
             alt = o["info"]["titles"]["alt"][0]
-        vinfotitres = OeuvreInfoTitres(vf=vf, vo=vo, alt=alt)
+        vinfotitres = Titres(vf=vf, vo=vo, alt=alt)
         vinfotitres.full_clean()
         vinfotitres.save()
 
         vartists = []
         for name in o["info"]["artists"]:
             slug = slugify(name)
-            jaj = OeuvreArtist.objects.filter(slug=slug)
+            jaj = Artist.objects.filter(slug=slug)
             if jaj and (jaj[0].name != name):
                 raise Exception(name, jaj[0].name, slug)
-            art, _ = OeuvreArtist.objects.get_or_create(name=name, slug=slug)
+            art, _ = Artist.objects.get_or_create(name=name, slug=slug)
             vartists.append(art)
 
         mtype = o["info"]["type"]
@@ -50,7 +54,12 @@ def migrate_oeuvre():
         vinfo.save()
         vinfo.artists.set(vartists)
 
-        vcomments = []
+        envie = o["envie"]
+        voeuvre = Oeuvre(info=vinfo, envie=envie, slug="0")
+        # the actual slug is safely recomputed in __init__
+        voeuvre.full_clean()
+        voeuvre.save()
+
         if o.get("comments"):
             for comment in o["comments"]:
                 title = comment.get("title") or ""
@@ -58,20 +67,14 @@ def migrate_oeuvre():
                 date_month_unknown = comment.get("date_month_unknown") or False
                 date_day_unknown = comment.get("date_day_unknown") or False
                 content = comment.get("content") or ""
-                vcomment = OeuvreComment(title=title, date=date,
-                                         date_month_unknown=date_month_unknown,
-                                         date_day_unknown=date_day_unknown,
-                                         content=content)
+                starred = str(o["_id"]) in topcomments_oeuvres_id
+                vcomment = Commentaire(oeuvre=voeuvre,
+                                       title=title, date=date,
+                                       date_month_unknown=date_month_unknown,
+                                       date_day_unknown=date_day_unknown,
+                                       content=content, starred=starred)
                 vcomment.full_clean()
                 vcomment.save()
-                vcomments.append(vcomment)
-
-        envie = o["envie"]
-        voeuvre = Oeuvre(info=vinfo, envie=envie, slug="0")
-        # the actual slug is safely recomputed in __init__
-        voeuvre.full_clean()
-        voeuvre.save()
-        voeuvre.comments.set(vcomments)
 
 migrate_oeuvre()
 
@@ -107,9 +110,9 @@ def migrate_seance():
                 film["slug"] = "high-life-1"
             elif film["slug"] == "tabou-1":
                 film["slug"] = "tabou"
-            film_id = Oeuvre.objects.get(slug=film["slug"])
+            f = Oeuvre.objects.get(slug=film["slug"])
             vseance = Seance(cinema=cinema, date=date, date_month_unknown=date_month_unknown,
-                             film_id=film_id, seance_title="")
+                             film=f, seance_title="")
             vseance.full_clean()
             vseance.save()
         else:
@@ -157,26 +160,9 @@ def migrate_topfilms():
         year = o["year"]
         vtopfilms = TopFilms(year=year)
         vtopfilms.save()
-        vtopfilms.top.set(vtop)
+        vtopfilms.films.set(vtop)
 
 migrate_topfilms()
-
-
-def migrate_toptextes():
-    toptextes = cli.critique_django.top_textes
-    oeuvres = cli.critique_django.oeuvre
-    toptextess = toptextes.find()
-
-    for o in toptextess:
-        voeuvre = oeuvres.find_one({'_id': ObjectId(o["oeuvre_id"])})
-        if voeuvre["slug"] == "mother-2":
-            voeuvre["slug"] = "mother-1"
-        f = Oeuvre.objects.get(slug=voeuvre["slug"])
-        vtoptextes = TopTextes(oeuvre_id=f)
-        vtoptextes.full_clean()
-        vtoptextes.save()
-
-migrate_toptextes()
 
 
 def migrate_cinema():

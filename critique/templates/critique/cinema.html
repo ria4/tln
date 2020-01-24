@@ -19,9 +19,7 @@
     <article class="hentry">
         <div class="entry-body">
             <div class="entry-content">
-            {% for p in cinema.comment %}
-            <p>{{ p|safe }}</p>
-            {% endfor %}
+            {{ cinema.comment|safe|linebreaks }}
             </div>
         </div>
 
@@ -41,7 +39,7 @@
 {% block overlays %}
 {% if perms.critique.all_rights %}
 <div class="overlay">
-    <form id="cinema_form" action="{% url 'detail_cinema' cinema.id %}" method="post">
+    <form id="cinema_form" action="{% url 'detail_cinema' cinema.slug %}" method="post">
         <div class="form_inputs">
             {% csrf_token %}
             {{ form.as_p }}
@@ -50,7 +48,7 @@
     {# when 'enter' is pressed, the form gives priority to the first submit #}
     {# hence the hidden button, so that default is send rather than delete #}
             <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
-            <input type="submit" formaction="{% url 'delete_cinema' cinema.id %}" value="supprimer"/>
+            <input type="submit" formaction="{% url 'delete_cinema' cinema.slug %}" value="supprimer"/>
             <div class="filler"></div>
             <input type="submit" value="envoyer"/>
             <div class="filler"></div>

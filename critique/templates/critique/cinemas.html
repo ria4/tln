@@ -60,7 +60,7 @@
     var cines = [];
     {% for cinema in cinemas %}
         cines.push(["{{ cinema.name }}",
-                    "{% url 'detail_cinema' cinema.id %}"]);
+                    "{% url 'detail_cinema' cinema.slug %}"]);
     {% endfor %}
 </script>
 

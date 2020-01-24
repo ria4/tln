@@ -1,8 +1,10 @@
 import binascii
 import os
+import pytz
 import random
 import requests
 import shutil
+
 from datetime import datetime, time
 from PIL import Image
 from django.conf import settings
@@ -10,9 +12,11 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404, HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils import timezone
 from mongoengine.queryset.visitor import Q
-from .forms import OeuvreForm, OeuvreCommentForm, CinemaForm, SeanceForm
-from .models import Oeuvre, OeuvreComment, TopFilms, TopTextes, Cinema, Seance
+
+from .forms import OeuvreForm, CommentaireForm, CinemaForm, SeanceForm
+from .models import Oeuvre, Commentaire, TopFilms, Cinema, Seance
 
 
 # Préambule
@@ -119,7 +123,7 @@ def get_comment_form_data(comment):
 
 @permission_required('critique.all_rights')
 def update_latest_comment(req, slug):
-    comment_form = OeuvreCommentForm(req.POST)
+    comment_form = CommentaireForm(req.POST)
     if req.POST and comment_form.is_valid():
         # actually there should already have been client-side validation
         oeuvre = get_object_or_404(Oeuvre, slug=slug)
@@ -148,9 +152,9 @@ def add_comment(req, slug):
     """
     Note that 'comment' being an EmbeddedDocument, it cannot be saved as such.
     """
-    form = OeuvreCommentForm(req.POST)
+    form = CommentaireForm(req.POST)
     if form.is_valid():
-        comment = OeuvreComment()
+        comment = Commentaire()
         update_comment_with_form(comment, form)
         oeuvre = get_object_or_404(Oeuvre, slug=slug)
         if oeuvre.comments:
@@ -165,7 +169,7 @@ def add_comment(req, slug):
 @permission_required('critique.all_rights')
 def add_oeuvre(req):
     form = OeuvreForm(req.POST)
-    oeuvre = Oeuvre()
+    oeuvre = Oeuvre() #XXX
     if form.is_valid():
         update_oeuvre(req, oeuvre, form)
         return redirect('detail_oeuvre', slug=oeuvre.slug)
@@ -178,7 +182,7 @@ def render_oeuvre(req, oeuvre):
     comments = comment_form = None
     if oeuvre.comments:
         comments = sorted(oeuvre.comments, key=lambda p: p.date, reverse=True)
-        comment_form = OeuvreCommentForm(get_comment_form_data(comments[0]))
+        comment_form = CommentaireForm(get_comment_form_data(comments[0]))
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
@@ -376,14 +380,14 @@ def list_envies(req, mtype="film", page=1):
 def get_cinema_form_data(cinema):
     form_data = {}
     form_data['name'] = cinema.name
-    form_data['comment'] = '\n\n'.join(cinema.comment)
+    form_data['comment'] = cinema.comment
     form_data['visited'] = cinema.visited.strftime('%Y-%m-%d')
     return form_data
 
 @permission_required('critique.all_rights')
 def update_cinema(req, cinema, form):
     cinema.name = form.cleaned_data['name']
-    cinema.comment = form.cleaned_data['comment'].split('\r\n\r\n')
+    cinema.comment = form.cleaned_data['comment']
     cinema.visited = form.cleaned_data['visited']
     cinema.save()
 
@@ -398,16 +402,16 @@ def list_cinemas(req):
     random.shuffle(cinemas)
     return render(req, 'critique/cinemas.html', {'cinemas': cinemas})
 
-def detail_cinema(req, id):
-    cinema = get_object_or_404(Cinema, id=id)
+def detail_cinema(req, slug):
+    cinema = get_object_or_404(Cinema, slug=slug)
     form = CinemaForm(req.POST or get_cinema_form_data(cinema))
     if req.POST and form.is_valid():
         update_cinema(req, cinema, form)
     return render(req, 'critique/cinema.html', locals())
 
 @permission_required('critique.all_rights')
-def delete_cinema(req, id):
-    cinema = get_object_or_404(Cinema, id=id).delete()
+def delete_cinema(req, slug):
+    cinema = get_object_or_404(Cinema, slug=slug).delete()
     return redirect('list_cinemas')
 
 
@@ -418,14 +422,15 @@ def update_seance(req, seance, data):
     seance.cinema = data['cinema']
     date = data['date']
     dtime = time(int(data['hour'][:2]), int(data['hour'][3:5]))
-    seance.date = datetime.combine(date, dtime)
+    dt = datetime.combine(date, dtime)
+    seance.date = timezone.make_aware(dt, pytz.timezone(settings.TIME_ZONE))
     if 'no_month' in data:
         seance.date_month_unknown = data['no_month']
     if ('film_slug' not in data and
         'seance_title' not in data):
         return
     if 'film_slug' in data and data['film_slug']:
-        seance.film_id = str(get_object_or_404(Oeuvre, slug=data['film_slug']).id)
+        seance.film = get_object_or_404(Oeuvre, slug=data['film_slug'])
     elif 'seance_title' in data:
         seance.seance_title = data['seance_title']
     seance.save()
@@ -450,16 +455,13 @@ def list_seances(req, year=2020):
         year = 2011
         start = datetime(1998, 1, 1)
         end = datetime(2011, 12, 31)
-    seances = Seance.objects(__raw__={'date': {'$gte': start, '$lte': end}}).order_by('date')
+    seances = Seance.objects.filter(date__gte=start) \
+                            .filter(date__lte=end) \
+                            .order_by('date')
 
     seances_enhanced = []
     for seance in seances:
-        film = None
-        if seance.film_id:
-            films = Oeuvre.objects.filter(id=seance.film_id)
-            if len(films) > 0:      # and it should always be so
-                film = films[0]
-        seances_enhanced.append((seance, film))
+        seances_enhanced.append((seance, seance.film))
 
     return render(req, 'critique/seances.html', locals())
 
@@ -467,9 +469,6 @@ def list_seances(req, year=2020):
 # Top Films
 
 def top_films(req, year=2011):
-    oeuvres_id = list(get_object_or_404(TopFilms, year=year).top)
-    random.shuffle(oeuvres_id)
-    oeuvres = []
-    for oeuvre_id in oeuvres_id:
-        oeuvres.append(Oeuvre.objects.filter(id=oeuvre_id)[0])
+    oeuvres = list(get_object_or_404(TopFilms, year=year).films.all())
+    random.shuffle(oeuvres)
     return render(req, 'critique/top_films.html', locals())
