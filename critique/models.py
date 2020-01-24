@@ -47,7 +47,8 @@ class OeuvreInfoTitres(models.Model):
     alt = models.CharField(max_length=200, blank=True)
 
 class OeuvreArtist(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(max_length=100, unique=True)
 
 class OeuvreInfo(models.Model):
     """
@@ -94,38 +95,30 @@ class Oeuvre(models.Model):
             self.info.titles = OeuvreInfoTitres()
 
     @classmethod
-    def get_safe_slug(cls, slug_base, updating=False):
+    def get_safe_slug(cls, slug_base):
         """
         Retourne un slug unique, en fonction des slugs existants.
+        Pour les homonymes, on a dans l'ordre : oeuvre, oeuvre-1, oeuvre-2...
         /!\ La suppression d'une oeuvre ne modifiera pas les homonymes.
         """
+        slug_base = slug_base or "dummyslug"
         oeuvres = cls.objects.filter(slug=slug_base)
         if len(oeuvres) == 0:
-            slug_1 = "%s-1" % slug_base
-            oeuvres = cls.objects.filter(slug=slug_1)
-            if len(oeuvres) == 0:
-                return slug_base
-            elif len(oeuvres) == 1:
-                i = 2
+            return slug_base
+        else:
+            i = 1
+            slug = "%s-%d" % (slug_base, i)
+            while cls.objects.filter(slug=slug):
+                i += 1
                 slug = "%s-%d" % (slug_base, i)
-                while cls.objects.filter(slug=slug):
-                    i += 1
-                    slug = "%s-%d" % (slug_base, i)
-                return slug
-        elif len(oeuvres) == 1:
-            if updating:
-                return slug_base
-            else:
-                oeuvres[0].slug = "%s-1" % slug_base
-                oeuvres[0].save()
-                return "%s-2" % slug_base
+            return slug
 
     def save(self, *args, **kwargs):
         cls = self.__class__
-        if not self.id:
+        if ((not self.id) or
+            (self.info.titles.vf != cls.objects.filter(id=self.id)[0].info.titles.vf)):
+            # si création ou bien modification du titre vf, création d'un slug
             self.slug = cls.get_safe_slug(slugify(self.info.titles.vf))
-        elif self.info.titles.vf != cls.objects.filter(id=self.id)[0].info.titles.vf:
-            self.slug = cls.get_safe_slug(slugify(self.info.titles.vf), updating=True)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -142,6 +135,7 @@ class TopTextes(models.Model):
 
 class Cinema(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(max_length=100, unique=True)
     comment = models.TextField()
     visited = models.DateField()
 
