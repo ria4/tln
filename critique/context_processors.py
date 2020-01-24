@@ -1,5 +1,5 @@
 from datetime import datetime
-from .forms import OeuvreForm, OeuvreCommentForm, SeanceForm
+from .forms import OeuvreForm, CommentaireForm, SeanceForm
 
 def oeuvre_form(req):
     form = OeuvreForm(auto_id='id_empty_%s')
@@ -7,7 +7,7 @@ def oeuvre_form(req):
 
 def comment_form(req):
     date = datetime.now().strftime('%Y-%m-%d')
-    form = OeuvreCommentForm({'date': date}, auto_id='id_empty_%s')
+    form = CommentaireForm({'date': date}, auto_id='id_empty_%s')
     return {"comment_form_empty": form}
 
 def seance_form(req):

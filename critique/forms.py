@@ -35,7 +35,7 @@ class OeuvreForm(forms.Form):
     tags = forms.CharField(required=False)
     envie = forms.BooleanField(required=False)
 
-class OeuvreCommentForm(forms.Form):
+class CommentaireForm(forms.Form):
     title = forms.CharField(max_length=500, required=False)
     date = forms.DateField(widget=DateInput)
     no_month = forms.BooleanField(required=False)

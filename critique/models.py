@@ -35,9 +35,9 @@ def create_image_url(image):
     return img_url
 
 
-class OeuvreInfoTitres(models.Model):
+class Titres(models.Model):
     """
-    Titres possibles de l'oeuvre.
+    Titres possibles d'une oeuvre.
     Dans le cas d'un titre non traduit (e.g. pour les albums...)
     ou d'une production française, 'vf' est rempli mais 'vo' est laissé vide.
     L'attribut 'alt' peut être utilisé pour contenir un autre titre.
@@ -46,7 +46,7 @@ class OeuvreInfoTitres(models.Model):
     vo = models.CharField(max_length=200, blank=True)
     alt = models.CharField(max_length=200, blank=True)
 
-class OeuvreArtist(models.Model):
+class Artist(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.CharField(max_length=100, unique=True)
 
@@ -56,43 +56,33 @@ class OeuvreInfo(models.Model):
     L'attribut imdb_id ne devrait pas apparaître en dehors du type 'film'.
     """
     mtype = models.CharField(max_length=5, choices=OEUVRES_TYPES)
-    titles = models.OneToOneField(OeuvreInfoTitres, on_delete=models.CASCADE)
-    artists = models.ManyToManyField(OeuvreArtist)
+    titles = models.OneToOneField(Titres, on_delete=models.CASCADE,
+                                  related_name="oeuvre_info",
+                                  related_query_name="oeuvre_info")
+    artists = models.ManyToManyField(Artist,
+                                     related_name="oeuvres_info",
+                                     related_query_name="oeuvre_info")
     year = models.SmallIntegerField()
     imdb_id = models.CharField(max_length=10, blank=True)
     image_url = models.CharField(max_length=45, blank=True)
     # use Validator for regexes '^tt[0-9]{7,8}$' & '^critique/[a-f0-9]{32}.jpg'
 
-class OeuvreComment(models.Model):
-    """
-    Commentaire personnel sur l'oeuvre, avec titre optionnel.
-    Certaines dates ont été importées avec le jour ou le mois fixé à 01.
-    Elles sont identifiées par date_{day|month}_unknown à True.
-    """
-    title = models.CharField(max_length=200, blank=True)
-    date = models.DateTimeField(default=timezone.now)
-    date_month_unknown = models.BooleanField(default=False)
-    date_day_unknown = models.BooleanField(default=False)
-    content = models.TextField(blank=True)
-
-class OeuvreTag(models.Model):
+class Tag(models.Model):
     tag = models.CharField(max_length=100)
+
 
 class Oeuvre(models.Model):
     """
     Modèle pour une oeuvre.
     """
-    info = models.OneToOneField(OeuvreInfo, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(OeuvreTag, blank=True)
+    info = models.OneToOneField(OeuvreInfo, on_delete=models.CASCADE,
+                                related_name="oeuvre",
+                                related_query_name="oeuvre")
+    tags = models.ManyToManyField(Tag, blank=True,
+                                  related_name="oeuvres",
+                                  related_query_name="oeuvre")
     envie = models.BooleanField(default=False)
-    comments = models.ManyToManyField(OeuvreComment, blank=True)
     slug = models.CharField(max_length=200, unique=True)
-
-    def __init__(self, *args, **kwargs):
-        super(Oeuvre, self).__init__(*args, **kwargs)
-        if "info" not in kwargs:
-            self.info = OeuvreInfo()
-            self.info.titles = OeuvreInfoTitres()
 
     @classmethod
     def get_safe_slug(cls, slug_base):
@@ -125,13 +115,28 @@ class Oeuvre(models.Model):
         return self.info.titles.vf
 
 
+class Commentaire(models.Model):
+    """
+    Commentaire personnel sur l'oeuvre, avec titre optionnel.
+    Certaines dates ont été importées avec le jour ou le mois fixé à 01.
+    Elles sont identifiées par date_{day|month}_unknown à True.
+    """
+    oeuvre = models.ForeignKey(Oeuvre, on_delete=models.CASCADE,
+                               related_name="comments",
+                               related_query_name="comment")
+    title = models.CharField(max_length=200, blank=True)
+    date = models.DateTimeField(default=timezone.now)
+    date_month_unknown = models.BooleanField(default=False)
+    date_day_unknown = models.BooleanField(default=False)
+    content = models.TextField(blank=True)
+    starred = models.BooleanField(default=False)
+
+
 class TopFilms(models.Model):
     year = models.SmallIntegerField(unique=True)
-    top = models.ManyToManyField(Oeuvre)
-
-class TopTextes(models.Model):
-    oeuvre_id = models.ForeignKey(Oeuvre, on_delete=models.CASCADE)
-    comment_idx = models.SmallIntegerField(blank=True, null=True)
+    films = models.ManyToManyField(Oeuvre,
+                                   related_name="top_films",
+                                   related_query_name="top_films")
 
 class Cinema(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -147,5 +152,8 @@ class Seance(models.Model):
     cinema = models.CharField(max_length=100)
     date = models.DateTimeField()
     date_month_unknown = models.BooleanField(default=False)
-    film_id = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL, blank=True, null=True)
+    film = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL,
+                             blank=True, null=True,
+                             related_name="seances",
+                             related_query_name="seance")
     seance_title = models.CharField(max_length=200, blank=True)
