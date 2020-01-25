@@ -25,9 +25,9 @@ class DateInput(forms.DateInput):
 
 class OeuvreForm(forms.Form):
     mtype = forms.ChoiceField(choices=OEUVRES_TYPES)
-    title_vf = forms.CharField(max_length=1000)
-    title_vo = forms.CharField(max_length=1000, required=False)
-    title_alt = forms.CharField(max_length=1000, required=False)
+    title_vf = forms.CharField(max_length=200)
+    title_vo = forms.CharField(max_length=200, required=False)
+    title_alt = forms.CharField(max_length=200, required=False)
     artists = forms.CharField(max_length=1000)
     year = forms.IntegerField(max_value=2100)
     imdb_id = forms.RegexField(regex='^tt[0-9]{7,8}$', required=False)
@@ -36,7 +36,7 @@ class OeuvreForm(forms.Form):
     envie = forms.BooleanField(required=False)
 
 class CommentaireForm(forms.Form):
-    title = forms.CharField(max_length=500, required=False)
+    title = forms.CharField(max_length=200, required=False)
     date = forms.DateField(widget=DateInput)
     no_month = forms.BooleanField(required=False)
     no_day = forms.BooleanField(required=False)
@@ -52,5 +52,5 @@ class SeanceForm(forms.Form):
     date = forms.DateField(widget=DateInput)
     hour = forms.CharField(max_length=5)
     no_month = forms.BooleanField(required=False)
-    film_slug = forms.CharField(max_length=1000, required=False)
-    seance_title = forms.CharField(max_length=1000, required=False)
+    film_slug = forms.CharField(max_length=200, required=False)
+    seance_title = forms.CharField(max_length=200, required=False)

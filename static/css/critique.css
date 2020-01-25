@@ -707,9 +707,9 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form p label,
 #oeuvre_form_empty p label { width: 130px; }
 #oeuvre_form p label[for="id_envie"],
-#oeuvre_form p label[for="id_type"],
+#oeuvre_form p label[for="id_mtype"],
 #oeuvre_form_empty p label[for="id_empty_envie"],
-#oeuvre_form_empty p label[for="id_empty_type"] { width: 92.7px; }
+#oeuvre_form_empty p label[for="id_empty_mtype"] { width: 92.7px; }
 #oeuvre_form .form_buttons,
 #oeuvre_form_empty .form_buttons { margin-top: -4px; }
 #oeuvre_form .form_buttons .filler { width: 32px; }
@@ -720,9 +720,9 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form p label,
 #oeuvre_form_empty p label { width: 108px; }
 #oeuvre_form p label[for="id_envie"],
-#oeuvre_form p label[for="id_type"],
+#oeuvre_form p label[for="id_mtype"],
 #oeuvre_form_empty p label[for="id_empty_envie"],
-#oeuvre_form_empty p label[for="id_empty_type"] { width: 74.8px; }
+#oeuvre_form_empty p label[for="id_empty_mtype"] { width: 74.8px; }
 #oeuvre_form .form_buttons .filler { width: 18px; }}
 
 

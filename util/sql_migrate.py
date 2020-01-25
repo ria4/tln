@@ -38,10 +38,10 @@ def migrate_oeuvre():
         vartists = []
         for name in o["info"]["artists"]:
             slug = slugify(name)
-            jaj = Artist.objects.filter(slug=slug)
+            jaj = Artiste.objects.filter(slug=slug)
             if jaj and (jaj[0].name != name):
                 raise Exception(name, jaj[0].name, slug)
-            art, _ = Artist.objects.get_or_create(name=name, slug=slug)
+            art, _ = Artiste.objects.get_or_create(name=name, slug=slug)
             vartists.append(art)
 
         mtype = o["info"]["type"]

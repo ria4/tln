@@ -32,21 +32,19 @@
         <p class="alt-title">{{ oeuvre.info.titles.vo }}</p>
         {% endif %}
 
-        {% if oeuvre.info.artists|length > 0 %}
-        <p class="artists">un{% if oeuvre.info.type == "serie" %}e{% endif %}
-        {% if oeuvre.info.type == "serie" %}série
-        {% else %}{{ oeuvre.info.type }}{% endif %}
+        <p class="artists">un{% if oeuvre.info.mtype == "serie" %}e{% endif %}
+        {% if oeuvre.info.mtype == "serie" %}série
+        {% else %}{{ oeuvre.info.mtype }}{% endif %}
         de
-        {% for artist in oeuvre.info.artists %}
+        {% for artist in oeuvre.info.artists.all %}
             {% if forloop.last %}
-                <a href={% url "artiste" artist %}>{{ artist }}</a>
+                <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>
                 ({{ oeuvre.info.year }})
             {% else %}
-                <a href={% url "artiste" artist %}>{{ artist }}</a>,
+                <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>,
             {% endif %}
         {% endfor %}
         </p>
-        {% endif %}
         
         {% if oeuvre.info.imdb_id %}
         <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">[lien IMDb]</a></p>
