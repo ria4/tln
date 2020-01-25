@@ -22,8 +22,9 @@
                 <h2 class="entry-title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h2>
             </header>
 
-            {% if oeuvre.comments.0 %}
-            {% with oeuvre.comments|last as comment %}
+            {% if oeuvre.comments.count > 0 %}
+            {% for comment in oeuvre.comments.all %}
+            {% if forloop.last %}
             <div class="entry-body">
                 <div class="entry-content">
                     {# hack for printing linebreaks #}
@@ -52,7 +53,8 @@
                     {% endlocalize %}
                 </time>
             </footer>
-            {% endwith %}
+            {% endif %}
+            {% endfor %}
             {% endif %}
         </article>
     </a>
