@@ -46,7 +46,7 @@ class Titres(models.Model):
     vo = models.CharField(max_length=200, blank=True)
     alt = models.CharField(max_length=200, blank=True)
 
-class Artist(models.Model):
+class Artiste(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.CharField(max_length=100, unique=True)
 
@@ -59,7 +59,7 @@ class OeuvreInfo(models.Model):
     titles = models.OneToOneField(Titres, on_delete=models.CASCADE,
                                   related_name="oeuvre_info",
                                   related_query_name="oeuvre_info")
-    artists = models.ManyToManyField(Artist,
+    artists = models.ManyToManyField(Artiste,
                                      related_name="oeuvres_info",
                                      related_query_name="oeuvre_info")
     year = models.SmallIntegerField()
@@ -92,21 +92,20 @@ class Oeuvre(models.Model):
         /!\ La suppression d'une oeuvre ne modifiera pas les homonymes.
         """
         slug_base = slug_base or "dummyslug"
-        oeuvres = cls.objects.filter(slug=slug_base)
+        oeuvres = Oeuvre.objects.filter(slug=slug_base)
         if len(oeuvres) == 0:
             return slug_base
         else:
             i = 1
             slug = "%s-%d" % (slug_base, i)
-            while cls.objects.filter(slug=slug):
+            while Oeuvre.objects.filter(slug=slug):
                 i += 1
                 slug = "%s-%d" % (slug_base, i)
             return slug
 
-    def save(self, *args, **kwargs):
+    def save(self, update_slug=False, *args, **kwargs):
         cls = self.__class__
-        if ((not self.id) or
-            (self.info.titles.vf != cls.objects.filter(id=self.id)[0].info.titles.vf)):
+        if ((not self.id) or update_slug):
             # si création ou bien modification du titre vf, création d'un slug
             self.slug = cls.get_safe_slug(slugify(self.info.titles.vf))
         super().save(*args, **kwargs)
