@@ -42,13 +42,13 @@ class Titres(models.Model):
     ou d'une production française, 'vf' est rempli mais 'vo' est laissé vide.
     L'attribut 'alt' peut être utilisé pour contenir un autre titre.
     """
-    vf = models.CharField(max_length=200)
-    vo = models.CharField(max_length=200, blank=True)
+    vf = models.CharField(max_length=200, db_index=True)
+    vo = models.CharField(max_length=200, blank=True, db_index=True)
     alt = models.CharField(max_length=200, blank=True)
 
 class Artiste(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    slug = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
 
 class OeuvreInfo(models.Model):
     """
@@ -62,10 +62,10 @@ class OeuvreInfo(models.Model):
     artists = models.ManyToManyField(Artiste,
                                      related_name="oeuvres_info",
                                      related_query_name="oeuvre_info")
-    year = models.SmallIntegerField()
+    year = models.SmallIntegerField(db_index=True)
     imdb_id = models.CharField(max_length=10, blank=True)
     image_url = models.CharField(max_length=45, blank=True)
-    # use Validator for regexes '^tt[0-9]{7,8}$' & '^critique/[a-f0-9]{32}.jpg'
+    # use Validator for regexes '^tt[0-9]{7,8}$' & '^critique/[a-f0-9]{32}.(jpg|png)'
 
 class Tag(models.Model):
     tag = models.CharField(max_length=100)
@@ -82,7 +82,7 @@ class Oeuvre(models.Model):
                                   related_name="oeuvres",
                                   related_query_name="oeuvre")
     envie = models.BooleanField(default=False)
-    slug = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
 
     @classmethod
     def get_safe_slug(cls, slug_base):
@@ -139,7 +139,7 @@ class TopFilms(models.Model):
 
 class Cinema(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    slug = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     comment = models.TextField()
     visited = models.DateField()
 
@@ -149,7 +149,7 @@ class Seance(models.Model):
     spéciales, sans oeuvre correspondante, il est possible de donner un titre.
     """
     cinema = models.CharField(max_length=100)
-    date = models.DateTimeField()
+    date = models.DateTimeField(db_index=True)
     date_month_unknown = models.BooleanField(default=False)
     film = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL,
                              blank=True, null=True,
