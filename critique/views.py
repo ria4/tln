@@ -66,7 +66,7 @@ def download_distant_image(url):
 
 def get_oeuvre_form_data(oeuvre):
     form_data = {}
-    form_data['type'] = oeuvre.info.mtype
+    form_data['mtype'] = oeuvre.info.mtype
     form_data['title_vf'] = oeuvre.info.titles.vf
     form_data['title_vo'] = oeuvre.info.titles.vo
     form_data['title_alt'] = oeuvre.info.titles.alt
