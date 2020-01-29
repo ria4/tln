@@ -5,17 +5,10 @@
 * Code sur https://github.com/ria4/tln et sur miroirs
 * Archive complète ponctuelle sur miroirs
 
-#### Restore critique database
-
-```
-mongorestore --gzip --archive=critique.$DATE.gz [--db=critique_django]
-```
-
 #### Crontab tln
 
 ```
 @reboot /usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /home/ria/tln/net/uwsgi-emperor.log
-0 2 * * * /home/ria/tln/util/dump_daily_mongo.sh
 ```
 
 #### Crontab tln (sudo)
