@@ -7,6 +7,7 @@ mongo_bkp/
 net/uwsgi-emperor.log
 net/django_debug.log
 oracle_vbox_2016.asc
+package-lock.json
 photos/migrations/
 site-packages
 static/admin/
