@@ -1,4 +1,5 @@
 import binascii
+import json
 import os
 import pytz
 import random
@@ -6,6 +7,7 @@ import requests
 import shutil
 
 from datetime import datetime, time
+from itertools import chain
 from PIL import Image
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
@@ -202,74 +204,40 @@ def delete_latest_comment(req, slug):
 
 # Search Oeuvres
 
-def mongo_search_oeuvres_ajax(match): #TODO
-    # Returns a JSON string
-    oeuvres = []
-    artistes = Artiste.objects.filter(name__iexact=match)
-
-    if artistes:
-        artiste = artistes[0]
-        oeuvres_unsort = [info.oeuvre for info in artiste.oeuvres_info.all()]
-        oeuvres = sorted(oeuvres_unsort, key=lambda p: p.info.year, reverse=True)[:5]
-        #.only('info.titles.vf', 'info.titles.vo', 'info.year', 'slug')
-
-    if oeuvres:
-        return oeuvres.to_json()
+def format_oeuvreinfo_results(info_set, ajax):
+    if ajax:
+        res = [ {'vf': info.titles.vf,
+                 'vo': info.titles.vo,
+                 'year': info.year,
+                 'slug': info.oeuvre.slug} for info in info_set ]
+        return json.dumps(res)
     else:
-        oeuvres = Oeuvre.objects \
-                        .filter(Q(comment__isnull=False) &
-                                  (Q(info__titles__vo__icontains=match) |
-                                   Q(info__titles__vf__icontains=match))) \
-                        .order_by('-comment__date') \
-                        .limit(5) \
-                        .only('info.titles.vf', 'info.titles.vo', 'info.year', 'slug')
+        return [info.oeuvre for info in info_set]
 
-        if len(oeuvres) == 5:
-            return oeuvres.to_json()
-        else:
-            oeuvres2 = Oeuvre.objects \
-                             .filter(Q(comment=None) &
-                                       (Q(info__titles__vo__icontains=match) |
-                                        Q(info__titles__vf__icontains=match))) \
-                             .order_by('-info__year') \
-                             .limit(5-len(oeuvres)) \
-                             .only('info.titles.vf', 'info.titles.vo', 'info.year', 'slug')
-
-            if oeuvres:
-                if oeuvres2:
-                    return '%s, %s' % (oeuvres.to_json()[:-1], oeuvres2.to_json()[1:])
-                else:
-                    return oeuvres.to_json()
-            else:
-                return oeuvres2.to_json()
-
-
-def mongo_search_oeuvres(match):
-    # Returns a list (not a mongoengine queryset)
-    oeuvres = []
-    artistes = Artiste.objects.filter(name__iexact=match)
-
-    if artistes:
-        artiste = artistes[0]
-        oeuvres = [info.oeuvre for info in artiste.oeuvres_info.all()]
-        return sorted(oeuvres, key=lambda p: p.info.year, reverse=True)
+def get_oeuvres(match, limit, ajax=False):
+    artiste = Artiste.objects.filter(name__iexact=match)
+    if artiste:
+        o_info = artiste[0].oeuvres_info.select_related('oeuvre', 'titles') \
+                                        .order_by('-year')[:limit]
+        return format_oeuvreinfo_results(o_info, ajax)
     else:
-        oeuvres += Oeuvre.objects \
-                         .filter(Q(comment__isnull=False) &
-                                    (Q(info__titles__vo__icontains=match) |
-                                     Q(info__titles__vf__icontains=match))) \
-                         .order_by('-comment__date')[:10] \
-
-        if len(oeuvres) == 10:
-            return oeuvres
+        o_info = OeuvreInfo.objects \
+                           .filter(Q(oeuvre__comment__isnull=False) &
+                                     (Q(titles__vo__icontains=match) |
+                                      Q(titles__vf__icontains=match))) \
+                           .select_related('oeuvre', 'titles') \
+                           .order_by('-oeuvre__comment__date')[:limit]
+        o_info_cnt = o_info.count()
+        if o_info_cnt == limit:
+            return format_oeuvreinfo_results(o_info, ajax)
         else:
-            oeuvres += Oeuvre.objects \
-                             .filter(Q(comment=None) &
-                                        (Q(info__titles__vo__icontains=match) |
-                                         Q(info__titles__vf__icontains=match))) \
-                             .order_by('-info__year')[:10-len(oeuvres)]
-            return oeuvres
-
+            o_info2 = OeuvreInfo.objects \
+                                .filter(Q(oeuvre__comment=None) &
+                                          (Q(titles__vo__icontains=match) |
+                                           Q(titles__vf__icontains=match))) \
+                                .order_by('-year')[:limit-o_info_cnt]
+            o_info_concat = list(chain(o_info, o_info2))
+            return format_oeuvreinfo_results(o_info_concat, ajax)
 
 def search_oeuvres(req, match=''):
     get_match = req.GET.get('match', None)
@@ -280,10 +248,10 @@ def search_oeuvres(req, match=''):
             return redirect('search_oeuvres')
 
     if req.is_ajax():
-        oeuvres = mongo_search_oeuvres_ajax(match)
+        oeuvres = get_oeuvres(match, 5, ajax=True)
         return HttpResponse(oeuvres)
     else:
-        oeuvres = mongo_search_oeuvres(match)
+        oeuvres = get_oeuvres(match, 10)
         return render(req, 'critique/search_oeuvres.html', locals())
 
 

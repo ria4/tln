@@ -237,18 +237,18 @@ function createElementSearchResult() {
     return li
 }
 
-function setElementSearchResult(li, oeuvre) {
+function setElementSearchResult(li, res) {
     var a = li.firstChild;
-    a.setAttribute("href", "/critique/oeuvre/" + oeuvre.slug);
+    a.setAttribute("href", "/critique/oeuvre/" + res.slug);
     var p0 = a.firstChild;
-    p0.innerHTML = oeuvre.info.titles.vf;
+    p0.innerHTML = res.vf;
     var div = a.lastChild; var p1 = div.firstChild; var p2 = div.lastChild;
-    if (oeuvre.info.titles.vo) {
-        p1.innerHTML = oeuvre.info.titles.vo;
+    if (res.vo) {
+        p1.innerHTML = res.vo;
     } else {
         p1.innerHTML = "";
     }
-    p2.innerHTML = "(" + oeuvre.info.year + ")";
+    p2.innerHTML = "(" + res.year + ")";
 
     a.addEventListener("mouseenter", function (e) {
         if (document.activeElement == e.target) {
