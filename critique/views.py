@@ -53,12 +53,15 @@ def download_distant_image(url):
             shutil.copyfileobj(r.raw, f)
         baseheight = 300
         img = Image.open('static/critique/tmp/%s' % local_url)
+        fmt = 'jpg'
+        if img.format == 'PNG':
+            fmt = 'png'
         hpercent = baseheight/float(img.size[1])
         wsize = int(float(img.size[0])*float(hpercent))
         img = img.resize((wsize, baseheight), Image.ANTIALIAS)
-        img.save('static/critique/%s.jpg' % local_url)
+        img.save('static/critique/%s.%s' % (local_url, fmt))
         os.remove('static/critique/tmp/%s' % local_url)
-        return 'critique/%s.jpg' % local_url
+        return 'critique/%s.%s' % (local_url, fmt)
     return ''
 
 def get_oeuvre_form_data(oeuvre):
