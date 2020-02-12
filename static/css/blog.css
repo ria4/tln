@@ -7,6 +7,18 @@ body #content-wrap { position: relative; padding-right: 11px; } }
 
 #pagination { margin-top: 2px; text-align: center; }
 
+#password-required-form {
+    margin-top: 292px;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+}
+#password-required-form #password-submit { display: inline; color: #bd4700; }
+#password-required-form #password-submit:hover { color: #f7a300; }
+
 
 /* Sidebar
    ========================================================================== */
