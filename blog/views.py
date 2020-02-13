@@ -5,13 +5,19 @@ import pytz
 from tzlocal import get_localzone
 
 from django.apps import apps
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.contrib.auth.views import redirect_to_login
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 
 from zinnia.models.entry import Entry
+from zinnia.views.entries import EntryDetail
 
-from tln.utils import md5_2
+from tln import settings
+from tln.utils import remove_query_param, update_query_param, md5_2
+
+from .models import EntryCustom
 
 
 def entry_detail_slug(req, slug):
@@ -51,6 +57,28 @@ def unsubscribe(req, year, month, day, slug, h):
                 comment.save()
 
     return render(req, 'comments/unsubscribed.html', locals())
+
+
+
+class EntryDetailCustom(EntryDetail):
+    context_object_name = "entry"
+    template_name = "zinnia/entry_detail_base.html"
+
+    def get(self, req, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        entry_custom = self.object.custom
+
+        if (entry_custom.entry.login_required and
+            (not req.user.is_superuser)):
+            if not req.user.is_authenticated:
+                return redirect_to_login(req.path)
+            elif req.user not in entry_custom.allowed_users.all():
+                logout(req)
+                next_url = remove_query_param(req.path, "loginfail")
+                login_url = update_query_param(settings.LOGIN_URL, "loginfail", 2)
+                return redirect_to_login(next_url, login_url=login_url)
+        return self.render_to_response(context)
 
 
 """

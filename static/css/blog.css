@@ -102,6 +102,10 @@ body #sidebar {
 #widget-archives .toggle.expanded .toggle-in::after { font-family: Arial; content: "▼"; }
 .android #widget-archives .toggle.expanded .toggle-in::after { font-size: 14px; }
 
+#widget-tools li:before { font-family: Arial; font-size: 17px; content: "●"; }
+.android #widget-tools li:before { font-size: 9px; vertical-align: middle; }
+.android.webkit #widget-tools li:before { font-size: 17px; vertical-align: unset; }
+
 
 /* Entry Previews
    ========================================================================== */

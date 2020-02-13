@@ -38,7 +38,7 @@
   <h3>{% trans "Archives" %}</h3>
   {% get_archives_entries_tree_su_sensitive %}
 </nav>
-{% if user.is_superuser %}
+{% if user.is_authenticated %}
 <div id="widget-tools" class="widget">
   <h3>{% trans "Tools" %}</h3>
   <ul>
@@ -58,12 +58,12 @@
     </li>
     {% endif %}
     {% endcomment %}
-    {% block admin-tools %}
-    {% endblock admin-tools %}
+    {% if user.is_superuser %}
+        {% block admin-tools %}
+        {% endblock admin-tools %}
+    {% endif %}
     <li>
-      <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
-        {% trans "Log out" %}
-      </a>
+      <a href="{% url 'admin:logout' %}" title="déconnexion">déconnexion</a>
     </li>
   </ul>
 </div>

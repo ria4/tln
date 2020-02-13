@@ -1,3 +1,4 @@
+blog/migrations/
 critique/migrations/
 critique/static/
 db.sqlite3
