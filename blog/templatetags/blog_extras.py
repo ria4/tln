@@ -7,6 +7,8 @@ from tagging.utils import calculate_cloud
 
 from zinnia.models.entry import Entry
 
+from blog.models import EntryCustom
+
 
 register = template.Library()
 
@@ -15,50 +17,54 @@ register = template.Library()
 def get_entries_on_year_length(date, is_superuser=False):
     # Do not use this on dates when no entry was published!
     if is_superuser is True:
-        queryset = Entry.objects
+        queryset = EntryCustom.objects
     else:
-        queryset = Entry.published
-    entries = queryset.filter(publication_date__year=date.year)
+        queryset = EntryCustom.objects.filter(entry__status=2,                  # entry is 'published'
+                                              entry__login_required=False)
+    entries = queryset.filter(entry__publication_date__year=date.year)
     return len(entries)
 
 @register.simple_tag
 def get_entries_on_month_length(date, is_superuser=False):
     # Do not use this on dates when no entry was published!
     if is_superuser is True:
-        queryset = Entry.objects
+        queryset = EntryCustom.objects
     else:
-        queryset = Entry.published
-    entries = queryset.filter(publication_date__year=date.year,
-                              publication_date__month=date.month)
+        queryset = EntryCustom.objects.filter(entry__status=2,
+                                              entry__login_required=False)
+    entries = queryset.filter(entry__publication_date__year=date.year,
+                              entry__publication_date__month=date.month)
     return len(entries)
 
 @register.simple_tag
 def get_entries_on_day(date, is_superuser=False):
     # Do not use this on dates when no entry was published!
     if is_superuser is True:
-        queryset = Entry.objects
+        queryset = EntryCustom.objects
     else:
-        queryset = Entry.published
-    entries = queryset.filter(publication_date__year=date.year,
-                              publication_date__month=date.month,
-                              publication_date__day=date.day)
-    entries_clean = [{'title': entry.title, 'url': '/blog/%s' % entry.slug, 'lang': entry.lang}
-                     for entry in entries]
+        queryset = EntryCustom.objects.filter(entry__status=2,
+                                              entry__login_required=False)
+    entries = queryset.filter(entry__publication_date__year=date.year,
+                              entry__publication_date__month=date.month,
+                              entry__publication_date__day=date.day)
+    entries_clean = [{'title': entryc.entry.title, 'url': '/blog/%s' % entryc.entry.slug, 'lang': entryc.lang}
+                     for entryc in entries]
     return entries_clean
 
 
 @register.inclusion_tag('zinnia/tags/dummy.html', takes_context=True)
 def get_archives_entries_tree_su_sensitive(context,
         template='zinnia/tags/entries_archives_tree.html'):
-    queryset = Entry.published
+    queryset = EntryCustom.objects.filter(entry__status=2,
+                                          entry__login_required=False)
     if context['request'].user.is_superuser:
-        queryset = Entry.objects
+        queryset = EntryCustom.objects
     publication_date = None
     if 'object' in context:
         publication_date = context['object'].publication_date
     return {'template': template,
             'archives': queryset.datetimes(
-                'publication_date', 'day', order='ASC'),
+                'entry__publication_date', 'day', order='ASC'),
             'publication_date': publication_date,
             'is_superuser': context['request'].user.is_superuser}
 

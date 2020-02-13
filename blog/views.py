@@ -70,7 +70,7 @@ def get_queryset_base_tag_detail_su_sensitive(self):
     if self.request.user.is_superuser:
         queryset = Entry.objects.all()
     else:
-        queryset = Entry.published.all()
+        queryset = Entry.published.filter(login_required=False)
     return TaggedItem.objects.get_by_model(queryset, self.tag)
 
 BaseTagDetail.get_queryset = get_queryset_base_tag_detail_su_sensitive
@@ -81,7 +81,7 @@ class SUSensitiveMixin(object):
         if self.request.user.is_superuser:
             self.queryset = Entry.objects.all
         else:
-            self.queryset = Entry.published.all
+            self.queryset = Entry.published.filter(login_required=False).all
         return super().get_queryset()
 
 EntryArchiveMixin.__bases__ = (SUSensitiveMixin,) + EntryArchiveMixin.__bases__

@@ -199,7 +199,7 @@ DEFAULT_FROM_EMAIL = 'no-reply@####'
 
 # Zinnia configuration   # fill in for prod server
 
-ZINNIA_ENTRY_BASE_MODEL = 'blog.models.EntryLang'
+#ZINNIA_ENTRY_BASE_MODEL = 'blog.models.EntryCustom'
 ZINNIA_PREVIEW_MAX_WORDS = 100
 ZINNIA_MAIL_COMMENT_NOTIFICATION_RECIPIENTS = ['no-reply@####']
 ZINNIA_AUTO_MODERATE_COMMENTS = True
