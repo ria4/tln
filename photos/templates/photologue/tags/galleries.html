@@ -4,4 +4,9 @@
   <a href="{{ galleryc.gallery.slug }}">{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</a>
 </li>
 {% endfor %}
+{% if private_galleries_list and user.is_authenticated %}
+<li>
+  <a href="/logout" title="déconnexion">déconnexion :: {{user.username}}</a>
+</li>
+{% endif %}
 </ul>

@@ -63,7 +63,7 @@
         {% endblock admin-tools %}
     {% endif %}
     <li>
-      <a href="{% url 'admin:logout' %}" title="déconnexion">déconnexion</a>
+      <a href="/logout" title="déconnexion">déconnexion :: {{user.username}}</a>
     </li>
   </ul>
 </div>
