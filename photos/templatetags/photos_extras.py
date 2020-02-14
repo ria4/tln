@@ -21,7 +21,8 @@ def get_public_photo_galleries():
     """
     Return all public galleries as an HTML ul element.
     """
-    return {'galleries': GalleryCustom.objects.filter(gallery__is_public=True)}
+    return {'galleries': GalleryCustom.objects.filter(gallery__is_public=True),
+            'private_galleries_list': False}
 
 def get_private_photo_galleries_array(user):
     galleries_private = GalleryCustom.objects.filter(gallery__is_public=False)
@@ -42,4 +43,6 @@ def get_private_photo_galleries(context):
     """
     Return all private galleries accessible to the user as an HTML ul element.
     """
-    return {'galleries': get_private_photo_galleries_array(context['user'])}
+    return {'galleries': get_private_photo_galleries_array(context['user']),
+            'private_galleries_list': True,
+            'user': context['user']}
