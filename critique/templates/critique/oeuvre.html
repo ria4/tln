@@ -32,8 +32,9 @@
         <p class="alt-title">{{ oeuvre.info.titles.vo }}</p>
         {% endif %}
 
-        <p class="artists">un{% if oeuvre.info.mtype == "serie" %}e{% endif %}
+        <p class="artists">un{% if oeuvre.info.mtype == "serie" or oeuvre.info.mtype == "bd" %}e{% endif %}
         {% if oeuvre.info.mtype == "serie" %}série
+        {% elif oeuvre.info.mtype == "bd" %}BD
         {% else %}{{ oeuvre.info.mtype }}{% endif %}
         de
         {% for artist in oeuvre.info.artists.all %}
