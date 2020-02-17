@@ -333,27 +333,52 @@ for (var i=0; i<photosN; i++) {
 }
 
 
-} else if (document.body.classList.contains("infos")) {
+} else if (document.body.classList.contains("photos-infos")) {
 
 
-var imgDivs = document.getElementsByClassName("with-img");
+/* Informations - Toggle between fr & en texts */
+
+var toggleLocaleTexts = document.getElementsByClassName("toggle-locale");
+function activateLocale(hash) {
+    hashNull = "fr";
+    if (hash == "fr") { hashNull = "en"; }
+    for (i=0; i<toggleLocaleTexts.length; i++) {
+        toggleLocaleTexts[i].classList.remove(hashNull);
+        toggleLocaleTexts[i].classList.add(hash);
+    }
+}
+
+if (hash == "en") {
+    activateLocale(hash);
+}
+
+var localeSwitchFr = document.getElementById("locale-switch-fr");
+localeSwitchFr.addEventListener("click", function() { activateLocale("fr"); });
+var localeSwitchEn = document.getElementById("locale-switch-en");
+localeSwitchEn.addEventListener("click", function() { activateLocale("en"); });
+
+
+/* Informations - Display zoomable pictures */
+
+var infosTirages = document.getElementById("infos-tirages");
+var imgDivs = infosTirages.children;
 
 if (isTouchDevice()) {
 
-    for (i=0; i<imgDivs.length; i++) {
+    for (i=0; i<imgDivs.length-1; i++) {
         imgDivs[i].removeChild(imgDivs[i].children[0]);
         imgDivs[i].children[0].style.display = "inline-block";
     }
 
 } else {
 
-    for (i=0; i<imgDivs.length; i++) {
+    for (i=0; i<imgDivs.length-1; i++) {
         imgDivs[i].removeChild(imgDivs[i].children[1]);
     }
 
     var placeholders = [];
 
-    for (i=0; i<imgDivs.length; i++) {
+    for (i=0; i<imgDivs.length-1; i++) {
         placeholders.push(imgDivs[i].children[0].children[0]);
     }
 
