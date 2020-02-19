@@ -328,7 +328,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 .toggle-locale.fr .en { opacity: 0; z-index: -1; }
 .toggle-locale.en .en { opacity: 1; }
 .toggle-locale.en .fr { opacity: 0; z-index: -1; }
-.toggle-locale > div { transition: opacity 0.4s ease; }
+.toggle-locale .fr, .toggle-locale .en { transition: opacity 0.4s ease; }
 .toggle-locale .en > div:first-child { margin-top: 0 !important; }
 
 
@@ -366,6 +366,10 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 
 /* Informations Tirages
    ========================================================================== */
+
+#gallery-title .en {
+    left: 50%;
+    transform: translateX(-50%); }
 
 #infos-tirages > div:first-child { position: relative; }
 
