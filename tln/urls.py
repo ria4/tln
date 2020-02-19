@@ -8,7 +8,6 @@ from . import views
 
 urlpatterns = [
     path('', include('home.urls')),
-    path('boch/', include('boch.urls')),
     path('blog/', include('blog.urls')),
     path('photos/', include('photos.urls')),
     path('critique/', include('critique.urls')),
