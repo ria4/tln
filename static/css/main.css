@@ -465,7 +465,7 @@ body #sidebar {
 @media (max-width: 1512px) {
 body #sidebar-column {
     position: relative;
-    right: auto;
+    right: auto !important;
     transform: none; }
 body #sidebar {
     max-height: none; } }

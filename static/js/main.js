@@ -8,6 +8,12 @@ function isTouchDevice() { return "ontouchstart" in window || navigator.maxTouch
 var sidebar = document.getElementById("sidebar");
 if (sidebar) {
     function displaySidebarShadows() {
+        if (window.innerWidth <= 1512) {
+            sidebar.classList.remove("shadow-top");
+            sidebar.classList.remove("shadow-bottom");
+            return;
+        }
+
         if (sidebar.scrollTop != 0) {
             sidebar.classList.add("shadow-top");
         } else {
@@ -15,7 +21,7 @@ if (sidebar) {
         }
 
         // both top and bottom borders are 1px-wide
-        if (sidebar.scrollTop < (sidebar.scrollHeight - (sidebar.offsetHeight - 2))) {
+        if (sidebar.scrollTop + (sidebar.offsetHeight - 2) < sidebar.scrollHeight) {
             sidebar.classList.add("shadow-bottom");
         } else {
             sidebar.classList.remove("shadow-bottom");
@@ -25,7 +31,8 @@ if (sidebar) {
     displaySidebarShadows();
     sidebar.addEventListener("scroll", displaySidebarShadows);
     sidebar.addEventListener("click", displaySidebarShadows);
-    sidebar.addEventListener("resize", displaySidebarShadows);
+    window.addEventListener("scroll", displaySidebarShadows);
+    window.addEventListener("resize", displaySidebarShadows);
 }
 
 
