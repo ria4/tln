@@ -11,21 +11,8 @@ body #content-wrap { position: relative; margin-right: 71px; } }
 /* Sidebar
    ========================================================================== */
 
-#sidebar {
-    margin-bottom: 36px;
-    border: 1px solid #deda99;
-    padding: 0 4px;
-    width: 305px;
-    background-color: #fbf2bd;
-    font-size: 18px; }
-#sidebar::-webkit-scrollbar { width: 0px; }
-#sidebar-cruncher {
-    overflow-y: hidden; }
-
 body #sidebar-column {
-    position: absolute;
-    right: 42.76%;
-    transform: translateX(649px); }
+    right: 42.76%; }
 body.gallery-list #sidebar-column {
     top: 51px;
     height: calc(100% - 51px); }
@@ -35,24 +22,11 @@ body.gallery #sidebar-column {
 body.photos-infos #sidebar-column {
     top: 140px;
     height: calc(100% - 140px); }
-body #sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 42px;
-    will-change: transform;
-    max-height: 82vh;
-    overflow-y: scroll;
-    scrollbar-width: none; }
 @media (max-height: 990px) {
 body #sidebar { max-height: 100%; } }
 @media (max-width: 1512px) {
 body #sidebar-column {
-    position: relative;
-    top: 42px !important;
-    right: auto;
-    transform: none; }
-body #sidebar {
-    max-height: none; } }
+    top: 42px !important; } }
 
 #sidebar a { transition: color 0.12s linear; }
 #sidebar #sidebar-photos-link { color: black; }

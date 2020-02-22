@@ -2,7 +2,6 @@
 
 if (document.body.classList.contains("entry")) {
     var header = document.getElementById("header");
-    var sidebar = document.getElementById("sidebar");
 
     window.addEventListener("scroll", function() {
         if (sidebar.contains(document.activeElement) ||
