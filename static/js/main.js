@@ -1,11 +1,31 @@
 var isIE10 = 'behavior' in document.documentElement.style && '-ms-user-select' in document.documentElement.style;
 var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
+function isTouchDevice() { return "ontouchstart" in window || navigator.maxTouchPoints; }
 
 
-/* Top Navigation - Deactivate hoverable photos link on mobile devices */
+/* Sidebar - Display inset shadow for overflowing content */
 
-function isTouchDevice() {
-    return "ontouchstart" in window || navigator.maxTouchPoints;
+var sidebar = document.getElementById("sidebar");
+if (sidebar) {
+    function displaySidebarShadows() {
+        if (sidebar.scrollTop != 0) {
+            sidebar.classList.add("shadow-top");
+        } else {
+            sidebar.classList.remove("shadow-top");
+        }
+
+        // both top and bottom borders are 1px-wide
+        if (sidebar.scrollTop < (sidebar.scrollHeight - (sidebar.offsetHeight - 2))) {
+            sidebar.classList.add("shadow-bottom");
+        } else {
+            sidebar.classList.remove("shadow-bottom");
+        }
+    }
+
+    displaySidebarShadows();
+    sidebar.addEventListener("scroll", displaySidebarShadows);
+    sidebar.addEventListener("click", displaySidebarShadows);
+    sidebar.addEventListener("resize", displaySidebarShadows);
 }
 
 

@@ -438,6 +438,44 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
 #top-nav-h span { transition: all 0.4s ease; }
 
 
+/* Sidebar (blog & photos only)
+   ========================================================================== */
+
+#sidebar {
+    margin-bottom: 36px;
+    border: 1px solid #deda99;
+    padding: 0 4px;
+    width: 305px;
+    background-color: #fbf2bd;
+    font-size: 18px; }
+#sidebar::-webkit-scrollbar { width: 0px; }
+#sidebar-cruncher { overflow-y: hidden; }
+
+body #sidebar-column {
+    position: absolute;
+    transform: translateX(649px); }
+body #sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 42px;
+    will-change: transform;
+    max-height: 82vh;
+    overflow-y: scroll;
+    scrollbar-width: none; }
+@media (max-width: 1512px) {
+body #sidebar-column {
+    position: relative;
+    right: auto;
+    transform: none; }
+body #sidebar {
+    max-height: none; } }
+
+.shadow-top { box-shadow: inset 0 20px 12px -12px #deda99; }
+.shadow-bottom { box-shadow: inset 0 -22px 12px -12px #deda99; }
+.shadow-top.shadow-bottom { box-shadow: inset 0 20px 12px -12px #deda99,
+                                        inset 0 -22px 12px -12px #deda99; }
+
+
 /* Skip-to-main Link
    ========================================================================== */
 

@@ -23,42 +23,16 @@ body #content-wrap { position: relative; padding-right: 11px; } }
 /* Sidebar
    ========================================================================== */
 
-#sidebar {
-    margin-bottom: 36px;
-    border: 1px solid #deda99;
-    padding: 0 4px;
-    width: 305px;
-    background-color: #fbf2bd;
-    font-size: 18px; }
-#sidebar::-webkit-scrollbar { width: 0px; }
-#sidebar-cruncher {
-    overflow-y: hidden; }
-
 body #sidebar-column {
-    position: absolute;
     top: 7px;
     right: 42.8%;
-    height: 100%;
-    transform: translateX(649px); }
-body #sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 42px;
-    will-change: transform;
-    max-height: 82vh;
-    overflow-y: scroll;
-    scrollbar-width: none; }
+    height: 100%; }
 @media (max-width: 1512px) {
 body #sidebar-column {
-    position: relative;
-    top: 30px;
-    right: auto;
-    transform: none; }
-body #sidebar {
-    max-height: none; } }
+    top: 30px; } }
 
 .entry-list #sidebar a { transition: color 0.12s linear; }
-.entry #sidebar { transition: all 0.4s linear; }
+.entry #sidebar { transition: all 0.4s linear, box-shadow 0s; }
 @media (min-width: 1512px) { .entry #sidebar.semihidden { opacity: 0.15; } }
 .entry #sidebar:hover { opacity: 1; }
 @media (min-width: 1512px) { .entry #sidebar.semihidden a { color: black; transition: color 0.4s linear; } }
