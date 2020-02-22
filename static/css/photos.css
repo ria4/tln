@@ -291,6 +291,8 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #locale-switch a {
     display: inline;
     text-decoration: underline; }
+@media (max-width: 900px) {
+#locale-switch { display: none; } }
 
 .toggle-locale {
     position: relative;

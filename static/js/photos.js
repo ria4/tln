@@ -361,6 +361,8 @@ localeSwitchEn.addEventListener("click", function() { activateLocale("en"); });
 /* Informations - Display zoomable pictures */
 
 var infosTirages = document.getElementById("infos-tirages");
+
+if (infosTirages && infosTirages.children) { //XXX this is not clean
 var imgDivs = infosTirages.children;
 
 if (isTouchDevice()) {
@@ -406,6 +408,7 @@ if (isTouchDevice()) {
         }
     });
 
+}
 }
 
 
