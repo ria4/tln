@@ -73,27 +73,27 @@
 
 
 <nav id="pagination">
-    {% if oeuvres.has_previous %}
-        <a href={% url "list_notes" mtype oeuvres.previous_page_number %}><-</a>
+    {% if notes.has_previous %}
+        <a href={% url "list_notes" mtype notes.previous_page_number %}><-</a>
     {% endif %}
 
     <span class="current">
-        page {{ oeuvres.number }} sur {{ oeuvres.paginator.num_pages }}
+        page {{ notes.number }} sur {{ notes.paginator.num_pages }}
     </span>
 
-    {% if oeuvres.has_next %}
-    <a href={% url "list_notes" mtype oeuvres.next_page_number %}>-></a>
+    {% if notes.has_next %}
+    <a href={% url "list_notes" mtype notes.next_page_number %}>-></a>
     {% endif %}
 </nav>
     
 <script>
     var prevPageUrl = null;
-    {% if oeuvres.has_previous %}
-    prevPageUrl = '{% url "list_notes" mtype oeuvres.previous_page_number %}';
+    {% if notes.has_previous %}
+    prevPageUrl = '{% url "list_notes" mtype notes.previous_page_number %}';
     {% endif %}
     var nextPageUrl = null;
-    {% if oeuvres.has_next %}
-    nextPageUrl = '{% url "list_notes" mtype oeuvres.next_page_number %}';
+    {% if notes.has_next %}
+    nextPageUrl = '{% url "list_notes" mtype notes.next_page_number %}';
     {% endif %}
 </script>
 
