@@ -7,6 +7,8 @@ body #content-wrap { position: relative; margin-right: 71px; } }
 
 #content { max-width: 850px; }
 
+#footer { font-size: 16px; }
+
 
 /* Sidebar
    ========================================================================== */
@@ -294,15 +296,6 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 @media (max-width: 900px) {
 #locale-switch { display: none; } }
 
-.toggle-locale {
-    position: relative;
-    flex: 1; }
-.toggle-locale .en {
-    position: absolute;
-    top: 0;
-    left: 0; }
-.toggle-locale .en > div:first-child { margin-top: 0 !important; }
-
 
 /* Informations Light Painting
    ========================================================================== */
@@ -315,8 +308,9 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #infos-lp img:first-child { margin-top: 22px; }
 #infos-lp img:not(:first-child) { margin-top: 30px; }
 
-#infos-lp div { margin-left: 6px; margin-right: 6px; }
-#infos-lp div:not(:first-child) { margin-top: 28px; }
+#infos-lp > div:first-of-type { position: relative; }
+#infos-lp > div { margin-left: 6px; margin-right: 6px; }
+#infos-lp > div:not(:first-child) { margin-top: 28px; }
 #infos-lp p:first-child {
     margin-bottom: 8px;
     text-indent: 50px;
@@ -345,22 +339,18 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 
 #infos-tirages > div:first-child { position: relative; }
 
-#infos-tirages > div:not(:last-child) .toggle-locale .en {
-    top: 50%;
-    transform: translateY(-50%); }
-
-#infos-tirages > div:not(:last-child), #infos-tirages > div:last-child > div > div {
+#infos-tirages > div > div {
     margin: 20px 6px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center; }
 #infos-tirages .with-tables { margin-top: 34px !important; }
-#infos-tirages > div.toggle-locale > div > div:last-child { margin-top: 35px; margin-bottom: 30px; }
-#infos-tirages > div.toggle-locale > div > div:last-child p { text-align: center; }
+#infos-tirages > div:last-child > div:last-child { margin-top: 35px; margin-bottom: 30px; }
+#infos-tirages > div:last-child > div:last-child p { text-align: center; }
 @media (min-width: 900px) {
-#infos-tirages > div:nth-last-child(2) { margin-bottom: 38px; }
-#infos-tirages > div:nth-child(even):not(:last-child) { flex-direction: row-reverse; } }
+#infos-tirages > div:first-child { margin-bottom: 38px; }
+#infos-tirages > div:first-child > div:nth-child(even) { flex-direction: row-reverse; } }
 @media (max-width: 1512px) {
 #infos-tirages > div:last-child { margin-bottom: 6px; } }
 
@@ -387,16 +377,16 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     width: 340px;
     border: 1px solid #deda99; }
 
-#infos-tirages > div:not(:last-child) div:last-child p:first-child { margin-bottom: 12px; }
+#infos-tirages > div:first-child p:first-child { margin-bottom: 12px; }
 @media (min-width: 900px) {
-#infos-tirages > div:not(:last-child):nth-child(odd) p { padding-left: 12px; }
-#infos-tirages > div:not(:last-child):nth-child(even) p { padding-right: 12px; }
-#infos-tirages > div:not(:last-child) p { width: 498px; } }
+#infos-tirages > div:first-child > div:nth-child(odd) p { padding-left: 12px; }
+#infos-tirages > div:first-child > div:nth-child(even) p { padding-right: 12px; }
+#infos-tirages > div:first-child p { width: 498px; } }
 @media (max-width: 900px) {
 #infos-tirages p:first-child { margin-top: 19px; }
 #infos-tirages > div:nth-last-child(2) { margin: -8px 6px; }
-#infos-tirages > div.with-tables { margin-top: 32px; }
-#infos-tirages > div:last-child p { margin-top: 0; } }
+#infos-tirages > div:last-child > div.with-tables { margin-top: 32px; }
+#infos-tirages > div:last-child > div:last-child p { margin-top: 0; } }
 
 #infos-tirages table {
     border-collapse: collapse;

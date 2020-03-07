@@ -299,8 +299,7 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
     padding: 15px 0 14px 40px;
     width: 100%;
     background-color: rgba(232, 202, 138, 0.4);
-    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 16px; }
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 
 #content {
     width: 100%;
@@ -330,6 +329,13 @@ a { text-decoration: none; }
     width: 1px;
     height: 1px;
     overflow: hidden; }
+
+#footer {
+    padding-left: 0;
+    padding-right: 40px;
+    font-size: 17px;
+    text-align: right; }
+@media (max-width: 540px) { #footer { padding-right: 0; text-align: center; } }
 
 
 /* ==========================================================================

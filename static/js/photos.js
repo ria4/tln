@@ -333,13 +333,13 @@ for (var i=0; i<photosN; i++) {
 }
 
 
-} else if (document.body.classList.contains("photos-infos-lp")) {
+} else if (document.body.classList.contains("photos-infos-tirages")) {
 
 
 /* Informations - Display zoomable pictures */
 
 var infosTirages = document.getElementById("infos-tirages");
-var imgDivs = infosTirages.children;
+var imgDivs = infosTirages.firstElementChild.children;
 
 if (isTouchDevice()) {
 
@@ -385,7 +385,6 @@ if (isTouchDevice()) {
         }
     });
 
-}
 }
 
 
