@@ -161,10 +161,5 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
 /* Footer
    ========================================================================== */
 
-#footer {
-    padding-left: 0;
-    padding-right: 40px;
-    font-size: 17px;
-    text-align: right; }
+#footer { font-size: 17px; }
 _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0; } /* IE 10 */
-@media (max-width: 540px) { #footer { padding-right: 0; text-align: center; } }
