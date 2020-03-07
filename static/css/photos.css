@@ -53,6 +53,9 @@ body #sidebar-column {
 #sidebar .widget:last-child {
     padding-bottom: 33px;
     margin-bottom: 0; }
+#sidebar #widget-info span {
+    vertical-align: text-top;
+    font-size: 15px; }
 
 #sidebar li:before { font-family: Arial; font-size: 17px; content: "●"; }
 .android #sidebar li:before { font-size: 9px; vertical-align: middle; }
