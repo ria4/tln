@@ -390,7 +390,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #infos-tirages > div:first-child p { width: 498px; } }
 @media (max-width: 900px) {
 #infos-tirages > div:first-child p:first-child { margin-top: 19px; }
-#infos-tirages > div:last-child > div { margin-top: -7px; }
+#infos-tirages > div:last-child > div { margin-top: -6px; }
 #infos-tirages > div:last-child > div.with-tables { margin-top: 32px; }
 #infos-tirages > div:last-child > div:last-child p { margin-top: 0; } }
 
