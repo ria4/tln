@@ -344,20 +344,20 @@ var imgDivs = infosTirages.firstElementChild.children;
 if (isTouchDevice()) {
 
     // this also applies for narrow browsers XXX
-    for (i=0; i<imgDivs.length-1; i++) {
+    for (i=0; i<imgDivs.length; i++) {
         imgDivs[i].removeChild(imgDivs[i].children[0]);
         imgDivs[i].children[0].style.display = "inline-block";
     }
 
 } else {
 
-    for (i=0; i<imgDivs.length-1; i++) {
+    for (i=0; i<imgDivs.length; i++) {
         imgDivs[i].removeChild(imgDivs[i].children[1]);
     }
 
     var placeholders = [];
 
-    for (i=0; i<imgDivs.length-1; i++) {
+    for (i=0; i<imgDivs.length; i++) {
         placeholders.push(imgDivs[i].children[0].children[0]);
     }
 
