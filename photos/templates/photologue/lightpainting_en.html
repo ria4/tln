@@ -1,0 +1,65 @@
+{% extends "photologue/base.html" %}
+
+{% block title %}¿light painting?{% endblock %}
+{% block og-title %}¿light painting?{% endblock %}
+{% block tw-title %}¿light painting?{% endblock %}
+
+{% block og-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
+{% block tw-image %}https://oriane.ink/static/img_base/IMG_7213_home_min.JPG{% endblock %}
+
+{% block og-description %}A short FAQ about light painting in general and my gear in particular.{% endblock %}
+{% block tw-description %}A short FAQ about light painting in general and my gear in particular.{% endblock %}
+
+{% block body-class %}photos-infos photos-infos-lp{% endblock %}
+
+{% block content %}
+<div id="gallery-title">
+    <h1>¿light painting?</h1>
+</div>
+<div id="infos-lp">
+    <div id="locale-switch"><a id="locale-switch-fr" href="/photos/lightpainting">fr</a>/<a id="locale-switch-en" href="#">en</a></div>
+    <img src="/media/photologue/photos/cache/20191226__MG_0620_blog_display.jpg"/>
+    <div>
+        <p>What is light painting, exactly?</p>
+        <p>Practicing light painting commonly entails shooting with long exposure using artificial light sources. These two elements are quite characteristic, however there's a fair range of techniques related to light painting, which enable photographers to create pictures in many different styles. One of the simplest techniques involves drawing letters from a word with a flashlight. The camera continually gathers light for a few seconds, then the exposure is ended. The resulting picture combines every parcel of light received during the exposure, and that's how the full word appears.</p>
+    </div>
+    <div>
+        <p>I don't see how a torchlight is related to your pictures.</p>
+        <p>My light gear is more complex than a flashlight, but the rationale stays the same. The main tool I use is a 1m-long LED strip, made of 144 pixels. Each pixel is controlled from a small computer on one end of the strip. There's also a battery for powering both the LEDs and the controller. Moving this staff in front of a camera enables me to create light drawings.</p>
+    </div>
+    <div>
+        <p>It's quite surprising. It looks like the lights were added with some kind of software!</p>
+        <p>That's not how it works. Light paintings are drawn live, right in the front of the camera. I'm interested in this process partly because the drawings would be difficult to create otherwise, but mostly because it makes them exist <em>apart from the picture</em>. Photography acts as a catalyst of something physical, ephemeral yet tangible, which draws life from me.</p>
+    </div>
+    <div>
+        <p>So there's no computer processing involved whatsoever?</p>
+        <p>Not exactly. Shooting the picture is the most important part, but I also develop it afterwards, with <em lang="en"><a href="https://www.darktable.org/">darktable</a></em>. The shapes from the light drawings are left untouched, but there's still a few technical adjustments to be applied, which are quite common for digital photography: noise reduction, color balancing, hot pixels removal... I consider the meaning of my pictures to be set at the time of the shooting, while development is only supposed to reveal some part of it.</p>
+    </div>
+    <div>
+        <p>How come you're nowhere on the pictures?</p>
+        <p>The final picture is made of every element which sent light to the camera (be it emitted light or reflected light). As long as I stay behind the LEDs, there's no light coming off me, so I can't be seen and I won't appear on the picture. The image on top is different, because a mounted flash fired once I'd finished moving the LEDs around.</p>
+    </div>
+    <img src="/media/photologue/photos/cache/20191217__MG_0556_blog_display.jpg"/>
+    <div>
+        <p>How long does it take for you to shoot one picture?</p>
+        <p>Speaking of exposure only, it lasts about fifteen seconds on average. Sometimes I use longer shutter speeds, but rarely more than two minutes. However, there's a whole preparation before the shot itself. There's framing, and searching for a light pattern, and balancing all the lights in the scene, and configuring the camera, then repeating the shot a few times until I make the right moves... It often adds up to more than two hours for every picture! Then again, this does not account for location scouting, electronics and programming, digital development, etc.</p>
+    </div>
+    <div>
+        <p>Once the location is set, do you already know what you're going to draw?</p>
+        <p>Sometimes I do, but mostly I don't. The first thing I do is loading the LED-controlling computer with several programs. One of the simplest ones, for instance, is able to make the whole strip blink from white to nothing every half second. Another one displays a colour gradient from red to green, from one end of the strip to the other. Then when I get to the shooting location, I usually try two or three of these before settling on the one I feel will make the picture relevant.</p>
+    </div>
+    <div>
+        <p>Are these light patterns always laid down in advance?</p>
+        <p>Several of the algorithms I wrote deal with chance. The overarching logic of the patterns is settled, but there's some randomness involved when they're being run. In the past I've sometimes used an SD card loaded with pictures ready to be reassembled row by row (instead of patterns being computed on-the-fly by the controller), but I've grown out of it.</p>
+    </div>
+    <div>
+        <p>Is there a way to see some prints from your series?</p>
+        <p>I began exhibiting my work in 2019. Unfortunately I have no permanent place to display it at the moment. You may still email me at&nbsp;<a href="mailto:contact@oriane.ink">contact@oriane.ink</a> so that we can try and set a meeting.</p>
+    </div>
+    <div>
+        <p>I really like one of your pictures and I'd like to purchase a print of it. How do I proceed?</p>
+        <p>I'm glad you liked it! You should find all the information you need <a href="/photos/tirages#en">right here</a>.</p>
+    </div>
+    <div><p>Learn more about the process on my blog:<br><a href="/blog/2018/06/23/light-painting-workflow/" lang="en">silhouettes & silences: a light painting workflow</a>.</p></div>
+</div>
+{% endblock %}

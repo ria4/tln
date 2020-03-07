@@ -333,40 +333,17 @@ for (var i=0; i<photosN; i++) {
 }
 
 
-} else if (document.body.classList.contains("photos-infos")) {
-
-
-/* Informations - Toggle between fr & en texts */
-
-var toggleLocaleTexts = document.getElementsByClassName("toggle-locale");
-function activateLocale(hash) {
-    hashNull = "fr";
-    if (hash == "fr") { hashNull = "en"; }
-    for (i=0; i<toggleLocaleTexts.length; i++) {
-        toggleLocaleTexts[i].classList.remove(hashNull);
-        toggleLocaleTexts[i].classList.add(hash);
-    }
-}
-
-if (hash == "en") {
-    activateLocale(hash);
-}
-
-var localeSwitchFr = document.getElementById("locale-switch-fr");
-localeSwitchFr.addEventListener("click", function() { activateLocale("fr"); });
-var localeSwitchEn = document.getElementById("locale-switch-en");
-localeSwitchEn.addEventListener("click", function() { activateLocale("en"); });
+} else if (document.body.classList.contains("photos-infos-lp")) {
 
 
 /* Informations - Display zoomable pictures */
 
 var infosTirages = document.getElementById("infos-tirages");
-
-if (infosTirages && infosTirages.children) { //XXX this is not clean
 var imgDivs = infosTirages.children;
 
 if (isTouchDevice()) {
 
+    // this also applies for narrow browsers XXX
     for (i=0; i<imgDivs.length-1; i++) {
         imgDivs[i].removeChild(imgDivs[i].children[0]);
         imgDivs[i].children[0].style.display = "inline-block";

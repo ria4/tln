@@ -21,7 +21,8 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='photologue/galleries.html',
                                   extra_context=extra_context_galleries)),
     path('lightpainting', TemplateView.as_view(template_name='photologue/lightpainting.html')),
+    path('lightpainting/en', TemplateView.as_view(template_name='photologue/lightpainting_en.html')),
     path('tirages', TemplateView.as_view(template_name='photologue/tirages.html')),
-    path('prints', TemplateView.as_view(template_name='photologue/tirages.html')),
+    path('prints', TemplateView.as_view(template_name='photologue/tirages_en.html')),
     path('', include(photos_urls)),
 ]
