@@ -10,109 +10,56 @@
 {% block og-description %}Quelques explications sur le light painting et les outils que j'utilise.{% endblock %}
 {% block tw-description %}Quelques explications sur le light painting et les outils que j'utilise.{% endblock %}
 
-{% block body-class %}photos-infos{% endblock %}
+{% block body-class %}photos-infos photos-infos-lp{% endblock %}
 
 {% block content %}
 <div id="gallery-title">
     <h1>¿light painting?</h1>
 </div>
 <div id="infos-lp">
-    <img style="border: 1px solid #deda99;" src="/media/photologue/photos/cache/20191226__MG_0620_blog_display.jpg"/>
-    <div class="toggle-locale fr">
-        <div id="locale-switch"><a id="locale-switch-fr" href="#fr">fr</a>/<a id="locale-switch-en" href="#en">en</a></div>
-        <div class="fr">
-            <div>
-                <p>Qu'est-ce que c'est, le <em lang="en">light painting</em> ?</p>
-                <p>Ces deux mots désignent une ensemble de pratiques photographiques qui ont en commun, d'une part l'utilisation de sources de lumières artificielles, et d'autre part des temps d'exposition longs. Par exemple, l'artiste trace un mot en l'air à l'aide d'une lampe torche. L'appareil photo capte la lumière pendant quelques secondes, le temps du tracé. Sur l'image finale, qui combine toute la lumière accumulée, le mot apparaît au complet.</p>
-            </div>
-            <div>
-                <p>Mais quel est le rapport entre une lampe torche et tes photos ?</p>
-                <p>J'utilise un équipement plus complexe qu'une lampe torche, mais la logique reste la même. Mon outil principal est une bande de 144 LEDs, fixée sur une barre de plus d'un mètre de long. À tout instant, la couleur de chaque LED dépend des instructions envoyées par un petit ordinateur, logé dans un boîtier à côté de la batterie. Déplacer cette barre devant un appareil photo permet de créer des motifs lumineux.</p>
-            </div>
-            <div>
-                <p>C'est vraiment surprenant, on dirait que les lumières ont été ajoutées avec un logiciel !</p>
-                <p>Non. Les motifs lumineux sont tracés sur place, en direct devant l'appareil photo. Ce procédé m'attire, car les motifs seraient difficiles à créer et intégrer à l'aide d'un logiciel, mais cela leur donne surtout une existence <em>en dehors de l'image</em>. C'est une manifestation physique, éphémère mais concrète, remplie d'efforts et de vie, que révèle la photographie.
-            </div>
-            <div>
-                <p>Alors rien n'est fait sur ordinateur ?</p>
-                <p>Pas exactement. Une fois la photo prise, je la « développe » avec <em lang="en"><a href="https://www.darktable.org/">darktable</a></em>. Je ne retouche pas les formes des motifs lumineux, mais j'effectue un certain nombre d'ajustements techniques qui sont assez communs chez les adeptes de photographie numérique : réduction du bruit, rééquilibrage des couleurs, suppression des pixels chauds... Le sens de la photo est fixé dès la fin de la prise de vue, et le développement consiste à en révéler une partie.</p>
-            </div>
-            <div>
-                <p>Mais comment est-ce que tu n'apparais pas sur les photos ?</p>
-                <p>L'image finale est composée par tous les éléments qui ont envoyé (de manière directe ou bien réfléchie) de la lumière vers l'appareil photo. Tant que je reste derrière les LEDs, je ne suis pas éclairée, donc je n'apparais pas. À l'inverse, pour la photo en haut de page, j'ai été éclairée par un flash déclenché à la fin du déplacement des LEDs.</p>
-            </div>
-        </div>
-        <div class="en" lang="en">
-            <div>
-                <p>What is light painting, exactly?</p>
-                <p>Practicing light painting commonly entails shooting with long exposure using artificial light sources. These two elements are quite characteristic, however there's a fair range of techniques related to light painting, which enable photographers to create pictures in many different styles. One of the simplest techniques involves drawing letters from a word with a flashlight. The camera continually gathers light for a few seconds, then the exposure is ended. The resulting picture combines every parcel of light received during the exposure, and that's how the full word appears.</p>
-            </div>
-            <div>
-                <p>I don't see how a torchlight is related to your pictures.</p>
-                <p>My light gear is more complex than a flashlight, but the rationale stays the same. The main tool I use is a 1m-long LED strip, made of 144 pixels. Each pixel is controlled from a small computer on one end of the strip. There's also a battery for powering both the LEDs and the controller. Moving this staff in front of a camera enables me to create light drawings.</p>
-            </div>
-            <div>
-                <p>It's quite surprising. It looks like the lights were added with some kind of software!</p>
-                <p>That's not how it works. Light paintings are drawn live, right in the front of the camera. I'm interested in this process partly because the drawings would be difficult to create otherwise, but mostly because it makes them exist <em>apart from the picture</em>. Photography acts as a catalyst of something physical, ephemeral yet tangible, which draws life from me.</p>
-            </div>
-            <div>
-                <p>So there's no computer processing involved whatsoever?</p>
-                <p>Not exactly. Shooting the picture is the most important part, but I also develop it afterwards, with <em lang="en"><a href="https://www.darktable.org/">darktable</a></em>. The shapes from the light drawings are left untouched, but there's still a few technical adjustments to be applied, which are quite common for digital photography: noise reduction, color balancing, hot pixels removal... I consider the meaning of my pictures to be set at the time of the shooting, while development is only supposed to reveal some part of it.</p>
-            </div>
-            <div>
-                <p>How come you're nowhere on the pictures?</p>
-                <p>The final picture is made of every element which sent light to the camera (be it emitted light or reflected light). As long as I stay behind the LEDs, there's no light coming off me, so I can't be seen and I won't appear on the picture. The image on top is different, because a mounted flash fired once I'd finished moving the LEDs around.</p>
-            </div>
-        </div>
+    <div id="locale-switch"><a id="locale-switch-fr" href="#">fr</a>/<a id="locale-switch-en" href="/photos/lightpainting/en">en</a></div>
+    <img src="/media/photologue/photos/cache/20191226__MG_0620_blog_display.jpg"/>
+    <div>
+        <p>Qu'est-ce que c'est, le <em lang="en">light painting</em> ?</p>
+        <p>Ces deux mots désignent une ensemble de pratiques photographiques qui ont en commun, d'une part l'utilisation de sources de lumières artificielles, et d'autre part des temps d'exposition longs. Par exemple, l'artiste trace un mot en l'air à l'aide d'une lampe torche. L'appareil photo capte la lumière pendant quelques secondes, le temps du tracé. Sur l'image finale, qui combine toute la lumière accumulée, le mot apparaît au complet.</p>
     </div>
-    <img style="border: 1px solid #deda99;" src="/media/photologue/photos/cache/20191217__MG_0556_blog_display.jpg"/>
-    <div class="toggle-locale fr">
-        <div class="fr">
-            <div>
-                <p>Combien de temps dure une photo, en moyenne ?</p>
-                <p>Si on parle juste du temps d'exposition, il se situe en général autour de quinze secondes. Mes photos les plus longues tournent autour de deux minutes. La préparation de la photo, par contre, c'est une autre affaire. En comptant le cadrage, la recherche du motif lumineux, l'éclairage de la scène, le paramétrage de l'appareil, et enfin les multiples tentatives pour réaliser les bons mouvements, je dépasse souvent les deux heures pour chaque image ! Et c'est sans compter le repérage, ni la programmation des LEDs, ni le développement numérique...</p>
-            </div>
-            <div>
-                <p>Quand tu as décidé d'un endroit, est-ce que tu sais déjà quel dessin tu vas tracer ?</p>
-                <p>Des fois oui, mais la plupart du temps non. Sur le petit ordinateur qui contrôle les LEDs, je charge plusieurs programmes écrits au préalable. Il s'agit par exemple, pour les plus simples, de faire clignoter toute la barre en blanc à intervalles réguliers, ou bien d'y afficher un dégradé du rouge au vert. Ensuite, une fois sur place, je suis susceptible d'en essayer deux ou trois avant de trouver celui qui va s'inscrire dans une image qui m'intéresse.</p>
-            </div>
-            <div>
-                <p>Avec ces programmes, est-ce que tous les dessins lumineux sont fixés à l'avance ?</p>
-                <p>Plusieurs des algorithmes que j'ai écrits font intervenir des éléments aléatoires. Je prépare la logique des motifs qui vont être générés, mais il y a aussi une part de hasard. Par le passé, il m'est arrivé d'utiliser une carte SD préchargée avec des images (plutôt que les dessins soient calculés en direct par l'ordinateur), mais ce procédé m'intéresse moins aujourd'hui.</p>
-            </div>
-            <div>
-                <p>Peut-on voir quelque part des tirages de tes photos ?</p>
-                <p>J'ai commencé à exposer en 2019, mais à ce jour je ne dispose malheureusement pas d'un espace dédié permanent. Vous pouvez m'écrire à&nbsp;<a href="mailto:contact@oriane.ink">contact@oriane.ink</a> pour essayer d'arranger une rencontre.</p>
-            </div>
-            <div>
-                <p>Il y a une photo qui me plaît beaucoup et j'aimerais en posséder un exemplaire, c'est possible ?</p>
-                <p>Oui ! Pour tout savoir sur les commandes de tirages, <a href="/photos/tirages">c'est par ici</a>.
-            </div>
-            <div><p>Plus d'informations techniques sur mon blog :<br><a href="/blog/2018/06/23/light-painting-workflow/" lang="en">silhouettes & silences: a light painting workflow</a>.</p></div>
-        </div>
-        <div class="en" lang="en">
-            <div>
-                <p>How long does it take for you to shoot one picture?</p>
-                <p>Speaking of exposure only, it lasts about fifteen seconds on average. Sometimes I use longer shutter speeds, but rarely more than two minutes. However, there's a whole preparation before the shot itself. There's framing, and searching for a light pattern, and balancing all the lights in the scene, and configuring the camera, then repeating the shot a few times until I make the right moves... It often adds up to more than two hours for every picture! Then again, this does not account for location scouting, electronics and programming, digital development, etc.</p>
-            </div>
-            <div>
-                <p>Once the location is set, do you already know what you're going to draw?</p>
-                <p>Sometimes I do, but mostly I don't. The first thing I do is loading the LED-controlling computer with several programs. One of the simplest ones, for instance, is able to make the whole strip blink from white to nothing every half second. Another one displays a colour gradient from red to green, from one end of the strip to the other. Then when I get to the shooting location, I usually try two or three of these before settling on the one I feel will make the picture relevant.</p>
-            </div>
-            <div>
-                <p>Are these light patterns always laid down in advance?</p>
-                <p>Several of the algorithms I wrote deal with chance. The overarching logic of the patterns is settled, but there's some randomness involved when they're being run. In the past I've sometimes used an SD card loaded with pictures ready to be reassembled row by row (instead of patterns being computed on-the-fly by the controller), but I've grown out of it.</p>
-            </div>
-            <div>
-                <p>Is there a way to see some prints from your series?</p>
-                <p>I began exhibiting my work in 2019. Unfortunately I have no permanent place to display it at the moment. You may still email me at&nbsp;<a href="mailto:contact@oriane.ink">contact@oriane.ink</a> so that we can try and set a meeting.</p>
-            </div>
-            <div>
-                <p>I really like one of your pictures and I'd like to purchase a print of it. How do I proceed?</p>
-                <p>I'm glad you liked it! You should find all the information you need <a href="/photos/tirages#en">right here</a>.</p>
-            </div>
-            <div><p>Learn more about the process on my blog:<br><a href="/blog/2018/06/23/light-painting-workflow/" lang="en">silhouettes & silences: a light painting workflow</a>.</p></div>
-        </div>
+    <div>
+        <p>Mais quel est le rapport entre une lampe torche et tes photos ?</p>
+        <p>J'utilise un équipement plus complexe qu'une lampe torche, mais la logique reste la même. Mon outil principal est une bande de 144 LEDs, fixée sur une barre de plus d'un mètre de long. À tout instant, la couleur de chaque LED dépend des instructions envoyées par un petit ordinateur, logé dans un boîtier à côté de la batterie. Déplacer cette barre devant un appareil photo permet de créer des motifs lumineux.</p>
     </div>
+    <div>
+        <p>C'est vraiment surprenant, on dirait que les lumières ont été ajoutées avec un logiciel !</p>
+        <p>Non. Les motifs lumineux sont tracés sur place, en direct devant l'appareil photo. Ce procédé m'attire, car les motifs seraient difficiles à créer et intégrer à l'aide d'un logiciel, mais cela leur donne surtout une existence <em>en dehors de l'image</em>. C'est une manifestation physique, éphémère mais concrète, remplie d'efforts et de vie, que révèle la photographie.
+    </div>
+    <div>
+        <p>Alors rien n'est fait sur ordinateur ?</p>
+        <p>Pas exactement. Une fois la photo prise, je la « développe » avec <em lang="en"><a href="https://www.darktable.org/">darktable</a></em>. Je ne retouche pas les formes des motifs lumineux, mais j'effectue un certain nombre d'ajustements techniques qui sont assez communs chez les adeptes de photographie numérique : réduction du bruit, rééquilibrage des couleurs, suppression des pixels chauds... Le sens de la photo est fixé dès la fin de la prise de vue, et le développement consiste à en révéler une partie.</p>
+    </div>
+    <div>
+        <p>Mais comment est-ce que tu n'apparais pas sur les photos ?</p>
+        <p>L'image finale est composée par tous les éléments qui ont envoyé (de manière directe ou bien réfléchie) de la lumière vers l'appareil photo. Tant que je reste derrière les LEDs, je ne suis pas éclairée, donc je n'apparais pas. À l'inverse, pour la photo en haut de page, j'ai été éclairée par un flash déclenché à la fin du déplacement des LEDs.</p>
+    </div>
+    <img src="/media/photologue/photos/cache/20191217__MG_0556_blog_display.jpg"/>
+    <div>
+        <p>Combien de temps dure une photo, en moyenne ?</p>
+        <p>Si on parle juste du temps d'exposition, il se situe en général autour de quinze secondes. Mes photos les plus longues tournent autour de deux minutes. La préparation de la photo, par contre, c'est une autre affaire. En comptant le cadrage, la recherche du motif lumineux, l'éclairage de la scène, le paramétrage de l'appareil, et enfin les multiples tentatives pour réaliser les bons mouvements, je dépasse souvent les deux heures pour chaque image ! Et c'est sans compter le repérage, ni la programmation des LEDs, ni le développement numérique...</p>
+    </div>
+    <div>
+        <p>Quand tu as décidé d'un endroit, est-ce que tu sais déjà quel dessin tu vas tracer ?</p>
+        <p>Des fois oui, mais la plupart du temps non. Sur le petit ordinateur qui contrôle les LEDs, je charge plusieurs programmes écrits au préalable. Il s'agit par exemple, pour les plus simples, de faire clignoter toute la barre en blanc à intervalles réguliers, ou bien d'y afficher un dégradé du rouge au vert. Ensuite, une fois sur place, je suis susceptible d'en essayer deux ou trois avant de trouver celui qui va s'inscrire dans une image qui m'intéresse.</p>
+    </div>
+    <div>
+        <p>Avec ces programmes, est-ce que tous les dessins lumineux sont fixés à l'avance ?</p>
+        <p>Plusieurs des algorithmes que j'ai écrits font intervenir des éléments aléatoires. Je prépare la logique des motifs qui vont être générés, mais il y a aussi une part de hasard. Par le passé, il m'est arrivé d'utiliser une carte SD préchargée avec des images (plutôt que les dessins soient calculés en direct par l'ordinateur), mais ce procédé m'intéresse moins aujourd'hui.</p>
+    </div>
+    <div>
+        <p>Peut-on voir quelque part des tirages de tes photos ?</p>
+        <p>J'ai commencé à exposer en 2019, mais à ce jour je ne dispose malheureusement pas d'un espace dédié permanent. Vous pouvez m'écrire à&nbsp;<a href="mailto:contact@oriane.ink">contact@oriane.ink</a> pour essayer d'arranger une rencontre.</p>
+    </div>
+    <div>
+        <p>Il y a une photo qui me plaît beaucoup et j'aimerais en posséder un exemplaire, c'est possible ?</p>
+        <p>Oui ! Pour tout savoir sur les commandes de tirages, <a href="/photos/tirages">c'est par ici</a>.
+    </div>
+    <div><p>Plus d'informations techniques sur mon blog :<br><a href="/blog/2018/06/23/light-painting-workflow/" lang="en">silhouettes & silences: a light painting workflow</a>.</p></div>
 </div>
 {% endblock %}
