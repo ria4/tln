@@ -314,8 +314,8 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 hr, .hseparator { border-bottom: solid 1px #a57100; }
 
 a { text-decoration: none; }
-#content-wrap a { color: #bd4700; }
-#content-wrap a:hover { color: #f7a300; }
+#content-wrap a, #footer a { color: #bd4700; }
+#content-wrap a:hover, #footer a:hover { color: #f7a300; }
 
 #pagination {
     width: 100%;
