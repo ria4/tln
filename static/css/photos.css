@@ -296,8 +296,6 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #locale-switch a {
     display: inline;
     text-decoration: underline; }
-@media (max-width: 900px) {
-#locale-switch { display: none; } }
 
 
 /* Informations Light Painting
@@ -311,7 +309,6 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #infos-lp img:first-child { margin-top: 22px; }
 #infos-lp img:not(:first-child) { margin-top: 30px; }
 
-#infos-lp > div:first-of-type { position: relative; }
 #infos-lp > div { margin-left: 6px; margin-right: 6px; }
 #infos-lp > div:not(:first-child) { margin-top: 28px; }
 #infos-lp p:first-child {
@@ -331,6 +328,13 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #infos-lp div:last-child p { margin-bottom: 20px; } }
 @media (max-width: 700px) {
 #infos-lp p:first-child { text-indent: 0px; } }
+
+@media (min-width: 900px) {
+#infos-lp > div:first-of-type { position: relative; }
+#infos-lp #locale-switch { top: -2px; } }
+@media (max-width: 900px) {
+#infos-lp #locale-switch { right: 6px; top: 4px; } }
+
 
 
 /* Informations Tirages
