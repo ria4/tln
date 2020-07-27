@@ -25,4 +25,3 @@
 # m h  dom mon dow   command
 
 @reboot /usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /home/ria/tln/net/uwsgi-emperor.log
-0 2 * * * /home/ria/tln/util/dump_daily_mongo.sh
