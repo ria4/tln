@@ -24,4 +24,4 @@
 # 
 # m h  dom mon dow   command
 
-0 3 * * * rsync -az --delete-after /home/ria/tln -e "ssh -p 1992" root@10.10.0.92:/home/DATA/oriane_bak
+0 3 * * * rsync -az --delete-after /home/ria/tln backup:/home/DATA/oriane_bak
