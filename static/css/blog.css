@@ -84,23 +84,56 @@ body #sidebar-column {
    ========================================================================== */
 
 .entry-links { max-width: 900px; }
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { /* IE 10/11 */
-.entry-list .hentry { height: 188px; }
-.entry-list .entry-body { flex: 1; -ms-flex: 1; } }
-.entry-list .entry-title {
-    padding-top: 7px;
-    padding-right: 18px;
-    padding-left: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis; }
+.entry-links > ul {
+    width: 100%;
+    padding-left: 7%; }
+.entry-list .entries-year {
+    margin: 21px 0; }
+.entry-list .group-year {
+    width: 122px;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: right; }
 .entry-list .entry-body {
-    margin-left: 20px;
-    margin-right: 12px; }
-.entry-list .entry-footer {
-    margin: 0 20px; }
-.entry-list .entry-footer .entry-discussions {
-    margin-right: 7px;
-    min-width: 80px; }
+    display: -ms-flexbox;
+    display: flex;
+    margin: 4px 0; }
+.entry-list .entry-date {
+    display: inline-block;
+    width: 120px;
+    margin-right: 20px;
+    font-style: italic;
+    text-align: right;
+    opacity: 0.44;
+    flex-shrink: 0; }
+.entry-list .entry-link {
+    line-height: 1.2;
+    padding-top: 2px; }
+
+@media (max-width: 1300px) {
+.entry-links { max-width: 804px; } }
+@media (max-width: 1080px) {
+.entry-links { max-width: 700px; }
+.entry-list .entry-body { margin: 5px 0; } }
+@media (max-width: 740px) {
+.entry-links > ul { padding-right: 54px; } }
+@media (max-width: 600px) {
+.entry-links { padding-left: 0; padding-right: 20px; }
+.entry-links > ul { padding: 0; }
+.entries-year:first-child { margin-top: 0; }
+.entry-list .entry-date { margin-right: 12px; } }
+@media (max-width: 430px) {
+.entry-list .group-year { width: 112px; }
+.entry-list .entry-date { width: 110px; }
+.entry-list .entry-link-marked { max-width: 180px; } }
+
+.entries-empty {
+    width: 100%;
+    padding-right: 9%;
+    margin-bottom: 16px;
+    text-align: center; }
+@media (min-width: 1512px) {
+.entries-empty { margin-top: 144px; padding-right: 16%; } }
 
 
 /* Entry

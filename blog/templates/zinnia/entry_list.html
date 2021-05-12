@@ -16,7 +16,6 @@
 {% block content %}
 {% block content-loop %}
 <div class="entry-links"><ul>
-<p>maintenance en cours lol</p>
     {% tag_entries_with_year object_list as year_entries %}
     {% regroup year_entries by year as year_entries_groups %}
     {% for year, year_entries_group in year_entries_groups %}
@@ -25,17 +24,19 @@
         <ul>
         {% for year_entry in year_entries_group %}
             {% with entry=year_entry.entry %}
-            <li class="entry-line">
+            <li class="entry-body">
                 <span class="entry-date">{{ entry.publication_date|date:"j F" }}</span>
-                <a href="{{ entry.get_absolute_url }}" class="entry-link" rel="bookmark" itemprop="url">{{ entry.title }}</a>
+                <a href="{{ entry.get_absolute_url }}" class="entry-link{% if 'Psychanalyse' in entry.title or 'Pride' in entry.title %} entry-link-marked{% endif %}" rel="bookmark" itemprop="url"{% if not entry.custom.lang == 'fr-FR' %} lang="{{ entry.custom.lang }}"{% endif %}>{{ entry.title }}</a>
+                {# dirty hack to prevent orphaned words for selected titles #}
             </li>
             {% endwith %}
         {% endfor %}
         </ul>
     {% empty %}
-      <p class="info">      {# TODO style (accéder avec via tags/null) #}
-        Il n'y a rien ici !
-      </p>
+        <div class="entries-empty">
+            <p>Il n'y a rien ici !</p>
+            <p><a href="/blog/">Retour vers le blog.</a></p>
+        </div>
     {% endfor %}
     </li>
 </ul></div>
