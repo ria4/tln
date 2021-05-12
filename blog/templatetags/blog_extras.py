@@ -29,6 +29,11 @@ def get_entries_on_day(date, is_superuser=False):
     return entries_clean
 
 
+@register.simple_tag
+def tag_entries_with_year(entries):
+    return [{'entry': entry, 'year': entry.publication_date.strftime('%Y')} for entry in entries]
+
+
 @register.inclusion_tag('zinnia/tags/dummy.html', takes_context=True)
 def get_archives_entries_tree_su_sensitive(context,
         template='zinnia/tags/entries_archives_tree.html'):
