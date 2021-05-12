@@ -8,8 +8,6 @@
       <a class='toggle
         {% if publication_date %}
           {% if publication_date|date:"Y" == year.grouper|stringformat:"d" %} expanded{% else %} collapsed{% endif %}
-        {% else %}
-          {% if forloop.first %} expanded{% else %} collapsed{% endif %}
         {% endif %}
         ' href="#" role="button"><span class='toggle-in'></span><span class='toggle-year'>{{ year.grouper }}</span></a>
     {% regroup year.list by day as day_list %}
