@@ -1,3 +1,4 @@
+.well-known/
 blog/migrations/
 critique/migrations/
 critique/static/
