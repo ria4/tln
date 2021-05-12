@@ -8,16 +8,3 @@
 {% block title %}blog{% endblock title %}
 
 {% block body-class %}{{ block.super }} archive index {% now "\y\e\a\r-Y \m\o\n\t\h-m \w\e\ek-W \d\a\y-d" %}{% endblock body-class %}
-
-{% block content-related %}
-{% if date_list %}
-<h2>{% trans "Yearly archives" %}</h2>
-<ul>
-  {% for date in date_list %}
-  <li>
-    <a href="{% url 'zinnia:entry_archive_year' date|date:"Y" %}" rel="archives">{{ date|date:"Y" }}</a>
-  </li>
-  {% endfor %}
-</ul>
-{% endif %}
-{% endblock content-related %}
