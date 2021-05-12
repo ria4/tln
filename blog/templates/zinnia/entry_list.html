@@ -10,9 +10,7 @@
 
 {% block meta-description %}j'aime le point médian et l'inénarrable{% endblock %}
 
-{# {% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %} #}
-
-{% block body-class %}entry-list{% if page_obj %} paginated page-{{ page_obj.number }}{% endif %}{% if category %} category category-{{ category.slug }}{% endif %}{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% if author %} author author-{{ author|slugify }}{% endif %}{% endblock body-class %}
+{% block body-class %}entry-list{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% endblock body-class %}
 
 {% block content %}
 
@@ -29,39 +27,7 @@
 </p>
 {% endfor %}
 
-{% block content-pagination %}
-{% if is_paginated %}
-  {% zinnia_pagination page_obj %}
-{% endif %}
-{% endblock content-pagination %}
-
 </div>
 {% endblock content-loop %}
 
 {% endblock content %}
-
-{% comment %}
-{% block admin-tools %}
-  {% if category and perms.zinnia.change_category %}
-  <li>
-    <a href="{% url 'admin:zinnia_category_change' category.pk %}">
-      {% trans "Edit the category" %}
-    </a>
-  </li>
-  {% endif %}
-  {% if tag and perms.tagging.change_tag %}
-  <li>
-    <a href="{% url 'admin:tagging_tag_change' tag.pk %}">
-      {% trans "Edit the tag" %}
-    </a>
-  </li>
-  {% endif %}
-  {% if author and perms.auth.change_user %}
-  <li>
-    <a href="{% url 'change'|user_admin_urlname author.pk %}">
-      {% trans "Edit the author" %}
-    </a>
-  </li>
-  {% endif %}
-{% endblock admin-tools %}
-{% endcomment %}

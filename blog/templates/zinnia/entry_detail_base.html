@@ -43,9 +43,6 @@
 
 {% block entry-comments %}
 <section id="comments" {% if not object.comment_count %}class="empty"{% endif %}>
-  {% comment %}
-  <h3>{% trans "Comments" %}</h3>
-  {% endcomment %}
   {% if object.comment_count %}
   {% with comment_list=object.comments %}
   {% block comments-loop %}
@@ -73,41 +70,9 @@
   </ol>
   {% endblock comments-loop %}
   {% endwith %}
-    {% if not object.comments_are_open %}
-  <p>{% trans "Comments are closed." %}</p>
-    {% endif %}
-  {% else %}
-    {% if object.comments_are_open %}
-    {# <p>{% trans "No comments yet." %}</p> #}
-    {% else %}
-  <p>{% trans "Comments are closed." %}</p>
-    {% endif %}
   {% endif %}
 </section>
 {% endblock entry-comments %}
-
-{% comment %}
-{% block entry-comments-form %}
-<div id="comment-form-wrap">
-  <div id="comment-form-main">
-    <a href="#" id="comment-form-trigger" role="button">
-      <img src="{% static 'blog/icon_comment_link.png' %}" alt="" role="presentation">
-      <span> écrire un commentaire</span>
-    </a>
-    <!--icon by Dave Gandy, from www.flaticon.com-->
-    {% if object.comments_are_open %}
-      {% render_comment_form_with_auth_info for object %}
-    {% endif %}
-  </div>
-  <div id="comment-post-loader">
-    <span class="loader"></span>
-  </div>
-  <output id="comment-post-result" class="animate-bottom" form="comment_form_custom" aria-live="polite">
-      <p id="comment-post-info"></p>
-  </output>
-</div>
-{% endblock entry-comments-form %}
-{% endcomment %}
 
 {% endblock content %}
 

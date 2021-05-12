@@ -5,7 +5,7 @@ from zinnia.urls.archives import index_patterns, year_patterns, month_patterns, 
 from zinnia.views.tags import TagDetail
 from zinnia.urls import _
 
-from .views import EntryDetailCustom, entry_detail_slug, unsubscribe
+from .views import EntryDetailCustom, entry_detail_slug
 
 
 archive_patterns = index_patterns + year_patterns + month_patterns + day_patterns
@@ -26,12 +26,9 @@ blog_urls = ([
         EntryDetailCustom.as_view(), name='entry_detail'),
     path('', include('zinnia.urls.entries')),
     path('', include('zinnia.urls.quick_entry')),
-    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/unsubscribe/(?P<h>[0-9a-f]{32})$',
-        unsubscribe, name='unsubscribe'),
 ], 'zinnia')
 
 
 urlpatterns = [
     path('', include(blog_urls)),
-    path('comments/', include('django_comments_custom.urls')),
 ]
