@@ -11,42 +11,20 @@
         {% else %}
           {% if forloop.first %} expanded{% else %} collapsed{% endif %}
         {% endif %}
-        ' href="#" role="button"><span class='toggle-in'></span></a>
-      {% with year_date=year.list.0 %}
-      {% get_entries_on_year_length year_date is_superuser as entries_year_length %}
-      <a rel="archives" href="{% url 'zinnia:entry_archive_year' year.grouper %}">{{ year.grouper }} ({{ entries_year_length }})</a>
-      {% endwith %}
-    {% regroup year.list by month as month_list %}
-    <ul>
-      {% for month in month_list reversed %}
-      <li>
-        <a class='toggle
-          {% if publication_date %}
-            {% if publication_date|date:"Y" == year.grouper|stringformat:"d" and publication_date|date:"n" == month.grouper|stringformat:"d" %} expanded{% else %} collapsed{% endif %}
-          {% else %}
-            {% if forloop.parentloop.first and forloop.first %} expanded{% else %} collapsed{% endif %}
-          {% endif %}
-          ' href="#" role="button"><span class='toggle-in'></span></a>
-        {% with month_date=month.list.0 %}
-        {% get_entries_on_month_length month_date is_superuser as entries_month_length %}
-        <a rel="archives" href="{% url 'zinnia:entry_archive_month' month_date|date:"Y" month_date|date:"m" %}">{{ month_date|date:"F" }} ({{ entries_month_length }})</a>
-        {% endwith %}
-        {% regroup month.list by day as day_list %}
-        <ul>
-          {% for day in day_list reversed %}
-            {% with day_date=day.list.0 %}
-            {% get_entries_on_day day_date is_superuser as entries_day %}
-            {% for entry in entries_day %}
-            <li>
-                <a href="{{ entry.url }}" {% if not entry.lang == 'fr-FR' %}lang="{{ entry.lang }}"{% endif %}>{{ entry.title }}</a>
-            </li>
-            {% endfor %}
-            {% endwith %}
+        ' href="#" role="button"><span class='toggle-in'></span><span class='toggle-year'>{{ year.grouper }}</span></a>
+    {% regroup year.list by day as day_list %}
+      <ul>
+        {% for day in day_list reversed %}
+          {% with day_date=day.list.0 %}
+          {% get_entries_on_day day_date is_superuser as entries_day %}
+          {% for entry in entries_day %}
+          <li>
+              <a href="{{ entry.url }}" {% if not entry.lang == 'fr-FR' %}lang="{{ entry.lang }}"{% endif %}>{{ entry.title }}</a>
+          </li>
           {% endfor %}
-        </ul>
-      </li>
-      {% endfor %}
-    </ul>
+          {% endwith %}
+        {% endfor %}
+      </ul>
   </li>
   {% empty %}
   <li>

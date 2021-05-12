@@ -14,29 +14,6 @@ register = template.Library()
 
 
 @register.simple_tag
-def get_entries_on_year_length(date, is_superuser=False):
-    # Do not use this on dates when no entry was published!
-    if is_superuser is True:
-        queryset = EntryCustom.objects
-    else:
-        queryset = EntryCustom.objects.filter(entry__status=2,                  # entry is 'published'
-                                              entry__login_required=False)
-    entries = queryset.filter(entry__publication_date__year=date.year)
-    return len(entries)
-
-@register.simple_tag
-def get_entries_on_month_length(date, is_superuser=False):
-    # Do not use this on dates when no entry was published!
-    if is_superuser is True:
-        queryset = EntryCustom.objects
-    else:
-        queryset = EntryCustom.objects.filter(entry__status=2,
-                                              entry__login_required=False)
-    entries = queryset.filter(entry__publication_date__year=date.year,
-                              entry__publication_date__month=date.month)
-    return len(entries)
-
-@register.simple_tag
 def get_entries_on_day(date, is_superuser=False):
     # Do not use this on dates when no entry was published!
     if is_superuser is True:
