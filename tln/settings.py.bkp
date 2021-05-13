@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ####
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
     'django_extensions',
-    'django_mongoengine',
     'django_comments',
     'django_comments_custom',
     'zinnia',
@@ -111,14 +110,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-MONGODB_DATABASES = {
-    'default': {
-        "name": "critique_django",
-        "host": "localhost",
-        "tz_aware": True,
     }
 }
 
@@ -198,29 +189,12 @@ CACHES = {
 
 SITE_ID = 1
 
-# Email configuration,   # fill in for prod server
-
-EMAIL_HOST = 'mail.gandi.net'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'no-reply@####'
-EMAIL_HOST_PASSWORD = '####'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'no-reply@####'
-
-# Zinnia configuration   # fill in for prod server
+# Zinnia configuration
 
 #ZINNIA_ENTRY_BASE_MODEL = 'blog.models.EntryCustom'
 ZINNIA_PREVIEW_MAX_WORDS = 100
-ZINNIA_MAIL_COMMENT_NOTIFICATION_RECIPIENTS = ['no-reply@####']
-ZINNIA_AUTO_MODERATE_COMMENTS = True
-ZINNIA_MAIL_COMMENT_AUTHORS = False
-ZINNIA_MAIL_COMMENT_REPLY = True
+ZINNIA_PAGINATION = None
 ZINNIA_PROTOCOL = 'https'
-
-# Comments configuration (prevent referral spam)
-
-COMMENTS_ALLOW_PROFANITIES = False
-PROFANITIES_LIST = ['http://', 'https://']
 
 # Logging
 
