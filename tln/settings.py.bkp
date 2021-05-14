@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_comments',
-    'django_comments_custom',
     'zinnia',
     'photologue',
     'sortedm2m',
@@ -53,7 +52,7 @@ INSTALLED_APPS = [
     'tln',
 ]
 
-COMMENTS_APP = 'django_comments_custom'
+COMMENTS_APP = 'django_comments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,8 +72,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'tln/templates/tln'),
                  os.path.join(BASE_DIR, 'home/templates'),
                  os.path.join(BASE_DIR, 'blog/templates'),
-                 os.path.join(BASE_DIR, 'photos/templates'),
-                 os.path.join(BASE_DIR, 'django_comments_custom/templates')],
+                 os.path.join(BASE_DIR, 'photos/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'string_if_invalid': '<<invalid variable>>',
