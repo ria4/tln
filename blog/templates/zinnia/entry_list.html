@@ -26,7 +26,7 @@
             {% with entry=year_entry.entry %}
             <li class="entry-body">
                 <span class="entry-date">{{ entry.publication_date|date:"j F" }}</span>
-                <a href="{{ entry.get_absolute_url }}" class="entry-link{% if 'Psychanalyse' in entry.title or 'Pride' in entry.title %} entry-link-marked{% endif %}" rel="bookmark" itemprop="url"{% if not entry.custom.lang == 'fr-FR' %} lang="{{ entry.custom.lang }}"{% endif %}>{{ entry.title }}</a>
+                <a href="{{ entry.get_absolute_url }}" class="entry-link{% if 'Psychanalyse' in entry.title or 'Pride' in entry.title %} entry-link-marked{% endif %}" rel="bookmark" itemprop="url"{% if not entry.custom.lang == 'fr-FR' %} lang="{{ entry.custom.lang }}"{% endif %}>{% if entry.login_required %}[privé] {% endif %}{{ entry.title }}</a>
                 {# dirty hack to prevent orphaned words for selected titles #}
             </li>
             {% endwith %}

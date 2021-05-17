@@ -14,7 +14,7 @@
       <ul>
         {% for day in day_list reversed %}
           {% with day_date=day.list.0 %}
-          {% get_entries_on_day day_date is_superuser as entries_day %}
+          {% get_entries_on_day day_date is_superuser user_id as entries_day %}
           {% for entry in entries_day %}
           <li>
               <a href="{{ entry.url }}" {% if not entry.lang == 'fr-FR' %}lang="{{ entry.lang }}"{% endif %}>{{ entry.title }}</a>

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.models import User
 from django import template
 
 from tagging.models import Tag
@@ -14,13 +15,14 @@ register = template.Library()
 
 
 @register.simple_tag
-def get_entries_on_day(date, is_superuser=False):
+def get_entries_on_day(date, is_superuser=False, user_id=0):
     # Do not use this on dates when no entry was published!
+    queryset = EntryCustom.objects.filter(entry__status=2,
+                                          entry__login_required=False)
     if is_superuser is True:
         queryset = EntryCustom.objects
-    else:
-        queryset = EntryCustom.objects.filter(entry__status=2,
-                                              entry__login_required=False)
+    elif user_id:
+        queryset |= EntryCustom.objects.filter(allowed_users__exact=user_id)
     entries = queryset.filter(entry__publication_date__year=date.year,
                               entry__publication_date__month=date.month,
                               entry__publication_date__day=date.day)
@@ -37,10 +39,15 @@ def tag_entries_with_year(entries):
 @register.inclusion_tag('zinnia/tags/dummy.html', takes_context=True)
 def get_archives_entries_tree_su_sensitive(context,
         template='zinnia/tags/entries_archives_tree.html'):
+    user = context['request'].user
+    user_id = 0
     queryset = EntryCustom.objects.filter(entry__status=2,
                                           entry__login_required=False)
-    if context['request'].user.is_superuser:
+    if user.is_superuser:
         queryset = EntryCustom.objects
+    elif user.is_authenticated:
+        user_id = User.objects.get(username=user.username).id
+        queryset |= EntryCustom.objects.filter(allowed_users__exact=user_id)
     publication_date = None
     if 'object' in context:
         publication_date = context['object'].publication_date
@@ -48,7 +55,8 @@ def get_archives_entries_tree_su_sensitive(context,
             'archives': queryset.datetimes(
                 'entry__publication_date', 'day', order='ASC'),
             'publication_date': publication_date,
-            'is_superuser': context['request'].user.is_superuser}
+            'is_superuser': user.is_superuser,
+            'user_id': user_id}
 
 
 @register.inclusion_tag('zinnia/tags/dummy.html', takes_context=True)
