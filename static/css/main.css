@@ -456,7 +456,10 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
 #sidebar {
     margin-bottom: 36px;
     border: 1px solid #deda99;
-    padding: 0 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 4px;
+    padding-right: 8px;
     width: 305px;
     background-color: #fbf2bd;
     font-size: 18px; }

@@ -45,7 +45,7 @@ body #sidebar-column {
 #sidebar ul, #sidebar ol { margin-left: 1em; }
 #sidebar ul ul, #sidebar ul ol, #sidebar ol ul, #sidebar ol ol { margin-left: 0em; }
 
-#widget-welcome { padding: 10px 8px 0 8px; }
+#widget-welcome { padding: 10px 4px 0 8px; }
 #widget-welcome #welcome-quote {
     font-size: 19px;
     font-style: italic;
