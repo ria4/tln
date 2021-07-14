@@ -391,7 +391,7 @@ def add_seance(req):
         update_seance(req, seance, form.cleaned_data)
         return redirect('list_seances', year=seance.date.year)
 
-def list_seances(req, year=2020):
+def list_seances(req, year=2021):
     form = SeanceForm(req.POST)
     if req.POST and form.is_valid():
         update_seances(req, form)
@@ -424,7 +424,7 @@ def top_films(req, year=2011):
 
 # Top Jeux
 
-def top_jeux(req, year=2020):
+def top_jeux(req, year=2021):
     oeuvres = list(get_object_or_404(TopJeux, year=year).jeux.all())
     random.shuffle(oeuvres)
     return render(req, 'critique/top_jeux.html', locals())

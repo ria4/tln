@@ -8,11 +8,11 @@
 
 <nav class="navbar filter-navbar {{ year }} digits-filter-navbar">
     <ul>
-        <li><a desc="2020" href={% url "top_jeux" %}>197x-2020</a></li>
+        <li><a desc="2021" href={% url "top_jeux" %}>197x-2021</a></li>
     </ul>
 </nav>
 
-<ul id="top_jeux" class="oeuvres-display {% if year == 2020 %}all_time{% endif %}">
+<ul id="top_jeux" class="oeuvres-display {% if year == 2021 %}all_time{% endif %}">
 {% for oeuvre in oeuvres %}
     <li class="oeuvre-display">
         <a href={% url "detail_oeuvre" oeuvre.slug %}>
