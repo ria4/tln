@@ -360,28 +360,8 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 @media (max-width: 1512px) {
 #infos-tirages > div:last-child { margin-bottom: 6px; } }
 
-#infos-tirages div.zoomable {
-    position: relative;
-    height: 227px;
-    width: 340px;
-    border: 1px solid #deda99;
-    overflow: hidden; }
-#infos-tirages div.zoomable img:last-child {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    transition: opacity 0.15s ease; }
-#infos-tirages div.zoomable:hover img:last-child {
-    opacity: 0; }
-#infos-tirages div.zoomable img:first-child {
-    position: absolute; }
-
-#infos-tirages a.no-zoom {
-    display: none; }
-#infos-tirages a.no-zoom img {
-    display: block;
-    width: 340px;
-    border: 1px solid #deda99; }
+#infos-tirages div.zoomable { height: 227px; width: 340px; }
+#infos-tirages a.no-zoom img { width: 340px; }
 
 #infos-tirages > div:first-child p:first-child { margin-bottom: 12px; }
 @media (min-width: 900px) {

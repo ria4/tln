@@ -228,3 +228,55 @@ if (pagination) {
         }
     });
 }
+
+
+/* Display zoomable pictures */
+
+var zoomableContainers = document.getElementsByClassName("zoomable-container");
+if (zoomableContainers.length > 0) {
+
+    if (isTouchDevice()) {
+
+        for (var i=0; i<zoomableContainers.length; i++) {
+            zoomableContainers[i].removeChild(zoomableContainers[i].children[0]);
+            zoomableContainers[i].children[0].style.display = "inline-block";
+        }
+
+    } else {
+
+        for (var i=0; i<zoomableContainers.length; i++) {
+            zoomableContainers[i].removeChild(zoomableContainers[i].children[1]);
+        }
+
+        var placeholders = [];
+
+        for (var i=0; i<zoomableContainers.length; i++) {
+            placeholders.push(zoomableContainers[i].children[0].children[0]);
+        }
+
+        function setPhotoPosition(i, coeff) {
+            function setPhotoPos(e) {
+                var posX = e.offsetX;
+                var posY = e.offsetY;
+                placeholders[i].style.left = -coeff*posX+"px";
+                placeholders[i].style.top = -coeff*posY+"px";
+            }
+            return setPhotoPos;
+        }
+
+        $(document).ready(function() {
+            for (i=0; i<placeholders.length; i++) {
+                var placeholder = placeholders[i];
+                placeholder.setAttribute("src", placeholder.getAttribute("data-src"));
+                placeholder.removeAttribute("data-src");
+                var coeff = 1;
+                if (zoomableContainers[i].hasAttribute("data-zoom-coeff")) {
+                    coeff = parseFloat(zoomableContainers[i].getAttribute("data-zoom-coeff"));
+                }
+                zoomableContainers[i].children[0].addEventListener("mousemove", setPhotoPosition(i, coeff));
+            }
+        });
+
+    }
+
+}

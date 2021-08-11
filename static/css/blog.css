@@ -293,3 +293,10 @@ div.molopeach .vg { color: #fafafa; background-color: #080808 } /* Name.Variable
 div.molopeach .vi { color: #fafafa; background-color: #080808 } /* Name.Variable.Instance */
 div.molopeach .vm { color: #fafafa; background-color: #080808 } /* Name.Variable.Magic */
 div.molopeach .il { color: #fafafa; background-color: #080808 } /* Literal.Number.Integer.Long */
+
+
+/* Zoomable Images
+   ========================================================================== */
+
+.zoomable-container { max-width: 90%; margin: auto; }
+.zoomable-container .zoomable img { max-width: unset; margin: 0; }

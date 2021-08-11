@@ -651,6 +651,34 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 
 
 /* ==========================================================================
+/* Special Content
+/* ========================================================================== */
+
+/* Zoomable Images
+   ========================================================================== */
+
+div.zoomable {
+    position: relative;
+    border: 1px solid #deda99;
+    overflow: hidden; }
+div.zoomable img:last-child {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transition: opacity 0.15s ease; }
+div.zoomable:hover img:last-child {
+    opacity: 0; }
+div.zoomable img:first-child {
+    position: absolute; }
+
+a.no-zoom {
+    display: none; }
+a.no-zoom img {
+    display: block;
+    border: 1px solid #deda99; }
+
+
+/* ==========================================================================
 /* Interact
 /* ========================================================================== */
 
