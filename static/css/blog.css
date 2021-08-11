@@ -300,3 +300,5 @@ div.molopeach .il { color: #fafafa; background-color: #080808 } /* Literal.Numbe
 
 .zoomable-container { max-width: 90%; margin: auto; }
 .zoomable-container .zoomable img { max-width: unset; margin: 0; }
+.entry-content .zoomable-container .img-container-link { max-width: 100%; }
+.entry-content .zoomable-container .img-container-link img { margin: 0; }
