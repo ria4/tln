@@ -355,7 +355,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #infos-tirages > div:last-child > div:last-child { margin-top: 35px; margin-bottom: 30px; }
 #infos-tirages > div:last-child > div:last-child p { text-align: center; }
 @media (min-width: 900px) {
-#infos-tirages > div:first-child { margin-bottom: 38px; }
+#infos-tirages > div:first-child { margin-bottom: 44px; }
 #infos-tirages > div:first-child > div:nth-child(even) { flex-direction: row-reverse; } }
 @media (max-width: 1512px) {
 #infos-tirages > div:last-child { margin-bottom: 6px; } }
