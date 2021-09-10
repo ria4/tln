@@ -15,7 +15,7 @@ photos_urls = ([
 ], 'photologue')
 
 
-extra_context_galleries = {'galleries': GalleryCustom.objects.filter(gallery__is_public=True)}
+extra_context_galleries = {'galleries': GalleryCustom.objects.filter(gallery__is_public=True).order_by('gallery__date_added')}
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='photologue/galleries.html',

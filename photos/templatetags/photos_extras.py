@@ -21,11 +21,14 @@ def get_public_photo_galleries():
     """
     Return all public galleries as an HTML ul element.
     """
-    return {'galleries': GalleryCustom.objects.filter(gallery__is_public=True),
+    galleries = GalleryCustom.objects.filter(gallery__is_public=True) \
+                                     .order_by('gallery__date_added')
+    return {'galleries': galleries,
             'private_galleries_list': False}
 
 def get_private_photo_galleries_array(user):
-    galleries_private = GalleryCustom.objects.filter(gallery__is_public=False)
+    galleries_private = GalleryCustom.objects.filter(gallery__is_public=False) \
+                                             .order_by('gallery__date_added')
     if user.is_superuser:
         return galleries_private
     else:
