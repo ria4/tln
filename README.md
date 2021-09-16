@@ -1,5 +1,5 @@
 # tln
 
-A website, powered by django.
+a website, powered by django
 
-Copyright Oriane Tury <contact@oriane.ink>
+by oriane tury <contact@oriane.ink>

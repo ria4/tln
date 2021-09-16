@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
 """
-./create_gallery_vhigh_placeholders.py 'gallery-slug'
+# vtln
+(tln)$ python create_gallery_vhigh_placeholders.py 'gallery-slug'
 
 Creates missing PhotoCustom instances and corresponding vhigh_display placeholders.
-Run it when opening a new gallery.
+Run it from the main tln folder when opening a new gallery.
 """
 
 import django
