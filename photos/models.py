@@ -104,13 +104,19 @@ class PhotoCustom(models.Model):
                              filepath_to_uri(self._get_filename_for_size(photosize.name))])
         i_path = os.path.abspath(i_relpath[1:])
         o_path = os.path.abspath(o_relpath[1:])
-        cmd = '/usr/bin/npx sqip -i {} -o {} -w {} -m {} -n {} -b {}'.format( \
-                    i_path,
+        cmd = '/usr/bin/npx sqip -o {} -m {} -n {} -b {} {}'.format( \
                     o_path,
-                    self.placeholder_width,
                     self.placeholder_primitive_mode,
                     self.placeholder_primitive_number,
-                    self.placeholder_blur)
+                    self.placeholder_blur,
+                    i_path)
+        #cmd = '/usr/bin/npx sqip -i {} -o {} -w {} -m {} -n {} -b {}'.format( \
+        #            i_path,
+        #            o_path,
+        #            self.placeholder_width,
+        #            self.placeholder_primitive_mode,
+        #            self.placeholder_primitive_number,
+        #            self.placeholder_blur)
         try:
             subprocess.run(cmd.split(), timeout=180, check=True)
         except subprocess.CalledProcessError:
