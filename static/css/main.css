@@ -299,6 +299,7 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
     padding: 15px 0 14px 40px;
     width: 100%;
     background-color: rgba(232, 202, 138, 0.4);
+    font-size: 17px;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 
 #content {
@@ -474,7 +475,6 @@ body #sidebar {
     position: sticky;
     top: 42px;
     will-change: transform;
-    max-height: 82vh;
     overflow-y: scroll;
     scrollbar-width: none; }
 @media (max-width: 1512px) {

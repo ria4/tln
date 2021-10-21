@@ -7,12 +7,12 @@ body #content-wrap { position: relative; margin-right: 71px; } }
 
 #content { max-width: 850px; }
 
-#footer { font-size: 16px; }
-
 
 /* Sidebar
    ========================================================================== */
 
+body #sidebar {
+    max-height: 71vh; }
 body #sidebar-column {
     right: 42.76%; }
 body.gallery-list #sidebar-column {

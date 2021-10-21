@@ -19,6 +19,7 @@ static/mptt/
 static/sortedm2m/
 static/zinnia/
 static/CV_OrianeTury*.pdf
+static/portfolio_oriane_tury.pdf
 tln/settings.py
 util/old/mongo_backup/
 **/node_modules/

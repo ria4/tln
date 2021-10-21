@@ -23,6 +23,8 @@ body #content-wrap { position: relative; padding-right: 11px; } }
 /* Sidebar
    ========================================================================== */
 
+body #sidebar {
+    max-height: 82vh; }
 body #sidebar-column {
     top: 7px;
     right: 42.8%;
