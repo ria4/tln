@@ -158,6 +158,33 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
 #info #info-fr blockquote { max-width: 780px; }
 #info #info-en blockquote { max-width: 820px; }
 
+/* stack identical divs on top of one another */
+.info-div {
+    position: relative; }
+.onhover-display {
+    position: absolute; top: 0; left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity .4s ease; }
+.onhover-hide {
+    transition: opacity .4s ease; }
+.info-div:hover .onhover-display { opacity: 1; }
+.info-div:hover .onhover-hide { opacity: 0; }
+
+#info-content.anim-blur .onhover-hide {
+    animation-fill-mode: forwards;
+    animation-name: blur;
+    animation-duration: 50s; }
+@keyframes blur {
+    0% { color: transparent; text-shadow: 0 0 0px rgba(0, 0, 0, 1); }
+    20% { color: transparent; text-shadow: 0 0 0px rgba(0, 0, 0, 1); }
+    24% { color: transparent; text-shadow: 0 0 1.2px rgba(0, 0, 0, .95); }
+    32% { color: transparent; text-shadow: 0 0 0px rgba(0, 0, 0, 1); }
+    42% { color: transparent; text-shadow: 0 0 0px rgba(0, 0, 0, 1); }
+    52% { color: transparent; text-shadow: 0 0 1.6px rgba(0, 0, 0, .9); }
+    62% { color: transparent; text-shadow: 0 0 0px rgba(0, 0, 0, 1); }
+    100% { color: transparent; text-shadow: 0 0 8px rgba(0, 0, 0, .7); } }
+
 
 /* Footer
    ========================================================================== */
