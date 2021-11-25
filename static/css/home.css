@@ -168,8 +168,8 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
     transition: opacity .4s ease; }
 .onhover-hide {
     transition: opacity .4s ease; }
-.info-div:hover .onhover-display { opacity: 1; }
-.info-div:hover .onhover-hide { opacity: 0; }
+.info-div:hover .onhover-display, .info-div:focus .onhover-display { opacity: 1; }
+.info-div:hover .onhover-hide, .info-div:focus .onhover-hide { opacity: 0; }
 
 #info-content.anim-blur .onhover-hide {
     animation-fill-mode: forwards;

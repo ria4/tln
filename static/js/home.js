@@ -18,10 +18,11 @@ if (!isTouchDevice()) {
     }
 
     var infoContent = document.getElementById("info-content");
+    var infoSeparator = document.getElementById("info-separator");
 
     function infoHandler() {
         if (!infoContent.classList.contains("anim-blur")) {
-            var visible = isElementInViewport(infoContent);
+            var visible = isElementInViewport(infoSeparator);
             if (visible) {
                 infoContent.classList.add("anim-blur");
             }
@@ -31,4 +32,9 @@ if (!isTouchDevice()) {
     window.addEventListener('load', infoHandler, false);
     window.addEventListener('scroll', infoHandler, false);
     window.addEventListener('resize', infoHandler, false);
+} else {
+    var infoClones = document.getElementsByClassName("onhover-display");
+    while(infoClones.length > 0) {
+        infoClones[0].parentNode.removeChild(infoClones[0]);
+    }
 }
