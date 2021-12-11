@@ -70,13 +70,19 @@ def create_missing_vhigh_placeholders(gallery_slug):
                              filepath_to_uri(pc._get_filename_for_size(photosize.name))])
         i_path = os.path.abspath(i_relpath[1:])
         o_path = os.path.abspath(o_relpath[1:])
-        cmd = '/usr/bin/npx sqip -i {} -o {} -w {} -m {} -n {} -b {}'.format( \
-                    i_path,
+        cmd = '/usr/bin/npx sqip -o {} -m {} -n {} -b {} {}'.format( \
                     o_path,
-                    pc.placeholder_width,
-                    pc.placeholder_primitive_mode,
-                    pc.placeholder_primitive_number,
-                    pc.placeholder_blur)
+                    self.placeholder_primitive_mode,
+                    self.placeholder_primitive_number,
+                    self.placeholder_blur,
+                    i_path)
+        #cmd = '/usr/bin/npx sqip -i {} -o {} -w {} -m {} -n {} -b {}'.format( \
+        #            i_path,
+        #            o_path,
+        #            pc.placeholder_width,
+        #            pc.placeholder_primitive_mode,
+        #            pc.placeholder_primitive_number,
+        #            pc.placeholder_blur)
         try:
             subprocess.run(cmd.split(), timeout=180, check=True)
             print('Created a placeholder for photo "%s" (%d / %d)' % (pc.photo.title, i+1, n))
