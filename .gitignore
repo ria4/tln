@@ -11,10 +11,10 @@ package-lock.json
 photos/migrations/
 static/admin/
 static/critique/
-static/debian_setup/
 static/django_extensions/
 static/favicon/old/
 static/img_base/old/
+static/miroirs_setup/
 static/mptt/
 static/sortedm2m/
 static/zinnia/
