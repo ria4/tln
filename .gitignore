@@ -12,6 +12,7 @@ photos/migrations/
 static/admin/
 static/critique/
 static/django_extensions/
+static/docs/
 static/favicon/old/
 static/img_base/old/
 static/miroirs_setup/
@@ -19,7 +20,6 @@ static/mptt/
 static/sortedm2m/
 static/upm59/
 static/zinnia/
-static/CV_OrianeTury*.pdf
 static/portfolio_oriane_tury.pdf
 tln/settings.py
 util/old/mongo_backup/
