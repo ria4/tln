@@ -37,6 +37,9 @@ def detail_artiste(req, slug):
     artist = get_object_or_404(Artiste, slug=slug)
     oeuvres = Oeuvre.objects.filter(info__artists=artist) \
                             .order_by('info__year')
+    for oeuvre in oeuvres:
+        if oeuvre.info.year == 2099:
+            oeuvre.info.year = '20xx'
     context = {'oeuvres': oeuvres, 'artist': artist.name}
     return render(req, 'critique/artiste.html', context)
 
@@ -184,6 +187,8 @@ def detail_oeuvre(req, slug):
         update_oeuvre(req, oeuvre, oeuvre_form)
         # we redirect because the slug might change
         return redirect('detail_oeuvre', slug=oeuvre.slug)
+    if oeuvre.info.year == 2099:
+        oeuvre.info.year = '20xx'
     return render(req, 'critique/oeuvre.html', locals())
 
 @permission_required('critique.all_rights')
@@ -215,9 +220,16 @@ def format_oeuvreinfo_results(info_set, ajax):
                  'vo': info.titles.vo,
                  'year': info.year,
                  'slug': info.oeuvre.slug} for info in info_set ]
+        for info in res:
+            if info["year"] == 2099:
+                info["year"] = "20xx"
         return json.dumps(res)
     else:
-        return [info.oeuvre for info in info_set]
+        oeuvres = [info.oeuvre for info in info_set]
+        for oeuvre in oeuvres:
+            if oeuvre.info.year == 2099:
+                oeuvre.info.year = "20xx"
+        return oeuvres
 
 def get_oeuvres(match, limit, ajax=False):
     artiste = Artiste.objects.filter(name__iexact=match)
