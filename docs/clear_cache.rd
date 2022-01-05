@@ -1,4 +1,4 @@
-Les chunks cinemas et seances (pour les années avant 2021) sont mis en cache indéfiniment.
+Les chunks cinemas et seances (pour les années avant 2022) sont mis en cache indéfiniment.
 Les modifs dans la base de données ne seront donc pas directement répercutées sur le site.
 Il faut d'abord vider le cache :
 

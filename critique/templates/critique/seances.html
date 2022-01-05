@@ -26,11 +26,12 @@
     <ul>
         <li><a desc="2020" href={% url "list_seances" 2020 %}>2020</a></li>
         <li><a desc="2021" href={% url "list_seances" 2021 %}>2021</a></li>
+        <li><a desc="2022" href={% url "list_seances" 2022 %}>2022</a></li>
     </ul>
 </nav>
 
 
-{% if year < 2021 %}
+{% if year < 2022 %}
 
 {% cache None chunks_seance year %}
 <div id="seances" class="chunks">
