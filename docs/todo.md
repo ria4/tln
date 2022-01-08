@@ -5,7 +5,6 @@
 * override default admin interfaces to remove useless content
 * add `__str__` methods to models
 * use `require_safe` on appropriate views
-* reroute non-trailing urls in upm59 mirror
 
 
 ## Features
