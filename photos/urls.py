@@ -22,7 +22,9 @@ urlpatterns = [
                                   extra_context=extra_context_galleries)),
     path('lightpainting', TemplateView.as_view(template_name='photologue/lightpainting.html')),
     path('about-lightpainting', TemplateView.as_view(template_name='photologue/lightpainting_en.html')),
-    path('tirages', TemplateView.as_view(template_name='photologue/tirages.html')),
-    path('prints', TemplateView.as_view(template_name='photologue/tirages_en.html')),
+    path('tirages', permission_required('photos.all_rights')(
+        TemplateView.as_view(template_name='photologue/tirages.html'))),
+    path('prints', permission_required('photos.all_rights')(
+        TemplateView.as_view(template_name='photologue/tirages_en.html'))),
     path('', include(photos_urls)),
 ]

@@ -10,7 +10,7 @@ from datetime import datetime, time
 from itertools import chain
 from PIL import Image
 from django.conf import settings
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import permission_required
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
