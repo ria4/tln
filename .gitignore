@@ -21,7 +21,6 @@ static/sortedm2m/
 static/upm59/
 static/zinnia/
 static/portfolio_oriane_tury.pdf
-tln/settings.py
 util/old/mongo_backup/
 **/node_modules/
 **/__pycache__/
