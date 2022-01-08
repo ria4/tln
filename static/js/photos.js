@@ -113,6 +113,9 @@ var photosHTMLCollection = gallerySlider.getElementsByTagName("img");
 var photos = Array.prototype.slice.call(photosHTMLCollection);
 var photosN = photos.length;
 
+/* Ugly profiling hack, see below */
+var isFirefox = typeof InstallTrigger !== 'undefined';
+
 
 function loadPhoto(idx) {
     function loadPhotoIdx(loadNeighbours) {
@@ -123,7 +126,16 @@ function loadPhoto(idx) {
             photo.setAttribute("slug", placeholder.getAttribute("slug"));
             photo.setAttribute("alt", placeholder.getAttribute("alt"));
             photo.setAttribute("draggable", "false");
-            placeholder.insertAdjacentElement("afterend", photo);
+            /* There's an issue with Firefox's WebRender which breaks the lazy-loading for jpg pictures:
+             * they're loaded over a white background, which would cover the placeholder altogether...
+             * See: https://bugzilla.mozilla.org/show_bug.cgi?id=1556156
+             * In order not to see this white background, we'll load the picture behind the placeholder
+             * for Firefox browsers (identified with a dirty hack), except if they're png pictures. */
+            var placement = "afterend";
+            if (isFirefox && placeholder.getAttribute("data-src").slice(-3) != "png") {
+                placement = "beforebegin";
+            }
+            placeholder.insertAdjacentElement(placement, photo);
             photo.addEventListener("load", function() {
                 placeholder.remove();
                 photos[idx] = photo;
