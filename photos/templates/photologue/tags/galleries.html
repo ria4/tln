@@ -1,7 +1,7 @@
 <ul>
 {% for galleryc in galleries %}
 <li>
-  <a href="{{ galleryc.gallery.slug }}">{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</a>
+  <a href="/photos/{{ galleryc.gallery.slug }}">{% if galleryc.nav_title %}{{ galleryc.nav_title }}{% else %}{{ galleryc.gallery.title }}{% endif %}</a>
 </li>
 {% endfor %}
 {% if private_galleries_list and user.is_authenticated %}

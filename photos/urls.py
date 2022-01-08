@@ -1,7 +1,6 @@
-from django.conf.urls import url
 from django.contrib.auth.decorators import permission_required
 from django.views.generic import RedirectView, TemplateView
-from django.urls import include, path, reverse_lazy
+from django.urls import include, path, re_path, reverse_lazy
 
 from photologue.views import GalleryArchiveIndexView, PhotoDetailView
 
@@ -10,8 +9,8 @@ from .views import GalleryCustomDetailView
 
 
 photos_urls = ([
-    url(r'^(?P<slug>[\-\d\w]+)$', GalleryCustomDetailView.as_view(), name='pl-gallery'),
-    url(r'^photo/(?P<slug>[\-\d\w]+)/$', permission_required('photos.all_rights')(PhotoDetailView.as_view()), name='pl-photo'),
+    path('<slug:slug>', GalleryCustomDetailView.as_view(), name='pl-gallery'),
+    path('photo/<slug:slug>', permission_required('photos.all_rights')(PhotoDetailView.as_view()), name='pl-photo'),
 ], 'photologue')
 
 
