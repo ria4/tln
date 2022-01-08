@@ -1,6 +1,6 @@
 ## Journal
 
-* 09/01 - Tutos HTML/CSS ;
+* 09/01/18 - Tutos HTML/CSS ;
 * 10/01 - Tutos CSS/JS/Django ;
 * 11/01 - Tuto Django ;
 * 12/01 - Intégration MongoDB à Django, écriture du HTML ;
