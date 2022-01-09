@@ -232,14 +232,14 @@ textarea { outline: none; }
     src: url("../fonts/alegreya-sans/AlegreyaSans-MediumItalic.otf") format("opentype");
     font-style: italic; }
 @font-face {
-    font-family: 'AlegreyaSansBold';
+    font-family: 'AlegreyaSans';
     src: url("../fonts/alegreya-sans/AlegreyaSans-Bold.otf") format("opentype");
     font-weight: bold; }
-/*@font-face {
-    font-family: 'AlegreyaSansBold';
-    src: url("../fonts/alegreya-sans/AlegreyaSans-BoldItalic.otf") format("opentype");
+@font-face {
+    font-family: 'AlegreyaSans';
+    src: url("../fonts/alegreya-sans/AlegreyaSans-BoldItalic.ttf") format("truetype");
     font-weight: bold;
-    font-style: italic; }*/
+    font-style: italic; }
 
 @font-face {
     font-family: 'Abuget';

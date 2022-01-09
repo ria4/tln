@@ -284,6 +284,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 .photos-infos #gallery-title { margin-bottom: 28px; }
 
 .photos-infos p {
+    line-height: 23px;
     text-align: justify;
     font-size: 18px;
     font-family: AlegreyaSans; }
