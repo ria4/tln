@@ -20,6 +20,7 @@
 * override oeuvre `save`-ing to refresh cache
 * add `date_from` & `date_to` to oeuvres
 * display music by tag (ambient, electronic, now...)
+* focus to first form field after critique admin code
 
 
 ## Tests
