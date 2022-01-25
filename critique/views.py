@@ -200,7 +200,10 @@ def delete_oeuvre(req, slug):
             os.remove('static/%s' % oeuvre.info.image_url)
         except FileNotFoundError:
             pass
-    oeuvre.delete()
+    oeuvre.info.delete()
+    # deleting the OeuvreInfo will cascade into deleting the Oeuvre
+    # see todo list for more info
+    #oeuvre.delete()
     return redirect('list_oeuvres', mtype)
 
 @permission_required('critique.all_rights')

@@ -3,6 +3,7 @@
 * no robots on tmp directory
 * namespace urls in views & templates
 * override default admin interfaces to remove useless content
+* override `Oeuvre.delete()` or use `post_delete` to also delete OeuvreInfo
 * add `__str__` methods to models
 * use `require_safe` on appropriate views
 
