@@ -45,18 +45,20 @@ if (document.body.classList.contains("entry")) {
 
 var widgetArchives = document.getElementById("widget-archives");
 
-function addToggleListener(toggle) {
-    toggle.addEventListener("click", function(e) {
-        e.preventDefault();
-        if (toggle.classList.contains("expanded")) {
-            toggle.classList.add("collapsed");
-            toggle.classList.remove("expanded");
-        } else {
-            toggle.classList.add("expanded");
-            toggle.classList.remove("collapsed");
-        }
-    });
-}
+if (widgetArchives) {
+    function addToggleListener(toggle) {
+        toggle.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (toggle.classList.contains("expanded")) {
+                toggle.classList.add("collapsed");
+                toggle.classList.remove("expanded");
+            } else {
+                toggle.classList.add("expanded");
+                toggle.classList.remove("collapsed");
+            }
+        });
+    }
 
-toggles = widgetArchives.getElementsByClassName("toggle");
-[].forEach.call(toggles, addToggleListener);
+    toggles = widgetArchives.getElementsByClassName("toggle");
+    [].forEach.call(toggles, addToggleListener);
+}
