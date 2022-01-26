@@ -592,6 +592,9 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 .entry .entry-content p { margin: 18px 0; }
 .entry-content ul { list-style: square; padding-left: 40px; }
 .entry-content li { list-style: square; }
+.entry-content ul.midspaced > li { margin: 12px auto; }
+.entry-content ul.midspaced > li:last-child { margin-bottom: 10px; }
+.entry-content ul.midspaced > li > ul { margin-top: 4px; }
 .entry-content blockquote, .entry-content q { font-weight: normal; font-style: italic; }
 .entry-content cite { font-weight: bold; font-style: normal; }
 
