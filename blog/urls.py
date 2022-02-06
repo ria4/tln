@@ -1,4 +1,5 @@
 from django.urls import include, path, re_path
+from django.views import defaults
 
 from zinnia.urls.archives import index_patterns, year_patterns, month_patterns, day_patterns
 from zinnia.views.tags import TagDetail
@@ -11,6 +12,10 @@ archive_patterns = index_patterns + year_patterns + month_patterns + day_pattern
 
 # blog/<archive_year> --> blog/<shortlink> --> blog/<slug>
 blog_urls = ([
+    # catch reverse attempt to 'comments-url-redirect' view
+    # which was retired along with django_comments
+    path('feeds/discussions/', defaults.bad_request),
+
     path('feeds/', include('zinnia.urls.feeds')),
     path('tags/<str:tag>/', TagDetail.as_view(), name='tag_detail'),
     path('', include(archive_patterns)),
