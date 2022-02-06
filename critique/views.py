@@ -288,8 +288,6 @@ def list_notes(req, mtype="all", page=1):
     if mtype == "all":
         notes_full = Commentaire.objects.annotate(content_len=Length('content')) \
                                         .filter(content_len__gt=400)
-    elif mtype == "full":
-        notes_full = Commentaire.objects.all()
     else:
         notes_full = Commentaire.objects.filter(oeuvre__info__mtype=mtype) \
                                         .annotate(content_len=Length('content')) \
