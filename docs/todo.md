@@ -2,10 +2,10 @@
 
 * no robots on tmp directory
 * namespace urls in views & templates
-* override default admin interfaces to remove useless content
 * override `Oeuvre.delete()` or use `post_delete` to also delete OeuvreInfo
 * add `__str__` methods to models
 * use `require_safe` on appropriate views
+
 
 ## CSS tweaks
 
@@ -24,6 +24,14 @@
 * more concise title alt & imdb id & tags
 * display music by tag (ambient, electronic, now...)
 * focus to first form field after critique admin code
+
+
+## Long term
+
+* override default admin interfaces to remove useless content
+* call asqip asynchronously
+* rewrite critique with class-based views
+* migrate from zinnia to another cms
 
 
 ## Stability
