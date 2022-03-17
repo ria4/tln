@@ -23,7 +23,7 @@
     <ul>
     {% for oeuvre in oeuvres %}
         <li><a href="{% url 'detail_oeuvre' oeuvre.slug %}">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</a></li>
-    {% if forloop.counter|divisibleby:25 %}
+    {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>
     {% endif %}

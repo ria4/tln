@@ -40,7 +40,7 @@
     <ul>
     {% for cinema in cinemas %}
         <li><a href="{% url 'detail_cinema' cinema.slug %}">{{ cinema.name }}</a></li>
-    {% if forloop.counter|divisibleby:21 %}
+    {% if forloop.counter|divisibleby:21 and not forloop.last %}
     </ul>
     <ul>
     {% endif %}
