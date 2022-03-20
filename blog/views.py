@@ -21,12 +21,12 @@ from .models import EntryCustom
 
 
 def entry_detail_slug(req, slug):
-    entry = Entry.objects.filter(slug=slug)[0]
+    entry = get_object_or_404(Entry, slug=slug)
     date = entry.publication_date.astimezone(get_localzone())
     year = date.year
     month = "%.2d" % date.month
     day = "%.2d" % date.day
-    return redirect('zinnia:entry_detail', year=year, month=month, day=day, slug=slug, permanent=True)
+    return redirect('zinnia:entry_detail', year=year, month=month, day=day, slug=slug)
 
 
 
