@@ -1,9 +1,7 @@
 ## Cleaning
 
 * namespace urls in views & templates
-* override `Oeuvre.delete()` or use `post_delete` to also delete OeuvreInfo
 * add `__str__` methods to models
-* use `require_safe` on appropriate views
 
 
 ## CSS tweaks
@@ -19,7 +17,6 @@
 ## Features
 
 * override oeuvre `save`-ing to refresh cache
-* add `date_from` & `date_to` to oeuvres
 * more concise title alt & imdb id & tags
 * display music by tag (ambient, electronic, now...)
 * focus to first form field after critique admin code
@@ -27,10 +24,11 @@
 
 ## Long term
 
-* override default admin interfaces to remove useless content
 * call asqip asynchronously
+* rework critique models (`date_from`, `date_to`...)
 * rewrite critique with class-based views
 * migrate from zinnia to another cms
+* override default admin interfaces to remove useless content
 
 
 ## Stability
