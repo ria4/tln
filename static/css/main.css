@@ -467,9 +467,12 @@ _:-ms-input-placeholder, :root #top-nav-h #homepage-link img { width: 87px; } /*
     padding-right: 8px;
     width: 305px;
     background-color: #fbf2bd;
-    font-size: 18px; }
+    font-size: 18px;
+    line-height: 26px; }
 #sidebar::-webkit-scrollbar { width: 0px; }
 #sidebar-cruncher { overflow-y: hidden; }
+
+#sidebar #widget-welcome { line-height: 27px; }
 
 body #sidebar-column {
     position: absolute;
@@ -493,6 +496,20 @@ body #sidebar {
 .shadow-bottom { box-shadow: inset 0 -22px 12px -12px #deda99; }
 .shadow-top.shadow-bottom { box-shadow: inset 0 20px 12px -12px #deda99,
                                         inset 0 -22px 12px -12px #deda99; }
+
+/* Bullet size is not consistent across browsers...
+ * https://bugs.chromium.org/p/chromium/issues/detail?id=585381 */
+.bullet-li { padding-left: 2px; }
+.bullet-li:before {
+    margin: -0.5px;
+    font-family: Arial;
+    font-size: 27px;
+    content: "•";
+    line-height: 18px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    left: -1px; }
 
 
 /* Skip-to-main Link
@@ -589,7 +606,7 @@ _::-webkit-full-page-media, _:future, :root .entry-list .entry-title { /* Safari
 
 .entry-content { line-height: 1.35; }
 @media (max-width: 700px) { .entry-content { font-size: 19px; } }
-.entry .entry-content p { margin: 18px 0; }
+.entry .entry-content p { margin: 18px 0; line-height: 27px; }
 .entry-content ul { list-style: square; padding-left: 40px; }
 .entry-content li { list-style: square; }
 .entry-content ul.midspaced > li { margin: 12px auto; }

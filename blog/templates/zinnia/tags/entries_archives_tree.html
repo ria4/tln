@@ -16,7 +16,7 @@
           {% for day_date in days_list.list reversed %}
             {% get_entries_on_day day_date is_superuser user_id as entries_day %}
             {% for entry in entries_day %}
-            <li>
+            <li class='bullet-li'>
                 <a href="{{ entry.url }}" {% if not entry.lang == 'fr-FR' %}lang="{{ entry.lang }}"{% endif %}>{{ entry.title }}</a>
             </li>
             {% endfor %}

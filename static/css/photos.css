@@ -55,11 +55,9 @@ body #sidebar-column {
     margin-bottom: 0; }
 #sidebar #widget-info span {
     vertical-align: text-top;
+    position: relative;
+    top: -2.5px;
     font-size: 15px; }
-
-#sidebar li:before { font-family: Arial; font-size: 17px; content: "●"; }
-.android #sidebar li:before { font-size: 9px; vertical-align: middle; }
-.android.webkit #sidebar li:before { font-size: 17px; vertical-align: unset; }
 
 
 /* Galleries
@@ -179,6 +177,7 @@ body #sidebar-column {
     padding-right: 4px;
     font-size: 19px;
     font-style: italic;
+    line-height: 27px;
 }
 @media (max-width: 700px) {
 #gallery-description {

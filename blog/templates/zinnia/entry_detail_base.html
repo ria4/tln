@@ -85,7 +85,7 @@
 
 {% block admin-tools %}
 {% if perms.zinnia.change_entry %}
-<li>
+<li class='bullet-li'>
   <a href="{% url 'admin:zinnia_entry_change' object.pk %}">
     éditer l'article
   </a>

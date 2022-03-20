@@ -6,11 +6,6 @@
 ## CSS tweaks
 
 * equalize ul left padding between ff & chrome
-* also equalize line-heights
-    - navigation sidebar
-    - galleries description (inside p or not)
-        - #gallery-description font-size may be useless
-* check on sidebar bullets size on mobile
 
 
 ## Features
