@@ -1,6 +1,6 @@
 ## Cleaning
 
-* namespace urls in views & templates
+* all done!
 
 
 ## CSS tweaks
