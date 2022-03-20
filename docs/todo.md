@@ -1,6 +1,5 @@
 ## Cleaning
 
-* no robots on tmp directory
 * namespace urls in views & templates
 * override `Oeuvre.delete()` or use `post_delete` to also delete OeuvreInfo
 * add `__str__` methods to models
