@@ -5,7 +5,7 @@
 
 ## CSS tweaks
 
-* equalize ul left padding between ff & chrome
+* all done!
 
 
 ## Features
