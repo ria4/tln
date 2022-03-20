@@ -46,9 +46,17 @@ class Titres(models.Model):
     vo = models.CharField(max_length=200, blank=True, db_index=True)
     alt = models.CharField(max_length=200, blank=True)
 
+    def __str__(self):
+        return self.vf
+
+
 class Artiste(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
 
 class OeuvreInfo(models.Model):
     """
@@ -67,8 +75,15 @@ class OeuvreInfo(models.Model):
     image_url = models.CharField(max_length=45, blank=True)
     # use Validator for regexes '^tt[0-9]{7,8}$' & '^critique/[a-f0-9]{32}.(jpg|png)'
 
+    def __str__(self):
+        return str(self.titles)
+
+
 class Tag(models.Model):
     tag = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.tag
 
 
 class Oeuvre(models.Model):
@@ -111,7 +126,7 @@ class Oeuvre(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.info.titles.vf
+        return str(self.info)
 
 
 class Commentaire(models.Model):
@@ -130,6 +145,9 @@ class Commentaire(models.Model):
     content = models.TextField(blank=True)
     starred = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'"{self.content:.60}..." [{self.oeuvre}, {self.date.date()}]'
+
 
 class TopFilms(models.Model):
     year = models.SmallIntegerField(unique=True)
@@ -137,17 +155,29 @@ class TopFilms(models.Model):
                                    related_name="top_films",
                                    related_query_name="top_films")
 
+    def __str__(self):
+        return str(self.year)
+
+
 class TopJeux(models.Model):
     year = models.SmallIntegerField(unique=True)
     jeux = models.ManyToManyField(Oeuvre,
                                   related_name="top_jeux",
                                   related_query_name="top_jeux")
 
+    def __str__(self):
+        return str(self.year)
+
+
 class Cinema(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     comment = models.TextField()
     visited = models.DateField()
+
+    def __str__(self):
+        return self.name
+
 
 class Seance(models.Model):
     """
@@ -162,3 +192,7 @@ class Seance(models.Model):
                              related_name="seances",
                              related_query_name="seance")
     seance_title = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        title = str(self.film) or self.seance_title
+        return f"{self.cinema} | {self.date.date()} | {title}"

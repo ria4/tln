@@ -1,7 +1,6 @@
 ## Cleaning
 
 * namespace urls in views & templates
-* add `__str__` methods to models
 
 
 ## CSS tweaks
@@ -17,8 +16,9 @@
 ## Features
 
 * override oeuvre `save`-ing to refresh cache
-* more concise title alt & imdb id & tags
 * display music by tag (ambient, electronic, now...)
+* show seance (if it exists) on movie pages
+* more concise title alt & imdb id & tags
 * focus to first form field after critique admin code
 
 
