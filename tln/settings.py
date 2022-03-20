@@ -165,6 +165,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
+# Models
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
 # Caching
 
 CACHES = {
@@ -187,12 +192,14 @@ CACHES = {
 
 SITE_ID = 1
 
+
 # Zinnia configuration
 
 #ZINNIA_ENTRY_BASE_MODEL = 'blog.models.EntryCustom'
 ZINNIA_PREVIEW_MAX_WORDS = 100
 ZINNIA_PAGINATION = None
 ZINNIA_PROTOCOL = 'https'
+
 
 # Logging
 
