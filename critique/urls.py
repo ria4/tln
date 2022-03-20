@@ -1,10 +1,13 @@
 from django.urls import path
+from django.views.generic import TemplateView
+
 from . import views
 
+
 urlpatterns = [
-    path('', views.preambule, name='preambule'),
-    path('preambule/', views.preambule, name='preambule'),
-    path('textes/', views.top_textes, name='top_textes'),
+    path('', TemplateView.as_view(template_name='critique/preambule.html'), name='preambule'),
+    path('preambule/', TemplateView.as_view(template_name='critique/preambule.html'), name='preambule'),
+    path('textes/', views.TopTextesView.as_view(), name='top_textes'),
     path('notes/', views.list_notes, name='list_notes'),
     path('notes/<int:page>', views.list_notes, name='list_notes'),
     path('notes/<str:mtype>', views.list_notes, name='list_notes'),

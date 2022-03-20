@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="entry-links no-filter-nav-bar">
-{% for texte in top_textes %}
+{% for texte in commentaire_list %}
 {% with texte.oeuvre as oeuvre %}
     <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="entry-link">
         <div class="oeuvre-display">

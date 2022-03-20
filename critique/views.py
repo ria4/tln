@@ -19,16 +19,11 @@ from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template.defaultfilters import slugify
 from django.utils import timezone
+from django.views.generic.list import ListView
 
 from .forms import OeuvreForm, CommentaireForm, CinemaForm, SeanceForm
 from .models import (Artiste, Oeuvre, OeuvreInfo, Titres, Tag,
                      Commentaire, TopFilms, TopJeux, Cinema, Seance)
-
-
-# Index
-
-def preambule(req):
-    return render(req, 'critique/preambule.html', {})
 
 
 # Artiste
@@ -277,9 +272,9 @@ def search_oeuvres(req, match=''):
 
 # Top Textes
 
-def top_textes(req):
-    top_textes = Commentaire.objects.filter(starred=True).order_by('-date')
-    return render(req, 'critique/top_textes.html', locals())
+class TopTextesView(ListView):
+    queryset = Commentaire.objects.filter(starred=True).order_by('-date')
+    template_name = 'critique/top_textes.html'
 
 
 # Notes

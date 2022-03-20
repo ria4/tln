@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import redirect_to_login
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
+from django.views.decorators.http import require_safe
 
 from zinnia.models.entry import Entry
 from zinnia.views.entries import EntryDetail
@@ -20,6 +21,7 @@ from tln.utils import remove_query_param, update_query_param, md5_2
 from .models import EntryCustom
 
 
+@require_safe
 def entry_detail_slug(req, slug):
     entry = get_object_or_404(Entry, slug=slug)
     date = entry.publication_date.astimezone(get_localzone())
