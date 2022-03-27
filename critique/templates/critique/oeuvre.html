@@ -2,6 +2,7 @@
 {% load static %}
 {% load l10n %}
 {% load tln_extras %}
+{% load critique_extras %}
 
 {% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
 {% block og-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
@@ -77,22 +78,7 @@
 
         <footer class="entry-footer">
             <div class="entry-discussions"></div>
-            <time>
-                écrit
-                {% localize on %}
-                {% if comment.date_month_unknown %}
-                    en {{ comment.date|date:"Y" }}
-                {% elif comment.date_day_unknown %}
-                    en {{ comment.date|date:"F Y" }}
-                {% else %}
-                    {% if comment.date|date:"j" == "1" %}
-                        le 1er {{ comment.date|date:"F Y" }}
-                    {% else %}
-                        le {{ comment.date|date:"j F Y" }}
-                    {% endif %}
-                {% endif %}
-                {% endlocalize %}
-            </time>
+            <time>écrit {{ comment|critiquedate }}</time>
         </footer>
     </article>
 {% endfor %}

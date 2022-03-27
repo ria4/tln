@@ -23,6 +23,7 @@
 * rewrite critique with class-based views
 * migrate from zinnia to another cms
 * override default admin interfaces to remove useless content
+* sort through static and media directories
 
 
 ## Stability
