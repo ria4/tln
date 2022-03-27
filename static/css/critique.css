@@ -757,10 +757,12 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form_empty p { width: 350px; }
 #oeuvre_form p label,
 #oeuvre_form_empty p label { width: 130px; }
-#oeuvre_form p label[for="id_envie"],
 #oeuvre_form p label[for="id_mtype"],
-#oeuvre_form_empty p label[for="id_empty_envie"],
-#oeuvre_form_empty p label[for="id_empty_mtype"] { width: 92.7px; }
+#oeuvre_form p label[for="id_year"],
+#oeuvre_form p label[for="id_envie"],
+#oeuvre_form_empty p label[for="id_empty_mtype"],
+#oeuvre_form_empty p label[for="id_empty_year"],
+#oeuvre_form_empty p label[for="id_empty_envie"] { width: 92.7px; }
 #oeuvre_form .form_buttons,
 #oeuvre_form_empty .form_buttons { margin-top: -4px; }
 #oeuvre_form .form_buttons .filler { width: 32px; }

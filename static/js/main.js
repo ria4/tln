@@ -42,10 +42,10 @@ function getSearchInput() {
     return null;
 }
 
-function focusOn(overlay, objId) {
-    objInput = document.getElementById(objId);
+function focusOn(overlay) {
+    focusField = overlay.querySelector(".focus-on-reveal");
     $(overlay).one("transitionend",
-        function() { objInput.focus(); });
+        function() { focusField.focus(); });
 }
 
 var loginForm = document.getElementById("login_form");
@@ -113,8 +113,8 @@ function activateOverlayIf(e) {
             } else {
                 var overlay = codes[activeCode].parentElement;
                 overlay.classList.add("revealed");
-                if (activeCode == "login") { e.preventDefault(); focusOn(overlay, "id_username"); }
-                else if (activeCode == "adds") { e.preventDefault(); focusOn(overlay, "id_empty_seance_cinema"); }
+                e.preventDefault();
+                focusOn(overlay);
             }
         }
         return true;
@@ -148,6 +148,7 @@ document.addEventListener("keydown", function (e) {
     if (activeCode && (e.keyCode == 27)) {      // ESC keyCode
         codes[activeCode].parentElement.classList.remove("revealed");
         activeCode = "";
+        document.activeElement.blur()
     }
 });
 
@@ -155,6 +156,7 @@ if (loginForm) {
     loginForm.addEventListener("reset", function (e) {
         e.target.parentElement.classList.remove("revealed");
         activeCode = "";
+        document.activeElement.blur()
     });
 }
 

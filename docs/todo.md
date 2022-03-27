@@ -14,7 +14,6 @@
 * display music by tag (ambient, electronic, now...)
 * show seance (if it exists) on movie pages
 * more concise title alt & imdb id & tags
-* focus to first form field after critique admin code
 
 
 ## Long term

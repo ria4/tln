@@ -176,7 +176,9 @@ def detail_oeuvre(req, slug):
     if oeuvre.comments.count() > 0:
         comments = sorted(oeuvre.comments.all(), key=lambda p: p.date, reverse=True)
         comment_form = CommentaireForm(get_comment_form_data(comments[0]))
+        comment_form.fields["content"].widget.attrs.update({"class": "focus-on-reveal"})
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
+    oeuvre_form.fields["envie"].widget.attrs.update({"class": "focus-on-reveal"})
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
         update_oeuvre(req, oeuvre, oeuvre_form)
@@ -359,6 +361,7 @@ def list_cinemas(req):
 def detail_cinema(req, slug):
     cinema = get_object_or_404(Cinema, slug=slug)
     form = CinemaForm(req.POST or get_cinema_form_data(cinema))
+    form.fields["comment"].widget.attrs.update({"class": "focus-on-reveal"})
     if req.POST and form.is_valid():
         update_cinema(req, cinema, form)
     return render(req, 'critique/cinema.html', locals())

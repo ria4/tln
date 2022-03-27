@@ -788,6 +788,7 @@ a.no-zoom img {
     box-shadow: none;
     padding: 0;
     width: auto; }
+.form_inputs input[type="checkbox"]:focus { outline: #f7a300 dotted 2px; }
 .form_inputs input[type="date"] { width: 160px; }
 .form_inputs input[type="date"]::-webkit-inner-spin-button {
     -webkit-appearance: none; display: none; }
@@ -802,6 +803,7 @@ a.no-zoom img {
     display: flex;
     -ms-flex-pack: center;
     justify-content: center; }
+.form_buttons input:focus { color: #f7a300; }
 @media (max-width: 400px) {
 .form_buttons input { font-size: 35px; }}
 .form_buttons input {
