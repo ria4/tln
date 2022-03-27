@@ -29,4 +29,3 @@
 ## Stability
 
 * ansible deployment (maybe)
-* write tests (mayyybe)
