@@ -12,12 +12,14 @@ from PIL import Image
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
 from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.db.models.functions import Length
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template.defaultfilters import slugify
+from django.template.loader import render_to_string
 from django.utils import timezone
 from django.views.generic.list import ListView
 
@@ -156,14 +158,43 @@ def add_comment(req, slug):
         oeuvre.comments.add(comment)
     return redirect('detail_oeuvre', slug=slug)
 
+
+# Oeuvre Cache
+
+def cache_oeuvre_refresh(mtype):
+    cache_key = make_template_fragment_key('chunks_collection', [mtype])
+    cache.delete(cache_key)
+    context = list_oeuvres_reqless(mtype)
+    render_to_string('critique/collection.html', context=context)
+    # close connection if in another thread
+    #from django.db import connection
+    #connection.close()
+
+#import threading
+#
+#def cache_oeuvre_refresh_thread(mtype):
+#    t = threading.Thread(
+#        target=cache_oeuvre_refresh,
+#        args=[mtype],
+#        daemon=True,
+#    )
+#    t.start()
+
+
 # Views
 
 @permission_required('critique.all_rights')
 def add_oeuvre(req):
     form = OeuvreForm(req.POST)
-    oeuvre = Oeuvre(info=OeuvreInfo(titles=Titres()))
     if form.is_valid():
+        oeuvre = Oeuvre(info=OeuvreInfo(titles=Titres()))
         update_oeuvre(req, oeuvre, form)
+        # refresh cache
+        # "To provide thread-safety, a different instance"
+        # "of the cache backend will be returned for each thread."
+        # https://docs.djangoproject.com/en/4.0/topics/cache/#cache-key-prefixing
+        #cache_oeuvre_refresh_thread(oeuvre.info.mtype)
+        cache_oeuvre_refresh(oeuvre.info.mtype)
         return redirect('detail_oeuvre', slug=oeuvre.slug)
 
 def detail_oeuvre(req, slug):
@@ -193,6 +224,7 @@ def delete_oeuvre(req, slug):
     oeuvre = get_object_or_404(Oeuvre, slug=slug)
     mtype = oeuvre.info.mtype
     if hasattr(oeuvre.info, 'image_url') and oeuvre.info.image_url:
+        #XXX put this in Oeuvre.delete when it's reworked
         try:
             os.remove('static/%s' % oeuvre.info.image_url)
         except FileNotFoundError:
@@ -299,19 +331,17 @@ def list_notes(req, mtype="all", page=1):
 
 # Collection
 
+def list_oeuvres_reqless(mtype):
+    oeuvres = Oeuvre.objects.filter(envie=False, info__mtype=mtype) \
+                            .order_by('-info__year', '-id')
+    return {'oeuvres': oeuvres, 'mtype': mtype}
+
 def list_oeuvres(req, mtype="film"):
     """
     Liste les oeuvres qui ne sont pas marquées en tant qu'envies.
     (Les "re-" envies ne sont pas prises en charge.)
-    Les listes en cache, si elles existent, expirent au bout de 24 heures.
-    TODO: La page reste lente à cause du formatage de oeuvres vers le html
     """
-    oeuvres = cache.get(f'critique_collection_{mtype}')
-    if not oeuvres:
-        oeuvres = Oeuvre.objects.filter(envie=False, info__mtype=mtype) \
-                                .order_by('-info__year', '-id')
-        cache.set(f'critique_collection_{mtype}', oeuvres, 86400)
-    context = {'oeuvres': oeuvres, 'mtype': mtype}
+    context = list_oeuvres_reqless(mtype)
     return render(req, 'critique/collection.html', context)
 
 
