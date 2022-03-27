@@ -18,7 +18,7 @@
 
 ## Long term
 
-* call asqip asynchronously
+* call sqip asynchronously
 * rework critique models (`date_from`, `date_to`...)
 * rewrite critique with class-based views
 * migrate from zinnia to another cms
@@ -26,6 +26,6 @@
 * sort through static and media directories
 
 
-## Stability
+## Super-long term
 
 * ansible deployment (maybe)
