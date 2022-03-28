@@ -6,7 +6,7 @@ import random
 import requests
 import shutil
 
-from datetime import datetime, time
+from datetime import datetime, date, time
 from itertools import chain
 from PIL import Image
 from django.conf import settings
@@ -366,34 +366,55 @@ def list_envies(req, mtype="film", page=1):
 def get_cinema_form_data(cinema):
     form_data = {}
     form_data['name'] = cinema.name
+    form_data['name_short'] = cinema.name_short
+    form_data['name_long'] = cinema.name_long
+    form_data['location'] = cinema.location
     form_data['comment'] = cinema.comment
-    form_data['visited'] = cinema.visited.strftime('%Y-%m-%d')
+    visited = cinema.visited.strftime('%Y-%m-%d')
+    form_data['visited'] = visited if visited != '1970-01-01' else None
     return form_data
 
 @permission_required('critique.all_rights')
 def update_cinema(req, cinema, form):
+    update_slug = form.cleaned_data['name'] != cinema.name
     cinema.name = form.cleaned_data['name']
+    name_short = form.cleaned_data['name_short']
+    cinema.name_short = name_short if name_short else None
+    cinema.name_long = form.cleaned_data['name_long']
+    cinema.location = form.cleaned_data['location']
     cinema.comment = form.cleaned_data['comment']
-    cinema.visited = form.cleaned_data['visited']
-    cinema.save()
+    visited = form.cleaned_data['visited']
+    cinema.visited = visited if visited != date.fromtimestamp(0) else None
+    cinema.save(update_slug=update_slug)
 
 # Views
+
+@permission_required('critique.all_rights')
+def add_cinema(req):
+    form = CinemaForm(req.POST)
+    if form.is_valid():
+        cinema = Cinema()
+        update_cinema(req, cinema, form)
+        return redirect('list_cinemas')
 
 def list_cinemas(req):
     """
     L'ordre des cinémas est aléatoire, mais constant pour un jour donné.
     """
-    cinemas = list(Cinema.objects.all())
+    cinemas_paris = list(Cinema.objects.filter(location="Paris"))
     random.seed(datetime.today().date())
-    random.shuffle(cinemas)
-    return render(req, 'critique/cinemas.html', {'cinemas': cinemas})
+    random.shuffle(cinemas_paris)
+    cinemas_elsewhere = Cinema.objects.exclude(location="Paris")
+    context = {'cinemas_paris': cinemas_paris, 'cinemas_elsewhere': cinemas_elsewhere}
+    return render(req, 'critique/cinemas.html', context)
 
 def detail_cinema(req, slug):
     cinema = get_object_or_404(Cinema, slug=slug)
     form = CinemaForm(req.POST or get_cinema_form_data(cinema))
-    form.fields["comment"].widget.attrs.update({"class": "focus-on-reveal"})
+    form.fields["name"].widget.attrs.update({"class": "focus-on-reveal"})
     if req.POST and form.is_valid():
         update_cinema(req, cinema, form)
+        return redirect('detail_cinema', slug=cinema.slug)
     return render(req, 'critique/cinema.html', locals())
 
 @permission_required('critique.all_rights')

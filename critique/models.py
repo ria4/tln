@@ -171,9 +171,18 @@ class TopJeux(models.Model):
 
 class Cinema(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    name_short = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    name_long = models.CharField(max_length=100, unique=True)
+    location = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    comment = models.TextField()
-    visited = models.DateField()
+    comment = models.TextField(blank=True)
+    visited = models.DateField(blank=True, null=True)
+
+    def save(self, update_slug=False, *args, **kwargs):
+        if ((not self.id) or update_slug):
+            # si création ou bien modification du nom, création d'un slug
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

@@ -38,7 +38,7 @@
 {% cache None chunks_cinemas %}
 <div id="cinemas" class="chunks">
     <ul>
-    {% for cinema in cinemas %}
+    {% for cinema in cinemas_paris %}
         <li><a href="{% url 'detail_cinema' cinema.slug %}">{{ cinema.name }}</a></li>
     {% if forloop.counter|divisibleby:21 and not forloop.last %}
     </ul>
@@ -63,7 +63,7 @@
             <footer class="entry-footer">
                 <div class="entry-discussions"></div>
                 <time id="cinemas_total">
-                    au 14 mars 2016 : 80 cinémas parisiens visités
+                    au 14 mars 2016 : {{ cinemas_paris|length }} cinémas parisiens visités
                 </time>
             </footer>
         </div>

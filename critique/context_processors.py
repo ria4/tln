@@ -1,5 +1,6 @@
 from datetime import datetime
-from .forms import OeuvreForm, CommentaireForm, SeanceForm
+from .forms import CinemaForm, CommentaireForm, OeuvreForm, SeanceForm
+
 
 def oeuvre_form(req):
     form = OeuvreForm(auto_id='id_empty_%s')
@@ -11,6 +12,12 @@ def comment_form(req):
     form = CommentaireForm({'date': date}, auto_id='id_empty_%s')
     form.fields["content"].widget.attrs.update({"class": "focus-on-reveal"})
     return {"comment_form_empty": form}
+
+def cinema_form(req):
+    visited = datetime.fromtimestamp(0).strftime('%Y-%m-%d')
+    form = CinemaForm({'visited': visited}, auto_id='id_empty_cinema_%s')
+    form.fields["name"].widget.attrs.update({"class": "focus-on-reveal"})
+    return {"cinema_form_empty": form}
 
 def seance_form(req):
     date = datetime.now().strftime('%Y-%m-%d')

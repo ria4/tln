@@ -417,15 +417,29 @@ if (commentForm) {
     addSubmitListener(commentForm, validatedElements);
 }
 
+var cinemaFormEmpty = document.getElementById("cinema_form_empty");
+if (cinemaFormEmpty) {
+    nameInput = document.getElementById("id_empty_cinema_name");
+    nameLong = document.getElementById("id_empty_cinema_name_long");
+    locationInput = document.getElementById("id_empty_cinema_location");
+    validatedElements = [
+        [nameInput, x => (x == "")],
+        [nameLong, x => (x == "")],
+        [locationInput, x => (x == "")]
+    ];
+    addInputsListener(validatedElements, true);
+    addSubmitListener(cinemaFormEmpty, validatedElements);
+}
+
 var cinemaForm = document.getElementById("cinema_form");
 if (cinemaForm) {
     nameInput = document.getElementById("id_name");
-    comment = document.getElementById("id_comment");
-    visited = document.getElementById("id_visited");
+    nameLong = document.getElementById("id_name_long");
+    locationInput = document.getElementById("id_location");
     validatedElements = [
         [nameInput, x => (x == "")],
-        [comment, x => (x == "")],
-        [visited, x => (x == "")]
+        [nameLong, x => (x == "")],
+        [locationInput, x => (x == "")]
     ];
     addInputsListener(validatedElements, true);
     addSubmitListener(cinemaForm, validatedElements);
@@ -510,6 +524,7 @@ codes["addo"] = oeuvreFormEmpty;
 codes["editc"] = commentForm;
 codes["addc"] = commentFormEmpty;
 codes["editi"] = cinemaForm;
+codes["addi"] = cinemaFormEmpty;
 codes["adde"] = seanceFormEmpty;
 
 for (var key in codes) {

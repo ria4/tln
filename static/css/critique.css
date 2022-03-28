@@ -813,16 +813,24 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
    ========================================================================== */
 
 /* The textarea should mirror exactly the width of the text underneath. */
-#cinema_form p { width: 863px; }
-#cinema_form p label { width: 96px; }
-#cinema_form p label[for="id_visited"] { width: 85px; }
-#cinema_form .form_buttons { margin-top: -4px; }
-#cinema_form .form_buttons .filler { width: 72px; }
+#cinema_form p,
+#cinema_form_empty p { width: 863px; }
+#cinema_form p label,
+#cinema_form_empty p label{ width: 118px; }
+#cinema_form p label[for="id_visited"],
+#cinema_form_empty p label[for="id_empty_cinema_visited"] { width: 103px; }
+#cinema_form .form_buttons, #cinema_form_empty .form_buttons { margin-top: -4px; }
+#cinema_form .form_buttons .filler,
+#cinema_form_empty .form_buttons .filler { width: 72px; }
 @media (max-width: 400px) {
-#cinema_form p { width: 290px; }
-#cinema_form p label { width: 94px; }
-#cinema_form p label[for="id_visited"] { width: 69px; }
-#cinema_form .form_buttons .filler { width: 31px; }}
+#cinema_form p,
+#cinema_form_empty p { width: 290px; }
+#cinema_form p label,
+#cinema_form_empty p label { width: 118px; }
+#cinema_form p label[for="id_visited"],
+#cinema_form_empty p label[for="id_empty_cinema_visited"] { width: 81px; }
+#cinema_form .form_buttons .filler,
+#cinema_form_empty .form_buttons .filler { width: 31px; }}
 
 
 /* Form Seance

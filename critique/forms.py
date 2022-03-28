@@ -44,7 +44,10 @@ class CommentaireForm(forms.Form):
 
 class CinemaForm(forms.Form):
     name = forms.CharField(max_length=100)
-    comment = forms.CharField(widget=forms.Textarea)
+    name_short = forms.CharField(max_length=100, required=False)
+    name_long = forms.CharField(max_length=100)
+    location = forms.CharField(max_length=100)
+    comment = forms.CharField(widget=forms.Textarea, required=False)
     visited = forms.DateField(widget=DateInput)
 
 class SeanceForm(forms.Form):

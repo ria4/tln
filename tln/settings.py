@@ -84,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'blog.context_processors.entry_default',
                 'critique.context_processors.oeuvre_form',
+                'critique.context_processors.cinema_form',
                 'critique.context_processors.comment_form',
                 'critique.context_processors.seance_form',
                 'photos.context_processors.gallery_list',
