@@ -1,13 +1,13 @@
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
-from .models import OeuvreInfo
+from .models import Cinema, OeuvreInfo
 
 
 @receiver(post_delete, sender=OeuvreInfo)
-def refresh_cache_post_delete(sender, instance, *args, **kwargs):
+def refresh_cache_collection_post_delete(sender, instance, *args, **kwargs):
     mtype = instance.mtype
     cache_key = make_template_fragment_key('chunks_collection', [mtype])
     cache.delete(cache_key)
@@ -32,3 +32,9 @@ def refresh_cache_post_init(sender, instance, *args, **kwargs):
     #args = (HttpRequest(),) + args
     #func(*args, **kwargs)
 """
+
+@receiver(post_save, sender=Cinema)
+@receiver(post_delete, sender=Cinema)
+def refresh_cache_cinemas(sender, instance, *args, **kwargs):
+    cache_key = make_template_fragment_key('chunks_cinemas')
+    cache.delete(cache_key)

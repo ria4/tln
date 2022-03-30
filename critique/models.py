@@ -170,6 +170,7 @@ class TopJeux(models.Model):
 
 
 class Cinema(models.Model):
+    """The names do not need to be unique, but we should reuse get_safe_slug then."""
     name = models.CharField(max_length=100, unique=True)
     name_short = models.CharField(max_length=100, unique=True, blank=True, null=True)
     name_long = models.CharField(max_length=100, unique=True)

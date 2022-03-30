@@ -370,8 +370,11 @@ def get_cinema_form_data(cinema):
     form_data['name_long'] = cinema.name_long
     form_data['location'] = cinema.location
     form_data['comment'] = cinema.comment
-    visited = cinema.visited.strftime('%Y-%m-%d')
-    form_data['visited'] = visited if visited != '1970-01-01' else None
+    if cinema.visited:
+        visited = cinema.visited.strftime('%Y-%m-%d')
+        form_data['visited'] = visited if visited != '1970-01-01' else None
+    else:
+        form_data['visited'] = None
     return form_data
 
 @permission_required('critique.all_rights')
@@ -401,11 +404,16 @@ def list_cinemas(req):
     """
     L'ordre des cinémas est aléatoire, mais constant pour un jour donné.
     """
-    cinemas_paris = list(Cinema.objects.filter(location="Paris"))
+    cinemas_paris_q = Cinema.objects.filter(location__startswith="Paris").exclude(
+        Q(name="UGC") | Q(name="MK2") | Q(comment="")
+    )
+    cinemas_elsewhere_q = Cinema.objects.exclude(
+        Q(name="UGC") | Q(name="MK2")
+    ).difference(cinemas_paris_q)
+    cinemas_paris = list(cinemas_paris_q)
     random.seed(datetime.today().date())
     random.shuffle(cinemas_paris)
-    cinemas_elsewhere = Cinema.objects.exclude(location="Paris")
-    context = {'cinemas_paris': cinemas_paris, 'cinemas_elsewhere': cinemas_elsewhere}
+    context = {'cinemas_paris': cinemas_paris, 'cinemas_elsewhere': cinemas_elsewhere_q}
     return render(req, 'critique/cinemas.html', context)
 
 def detail_cinema(req, slug):
