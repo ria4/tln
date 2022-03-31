@@ -1,6 +1,7 @@
 {% extends "critique/base.html" %}
 {% load static %}
 {% load l10n %}
+{% load tln_extras %}
 
 {% block title %}recherche{% if match %} '{{ match }}'{% endif %}{% endblock %}
 {% block meta-description-page %}recherche œuvre ou artiste{% if match %} '{{ match }}'{% endif %}{% endblock %}
@@ -37,7 +38,7 @@
             </div>
             <footer class="entry-footer">
                 <!--[if !IE]><!--><div class="entry-discussions" role="presentation"></div><!--<![endif]-->
-                <time>{{ comment|critiquedate:'no_en,no_le' }}</time>
+                <time>{% fancydate comment 'date' annee=True %}</time>
             </footer>
             {% endif %}
             {% endfor %}
