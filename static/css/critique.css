@@ -270,20 +270,27 @@ _:-ms-fullscreen, :root #critique-searchend-button-m img { top: 50%; left: 0; } 
 #critique-search-results-list-m li:last-child a { border-bottom-width: 4px; }
 
 #critique-search-results-list a:focus,
-#critique-search-results-list-m a:focus {
+#critique-search-results-list a:hover,
+#critique-search-results-list-m a:focus,
+#critique-search-results-list-m a:hover {
     z-index: 11;
     position: relative;
     outline: none; }
-#critique-search-results-list.highlight-ok a:focus { padding-left: 7px; padding-right: 7px; }
-#critique-search-results-list.highlight-ok a:focus {
+#critique-search-results-list.highlight-ok a:focus,
+#critique-search-results-list.highlight-ok a:hover {
+    padding-left: 7px;
+    padding-right: 7px;
     box-shadow: 0 0 14px 0 rgba(0, 13, 181, 0.8);
     border-left-width: 1px; border-right-width: 1px; }
-#critique-search-results-list-m.highlight-ok a:focus {
+#critique-search-results-list-m.highlight-ok a:focus,
+#critique-search-results-list-m.highlight-ok a:hover {
     box-shadow: inset 0 0 14px 0 rgba(0, 13, 181, 0.8); }
-#critique-search-results-list.highlight-ok li:first-child a:focus {
+#critique-search-results-list.highlight-ok li:first-child a:focus,
+#critique-search-results-list.highlight-ok li:first-child a:hover {
     margin-top: 1px;
     border-top-width: 1px; }
-#critique-search-results-list.highlight-ok li:last-child a:focus {
+#critique-search-results-list.highlight-ok li:last-child a:focus,
+#critique-search-results-list.highlight-ok li:first-child a:hover {
     border-bottom-width: 1px; }
 
 #critique-search-results p, #critique-search-results-m p {

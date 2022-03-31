@@ -251,14 +251,13 @@ function setElementSearchResult(li, res) {
     p2.innerHTML = "(" + res.year + ")";
 
     a.addEventListener("mouseenter", function (e) {
-        if (document.activeElement == e.target) {
-            e.target.parentElement.parentElement.classList.add("highlight-ok");
-        } else {
-            e.target.focus();
+        searchResultsList.classList.add("highlight-ok");
+        if (document.activeElement != searchInput) {
+            document.activeElement.blur();
         }
     });
     a.addEventListener("focus", function (e) {
-        e.target.parentElement.parentElement.classList.add("highlight-ok");
+        searchResultsListX.classList.add("highlight-ok");
     });
 }
 
