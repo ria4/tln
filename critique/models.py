@@ -194,7 +194,12 @@ class Seance(models.Model):
     Renseigner un film_id suffit pour la plupart des cas, mais pour des séances
     spéciales, sans oeuvre correspondante, il est possible de donner un titre.
     """
-    cinema = models.CharField(max_length=100)
+    cinema = models.ForeignKey(Cinema, on_delete=models.PROTECT,
+                               null=True, related_name="seances",
+                               related_query_name="seance")
+    cinema_name_short_override = models.CharField(max_length=100, blank=True)
+    cinema_name_long_override = models.CharField(max_length=100, blank=True)
+    cinema_unsure = models.BooleanField(default=False)
     date = models.DateTimeField(db_index=True)
     date_month_unknown = models.BooleanField(default=False)
     film = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL,
@@ -205,4 +210,7 @@ class Seance(models.Model):
 
     def __str__(self):
         title = str(self.film) or self.seance_title
-        return f"{self.cinema} | {self.date.date()} | {title}"
+        cinema_name = None
+        if self.cinema:
+            cinema_name = self.cinema.name_short or self.cinema.name
+        return f"{cinema_name} | {self.date.date()} | {title}"
