@@ -567,6 +567,10 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     justify-content: center;
     -ms-flex-align: center;
     align-items: center; }
+@media (max-width: 430px) {
+.entry-links .oeuvre-display {
+    width: 96px;
+    min-width: 96px; } }
 
 .entry-link {
     margin: 6px 0;

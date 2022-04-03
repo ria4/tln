@@ -12,7 +12,6 @@
 
 * display music by tag (ambient, electronic, now...)
 * show seance (if it exists) on movie pages
-* thumbnail size on narrow oeuvres list
 
 
 ## Long term
