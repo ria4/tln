@@ -8,6 +8,8 @@ from tln.utils import remove_query_param, update_query_param
 # Login
 
 def login_view(req):
+    if not req.method == 'POST':
+        return redirect('/#login')
     redirect_url = remove_query_param(req.META.get('HTTP_REFERER'), "loginfail")
     username = req.POST['username']
     password = req.POST['password']
