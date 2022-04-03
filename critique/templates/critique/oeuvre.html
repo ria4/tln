@@ -90,7 +90,7 @@
 {% if perms.critique.all_rights %}
 <div class="overlay">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.slug %}" method="post">
-        <div class="form_inputs">
+        <div class="form_inputs" data-mtype={{ oeuvre.info.mtype }}>
             {% csrf_token %}
             {{ oeuvre_form.as_p }}
         </div>

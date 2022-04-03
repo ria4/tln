@@ -760,6 +760,15 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form_empty p label[for="id_empty_mtype"] { width: 74.8px; }
 #oeuvre_form .form_buttons .filler { width: 18px; }}
 
+#oeuvre_form .form_inputs[data-mtype="album"] p[data-input="id_title_vo"],
+#oeuvre_form .form_inputs[data-mtype="jeu"] p[data-input="id_title_vo"],
+#oeuvre_form :not(.form_inputs[data-mtype="film"]) p[data-input="id_title_alt"],
+#oeuvre_form :not(.form_inputs[data-mtype="film"]) p[data-input="id_imdb_id"],
+#oeuvre_form_empty .form_inputs[data-mtype="album"] p[data-input="id_empty_title_vo"],
+#oeuvre_form_empty .form_inputs[data-mtype="jeu"] p[data-input="id_empty_title_vo"],
+#oeuvre_form_empty :not(.form_inputs[data-mtype="film"]) p[data-input="id_empty_title_alt"],
+#oeuvre_form_empty :not(.form_inputs[data-mtype="film"]) p[data-input="id_empty_imdb_id"] { display: none; }
+
 
 /* Forms Comment
    ========================================================================== */

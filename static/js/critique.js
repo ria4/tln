@@ -370,6 +370,19 @@ if (oeuvreFormEmpty) {
     ];
     addInputsListener(validatedElements, true);
     addSubmitListener(oeuvreFormEmpty, validatedElements);
+
+    // identify each p-element in the form
+    formInputs = oeuvreFormEmpty.querySelector(".form_inputs");
+    for (let pInput of formInputs.getElementsByTagName("p")) {
+        labelFor = pInput.querySelector("label").getAttribute("for");
+        pInput.dataset.input = labelFor;
+    };
+    // assign a data-mtype to display only selected fields
+    mtype = document.getElementById("id_empty_mtype");
+    formInputs = oeuvreFormEmpty.querySelector(".form_inputs");
+    mtype.addEventListener("change", function (e) {
+        formInputs.dataset.mtype = this.value;
+    });
 }
 
 var oeuvreForm = document.getElementById("oeuvre_form");
@@ -390,6 +403,18 @@ if (oeuvreForm) {
     ];
     addInputsListener(validatedElements, true);
     addSubmitListener(oeuvreForm, validatedElements);
+
+    // identify each p-elements in the form
+    formInputs = oeuvreForm.querySelector(".form_inputs");
+    for (let pInput of formInputs.getElementsByTagName("p")) {
+        labelFor = pInput.querySelector("label").getAttribute("for");
+        pInput.dataset.input = labelFor;
+    };
+    // assign a data-mtype to display only selected fields
+    mtype = document.getElementById("id_mtype");
+    mtype.addEventListener("change", function (e) {
+        formInputs.dataset.mtype = this.value;
+    });
 }
 
 var commentFormEmpty = document.getElementById("comment_form_empty");

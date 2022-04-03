@@ -12,14 +12,15 @@
 
 * display music by tag (ambient, electronic, now...)
 * show seance (if it exists) on movie pages
-* more concise title alt & imdb id & tags
+* thumbnail size on narrow oeuvres list
 
 
 ## Long term
 
+* log offending IPs from X-Forwarded-For headers
 * call sqip asynchronously
 * rework critique models (`date_from`, `date_to`...)
-* rewrite critique with class-based views
+* tidy up critique (e.g. with CBVs)
 * migrate from zinnia to another cms
 * override default admin interfaces to remove useless content
 * sort through static and media directories

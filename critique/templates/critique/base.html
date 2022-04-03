@@ -125,7 +125,7 @@
 
 <div class="overlay">
     <form id="oeuvre_form_empty" action="{% url 'add_oeuvre' %}" method="post">
-        <div class="form_inputs">
+        <div class="form_inputs" data-mtype="film">
             {% csrf_token %}
             {{ oeuvre_form_empty.as_p }}
         </div>
