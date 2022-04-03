@@ -3,7 +3,8 @@ from .forms import CinemaForm, CommentaireForm, OeuvreForm, SeanceForm
 
 
 def oeuvre_form(req):
-    form = OeuvreForm(auto_id='id_empty_%s')
+    year = datetime.now().strftime('%Y')
+    form = OeuvreForm({'year': year}, auto_id='id_empty_%s')
     form.fields["title_vf"].widget.attrs.update({"class": "focus-on-reveal"})
     return {"oeuvre_form_empty": form}
 
@@ -14,7 +15,7 @@ def comment_form(req):
     return {"comment_form_empty": form}
 
 def cinema_form(req):
-    visited = datetime.fromtimestamp(0).strftime('%Y-%m-%d')
+    visited = datetime.now().strftime('%Y-%m-%d')
     form = CinemaForm({'visited': visited}, auto_id='id_empty_cinema_%s')
     form.fields["name"].widget.attrs.update({"class": "focus-on-reveal"})
     return {"cinema_form_empty": form}

@@ -818,17 +818,16 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 /* Form Seance
    ========================================================================== */
 
-#seance_form_empty p { width: 353px; }
-.webkit #seance_form_empty p { width: 330px; }
-#seance_form_empty p label { width: 151px; }
+#seance_form_empty p { width: 330px; }
+#seance_form_empty p label { width: 131px; }
 #seance_form_empty p label[for="id_empty_seance_date"],
-#seance_form_empty p label[for="id_empty_seance_no_month"] { width: 102px; }
+#seance_form_empty p label[for="id_empty_seance_no_month"] { width: 91px; }
 #seance_form_empty .form_buttons .filler { width: 44px; }
 @media (max-width: 400px) {
-#seance_form_empty p { width: 265px; }
-#seance_form_empty p label { width: 121px; }
+#seance_form_empty p { width: 245px; }
+#seance_form_empty p label { width: 104px; }
 #seance_form_empty p label[for="id_empty_seance_date"],
-#seance_form_empty p label[for="id_empty_seance_no_month"] { width: 80.6px; }}
+#seance_form_empty p label[for="id_empty_seance_no_month"] { width: 70px; }}
 
 
 /* Admin Codes
