@@ -56,6 +56,7 @@ COMMENTS_APP = 'django_comments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'tln.middleware.filter_ip.FilterIpMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

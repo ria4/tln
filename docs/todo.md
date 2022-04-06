@@ -11,12 +11,13 @@
 ## Features
 
 * display music by tag (ambient, electronic, now...)
-* show seance (if it exists) on movie pages
+* show seances (if they exist) on movie pages
+* list all cinemas & number of seances
+* template tag for displaying cinema name & location
 
 
 ## Long term
 
-* log offending IPs from X-Forwarded-For headers
 * call sqip asynchronously
 * rework critique models (`date_from`, `date_to`...)
 * tidy up critique (e.g. with CBVs)
