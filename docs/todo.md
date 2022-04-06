@@ -13,7 +13,6 @@
 * display music by tag (ambient, electronic, now...)
 * show seances (if they exist) on movie pages
 * list all cinemas & number of seances
-* template tag for displaying cinema name & location
 
 
 ## Long term

@@ -473,13 +473,13 @@ def list_seances(req, year=2022):
         end = datetime(2011, 12, 31)
     seances = Seance.objects.filter(date__gte=start) \
                             .filter(date__lte=end) \
+                            .select_related('cinema') \
+                            .select_related('film') \
+                            .select_related('film__info') \
+                            .select_related('film__info__titles') \
                             .order_by('date')
 
-    seances_enhanced = []
-    for seance in seances:
-        seances_enhanced.append((seance, seance.film))
-
-    return render(req, 'critique/seances.html', locals())
+    return render(req, 'critique/seances.html', {'year': year, 'seances': seances})
 
 
 # Top Films

@@ -2,6 +2,7 @@
 {% load cache %}
 {% load l10n %}
 {% load tln_extras %}
+{% load critique_extras %}
 
 {% block title %}séances{% endblock %}
 {% block title-after %} {% if year == 2011 %}avant 2012{% else %}{{ year }}{% endif %}{% endblock %}
@@ -37,8 +38,8 @@
 {% cache None chunks_seance year %}
 <div id="seances" class="chunks">
     <ul>
-    {% for seance, film in seances_enhanced %}
-    <li><span>{% if year < 2012 %}{% fancydate seance en=True annee=True %}{% else %}{% fancydate seance en=True %}{% endif %} : {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}</span></li>
+    {% for seance in seances %}
+    <li><span>{% if year < 2012 %}{% fancydate seance en=True annee=True %}{% else %}{% fancydate seance en=True %}{% endif %} : {{ seance|seancecinemashort }} - {{ seance|seancefilmlink }}</span></li>
     {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>
@@ -52,8 +53,8 @@
 
 <div id="seances" class="chunks">
     <ul>
-    {% for seance, film in seances_enhanced %}
-    <li><span>{% fancydate seance en=True %} : {{ seance.cinema }} - {% if film %}<a href="{% url 'detail_oeuvre' film.slug %}">{{ film.info.titles.vf }}</a>{% else %}{% if seance.seance_title %}{{ seance.seance_title }}{% endif %}{% endif %}</span></li>
+    {% for seance in seances %}
+    <li><span>{% fancydate seance en=True %} : {{ seance|seancecinemashort }} - {{ seance|seancefilmlink }}</span></li>
     {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>
