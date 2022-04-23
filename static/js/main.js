@@ -72,8 +72,15 @@ function activateOverlayIf(e) {
         }
     }
     if (!possibleCode) {
-        cachedCode = "";
-        return false;
+        var latestChar = cachedCode.slice(-1);
+        var firstChars = Object.keys(codes).map(c => c.charAt(0));
+        if (firstChars.includes(latestChar)) {
+            cachedCode = latestChar;
+            return activateOverlayIf(e);
+        } else {
+            cachedCode = "";
+            return false;
+        }
     } else if (codeFound) {
         cachedCode = "";
         var input = getSearchInput();

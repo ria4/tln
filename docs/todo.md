@@ -13,6 +13,7 @@
 * display music by tag (ambient, electronic, now...)
 * show seances (if they exist) on movie pages
 * list all cinemas & number of seances
+* select seance cinema from a list widget
 
 
 ## Long term
