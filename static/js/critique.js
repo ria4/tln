@@ -372,16 +372,16 @@ if (oeuvreFormEmpty) {
     addSubmitListener(oeuvreFormEmpty, validatedElements);
 
     // identify each p-element in the form
-    formInputs = oeuvreFormEmpty.querySelector(".form_inputs");
-    for (let pInput of formInputs.getElementsByTagName("p")) {
+    formInputsEmpty = oeuvreFormEmpty.querySelector(".form_inputs");
+    for (let pInput of formInputsEmpty.getElementsByTagName("p")) {
         labelFor = pInput.querySelector("label").getAttribute("for");
         pInput.dataset.input = labelFor;
     };
     // assign a data-mtype to display only selected fields
     mtype = document.getElementById("id_empty_mtype");
-    formInputs = oeuvreFormEmpty.querySelector(".form_inputs");
+    formInputsEmpty = oeuvreFormEmpty.querySelector(".form_inputs");
     mtype.addEventListener("change", function (e) {
-        formInputs.dataset.mtype = this.value;
+        formInputsEmpty.dataset.mtype = this.value;
     });
 }
 
