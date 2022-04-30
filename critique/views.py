@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import permission_required
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.core.paginator import Paginator, EmptyPage
-from django.db.models import Q
+from django.db.models import F, Max, Q
 from django.db.models.functions import Length
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
@@ -407,12 +407,17 @@ def list_cinemas(req):
     cinemas_paris_q = Cinema.objects.filter(location__startswith="Paris").exclude(
         Q(name="UGC") | Q(name="MK2") | Q(comment="")
     )
-    cinemas_elsewhere_q = Cinema.objects.exclude(
-        Q(name="UGC") | Q(name="MK2")
-    ).difference(cinemas_paris_q)
     cinemas_paris = list(cinemas_paris_q)
     random.seed(datetime.today().date())
     random.shuffle(cinemas_paris)
+    cinemas_elsewhere_q = (
+        Cinema.objects.exclude(
+            Q(name="UGC") | Q(name="MK2") | Q(location__startswith="Paris")
+        ).order_by('location')
+        .annotate(max_date=Max('seance__date'))
+        .filter(seance__date=F('max_date'))
+        .values('name', 'location', 'seance__film__slug')
+    )
     context = {'cinemas_paris': cinemas_paris, 'cinemas_elsewhere': cinemas_elsewhere_q}
     return render(req, 'critique/cinemas.html', context)
 
