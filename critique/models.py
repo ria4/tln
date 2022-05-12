@@ -202,6 +202,7 @@ class Seance(models.Model):
     cinema_unsure = models.BooleanField(default=False)
     date = models.DateTimeField(db_index=True)
     date_month_unknown = models.BooleanField(default=False)
+    date_day_unknown = models.BooleanField(default=False)
     film = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL,
                              blank=True, null=True,
                              related_name="seances",

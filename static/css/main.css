@@ -814,3 +814,26 @@ a.no-zoom img {
 .webkit #login_form p { width: 265px; }
 #login_form p label { width: 142px; }
 #login_form .form_error { margin: 9px 0 12px 3px; }}
+
+
+/* Autocomplete Field
+   ========================================================================== */
+
+.select2-container {
+    min-width: 0 !important;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
+.select2-selection__rendered {
+    color: black !important; }
+.select2-results__option {
+    line-height: 20px;
+    padding: 7px 6px !important; }
+.form_inputs .select2-selection {
+    margin-left: -0.3px;
+    border: 1px solid grey;
+    border-color: grey !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 3px 0 rgba(2, 3, 3, 0.6);
+    transition: border 0.2s ease; }
+.form_inputs .select2-selection:focus { outline: none; }
+.select2-results__message, .loading-results { display: none; }
+.select2-selection__clear { color: grey; }

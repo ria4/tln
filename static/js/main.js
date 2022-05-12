@@ -40,8 +40,8 @@ if (sidebar) {
 
 function getSearchInput() {
     return null;
-}
 
+}
 function focusOn(overlay) {
     focusField = overlay.querySelector(".focus-on-reveal");
     $(overlay).one("transitionend",
@@ -221,6 +221,30 @@ function addSubmitListener(form, validatedElements) {
         }
     });
 }
+
+
+/* Forms - Improve Select2 dropdowns */
+
+var catchClosingSelect2 = true;     // prevent recursion loop
+var catchOpenSelect2 = false;       // restore proper focus
+// 1. on first focus, open the menu
+$(document).on('focus', '.select2-selection.select2-selection--single', function (e) {
+    if (!catchOpenSelect2) {
+        $(this).closest(".select2-container").siblings('select:enabled').select2('open');
+    }
+});
+// 2. focus on search field (bugfix for jQuery 3.6)
+$(document).on('select2:open', () => {
+    document.querySelector('.select2-container--open .select2-search__field').focus();
+});
+// 3. return focus to the right form input
+$(document).on('select2:closing', function (e) {
+    if (catchClosingSelect2) {
+        e.preventDefault();
+        catchClosingSelect2 = false; $(e.target).select2('close'); catchClosingSelect2 = true;
+        catchOpenSelect2 = true; e.target.focus(); catchOpenSelect2 = false;
+    }
+});
 
 
 /* Pagination - Navigate with arrow keys */

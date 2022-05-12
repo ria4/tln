@@ -833,14 +833,20 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 
 #seance_form_empty p { width: 330px; }
 #seance_form_empty p label { width: 131px; }
+#seance_form_empty .select2-container { width: 335px !important; }
 #seance_form_empty p label[for="id_empty_seance_date"],
 #seance_form_empty p label[for="id_empty_seance_no_month"] { width: 91px; }
 #seance_form_empty .form_buttons .filler { width: 44px; }
 @media (max-width: 400px) {
 #seance_form_empty p { width: 245px; }
 #seance_form_empty p label { width: 104px; }
+#seance_form_empty .select2-container { width: 248px !important; }
 #seance_form_empty p label[for="id_empty_seance_date"],
 #seance_form_empty p label[for="id_empty_seance_no_month"] { width: 70px; }}
+#select2-id_empty_seance_cinema-results .select2-results__option {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
 
 
 /* Admin Codes

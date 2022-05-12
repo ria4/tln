@@ -6,11 +6,13 @@ import random
 import requests
 import shutil
 
+from dal.autocomplete import Select2QuerySetView
 from datetime import datetime, date, time
 from itertools import chain
 from PIL import Image
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.core.paginator import Paginator, EmptyPage
@@ -302,6 +304,20 @@ def search_oeuvres(req, match=''):
         return render(req, 'critique/search_oeuvres.html', locals())
 
 
+# Autocomplete
+
+class FilmAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
+    permission_required = 'critique.all_rights'
+
+    def get_queryset(self):
+        qs = Oeuvre.objects.filter(info__mtype='film')
+        if self.q:
+            qs = qs.filter(
+                Q(info__titles__vo__icontains=self.q) | Q(info__titles__vf__icontains=self.q)
+            )
+        return qs
+
+
 # Top Textes
 
 class TopTextesView(ListView):
@@ -435,6 +451,19 @@ def delete_cinema(req, slug):
     cinema = get_object_or_404(Cinema, slug=slug).delete()
     return redirect('list_cinemas')
 
+# Autocomplete
+
+class CinemaAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
+    permission_required = 'critique.all_rights'
+
+    def get_queryset(self):
+        qs = Cinema.objects.exclude(
+            Q(name="UGC") | Q(name="MK2")
+        )
+        if self.q:
+            qs = qs.filter(name__icontains=self.q).order_by("name")
+        return qs
+
 
 # Séances
 
@@ -447,11 +476,12 @@ def update_seance(req, seance, data):
     seance.date = timezone.make_aware(dt, pytz.timezone(settings.TIME_ZONE))
     if 'no_month' in data:
         seance.date_month_unknown = data['no_month']
-    if ('film_slug' not in data and
-        'seance_title' not in data):
+    if 'no_day' in data:
+        seance.date_day_unknown = data['no_day']
+    if ('film' not in data) and ('seance_title' not in data):
         return
-    if 'film_slug' in data and data['film_slug']:
-        seance.film = get_object_or_404(Oeuvre, slug=data['film_slug'])
+    if 'film' in data and data['film']:
+        seance.film = data['film']
     elif 'seance_title' in data:
         seance.seance_title = data['seance_title']
     seance.save()

@@ -475,47 +475,48 @@ if (seanceFormEmpty) {
     date = document.getElementById("id_empty_seance_date");
     hour = document.getElementById("id_empty_seance_hour");
     validatedElements = [
-        [cinema, x => ((x.length > 1000) || (x == ""))],
         [date, x => (x == "")],
         [hour, x => ((x.length != 5) || (x.charAt(2) != ":") || (parseInt(x.charAt(0), 10) > 2) || (parseInt(x.charAt(3), 10) > 5))],
     ];
     addInputsListener(validatedElements, true);
 
-    /* exactly one of these must be filled */
-    filmSlug = document.getElementById("id_empty_seance_film_slug");
+    // this cross-check does not work with the select2 used for film selection
+    /* exactly one of these must be filled
+    film = document.getElementById("id_empty_seance_film");
     seanceTitle = document.getElementById("id_empty_seance_seance_title");
 
     validatedElementsComplete = validatedElements.slice()
-    validatedElementsComplete.push([filmSlug, null]);
+    validatedElementsComplete.push([film, null]);
     validatedElementsComplete.push([seanceTitle, null]);
     addSubmitListener(seanceFormEmpty, validatedElementsComplete);
 
-    warningOnElementIf(filmSlug, true);
+    warningOnElementIf(film, true);
     warningOnElementIf(seanceTitle, true);
-    filmSlug.addEventListener("blur", function(e) {
-        var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
-                               ((filmSlug.value != "") && (seanceTitle.value != "")))
-        warningOnElementIf(filmSlug, seanceFormError);
+    film.addEventListener("blur", function(e) {
+        var seanceFormError = (((film.value == "") && (seanceTitle.value == "")) ||
+                               ((film.value != "") && (seanceTitle.value != "")))
+        warningOnElementIf(film, seanceFormError);
+        warningOnElementIf(seanceTitle, seanceFormError);
+    });
+    film.addEventListener("change", function(e) {
+        var seanceFormError = (((film.value == "") && (seanceTitle.value == "")) ||
+                               ((film.value != "") && (seanceTitle.value != "")))
+        warningOnElementIf(film, seanceFormError);
         warningOnElementIf(seanceTitle, seanceFormError);
     });
     seanceTitle.addEventListener("blur", function(e) {
-        var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
-                               ((filmSlug.value != "") && (seanceTitle.value != "")))
-        warningOnElementIf(filmSlug, seanceFormError);
-        warningOnElementIf(seanceTitle, seanceFormError);
-    });
-    filmSlug.addEventListener("input", function(e) {
-        var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
-                               ((filmSlug.value != "") && (seanceTitle.value != "")))
-        warningOnElementIf(filmSlug, seanceFormError);
+        var seanceFormError = (((film.value == "") && (seanceTitle.value == "")) ||
+                               ((film.value != "") && (seanceTitle.value != "")))
+        warningOnElementIf(film, seanceFormError);
         warningOnElementIf(seanceTitle, seanceFormError);
     });
     seanceTitle.addEventListener("input", function(e) {
-        var seanceFormError = (((filmSlug.value == "") && (seanceTitle.value == "")) ||
-                               ((filmSlug.value != "") && (seanceTitle.value != "")))
-        warningOnElementIf(filmSlug, seanceFormError);
+        var seanceFormError = (((film.value == "") && (seanceTitle.value == "")) ||
+                               ((film.value != "") && (seanceTitle.value != "")))
+        warningOnElementIf(film, seanceFormError);
         warningOnElementIf(seanceTitle, seanceFormError);
     });
+    */
 }
 
 

@@ -3,7 +3,11 @@ BooleanField must be required=False, because of some django nonsense.
 Also, the validation data written here is mostly useless, thanks to client-side validation.
 """
 
+from dal.autocomplete import ModelSelect2
 from django import forms
+from django.db.models import Q
+
+from .models import Cinema, Oeuvre
 
 
 OEUVRES_TYPES = [
@@ -51,9 +55,25 @@ class CinemaForm(forms.Form):
     visited = forms.DateField(label="visité le", widget=DateInput)
 
 class SeanceForm(forms.Form):
-    cinema = forms.CharField(label="cinéma", max_length=100)
+    cinema = forms.ModelChoiceField(
+        label="cinéma",
+        queryset=Cinema.objects.exclude(Q(name="UGC") | Q(name="MK2")),
+        widget=ModelSelect2(
+            url='autocomplete_cinema',
+            attrs={'data-minimum-input-length': 2},
+        )
+    )
     date = forms.DateField(label="date", widget=DateInput)
     hour = forms.CharField(label="heure", max_length=5)
-    no_month = forms.BooleanField(label="sans mois", required=False)
-    film_slug = forms.CharField(label="film", max_length=200, required=False)
+    #no_month = forms.BooleanField(label="sans mois", required=False)
+    #no_day = forms.BooleanField(label="sans jour", required=False)
+    film = forms.ModelChoiceField(
+        label="film",
+        required=False,
+        queryset=Oeuvre.objects.filter(info__mtype='film'),
+        widget=ModelSelect2(
+            url='autocomplete_film',
+            attrs={'data-minimum-input-length': 3},
+        )
+    )
     seance_title = forms.CharField(label="ou titre", max_length=200, required=False)

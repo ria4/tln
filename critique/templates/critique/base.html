@@ -169,4 +169,8 @@
 
 {% block overlays %}{% endblock %}
 
-{% block app-js %}<script src="{% static 'js/critique.js' %}"></script>{% endblock %}
+{% block app-js %}
+{% if perms.critique.all_rights %}{{ seance_form_empty.media }}{% endif %}
+
+<script src="{% static 'js/critique.js' %}"></script>
+{% endblock %}

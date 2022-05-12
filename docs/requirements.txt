@@ -4,3 +4,4 @@ django-photologue==3.13
 tzlocal==2.1
 requests==2.25.1
 pymemcache==3.5.0
+django-autocomplete-light==3.9.4
