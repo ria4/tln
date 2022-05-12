@@ -25,7 +25,7 @@
     <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />{% block link %}{% endblock link %}{% block script %}{% endblock script %}
-    <script src="{% static 'js/jquery.min.js' %}"></script>{% block import-scripts %}{% endblock %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>{% block import-scripts %}{% endblock %}
     <script>var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};</script>
     <script>var userIsSuperuser = {% if user.is_superuser %}true{% else %}false{% endif %};</script> <!-- display tweaks for the admin -->
   </head>
