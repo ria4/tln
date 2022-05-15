@@ -23,15 +23,17 @@
             </div>
         </div>
 
-        <footer class="entry-footer">
-            <div class="entry-discussions"></div>
-            <time>
-                visité le
-                {% localize on %}
-                {{ cinema.visited|date:"j F Y" }}
-                {% endlocalize %}
-            </time>
-        </footer>
+        {% if cinema.visited %}
+            <footer class="entry-footer">
+                <div class="entry-discussions"></div>
+                <time>
+                    visité le
+                    {% localize on %}
+                    {{ cinema.visited|date:"j F Y" }}
+                    {% endlocalize %}
+                </time>
+            </footer>
+        {% endif %}
     </article>
 </div>
 {% endblock %}

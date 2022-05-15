@@ -430,9 +430,7 @@ def list_cinemas(req):
         Cinema.objects.exclude(
             Q(name="UGC") | Q(name="MK2") | Q(location__startswith="Paris")
         ).order_by('location')
-        .annotate(max_date=Max('seance__date'))
-        .filter(seance__date=F('max_date'))
-        .values('name', 'location', 'seance__film__slug')
+        .values('name', 'location', 'slug')
     )
     context = {'cinemas_paris': cinemas_paris, 'cinemas_elsewhere': cinemas_elsewhere_q}
     return render(req, 'critique/cinemas.html', context)

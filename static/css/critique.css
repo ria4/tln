@@ -655,7 +655,7 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #collection.chunks ul { max-width: 380px; }
 #collection.artiste-oeuvres.chunks ul { max-width: 520px; }
 #seances.chunks ul { max-width: 600px; }
-#cinemas.chunks ul { max-width: 440px; }
+#cinemas.chunks ul, #cinemas-elsewhere.chunks ul { max-width: 440px; }
 _:-ms-fullscreen, :root #cinemas.chunks { height: 2298px; } /* IE 11 */
 @media (min-width: 870px) {
 _:-ms-fullscreen, :root #cinemas.chunks { height: 1176px; } /* IE 11 */ }
@@ -715,6 +715,17 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #cinemas-intro2 .entry-footer { overflow-x: hidden; }
 #cinemas-intro2 #cinemas_total { margin-top: 8px; }
 #cinema-info { margin-top: 38px; margin-bottom: 24px; }
+#cinemas-intro2 hr {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 113%;
+    max-width: none;
+    margin-top: 33px;
+    margin-bottom: 16px;
+    border-bottom-color: #a57100; }
+#cinemas-elsewhere-intro { margin-bottom: 19px; }
+#cinemas-elsewhere { margin-bottom: 21px; }
 
 
 /* Content Top Films

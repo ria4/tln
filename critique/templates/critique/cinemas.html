@@ -65,17 +65,19 @@
                     au 14 mars 2016 : {{ cinemas_paris|length }} cinémas parisiens visités
                 </time>
             </footer>
+
+            <hr>
         </div>
     </article>
+
 </div>
 
-<hr>
 
 <div id="cinemas-elsewhere-intro" class="critique-perso">
     <article class="hentry">
         <div class="entry-body">
             <div class="entry-content">
-                <p>Et puisqu'on est dans le recensement et qu'il n'y a pas que Paris dans la vie, voici la modeste liste des autres cinémas dans lesquels je suis passée, au fil des années et des voyages...</p>
+                <p>Et puisqu'on est dans le recensement, et que Paname n'a plus le monopole de mon cœur, voici la liste des autres cinémas dans lesquels je suis passée, au fil du temps et des voyages...</p>
         </div>
     </article>
 </div>
@@ -83,7 +85,7 @@
 <div id="cinemas-elsewhere" class="chunks">
     <ul>
     {% for cinema in cinemas_elsewhere %}
-    <li>{% if cinema.seance__film__slug %}<a href="{% url 'detail_oeuvre' cinema.seance__film__slug %}">{% endif %}{{ cinema.name }}<span class="cinema-location">, à {{ cinema.location }}</span>{% if cinema.seance__film__slug %}</a>{% endif %}</li>
+        <li><a href="{% url 'detail_cinema' cinema.slug %}">{{ cinema.name }}</a><span class="cinema-location">, à {{ cinema.location }}</span></li>
     {% if forloop.counter|divisibleby:5 and not forloop.last %}
     </ul>
     <ul>
