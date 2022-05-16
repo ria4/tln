@@ -10,6 +10,7 @@
     <li><a tabindex="-1" href={% url "preambule" %}>préambule</a></li>
     <li><a tabindex="-1" href={% url "top_textes" %}>textes choisis</a></li>
     <li><a tabindex="-1" href={% url "list_notes" %}>carnet de notes</a></li>
+    <li><a tabindex="-1" href={% url "list_seances" %}>séances ciné</a></li>
     <li><a tabindex="-1" href={% url "list_envies" %}>perspectives</a></li>
     <li>
         <form action="{% url "search_oeuvres" %}" method="get" role="search">
@@ -45,6 +46,7 @@
                 <li><a href={% url "preambule" %}>préambule</a></li>
                 <li><a href={% url "top_textes" %}>textes choisis</a></li>
                 <li><a href={% url "list_notes" %}>carnet de notes</a></li>
+                <li><a href={% url "list_seances" %}>séances ciné</a></li>
                 <li><a href={% url "list_envies" %}>perspectives</a></li>
             </ul>
             <ul id="main-nav-links-v">
@@ -83,6 +85,7 @@
             <li><a href={% url "preambule" %}>préambule</a></li>
             <li class="top-textes" style="display: none;"><a href={% url "top_textes" %}>textes choisis</a></li>
             <li><a href={% url "list_notes" %}>carnet de notes</a></li>
+            <li><a href={% url "list_seances" %}>séances ciné</a></li>
             <li><a href={% url "list_envies" %}>perspectives</a></li>
         </ul>
     </nav>

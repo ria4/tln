@@ -18,14 +18,14 @@
 
 * blog entry with seances stats & words written
 * rework critique models (`date_from`, `date_to`...)
-* tidy up critique (e.g. split file, use CBVs...)
 * migrate from zinnia to another cms
+* bump to django 4.0 and use redis cache for multithreading
+* tidy up critique (e.g. split file, use CBVs...)
 * override default admin interfaces to remove useless content
 * sort through static and media directories
-* bump to django 4.0 and use redis cache for multithreading
-* call sqip asynchronously
 
 
 ## Super-long term
 
+* call sqip asynchronously
 * ansible deployment (maybe)

@@ -350,9 +350,9 @@ _:-ms-input-placeholder, :root #critique-search-results-m a > div > p:first-chil
 
 #critique-header #sub-nav.expanded { height: 46px; }
 @media (max-width: 1210px) {
-#critique-header #sub-nav.expanded { height: 160px; } }
-@media (max-width: 880px) {
 #critique-header #sub-nav.expanded { height: 213px; } }
+@media (max-width: 880px) {
+#critique-header #sub-nav.expanded { height: 266px; } }
 
 #sub-nav-links-v {
     display: -ms-flexbox;
