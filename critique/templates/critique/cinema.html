@@ -1,5 +1,7 @@
 {% extends "critique/base.html" %}
 {% load l10n %}
+{% load tln_extras %}
+{% load critique_extras %}
 
 {% block title %}{{ cinema.name|lower }}{% endblock %}
 {% block meta-description-page %}informations sur le cinéma {{ cinema.name|lower }}{% endblock %}
@@ -13,8 +15,19 @@
     <h1 class="critique-title">{{ cinema.name }}</h1>
 </div>
 
-<div class="hseparator" role="presentation"></div>
+<div id="cinema-seances" class="chunks">
+    <ul>
+        {% for seance in cinema.seances_list %}
+            <li><span>{% fancydate seance le=True en=True annee=True %} : {{ seance|seancefilmlink }}</span></li>
+            {% if forloop.counter|divisibleby:chunk_size and not forloop.last %}
+                </ul>
+                <ul>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
 
+{% if cinema.visited %}
 <div class="critique-perso">
     <article class="hentry">
         <div class="entry-body">
@@ -23,19 +36,19 @@
             </div>
         </div>
 
-        {% if cinema.visited %}
-            <footer class="entry-footer">
-                <div class="entry-discussions"></div>
-                <time>
-                    visité le
-                    {% localize on %}
-                    {{ cinema.visited|date:"j F Y" }}
-                    {% endlocalize %}
-                </time>
-            </footer>
-        {% endif %}
+        <footer class="entry-footer">
+            <div class="entry-discussions"></div>
+            <time>
+                visité le
+                {% localize on %}
+                {{ cinema.visited|date:"j F Y" }}
+                {% endlocalize %}
+            </time>
+        </footer>
     </article>
 </div>
+{% endif %}
+
 {% endblock %}
 
 {% block overlays %}

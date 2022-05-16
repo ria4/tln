@@ -10,8 +10,6 @@
 
 ## Features
 
-* select seance cinema from a list widget
-* list seances on each cinema page
 * show seances (if they exist) on movie pages
 * display music by tag (ambient, electronic, now...)
 

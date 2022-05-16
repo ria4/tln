@@ -16,7 +16,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.core.paginator import Paginator, EmptyPage
-from django.db.models import F, Max, Q
+from django.db.models import F, Max, prefetch_related_objects, Prefetch, Q
 from django.db.models.functions import Length
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
@@ -437,11 +437,26 @@ def list_cinemas(req):
 
 def detail_cinema(req, slug):
     cinema = get_object_or_404(Cinema, slug=slug)
+    prefetch_related_objects(
+        [cinema],
+        Prefetch(
+            'seances',
+            queryset=(
+                Seance.objects.select_related('film__info__titles').order_by('date')
+            ),
+            to_attr='seances_list',
+        )
+    )
     form = CinemaForm(req.POST or get_cinema_form_data(cinema))
     form.fields["name"].widget.attrs.update({"class": "focus-on-reveal"})
     if req.POST and form.is_valid():
         update_cinema(req, cinema, form)
         return redirect('detail_cinema', slug=cinema.slug)
+    # optimize chunk columns balance
+    r = len(cinema.seances_list) % 10
+    chunk_size = 10
+    if 1 <= r <= 3:
+        chunk_size += 1
     return render(req, 'critique/cinema.html', locals())
 
 @permission_required('critique.all_rights')
@@ -504,13 +519,12 @@ def list_seances(req, year=2022):
         year = 2011
         start = datetime(1998, 1, 1)
         end = datetime(2011, 12, 31)
-    seances = Seance.objects.filter(date__gte=start) \
-                            .filter(date__lte=end) \
-                            .select_related('cinema') \
-                            .select_related('film') \
-                            .select_related('film__info') \
-                            .select_related('film__info__titles') \
-                            .order_by('date')
+    seances = (
+        Seance.objects.filter(date__gte=start, date__lte=end)
+        .select_related('cinema')
+        .select_related('film__info__titles')
+        .order_by('date')
+    )
 
     return render(req, 'critique/seances.html', {'year': year, 'seances': seances})
 
