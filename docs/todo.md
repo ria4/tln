@@ -11,7 +11,6 @@
 ## Features
 
 * show seances (if they exist) on movie pages
-* display oeuvres by tag
 
 
 ## Long term

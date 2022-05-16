@@ -712,6 +712,13 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     width: 100%; }
 
 
+/* Content Tag
+   ========================================================================== */
+
+#tag-info { margin-top: 38px; margin-bottom: 4px; }
+#tag-detail.oeuvres-display { margin-top: 70px; }
+
+
 /* Content Cinemas
    ========================================================================== */
 
@@ -735,7 +742,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #cinemas-elsewhere { margin-bottom: 21px; }
 
 
-/* Content Seance
+/* Content Seances
    ========================================================================== */
 
 #cinema-seances { margin-bottom: 14px; }

@@ -79,11 +79,18 @@ class OeuvreInfo(models.Model):
         return str(self.titles)
 
 
-class Tag(models.Model):
-    tag = models.CharField(max_length=100)
+class OeuvreTag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def save(self, update_slug=False, *args, **kwargs):
+        if ((not self.id) or update_slug):
+            # si création ou bien modification du nom, création d'un slug
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.tag
+        return self.name
 
 
 class Oeuvre(models.Model):
@@ -93,7 +100,7 @@ class Oeuvre(models.Model):
     info = models.OneToOneField(OeuvreInfo, on_delete=models.CASCADE,
                                 related_name="oeuvre",
                                 related_query_name="oeuvre")
-    tags = models.ManyToManyField(Tag, blank=True,
+    tags = models.ManyToManyField(OeuvreTag, blank=True,
                                   related_name="oeuvres",
                                   related_query_name="oeuvre")
     envie = models.BooleanField(default=False)

@@ -26,7 +26,7 @@ from django.utils import timezone
 from django.views.generic.list import ListView
 
 from .forms import OeuvreForm, CommentaireForm, CinemaForm, SeanceForm
-from .models import (Artiste, Oeuvre, OeuvreInfo, Titres, Tag,
+from .models import (Artiste, Oeuvre, OeuvreInfo, Titres, OeuvreTag,
                      Commentaire, TopFilms, TopJeux, Cinema, Seance)
 
 
@@ -78,7 +78,7 @@ def get_oeuvre_form_data(oeuvre):
     form_data['artists'] = '; '.join(names)
     form_data['year'] = oeuvre.info.year
     form_data['imdb_id'] = oeuvre.info.imdb_id
-    tags = [tag.tag for tag in oeuvre.tags.all()]
+    tags = [tag.name for tag in oeuvre.tags.all()]
     form_data['tags'] = '; '.join(tags)
     form_data['envie'] = oeuvre.envie
     return form_data
@@ -113,9 +113,11 @@ def update_oeuvre(req, oeuvre, form):
         artists.append(artist)
     oeuvre.info.artists.set(artists)
     tags = []
-    tags_names = form.cleaned_data['tags'].split('; ')
+    tags_names = []
+    if form.cleaned_data['tags']:
+        tags_names = form.cleaned_data['tags'].split('; ')
     for tag_name in tags_names:
-        tag, _ = Tag.objects.get_or_create(tag=tag_name)
+        tag, _ = OeuvreTag.objects.get_or_create(name=tag_name)
         tags.append(tag)
     oeuvre.tags.set(tags)
 
@@ -373,6 +375,25 @@ def list_envies(req, mtype="film", page=1):
         oeuvres_page = paginator.page(paginator.num_pages)
     context = {'oeuvres': oeuvres_page, 'mtype': mtype}
     return render(req, 'critique/envies.html', context)
+
+
+# Tags
+
+def list_tags(req):
+    tags = OeuvreTag.objects.all()
+    return render(req, 'critique/tags.html', {'tags': tags})
+
+def detail_tag(req, slug, page=1):
+    tag = get_object_or_404(OeuvreTag, slug=slug)
+    oeuvres_list = Oeuvre.objects.filter(tags=tag)
+    oeuvres = oeuvres_list.order_by('-info__year', '-id')
+    paginator = Paginator(oeuvres, 22)
+    try:
+        oeuvres_page = paginator.page(page)
+    except EmptyPage:
+        oeuvres_page = paginator.page(paginator.num_pages)
+    context = {'oeuvres': oeuvres_page, 'tag': tag.name}
+    return render(req, 'critique/tag.html', context)
 
 
 # Cinemas
