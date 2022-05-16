@@ -38,3 +38,9 @@ def seancefilmlink(seance):
         return format_html("<a href=%s>%s</a>" % (href, title_vf))
     else:
         return seance.seance_title
+
+
+@register.filter
+def ellipsiscolor(seance):
+    """Return a class for setting the right color of overflow ellipsis."""
+    return 'ellipsis-black' if seance.seance_title else ''

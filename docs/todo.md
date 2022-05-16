@@ -11,7 +11,7 @@
 ## Features
 
 * show seances (if they exist) on movie pages
-* display music by tag (ambient, electronic, now...)
+* display oeuvres by tag
 
 
 ## Long term

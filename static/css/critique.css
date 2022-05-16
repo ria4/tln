@@ -648,9 +648,13 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0 30px; }
-.chunks li { color: #bd4700 !important; }
-.chunks li:hover { color: #f7a300 !important; }
-.chunks li span { color: black !important; }
+.chunks li { color: #bd4700; }
+.chunks li:hover { color: #f7a300; }
+.chunks li.ellipsis-black { color: black; }
+.chunks li.ellipsis-black:hover { color: black; }
+.chunks li span { color: black; }
+.chunks li a { color: #bd4700; }
+.chunks li a:hover { color: #f7a300; }
 
 #collection.chunks ul { max-width: 380px; }
 #collection.artiste-oeuvres.chunks ul { max-width: 520px; }
