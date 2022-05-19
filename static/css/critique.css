@@ -649,7 +649,10 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     text-overflow: ellipsis;
     margin: 0 30px; }
 @media (max-width: 500px) {
-#seances.chunks li { margin: 0 12px; font-size: 14px; } }
+#seances.chunks li, #cinema-seances.chunks li,
+#cinemas.chunks li, #cinemas-elsewhere.chunks li {
+    margin: 0 12px;
+    font-size: 14px; } }
 .chunks li { color: #bd4700; }
 .chunks li:hover { color: #f7a300; }
 .chunks li.ellipsis-black { color: black; }
