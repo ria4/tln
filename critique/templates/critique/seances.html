@@ -39,7 +39,7 @@
 <div id="seances" class="chunks">
     <ul>
     {% for seance in seances %}
-    <li class={{ seance|ellipsiscolor }}><span>{% if year < 2012 %}{% fancydate seance en=True annee=True %}{% else %}{% fancydate seance en=True %}{% endif %} : {{ seance|seancecinemashort }} - </span>{{ seance|seancefilmlink }}</li>
+    <li class={{ seance|ellipsiscolor }}><span>{% if year < 2012 %}{% fancydate seance.oeuvre_span en=True annee=True date_attrname='date_start' %}{% else %}{% fancydate seance.oeuvre_span en=True date_attrname='date_start' %}{% endif %} : {{ seance|seancecinemashort }} - </span>{{ seance|seancefilmlink }}</li>
     {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>
@@ -54,7 +54,7 @@
 <div id="seances" class="chunks">
     <ul>
     {% for seance in seances %}
-    <li class={{ seance|ellipsiscolor }}><span>{% fancydate seance en=True %} : {{ seance|seancecinemashort }} - </span>{{ seance|seancefilmlink }}</li>
+    <li class={{ seance|ellipsiscolor }}><span>{% fancydate seance.oeuvre_span en=True date_attrname='date_start' %} : {{ seance|seancecinemashort }} - </span>{{ seance|seancefilmlink }}</li>
     {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>

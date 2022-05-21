@@ -136,6 +136,37 @@ class Oeuvre(models.Model):
         return str(self.info)
 
 
+class OeuvreSpan(models.Model):
+    """Intervalle de temps à associer à une œuvre.
+
+    Pour les séances avec titre mais sans film, oeuvre vaut None."""
+
+    oeuvre = models.ForeignKey(
+        Oeuvre,
+        db_index=True,
+        default=None,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="spans",
+        related_query_name="span",
+    )
+    date_start = models.DateTimeField()
+    dsdu = models.BooleanField(default=False)
+    dsmu = models.BooleanField(default=False)
+    date_end = models.DateTimeField(default=None, blank=True, null=True)
+    dedu = models.BooleanField(default=False, blank=True)
+    demu = models.BooleanField(default=False, blank=True)
+
+    def __str__(self):
+        o = str(self.oeuvre)
+        ds = self.date_start.date()
+        de = None
+        if self.date_end:
+            de = self.date_end.date()
+        return f"{o} | {ds} | {de}"
+
+
 class Commentaire(models.Model):
     """
     Commentaire personnel sur l'oeuvre, avec titre optionnel.
@@ -147,8 +178,8 @@ class Commentaire(models.Model):
                                related_query_name="comment")
     title = models.CharField(max_length=200, blank=True)
     date = models.DateTimeField(default=timezone.now)
-    date_month_unknown = models.BooleanField(default=False)
     date_day_unknown = models.BooleanField(default=False)
+    date_month_unknown = models.BooleanField(default=False)
     content = models.TextField(blank=True)
     starred = models.BooleanField(default=False)
 
@@ -201,24 +232,26 @@ class Seance(models.Model):
     Renseigner un film_id suffit pour la plupart des cas, mais pour des séances
     spéciales, sans oeuvre correspondante, il est possible de donner un titre.
     """
-    cinema = models.ForeignKey(Cinema, on_delete=models.PROTECT,
-                               null=True, related_name="seances",
-                               related_query_name="seance")
+    oeuvre_span = models.OneToOneField(
+        OeuvreSpan,
+        on_delete=models.CASCADE,
+    )
+    cinema = models.ForeignKey(
+        Cinema,
+        on_delete=models.PROTECT,
+        null=True,
+        related_name="seances",
+        related_query_name="seance",
+    )
     cinema_name_short_override = models.CharField(max_length=100, blank=True)
     cinema_name_long_override = models.CharField(max_length=100, blank=True)
     cinema_unsure = models.BooleanField(default=False)
-    date = models.DateTimeField(db_index=True)
-    date_month_unknown = models.BooleanField(default=False)
-    date_day_unknown = models.BooleanField(default=False)
-    film = models.ForeignKey(Oeuvre, on_delete=models.SET_NULL,
-                             blank=True, null=True,
-                             related_name="seances",
-                             related_query_name="seance")
     seance_title = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        title = str(self.film) or self.seance_title
+        title = self.seance_title or str(self.oeuvre_span.oeuvre)
+        date_seance = self.oeuvre_span.date_start.date()
         cinema_name = None
         if self.cinema:
             cinema_name = self.cinema.name_short or self.cinema.name
-        return f"{cinema_name} | {self.date.date()} | {title}"
+        return f"{cinema_name} | {date_seance} | {title}"

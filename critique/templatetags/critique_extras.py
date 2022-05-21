@@ -32,12 +32,13 @@ def seancecinemashort(seance):
 @register.filter
 def seancefilmlink(seance):
     """Return either a link to the Oeuvre, or the seance title."""
-    if seance.film:
-        title_vf = seance.film.info.titles.vf
-        href = reverse('detail_oeuvre', kwargs={'slug': seance.film.slug})
-        return format_html("<a href=%s>%s</a>" % (href, title_vf))
-    else:
+    if seance.seance_title:
         return seance.seance_title
+    else:
+        film = seance.oeuvre_span.oeuvre
+        title_vf = film.info.titles.vf
+        href = reverse('detail_oeuvre', kwargs={'slug': film.slug})
+        return format_html("<a href=%s>%s</a>" % (href, title_vf))
 
 
 @register.filter

@@ -11,9 +11,8 @@
 
 ## Features
 
-- add `date_from` and `date_to` to critique
-- create an oeuvrespan when adding a seance
-- show seances (if they exist) on movie pages
+- add form to create `OeuvreSpan`
+- show `OeuvreSpan`s on movie pages
 
 
 ## Long term

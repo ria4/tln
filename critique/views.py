@@ -26,8 +26,19 @@ from django.utils import timezone
 from django.views.generic.list import ListView
 
 from .forms import OeuvreForm, CommentaireForm, CinemaForm, SeanceForm
-from .models import (Artiste, Oeuvre, OeuvreInfo, Titres, OeuvreTag,
-                     Commentaire, TopFilms, TopJeux, Cinema, Seance)
+from .models import (
+    Artiste,
+    Titres,
+    OeuvreInfo,
+    Oeuvre,
+    OeuvreSpan,
+    OeuvreTag,
+    Commentaire,
+    TopFilms,
+    TopJeux,
+    Cinema,
+    Seance,
+)
 
 
 # Artiste
@@ -503,21 +514,30 @@ class CinemaAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
 
 @permission_required('critique.all_rights')
 def update_seance(req, seance, data):
-    seance.cinema = data['cinema']
+    if not (data.get('film') or data.get('seance_title')):
+        return
+
+    if data.get('film'):
+        oeuvre = data.get('film')
+    else:
+        oeuvre = None
+        seance.seance_title = data['seance_title']
+
     date = data['date']
     dtime = time(int(data['hour'][:2]), int(data['hour'][3:5]))
     dt = datetime.combine(date, dtime)
-    seance.date = timezone.make_aware(dt, pytz.timezone(settings.TIME_ZONE))
-    if 'no_month' in data:
-        seance.date_month_unknown = data['no_month']
-    if 'no_day' in data:
-        seance.date_day_unknown = data['no_day']
-    if ('film' not in data) and ('seance_title' not in data):
-        return
-    if 'film' in data and data['film']:
-        seance.film = data['film']
-    elif 'seance_title' in data:
-        seance.seance_title = data['seance_title']
+    date_start = timezone.make_aware(dt, pytz.timezone(settings.TIME_ZONE))
+
+    span = OeuvreSpan(
+        oeuvre=oeuvre,
+        date_start=date_start,
+        dsdu=data.get('no_day', False),
+        dsmu=data.get('no_month', False),
+    )
+    span.save()
+
+    seance.oeuvre_span = span
+    seance.cinema = data['cinema']
     seance.save()
 
 @permission_required('critique.all_rights')
@@ -526,7 +546,7 @@ def add_seance(req):
     seance = Seance()
     if form.is_valid():
         update_seance(req, seance, form.cleaned_data)
-        return redirect('list_seances', year=seance.date.year)
+        return redirect('list_seances', year=seance.oeuvre_span.date_start.year)
 
 def list_seances(req, year=2022):
     form = SeanceForm(req.POST)
@@ -541,10 +561,14 @@ def list_seances(req, year=2022):
         start = datetime(1998, 1, 1)
         end = datetime(2011, 12, 31)
     seances = (
-        Seance.objects.filter(date__gte=start, date__lte=end)
-        .select_related('cinema')
-        .select_related('film__info__titles')
-        .order_by('date')
+        Seance.objects.filter(
+            oeuvre_span__date_start__gte=start,
+            oeuvre_span__date_start__lte=end,
+        ).select_related(
+            'cinema',
+            'oeuvre_span',
+            'oeuvre_span__oeuvre__info__titles',
+        ).order_by('oeuvre_span__date_start')
     )
 
     return render(req, 'critique/seances.html', {'year': year, 'seances': seances})

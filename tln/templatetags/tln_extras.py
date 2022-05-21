@@ -33,13 +33,13 @@ def fancydate(obj, date_attrname='date', en=False, le=False, annee=False):
     dt = localtime(getattr(obj, date_attrname))
     res = ""
 
-    if getattr(obj, 'date_month_unknown', None):
+    if getattr(obj, 'date_month_unknown', None) or getattr(obj, 'dsmu', None):
         if en:
             res += "en "
         res += f"{date_format(dt, 'Y')}"
         return res
 
-    if getattr(obj, 'date_day_unknown', None):
+    if getattr(obj, 'date_day_unknown', None) or getattr(obj, 'dsdu', None):
         if en:
             res += "en "
         res += f"{date_format(dt, 'F Y')}"
