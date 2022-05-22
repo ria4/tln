@@ -18,7 +18,7 @@
 <div id="cinema-seances" class="chunks">
     <ul>
         {% for seance in cinema.seances_list %}
-            <li><span>{% fancydate seance le=True en=True annee=True %} : {{ seance|seancefilmlink }}</span></li>
+            <li><span>{% fancydate seance.oeuvre_span date_attrname='date_start' le=True en=True annee=True %} : {{ seance|seancefilmlink }}</span></li>
             {% if forloop.counter|divisibleby:chunk_size and not forloop.last %}
                 </ul>
                 <ul>

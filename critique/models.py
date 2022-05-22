@@ -154,9 +154,10 @@ class OeuvreSpan(models.Model):
     date_start = models.DateTimeField()
     dsdu = models.BooleanField(default=False)
     dsmu = models.BooleanField(default=False)
-    date_end = models.DateTimeField(default=None, blank=True, null=True)
+    date_end = models.DateTimeField()
     dedu = models.BooleanField(default=False, blank=True)
     demu = models.BooleanField(default=False, blank=True)
+    ongoing = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
         o = str(self.oeuvre)

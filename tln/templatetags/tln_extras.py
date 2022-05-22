@@ -23,8 +23,9 @@ def truncatedesc(arg1, arg2):
         res = res[:-1]
     return res + "..."
 
+
 @register.simple_tag
-def fancydate(obj, date_attrname='date', en=False, le=False, annee=False):
+def fancydate(obj, date_attrname='date', en=False, le=False, mois=True, annee=False):
     """Return a pretty date, e.g. for a Seance or a Commentaire.
 
     Django would handle localization in one of its templates,
@@ -50,7 +51,8 @@ def fancydate(obj, date_attrname='date', en=False, le=False, annee=False):
     res += date_format(dt, 'j')
     if dt.day == 1:
         res += "<sup>er</sup>"
-    res += f" {date_format(dt, 'F')}"
+    if mois:
+        res += f" {date_format(dt, 'F')}"
     if annee:
         res += f" {date_format(dt, 'Y')}"
 

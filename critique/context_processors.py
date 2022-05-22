@@ -1,5 +1,6 @@
 from datetime import datetime
-from .forms import CinemaForm, CommentaireForm, OeuvreForm, SeanceForm
+
+from .forms import CinemaForm, CommentaireForm, OeuvreForm, OeuvreSpanForm, SeanceForm
 
 
 def oeuvre_form(req):
@@ -7,6 +8,16 @@ def oeuvre_form(req):
     form = OeuvreForm({'year': year}, auto_id='id_empty_%s')
     form.fields["title_vf"].widget.attrs.update({"class": "focus-on-reveal"})
     return {"oeuvre_form_empty": form}
+
+def oeuvrespan_form(req):
+    date_start = datetime.now().strftime('%Y-%m-%d')
+    date_end = datetime.now().strftime('%Y-%m-%d')
+    form = OeuvreSpanForm(
+        {'date_start': date_start, 'date_end': date_end},
+        auto_id='id_empty_oeuvrespan_%s',
+    )
+    form.fields["ongoing"].widget.attrs.update({"class": "focus-on-reveal"})
+    return {"oeuvrespan_form_empty": form}
 
 def comment_form(req):
     date = datetime.now().strftime('%Y-%m-%d')

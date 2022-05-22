@@ -25,7 +25,13 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.views.generic.list import ListView
 
-from .forms import OeuvreForm, CommentaireForm, CinemaForm, SeanceForm
+from .forms import (
+    OeuvreForm,
+    OeuvreSpanForm,
+    CommentaireForm,
+    CinemaForm,
+    SeanceForm,
+)
 from .models import (
     Artiste,
     Titres,
@@ -39,6 +45,10 @@ from .models import (
     Cinema,
     Seance,
 )
+
+
+def strftime_local(dt):
+    return dt.astimezone(pytz.timezone(settings.TIME_ZONE)).strftime('%Y-%m-%d')
 
 
 # Artiste
@@ -135,7 +145,7 @@ def update_oeuvre(req, oeuvre, form):
 def get_comment_form_data(comment):
     form_data = {}
     form_data['title'] = comment.title
-    form_data['date'] = comment.date.strftime('%Y-%m-%d')
+    form_data['date'] = strftime_local(comment.date)
     if hasattr(comment, 'date_month_unknown'):
         form_data['no_month'] = comment.date_month_unknown
     if hasattr(comment, 'date_day_unknown'):
@@ -147,17 +157,15 @@ def get_comment_form_data(comment):
 def update_latest_comment(req, slug):
     comment_form = CommentaireForm(req.POST)
     if req.POST and comment_form.is_valid():
-        # actually there should already have been client-side validation
         oeuvre = get_object_or_404(Oeuvre, slug=slug)
         comments = sorted(oeuvre.comments.all(), key=lambda p: p.date, reverse=True)
         update_comment_with_form(comments[0], comment_form)
-        oeuvre.save()
     return redirect('detail_oeuvre', slug=slug)
 
 def update_comment_with_form(comment, form):
     comment.title = form.cleaned_data['title']
     dt = datetime.combine(form.cleaned_data['date'], datetime.now().time())
-    comment.date = timezone.make_aware(dt, pytz.timezone(settings.TIME_ZONE))
+    comment.date = dt.replace(microsecond=0)
     comment.date_month_unknown = form.cleaned_data['no_month']
     comment.date_day_unknown = form.cleaned_data['no_day']
     comment.content = form.cleaned_data['content']
@@ -214,13 +222,27 @@ def add_oeuvre(req):
 
 def detail_oeuvre(req, slug):
     """
-    We need to order the comments by date before sending them to the template.
-    For now, only the most recent comment may be edited.
+    We need to order the comments by date before sending them
+    to the template. Only the most recent comment may be edited.
     """
-    oeuvre = get_object_or_404(Oeuvre, slug=slug)
-    comments = comment_form = None
-    if oeuvre.comments.count() > 0:
-        comments = sorted(oeuvre.comments.all(), key=lambda p: p.date, reverse=True)
+    oeuvre = get_object_or_404(
+        Oeuvre.objects.prefetch_related(
+            'spans',
+            'spans__seance',
+            'spans__seance__cinema',
+            'comments',
+        ),
+        slug=slug,
+    )
+    spans = oeuvre.spans.all().order_by('-id')
+    if spans:
+        span_form = OeuvreSpanForm(get_oeuvrespan_form_data(spans[0]))
+        span_form.fields["ongoing"].widget.attrs.update({"class": "focus-on-reveal"})
+    # clear previous order_by
+    spans = sorted(spans, key=lambda os: os.date_start)
+    comments = oeuvre.comments.all().order_by('-date')
+    comment_form = None
+    if comments:
         comment_form = CommentaireForm(get_comment_form_data(comments[0]))
         comment_form.fields["content"].widget.attrs.update({"class": "focus-on-reveal"})
     oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
@@ -319,16 +341,81 @@ def search_oeuvres(req, match=''):
 
 # Autocomplete
 
-class FilmAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
+class OeuvreAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
     permission_required = 'critique.all_rights'
 
     def get_queryset(self):
-        qs = Oeuvre.objects.filter(info__mtype='film')
+        qs = Oeuvre.objects.all()
         if self.q:
             qs = qs.filter(
                 Q(info__titles__vo__icontains=self.q) | Q(info__titles__vf__icontains=self.q)
             )
         return qs
+
+
+class FilmAutocomplete(OeuvreAutocomplete):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(info__mtype='film')
+
+
+# OeuvreSpan
+
+@permission_required('critique.all_rights')
+def add_oeuvrespan(req):
+    form = OeuvreSpanForm(req.POST)
+    oeuvre_span = OeuvreSpan()
+    if form.is_valid():
+        update_oeuvrespan(req, oeuvre_span, form)
+        return redirect('detail_oeuvre', slug=oeuvre_span.oeuvre.slug)
+
+@permission_required('critique.all_rights')
+def update_oeuvrespan(req, oeuvre_span, form):
+    oeuvre_span.date_start = form.cleaned_data.get('date_start')
+    oeuvre_span.dsdu = form.cleaned_data.get('dsdu', False)
+    oeuvre_span.date_end = form.cleaned_data.get('date_end')
+    oeuvre_span.dedu = form.cleaned_data.get('dedu', False)
+    oeuvre_span.oeuvre = form.cleaned_data.get('oeuvre')
+    oeuvre_span.ongoing = form.cleaned_data.get('ongoing', False)
+    oeuvre_span.save()
+
+def update_oeuvrespan_with_form(oeuvrespan, form):
+    oeuvrespan.oeuvre = form.cleaned_data['oeuvre']
+    oeuvrespan.date_start = form.cleaned_data['date_start']
+    oeuvrespan.dsdu = form.cleaned_data['dsdu']
+    oeuvrespan.date_end = form.cleaned_data['date_end']
+    oeuvrespan.dedu = form.cleaned_data['dedu']
+    oeuvrespan.ongoing = form.cleaned_data['ongoing']
+    oeuvrespan.save()
+
+@permission_required('critique.all_rights')
+def update_latest_oeuvrespan(req, slug):
+    oeuvrespan_form = OeuvreSpanForm(req.POST)
+    if req.POST and oeuvrespan_form.is_valid():
+        span = OeuvreSpan.objects.filter(oeuvre__slug=slug).order_by('-id').first()
+        update_oeuvrespan_with_form(span, oeuvrespan_form)
+    return redirect('detail_oeuvre', slug=slug)
+
+@permission_required('critique.all_rights')
+def delete_latest_oeuvrespan(req, slug):
+    oeuvrespans = OeuvreSpan.objects.filter(oeuvre__slug=slug).order_by('-id')
+    if not oeuvrespans.exists():
+        raise Http404
+    oeuvrespan = oeuvrespans.first()
+    slug = oeuvrespan.oeuvre.slug
+    oeuvrespan.delete()
+    return redirect('detail_oeuvre', slug=slug)
+
+def get_oeuvrespan_form_data(oeuvrespan):
+    form_data = {}
+    if hasattr(oeuvrespan, 'oeuvre'):
+        form_data['oeuvre'] = oeuvrespan.oeuvre;
+    form_data['date_start'] = strftime_local(oeuvrespan.date_start)
+    form_data['dsdu'] = oeuvrespan.dsdu
+    form_data['date_end'] = strftime_local(oeuvrespan.date_end)
+    form_data['dedu'] = oeuvrespan.dedu
+    form_data['ongoing'] = oeuvrespan.ongoing
+    return form_data
 
 
 # Top Textes
@@ -474,7 +561,10 @@ def detail_cinema(req, slug):
         Prefetch(
             'seances',
             queryset=(
-                Seance.objects.select_related('film__info__titles').order_by('date')
+                Seance.objects.select_related(
+                    'oeuvre_span',
+                    'oeuvre_span__oeuvre__info__titles',
+                ).order_by('oeuvre_span__date_start')
             ),
             to_attr='seances_list',
         )
@@ -525,14 +615,16 @@ def update_seance(req, seance, data):
 
     date = data['date']
     dtime = time(int(data['hour'][:2]), int(data['hour'][3:5]))
-    dt = datetime.combine(date, dtime)
-    date_start = timezone.make_aware(dt, pytz.timezone(settings.TIME_ZONE))
+    date_start = datetime.combine(date, dtime)
 
     span = OeuvreSpan(
         oeuvre=oeuvre,
         date_start=date_start,
         dsdu=data.get('no_day', False),
         dsmu=data.get('no_month', False),
+        date_end=date_start,
+        dedu=data.get('no_day', False),
+        demu=data.get('no_month', False),
     )
     span.save()
 

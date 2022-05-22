@@ -27,6 +27,7 @@ class DateInput(forms.DateInput):
     """
     input_type = 'date'
 
+
 class OeuvreForm(forms.Form):
     mtype = forms.ChoiceField(label="type", choices=OEUVRES_TYPES)
     title_vf = forms.CharField(label="titre vf", max_length=200)
@@ -39,12 +40,30 @@ class OeuvreForm(forms.Form):
     tags = forms.CharField(label="tags", required=False)
     envie = forms.BooleanField(label="envie", required=False)
 
+
+class OeuvreSpanForm(forms.Form):
+    date_start = forms.DateField(label="début", widget=DateInput)
+    dsdu = forms.BooleanField(label="sans jour", required=False)
+    date_end = forms.DateField(label="fin", widget=DateInput)
+    dedu = forms.BooleanField(label="sans jour", required=False)
+    oeuvre = forms.ModelChoiceField(
+        label="oeuvre",
+        queryset=Oeuvre.objects.all(),
+        widget=ModelSelect2(
+            url='autocomplete_oeuvre',
+            attrs={'data-minimum-input-length': 2},
+        )
+    )
+    ongoing = forms.BooleanField(label="en cours", required=False)
+
+
 class CommentaireForm(forms.Form):
     title = forms.CharField(label="titre", max_length=200, required=False)
     date = forms.DateField(label="date", widget=DateInput)
     no_month = forms.BooleanField(label="sans mois", required=False)
     no_day = forms.BooleanField(label="sans jour", required=False)
     content = forms.CharField(label="contenu", widget=forms.Textarea)
+
 
 class CinemaForm(forms.Form):
     name = forms.CharField(label="nom", max_length=100)
@@ -53,6 +72,7 @@ class CinemaForm(forms.Form):
     location = forms.CharField(label="lieu", max_length=100)
     comment = forms.CharField(label="contenu", widget=forms.Textarea(attrs={'rows': 2}), required=False)
     visited = forms.DateField(label="visité le", widget=DateInput)
+
 
 class SeanceForm(forms.Form):
     cinema = forms.ModelChoiceField(

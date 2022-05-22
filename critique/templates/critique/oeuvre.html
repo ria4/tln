@@ -2,6 +2,7 @@
 {% load static %}
 {% load l10n %}
 {% load tln_extras %}
+{% load critique_extras %}
 
 {% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
 {% block og-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
@@ -50,10 +51,14 @@
         {% if oeuvre.info.imdb_id %}
         <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">[lien IMDb]</a></p>
         {% endif %}
+
+        {% if spans %}
+        <p>{% fancyspans oeuvre.info.mtype spans %}</p>
+        {% endif %}
     </div>
 </div>
 
-{% if comments|length > 0 %}
+{% if comments %}
 <div id="comments" class="critique-perso">
 {% for comment in comments %}
     <div class="hseparator" role="presentation"></div>
@@ -121,6 +126,25 @@
     </form>
 </div>
 
+{% if span_form %}
+<div class="overlay">
+    <form id="oeuvrespan_form" action="{% url 'update_latest_oeuvrespan' oeuvre.slug %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ span_form.as_p }}
+        </div>
+        <div class="form_buttons">
+            <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
+            <input type="submit" formaction="{% url 'delete_latest_oeuvrespan' oeuvre.slug %}" value="supprimer"/>
+            <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+{% endif %}
+
 {% if comment_form %}
 <div class="overlay">
     <form id="comment_form" action="{% url 'update_latest_comment' oeuvre.slug %}" method="post">
@@ -140,4 +164,11 @@
 </div>
 {% endif %}
 {% endif %}
+{% endblock %}
+
+{% block vars-js %}
+<script>
+    var oeuvrespanDefaultOeuvreId = {{ oeuvre.id }};
+    var oeuvrespanDefaultOeuvreTitle = "{{ oeuvre.info.titles.vf }}";
+</script>
 {% endblock %}

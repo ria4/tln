@@ -417,6 +417,9 @@ if (oeuvreForm) {
     });
 }
 
+var oeuvrespanFormEmpty = document.getElementById("oeuvrespan_form_empty");
+var oeuvrespanForm = document.getElementById("oeuvrespan_form");
+
 var commentFormEmpty = document.getElementById("comment_form_empty");
 if (commentFormEmpty) {
     date = document.getElementById("id_empty_date");
@@ -520,6 +523,23 @@ if (seanceFormEmpty) {
 }
 
 
+/* Forms - Autocomplete init values */
+
+if (oeuvrespanFormEmpty) {
+    if (
+        (typeof oeuvrespanDefaultOeuvreId !== "undefined")
+        && (typeof oeuvrespanDefaultOeuvreTitle !== "undefined")) {
+        var oeuvrespanEmptySelect = document.getElementById("id_empty_oeuvrespan_oeuvre");
+        oeuvrespanEmptySelect.children[0].removeAttribute("selected");
+        var optionOeuvreSpan = document.createElement("option");
+        optionOeuvreSpan.setAttribute("value", oeuvrespanDefaultOeuvreId);
+        optionOeuvreSpan.setAttribute("selected", "");
+        optionOeuvreSpan.textContent = oeuvrespanDefaultOeuvreTitle;
+        oeuvrespanEmptySelect.appendChild(optionOeuvreSpan);
+    }
+}
+
+
 /* Critique Admin Codes - Register admin inputs */
 
 function deployAdminInputLogic() {
@@ -546,6 +566,8 @@ function deployAdminInputLogic() {
 
 codes["edito"] = oeuvreForm;
 codes["addo"] = oeuvreFormEmpty;
+codes["addt"] = oeuvrespanFormEmpty;
+codes["editt"] = oeuvrespanForm;
 codes["editc"] = commentForm;
 codes["addc"] = commentFormEmpty;
 codes["editi"] = cinemaForm;
