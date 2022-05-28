@@ -13,14 +13,14 @@
 {% for oeuvre in oeuvres %}
     <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="entry-link">
         <div class="oeuvre-display">
-        {% if oeuvre.info.image_url %}
-        <img src="{% static oeuvre.info.image_url %}" alt="" />
+        {% if oeuvre.image_url %}
+        <img src="{% static oeuvre.image_url %}" alt="" />
         {% endif %}
         </div>
 
         <article class="hentry">
             <header class="entry-header">
-                <h2 class="entry-title">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</h2>
+                <h2 class="entry-title">{{ oeuvre.title_vf }} ({{ oeuvre.year }})</h2>
             </header>
 
             {% if oeuvre.comments.count > 0 %}

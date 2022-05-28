@@ -34,8 +34,6 @@ from .forms import (
 )
 from .models import (
     Artiste,
-    Titres,
-    OeuvreInfo,
     Oeuvre,
     OeuvreSpan,
     OeuvreTag,
@@ -55,11 +53,10 @@ def strftime_local(dt):
 
 def detail_artiste(req, slug):
     artist = get_object_or_404(Artiste, slug=slug)
-    oeuvres = Oeuvre.objects.filter(info__artists=artist) \
-                            .order_by('info__year')
+    oeuvres = Oeuvre.objects.filter(artists=artist).order_by('year')
     for oeuvre in oeuvres:
-        if oeuvre.info.year == 2099:
-            oeuvre.info.year = '20xx'
+        if oeuvre.year == 2099:
+            oeuvre.year = '20xx'
     context = {'oeuvres': oeuvres, 'artist': artist.name}
     return render(req, 'critique/artiste.html', context)
 
@@ -91,14 +88,14 @@ def download_distant_image(url):
 
 def get_oeuvre_form_data(oeuvre):
     form_data = {}
-    form_data['mtype'] = oeuvre.info.mtype
-    form_data['title_vf'] = oeuvre.info.titles.vf
-    form_data['title_vo'] = oeuvre.info.titles.vo
-    form_data['title_alt'] = oeuvre.info.titles.alt
-    names = [artist.name for artist in oeuvre.info.artists.all()]
+    form_data['mtype'] = oeuvre.mtype
+    form_data['title_vf'] = oeuvre.title_vf
+    form_data['title_vo'] = oeuvre.title_vo
+    form_data['title_alt'] = oeuvre.title_alt
+    names = [artist.name for artist in oeuvre.artists.all()]
     form_data['artists'] = '; '.join(names)
-    form_data['year'] = oeuvre.info.year
-    form_data['imdb_id'] = oeuvre.info.imdb_id
+    form_data['year'] = oeuvre.year
+    form_data['imdb_id'] = oeuvre.imdb_id
     tags = [tag.name for tag in oeuvre.tags.all()]
     form_data['tags'] = '; '.join(tags)
     form_data['envie'] = oeuvre.envie
@@ -106,33 +103,33 @@ def get_oeuvre_form_data(oeuvre):
 
 @permission_required('critique.all_rights')
 def update_oeuvre(req, oeuvre, form):
-    oeuvre.info.mtype = form.cleaned_data['mtype']
-    update_slug = form.cleaned_data['title_vf'] != oeuvre.info.titles.vf
-    oeuvre.info.titles.vf = form.cleaned_data['title_vf']
-    oeuvre.info.titles.vo = form.cleaned_data['title_vo']
-    oeuvre.info.titles.alt = form.cleaned_data['title_alt']
-    oeuvre.info.year = form.cleaned_data['year']
-    oeuvre.info.imdb_id = form.cleaned_data['imdb_id']
+    oeuvre.mtype = form.cleaned_data['mtype']
+    update_slug = form.cleaned_data['title_vf'] != oeuvre.title_vf
+    oeuvre.title_vf = form.cleaned_data['title_vf']
+    oeuvre.title_vo = form.cleaned_data['title_vo']
+    oeuvre.title_alt = form.cleaned_data['title_alt']
+    oeuvre.year = form.cleaned_data['year']
+    oeuvre.imdb_id = form.cleaned_data['imdb_id']
     if form.cleaned_data['image_link']:
         url = download_distant_image(form.cleaned_data['image_link'])
-        if oeuvre.info.image_url:
+        if oeuvre.image_url:
             try:
-                os.remove('static/%s' % oeuvre.info.image_url)
+                os.remove('static/%s' % oeuvre.image_url)
             except FileNotFoundError:
                 pass
-        oeuvre.info.image_url = url
+        oeuvre.image_url = url
     oeuvre.envie = form.cleaned_data['envie']
-    oeuvre.info.titles.save()
-    oeuvre.info.save()
     oeuvre.save(update_slug=update_slug)
 
     artists_names = form.cleaned_data['artists'].split('; ')
     artists = []
     for artist_name in artists_names:
-        artist, _ = Artiste.objects.get_or_create(name=artist_name,
-                                                  slug=slugify(artist_name))
+        artist, _ = Artiste.objects.get_or_create(
+            name=artist_name,
+            slug=slugify(artist_name),
+        )
         artists.append(artist)
-    oeuvre.info.artists.set(artists)
+    oeuvre.artists.set(artists)
     tags = []
     tags_names = []
     if form.cleaned_data['tags']:
@@ -210,14 +207,14 @@ def cache_oeuvre_refresh(mtype):
 def add_oeuvre(req):
     form = OeuvreForm(req.POST)
     if form.is_valid():
-        oeuvre = Oeuvre(info=OeuvreInfo(titles=Titres()))
+        oeuvre = Oeuvre()
         update_oeuvre(req, oeuvre, form)
         # refresh cache
         # "To provide thread-safety, a different instance"
         # "of the cache backend will be returned for each thread."
         # https://docs.djangoproject.com/en/4.0/topics/cache/#cache-key-prefixing
-        #cache_oeuvre_refresh_thread(oeuvre.info.mtype)
-        cache_oeuvre_refresh(oeuvre.info.mtype)
+        #cache_oeuvre_refresh_thread(oeuvre.mtype)
+        cache_oeuvre_refresh(oeuvre.mtype)
         return redirect('detail_oeuvre', slug=oeuvre.slug)
 
 def detail_oeuvre(req, slug):
@@ -252,76 +249,76 @@ def detail_oeuvre(req, slug):
         update_oeuvre(req, oeuvre, oeuvre_form)
         # we redirect because the slug might change
         return redirect('detail_oeuvre', slug=oeuvre.slug)
-    if oeuvre.info.year == 2099:
-        oeuvre.info.year = '20xx'
+    if oeuvre.year == 2099:
+        oeuvre.year = '20xx'
     return render(req, 'critique/oeuvre.html', locals())
 
 @permission_required('critique.all_rights')
 def delete_oeuvre(req, slug):
     oeuvre = get_object_or_404(Oeuvre, slug=slug)
-    mtype = oeuvre.info.mtype
-    if hasattr(oeuvre.info, 'image_url') and oeuvre.info.image_url:
+    mtype = oeuvre.mtype
+    if hasattr(oeuvre, 'image_url') and oeuvre.image_url:
         #XXX put this in Oeuvre.delete when it's reworked
         try:
-            os.remove('static/%s' % oeuvre.info.image_url)
+            os.remove('static/%s' % oeuvre.image_url)
         except FileNotFoundError:
             pass
-    # deleting oeuvre.info will cascade into deleting oeuvre
-    oeuvre.info.delete()
+    oeuvre.delete()
     return redirect('list_oeuvres', mtype)
 
 @permission_required('critique.all_rights')
 def delete_latest_comment(req, slug):
-    oeuvre = get_object_or_404(Oeuvre, slug=slug)
+    oeuvre = get_object_or_404(
+        Oeuvre.objects.select_related('comments').order_by('-comment__date'),
+        slug=slug,
+    )
     if oeuvre.comments:
-        comments = sorted(oeuvre.comments.all(), key=lambda p: p.date, reverse=True)
-        comments[0].delete()
+        oeuvre.comments[0].delete()
     return redirect('detail_oeuvre', slug=slug)
 
 
 # Search Oeuvres
 
-def format_oeuvreinfo_results(info_set, ajax):
+def format_oeuvre_results(oeuvres, ajax):
     if ajax:
-        res = [ {'vf': info.titles.vf,
-                 'vo': info.titles.vo,
-                 'year': info.year,
-                 'slug': info.oeuvre.slug} for info in info_set ]
+        res = [ {'vf': oeuvre.title_vf,
+                 'vo': oeuvre.title_vo,
+                 'year': oeuvre.year,
+                 'slug': oeuvre.slug} for oeuvre in oeuvres ]
         for info in res:
             if info["year"] == 2099:
                 info["year"] = "20xx"
         return json.dumps(res)
     else:
-        oeuvres = [info.oeuvre for info in info_set]
         for oeuvre in oeuvres:
-            if oeuvre.info.year == 2099:
-                oeuvre.info.year = "20xx"
+            if oeuvre.year == 2099:
+                oeuvre.year = "20xx"
         return oeuvres
 
 def get_oeuvres(match, limit, ajax=False):
     artiste = Artiste.objects.filter(name__iexact=match)
     if artiste:
-        o_info = artiste[0].oeuvres_info.select_related('oeuvre', 'titles') \
-                                        .order_by('-year')[:limit]
-        return format_oeuvreinfo_results(o_info, ajax)
+        oeuvres = artiste[0].oeuvres.order_by('-year')[:limit]
+        return format_oeuvre_results(oeuvres, ajax)
     else:
-        o_info = OeuvreInfo.objects \
-                           .filter(Q(oeuvre__comment__isnull=False) &
-                                     (Q(titles__vo__icontains=match) |
-                                      Q(titles__vf__icontains=match))) \
-                           .select_related('oeuvre', 'titles') \
-                           .order_by('-oeuvre__comment__date')[:limit]
-        o_info_cnt = o_info.count()
-        if o_info_cnt == limit:
-            return format_oeuvreinfo_results(o_info, ajax)
+        oeuvres = (
+            Oeuvre.objects.filter(
+                Q(comment__isnull=False) &
+                (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
+            ).order_by('-comment__date')[:limit]
+        )
+        oeuvres_commentated_n = oeuvres.count()
+        if oeuvres.count() == limit:
+            return format_oeuvre_results(oeuvres, ajax)
         else:
-            o_info2 = OeuvreInfo.objects \
-                                .filter(Q(oeuvre__comment=None) &
-                                          (Q(titles__vo__icontains=match) |
-                                           Q(titles__vf__icontains=match))) \
-                                .order_by('-year')[:limit-o_info_cnt]
-            o_info_concat = list(chain(o_info, o_info2))
-            return format_oeuvreinfo_results(o_info_concat, ajax)
+            oeuvres_uncommentated = (
+                Oeuvre.objects.filter(
+                    Q(comment=None) &
+                    (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
+                ).order_by('-year')[:limit-oeuvres_commentated_n]
+            )
+            oeuvres_concat = list(chain(oeuvres, oeuvres_uncommentated))
+            return format_oeuvre_results(oeuvres_concat, ajax)
 
 def search_oeuvres(req, match=''):
     get_match = req.GET.get('match', None)
@@ -348,7 +345,7 @@ class OeuvreAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
         qs = Oeuvre.objects.all()
         if self.q:
             qs = qs.filter(
-                Q(info__titles__vo__icontains=self.q) | Q(info__titles__vf__icontains=self.q)
+                Q(title_vo__icontains=self.q) | Q(title_vf__icontains=self.q)
             )
         return qs
 
@@ -356,7 +353,7 @@ class OeuvreAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
 class FilmAutocomplete(OeuvreAutocomplete):
     def get_queryset(self):
         qs = super().get_queryset()
-        return qs.filter(info__mtype='film')
+        return qs.filter(mtype='film')
 
 
 # OeuvreSpan
@@ -432,7 +429,7 @@ def list_notes(req, mtype="all", page=1):
         notes_full = Commentaire.objects.annotate(content_len=Length('content')) \
                                         .filter(content_len__gt=400)
     else:
-        notes_full = Commentaire.objects.filter(oeuvre__info__mtype=mtype) \
+        notes_full = Commentaire.objects.filter(oeuvre__mtype=mtype) \
                                         .annotate(content_len=Length('content')) \
                                         .filter(content_len__gt=400)
     notes_full = notes_full.order_by('-date')
@@ -448,8 +445,8 @@ def list_notes(req, mtype="all", page=1):
 # Collection
 
 def list_oeuvres_reqless(mtype):
-    oeuvres = Oeuvre.objects.filter(envie=False, info__mtype=mtype) \
-                            .order_by('-info__year', '-id')
+    oeuvres = Oeuvre.objects.filter(envie=False, mtype=mtype) \
+                            .order_by('-year', '-id')
     return {'oeuvres': oeuvres, 'mtype': mtype}
 
 def list_oeuvres(req, mtype="film"):
@@ -464,8 +461,8 @@ def list_oeuvres(req, mtype="film"):
 # Envies
 
 def list_envies(req, mtype="film", page=1):
-    oeuvres_list = Oeuvre.objects.filter(envie=True, info__mtype=mtype)
-    oeuvres = oeuvres_list.order_by('-info__year', '-id')
+    oeuvres_list = Oeuvre.objects.filter(envie=True, mtype=mtype)
+    oeuvres = oeuvres_list.order_by('-year', '-id')
     paginator = Paginator(oeuvres, 22)
     try:
         oeuvres_page = paginator.page(page)
@@ -484,7 +481,7 @@ def list_tags(req):
 def detail_tag(req, slug, page=1):
     tag = get_object_or_404(OeuvreTag, slug=slug)
     oeuvres_list = Oeuvre.objects.filter(tags=tag)
-    oeuvres = oeuvres_list.order_by('-info__year', '-id')
+    oeuvres = oeuvres_list.order_by('-year', '-id')
     paginator = Paginator(oeuvres, 22)
     try:
         oeuvres_page = paginator.page(page)
@@ -561,10 +558,8 @@ def detail_cinema(req, slug):
         Prefetch(
             'seances',
             queryset=(
-                Seance.objects.select_related(
-                    'oeuvre_span',
-                    'oeuvre_span__oeuvre__info__titles',
-                ).order_by('oeuvre_span__date_start')
+                Seance.objects.select_related('oeuvre_span')
+                .order_by('oeuvre_span__date_start')
             ),
             to_attr='seances_list',
         )
@@ -659,7 +654,6 @@ def list_seances(req, year=2022):
         ).select_related(
             'cinema',
             'oeuvre_span',
-            'oeuvre_span__oeuvre__info__titles',
         ).order_by('oeuvre_span__date_start')
     )
 

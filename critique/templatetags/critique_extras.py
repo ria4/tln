@@ -40,9 +40,8 @@ def seancefilmlink(seance):
         return seance.seance_title
     else:
         film = seance.oeuvre_span.oeuvre
-        title_vf = film.info.titles.vf
         href = reverse('detail_oeuvre', kwargs={'slug': film.slug})
-        return format_html("<a href=%s>%s</a>" % (href, title_vf))
+        return format_html("<a href=%s>%s</a>" % (href, film.title_vf))
 
 
 @register.filter

@@ -90,7 +90,7 @@ class SeanceForm(forms.Form):
     film = forms.ModelChoiceField(
         label="film",
         required=False,
-        queryset=Oeuvre.objects.filter(info__mtype='film'),
+        queryset=Oeuvre.objects.filter(mtype='film'),
         widget=ModelSelect2(
             url='autocomplete_film',
             attrs={'data-minimum-input-length': 3},

@@ -4,13 +4,13 @@
 {% load tln_extras %}
 {% load critique_extras %}
 
-{% block title %}{{ oeuvre.info.titles.vf|lower }}{% endblock %}
-{% block og-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
-{% block tw-title %}{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
-{% block meta-description-page %}infos et/ou commentaires sur {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }}){% endblock %}
+{% block title %}{{ oeuvre.title_vf|lower }}{% endblock %}
+{% block og-title %}{{ oeuvre.title_vf }} ({{ oeuvre.year }}){% endblock %}
+{% block tw-title %}{{ oeuvre.title_vf }} ({{ oeuvre.year }}){% endblock %}
+{% block meta-description-page %}infos et/ou commentaires sur {{ oeuvre.title_vf }} ({{ oeuvre.year }}){% endblock %}
 
-{% block og-image %}{% if oeuvre.info.image_url %}https://oriane.ink{% static oeuvre.info.image_url %}{% endif %}{% endblock %}
-{% block tw-image %}{% if oeuvre.info.image_url %}https://oriane.ink{% static oeuvre.info.image_url %}{% endif %}{% endblock %}
+{% block og-image %}{% if oeuvre.image_url %}https://oriane.ink{% static oeuvre.image_url %}{% endif %}{% endblock %}
+{% block tw-image %}{% if oeuvre.image_url %}https://oriane.ink{% static oeuvre.image_url %}{% endif %}{% endblock %}
 
 {% block og-description %}{% if comments %}{{ comments.0.content|striptags|truncatedesc:250 }}{% endif %}{% endblock %}
 {% block tw-description %}{% if comments %}{{ comments.0.content|striptags|truncatedesc:160 }}{% endif %}{% endblock %}
@@ -21,39 +21,39 @@
 {% block content %}
 
 <div id="oeuvre-info" class="critique-info">
-    {% if oeuvre.info.image_url %}
+    {% if oeuvre.image_url %}
     <div class="oeuvre-display">
-    <img src="{% static oeuvre.info.image_url %}" alt="" />
+    <img src="{% static oeuvre.image_url %}" alt="" />
     </div>
     {% endif %}
 
     <div class="critique-info-text">
-        <h1 class="critique-title">{{ oeuvre.info.titles.vf }}</h1>
-        {% if oeuvre.info.titles.vo %}
-        <p class="alt-title">{{ oeuvre.info.titles.vo }}</p>
+        <h1 class="critique-title">{{ oeuvre.title_vf }}</h1>
+        {% if oeuvre.title_vo %}
+        <p class="alt-title">{{ oeuvre.title_vo }}</p>
         {% endif %}
 
-        <p class="artists">un{% if oeuvre.info.mtype == "serie" or oeuvre.info.mtype == "bd" %}e{% endif %}
-        {% if oeuvre.info.mtype == "serie" %}série
-        {% elif oeuvre.info.mtype == "bd" %}BD
-        {% else %}{{ oeuvre.info.mtype }}{% endif %}
+        <p class="artists">un{% if oeuvre.mtype == "serie" or oeuvre.mtype == "bd" %}e{% endif %}
+        {% if oeuvre.mtype == "serie" %}série
+        {% elif oeuvre.mtype == "bd" %}BD
+        {% else %}{{ oeuvre.mtype }}{% endif %}
         de
-        {% for artist in oeuvre.info.artists.all %}
+        {% for artist in oeuvre.artists.all %}
             {% if forloop.last %}
                 <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>
-                ({{ oeuvre.info.year }})
+                ({{ oeuvre.year }})
             {% else %}
                 <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>,
             {% endif %}
         {% endfor %}
         </p>
         
-        {% if oeuvre.info.imdb_id %}
-        <p><a href="http://www.imdb.com/title/{{ oeuvre.info.imdb_id }}">[lien IMDb]</a></p>
+        {% if oeuvre.imdb_id %}
+        <p><a href="http://www.imdb.com/title/{{ oeuvre.imdb_id }}">[lien IMDb]</a></p>
         {% endif %}
 
         {% if spans %}
-        <p>{% fancyspans oeuvre.info.mtype spans %}</p>
+        <p>{% fancyspans oeuvre.mtype spans %}</p>
         {% endif %}
     </div>
 </div>
@@ -95,7 +95,7 @@
 {% if perms.critique.all_rights %}
 <div class="overlay">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.slug %}" method="post">
-        <div class="form_inputs" data-mtype={{ oeuvre.info.mtype }}>
+        <div class="form_inputs" data-mtype={{ oeuvre.mtype }}>
             {% csrf_token %}
             {{ oeuvre_form.as_p }}
         </div>
@@ -169,6 +169,6 @@
 {% block vars-js %}
 <script>
     var oeuvrespanDefaultOeuvreId = {{ oeuvre.id }};
-    var oeuvrespanDefaultOeuvreTitle = "{{ oeuvre.info.titles.vf }}";
+    var oeuvrespanDefaultOeuvreTitle = "{{ oeuvre.title_vf }}";
 </script>
 {% endblock %}

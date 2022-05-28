@@ -22,7 +22,7 @@
 <div id="collection" class="chunks">
     <ul>
     {% for oeuvre in oeuvres %}
-        <li class="ellipsis-link"><a href="{% url 'detail_oeuvre' oeuvre.slug %}">{{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})</a></li>
+        <li class="ellipsis-link"><a href="{% url 'detail_oeuvre' oeuvre.slug %}">{{ oeuvre.title_vf }} ({{ oeuvre.year }})</a></li>
     {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>

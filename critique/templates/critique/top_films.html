@@ -33,10 +33,10 @@
 {% for oeuvre in oeuvres %}
     <li class="oeuvre-display">
         <a href={% url "detail_oeuvre" oeuvre.slug %}>
-        {% if oeuvre.info.image_url %}
-            <img src="{% static oeuvre.info.image_url %}" alt="{{ oeuvre.info.titles.vf }}" />
+        {% if oeuvre.image_url %}
+            <img src="{% static oeuvre.image_url %}" alt="{{ oeuvre.title_vf }}" />
         {% else %}
-            {{ oeuvre.info.titles.vf }} ({{ oeuvre.info.year }})
+            {{ oeuvre.title_vf }} ({{ oeuvre.year }})
         {% endif %}</a>
     </li>
 {% endfor %}

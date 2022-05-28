@@ -1,21 +1,18 @@
 ## Cleaning
 
-- oeuvrespan timezone between public display && form ???
 - change admin shortcut codes
-- migrate info & titles back into oeuvre fields
 - split critique views
 - sort through static and media directories
 
 
 ## CSS tweaks
 
-- all done!
+- span style on oeuvre page
 
 
 ## Features
 
-- update latest `OeuvreSpan`
-- span style on oeuvre page
+- all done!
 
 
 ## Long term

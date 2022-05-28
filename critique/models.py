@@ -35,48 +35,12 @@ def create_image_url(image):
     return img_url
 
 
-class Titres(models.Model):
-    """
-    Titres possibles d'une oeuvre.
-    Dans le cas d'un titre non traduit (e.g. pour les albums...)
-    ou d'une production française, 'vf' est rempli mais 'vo' est laissé vide.
-    L'attribut 'alt' peut être utilisé pour contenir un autre titre.
-    """
-    vf = models.CharField(max_length=200, db_index=True)
-    vo = models.CharField(max_length=200, blank=True, db_index=True)
-    alt = models.CharField(max_length=200, blank=True)
-
-    def __str__(self):
-        return self.vf
-
-
 class Artiste(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
-
-
-class OeuvreInfo(models.Model):
-    """
-    Informations publiques sur l'oeuvre.
-    L'attribut imdb_id ne devrait pas apparaître en dehors du type 'film'.
-    """
-    mtype = models.CharField(max_length=5, choices=OEUVRES_TYPES)
-    titles = models.OneToOneField(Titres, on_delete=models.CASCADE,
-                                  related_name="oeuvre_info",
-                                  related_query_name="oeuvre_info")
-    artists = models.ManyToManyField(Artiste,
-                                     related_name="oeuvres_info",
-                                     related_query_name="oeuvre_info")
-    year = models.SmallIntegerField(db_index=True)
-    imdb_id = models.CharField(max_length=10, blank=True)
-    image_url = models.CharField(max_length=45, blank=True)
-    # use Validator for regexes '^tt[0-9]{7,8}$' & '^critique/[a-f0-9]{32}.(jpg|png)'
-
-    def __str__(self):
-        return str(self.titles)
 
 
 class OeuvreTag(models.Model):
@@ -96,15 +60,33 @@ class OeuvreTag(models.Model):
 class Oeuvre(models.Model):
     """
     Modèle pour une oeuvre.
+
+    L'attribut imdb_id ne devrait pas apparaître en dehors du type 'film'.
+
+    Dans le cas d'un titre non traduit (e.g. pour les albums...)
+    ou d'une production française, 'vf' est rempli mais 'vo' est laissé vide.
+    L'attribut 'alt' peut être utilisé pour contenir un autre titre.
     """
-    info = models.OneToOneField(OeuvreInfo, on_delete=models.CASCADE,
-                                related_name="oeuvre",
-                                related_query_name="oeuvre")
-    tags = models.ManyToManyField(OeuvreTag, blank=True,
-                                  related_name="oeuvres",
-                                  related_query_name="oeuvre")
+    mtype = models.CharField(max_length=5, choices=OEUVRES_TYPES)
+    title_vf = models.CharField(max_length=200, db_index=True)
+    title_vo = models.CharField(max_length=200, blank=True, db_index=True)
+    title_alt = models.CharField(max_length=200, blank=True)
+    year = models.SmallIntegerField(db_index=True)
+    imdb_id = models.CharField(max_length=10, blank=True)
+    image_url = models.CharField(max_length=45, blank=True)
     envie = models.BooleanField(default=False)
     slug = models.SlugField(max_length=200, unique=True)
+    artists = models.ManyToManyField(
+        Artiste,
+        related_name="oeuvres",
+        related_query_name="oeuvre",
+    )
+    tags = models.ManyToManyField(
+        OeuvreTag,
+        blank=True,
+        related_name="oeuvres",
+        related_query_name="oeuvre",
+    )
 
     @classmethod
     def get_safe_slug(cls, slug_base):
@@ -129,11 +111,11 @@ class Oeuvre(models.Model):
         cls = self.__class__
         if ((not self.id) or update_slug):
             # si création ou bien modification du titre vf, création d'un slug
-            self.slug = cls.get_safe_slug(slugify(self.info.titles.vf))
+            self.slug = cls.get_safe_slug(slugify(self.title_vf))
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.info)
+        return self.title_vf
 
 
 class OeuvreSpan(models.Model):
