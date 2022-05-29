@@ -169,6 +169,6 @@
 {% block vars-js %}
 <script>
     var oeuvrespanDefaultOeuvreId = {{ oeuvre.id }};
-    var oeuvrespanDefaultOeuvreTitle = "{{ oeuvre.title_vf }}";
+    var oeuvrespanDefaultOeuvreTitle = "{{ oeuvre.title_vf|safe }}";
 </script>
 {% endblock %}

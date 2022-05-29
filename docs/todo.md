@@ -1,7 +1,6 @@
 ## Cleaning
 
-- do not html-escape oeuvre autocomplete field
-- fix dsdu/dedu in fancydate
+- fix dsdu/dedu in fancydate (normalize fields to prefix_du & prefix_mu)
 - split critique views
 - sort through static and media directories
 
