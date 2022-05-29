@@ -1,6 +1,7 @@
 ## Cleaning
 
-- change admin shortcut codes
+- do not html-escape oeuvre autocomplete field
+- fix dsdu/dedu in fancydate
 - split critique views
 - sort through static and media directories
 

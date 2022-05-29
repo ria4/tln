@@ -50,8 +50,9 @@
                 <li><a href={% url "list_envies" %}>perspectives</a></li>
             </ul>
             <ul id="main-nav-links-v">
+                <li class="top-textes"><a href={% url "preambule" %}>préambule</a></li>
                 <li class="top-textes"><a href={% url "top_textes" %}>textes choisis</a></li>
-                <li class="top-textes" id="sub-nav-trigger"><a href="#">errances</a></li>
+                <li id="sub-nav-trigger"><a href="#">errances</a></li>
             </ul>
                 <li id="critique-search">
                     <span id="critique-search-placeholder-prev" tabindex="-1"></span>
@@ -82,7 +83,7 @@
 
     <nav id="sub-nav" class="navbar">
         <ul id="sub-nav-links-v">
-            <li><a href={% url "preambule" %}>préambule</a></li>
+            <li class="top-textes" style="display: none;"><a href={% url "preambule" %}>préambule</a></li>
             <li class="top-textes" style="display: none;"><a href={% url "top_textes" %}>textes choisis</a></li>
             <li><a href={% url "list_notes" %}>carnet de notes</a></li>
             <li><a href={% url "list_seances" %}>séances ciné</a></li>

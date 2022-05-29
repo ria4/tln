@@ -36,18 +36,19 @@ subNavTrigger.addEventListener("click", function (e) {
 });
 
 /* Place the top texts link according to window width */
-var widthTriggerCritiqueNavLayout = 1210;
-var widthTriggerTopTextesPosition = 880;
-var topTextesMain = mainNavLinksV.getElementsByClassName("top-textes")[0];
-var topTextesSub = subNavLinksV.getElementsByClassName("top-textes")[0];
+var widthTriggerCritiqueNavLayout = 1380;
+var widthTriggerTopTextesPosition = 950;
+var topTextesMain = mainNavLinksV.getElementsByClassName("top-textes");
+var topTextesSub = subNavLinksV.getElementsByClassName("top-textes");
 function setTopTextesPosition() {
+    let elem = null;
     if (window.innerWidth < widthTriggerCritiqueNavLayout) {
         if (window.innerWidth < widthTriggerTopTextesPosition) {
-            topTextesMain.style.display = "none";
-            topTextesSub.style.display = "list-item";
+            for (elem of topTextesMain) { elem.style.display = "none"; }
+            for (elem of topTextesSub) { elem.style.display = "list-item"; }
         } else {
-            topTextesMain.style.display = "list-item";
-            topTextesSub.style.display = "none";
+            for (elem of topTextesMain) { elem.style.display = "list-item"; }
+            for (elem of topTextesSub) { elem.style.display = "none"; }
         }
     }
 }
