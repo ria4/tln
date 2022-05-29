@@ -51,8 +51,7 @@ function focusOn(overlay) {
 var loginForm = document.getElementById("login_form");
 var codes = {"login": loginForm,
              "logout": true,
-             "admin": true,
-             "s": true }
+             "admin": true }
 
 var activeCode = "";
 var cachedCode = "";
@@ -63,11 +62,13 @@ function activateOverlayIf(e) {
     for (var key in codes) {
         if (codes.hasOwnProperty(key)) {
             if (key.startsWith(cachedCode)) {
-                possibleCode = true;
                 if ((cachedCode === key) && (codes[key])) {
-                    activeCode = key;
-                    codeFound = true;
+                    if (!(key == "s") || ((key == "s") && !(possibleCode))) {
+                        activeCode = key;
+                        codeFound = true;
+                    }
                 }
+                possibleCode = true;
             }
         }
     }
@@ -105,18 +106,6 @@ function activateOverlayIf(e) {
             } else if (activeCode == "admin") {
                 activeCode = "";
                 if (userIsSuperuser) { window.location.href = "/admin"; }
-            } else if (activeCode == "s") {
-                activeCode = "";
-                var input = getSearchInput();
-                if (input != null) {
-                    var searchFocusAfterEsc = ((document.activeElement == input) &&
-                                               (!input.parentElement.parentElement.parentElement.classList.contains("expanded")));
-                    if ((document.activeElement != input) | searchFocusAfterEsc) {
-                        e.preventDefault();
-                        if (searchFocusAfterEsc) { input.blur(); }
-                        input.focus();
-                    }
-                }
             } else {
                 var overlay = codes[activeCode].parentElement;
                 overlay.classList.add("revealed");

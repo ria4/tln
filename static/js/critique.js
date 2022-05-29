@@ -566,13 +566,14 @@ function deployAdminInputLogic() {
 
 codes["edito"] = oeuvreForm;
 codes["addo"] = oeuvreFormEmpty;
-codes["addt"] = oeuvrespanFormEmpty;
-codes["editt"] = oeuvrespanForm;
-codes["editc"] = commentForm;
-codes["addc"] = commentFormEmpty;
-codes["editi"] = cinemaForm;
-codes["addi"] = cinemaFormEmpty;
-codes["adde"] = seanceFormEmpty;
+codes["addsp"] = oeuvrespanFormEmpty;
+codes["edisp"] = oeuvrespanForm;
+codes["editco"] = commentForm;
+codes["addco"] = commentFormEmpty;
+codes["editci"] = cinemaForm;
+codes["addci"] = cinemaFormEmpty;
+codes["addse"] = seanceFormEmpty;
+codes["s"] = true;
 
 for (var key in codes) {
     if (codes.hasOwnProperty(key)) {
