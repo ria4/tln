@@ -296,29 +296,35 @@ def format_oeuvre_results(oeuvres, ajax):
         return oeuvres
 
 def get_oeuvres(match, limit, ajax=False):
-    artiste = Artiste.objects.filter(name__iexact=match)
-    if artiste:
-        oeuvres = artiste[0].oeuvres.order_by('-year')[:limit]
-        return format_oeuvre_results(oeuvres, ajax)
-    else:
+    oeuvres = Oeuvre.objects.none()
+    if (len(match) >= 5):
         oeuvres = (
-            Oeuvre.objects.filter(
-                Q(comment__isnull=False) &
-                (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
-            ).order_by('-comment__date')[:limit]
+            Oeuvre.objects.filter(artists__name__icontains=match)
+            .order_by('-year')[:limit]
         )
-        oeuvres_commentated_n = oeuvres.count()
-        if oeuvres.count() == limit:
-            return format_oeuvre_results(oeuvres, ajax)
-        else:
-            oeuvres_uncommentated = (
-                Oeuvre.objects.filter(
-                    Q(comment=None) &
-                    (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
-                ).order_by('-year')[:limit-oeuvres_commentated_n]
-            )
-            oeuvres_concat = list(chain(oeuvres, oeuvres_uncommentated))
-            return format_oeuvre_results(oeuvres_concat, ajax)
+    oeuvres_n = len(oeuvres)
+    if oeuvres_n == limit:
+        return format_oeuvre_results(oeuvres, ajax)
+
+    oeuvres_commentated = (
+        Oeuvre.objects.filter(
+            Q(comment__isnull=False) &
+            (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
+        ).order_by('-year')[:limit-oeuvres_n]
+    )
+    oeuvres |= oeuvres_commentated
+    oeuvres_n = len(oeuvres)
+    if oeuvres_n == limit:
+        return format_oeuvre_results(oeuvres, ajax)
+
+    oeuvres_uncommentated = (
+        Oeuvre.objects.filter(
+            Q(comment=None) &
+            (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
+        ).order_by('-year')[:limit-oeuvres_n]
+    )
+    oeuvres |= oeuvres_uncommentated
+    return format_oeuvre_results(oeuvres, ajax)
 
 def search_oeuvres(req, match=''):
     get_match = req.GET.get('match', None)
