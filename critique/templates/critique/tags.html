@@ -1,0 +1,25 @@
+{% extends "critique/base.html" %}
+{% load static %}
+
+{% block title %}tags{% endblock %}
+{% block meta-description-page %}liste de tags{% endblock %}
+
+{% block content-wrap-class %}decenter{% endblock %}
+
+{% block content %}
+<div id="artiste-info">
+    <h1 class="critique-title">Tags</h1>
+</div>
+
+<div id="collection" class="chunks artiste-oeuvres">
+    <ul>
+    {% for tag in tags %}
+        <li class="ellipsis-link"><a href="{% url 'detail_tag' tag.slug %}">{{ tag.name }}</a></li>
+    {% if forloop.counter|divisibleby:25 and not forloop.last %}
+    </ul>
+    <ul>
+    {% endif %}
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

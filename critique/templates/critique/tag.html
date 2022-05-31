@@ -1,0 +1,59 @@
+{% extends "critique/base.html" %}
+{% load static %}
+
+{% block title %}tag {{ tag }}{% endblock %}
+{% block meta-description-page %}liste d'œuvres portant le tag {{ tag }}{% endblock %}
+
+{% block content %}
+
+<div id="tag-info">
+    <h1 class="critique-title">{{ tag }}</h1>
+</div>
+
+<div class="hseparator" role="presentation"></div>
+
+<ul id="tag-detail" class="oeuvres-display">
+{% for oeuvre in oeuvres %}
+    <li class="oeuvre-display">
+        <a href={% url "detail_oeuvre" oeuvre.slug %}>
+        {% if oeuvre.image_url %}
+            <img src="{% static oeuvre.image_url %}" alt="{{ oeuvre.title_vf }}" />
+        {% else %}
+            <div class="substitute-display">
+                <img src="{% static 'critique/substitute.jpg' %}" alt="{{ oeuvre.title_vf }}" />
+                <p>{{ oeuvre.title_vf }} ({{ oeuvre.year }})</p>
+            </div>
+        {% endif %}</a>
+    </li>
+{% endfor %}
+</ul>
+
+
+{% if oeuvres.paginator.num_pages > 1 %}
+<nav id="pagination">
+    {% if oeuvres.has_previous %}
+        <a href={% url "detail_tag" tag oeuvres.previous_page_number %}><-</a>
+    {% endif %}
+
+    <span class="current">
+        page {{ oeuvres.number }} sur {{ oeuvres.paginator.num_pages }}
+    </span>
+
+    {% if oeuvres.has_next %}
+        <a href={% url "detail_tag" tag oeuvres.next_page_number %}>-></a>
+    {% endif %}
+</nav>
+    
+<script>
+    var prevPageUrl = null;
+    {% if oeuvres.has_previous %}
+    prevPageUrl = '{% url "detail_tag" tag oeuvres.previous_page_number %}';
+    {% endif %}
+    var nextPageUrl = null;
+    {% if oeuvres.has_next %}
+    nextPageUrl = '{% url "detail_tag" tag oeuvres.next_page_number %}';
+    {% endif %}
+</script>
+{% endif %}
+
+{% endblock %}
