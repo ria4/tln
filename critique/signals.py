@@ -3,7 +3,7 @@ from django.core.cache.utils import make_template_fragment_key
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
-from .models import Cinema, Oeuvre
+from critique.models import Cinema, Oeuvre
 
 
 @receiver(post_delete, sender=Oeuvre)

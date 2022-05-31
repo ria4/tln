@@ -1,7 +1,6 @@
 ## Cleaning
 
 - fix dsdu/dedu in fancydate (normalize fields to prefix_du & prefix_mu)
-- split critique views
 - sort through static and media directories
 
 
@@ -22,11 +21,11 @@
     - switch to redis cache
     - update critique collection asynchronously
     - cache much more pages
+- refactor critique views with CBVs
 
 
 ## Barely matters
 
 - override admin interfaces to remove useless content
-- refactor critique views with CBVs
 - call sqip asynchronously
 - ansible deployment (maybe)

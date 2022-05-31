@@ -1,6 +1,12 @@
 from datetime import datetime
 
-from .forms import CinemaForm, CommentaireForm, OeuvreForm, OeuvreSpanForm, SeanceForm
+from critique.forms import (
+    CinemaForm,
+    CommentaireForm,
+    OeuvreForm,
+    OeuvreSpanForm,
+    SeanceForm,
+)
 
 
 def oeuvre_form(req):
