@@ -37,9 +37,9 @@
                 <!--[if !IE]><!--><div class="entry-discussions" role="presentation"></div><!--<![endif]-->
                 <time>
                     {% localize on %}
-                    {% if texte.date_month_unknown %}
+                    {% if texte.date_mu %}
                         {{ texte.date|date:"Y" }}
-                    {% elif texte.date_day_unknown %}
+                    {% elif texte.date_du %}
                         {{ texte.date|date:"F Y" }}
                     {% else %}
                         {% if texte.date|date:"j" == "1" %}

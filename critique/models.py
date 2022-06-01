@@ -134,11 +134,11 @@ class OeuvreSpan(models.Model):
         related_query_name="span",
     )
     date_start = models.DateTimeField()
-    dsdu = models.BooleanField(default=False)
-    dsmu = models.BooleanField(default=False)
+    date_start_du = models.BooleanField(default=False)
+    date_start_mu = models.BooleanField(default=False)
     date_end = models.DateTimeField()
-    dedu = models.BooleanField(default=False, blank=True)
-    demu = models.BooleanField(default=False, blank=True)
+    date_end_du = models.BooleanField(default=False, blank=True)
+    date_end_mu = models.BooleanField(default=False, blank=True)
     ongoing = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
@@ -161,8 +161,8 @@ class Commentaire(models.Model):
                                related_query_name="comment")
     title = models.CharField(max_length=200, blank=True)
     date = models.DateTimeField(default=timezone.now)
-    date_day_unknown = models.BooleanField(default=False)
-    date_month_unknown = models.BooleanField(default=False)
+    date_du = models.BooleanField(default=False)
+    date_mu = models.BooleanField(default=False)
     content = models.TextField(blank=True)
     starred = models.BooleanField(default=False)
 

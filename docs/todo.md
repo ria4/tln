@@ -1,6 +1,5 @@
 ## Cleaning
 
-- fix dsdu/dedu in fancydate (normalize fields to prefix_du & prefix_mu)
 - sort through static and media directories
 
 

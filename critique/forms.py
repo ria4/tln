@@ -43,9 +43,9 @@ class OeuvreForm(forms.Form):
 
 class OeuvreSpanForm(forms.Form):
     date_start = forms.DateField(label="début", widget=DateInput)
-    dsdu = forms.BooleanField(label="sans jour", required=False)
+    date_start_du = forms.BooleanField(label="sans jour", required=False)
     date_end = forms.DateField(label="fin", widget=DateInput)
-    dedu = forms.BooleanField(label="sans jour", required=False)
+    date_end_du = forms.BooleanField(label="sans jour", required=False)
     oeuvre = forms.ModelChoiceField(
         label="oeuvre",
         queryset=Oeuvre.objects.all(),

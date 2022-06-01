@@ -51,9 +51,9 @@
                 <div class="entry-discussions" role="presentation"></div>
                 <time>
                     {% localize on %}
-                    {% if note.date_month_unknown %}
+                    {% if note.date_mu %}
                         {{ note.date|date:"Y" }}
-                    {% elif note.date_day_unknown %}
+                    {% elif note.date_du %}
                         {{ note.date|date:"F Y" }}
                     {% else %}
                         {% if note.date|date:"j" == "1" %}
