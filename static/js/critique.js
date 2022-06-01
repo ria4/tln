@@ -568,7 +568,7 @@ function deployAdminInputLogic() {
 codes["edito"] = oeuvreForm;
 codes["addo"] = oeuvreFormEmpty;
 codes["addsp"] = oeuvrespanFormEmpty;
-codes["edisp"] = oeuvrespanForm;
+codes["editsp"] = oeuvrespanForm;
 codes["editco"] = commentForm;
 codes["addco"] = commentFormEmpty;
 codes["editci"] = cinemaForm;
