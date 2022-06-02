@@ -150,6 +150,7 @@ def detail_oeuvre(req, slug):
         span_form.fields["ongoing"].widget.attrs.update({"class": "focus-on-reveal"})
     # clear previous order_by
     spans = sorted(spans, key=lambda os: os.date_start)
+    long_span = any([span.date_start.month >= 9 for span in spans])
     comments = oeuvre.comments.all().order_by('-date')
     comment_form = None
     if comments:

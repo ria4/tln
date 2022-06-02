@@ -45,7 +45,7 @@ def seancefilmlink(seance):
 
 
 @register.filter
-def cinemalink(cinema):
+def cinemalink(cinema, cinema_unsure=False):
     "Return a link to the Cinema, in long form."""
     prefix = None
     a_text = cinema.name_long
@@ -55,7 +55,10 @@ def cinemalink(cinema):
             a_text = cinema.name_long[len(prefix):]
             break
     href = reverse('detail_cinema', kwargs={'slug': cinema.slug})
-    return format_html(" %s<a href=%s>%s</a>" % (prefix, href, a_text))
+    res = " %s<a href=%s>%s</a>" % (prefix, href, a_text)
+    if cinema_unsure:
+        res += " (peut-être)"
+    return format_html(res)
     #return format_html(f" {prefix}<a href={href}>{a_text}</a>")
 
 
@@ -114,7 +117,10 @@ def fancyspans(mtype, spans):
                 annee=True,
             )
             if hasattr(span, 'seance'):
-                res += cinemalink(span.seance.cinema)
+                if span.seance.cinema:
+                    res += cinemalink(span.seance.cinema, span.seance.cinema_unsure)
+                else:
+                    res += ", dans un cinéma oublié"
         else:
             mois = True
             annee = span.date_start.year != span.date_end.year

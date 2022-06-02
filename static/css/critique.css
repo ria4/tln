@@ -533,7 +533,9 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     justify-content: center;
     align-items: center; }
 #oeuvre-info .critique-info-text.with-spans {
-    min-width: 320px; }
+    min-width: 310px; }
+#oeuvre-info .critique-info-text.with-spans.with-long-span {
+    min-width: 346px; }
 @media (max-width: 600px) {
 #oeuvre-info .critique-info-text { min-width: 0; } }
 

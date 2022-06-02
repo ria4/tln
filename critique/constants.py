@@ -7,4 +7,12 @@ MTYPE_SPAN_MAP = {
     'bd': ('lue ', 'lecture '),
 }
 
-CINEMA_LONGNAME_PREFIXES = ['au centre ', 'au ', 'à l\'', 'dans ']
+CINEMA_LONGNAME_PREFIXES = [
+    'au cinéma ',
+    'au centre ',
+    'au ',
+    'aux ',
+    'à la ',
+    'à l\'',
+    'dans ',
+]

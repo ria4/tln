@@ -28,7 +28,7 @@
         </div>
         {% endif %}
 
-        <div class="critique-info-text{% if spans %} with-spans{% endif %}">
+        <div class="critique-info-text{% if spans %} with-spans{% endif %}{% if long_span %} with-long-span{% endif %}">
             <div class="critique-info-text-content">
                 <h1 class="critique-title">{{ oeuvre.title_vf }}</h1>
                 {% if oeuvre.title_vo %}
