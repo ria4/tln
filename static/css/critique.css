@@ -397,12 +397,10 @@ _:-ms-input-placeholder, :root #critique-search-results-m a > div > p:first-chil
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
-    align-items: center; }
+    align-items: stretch; }
 .critique-info-text {
-    padding-bottom: 1.5%;
+    margin: 10px 0;
     max-width: 480px;
     display: -ms-flexbox;
     display: flex;
@@ -510,14 +508,47 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 /* Oeuvre Info
    ========================================================================== */
 
+#oeuvre-info-wrapper {
+    min-height: 310px;
+    display: flex;
+    flex-direction: row; }
+
 #oeuvre-info {
-    min-height: 286px;
-    margin-bottom: 24px; }
+    /*min-height: 286px;*/
+    margin-bottom: 24px;
+    display: flex; }
 
 #oeuvre-info .oeuvre-display {
     margin: 10px;
-    margin-right: 20px;
-    max-width: 350px; }
+    margin-right: 20px; }
+
+#oeuvre-info .oeuvre-display img {
+    max-width: 350px;
+    max-height: 302px; }
+
+#oeuvre-info .critique-info-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+#oeuvre-info .critique-info-text.with-spans {
+    min-width: 320px; }
+@media (max-width: 600px) {
+#oeuvre-info .critique-info-text { min-width: 0; } }
+
+#oeuvre-info .critique-info-text-content {
+    padding-bottom: 8%;
+    width: 100%; }
+
+#oeuvre-info .critique-info-text .oeuvrespans {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 3px;
+    text-align: right;
+    font-style: italic;
+    font-size: 20px; }
 
 #oeuvre-info .critique-title {
     text-align: left;

@@ -5,12 +5,12 @@
 
 ## CSS tweaks
 
-- span style on oeuvre page
+- all done!
 
 
 ## Features
 
-- all done!
+- add todo app
 
 
 ## Long term

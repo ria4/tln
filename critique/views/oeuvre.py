@@ -21,6 +21,9 @@ from critique.views.commentaire import get_comment_form_data
 from critique.views.oeuvrespan import get_oeuvrespan_form_data
 
 
+MAX_SPANS_ON_OEUVRE = 3
+
+
 # Helpers
 
 def download_distant_image(url):
@@ -141,7 +144,7 @@ def detail_oeuvre(req, slug):
         ),
         slug=slug,
     )
-    spans = oeuvre.spans.all().order_by('-id')
+    spans = oeuvre.spans.all().order_by('-id')[:MAX_SPANS_ON_OEUVRE]
     if spans:
         span_form = OeuvreSpanForm(get_oeuvrespan_form_data(spans[0]))
         span_form.fields["ongoing"].widget.attrs.update({"class": "focus-on-reveal"})

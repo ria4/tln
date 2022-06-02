@@ -20,41 +20,45 @@
 
 {% block content %}
 
-<div id="oeuvre-info" class="critique-info">
-    {% if oeuvre.image_url %}
-    <div class="oeuvre-display">
-    <img src="{% static oeuvre.image_url %}" alt="" />
-    </div>
-    {% endif %}
-
-    <div class="critique-info-text">
-        <h1 class="critique-title">{{ oeuvre.title_vf }}</h1>
-        {% if oeuvre.title_vo %}
-        <p class="alt-title">{{ oeuvre.title_vo }}</p>
+<div id="oeuvre-info-wrapper">
+    <div id="oeuvre-info" class="critique-info">
+        {% if oeuvre.image_url %}
+        <div class="oeuvre-display">
+            <img src="{% static oeuvre.image_url %}" alt="" />
+        </div>
         {% endif %}
 
-        <p class="artists">un{% if oeuvre.mtype == "serie" or oeuvre.mtype == "bd" %}e{% endif %}
-        {% if oeuvre.mtype == "serie" %}série
-        {% elif oeuvre.mtype == "bd" %}BD
-        {% else %}{{ oeuvre.mtype }}{% endif %}
-        de
-        {% for artist in oeuvre.artists.all %}
-            {% if forloop.last %}
-                <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>
-                ({{ oeuvre.year }})
-            {% else %}
-                <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>,
+        <div class="critique-info-text{% if spans %} with-spans{% endif %}">
+            <div class="critique-info-text-content">
+                <h1 class="critique-title">{{ oeuvre.title_vf }}</h1>
+                {% if oeuvre.title_vo %}
+                <p class="alt-title">{{ oeuvre.title_vo }}</p>
+                {% endif %}
+
+                <p class="artists">un{% if oeuvre.mtype == "serie" or oeuvre.mtype == "bd" %}e{% endif %}
+                {% if oeuvre.mtype == "serie" %}série
+                {% elif oeuvre.mtype == "bd" %}BD
+                {% else %}{{ oeuvre.mtype }}{% endif %}
+                de
+                {% for artist in oeuvre.artists.all %}
+                    {% if forloop.last %}
+                        <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>
+                        ({{ oeuvre.year }})
+                    {% else %}
+                        <a href={% url "detail_artiste" artist.slug %}>{{ artist.name }}</a>,
+                    {% endif %}
+                {% endfor %}
+                </p>
+
+                {% if oeuvre.imdb_id %}
+                <p><a href="http://www.imdb.com/title/{{ oeuvre.imdb_id }}">[lien IMDb]</a></p>
+                {% endif %}
+            </div>
+
+            {% if spans %}
+            <p class="oeuvrespans">{% fancyspans oeuvre.mtype spans %}</p>
             {% endif %}
-        {% endfor %}
-        </p>
-        
-        {% if oeuvre.imdb_id %}
-        <p><a href="http://www.imdb.com/title/{{ oeuvre.imdb_id }}">[lien IMDb]</a></p>
-        {% endif %}
-
-        {% if spans %}
-        <p>{% fancyspans oeuvre.mtype spans %}</p>
-        {% endif %}
+        </div>
     </div>
 </div>
 
