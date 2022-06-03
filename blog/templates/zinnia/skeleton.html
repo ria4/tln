@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block css-path %}{% static 'css/blog.css' %}{% endblock %}
+{% block css-path %}{% static 'blog/blog.css' %}{% endblock %}
 
 {% block skip-link %}<a id="skip-link" class="hidden" href="#content">Skip to main content</a>{% endblock %}
 
@@ -20,4 +20,4 @@
   </div>
 {% endblock %}
 
-{% block app-js %}<script src="{% static 'js/blog.js' %}"></script>{% endblock %}
+{% block app-js %}<script src="{% static 'blog/blog.js' %}"></script>{% endblock %}

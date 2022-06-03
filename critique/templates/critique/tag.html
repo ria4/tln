@@ -16,8 +16,8 @@
 {% for oeuvre in oeuvres %}
     <li class="oeuvre-display">
         <a href={% url "detail_oeuvre" oeuvre.slug %}>
-        {% if oeuvre.image_url %}
-            <img src="{% static oeuvre.image_url %}" alt="{{ oeuvre.title_vf }}" />
+        {% if oeuvre.image %}
+            <img src="{{ oeuvre.image.url }}" alt="{{ oeuvre.title_vf }}" />
         {% else %}
             <div class="substitute-display">
                 <img src="{% static 'critique/substitute.jpg' %}" alt="{{ oeuvre.title_vf }}" />

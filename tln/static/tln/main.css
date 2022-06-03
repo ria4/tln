@@ -271,9 +271,9 @@ body {
     flex-direction: column;
     -ms-flex-align: center;
     align-items: center; }
-body { background-image: url("/static/img_base/critique_background_content_norm.jpg"); }
+body { background-image: url("/static/tln/img/critique_background_content_norm.jpg"); }
 @media (max-width: 960px) {
-body { background-image: url("/static/img_base/critique_background_content_min.jpg"); } }
+body { background-image: url("/static/tln/img/critique_background_content_min.jpg"); } }
 
 /* https://bugs.chromium.org/p/chromium/issues/detail?id=332189 */
 .preload * { transition: none !important; }

@@ -13,8 +13,8 @@
 {% with texte.oeuvre as oeuvre %}
     <a href="{% url 'detail_oeuvre' oeuvre.slug %}" class="entry-link">
         <div class="oeuvre-display">
-        {% if oeuvre.image_url %}
-        <img src="{% static oeuvre.image_url %}" alt="" />
+        {% if oeuvre.image %}
+        <img src="{{ oeuvre.image.url }}" alt="" />
         {% endif %}
         </div>
 

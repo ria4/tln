@@ -1,5 +1,6 @@
 import binascii
 import json
+import logging
 import os
 import requests
 import shutil
@@ -8,12 +9,14 @@ from dal.autocomplete import Select2QuerySetView
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.core.files import File
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template.defaultfilters import slugify
 from PIL import Image
 
+from critique.constants import MAX_SPANS_ON_OEUVRE, OEUVRES_IMG_TMP_DIR
 from critique.forms import OeuvreForm, OeuvreSpanForm, CommentaireForm
 from critique.models import Artiste, Oeuvre, OeuvreTag
 from critique.views.collection import cache_oeuvre_refresh
@@ -21,7 +24,7 @@ from critique.views.commentaire import get_comment_form_data
 from critique.views.oeuvrespan import get_oeuvrespan_form_data
 
 
-MAX_SPANS_ON_OEUVRE = 3
+logger = logging.getLogger('django')
 
 
 # Helpers
@@ -31,21 +34,31 @@ def download_distant_image(url):
     if r.status_code == 200:
         r.raw.decode_content = True
         h = binascii.hexlify(os.urandom(16))
-        local_url = h.decode('ascii')
-        with open('static/critique/tmp/%s' % local_url, 'wb') as f:
+        imagename = h.decode('ascii')
+        preimagepath = f'{OEUVRES_IMG_TMP_DIR}/{imagename}'
+        with open(preimagepath, 'wb') as f:
             shutil.copyfileobj(r.raw, f)
         baseheight = 300
-        img = Image.open('static/critique/tmp/%s' % local_url)
-        fmt = 'jpg'
-        if img.format == 'PNG':
-            fmt = 'png'
-        hpercent = baseheight/float(img.size[1])
-        wsize = int(float(img.size[0])*float(hpercent))
-        img = img.resize((wsize, baseheight), Image.ANTIALIAS)
-        img.save('static/critique/%s.%s' % (local_url, fmt))
-        os.remove('static/critique/tmp/%s' % local_url)
-        return 'critique/%s.%s' % (local_url, fmt)
-    return ''
+        with Image.open(preimagepath) as image:
+            if image.format == 'JPEG':
+                imagename += '.jpg'
+                imagepath = f'{preimagepath}.jpg'
+            elif image.format == 'PNG':
+                imagename += '.png'
+                imagepath = f'{preimagepath}.png'
+            else:
+                logger.warning(f"Unknown format for image at {url}: {r.content}")
+                os.remove(preimagepath)
+                return None, None
+            hpercent = baseheight/float(image.size[1])
+            wsize = int(float(image.size[0])*float(hpercent))
+            image = image.resize((wsize, baseheight), Image.ANTIALIAS)
+            image.save(imagepath)
+        os.remove(preimagepath)
+        return imagename, imagepath
+    else:
+        logger.warning(f"Failed to download image at {url}: {r.content}")
+        return None, None
 
 def get_oeuvre_form_data(oeuvre):
     form_data = {}
@@ -89,13 +102,13 @@ def update_oeuvre(req, oeuvre, form):
     oeuvre.year = form.cleaned_data['year']
     oeuvre.imdb_id = form.cleaned_data['imdb_id']
     if form.cleaned_data['image_link']:
-        url = download_distant_image(form.cleaned_data['image_link'])
-        if oeuvre.image_url:
-            try:
-                os.remove('static/%s' % oeuvre.image_url)
-            except FileNotFoundError:
-                pass
-        oeuvre.image_url = url
+        imagename, imagepath = download_distant_image(form.cleaned_data['image_link'])
+        if imagename and imagepath:
+            if oeuvre.image:
+                oeuvre.image.delete()
+            with open(imagepath, 'rb') as image:
+                oeuvre.image.save(imagename, File(image), save=False)
+            os.remove(imagepath)
     oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save(update_slug=update_slug)
 

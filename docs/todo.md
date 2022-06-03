@@ -1,6 +1,6 @@
 ## Cleaning
 
-- sort through static and media directories
+- all done!
 
 
 ## CSS tweaks

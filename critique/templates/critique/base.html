@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block css-path %}{% static 'css/critique.css' %}{% endblock %}
+{% block css-path %}{% static 'critique/critique.css' %}{% endblock %}
 
 {% block skip-link %}<a id="skip-link" class="hidden" href="#content">Skip to main content</a>{% endblock %}
 
@@ -27,8 +27,8 @@
                 <input tabindex="-1" id="critique-search-input-m" type="text" name="match" autocomplete="off" spellcheck="false">
             </form>
             <a href="#" tabindex="-1" id="critique-searchend-button-m" type="button">
-                <img class="img-top" src="{% static 'img_base/searchend_icon.png' %}" alt="">
-                <img class="img-bottom" src="{% static 'img_base/searchend_icon_hover.png' %}" alt="">
+                <img class="img-top" src="{% static 'tln/img/searchend_icon.png' %}" alt="">
+                <img class="img-bottom" src="{% static 'tln/img/searchend_icon_hover.png' %}" alt="">
             </a>
             <!--icon by Balraj Chana, from www.flaticon.com-->
         </div>
@@ -61,13 +61,13 @@
                             <input id="critique-search-input" type="text" name="match" autocomplete="off" spellcheck="false"/>
                         </form>
                         <a href="#" tabindex="-1" id="critique-search-button" type="button">
-                            <img class="img-top" src="{% static 'img_base/search_icon.png' %}" alt="">
-                            <img class="img-bottom" src="{% static 'img_base/search_icon_hover.png' %}" alt="">
+                            <img class="img-top" src="{% static 'tln/img/search_icon.png' %}" alt="">
+                            <img class="img-bottom" src="{% static 'tln/img/search_icon_hover.png' %}" alt="">
                         </a>
                         <!--icon by Google, from www.flaticon.com-->
                         <a href="#" tabindex="-1" id="critique-searchend-button" type="button">
-                            <img class="img-top" src="{% static 'img_base/searchend_icon.png' %}" alt="">
-                            <img class="img-bottom" src="{% static 'img_base/searchend_icon_hover.png' %}" alt="">
+                            <img class="img-top" src="{% static 'tln/img/searchend_icon.png' %}" alt="">
+                            <img class="img-bottom" src="{% static 'tln/img/searchend_icon_hover.png' %}" alt="">
                         </a>
                         <!--icon by Balraj Chana, from www.flaticon.com-->
                     </div>
@@ -190,5 +190,5 @@
 {% block app-js %}
 {% if perms.critique.all_rights %}{{ seance_form_empty.media }}{% endif %}
 {% block vars-js %}{% endblock %}
-<script src="{% static 'js/critique.js' %}"></script>
+<script src="{% static 'critique/critique.js' %}"></script>
 {% endblock %}

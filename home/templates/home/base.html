@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block css-path %}{% static 'css/home.css' %}{% endblock %}
+{% block css-path %}{% static 'home/home.css' %}{% endblock %}
 {% block title %}oriane tury{% endblock %}
 {% block og-title %}oriane tury{% endblock %}
 {% block tw-title %}oriane tury{% endblock %}
@@ -14,7 +14,7 @@
 {% block header %}
 <header id="header" role="banner">
     <div id="logos">
-    <img id="logo-otu" src={% static 'img_base/oriane_tury.png' %} alt="oriane tury">
+    <img id="logo-otu" src={% static 'tln/img/oriane_tury.png' %} alt="oriane tury">
     </div>
 
     <nav id="top-nav-v-access" class="hidden"><ul>
@@ -107,4 +107,4 @@
 </main>
 {% endblock %}
 
-{% block app-js %}<script src="{% static 'js/home.js' %}"></script>{% endblock %}
+{% block app-js %}<script src="{% static 'home/home.js' %}"></script>{% endblock %}

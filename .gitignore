@@ -2,24 +2,12 @@
 /db.sqlite3
 /manage.py
 /*/migrations/
-/*/static/
 __pycache__
 *.pyc
 
 # Static & media files
+/static_collected/
 /media/
-/static/admin/
-/static/critique/
-/static/django_extensions/
-/static/docs/
-/static/favicon/old/
-/static/img_base/old/
-/static/miroirs_setup/
-/static/mptt/
-/static/sortedm2m/
-/static/upm59/
-/static/zinnia/
-/static/portfolio_oriane_tury.pdf
 
 # Logs & backups
 /net/uwsgi-emperor.log

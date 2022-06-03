@@ -15,11 +15,11 @@ body > header {
 @media (min-width: 960px) {
 #critique-header {
     background-position: right top;
-    background-image: url("/static/img_base/critique_background_header.jpg"); } }
+    background-image: url("/static/tln/img/critique_background_header.jpg"); } }
 @media (max-width: 960px) {
 #critique-header #main-nav {
     background-position: right top;
-    background-image: url("/static/img_base/critique_background_header_min.jpg"); } }
+    background-image: url("/static/tln/img/critique_background_header_min.jpg"); } }
 
 #content-wrap { margin-top: 64px; }
 @media (min-width: 960px) { #content-wrap.decenter { margin-right: 1.4%; } }
@@ -46,7 +46,7 @@ hr, .hseparator {
 
 #top-nav-h {
     visibility: hidden;
-    background-image: url("/static/img_base/critique_background_content_norm.jpg");
+    background-image: url("/static/tln/img/critique_background_content_norm.jpg");
     background-size: 100% auto;
     height: 0;
     margin: 0;
@@ -54,7 +54,7 @@ hr, .hseparator {
     transition: all 0.4s ease;
     pointer-events: auto; }
 @media (max-width: 960px) {
-#top-nav-h { background-image: url("/static/img_base/critique_background_content_min.jpg"); } }
+#top-nav-h { background-image: url("/static/tln/img/critique_background_content_min.jpg"); } }
 
 #top-nav-h.expanded {
     visibility: visible;

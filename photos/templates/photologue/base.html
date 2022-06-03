@@ -1,6 +1,10 @@
 {% extends "photologue/root.html" %}
 {% load i18n %}
 {% load photos_extras %}
+{% load static %}
+
+{% block og-image %}https://oriane.ink{% static 'tln/img/home_IMG_1008_min.jpg' %}{% endblock %}
+{% block tw-image %}https://oriane.ink{% static 'tln/img/home_IMG_1008_min.jpg' %}{% endblock %}
 
 {% block sidebar %}
 <div id="widget-welcome" class="widget">

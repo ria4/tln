@@ -16,3 +16,7 @@ CINEMA_LONGNAME_PREFIXES = [
     'à l\'',
     'dans ',
 ]
+
+OEUVRES_IMG_TMP_DIR = '/tmp/oeuvres_img'
+
+MAX_SPANS_ON_OEUVRE = 3

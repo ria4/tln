@@ -16,8 +16,8 @@
 {% for oeuvre in oeuvres %}
     <li class="oeuvre-display">
         <a href={% url "detail_oeuvre" oeuvre.slug %}>
-        {% if oeuvre.image_url %}
-            <img src="{% static oeuvre.image_url %}" alt="{{ oeuvre.title_vf }}" />
+        {% if oeuvre.image %}
+            <img src="{{ oeuvre.image.url }}" alt="{{ oeuvre.title_vf }}" />
         {% else %}
             {{ oeuvre.title_vf }} ({{ oeuvre.year }})
         {% endif %}</a>

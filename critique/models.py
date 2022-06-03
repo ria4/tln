@@ -73,7 +73,7 @@ class Oeuvre(models.Model):
     title_alt = models.CharField(max_length=200, blank=True)
     year = models.SmallIntegerField(db_index=True)
     imdb_id = models.CharField(max_length=10, blank=True)
-    image_url = models.CharField(max_length=45, blank=True)
+    image = models.ImageField(upload_to='oeuvres_img', blank=True)
     envie = models.BooleanField(default=False)
     slug = models.SlugField(max_length=200, unique=True)
     artists = models.ManyToManyField(
