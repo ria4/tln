@@ -293,9 +293,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
     position: absolute;
     top: 0;
     right: 0; }
-#locale-switch a {
-    display: inline;
-    text-decoration: underline; }
+#locale-switch a { display: inline; }
 
 @media (min-width: 900px) {
 #content > div:last-child > div:first-of-type { position: relative; } }

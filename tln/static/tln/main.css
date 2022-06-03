@@ -315,9 +315,18 @@ hr, .hseparator { border-bottom: solid 1px #a57100; }
 a { text-decoration: none; }
 #content-wrap a, #footer a { color: #bd4700; }
 #content-wrap a:hover, #footer a:hover { color: #f7a300; }
-.entry-content a, #oeuvre-info a, #gallery-description a, #footer a {
-    text-decoration: underline; text-decoration-color: rgba(189, 71, 0, .5); }
-.entry-content a:hover, #oeuvre-info a:hover, #gallery-description a:hover, #footer a:hover {
+.entry-content a,
+#oeuvre-info a,
+#gallery-description a,
+body.photos-infos #content a,
+#footer a {
+    text-decoration: underline;
+    text-decoration-color: rgba(189, 71, 0, .5); }
+.entry-content a:hover,
+#oeuvre-info a:hover,
+#gallery-description a:hover,
+body.photos-infos #content a:hover,
+#footer a:hover {
     text-decoration-color: rgba(247, 163, 0, .5); }
 
 #pagination {
