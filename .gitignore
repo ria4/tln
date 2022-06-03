@@ -13,6 +13,7 @@ __pycache__
 /net/uwsgi-emperor.log
 /net/django_debug.log
 /util/old/mongo_backup/
+*.bkp
 
 # Third-party content
 /.well-known/
