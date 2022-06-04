@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}todo{% endblock %}
+
+{% block content-wrap %}
+<div>
+    <h1 onclick="location.href='{% url "index" %}'">
+        Todo Lists
+    </h1>
+</div>
+<div>
+    {% block content %}
+    This content will be replaced by different html code for each page.
+    {% endblock %}
+</div>
+{% endblock %}

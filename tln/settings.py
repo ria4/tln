@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'blog',
     'photos',
     'critique',
+    'todo',
     'tln',
 ]
 
@@ -72,10 +73,13 @@ ROOT_URLCONF = 'tln.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'tln/templates/tln'),
-                 os.path.join(BASE_DIR, 'home/templates'),
-                 os.path.join(BASE_DIR, 'blog/templates'),
-                 os.path.join(BASE_DIR, 'photos/templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'tln/templates/tln'),
+            os.path.join(BASE_DIR, 'home/templates'),
+            os.path.join(BASE_DIR, 'blog/templates'),
+            os.path.join(BASE_DIR, 'photos/templates'),
+            os.path.join(BASE_DIR, 'todo/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'string_if_invalid': '<<invalid variable>>',
