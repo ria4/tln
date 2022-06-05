@@ -1,18 +1,18 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from todo.mixins import ToDoGroupRequiredMixin
 from todo.models import ToDoItem, ToDoList
 
 
 # Todo Lists
 
-class ToDoListListView(LoginRequiredMixin, ListView):
+class ToDoListListView(ToDoGroupRequiredMixin, ListView):
     model = ToDoList
     template_name = 'todo/index.html'
 
 
-class ToDoListCreateView(LoginRequiredMixin, CreateView):
+class ToDoListCreateView(ToDoGroupRequiredMixin, CreateView):
     model = ToDoList
     fields = ['title']
 
@@ -22,7 +22,7 @@ class ToDoListCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class ToDoListDeleteView(LoginRequiredMixin, DeleteView):
+class ToDoListDeleteView(ToDoGroupRequiredMixin, DeleteView):
     model = ToDoList
     success_url = reverse_lazy('index')
 
@@ -42,7 +42,7 @@ class ToDoItemListView(ListView):
         return context
 
 
-class ToDoItemCreateView(LoginRequiredMixin, CreateView):
+class ToDoItemCreateView(ToDoGroupRequiredMixin, CreateView):
     model = ToDoItem
     fields = ['todo_list', 'title', 'description']
 
@@ -68,7 +68,7 @@ class ToDoItemCreateView(LoginRequiredMixin, CreateView):
         return reverse('list', args=[self.object.todo_list_id])
 
 
-class ToDoItemUpdateView(LoginRequiredMixin, UpdateView):
+class ToDoItemUpdateView(ToDoGroupRequiredMixin, UpdateView):
     model = ToDoItem
     fields = ['todo_list', 'title', 'description']
 
@@ -83,7 +83,7 @@ class ToDoItemUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('list', args=[self.object.todo_list_id])
 
 
-class ToDoItemDeleteView(LoginRequiredMixin, DeleteView):
+class ToDoItemDeleteView(ToDoGroupRequiredMixin, DeleteView):
     model = ToDoItem
 
     def get_success_url(self):
