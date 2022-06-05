@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import prefetch_related_objects, Prefetch, Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import RedirectView
 
 from critique.forms import CinemaForm
 from critique.models import Cinema, Seance
@@ -113,3 +114,14 @@ def detail_cinema(req, slug):
 def delete_cinema(req, slug):
     cinema = get_object_or_404(Cinema, slug=slug).delete()
     return redirect('list_cinemas')
+
+
+# Redirect
+
+class CinemaRedirectView(RedirectView):
+    """Redirect old 'cinema' prefix to current 'cinemas'."""
+
+    permanent = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        return '/critique/cinemas/' + kwargs['subpath']

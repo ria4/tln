@@ -1,26 +1,28 @@
 ## Cleaning
 
-- all done!
+- adjust oeuvrespan width for lengthy cinemas
 
 
 ## CSS tweaks
 
-- all done!
+- style up todo app
 
 
 ## Features
 
-- add todo app
+- all done!
 
 
 ## Long term
 
+- article updates v3
+- article dataviz seances, cinemas, words
 - migrate from zinnia to another cms
 - bump to django 4.0
     - switch to redis cache
     - update critique collection asynchronously
     - cache much more pages
-- refactor critique views with CBVs
+- refactor critique views with CBVs or DRF
 
 
 ## Barely matters
