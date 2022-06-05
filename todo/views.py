@@ -1,20 +1,35 @@
+from django.contrib.auth.mixins import AccessMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from django.views.generic.edit import ModelFormMixin
 
-from todo.mixins import ToDoGroupRequiredMixin
-from todo.models import ToDoItem, ToDoList
+from todo.mixins import (
+    TodoListCurrentUserFilterMultipleObjectMixin,
+    TodoListCurrentUserFilterSingleObjectMixin,
+    TodoItemCurrentUserFilterSingleObjectMixin,
+    TodoGroupRequiredMixin,
+)
+from todo.models import TodoItem, TodoList
 
 
 # Todo Lists
 
-class ToDoListListView(ToDoGroupRequiredMixin, ListView):
-    model = ToDoList
+class TodoListListView(
+    TodoGroupRequiredMixin,
+    TodoListCurrentUserFilterMultipleObjectMixin,
+    ListView,
+):
+    model = TodoList
     template_name = 'todo/index.html'
 
 
-class ToDoListCreateView(ToDoGroupRequiredMixin, CreateView):
-    model = ToDoList
+class TodoListCreateView(
+    TodoGroupRequiredMixin,
+    TodoListCurrentUserFilterSingleObjectMixin,
+    CreateView,
+):
+    model = TodoList
     fields = ['title', 'public']
 
     def get_context_data(self):
@@ -29,28 +44,42 @@ class ToDoListCreateView(ToDoGroupRequiredMixin, CreateView):
         return super(ModelFormMixin, self).form_valid(form)
 
 
-class ToDoListDeleteView(ToDoGroupRequiredMixin, DeleteView):
-    model = ToDoList
+class TodoListDeleteView(
+    TodoGroupRequiredMixin,
+    TodoListCurrentUserFilterSingleObjectMixin,
+    DeleteView,
+):
+    model = TodoList
     success_url = reverse_lazy('index')
 
 
 # Todo Items
 
-class ToDoItemListView(ListView):
-    model = ToDoItem
+class TodoItemListView(AccessMixin, ListView):
+    model = TodoItem
     template_name = 'todo/todo_list.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        todo_list = get_object_or_404(TodoList, id=self.kwargs['list_id'])
+        if not (todo_list.public or todo_list.author == request.user):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
-        return ToDoItem.objects.filter(todo_list_id=self.kwargs['list_id'])
+        return TodoItem.objects.filter(todo_list_id=self.kwargs['list_id'])
 
     def get_context_data(self):
         context = super().get_context_data()
-        context['todo_list'] = ToDoList.objects.get(id=self.kwargs['list_id'])
+        context['todo_list'] = TodoList.objects.get(id=self.kwargs['list_id'])
         return context
 
 
-class ToDoItemCreateView(ToDoGroupRequiredMixin, CreateView):
-    model = ToDoItem
+class TodoItemCreateView(
+    TodoGroupRequiredMixin,
+    TodoItemCurrentUserFilterSingleObjectMixin,
+    CreateView,
+):
+    model = TodoItem
     fields = ['todo_list', 'title', 'description']
 
     def get_context_data(self):
@@ -60,13 +89,13 @@ class ToDoItemCreateView(ToDoGroupRequiredMixin, CreateView):
 
     def get_initial(self):
         initial_data = super().get_initial()
-        todo_list = ToDoList.objects.get(id=self.kwargs['list_id'])
+        todo_list = TodoList.objects.get(id=self.kwargs['list_id'])
         initial_data['todo_list'] = todo_list
         return initial_data
 
     def get_context_data(self):
         context = super().get_context_data()
-        todo_list = ToDoList.objects.get(id=self.kwargs['list_id'])
+        todo_list = TodoList.objects.get(id=self.kwargs['list_id'])
         context['todo_list'] = todo_list
         context['title'] = "Create a new item"
         return context
@@ -75,13 +104,17 @@ class ToDoItemCreateView(ToDoGroupRequiredMixin, CreateView):
         return reverse('list', args=[self.object.todo_list_id])
 
 
-class ToDoItemUpdateView(ToDoGroupRequiredMixin, UpdateView):
-    model = ToDoItem
+class TodoItemUpdateView(
+    TodoGroupRequiredMixin,
+    TodoItemCurrentUserFilterSingleObjectMixin,
+    UpdateView,
+):
+    model = TodoItem
     fields = ['todo_list', 'title', 'description']
 
     def get_context_data(self):
         context = super().get_context_data()
-        todo_list = ToDoList.objects.get(id=self.kwargs['list_id'])
+        todo_list = TodoList.objects.get(id=self.kwargs['list_id'])
         context['todo_list'] = todo_list
         context['title'] = "Edit item"
         return context
@@ -90,8 +123,12 @@ class ToDoItemUpdateView(ToDoGroupRequiredMixin, UpdateView):
         return reverse('list', args=[self.object.todo_list_id])
 
 
-class ToDoItemDeleteView(ToDoGroupRequiredMixin, DeleteView):
-    model = ToDoItem
+class TodoItemDeleteView(
+    TodoGroupRequiredMixin,
+    TodoItemCurrentUserFilterSingleObjectMixin,
+    DeleteView,
+):
+    model = TodoItem
 
     def get_success_url(self):
         return reverse_lazy('list', args=[self.kwargs['list_id']])

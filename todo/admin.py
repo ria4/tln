@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from todo.models import ToDoItem, ToDoList
+from todo.models import TodoItem, TodoList
 
 
-admin.site.register(ToDoItem)
-admin.site.register(ToDoList)
+admin.site.register(TodoItem)
+admin.site.register(TodoList)
