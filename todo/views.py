@@ -1,5 +1,6 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic.edit import ModelFormMixin
 
 from todo.mixins import ToDoGroupRequiredMixin
 from todo.models import ToDoItem, ToDoList
@@ -14,12 +15,18 @@ class ToDoListListView(ToDoGroupRequiredMixin, ListView):
 
 class ToDoListCreateView(ToDoGroupRequiredMixin, CreateView):
     model = ToDoList
-    fields = ['title']
+    fields = ['title', 'public']
 
     def get_context_data(self):
         context = super().get_context_data()
         context['title'] = "Add a new list"
         return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        return super(ModelFormMixin, self).form_valid(form)
 
 
 class ToDoListDeleteView(ToDoGroupRequiredMixin, DeleteView):
