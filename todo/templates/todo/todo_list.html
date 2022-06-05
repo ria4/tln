@@ -11,7 +11,7 @@
             {% for todo in object_list %}
             <li>
                 <div>
-                    {% if user.is_authenticated %}
+                    {% if user == todo_list.author %}
                     <div
                         role='button'
                         onclick='location.href=
@@ -28,7 +28,7 @@
             <p>There are no to-do items in this list.</p>
             {% endfor %}
         </ul>
-        {% if user.is_authenticated %}
+        {% if user == todo_list.author %}
         <p>
             <input
                 value="Add a new item"
