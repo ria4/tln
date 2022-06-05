@@ -393,6 +393,7 @@ _:-ms-input-placeholder, :root #critique-search-results-m a > div > p:first-chil
     letter-spacing: -1px; }
 
 .critique-info {
+    height: 100%;
     width: 100%;
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     display: -ms-flexbox;
@@ -511,7 +512,8 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #oeuvre-info-wrapper {
     min-height: 310px;
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    align-items: center; }
 
 #oeuvre-info {
     /*min-height: 286px;*/
