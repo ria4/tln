@@ -10,13 +10,11 @@
 
 ## Features
 
-- all done!
+- autocomplete + create for artists & tags
 
 
 ## Long term
 
-- article updates v3
-- article dataviz seances, cinemas, words
 - migrate from zinnia to another cms
 - bump to django 4.0
     - switch to redis cache
@@ -30,3 +28,12 @@
 - override admin interfaces to remove useless content
 - call sqip asynchronously
 - ansible deployment (maybe)
+
+
+## Miscellaneous
+
+- article updates v3
+- article dataviz seances, cinemas, words
+- sync dotfiles
+- choose keepassxc vs bitwarden
+- import this list into todo app
