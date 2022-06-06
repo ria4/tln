@@ -1,6 +1,6 @@
 ## Cleaning
 
-- adjust oeuvrespan width for lengthy cinemas
+- all done!
 
 
 ## CSS tweaks

@@ -44,8 +44,7 @@ def seancefilmlink(seance):
         return format_html("<a href=%s>%s</a>" % (href, film.title_vf))
 
 
-@register.filter
-def cinemalink(cinema, cinema_unsure=False):
+def cinemalink_with_len(cinema, cinema_unsure=False):
     "Return a link to the Cinema, in long form."""
     prefix = None
     a_text = cinema.name_long
@@ -55,11 +54,18 @@ def cinemalink(cinema, cinema_unsure=False):
             a_text = cinema.name_long[len(prefix):]
             break
     href = reverse('detail_cinema', kwargs={'slug': cinema.slug})
-    res = " %s<a href=%s>%s</a>" % (prefix, href, a_text)
+    res = "%s<a href=%s>%s</a>" % (prefix, href, a_text)
+    l = len(prefix + a_text)
     if cinema_unsure:
-        res += " (peut-être)"
-    return format_html(res)
-    #return format_html(f" {prefix}<a href={href}>{a_text}</a>")
+        maybe = " (peut-être)"
+        res += maybe
+        l += len(maybe)
+    return format_html(res), l
+
+@register.filter
+def cinemalink(cinema, cinema_unsure=False):
+    cl, l = cinemalink_with_len(cinema, cinema_unsure=False)
+    return cl
 
 
 @register.filter
@@ -81,6 +87,9 @@ def fancyspans(mtype, spans):
     "jeu en cours depuis juin 2022",
 
     "vu le 16 juin 2022 au <a href=...>Katorza</a>"
+
+    "         vu le 12 novembre 2019
+    au <a...>Max Linder Panorama</a>"
 
     "   vu le 3 mars 2017,
            le 12 mai 2019
@@ -118,7 +127,20 @@ def fancyspans(mtype, spans):
             )
             if hasattr(span, 'seance'):
                 if span.seance.cinema:
-                    res += cinemalink(span.seance.cinema, span.seance.cinema_unsure)
+                    cl, len_cl_stripped = cinemalink_with_len(
+                        span.seance.cinema,
+                        span.seance.cinema_unsure,
+                    )
+                    len_date = len(res)
+                    if span.date_start.day == 1:
+                        # strip 1<sup>er</sup>
+                        len_date -= 12
+                    adjust = -2 if n == 1 else 8
+                    if len_cl_stripped > len_date + adjust:
+                        res += "<br>"
+                    else:
+                        res += " "
+                    res += cl
                 else:
                     res += ", dans un cinéma oublié"
         else:
