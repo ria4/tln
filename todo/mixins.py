@@ -1,8 +1,11 @@
+from abc import ABC
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.list import MultipleObjectMixin
 
 from todo.constants import TODO_ACCESS_GROUP
+from todo.models import TodoItem, TodoList
 
 
 class TodoGroupRequiredMixin(LoginRequiredMixin):
@@ -14,25 +17,29 @@ class TodoGroupRequiredMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class TodoListCurrentUserFilterSingleObjectMixin(SingleObjectMixin):
-    """Filter queryset according to the current user."""
+class TodoCurrentUserObjectMixin(ABC):
+    """Filter queryset according to the current user.
+
+    Works for both TodoList & TodoItem models."""
 
     def get_queryset(self):
         qs = super().get_queryset()
-        return qs.filter(author=self.request.user)
+        if qs.model == TodoList:
+            kwargs = {'author': self.request.user}
+        elif qs.model == TodoItem:
+            kwargs = {'todo_list__author': self.request.user}
+        return qs.filter(**kwargs)
 
 
-class TodoListCurrentUserFilterMultipleObjectMixin(MultipleObjectMixin):
-    """Filter queryset according to the current user."""
+class TodoCurrentUserFilterSingleObjectMixin(
+    TodoCurrentUserObjectMixin,
+    SingleObjectMixin,
+):
+    pass
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(author=self.request.user)
 
-
-class TodoItemCurrentUserFilterSingleObjectMixin(SingleObjectMixin):
-    """Filter queryset according to the current user."""
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(todo_list__author=self.request.user)
+class TodoCurrentUserFilterMultipleObjectMixin(
+    TodoCurrentUserObjectMixin,
+    MultipleObjectMixin,
+):
+    pass

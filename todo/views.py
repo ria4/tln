@@ -5,9 +5,8 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from django.views.generic.edit import ModelFormMixin
 
 from todo.mixins import (
-    TodoListCurrentUserFilterMultipleObjectMixin,
-    TodoListCurrentUserFilterSingleObjectMixin,
-    TodoItemCurrentUserFilterSingleObjectMixin,
+    TodoCurrentUserFilterMultipleObjectMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
     TodoGroupRequiredMixin,
 )
 from todo.models import TodoItem, TodoList
@@ -17,7 +16,7 @@ from todo.models import TodoItem, TodoList
 
 class TodoListListView(
     TodoGroupRequiredMixin,
-    TodoListCurrentUserFilterMultipleObjectMixin,
+    TodoCurrentUserFilterMultipleObjectMixin,
     ListView,
 ):
     model = TodoList
@@ -26,7 +25,7 @@ class TodoListListView(
 
 class TodoListCreateView(
     TodoGroupRequiredMixin,
-    TodoListCurrentUserFilterSingleObjectMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
     CreateView,
 ):
     model = TodoList
@@ -46,7 +45,7 @@ class TodoListCreateView(
 
 class TodoListDeleteView(
     TodoGroupRequiredMixin,
-    TodoListCurrentUserFilterSingleObjectMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
     DeleteView,
 ):
     model = TodoList
@@ -76,7 +75,7 @@ class TodoItemListView(AccessMixin, ListView):
 
 class TodoItemCreateView(
     TodoGroupRequiredMixin,
-    TodoItemCurrentUserFilterSingleObjectMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
     CreateView,
 ):
     model = TodoItem
@@ -106,7 +105,7 @@ class TodoItemCreateView(
 
 class TodoItemUpdateView(
     TodoGroupRequiredMixin,
-    TodoItemCurrentUserFilterSingleObjectMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
     UpdateView,
 ):
     model = TodoItem
@@ -125,7 +124,7 @@ class TodoItemUpdateView(
 
 class TodoItemDeleteView(
     TodoGroupRequiredMixin,
-    TodoItemCurrentUserFilterSingleObjectMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
     DeleteView,
 ):
     model = TodoItem
