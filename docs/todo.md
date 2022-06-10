@@ -1,6 +1,6 @@
 ## Cleaning
 
-- all done!
+- enforce one-line oeuvrespan when len < 30 (?)
 
 
 ## CSS tweaks
@@ -35,5 +35,4 @@
 - article updates v3
 - article dataviz seances, cinemas, words
 - sync dotfiles
-- choose keepassxc vs bitwarden
 - import this list into todo app

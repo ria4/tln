@@ -43,7 +43,9 @@ def fancydate(obj, date_attrname='date', en=False, le=False, mois=True, annee=Fa
     if getattr(obj, f'{date_attrname}_du', None):
         if en:
             res += "en "
-        res += f"{date_format(dt, 'F Y')}"
+        res += f"{date_format(dt, 'F')}"
+        if annee:
+            res += f"{date_format(dt, ' Y')}"
         return res
 
     if le:
