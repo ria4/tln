@@ -7,19 +7,19 @@
             <h5>{{ todo_list.title }}</h5>
         </div>
         <ul>
-            {% for todo in object_list %}
+            {% for todo_item in object_list %}
             <li>
                 <div>
                     {% if user == todo_list.author %}
                     <div
                         role='button'
                         onclick='location.href=
-                        "{% url 'item-update' todo_list.id todo.id %}"'
+                        "{% url 'item-update' todo_list.id todo_item.id %}"'
                     >
                     {% else %}
                     <div>
                     {% endif %}
-                        {{ todo.title }}
+                        {{ todo_item.content }}
                     </div>
                 </div>
             </li>

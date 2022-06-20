@@ -74,7 +74,7 @@ class TodoItemCreateView(
     CreateView,
 ):
     model = TodoItem
-    fields = ['title']
+    fields = ['content']
     extra_context = {'title': "Create a new item"}
 
     def form_valid(self, form):
@@ -93,7 +93,7 @@ class TodoItemUpdateView(
     UpdateView,
 ):
     model = TodoItem
-    fields = ['title']
+    fields = ['content']
     extra_context = {'title': "Edit item"}
 
     def form_valid(self, form):

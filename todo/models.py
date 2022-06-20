@@ -29,7 +29,7 @@ class TodoItem(models.Model):
         related_name='items',
         related_query_name='item',
     )
-    title = models.CharField(max_length=100)
+    content = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
@@ -38,7 +38,7 @@ class TodoItem(models.Model):
         )
 
     def __str__(self):
-        return self.title
+        return self.content
 
     class Meta:
         ordering = ['created_at']

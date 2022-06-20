@@ -14,20 +14,19 @@
 - list tags on oeuvre detail
 - link to all cinemas on cinema detail
 - navlink to all cinemas? to all tags?
-- link /now to a list of my public lists
 
 
 ## Features todo
 
-- models
-    - add list last_updated_at
-    - add list removed_at
-    - add item removed_at
-- list detail
-    - display public lists
-    - show account name if not author
 - rework html tags in templates
 - style up views
+- models
+    - add list order, removed_at, last_updated_at
+    - add item order, removed_at
+- list items
+    - links to public lists from same author
+- use ajax and icons with todo app
+- link /now to a list of my public lists
 
 
 ## Long term
