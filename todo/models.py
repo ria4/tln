@@ -7,7 +7,12 @@ from django.utils import timezone
 class TodoList(models.Model):
     title = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='todo_lists',
+        related_query_name='todo_list',
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
@@ -18,7 +23,12 @@ class TodoList(models.Model):
 
 
 class TodoItem(models.Model):
-    todo_list = models.ForeignKey(TodoList, on_delete=models.CASCADE)
+    todo_list = models.ForeignKey(
+        TodoList,
+        on_delete=models.CASCADE,
+        related_name='items',
+        related_query_name='item',
+    )
     title = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -1,11 +1,24 @@
 from abc import ABC
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
+from django.views.generic import View
+from django.views.generic.base import ContextMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.list import MultipleObjectMixin
 
 from todo.constants import TODO_ACCESS_GROUP
 from todo.models import TodoItem, TodoList
+
+
+class TodoListFilterMixin(ContextMixin, View):
+    """Check for the list_id validity and add it to the context data."""
+
+    def dispatch(self, request, *args, **kwargs):
+        self.extra_context = self.extra_context or {}
+        todo_list = get_object_or_404(TodoList, id=self.kwargs['list_id'])
+        self.extra_context.update(todo_list=todo_list)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class TodoGroupRequiredMixin(LoginRequiredMixin):

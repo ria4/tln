@@ -23,8 +23,6 @@
     - add list last_updated_at
     - add list removed_at
     - add item removed_at
-- item add view
-    - pre-populate list id
 - list detail
     - display public lists
     - show account name if not author
