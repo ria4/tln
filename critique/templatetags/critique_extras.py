@@ -136,7 +136,10 @@ def fancyspans(mtype, spans):
                         # strip 1<sup>er</sup>
                         len_date -= 12
                     adjust = -2 if n == 1 else 8
-                    if len_cl_stripped > len_date + adjust:
+                    if (
+                        len_cl_stripped > len_date + adjust
+                        and len_date + len_cl_stripped > 38
+                    ):
                         res += "<br>"
                     else:
                         res += " "

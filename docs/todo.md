@@ -1,14 +1,28 @@
 ## Cleaning
 
-- enforce one-line oeuvrespan when len < 30 (?)
 - detail oeuvre size on narrow screens
 
 
-## Todo app
+## CSS tweaks
+
+- all done!
+
+
+## Features critique
+
+- autocomplete + create for artists & tags
+- list tags on oeuvre detail
+- link to all cinemas on cinema detail
+- navlink to all cinemas? to all tags?
+- link /now to a list of my public lists
+
+
+## Features todo
 
 - models
     - remove item description
     - add list last_updated_at
+    - add created_at, removed_at
 - item add view
     - no list select dropdown
     - no description field
@@ -20,20 +34,6 @@
 - style up views
 
 
-## CSS tweaks
-
-- all done!
-
-
-## Features
-
-- autocomplete + create for artists & tags
-- list tags on oeuvre detail
-- link to all cinemas on cinema detail
-- navlink to all cinemas? to all tags?
-- link /now to a list of my public lists
-
-
 ## Long term
 
 - migrate from zinnia to another cms
@@ -41,11 +41,11 @@
     - switch to redis cache
     - update critique collection asynchronously
     - cache much more pages
-- refactor critique views with CBVs or DRF
 
 
 ## Barely matters
 
+- refactor critique views with CBVs or DRF
 - override admin interfaces to remove useless content
 - call sqip asynchronously
 - ansible deployment (maybe)
