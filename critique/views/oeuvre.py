@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.files import File
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template.defaultfilters import slugify
@@ -121,6 +121,8 @@ def update_oeuvre(req, oeuvre, form):
         )
         artists.append(artist)
     oeuvre.artists.set(artists)
+
+    existing_tags = oeuvre.tags.values_list('id', flat=True)
     tags = []
     tags_names = []
     if form.cleaned_data['tags']:
@@ -129,19 +131,34 @@ def update_oeuvre(req, oeuvre, form):
         tag, _ = OeuvreTag.objects.get_or_create(name=tag_name)
         tags.append(tag)
     oeuvre.tags.set(tags)
+    # delete unused tags if applicable
+    for tag in (
+        OeuvreTag.objects.filter(id__in=existing_tags)
+        .annotate(cnt=Count('oeuvre'))
+        .filter(cnt=0)
+    ):
+        tag.delete()
 
 @permission_required('critique.all_rights')
 def delete_oeuvre(req, slug):
-    oeuvre = get_object_or_404(Oeuvre, slug=slug)
-    mtype = oeuvre.mtype
+    oeuvre = get_object_or_404(Oeuvre.objects.prefetch_related('tags'), slug=slug)
+    # delete image if applicable
     if hasattr(oeuvre, 'image_url') and oeuvre.image_url:
         #XXX put this in Oeuvre.delete when it's reworked
         try:
             os.remove('static/%s' % oeuvre.image_url)
         except FileNotFoundError:
             pass
+    # delete unused tags if applicable
+    for tag in (
+        OeuvreTag.objects.filter(id__in=oeuvre.tags.all())
+        .annotate(cnt=Count('oeuvre'))
+        .filter(cnt=1)
+    ):
+        tag.delete()
+    # finally, delete oeuvre
     oeuvre.delete()
-    return redirect('list_oeuvres', mtype)
+    return redirect('list_oeuvres', oeuvre.mtype)
 
 def detail_oeuvre(req, slug):
     """
