@@ -12,7 +12,7 @@ from critique.forms import (
 def oeuvre_form(req):
     year = datetime.now().strftime('%Y')
     form = OeuvreForm({'year': year}, auto_id='id_empty_%s')
-    form.fields["title_vf"].widget.attrs.update({"class": "focus-on-reveal"})
+    form.fields["mtype"].widget.attrs.update({"class": "focus-on-reveal"})
     return {"oeuvre_form_empty": form}
 
 def oeuvrespan_form(req):

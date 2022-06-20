@@ -1,7 +1,6 @@
 ## Cleaning
 
 - enforce one-line oeuvrespan when len < 30 (?)
-- select mtype on loading oeuvre empty form
 - delete tag if count=0 after oeuvre deletion
 - detail oeuvre size on narrow screens
 
