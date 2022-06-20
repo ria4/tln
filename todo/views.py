@@ -79,7 +79,7 @@ class TodoItemCreateView(
     CreateView,
 ):
     model = TodoItem
-    fields = ['todo_list', 'title', 'description']
+    fields = ['todo_list', 'title']
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -109,7 +109,7 @@ class TodoItemUpdateView(
     UpdateView,
 ):
     model = TodoItem
-    fields = ['todo_list', 'title', 'description']
+    fields = ['todo_list', 'title']
 
     def get_context_data(self):
         context = super().get_context_data()

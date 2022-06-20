@@ -8,6 +8,7 @@ class TodoList(models.Model):
     title = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
         return reverse('list', args=[self.id])
@@ -17,10 +18,9 @@ class TodoList(models.Model):
 
 
 class TodoItem(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    created_date = models.DateTimeField(auto_now_add=True)
     todo_list = models.ForeignKey(TodoList, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
         return reverse(
@@ -31,4 +31,4 @@ class TodoItem(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['created_date']
+        ordering = ['created_at']

@@ -20,12 +20,11 @@
 ## Features todo
 
 - models
-    - remove item description
     - add list last_updated_at
-    - add created_at, removed_at
+    - add list removed_at
+    - add item removed_at
 - item add view
     - no list select dropdown
-    - no description field
     - pre-populate list id
 - list detail
     - display public lists
