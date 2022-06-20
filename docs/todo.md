@@ -24,7 +24,6 @@
     - add list removed_at
     - add item removed_at
 - item add view
-    - no list select dropdown
     - pre-populate list id
 - list detail
     - display public lists
