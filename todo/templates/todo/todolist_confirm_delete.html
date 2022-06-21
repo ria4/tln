@@ -1,16 +1,10 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-<h3>Delete List</h3>
-<p>Are you sure you want to delete the list <i>{{ object.title }}</i>?</p>
+<p>voulez-vous vraiment supprimer la liste <strong>{{ object.title }}</strong> ?</p>
 <form method='POST'>
     {% csrf_token %}
-    <input
-        value='Yes, delete.'
-        type='submit'>
+    <input value="oui je t'assure" type='submit'>
+    <a href="{% url 'list' object.id %}">euh non en fait</a>
 </form>
-<input
-    value='Cancel'
-    type='button'
-    onclick='location.href="{% url 'list' object.id %}"'>
 {% endblock %}

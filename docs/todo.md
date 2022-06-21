@@ -18,13 +18,10 @@
 
 ## Features todo
 
-- rework html tags in templates
-- style up views
-- models
-    - add list order, removed_at, last_updated_at
-    - add item order, removed_at
-- list items
-    - links to public lists from same author
+- style up with css
+- add list order, removed_at, last_updated_at
+- add item order, removed_at
+- display links to public lists from same author
 - use ajax and icons with todo app
 - link /now to a list of my public lists
 

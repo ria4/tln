@@ -21,7 +21,7 @@ class TodoListListView(
     ListView,
 ):
     model = TodoList
-    template_name = 'todo/index.html'
+    template_name = 'todo/todolist_list.html'
 
 
 class TodoListCreateView(
@@ -31,7 +31,6 @@ class TodoListCreateView(
 ):
     model = TodoList
     fields = ['title', 'public']
-    extra_context = {'title': "Add a new list"}
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -57,7 +56,7 @@ class TodoItemListView(
     ListView,
 ):
     model = TodoItem
-    template_name = 'todo/todo_list.html'
+    template_name = 'todo/todoitem_list.html'
 
     def has_permission(self):
         todo_list = self.extra_context['todo_list']
@@ -75,7 +74,6 @@ class TodoItemCreateView(
 ):
     model = TodoItem
     fields = ['content']
-    extra_context = {'title': "Create a new item"}
 
     def form_valid(self, form):
         form.instance.todo_list = self.extra_context['todo_list']
@@ -94,7 +92,6 @@ class TodoItemUpdateView(
 ):
     model = TodoItem
     fields = ['content']
-    extra_context = {'title': "Edit item"}
 
     def form_valid(self, form):
         form.instance.todo_list = self.extra_context['todo_list']

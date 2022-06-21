@@ -1,19 +1,23 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-<h3>{{ title }}</h3>
 <div>
     <div>
-        <form method='post'>
+        <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input
-                value="Save"
-                type='submit'>
-            <input
-                value="Cancel"
-                type='button'
-                onclick='location.href="{% url 'index' %}"'>
+            <div>
+                <label for="id_title">titre de la liste</label>
+                {{ form.title }}
+            </div>
+            <div>
+                <label for="id_public">rendre la liste publique</label>
+                <div class="switch">
+                    {{ form.public }}
+                    <span class="slider"></span>
+                </div>
+            </div>
+            <input value="envoyer" type="submit">
+            <a href="{% url 'index' %}">annuler</a>
         </form>
     </div>
 </div>

@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+{% if object_list %}
+<div>
+    <ul>
+        {% for todolist in object_list %}
+        <li><a href='{% url "list" todolist.id %}'>{{ todolist.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div>
+    <a href='{% url "list-add" %}'>ajouter une liste</a>
+</div>
+{% endblock %}
