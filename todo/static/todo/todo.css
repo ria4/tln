@@ -1,0 +1,86 @@
+/* Content
+   ========================================================================== */
+
+#content-wrap { margin-top: 10px; }
+
+#content {
+    margin-top: 20px;
+    padding: 0 6px;
+    max-width: 420px; }
+@media (max-width: 700px) { #content { padding: 0 23px 0 22.2px; } }
+#content h1 {
+    margin-bottom: 20px;
+    text-align: center; }
+
+#content .hseparator {
+    width: 94%;
+    margin-top: 28px;
+    margin-bottom: 13px;
+    border-bottom-color: black; }
+
+#content .entry-content ul { padding-left: 24px; }
+#content .entry-content li {
+    margin: 20px auto;
+    line-height: 17px;
+    text-indent: -12px;
+    list-style: none; }
+#content .entry-content li:before {
+    margin: -0.5px;
+    font-family: Arial;
+    font-size: 13px;
+    content: "■";
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    left: -10px; }
+#content .entry-content a:not(:hover) { color: black; }
+
+
+/* Buttons
+   ========================================================================== */
+
+#content .todo-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    row-gap: 4px; }
+#content .todo-buttons > * {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    color: #666;
+    font-family: AlegreyaSans;
+    font-style: italic;
+    font-size: 18px;
+    text-underline-offset: 2px; }
+
+#content .todo-buttons > *:hover { color: #f7a300; }
+#content .entry-content a:hover,
+#content .todo-buttons > *:hover {
+    text-decoration-color: rgba(247, 163, 0, .5) !important; }
+
+
+/* Todo Lists
+   ========================================================================== */
+
+#content.todo-lists { max-width: 420px; }
+#welcome-text p {
+    font-size: 19px;
+    line-height: 25px;
+    text-align: right;
+    font-style: italic;
+}
+#content.todo-lists .entry-content a,
+#content.todo-lists .todo-buttons > * {
+    text-decoration: underline solid rgba(189, 71, 0, .5);
+    transition: color ease .2s; }
+
+
+/* Todo Items
+   ========================================================================== */
+
+#content.todo-items .entry-content a,
+#content.todo-items .todo-buttons > * {
+    text-decoration: underline dotted rgba(189, 71, 0, .5);
+    transition: color ease .1s; }

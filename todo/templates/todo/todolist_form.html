@@ -1,5 +1,9 @@
 {% extends 'todo/base.html' %}
 
+{% block title %} - nouvelle liste{% endblock %}
+
+{% block content-class %}todo-lists{% endblock%}
+
 {% block content %}
 <div>
     <div>
@@ -16,8 +20,10 @@
                     <span class="slider"></span>
                 </div>
             </div>
-            <input value="envoyer" type="submit">
-            <a href="{% url 'index' %}">annuler</a>
+            <div class="todo-buttons">
+                <input value="envoyer" type="submit">
+                <a href="{% url 'index' %}">annuler</a>
+            </div>
         </form>
     </div>
 </div>

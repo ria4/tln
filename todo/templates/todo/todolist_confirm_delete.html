@@ -1,10 +1,16 @@
 {% extends 'todo/base.html' %}
 
+{% block title %} - {{ object.title }}{% endblock %}
+
+{% block content-class %}todo-lists{% endblock %}
+
 {% block content %}
 <p>voulez-vous vraiment supprimer la liste <strong>{{ object.title }}</strong> ?</p>
 <form method='POST'>
     {% csrf_token %}
-    <input value="oui je t'assure" type='submit'>
-    <a href="{% url 'list' object.id %}">euh non en fait</a>
+    <div class="todo-buttons">
+        <input value="oui je t'assure" type='submit'>
+        <a href="{% url 'list' object.id %}">euh non en fait</a>
+    </div>
 </form>
 {% endblock %}

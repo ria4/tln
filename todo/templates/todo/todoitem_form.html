@@ -1,5 +1,9 @@
 {% extends 'todo/base.html' %}
 
+{% block title %} - {{ todo_list.title }}{% endblock %}
+
+{% block content-class %}todo-items{% endblock %}
+
 {% block content %}
 <form method="post">
     {% csrf_token %}
@@ -9,11 +13,15 @@
         </label>
         {{ form.content }}
     </div>
-    <input value="envoyer" type="submit">
-    <a href="{% url 'list' todo_list.id %}">annuler</a>
-    {% if object %}
-    <input value="supprimer" type="submit"
-        formaction="{% url 'item-delete' todo_list.id object.id %}">
-    {% endif %}
+    <div class="todo-buttons">
+        {% if object %}
+        <input value="modifier" type="submit">
+        <input value="supprimer" type="submit"
+            formaction="{% url 'item-delete' todo_list.id object.id %}">
+        {% else %}
+        <input value="envoyer" type="submit">
+        {% endif %}
+        <a href="{% url 'list' todo_list.id %}">annuler</a>
+    </div>
 </form>
 {% endblock %}

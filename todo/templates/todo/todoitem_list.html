@@ -1,35 +1,31 @@
 {% extends 'todo/base.html' %}
 
+{% block title %} - {{ todo_list.title }}{% endblock %}
+
+{% block content-class %}todo-items{% endblock%}
+
 {% block content %}
-<div>
+<div class="entry-content">
     <h3>{{ todo_list.title }}</h3>
     {% if object_list %}
     <ul>
         {% for todo_item in object_list %}
-        <li>
-            {% if user == todo_list.author %}
-            <a href="{% url 'item-update' todo_list.id todo_item.id %}">
-            {% endif %}
-                {{ todo_item.content }}
-            {% if user == todo_list.author %}
-            </a>
-            {% endif %}
-        </li>
+        <li>{% if user == todo_list.author %}<a href="{% url 'item-update' todo_list.id todo_item.id %}">{% endif %}{{ todo_item.content }}{% if user == todo_list.author %}</a>{% endif %}</li>
         {% endfor %}
     </ul>
     {% else %}
     <div>(la liste est vide !)</div>
     {% endif %}
-
-    {% if user == todo_list.author %}
-    <div>
-        <a href="{% url 'item-add' todo_list.id %}">
-            ajouter un élément
-        </a>
-        <a href="{% url 'list-delete' todo_list.id %}">
-            supprimer cette liste
-        </a>
-    </div>
-    {% endif %}
 </div>
+
+{% if user == todo_list.author %}
+<div class="todo-buttons">
+    <a href="{% url 'item-add' todo_list.id %}">
+        ajouter un élément
+    </a>
+    <a href="{% url 'list-delete' todo_list.id %}">
+        supprimer cette liste
+    </a>
+</div>
+{% endif %}
 {% endblock %}

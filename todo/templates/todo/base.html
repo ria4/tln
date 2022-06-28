@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}todo{% endblock %}
+{% block title-before %}todo{% endblock %}
+
+{% block css-path %}{% static 'todo/todo.css' %}{% endblock %}
 
 {% block content-wrap %}
-<div>
-    <h1><a href='{% url "index" %}'>todo</a></h1>
-</div>
-<div>
-    {% block content %}
-    {% endblock %}
-</div>
+<main id="content" class="{% block content-class %}{% endblock %}" tabindex="-1">
+    <h1><a href='{% url "index" %}'>TODO</a></h1>
+    {% block content %}{% endblock %}
+</main>
 {% endblock %}

@@ -1,8 +1,14 @@
 {% extends 'todo/base.html' %}
 
+{% block content-class %}todo-lists{% endblock%}
+
 {% block content %}
+<div id='welcome-text'><p>les listes toutes douces<br/>qui te rappellent d'y aller mollo</p></div>
+
+<div class="hseparator" role="presentation"></div>
+
 {% if object_list %}
-<div>
+<div class="entry-content">
     <ul>
         {% for todolist in object_list %}
         <li><a href='{% url "list" todolist.id %}'>{{ todolist.title }}</a></li>
@@ -11,7 +17,7 @@
 </div>
 {% endif %}
 
-<div>
+<div class="todo-buttons">
     <a href='{% url "list-add" %}'>ajouter une liste</a>
 </div>
 {% endblock %}
