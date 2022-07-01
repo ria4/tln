@@ -19,7 +19,6 @@
 ## Features todo
 
 - style up with css
-    - form labels & text inputs
     - titles & hseparators
     - main logo
 - add list order, removed_at, last_updated_at

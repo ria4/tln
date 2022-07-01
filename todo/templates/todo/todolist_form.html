@@ -5,26 +5,24 @@
 {% block content-class %}todo-lists{% endblock%}
 
 {% block content %}
-<div>
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            <div>
-                <label for="id_title">titre de la liste</label>
-                {{ form.title }}
-            </div>
-            <div>
-                <label for="id_public">rendre la liste publique</label>
-                <div class="switch">
-                    {{ form.public }}
-                    <span class="slider"></span>
-                </div>
-            </div>
-            <div class="todo-buttons">
-                <input value="envoyer" type="submit">
-                <a href="{% url 'index' %}">annuler</a>
-            </div>
-        </form>
+<form class="todo-form-list" method="post">
+    {% csrf_token %}
+    <div class="todo-inputs">
+        <div class="todo-input">
+            <label for="id_title">titre de la liste</label>
+            {{ form.title }}
+        </div>
+        <div class="todo-input">
+            <label for="id_public">rendre la liste publique</label>
+            <label class="switch">
+                {{ form.public }}
+                <span class="slider"></span>
+            </label>
+        </div>
     </div>
-</div>
+    <div class="todo-buttons">
+        <input value="envoyer" type="submit">
+        <a href="{% url 'index' %}">annuler</a>
+    </div>
+</form>
 {% endblock %}

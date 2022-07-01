@@ -5,9 +5,13 @@
 {% block content-class %}todo-lists{% endblock %}
 
 {% block content %}
-<p>voulez-vous vraiment supprimer la liste <strong>{{ object.title }}</strong> ?</p>
-<form method='POST'>
+<form class="todo-form-list-confirm-delete" method='POST'>
     {% csrf_token %}
+    <div class="todo-inputs">
+        <div class="todo-input">
+            <label>voulez-vous vraiment supprimer<br>la liste <a href="{% url 'list' object.id %}" class="todo-list-inline">{{ object.title }}</a> ?</label>
+        </div>
+    </div>
     <div class="todo-buttons">
         <input value="oui je t'assure" type='submit'>
         <a href="{% url 'list' object.id %}">euh non en fait</a>

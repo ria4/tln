@@ -5,13 +5,15 @@
 {% block content-class %}todo-items{% endblock %}
 
 {% block content %}
-<form method="post">
+<form class="todo-form-item" method="post">
     {% csrf_token %}
-    <div>
-        <label for="id_content">
-            élément de la liste <strong>{{ todo_list.title }}</strong>
-        </label>
-        {{ form.content }}
+    <div class="todo-inputs">
+        <div class="todo-input">
+            <label for="id_content">
+                élément de la liste <a href="{% url 'list' todo_list.id %}" class="todo-list-inline">{{ todo_list.title }}</a>
+            </label>
+            {{ form.content }}
+        </div>
     </div>
     <div class="todo-buttons">
         {% if object %}
