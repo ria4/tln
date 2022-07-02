@@ -16,7 +16,10 @@ class TodoListFilterMixin(ContextMixin, View):
 
     def dispatch(self, request, *args, **kwargs):
         self.extra_context = self.extra_context or {}
-        todo_list = get_object_or_404(TodoList, id=self.kwargs['list_id'])
+        if 'list_id' in self.kwargs:
+            todo_list = get_object_or_404(TodoList, id=self.kwargs['list_id'])
+        else:
+            todo_list = get_object_or_404(TodoList, id=self.kwargs['pk'])
         self.extra_context.update(todo_list=todo_list)
         return super().dispatch(request, *args, **kwargs)
 

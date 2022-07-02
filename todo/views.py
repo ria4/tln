@@ -39,6 +39,16 @@ class TodoListCreateView(
         return super(ModelFormMixin, self).form_valid(form)
 
 
+class TodoListUpdateView(
+    TodoGroupRequiredMixin,
+    TodoListFilterMixin,
+    TodoCurrentUserFilterSingleObjectMixin,
+    UpdateView,
+):
+    model = TodoList
+    fields = ['title', 'public']
+
+
 class TodoListDeleteView(
     TodoGroupRequiredMixin,
     TodoCurrentUserFilterSingleObjectMixin,
@@ -80,8 +90,7 @@ class TodoItemCreateView(
         return super().form_valid(form)
 
     def get_success_url(self):
-        list_id = self.kwargs['list_id']
-        return reverse('list', kwargs={'list_id': list_id})
+        return reverse('list', args=[self.kwargs['list_id']])
 
 
 class TodoItemUpdateView(
@@ -98,8 +107,7 @@ class TodoItemUpdateView(
         return super().form_valid(form)
 
     def get_success_url(self):
-        list_id = self.kwargs['list_id']
-        return reverse('list', kwargs={'list_id': list_id})
+        return reverse('list', args=[self.kwargs['list_id']])
 
 
 class TodoItemDeleteView(
@@ -111,4 +119,4 @@ class TodoItemDeleteView(
     model = TodoItem
 
     def get_success_url(self):
-        return reverse_lazy('list', args=[self.kwargs['list_id']])
+        return reverse('list', args=[self.kwargs['list_id']])

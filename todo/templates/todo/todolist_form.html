@@ -21,8 +21,15 @@
         </div>
     </div>
     <div class="todo-buttons">
+        {% if object %}
+        <input value="modifier" type="submit">
+        <input value="supprimer" type="submit"
+            formaction="{% url 'list-delete' object.id %}">
+        <a href="{% url 'list' object.id %}">annuler</a>
+        {% else %}
         <input value="envoyer" type="submit">
         <a href="{% url 'index' %}">annuler</a>
+        {% endif %}
     </div>
 </form>
 {% endblock %}

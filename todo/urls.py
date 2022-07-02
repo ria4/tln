@@ -9,6 +9,7 @@ urlpatterns = [
     path('lists/<int:list_id>/', views.TodoItemListView.as_view(), name='list'),
     path('lists/<int:pk>/delete/', views.TodoListDeleteView.as_view(), name='list-delete'),
     path('lists/add/', views.TodoListCreateView.as_view(), name='list-add'),
+    path('lists/<int:pk>/edit/', views.TodoListUpdateView.as_view(), name='list-update'),
     path('lists/<int:list_id>/items/add/', views.TodoItemCreateView.as_view(), name='item-add'),
     path('lists/<int:list_id>/items/<int:pk>', views.TodoItemUpdateView.as_view(), name='item-update'),
     path('lists/<int:list_id>/items/<int:pk>/delete/', views.TodoItemDeleteView.as_view(), name='item-delete'),
