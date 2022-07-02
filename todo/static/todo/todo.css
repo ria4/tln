@@ -38,8 +38,45 @@
 /* Header
    ========================================================================== */
 
+.todo-logo {
+    position: relative;
+    left: -6px;
+    margin-top: -10px;
+    height: 220px;
+    width: 294px !important; }
+@media (max-width: 560px) {
+.todo-logo {
+    margin-top: -60px;
+    height: 212px;
+    width: 270px !important; } }
+.todo-logo > img,
+.todo-logo > div.todo-logo-line-wrapper {
+    position: absolute;
+    width: 100%; }
+
+.todo-logo .todo-logo-glow { opacity: 0; transition: opacity ease-in .9s; }
+.todo-logo:hover .todo-logo-glow { opacity: 1; transition-timing-function: ease-out; }
+
+.todo-logo img.todo-logo-line {
+    position: relative;
+    width: 294px; }
+@media (max-width: 560px) {
+.todo-logo img.todo-logo-line {
+    width: 270px; } }
+.todo-logo:hover div.todo-logo-line-wrapper {
+    overflow: hidden;
+    animation: reveal-ltr .4s ease-in; }
+.todo-logo:hover div.todo-logo-line2-wrapper {
+    width: 0px;
+    animation-fill-mode: forwards;
+    animation-delay: .3s; }
+@keyframes reveal-ltr {
+    0% { width: 0px; }
+    100% { width: 100%; } }
+
 #content-wrap .todo-welcome p,
 #content-wrap .todo-list-title {
+    margin-top: 6px;
     font-size: 19px;
     line-height: 25px;
     text-align: right;

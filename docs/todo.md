@@ -18,8 +18,6 @@
 
 ## Features todo
 
-- style up with css
-    - main logo
 - add list order, removed_at, last_updated_at
 - add item order, removed_at
 - display links to public lists from same author

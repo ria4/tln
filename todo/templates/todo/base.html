@@ -2,14 +2,23 @@
 {% load static %}
 
 {% block title-before %}todo{% endblock %}
-{% block og-image %}{% static 'todo/' %}{% endblock %}
-{% block tw-image %}{% static 'todo/' %}{% endblock %}
+{% block og-image %}https://oriane.ink{% static 'todo/logo/todo_logo_meta.jpg' %}{% endblock %}
+{% block tw-image %}https://oriane.ink{% static 'todo/logo/todo_logo_meta.jpg' %}{% endblock %}
 
 {% block css-path %}{% static 'todo/todo.css' %}{% endblock %}
 
 {% block content-wrap %}
 <main id="content" class="{% block content-class %}{% endblock %}" tabindex="-1">
-    <h1><a href='{% url "index" %}'>TODO</a></h1>
+    <a class="todo-logo" href='{% url "index" %}'>
+        <img class="todo-logo-glow" src="{% static 'todo/logo/todo_logo_glow.png' %}" role="presentation">
+        <img class="todo-logo-nolines" src="{% static 'todo/logo/todo_logo_nolines.png' %}" alt="todo">
+        <div class="todo-logo-line-wrapper todo-logo-line1-wrapper" role="presentation">
+            <img class="todo-logo-line todo-logo-line1" src="{% static 'todo/logo/todo_logo_line1.png' %}">
+        </div>
+        <div class="todo-logo-line-wrapper todo-logo-line2-wrapper" role="presentation">
+            <img class="todo-logo-line todo-logo-line2" src="{% static 'todo/logo/todo_logo_line2.png' %}">
+        </div>
+    </a>
     {% block header-content %}{% endblock %}
     <div class="hseparator" role="presentation"></div>
     {% block content %}{% endblock %}
