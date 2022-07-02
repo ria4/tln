@@ -63,6 +63,7 @@
 @media (max-width: 560px) {
 .todo-logo img.todo-logo-line {
     width: 270px; } }
+@media (min-width: 560px) {
 .todo-logo:hover div.todo-logo-line-wrapper {
     overflow: hidden;
     animation: reveal-ltr .4s ease-in; }
@@ -72,7 +73,7 @@
     animation-delay: .3s; }
 @keyframes reveal-ltr {
     0% { width: 0px; }
-    100% { width: 100%; } }
+    100% { width: 100%; } } }
 
 #content-wrap .todo-welcome p,
 #content-wrap .todo-list-title {
