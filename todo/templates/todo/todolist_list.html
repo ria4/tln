@@ -7,15 +7,17 @@
 {% endblock %}
 
 {% block content %}
-{% if object_list %}
 <div class="entry-content">
+    {% if object_list %}
     <ul>
         {% for todolist in object_list %}
         <li><a href='{% url "list" todolist.id %}'>{{ todolist.title }}</a></li>
         {% endfor %}
     </ul>
+    {% else %}
+    <div class="todo-list-empty">(aucune liste à lister !)</div>
+    {% endif %}
 </div>
-{% endif %}
 
 <div class="todo-buttons">
     <a href='{% url "list-add" %}'>ajouter une liste</a>

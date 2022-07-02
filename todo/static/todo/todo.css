@@ -240,7 +240,8 @@
     text-decoration: underline dotted rgba(189, 71, 0, .5);
     transition: color ease .1s; }
 
-#content #todo-item-empty {
+#content .todo-list-empty,
+#content .todo-item-empty {
     margin-top: 10px;
     margin-bottom: 8px;
     padding-left: 6px;
