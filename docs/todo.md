@@ -1,11 +1,11 @@
 ## Cleaning
 
-- detail oeuvre size on narrow screens
+- reduce detail oeuvre size on narrow screens
 
 
 ## CSS tweaks
 
-- all done!
+- reduce main nav size on small screens
 
 
 ## Features critique

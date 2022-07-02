@@ -19,10 +19,10 @@
     <meta name="twitter:title" content="{% block tw-title %}{% endblock %}" />
     <meta name="twitter:description" content="{% block tw-description %}{% endblock tw-description %}" />
     <meta name="twitter:image" content="{% block tw-image %}https://oriane.ink{% static 'tln/img/tln_logo_blue_bgmulti_tw.jpg' %}{% endblock %}" />
-    <meta name="author" content="oriane tury" />
+    <meta name="author" content="{% block author %}oriane tury{% endblock %}" />
     <meta name="keywords" content="{% block meta-keywords %}photos, blog, cinema, film, critique, reviews, vérités extatiques{% endblock meta-keywords %}" />{% block meta %}{% endblock meta %}
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
+    <link rel="home" href="https://oriane.ink" />
     <link rel="stylesheet" type="text/css" href="{% static 'tln/main.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />{% block link %}{% endblock link %}{% block script %}{% endblock script %}
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>{% block import-scripts %}{% endblock %}

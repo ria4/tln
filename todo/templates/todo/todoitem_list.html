@@ -1,6 +1,10 @@
 {% extends 'todo/base.html' %}
 
 {% block title %} - {{ todo_list.title }}{% endblock %}
+{% block og-title %}todo - {{ todo_list.title }}{% endblock %}
+{% block tw-title %}todo - {{ todo_list.title }}{% endblock %}
+{% block meta-description %}{{ todo_list.title }} - une liste toute douce de choses à faire{% endblock %}
+{% block author %}{{ todo_list.author }}{% endblock %}
 
 {% block content-class %}todo-items{% endblock%}
 

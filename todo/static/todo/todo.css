@@ -105,6 +105,9 @@
     width: 70%; }
 #content .todo-form-item .todo-input input[type=text] {
     width: 74%; }
+@media (max-width: 560px) {
+#content .todo-form-item .todo-input input[type=text] {
+    width: 80%; } }
 
 
 /* Form Input Checkbox
@@ -174,7 +177,9 @@
     text-decoration-color: rgba(247, 163, 0, .5) !important; }
 
 .todo-form-list .todo-buttons { margin-top: 4px; }
-.todo-form-item .todo-buttons { margin-top: 10px; }
+.todo-form-item .todo-buttons { margin-top: 12px; }
+@media (max-width: 560px) {
+.todo-form-item .todo-buttons { margin-top: 14px; } }
 .todo-form-list-confirm-delete .todo-buttons { margin-top: 10px; }
 
 
