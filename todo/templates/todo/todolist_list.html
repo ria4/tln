@@ -2,11 +2,11 @@
 
 {% block content-class %}todo-lists{% endblock%}
 
+{% block header-content %}
+<div class='todo-welcome'><p>les listes toutes douces<br/>qui te rappellent d'y aller mollo</p></div>
+{% endblock %}
+
 {% block content %}
-<div id='welcome-text'><p>les listes toutes douces<br/>qui te rappellent d'y aller mollo</p></div>
-
-<div class="hseparator" role="presentation"></div>
-
 {% if object_list %}
 <div class="entry-content">
     <ul>

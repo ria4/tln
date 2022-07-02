@@ -15,8 +15,7 @@
 #content .hseparator {
     width: 94%;
     margin-top: 28px;
-    margin-bottom: 13px;
-    border-bottom-color: black; }
+    margin-bottom: 13px; }
 
 #content .entry-content ul { padding-left: 24px; }
 #content .entry-content li {
@@ -36,10 +35,25 @@
 #content .entry-content a:not(:hover) { color: black; }
 
 
+/* Header
+   ========================================================================== */
+
+#content-wrap .todo-welcome p,
+#content-wrap .todo-list-title {
+    font-size: 19px;
+    line-height: 25px;
+    text-align: right;
+    font-weight: normal;
+    font-style: italic; }
+#content-wrap .todo-list-title a {
+    color: black; }
+
+
 /* Form Fields
    ========================================================================== */
 
 #content .todo-inputs {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,6 +79,7 @@
     text-decoration: underline solid rgba(189, 71, 0, .5);
     text-underline-offset: 2px;
     transition: color ease .2s; }
+#content-wrap .todo-list-title a:hover,
 #content .todo-input a.todo-list-inline:hover {
     color: #f7a300;
     text-decoration-color: rgba(247, 163, 0, .5); }
@@ -153,12 +168,13 @@
     text-underline-offset: 2px; }
 
 #content .todo-buttons > *:hover { color: #f7a300; }
+#content-wrap .todo-list-title a:hover,
 #content .entry-content a:hover,
 #content .todo-buttons > *:hover {
     text-decoration-color: rgba(247, 163, 0, .5) !important; }
 
 .todo-form-list .todo-buttons { margin-top: 4px; }
-.todo-form-item .todo-buttons { margin-top: 8px; }
+.todo-form-item .todo-buttons { margin-top: 10px; }
 .todo-form-list-confirm-delete .todo-buttons { margin-top: 10px; }
 
 
@@ -166,12 +182,6 @@
    ========================================================================== */
 
 #content.todo-lists { max-width: 420px; }
-#welcome-text p {
-    font-size: 19px;
-    line-height: 25px;
-    text-align: right;
-    font-style: italic;
-}
 #content.todo-lists .entry-content a,
 #content.todo-lists .todo-buttons > * {
     text-decoration: underline solid rgba(189, 71, 0, .5);
@@ -181,7 +191,16 @@
 /* Todo Items
    ========================================================================== */
 
+#content-wrap .todo-list-title a,
 #content.todo-items .entry-content a,
 #content.todo-items .todo-buttons > * {
     text-decoration: underline dotted rgba(189, 71, 0, .5);
     transition: color ease .1s; }
+
+#content #todo-item-empty {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    padding-left: 6px;
+    color: #555;
+    font-family: AlegreyaSans;
+    font-style: italic; }

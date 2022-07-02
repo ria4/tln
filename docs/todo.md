@@ -19,7 +19,6 @@
 ## Features todo
 
 - style up with css
-    - titles & hseparators
     - main logo
 - add list order, removed_at, last_updated_at
 - add item order, removed_at

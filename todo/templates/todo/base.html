@@ -8,6 +8,8 @@
 {% block content-wrap %}
 <main id="content" class="{% block content-class %}{% endblock %}" tabindex="-1">
     <h1><a href='{% url "index" %}'>TODO</a></h1>
+    {% block header-content %}{% endblock %}
+    <div class="hseparator" role="presentation"></div>
     {% block content %}{% endblock %}
 </main>
 {% endblock %}

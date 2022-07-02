@@ -4,9 +4,12 @@
 
 {% block content-class %}todo-items{% endblock%}
 
+{% block header-content %}
+<h3 class="todo-list-title">liste <a href="{% url 'list' todo_list.id %}">{{ todo_list.title }}</a></h3>
+{% endblock %}
+
 {% block content %}
 <div class="entry-content">
-    <h3>{{ todo_list.title }}</h3>
     {% if object_list %}
     <ul>
         {% for todo_item in object_list %}
@@ -14,7 +17,7 @@
         {% endfor %}
     </ul>
     {% else %}
-    <div>(la liste est vide !)</div>
+    <div id="todo-item-empty">(la liste est vide !)</div>
     {% endif %}
 </div>
 
