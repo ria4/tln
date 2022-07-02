@@ -2,17 +2,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic.base import RedirectView
 
 from . import views
 
 
 urlpatterns = [
+    # apps
     path('', include('home.urls')),
     path('blog/', include('blog.urls')),
     path('photos/', include('photos.urls')),
     path('critique/', include('critique.urls')),
     path('todo/', include('todo.urls')),
 
+    # todo shortcut
+    path('jaj/', RedirectView.as_view(url='/todo/lists/3/')),
+
+    # admin
     path('admin/', admin.site.urls),
     path('login', views.login_view, name='login'),
     path('logout', views.logout_view, name='logout'),
