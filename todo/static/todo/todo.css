@@ -117,6 +117,7 @@
     text-decoration: underline solid rgba(189, 71, 0, .5);
     text-underline-offset: 2px;
     transition: color ease .2s; }
+#content.todo-lists .todo-welcome a:hover,
 #content-wrap .todo-list-title a:hover,
 #content .todo-input a.todo-list-inline:hover {
     color: #f7a300;
@@ -225,6 +226,7 @@
    ========================================================================== */
 
 #content.todo-lists { max-width: 420px; }
+#content.todo-lists .todo-welcome a,
 #content.todo-lists .entry-content a,
 #content.todo-lists .todo-buttons > * {
     text-decoration: underline solid rgba(189, 71, 0, .5);

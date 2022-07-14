@@ -1,0 +1,22 @@
+{% extends 'todo/base.html' %}
+
+{% block title %}oriane - now{% endblock %}
+{% block og-title %}oriane - now{% endblock %}
+{% block tw-title %}oriane - now{% endblock %}
+{% block meta-description %}qui suis-je, où vais-je, et danke laitage R{% endblock %}
+
+{% block content-class %}todo-lists{% endblock%}
+
+{% block header-content %}
+<div class='todo-welcome'><p>mes listes d'affaires en cours.<br/>perdu·e ? retrouvez plus d'infos <a href="/blog">ici</a>. </p></div>
+{% endblock %}
+
+{% block content %}
+<div class="entry-content">
+    <ul>
+        {% for todolist in object_list %}
+        <li><a href='{% url "list" todolist.id %}'>{{ todolist.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

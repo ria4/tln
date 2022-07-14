@@ -24,6 +24,12 @@ class TodoListListView(
     template_name = 'todo/todolist_list.html'
 
 
+class TodoNowView(ListView):
+    """Return a list of the admin's public TodoLists."""
+    queryset = TodoList.objects.filter(author=1, public=True)
+    template_name = 'todo/todolist_now.html'
+
+
 class TodoListCreateView(
     TodoGroupRequiredMixin,
     TodoCurrentUserFilterSingleObjectMixin,

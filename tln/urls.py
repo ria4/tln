@@ -5,6 +5,7 @@ from django.urls import include, path
 from django.views.generic.base import RedirectView
 
 from . import views
+from todo.views import TodoNowView
 
 
 urlpatterns = [
@@ -15,7 +16,8 @@ urlpatterns = [
     path('critique/', include('critique.urls')),
     path('todo/', include('todo.urls')),
 
-    # todo shortcut
+    # todo shortcuts
+    path('now/', TodoNowView.as_view()),
     path('jaj/', RedirectView.as_view(url='/todo/lists/3/')),
 
     # admin
