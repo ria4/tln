@@ -25,6 +25,11 @@
 - link /now to a list of my public lists
 
 
+## Features lajujabot
+
+- handle ChatMigrated error
+
+
 ## Long term
 
 - migrate from zinnia to another cms
