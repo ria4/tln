@@ -232,6 +232,8 @@ _:-ms-fullscreen, :root #critique-searchend-button-m img { top: 50%; left: 0; } 
 #critique-search-results-m { height: 0; }
 @media(min-width: 700px) {
 #critique-search-m.expanded #critique-search-results-m { height: auto; } }
+@media(max-width: 700px) {
+#critique-search-m:not(.expanded) #critique-search-results-list-m { display: none; } }
 
 #critique-search-results-list li, #critique-search-results-list-m li {
     position: relative;

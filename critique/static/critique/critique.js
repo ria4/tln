@@ -112,8 +112,8 @@ getSearchInput = function() {
     return ((window.innerWidth > widthTriggerMobileSearch)? searchInput : searchInputM ) }
 function updateAgnosticSearchElements() {
     searchInputX = getSearchInput();
-    critiqueSearchX = searchInputX.parentElement.parentElement.parentElement;
-    searchResultsListX = critiqueSearchX.getElementsByTagName("div")[1].firstElementChild;
+    critiqueSearchX = ((searchInputX === searchInput)? critiqueSearch : critiqueSearchM);
+    searchResultsListX = ((searchInputX === searchInput)? searchResultsList : searchResultsListM);
 }
 
 
@@ -121,9 +121,7 @@ function hideSearchInput(prev) {
     updateAgnosticSearchElements();
     if (!critiqueSearchX.classList.contains("expanded")) { return }
 
-    while (searchResultsListX.lastChild) {
-        searchResultsListX.removeChild(searchResultsListX.lastChild);
-    }
+    searchResultsListX.replaceChildren();
     searchInputX.value = "";
     critiqueSearchX.classList.remove("expanded");
     if (searchInputX == searchInput) {
