@@ -19,6 +19,7 @@
 
 ## Features todo
 
+- focus on id_content/id_title for new item/list
 - display /now link
 - add list order, removed_at, last_updated_at
 - add item order, removed_at
@@ -29,6 +30,7 @@
 ## Features lajujabot
 
 - handle ChatMigrated error
+- handle unexpected reboots and reconnect errors
 
 
 ## Long term
