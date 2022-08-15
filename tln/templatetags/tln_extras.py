@@ -59,3 +59,8 @@ def fancydate(obj, date_attrname='date', en=False, le=False, mois=True, annee=Fa
         res += f" {date_format(dt, 'Y')}"
 
     return mark_safe(res)
+
+
+@register.filter
+def get_item(mydict, key):
+    return mydict.get(key)

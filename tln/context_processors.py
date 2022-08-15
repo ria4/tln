@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm
 
+from tln.constants import LOGIN_FORM_ERROR_CODES_MAP
+
 
 def login_form(req):
     f = AuthenticationForm()
@@ -9,7 +11,7 @@ def login_form(req):
                      "autocapitalize": "off",
                      "spellcheck": "false" }
     f.fields["username"].widget.attrs.update({**additional_attrs, **mobile_attrs})
-    return {"login_form": f}
+    return {"login_form": f, "login_error_codes": LOGIN_FORM_ERROR_CODES_MAP}
 
 def android(req):
     user_agent = req.META.get("HTTP_USER_AGENT")

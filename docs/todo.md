@@ -1,28 +1,29 @@
-## Cleaning
-
-- reduce detail oeuvre size on narrow screens
-
-
-## CSS tweaks
+## Features tln
 
 - reduce main nav size on small screens
 
 
 ## Features critique
 
+- reduce detail oeuvre size on narrow screens
 - autocomplete + create for artists & tags
 - list tags on oeuvre detail
 - link to all cinemas on cinema detail
 - navlink to all cinemas? to all tags?
 
 
+## Features photos
+
+- move logout link to 'tools' (see blog sidebar)
+
+
 ## Features todo
 
+- display /now link
 - add list order, removed_at, last_updated_at
 - add item order, removed_at
 - display links to public lists from same author
-- use ajax and icons with todo app
-- link /now to a list of my public lists
+- handle /todo page for unauthenticated users
 
 
 ## Features lajujabot
@@ -32,8 +33,10 @@
 
 ## Long term
 
+- use ajax and icons with todo app
 - migrate from zinnia to another cms
-- bump to django 4.0
+- logout with POST rather than GET
+- bump to django 4.1
     - switch to redis cache
     - update critique collection asynchronously
     - cache much more pages

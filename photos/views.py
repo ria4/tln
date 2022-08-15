@@ -6,7 +6,8 @@ from photologue.models import Gallery
 from photologue.views import GalleryDetailView
 
 from tln import settings
-from tln.utils import remove_query_param, update_query_param
+from tln.constants import MISSING_PERM_TO_PHOTO_GALLERY
+from tln.utils import qs_update_loginfail
 
 from .models import GalleryCustom
 
@@ -26,9 +27,12 @@ class GalleryCustomDetailView(GalleryDetailView):
                 return redirect_to_login(req.path)
             elif req.user not in gallery_custom.allowed_users.all():
                 logout(req)
-                next_url = remove_query_param(req.path, "loginfail")
-                login_url = update_query_param(settings.LOGIN_URL, "loginfail", 2)
-                return redirect_to_login(next_url, login_url=login_url)
+                login_url = (
+                    settings.LOGIN_URL
+                    + "?"
+                    + qs_update_loginfail(req, MISSING_PERM_TO_PHOTO_GALLERY)
+                )
+                return redirect_to_login(req.path, login_url=login_url)
         return self.render_to_response(context)
 
     def get_object(self, queryset=None):

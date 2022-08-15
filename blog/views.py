@@ -16,7 +16,8 @@ from zinnia.models.entry import Entry
 from zinnia.views.entries import EntryDetail
 
 from tln import settings
-from tln.utils import remove_query_param, update_query_param, md5_2
+from tln.constants import MISSING_PERM_TO_BLOG_ENTRY
+from tln.utils import qs_update_loginfail
 
 from .models import EntryCustom
 
@@ -47,9 +48,12 @@ class EntryDetailCustom(EntryDetail):
                 return redirect_to_login(req.path)
             elif req.user not in entry_custom.allowed_users.all():
                 logout(req)
-                next_url = remove_query_param(req.path, "loginfail")
-                login_url = update_query_param(settings.LOGIN_URL, "loginfail", 2)
-                return redirect_to_login(next_url, login_url=login_url)
+                login_url = (
+                    settings.LOGIN_URL
+                    + "?"
+                    + qs_update_loginfail(req, MISSING_PERM_TO_BLOG_ENTRY)
+                )
+                return redirect_to_login(req.path, login_url=login_url)
         return self.render_to_response(context)
 
 

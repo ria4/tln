@@ -1,32 +1,43 @@
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect
-from django.utils.http import is_safe_url
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.views.decorators.http import require_http_methods
 
-from tln.utils import remove_query_param, update_query_param
+from tln.constants import LOGIN_FAILED_WRONG_CREDENTIALS
+from tln.utils import qs_update_loginfail
 
 
 # Login
 
+@require_http_methods(["GET", "POST"])
 def login_view(req):
-    if not req.method == 'POST':
-        return redirect('/#login')
-    redirect_url = remove_query_param(req.META.get('HTTP_REFERER'), "loginfail")
-    username = req.POST['username']
-    password = req.POST['password']
+    if req.method == "GET":
+        url = reverse("home") + "?" + req.GET.urlencode(safe="/") + "#login"
+        return redirect(url)
+
+    username = req.POST.get('username')
+    password = req.POST.get('password')
     user = authenticate(req, username=username, password=password)
+
+    url = req.GET.get("next", "")
+    if not url_has_allowed_host_and_scheme(
+        url,
+        allowed_hosts={req.get_host()},
+        require_https=True,
+    ):
+        url = reverse("home")
+
     if user is not None:
         login(req, user)
-        next_url = req.POST.get("next", None)
-        if next_url:
-            if not is_safe_url(next_url, req.get_host()):
-                next_url = "/"
-            return redirect(next_url)
     else:
-        redirect_url = update_query_param(redirect_url, "loginfail", 1)
-        redirect_url += "#login"
-    return redirect(redirect_url)
+        url = reverse("home")
+        url += "?" + qs_update_loginfail(req, LOGIN_FAILED_WRONG_CREDENTIALS) + "#login"
+    return redirect(url)
 
+@require_http_methods(["GET", "POST"])
 def logout_view(req):
     if req.user.is_authenticated:
         logout(req)
-    return redirect(req.META.get('HTTP_REFERER'))
+    return redirect(req.META.get("HTTP_REFERER", "home"))

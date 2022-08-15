@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['oriane.ink']
 
 
 # Application definition
@@ -140,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = "/#login"
+LOGIN_URL = "/login"
 
 
 # Internationalization
