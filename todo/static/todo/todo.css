@@ -104,7 +104,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    row-gap: 2px; }
+    row-gap: 1px; }
 
 #content .todo-input > label {
     padding-left: 6px;
@@ -198,7 +198,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    row-gap: 4px; }
+    row-gap: 1px; }
 #content .todo-buttons > * {
     border: none;
     background-color: transparent;
