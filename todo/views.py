@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import BooleanField, ExpressionWrapper, Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
@@ -79,7 +80,11 @@ class TodoItemListView(
         return todo_list.public or todo_list.author == self.request.user
 
     def get_queryset(self):
-        return self.extra_context['todo_list'].items.all()
+        """Display items starting with '[long term]' first."""
+        qs = self.extra_context['todo_list'].items.all()
+        expression = Q(content__startswith="[long term]")
+        is_longterm = ExpressionWrapper(expression, output_field=BooleanField())
+        return qs.annotate(is_longterm=is_longterm).order_by("-is_longterm")
 
 
 class TodoItemCreateView(
