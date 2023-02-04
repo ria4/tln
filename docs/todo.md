@@ -5,11 +5,12 @@
 
 ## Features critique
 
-- reduce detail oeuvre size on narrow screens
+- oeuvre size + vertical flex on narrow screens
 - autocomplete + create for artists & tags
 - list tags on oeuvre detail
 - link to all cinemas on cinema detail
 - navlink to all cinemas? to all tags?
+- visual timelines
 
 
 ## Features photos
@@ -20,7 +21,6 @@
 ## Features todo
 
 - focus on id_content/id_title for new item/list
-- display /now link
 - add list order, removed_at, last_updated_at
 - add item order, removed_at
 - display links to public lists from same author
@@ -47,6 +47,7 @@
 ## Barely matters
 
 - refactor critique views with CBVs or DRF
+- integrate critique to admin dashboard
 - override admin interfaces to remove useless content
 - call sqip asynchronously
 - ansible deployment (maybe)
