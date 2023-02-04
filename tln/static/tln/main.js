@@ -3,6 +3,31 @@ var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-al
 function isTouchDevice() { return "ontouchstart" in window || navigator.maxTouchPoints; }
 
 
+/* Todo Link - Modify object on touch devices */
+
+var todoLinkNav = document.getElementById("todo-logo-nav");
+if ((isTouchDevice()) && (todoLinkNav)) {
+    todoLinkNav.classList.add("todo-logo-nav-mobile");
+    var todoLink = todoLinkNav.href;
+    todoLinkNav.href = "#";
+    todoLinkNav.addEventListener("click", (e) => {
+        if (todoLinkNav.getAttribute("href") == "#") {
+            e.preventDefault();
+            todoLinkNav.classList.add("mobile-hover");
+            todoLinkNav.href = "/now";
+        }
+    });
+    todoLinkNav.addEventListener("blur", (e) => {
+        todoLinkNav.href = "#";
+        todoLinkNav.classList.remove("mobile-hover");
+    });
+    window.addEventListener("scroll", (e) => {
+        todoLinkNav.href = "#";
+        todoLinkNav.classList.remove("mobile-hover");
+    });
+}
+
+
 /* Sidebar - Display inset shadow for overflowing content */
 
 var sidebar = document.getElementById("sidebar");

@@ -263,6 +263,7 @@ html { height: 100%; }
 body {
     min-width: 320px;
     min-height: 100%;
+    overflow-x: hidden;
     background-size: 100% auto;
     font-size: 20px;
     display: -ms-flexbox;
@@ -541,6 +542,38 @@ body #sidebar {
     width: auto;
     height: auto;
     z-index: 1000 }
+
+
+/* Todo Now Link
+   ========================================================================== */
+
+#todo-logo-nav {
+    position: absolute;
+    z-index: 100;
+    top: -156px;
+    right: -126px;
+    margin-top: -10px;
+    height: 220px;
+    width: 294px !important;
+    transform: rotate(32deg);
+    transition: transform ease .9s; }
+#todo-logo-nav.todo-logo-nav-mobile {
+    top: -80px;
+    right: -70px;
+    height: 120px;
+    width: 160px !important; }
+#todo-logo-nav > img {
+    position: absolute;
+    width: 100%; }
+
+#todo-logo-nav:not(.todo-logo-nav-mobile):hover,
+#todo-logo-nav.todo-logo-nav-mobile.mobile-hover {
+    transform: rotate(22deg) translate(-9%, 68%); }
+
+#todo-logo-nav .todo-logo-glow { opacity: 0; transition: opacity ease-in .9s; }
+#todo-logo-nav:not(.todo-logo-nav-mobile):hover .todo-logo-glow,
+#todo-logo-nav.todo-logo-nav-mobile.mobile-hover .todo-logo-glow {
+    opacity: .8; transition-timing-function: ease-out; }
 
 
 /* IE/Edge Fix

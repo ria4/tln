@@ -1,6 +1,6 @@
 /* Homepage - Smooth scroll to info anchor */
 
-$('a[href^="#"]').click( function (event) {
+$('a[href^="#info"]').click( function (event) {
     event.preventDefault();
     var href = $.attr(this, 'href');
     $('html, body').animate({

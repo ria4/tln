@@ -5,6 +5,7 @@ from todo import views
 
 urlpatterns = [
     path('', views.TodoListListView.as_view(), name='index'),
+    path('now/', views.TodoNowView.as_view(), name='now'),
     path('lists/', views.TodoListListView.as_view()),
     path('lists/<int:list_id>/', views.TodoItemListView.as_view(), name='list'),
     path('lists/<int:pk>/delete/', views.TodoListDeleteView.as_view(), name='list-delete'),
