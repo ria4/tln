@@ -9,7 +9,7 @@
 
 {% block content-wrap %}
 <main id="content" class="{% block content-class %}{% endblock %}" tabindex="-1">
-    <a class="todo-logo" href='{% url "index" %}'>
+    <a class="todo-logo" href='{% if user.is_superuser %}{% url "index" %}{% else %}{% url "now" %}{% endif %}'>
         <img class="todo-logo-glow" src="{% static 'todo/logo/todo_logo_glow.png' %}" role="presentation">
         <img class="todo-logo-nolines" src="{% static 'todo/logo/todo_logo_nolines.png' %}" alt="todo">
         <div class="todo-logo-line-wrapper todo-logo-line1-wrapper" role="presentation">

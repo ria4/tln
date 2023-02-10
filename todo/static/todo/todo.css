@@ -34,6 +34,17 @@
     left: -10px; }
 #content .entry-content a:not(:hover) { color: black; }
 
+#content .entry-content .hseparator {
+    margin-top: 33px;
+    margin-left: auto;
+    margin-right: auto; }
+
+#todo-now-pic > img {
+    display: block;
+    border: solid #a57100 1px;
+    margin: 40px auto 20px auto;
+    max-width: 76%; }
+
 
 /* Header
    ========================================================================== */
