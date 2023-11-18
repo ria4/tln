@@ -84,7 +84,7 @@ def fancyspans(mtype, spans):
 
     "lu entre mai et octobre 2022",
 
-    "jeu en cours depuis juin 2022",
+    "commencé en juin 2022",
 
     "vu le 16 juin 2022 au <a href=...>Katorza</a>"
 
@@ -95,7 +95,7 @@ def fancyspans(mtype, spans):
            le 12 mai 2019
     et le 27 octobre 2022"
     """
-    mtype_prefix, mtype_prefix_ongoing = MTYPE_SPAN_MAP.get(mtype)
+    mtype_prefix, mtype_accord = MTYPE_SPAN_MAP.get(mtype)
     res = ""
     n = len(spans)
     for i, span in enumerate(spans):
@@ -103,7 +103,8 @@ def fancyspans(mtype, spans):
             if not span.ongoing:
                 res += mtype_prefix
             else:
-                res += mtype_prefix_ongoing + "en cours depuis "
+                accord = "e" if mtype_accord else ""
+                res += f"commencé{accord} "
         else:
             if span.ongoing:
                 res += "depuis "
@@ -112,7 +113,7 @@ def fancyspans(mtype, spans):
                 span,
                 date_attrname='date_start',
                 le=True,
-                en=False,
+                en=(i==0),
                 mois=True,
                 annee=True,
             )
@@ -146,6 +147,19 @@ def fancyspans(mtype, spans):
                     res += cl
                 else:
                     res += ", dans un cinéma oublié"
+        elif (
+            span.date_start.month == span.date_end.month
+            and span.date_start.year == span.date_end.year
+            and (span.date_start_du or span.date_end_du)
+        ):
+            res += fancydate(
+                span,
+                date_attrname='date_start',
+                le=True,
+                en=True,
+                mois=True,
+                annee=True,
+            )
         else:
             mois = True
             annee = span.date_start.year != span.date_end.year

@@ -1,10 +1,11 @@
+# second element of the tuple indicates un accord féminin
 MTYPE_SPAN_MAP = {
-    'film': ('vu ', 'visionnage '),
-    'serie': ('regardée ', 'visionnage '),
-    'album': ('écouté ', 'écoute '),
-    'jeu': ('joué ', 'jeu '),
-    'livre': ('lu ', 'lecture '),
-    'bd': ('lue ', 'lecture '),
+    'film': ('vu ', False),
+    'serie': ('regardée ', True),
+    'album': ('écouté ', False),
+    'jeu': ('joué ', False),
+    'livre': ('lu ', False),
+    'bd': ('lue ', True),
 }
 
 CINEMA_LONGNAME_PREFIXES = [
