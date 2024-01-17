@@ -298,7 +298,7 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 @media (min-width: 900px) {
 #content > div:last-child > div:first-of-type { position: relative; } }
 @media (max-width: 900px) {
-#locale-switch { top: 2px; right: 7px; } }
+#locale-switch { top: 2px; left: 7px; } }
 
 
 /* Informations Light Painting
