@@ -530,18 +530,33 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     max-width: 350px;
     max-height: 302px; }
 
+@media (max-width: 430px) {
+#oeuvre-info .oeuvre-display {
+    max-width: 50%;
+    margin-right: 14px; }
+#oeuvre-info .oeuvre-display img {
+    max-width: 100%; } }
+
 #oeuvre-info .critique-info-text {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    margin-right: 6px; }
 #oeuvre-info .critique-info-text.with-spans {
     min-width: 310px; }
 #oeuvre-info .critique-info-text.with-spans.with-long-span {
     min-width: 346px; }
 @media (max-width: 600px) {
 #oeuvre-info .critique-info-text { min-width: 0; } }
+@media (max-width: 430px) {
+#oeuvre-info .critique-info-text.with-spans {
+    min-width: 200px; }
+#oeuvre-info .critique-info-text.with-spans.with-long-span {
+    min-width: 240px; }
+#oeuvre-info #imdb-link {
+    opacity: 0;  /* hack aimaing at better, non-overlapping oeuvre-span display */ } }
 
 #oeuvre-info .critique-info-text-content {
     padding-bottom: 8%;
@@ -555,6 +570,10 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     text-align: right;
     font-style: italic;
     font-size: 20px; }
+@media (max-width: 430px) {
+#oeuvre-info .critique-info-text .oeuvrespans {
+    top: 90%;
+    font-size: 18px; } }
 
 #oeuvre-info .critique-title {
     text-align: left;
