@@ -8,38 +8,20 @@ function isTouchDevice() { return "ontouchstart" in window || navigator.maxTouch
 var todoLinkNav = document.getElementById("todo-logo-nav");
 if ((isTouchDevice()) && (todoLinkNav)) {
     todoLinkNav.classList.add("todo-logo-nav-mobile");
-
-    function moveTodoLinkNav() {
-        // okay, hear me out, that's a good one
-        // mobile browsers ignore overflow-x: hidden on body
-        // so we need a hack to setup the overflowing todoLinkNav
-        // without triggering a window resize...
-        // for now, using translateX after a small timeout works...
-        // that might be the most horrible and stupid lines i ever wrote
-        todoLinkNav.style.opacity = "1";
-        todoLinkNav.style.transform = "rotate(32deg) translateX(82px)";
-    }
-    setTimeout(moveTodoLinkNav, 10);
-
-    var todoLink = todoLinkNav.href;
     todoLinkNav.href = "#";
     todoLinkNav.addEventListener("click", (e) => {
         if (todoLinkNav.getAttribute("href") == "#") {
             e.preventDefault();
-            todoLinkNav.style.transition = "ease 1s";
-            todoLinkNav.style.transform = "rotate(22deg) translate(86px, 96px)";
             todoLinkNav.classList.add("mobile-hover");
             todoLinkNav.href = "/now";
         }
     });
     todoLinkNav.addEventListener("blur", (e) => {
         todoLinkNav.href = "#";
-        todoLinkNav.style.transform = "rotate(32deg) translateX(82px)";
         todoLinkNav.classList.remove("mobile-hover");
     });
     window.addEventListener("scroll", (e) => {
         todoLinkNav.href = "#";
-        todoLinkNav.style.transform = "rotate(32deg) translateX(82px)";
         todoLinkNav.classList.remove("mobile-hover");
     });
 }

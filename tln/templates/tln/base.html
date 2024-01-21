@@ -9,7 +9,9 @@
   <head>
     <meta charset="utf-8" />
     <title>{% block title-before %}{% endblock %}{% block title %}{% endblock %}{% block title-after %}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- We set a minimum-scale=1 to the viewport in order to prevent the top-right todo link to cause scrollable overflow on mobile devices.
+    Indeed `body { overflow-x: hidden }` is ignored specifically on mobile devices. What, how, why? Such are the mysteries of CSS implementation. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
     <meta name="description" content="{% block meta-description %}{% endblock meta-description %}{% block meta-description-page %}{% endblock meta-description-page %}" />
     <meta property="og:title" content="{% block og-title %}{% endblock %}" />
     <meta property="og:type" content="article" />
