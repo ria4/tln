@@ -69,6 +69,12 @@
           <span class="nav-separator-sub"></span>
           <li><a href="/#info">À propos</a></li>
         </ul>
+        {% if request.path|slice:":9" == "/critique" %}
+        <a id="todo-logo-nav" href="/now/">
+            <img class="todo-logo-glow" src="{% static 'todo/logo/todo_logo_glow.png' %}" role="presentation">
+            <img class="todo-logo-full" src="{% static 'todo/logo/todo_logo.png' %}" role="presentation">
+        </a>
+        {% endif %}
       </nav>
       {% block header-more %}{% endblock %}
     </header>

@@ -569,7 +569,8 @@ body #sidebar {
     position: absolute;
     width: 100%; }
 
-#todo-logo-nav:not(.todo-logo-nav-mobile):hover {
+#todo-logo-nav:not(.todo-logo-nav-mobile):hover,
+#top-nav-h #todo-logo-nav:not(.todo-logo-nav-mobile):hover {
     transform: rotate(22deg) translate(-9%, 68%); }
 
 #todo-logo-nav .todo-logo-glow { opacity: 0; transition: opacity ease-in .9s; }
@@ -577,6 +578,16 @@ body #sidebar {
 #todo-logo-nav.todo-logo-nav-mobile.mobile-hover .todo-logo-glow {
     opacity: .8; transition-timing-function: ease-out; }
 
+#top-nav-h #todo-logo-nav {
+    opacity: 0;
+    z-index: 102;
+    top: -234px;
+    right: 0;
+    transition: opacity ease-out .2s, transform ease .9s;
+    transform: rotate(32deg); }
+#top-nav-h.expanded #todo-logo-nav {
+    opacity: 1;
+    transition: opacity ease-in .3s .1s, transform ease .9s }
 
 /* IE/Edge Fix
    ========================================================================== */
