@@ -23,7 +23,7 @@ def top_films(req, year=2011):
 
 # Top Jeux
 
-def top_jeux(req, year=2021):
+def top_jeux(req, year=2023):
     oeuvres = list(get_object_or_404(TopJeux, year=year).jeux.all())
     random.shuffle(oeuvres)
     return render(req, 'critique/top_jeux.html', locals())
