@@ -109,7 +109,7 @@ body #sidebar-column {
 @media (max-width: 1300px) {
 .entry-links { max-width: 804px; } }
 @media (max-width: 1080px) {
-.entry-links { max-width: 700px; }
+.entry-links { max-width: 701px; }
 .entry-list .entry-body { margin: 5px 0; } }
 @media (max-width: 740px) {
 .entry-links > ul { padding-right: 54px; } }
