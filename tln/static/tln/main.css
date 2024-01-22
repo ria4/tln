@@ -578,11 +578,15 @@ body #sidebar {
 
 #top-nav-h #todo-logo-nav {
     opacity: 0;
-    z-index: 102;
+    z-index: 202;
     top: -234px;
     right: 0;
     transition: opacity ease-out .2s, transform ease .9s;
     transform: rotate(32deg); }
+#top-nav-h #todo-logo-nav.todo-logo-nav-mobile {
+    top: -120px; }
+#top-nav-h #todo-logo-nav.todo-logo-nav-mobile.mobile-hover {
+    transform: rotate(22deg) translate(-14%, 79%); }
 #top-nav-h.expanded #todo-logo-nav {
     opacity: 1;
     transition: opacity ease-in .3s .1s, transform ease .9s }
