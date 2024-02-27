@@ -1,0 +1,32 @@
+{% load zinnia %}
+{% load i18n %}
+
+{% regroup archives by year as year_list %}
+<ul class="{% if not archives %}no-{% endif %}archives-entries-tree">
+  {% for year in year_list reversed %}
+  <li>
+      <a class='toggle
+        {% if publication_date %}
+          {% if publication_date|date:"Y" == year.grouper|stringformat:"d" %} expanded{% else %} collapsed{% endif %}
+        {% endif %}
+        ' href="#" role="button"><span class='toggle-in'></span><span class='toggle-year'>{{ year.grouper }}</span></a>
+    {% regroup year.list by day as days_lists %}
+      <ul>
+        {% for days_list in days_lists reversed %}
+          {% for day_date in days_list.list reversed %}
+            {% get_entries_on_day day_date is_superuser user_id as entries_day %}
+            {% for entry in entries_day %}
+            <li class='bullet-li'>
+                <a href="{{ entry.url }}" {% if not entry.lang == 'fr-FR' %}lang="{{ entry.lang }}"{% endif %}>{{ entry.title }}</a>
+            </li>
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+      </ul>
+  </li>
+  {% empty %}
+  <li>
+    {% trans "No archives yet." %}
+  </li>
+  {% endfor %}
+</ul>

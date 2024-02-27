@@ -10,7 +10,8 @@ from . import views
 urlpatterns = [
     # apps
     path('', include('home.urls')),
-    path('blog/', include('blog.urls')),
+    # path('blog/', include('blog.urls')),
+    path('blog/', include('zinnia.urls', namespace='zinnia')),
     path('photos/', include('photos.urls')),
     path('critique/', include('critique.urls')),
     path('todo/', include('todo.urls')),

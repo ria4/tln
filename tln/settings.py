@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['oriane.ink']
+# ALLOWED_HOSTS = ['oriane.ink']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,13 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_comments',
-    'zinnia',
     'photologue',
     'sortedm2m',
     'tagging',
     'mptt',
     'home',
-    'blog',
+    'zinnia',
     'photos',
     'critique',
     'todo',
@@ -89,7 +90,6 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'blog.context_processors.entry_default',
                 'critique.context_processors.oeuvre_form',
                 'critique.context_processors.oeuvrespan_form',
                 'critique.context_processors.cinema_form',
@@ -99,6 +99,7 @@ TEMPLATES = [
                 'tln.context_processors.login_form',
                 'tln.context_processors.android',
                 'tln.context_processors.webkit',
+                'zinnia.context_processors.entry_default',
                 'zinnia.context_processors.version',
             ],
         },
@@ -203,7 +204,6 @@ SITE_ID = 1
 
 # Zinnia configuration
 
-#ZINNIA_ENTRY_BASE_MODEL = 'blog.models.EntryCustom'
 ZINNIA_PREVIEW_MAX_WORDS = 100
 ZINNIA_PAGINATION = None
 ZINNIA_PROTOCOL = 'https'

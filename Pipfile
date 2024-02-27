@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "<5.0"
+django-extensions = ">=3.2"
+django-photologue = ">=3.16"
+tzlocal = ">=5.2"
+requests = ">=2.31"
+pymemcache = ">=4.0"
+django-autocomplete-light = ">=3.11"
+beautifulsoup4 = ">=4.3.2"
+django-contrib-comments = ">=1.9.2"
+django-mptt = ">=0.11.0"
+mots-vides = ">=2015.5.11"
+pillow = ">=7.0.0"
+pyparsing = ">=2.4.6"
+regex = ">=2020.2.20"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

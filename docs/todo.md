@@ -10,7 +10,8 @@
 - list tags on oeuvre detail
 - link to all cinemas on cinema detail
 - navlink to all cinemas? to all tags?
-- visual timelines
+- dataviz seances, cinemas, words
+- dataviz spans
 
 
 ## Features photos
@@ -25,12 +26,6 @@
 - add item order, removed_at
 - display links to public lists from same author
 - handle /todo page for unauthenticated users
-
-
-## Features lajujabot
-
-- handle ChatMigrated error
-- handle unexpected reboots and reconnect errors
 
 
 ## Long term
