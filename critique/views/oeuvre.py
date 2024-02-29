@@ -255,7 +255,7 @@ def search_oeuvres(req, match=''):
         else:
             return redirect('search_oeuvres')
 
-    if req.is_ajax():
+    if req.headers.get('x-requested-with') == 'XMLHttpRequest':
         oeuvres = get_oeuvres(match, 5, ajax=True)
         return HttpResponse(oeuvres)
     else:
