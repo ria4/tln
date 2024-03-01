@@ -52,7 +52,7 @@ def download_distant_image(url):
                 return None, None
             hpercent = baseheight/float(image.size[1])
             wsize = int(float(image.size[0])*float(hpercent))
-            image = image.resize((wsize, baseheight), Image.ANTIALIAS)
+            image = image.resize((wsize, baseheight), Image.LANCZOS)
             image.save(imagepath)
         os.remove(preimagepath)
         return imagename, imagepath
