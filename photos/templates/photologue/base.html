@@ -46,6 +46,19 @@
     </li>
   </ul>
 </nav>
+
+{% if user.is_authenticated %}
+<div id="widget-tools" class="widget">
+  <h3>Outils</h3>
+  <ul>
+    {% if user.is_superuser %}
+        {% block admin-tools %}
+        {% endblock admin-tools %}
+    {% endif %}
+    <li class='bullet-li'>
+      <a href="/logout" title="déconnexion">déconnexion :: {{user.username}}</a>
+    </li>
+  </ul>
+</div>
+{% endif %}
 {% endblock %}
-
-

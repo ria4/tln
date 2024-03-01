@@ -5,7 +5,6 @@
 
 ## Features critique
 
-- oeuvre size + vertical flex on narrow screens
 - autocomplete + create for artists & tags
 - list tags on oeuvre detail
 - link to all cinemas on cinema detail
@@ -14,34 +13,23 @@
 - dataviz spans
 
 
-## Features photos
-
-- move logout link to 'tools' (see blog sidebar)
-
-
 ## Features todo
 
 - focus on id_content/id_title for new item/list
-- add list order, removed_at, last_updated_at
-- add item order, removed_at
 - display links to public lists from same author
 - handle /todo page for unauthenticated users
 
 
 ## Long term
 
-- use ajax and icons with todo app
 - logout with POST rather than GET
-- bump to django 4.1
-    - switch to redis cache
-    - update critique collection asynchronously
-    - cache much more pages
+- update critique collection asynchronously
 
 
-## Barely matters
+## Life is too short for this
 
+- use ajax and icons with todo app
 - refactor critique views with CBVs or DRF
 - integrate critique to admin dashboard
-- override admin interfaces to remove useless content
 - call sqip asynchronously
-- ansible deployment (maybe)
+- cache as many pages as possible
