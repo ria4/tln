@@ -1,0 +1,7 @@
+{% extends "blog/entry_list.html" %}
+{% load i18n %}
+
+{% block title %}blog - {{ month|date:"YEAR_MONTH_FORMAT" }}{% endblock title %}
+{% block meta-description %}archives blog {{ month|date:"YEAR_MONTH_FORMAT" }}{% endblock meta-description %}
+
+{% block body-class %}{{ block.super }} archive date month year-{{ month|date:"Y" }} month-{{ month|date:"m" }}{% endblock body-class %}

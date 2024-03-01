@@ -1,0 +1,94 @@
+{% load static %}
+{% load i18n %}
+{% load blog %}
+
+<article id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %}" itemscope itemtype="http://schema.org/Article">
+
+  {% block entry-header %}
+  <header class="entry-header">
+
+    {% block entry-title %}
+    <{% if entry_list %}h2{% else %}h1{% endif %} class="entry-title" itemprop="name" {% if not object.lang == 'fr-FR' %}lang="{{ object.lang }}"{% endif %}>
+        {{ object.title }}
+    </{% if entry_list %}h2{% else %}h1{% endif %}>
+    {% endblock entry-title %}
+
+    {% block entry-creation-date %}
+    <meta itemprop="dateCreated" content="{{ object.creation_date|date:"c" }}" />
+    {% endblock entry-creation-date %}
+
+  </header>
+  {% endblock entry-header %}
+
+  {% block entry-body %}
+  <div class="entry-body">
+
+    {% block entry-word-count %}
+    <meta itemprop="wordCount" content="{{ object.word_count }}" />
+    {% endblock entry-word-count %}
+
+    {% block entry-content %}
+    <div class="entry-content" itemprop="articleBody" {% if not object.lang == 'fr-FR' %}lang="{{ object.lang }}"{% endif %}>
+      {{ object_content|safe }}
+    </div>
+    {% endblock entry-content %}
+
+  </div>
+  {% endblock entry-body %}
+
+  {% block entry-footer %}
+  <footer class="entry-footer">
+
+    {% block entry-tags %}
+    <p class="entry-tags">
+      {% if object.tags_list|length > 0 %}
+      {% trans "Tags" %} :
+      <meta itemprop="keywords" content="{{ object.tags }}" />
+      {% endif %}
+      {% for tag in object.tags_list %}
+      {% if forloop.last %}
+      {% if entry_list %}
+      {{ tag }}
+      {% else %}
+      <a href="{% url 'blog:tag_detail' tag %}">{{ tag }}</a>
+      {% endif %}
+      {% else %}
+      {% if entry_list %}
+      {{ tag }},
+      {% else %}
+      <a href="{% url 'blog:tag_detail' tag %}">{{ tag }}</a>,
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </p>
+    {% endblock entry-tags %}
+
+    {% block entry-discussions %}
+    <p class="entry-discussions">
+      {% block entry-comments %}
+      {% if comments_count_display %}
+      {% with comment_count=object.comment_count %}
+      <meta itemprop="commentCount" content="{{ object.comment_count }}" />
+      <meta itemprop="discussionUrl" content="{{ object.get_absolute_url }}#comments" />
+      {% if comment_count %}
+      {{ comment_count }}
+      <img src="{% static 'blog/icon_comment.png' %}" alt="{% trans 'comment' %}" />
+      -
+      {% endif %}
+      {% endwith %}
+      {% endif %}
+      {% endblock entry-comments %}
+    </p>
+    {% endblock entry-discussions %}
+    {% block entry-published %}
+    <time class="published" datetime="{{ object.publication_date|date:"c" }}" itemprop="datePublished">{{ before_published }}
+        {% if object.publication_date|date:"j" == "1" %}
+            1er {{ object.publication_date|date:"F Y" }}
+        {% else %}
+            {{ object.publication_date|date:"j F Y" }}
+        {% endif %}
+    </time>
+    {% endblock entry-published %}
+  </footer>
+  {% endblock entry-footer %}
+</article>

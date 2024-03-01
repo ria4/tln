@@ -1,0 +1,8 @@
+{% extends "blog/entry_list.html" %}
+{% load i18n %}
+{% load blog %}
+
+{% block title-before %}oriane - {% endblock %}
+{% block title %}blog{% endblock title %}
+
+{% block body-class %}{{ block.super }} archive index {% now "\y\e\a\r-Y \m\o\n\t\h-m \w\e\ek-W \d\a\y-d" %}{% endblock body-class %}

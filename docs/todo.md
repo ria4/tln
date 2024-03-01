@@ -31,7 +31,6 @@
 ## Long term
 
 - use ajax and icons with todo app
-- migrate from zinnia to another cms
 - logout with POST rather than GET
 - bump to django 4.1
     - switch to redis cache

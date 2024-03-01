@@ -1,0 +1,93 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load blog %}
+{% load comments %}
+
+{% block title %}{{ object.title|lower }}{% endblock title %}
+{% block og-title %}{{ object.title }}{% endblock %}
+{% block tw-title %}{{ object.title }}{% endblock %}
+
+{% block meta-description %}blog d'oriane tury - {% endblock meta-description %}
+{% block meta-description-page %}article '{{ object.title }}'{% endblock meta-description-page %}
+
+{% block og-description %}{{ object.html_preview|striptags }}{% endblock %}
+{% block tw-description %}{{ object.html_preview|striptags }}{% endblock %}
+
+{% block meta-keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
+
+{% block link %}
+  {{ block.super }}
+  {% with previous_entry=object.previous_entry %}{% if previous_entry %}
+  <link rel="prev" title="{{ previous_entry.title }}" href="{{ previous_entry.get_absolute_url }}" />
+  {% endif %}{% endwith %}
+  {% with next_entry=object.next_entry %}{% if next_entry %}
+  <link rel="next" title="{{ next_entry.title }}" href="{{ next_entry.get_absolute_url }}" />
+  {% endif %}{% endwith %}
+  <link rel="shortlink" href="{{ object.short_url }}" />
+  <link rel="canonical" href="{{ object.get_absolute_url }}" />
+  {% with year=object.publication_date|date:"Y" month=object.publication_date|date:"m" day=object.publication_date|date:"d" %}
+  {% endwith %}
+{% endblock link %}
+
+{% block widget-archives %}
+<nav id="widget-archives" class="widget">
+  <h3>{% trans "Archives" %}</h3>
+  {% get_archives_entries_tree_su_sensitive %}
+</nav>
+{% endblock widget-archives %}
+
+{% block body-class %}entry entry-{{ object.pk }}{% if object.featured %} featured{% endif %} year-{{ object.publication_date|date:"Y" }} month-{{ object.publication_date|date:"m" }} week-{{ object.publication_date|date:"W" }} day-{{ object.publication_date|date:"d" }}{% endblock body-class %}
+
+{% block content %}
+
+{% block entry-content %}
+  {% include object.content_template with object_content=object.html_content before_published='publié le ' comments_count_display=False entry_list=False %}
+{% endblock entry-content %}
+
+<div class="hseparator" role="presentation"></div>
+
+{% block entry-comments %}
+<section id="comments" {% if not object.comment_count %}class="empty"{% endif %}>
+  {% if object.comment_count %}
+  {% with comment_list=object.comments %}
+  {% block comments-loop %}
+  <ol id="comment-list">
+    {% for comment in comment_list %}
+    <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
+        class="comment vcard {% cycle 'box1' 'box2' %}{% if comment.user %} authenticated-comment{% if comment.user.is_staff %} staff-comment{% endif %}{% if comment.user.is_superuser %} superuser-comment{% endif %}{% endif %}" role="article">
+      {% block comment-info %}
+      <div class="comment-info">
+      <strong>{{ comment.name }}</strong>,
+        <time class="comment-published" datetime="{{ comment.submit_date|date:"c" }}">le
+          {{ comment.submit_date|date:"j" }}{% if comment.submit_date|date:"j" == '1' %}er{% endif %}
+          {{ comment.submit_date|date:"F Y" }}
+          à {{ comment.submit_date|date:"TIME_FORMAT" }}
+        </time>
+      </div>
+      {% endblock comment-info %}
+      <div class="comment-content">
+      {% block comment-content %}
+      {{ comment.comment|linebreaks }}
+      {% endblock comment-content %}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+  {% endblock comments-loop %}
+  {% endwith %}
+  {% endif %}
+</section>
+{% endblock entry-comments %}
+
+{% endblock content %}
+
+{% block admin-tools %}
+{% if perms.blog.change_entry %}
+<li class='bullet-li'>
+  <a href="{% url 'admin:blog_entry_change' object.pk %}">
+    éditer l'article
+  </a>
+</li>
+{% endif %}
+{% endblock admin-tools %}
