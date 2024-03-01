@@ -1,7 +1,6 @@
 # Django assets
 /db.sqlite3
 /manage.py
-/*/migrations/
 __pycache__
 *.pyc
 
