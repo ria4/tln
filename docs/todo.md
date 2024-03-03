@@ -16,7 +16,6 @@
 ## Long term
 
 - logout with POST rather than GET
-- update critique collection asynchronously
 
 
 ## Life is too short for this

@@ -1,3 +1,5 @@
+import threading
+
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.shortcuts import get_object_or_404, render
@@ -59,21 +61,28 @@ def detail_tag(req, slug, page=1):
 
 # Oeuvre Cache
 
-def cache_oeuvre_refresh(mtype):
+def refresh_oeuvre_cache(mtype):
+    # release the template fragment cache key
     cache_key = make_template_fragment_key('chunks_collection', [mtype])
     cache.delete(cache_key)
+    # get the current oeuvres
     context = list_oeuvres_reqless(mtype)
+    # generate the oeuvres template, and update the cache accordingly
     render_to_string('critique/collection.html', context=context)
-    # close connection if in another thread
-    #from django.db import connection
-    #connection.close()
 
-#import threading
-#
-#def cache_oeuvre_refresh_thread(mtype):
-#    t = threading.Thread(
-#        target=cache_oeuvre_refresh,
-#        args=[mtype],
-#        daemon=True,
-#    )
-#    t.start()
+def refresh_oeuvre_cache_threaded(mtype):
+    """Refresh the oeuvre cache in a new thread, to avoid time overhead.
+
+    The target function does not need to close django's database connection,
+    as long as CONN_MAX_AGE remains the default 0 (meaning that connections are
+    opened and closed automatically upon each request).
+    See https://docs.djangoproject.com/en/5.0/ref/databases/#persistent-connections
+
+    Note that the thread will exit on its own, once the target function returns.
+    """
+    t = threading.Thread(
+        target=refresh_oeuvre_cache,
+        args=[mtype],
+        daemon=True,
+    )
+    t.start()

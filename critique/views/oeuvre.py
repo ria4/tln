@@ -19,7 +19,7 @@ from PIL import Image
 from critique.constants import MAX_SPANS_ON_OEUVRE, OEUVRES_IMG_TMP_DIR
 from critique.forms import OeuvreForm, OeuvreSpanForm, CommentaireForm
 from critique.models import Artiste, Oeuvre, OeuvreTag
-from critique.views.collection import cache_oeuvre_refresh
+from critique.views.collection import refresh_oeuvre_cache_threaded
 from critique.views.commentaire import get_comment_form_data
 from critique.views.oeuvrespan import get_oeuvrespan_form_data
 
@@ -84,12 +84,7 @@ def add_oeuvre(req):
     if form.is_valid():
         oeuvre = Oeuvre()
         update_oeuvre(req, oeuvre, form)
-        # refresh cache
-        # "To provide thread-safety, a different instance"
-        # "of the cache backend will be returned for each thread."
-        # https://docs.djangoproject.com/en/4.0/topics/cache/#cache-key-prefixing
-        #cache_oeuvre_refresh_thread(oeuvre.mtype)
-        cache_oeuvre_refresh(oeuvre.mtype)
+        refresh_oeuvre_cache_threaded(oeuvre.mtype)
         return redirect('detail_oeuvre', slug=oeuvre.slug)
 
 @permission_required('critique.all_rights')
