@@ -1,4 +1,5 @@
 {% extends 'todo/base.html' %}
+{% load widget_tweaks %}
 
 {% block title %} - {{ todo_list.title }}{% endblock %}
 
@@ -12,7 +13,7 @@
             <label for="id_content">
                 élément de la liste <a href="{% url 'list' todo_list.id %}" class="todo-list-inline">{{ todo_list.title }}</a>
             </label>
-            {{ form.content }}
+            {{ form.content|attr:"autofocus" }}
         </div>
     </div>
     <div class="todo-buttons">

@@ -13,13 +13,6 @@
 - dataviz spans
 
 
-## Features todo
-
-- focus on id_content/id_title for new item/list
-- display links to public lists from same author
-- handle /todo page for unauthenticated users
-
-
 ## Long term
 
 - logout with POST rather than GET
