@@ -2,6 +2,10 @@
 /* (the html 'autofocus' attribute works on desktop but not on mobile) */
 
 if (!isTouchDevice()) {
-    var inputField = document.getElementById("id_content");
-    inputField.focus();
+    const inputFieldTodoItem = document.getElementById("id_content");
+    const inputFieldTodoList = document.getElementById("id_title");
+    let inputField = null;
+    if (inputFieldTodoItem) { inputField = inputFieldTodoItem; }
+    else if (inputFieldTodoList) { inputField = inputFieldTodoList; }
+    if (inputField) { inputField.focus(); }
 }
