@@ -7,7 +7,6 @@
 
 - autocomplete + create for artists & tags
 - list tags on oeuvre detail
-- link to all cinemas on cinema detail
 - navlink to all cinemas? to all tags?
 - dataviz seances, cinemas, words
 - dataviz spans

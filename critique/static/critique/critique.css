@@ -682,6 +682,19 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 .entry-list .entry-footer { margin-right: 24px; }
 
 
+/* Cinema Footer
+   ========================================================================== */
+
+#cinema-footer-content {
+    display: flex;
+    flex-direction: column; }
+#cinema-footer-content a {
+    margin-top: -4px;
+    font-style: italic;
+    text-align: right;
+    text-decoration: underline rgba(189, 71, 0, .5); }
+
+
 /* Chunks
    ========================================================================== */
 

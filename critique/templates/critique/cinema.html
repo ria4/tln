@@ -38,12 +38,15 @@
 
         <footer class="entry-footer">
             <div class="entry-discussions"></div>
-            <time>
-                visité le
-                {% localize on %}
-                {{ cinema.visited|date:"j F Y" }}
-                {% endlocalize %}
-            </time>
+            <div id="cinema-footer-content">
+                <time>
+                    visité le
+                    {% localize on %}
+                    {{ cinema.visited|date:"j F Y" }}
+                    {% endlocalize %}
+                </time>
+                <a href="{% url 'list_cinemas' %}">les cinémas parisiens</a>
+            </div>
         </footer>
     </article>
 </div>
