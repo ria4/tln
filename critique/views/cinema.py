@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, date
 import random
 
 from dal.autocomplete import Select2QuerySetView
@@ -55,7 +55,7 @@ def update_cinema(req, cinema, form):
     cinema.location = form.cleaned_data['location']
     cinema.comment = form.cleaned_data['comment']
     visited = form.cleaned_data['visited']
-    cinema.visited = visited if visited != datetime.date.fromtimestamp(0) else None
+    cinema.visited = visited if visited != date.fromtimestamp(0) else None
     cinema.save(update_slug=update_slug)
 
 @permission_required('critique.all_rights')
@@ -74,7 +74,9 @@ def list_cinemas(req):
         Q(name="UGC") | Q(name="MK2") | Q(comment="")
     )
     cinemas_paris = list(cinemas_paris_q)
-    random.seed(datetime.datetime.today().date())
+    today = date.today()
+    today_timestamp = datetime(today.year, today.month, today.day).timestamp()
+    random.seed(today_timestamp)
     random.shuffle(cinemas_paris)
     cinemas_elsewhere_q = (
         Cinema.objects.exclude(
