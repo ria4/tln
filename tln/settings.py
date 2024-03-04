@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_comments',
-    'widget_tweaks',
     'photologue',
     'sortedm2m',
     'tagging',

@@ -1,5 +1,4 @@
 {% extends 'todo/base.html' %}
-{% load widget_tweaks %}
 
 {% block title %} - nouvelle liste{% endblock %}
 
@@ -11,7 +10,7 @@
     <div class="todo-inputs">
         <div class="todo-input">
             <label for="id_title">titre de la liste</label>
-            {{ form.title|attr:"autofocus" }}
+            {{ form.title }}
         </div>
         <div class="todo-input">
             <label for="id_public">rendre la liste publique</label>
