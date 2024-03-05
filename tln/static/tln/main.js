@@ -3,6 +3,33 @@ var isIE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-al
 function isTouchDevice() { return "ontouchstart" in window || navigator.maxTouchPoints; }
 
 
+/* Login - Show login prompt on appropriate URLs */
+
+var hash = window.location.hash.substr(1);
+var loginForm = document.getElementById("login_form");
+
+if (hash == "login" && !userIsAuthenticated) {
+    loginForm.parentElement.classList.add("revealed");
+    focusOn(loginForm.parentElement, "id_username");
+    activeCode = "login";
+}
+
+
+/* Logout - Provide a utility method for a POST logout */
+
+function logout() {
+    fetch("/logout", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+    }).then(response => {
+        if (response.ok) {
+            location.reload()
+            // reloading a protected page will trigger the login view
+        }
+    });
+}
+
+
 /* Todo Link - Modify object on touch devices */
 
 var todoLinkNav = document.getElementById("todo-logo-nav");
@@ -72,7 +99,6 @@ function focusOn(overlay) {
         function() { focusField.focus(); });
 }
 
-var loginForm = document.getElementById("login_form");
 var codes = {"login": loginForm,
              "logout": true,
              "admin": true }
@@ -126,7 +152,7 @@ function activateOverlayIf(e) {
                 (input.parentElement.parentElement.parentElement.classList.contains("expanded"))) { return }
             if (activeCode == "logout") {
                 activeCode = "";
-                if (userIsAuthenticated) { window.location.href = "/logout"; }
+                if (userIsAuthenticated) { logout(); }
             } else if (activeCode == "admin") {
                 activeCode = "";
                 if (userIsSuperuser) { window.location.href = "/admin"; }
@@ -178,17 +204,6 @@ if (loginForm) {
         activeCode = "";
         document.activeElement.blur()
     });
-}
-
-
-/* Login - Show login prompt on appropriate URLs */
-
-var hash = window.location.hash.substr(1);
-
-if (hash == "login" && !userIsAuthenticated) {
-    loginForm.parentElement.classList.add("revealed");
-    focusOn(loginForm.parentElement, "id_username");
-    activeCode = "login";
 }
 
 

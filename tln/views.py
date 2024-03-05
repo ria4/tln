@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
 from tln.constants import LOGIN_FAILED_WRONG_CREDENTIALS
@@ -36,8 +37,14 @@ def login_view(req):
         url += "?" + qs_update_loginfail(req, LOGIN_FAILED_WRONG_CREDENTIALS) + "#login"
     return redirect(url)
 
-@require_http_methods(["GET", "POST"])
+
+# Logout
+
+@csrf_exempt
+@require_http_methods(["POST"])
 def logout_view(req):
     if req.user.is_authenticated:
         logout(req)
     return redirect(req.META.get("HTTP_REFERER", "home"))
+    # the current setup with the javascript logout() ignores this redirect,
+    # it just checks for a 2XX status and reloads the page

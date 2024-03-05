@@ -7,14 +7,13 @@
 
 - autocomplete + create for artists & tags
 - list tags on oeuvre detail
-- navlink to all cinemas? to all tags?
 - dataviz seances, cinemas, words
 - dataviz spans
 
 
-## Long term
+## Features photos
 
-- logout with POST rather than GET
+- error on gallery page with setPhotoSize, cf. dev console
 
 
 ## Life is too short for this
