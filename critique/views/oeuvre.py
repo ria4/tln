@@ -13,7 +13,6 @@ from django.core.files import File
 from django.db.models import Count, Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from django.template.defaultfilters import slugify
 from PIL import Image
 
 from critique.constants import MAX_SPANS_ON_OEUVRE, OEUVRES_IMG_TMP_DIR
@@ -66,12 +65,10 @@ def get_oeuvre_form_data(oeuvre):
     form_data['title_vf'] = oeuvre.title_vf
     form_data['title_vo'] = oeuvre.title_vo
     form_data['title_alt'] = oeuvre.title_alt
-    names = [artist.name for artist in oeuvre.artists.all()]
-    form_data['artists'] = '; '.join(names)
+    form_data['artists'] = oeuvre.artists.all()
     form_data['year'] = oeuvre.year
     form_data['imdb_id'] = oeuvre.imdb_id
-    tags = [tag.name for tag in oeuvre.tags.all()]
-    form_data['tags'] = '; '.join(tags)
+    form_data['tags'] = oeuvre.tags.all()
     form_data['envie'] = oeuvre.envie
     return form_data
 
@@ -107,32 +104,10 @@ def update_oeuvre(req, oeuvre, form):
     oeuvre.envie = form.cleaned_data['envie']
     oeuvre.save(update_slug=update_slug)
 
-    artists_names = form.cleaned_data['artists'].split('; ')
-    artists = []
-    for artist_name in artists_names:
-        artist, _ = Artiste.objects.get_or_create(
-            name=artist_name,
-            slug=slugify(artist_name),
-        )
-        artists.append(artist)
+    artists = form.cleaned_data['artists']
     oeuvre.artists.set(artists)
-
-    existing_tags = oeuvre.tags.values_list('id', flat=True)
-    tags = []
-    tags_names = []
-    if form.cleaned_data['tags']:
-        tags_names = form.cleaned_data['tags'].split('; ')
-    for tag_name in tags_names:
-        tag, _ = OeuvreTag.objects.get_or_create(name=tag_name)
-        tags.append(tag)
+    tags = form.cleaned_data['tags']
     oeuvre.tags.set(tags)
-    # delete unused tags if applicable
-    for tag in (
-        OeuvreTag.objects.filter(id__in=existing_tags)
-        .annotate(cnt=Count('oeuvre'))
-        .filter(cnt=0)
-    ):
-        tag.delete()
 
 @permission_required('critique.all_rights')
 def delete_oeuvre(req, slug):
@@ -171,7 +146,7 @@ def detail_oeuvre(req, slug):
     )
     spans = oeuvre.spans.all().order_by('-id')[:MAX_SPANS_ON_OEUVRE]
     if spans:
-        span_form = OeuvreSpanForm(get_oeuvrespan_form_data(spans[0]))
+        span_form = OeuvreSpanForm(initial=get_oeuvrespan_form_data(spans[0]))
         span_form.fields["ongoing"].widget.attrs.update({"class": "focus-on-reveal"})
     # clear previous order_by
     spans = sorted(spans, key=lambda os: os.date_start)
@@ -181,7 +156,10 @@ def detail_oeuvre(req, slug):
     if comments:
         comment_form = CommentaireForm(get_comment_form_data(comments[0]))
         comment_form.fields["content"].widget.attrs.update({"class": "focus-on-reveal"})
-    oeuvre_form = OeuvreForm(req.POST or get_oeuvre_form_data(oeuvre))
+    if req.POST:
+        oeuvre_form = OeuvreForm(req.POST)
+    else:
+        oeuvre_form = OeuvreForm(initial=get_oeuvre_form_data(oeuvre))
     oeuvre_form.fields["envie"].widget.attrs.update({"class": "focus-on-reveal"})
     if req.POST and oeuvre_form.is_valid():
         # actually there should already have been client-side validation
@@ -271,7 +249,19 @@ class OeuvreAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
             )
         return qs
 
+
 class FilmAutocomplete(OeuvreAutocomplete):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(mtype='film')
+
+
+class OeuvreTagAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
+    permission_required = 'critique.all_rights'
+    paginate_by = 30  # equivalent to pagination off
+
+    def get_queryset(self):
+        qs = OeuvreTag.objects.all()
+        if self.q:
+            qs = qs.filter(name__icontains=self.q)
+        return qs

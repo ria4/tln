@@ -17,11 +17,12 @@ urlpatterns = [
     path('preambule/', TemplateView.as_view(template_name='critique/preambule.html'), name='preambule'),
 
     # artistes
+    path('artiste/autocomplete', views_artiste.ArtisteAutocomplete.as_view(create_field='name', validate_create=True), name='autocomplete_artiste'),
     path('artiste/<slug:slug>', views_artiste.detail_artiste, name='detail_artiste'),
 
     # oeuvres
     path('oeuvre/add', views_oeuvre.add_oeuvre, name='add_oeuvre'),
-    path('oeuvre/autocomplete-oeuvre', views_oeuvre.OeuvreAutocomplete.as_view(), name='autocomplete_oeuvre'),
+    path('oeuvre/autocomplete', views_oeuvre.OeuvreAutocomplete.as_view(), name='autocomplete_oeuvre'),
     path('oeuvre/autocomplete-film', views_oeuvre.FilmAutocomplete.as_view(), name='autocomplete_film'),
     path('oeuvre/<slug:slug>', views_oeuvre.detail_oeuvre, name='detail_oeuvre'),
     path('oeuvre/<slug:slug>/delete', views_oeuvre.delete_oeuvre, name='delete_oeuvre'),
@@ -55,6 +56,7 @@ urlpatterns = [
 
     # tags
     path('tags/', views_collection.list_tags, name='list_tags'),
+    path('tags/autocomplete', views_oeuvre.OeuvreTagAutocomplete.as_view(create_field='name', validate_create=True), name='autocomplete_tag'),
     path('tags/<slug:slug>', views_collection.detail_tag, name='detail_tag'),
     path('tags/<slug:slug>/<int:page>', views_collection.detail_tag, name='detail_tag'),
 

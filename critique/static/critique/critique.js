@@ -522,7 +522,7 @@ if (seanceFormEmpty) {
 }
 
 
-/* Forms - Autocomplete init values */
+/* Forms - Autocomplete init values on appropriate pages */
 
 if (oeuvrespanFormEmpty) {
     if (

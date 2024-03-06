@@ -3,11 +3,11 @@ BooleanField must be required=False, because of some django nonsense.
 Also, the validation data written here is mostly useless, thanks to client-side validation.
 """
 
-from dal.autocomplete import ModelSelect2
+from dal.autocomplete import ModelSelect2, ModelSelect2Multiple
 from django import forms
 from django.db.models import Q
 
-from .models import Cinema, Oeuvre
+from .models import Artiste, Cinema, Oeuvre, OeuvreTag
 
 
 OEUVRES_TYPES = [
@@ -33,11 +33,23 @@ class OeuvreForm(forms.Form):
     title_vf = forms.CharField(label="titre vf", max_length=200)
     title_vo = forms.CharField(label="titre vo", max_length=200, required=False)
     title_alt = forms.CharField(label="titre alt", max_length=200, required=False)
-    artists = forms.CharField(label="artistes", max_length=1000)
+    artists = forms.ModelMultipleChoiceField(
+        label="artistes",
+        queryset=Artiste.objects.all(),
+        widget=ModelSelect2Multiple(
+            url='autocomplete_artiste',
+            attrs={'data-minimum-input-length': 3},
+        )
+    )
     year = forms.IntegerField(label="année", max_value=2100)
     imdb_id = forms.RegexField(label="imdb id", regex='^tt[0-9]{7,8}$', required=False)
     image_link = forms.URLField(label="url image", required=False)
-    tags = forms.CharField(label="tags", required=False)
+    tags = forms.ModelMultipleChoiceField(
+        label="tags",
+        queryset=OeuvreTag.objects.all(),
+        widget=ModelSelect2Multiple(url='autocomplete_tag'),
+        required=False,
+    )
     envie = forms.BooleanField(label="envie", required=False)
 
 

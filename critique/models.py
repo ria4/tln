@@ -39,8 +39,16 @@ class Artiste(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
 
 
 class OeuvreTag(models.Model):
@@ -55,6 +63,9 @@ class OeuvreTag(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
 
 
 class Oeuvre(models.Model):
@@ -116,6 +127,10 @@ class Oeuvre(models.Model):
 
     def __str__(self):
         return self.title_vf
+
+    class Meta:
+        ordering = ["title_vf"]
+
 
 
 class OeuvreSpan(models.Model):
@@ -208,6 +223,10 @@ class Cinema(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
+
 
 
 class Seance(models.Model):

@@ -64,6 +64,3 @@ def get_oeuvrespan_form_data(oeuvrespan):
     form_data['date_end_du'] = oeuvrespan.date_end_du
     form_data['ongoing'] = oeuvrespan.ongoing
     return form_data
-
-
-

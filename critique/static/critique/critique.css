@@ -852,6 +852,8 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form_empty p label[for="id_empty_mtype"],
 #oeuvre_form_empty p label[for="id_empty_year"],
 #oeuvre_form_empty p label[for="id_empty_envie"] { width: 92.7px; }
+#oeuvre_form .select2-container,
+#oeuvre_form_empty .select2-container { width: 352px !important; }
 #oeuvre_form .form_buttons,
 #oeuvre_form_empty .form_buttons { margin-top: -4px; }
 #oeuvre_form .form_buttons .filler { width: 32px; }
