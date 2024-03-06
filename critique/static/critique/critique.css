@@ -837,6 +837,13 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 /* Forms
 /* ========================================================================== */
 
+@media (max-width: 400px) {
+.select2-dropdown {
+    font-size: 16px; }
+.select2-dropdown .select2-results__option {
+    padding: 5px 5px !important;
+    font-size: 16px; } }
+
 /* Forms Oeuvre
    ========================================================================== */
 
@@ -867,6 +874,8 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #oeuvre_form p label[for="id_mtype"],
 #oeuvre_form_empty p label[for="id_empty_envie"],
 #oeuvre_form_empty p label[for="id_empty_mtype"] { width: 74.8px; }
+#oeuvre_form .select2-container,
+#oeuvre_form_empty .select2-container { width: 268px !important; }
 #oeuvre_form .form_buttons .filler { width: 18px; }}
 
 #oeuvre_form .form_inputs[data-mtype="album"] p[data-input="id_title_vo"],
