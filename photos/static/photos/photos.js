@@ -113,8 +113,10 @@ var photosHTMLCollection = gallerySlider.getElementsByTagName("img");
 var photos = Array.prototype.slice.call(photosHTMLCollection);
 var photosN = photos.length;
 
-/* Ugly profiling hack, see below */
-var isFirefox = typeof InstallTrigger !== 'undefined';
+/* Ugly detection hack, see below */
+// var isFirefox = typeof InstallTrigger !== 'undefined';
+// installTrigger is deprecated, and there's no better feature detection
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 
 function loadPhoto(idx) {
@@ -322,7 +324,11 @@ function setPhotoSize(photo) {
     } else {
         slideWidth = Math.min(maxSlideHeight, photo.naturalHeight) * ratioReal;
     }
-    photo.closest(".slide").style.width = slideWidth + "px";
+    let slide = photo.closest(".slide");
+    // there is a chance it may be null because of loadPhoto running concurrently
+    if (slide) {
+        slide.style.width = slideWidth + "px";
+    }
 }
 
 /* this is supposed to be fired before the listeners from addPhotoResizeListener */

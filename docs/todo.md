@@ -11,11 +11,6 @@
 - dataviz spans
 
 
-## Features photos
-
-- error on gallery page with setPhotoSize, cf. dev console
-
-
 ## Life is too short for this
 
 - use ajax and icons with todo app
