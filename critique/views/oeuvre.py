@@ -137,10 +137,9 @@ def detail_oeuvre(req, slug):
     """
     oeuvre = get_object_or_404(
         Oeuvre.objects.prefetch_related(
-            'spans',
-            'spans__seance',
-            'spans__seance__cinema',
             'comments',
+            'spans__seance__cinema',
+            'tags',
         ),
         slug=slug,
     )

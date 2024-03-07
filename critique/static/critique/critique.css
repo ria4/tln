@@ -558,6 +558,22 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #oeuvre-info #imdb-link {
     opacity: 0;  /* hack aimaing at better, non-overlapping oeuvre-span display */ } }
 
+@media(min-width: 430px) {
+#oeuvre-info .critique-info-text .oeuvretags {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding-top: 2px;
+    text-align: right;
+    font-style: italic;
+    font-size: 20px;
+    color: #aaa; }
+#oeuvre-info .critique-info-text .oeuvretags a {
+    color: inherit;
+    text-decoration: none; }
+#oeuvre-info .critique-info-text .oeuvretags a:hover {
+    color: #f7a300; }}
+
 #oeuvre-info .critique-info-text-content {
     padding-bottom: 8%;
     width: 100%; }
