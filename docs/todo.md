@@ -1,11 +1,5 @@
-## Features tln
-
-- reduce main nav size on small screens
-
-
 ## Features critique
 
-- list tags on oeuvre detail
 - dataviz seances, cinemas, words
 - dataviz spans
 

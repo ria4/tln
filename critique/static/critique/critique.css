@@ -12,7 +12,7 @@ body > header {
     pointer-events: auto; }
 @media (min-width: 1921px) {
 #critique-header { background-size: 100% auto; } }
-@media (min-width: 960px) {
+@media (min-width: 961px) {
 #critique-header {
     background-position: right top;
     background-image: url("/static/tln/img/critique_background_header.jpg"); } }
@@ -22,7 +22,7 @@ body > header {
     background-image: url("/static/tln/img/critique_background_header_min.jpg"); } }
 
 #content-wrap { margin-top: 64px; }
-@media (min-width: 960px) { #content-wrap.decenter { margin-right: 1.4%; } }
+@media (min-width: 961px) { #content-wrap.decenter { margin-right: 1.4%; } }
 #content { margin-top: 36px; outline: none; }
 
 hr, .hseparator {
@@ -112,7 +112,7 @@ hr, .hseparator {
    ========================================================================== */
 
 #sub-nav-trigger { padding-right: 26px; transition: padding 0.4s ease; }
-@media(min-width: 700px) { #sub-nav-trigger.reduced { padding-right: 0; } }
+@media(min-width: 701px) { #sub-nav-trigger.reduced { padding-right: 0; } }
 
 #critique-search {
     position: relative;
@@ -134,7 +134,7 @@ _:-ms-fullscreen, :root #critique-search { top: 0; } /* IE 11 */
     font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     transform: translateY(-100%);
     transition: transform 0.4s ease, z-index 0s ease 0.4s; }
-@media(min-width: 700px) { #critique-search-m { display: none; } }
+@media(min-width: 701px) { #critique-search-m { display: none; } }
 @media(max-width: 700px) {
 #critique-search-m.expanded {
     z-index: 1;
@@ -157,7 +157,7 @@ _:-ms-fullscreen, :root #critique-search { top: 0; } /* IE 11 */
     background-color: transparent;
     font-size: 20px;
     transition: padding 0.4s ease, width 0.4s ease, border 0s ease 0.4s, background-color 0s ease 0.4s; }
-@media(min-width: 700px) {
+@media(min-width: 701px) {
 #critique-search.expanded #critique-search-input {
     width: 300px;
     border: 2px solid #deda99;
@@ -191,7 +191,7 @@ _:-ms-fullscreen, :root #critique-search { top: 0; } /* IE 11 */
 
 #critique-search #critique-search-button { z-index: 0; }
 #critique-search #critique-searchend-button { z-index: -1; opacity: 0; }
-@media(min-width: 700px) {
+@media(min-width: 701px) {
 #critique-search.expanded #critique-search-button { z-index: -1; opacity: 0; }
 #critique-search.expanded #critique-searchend-button { z-index: 0; opacity: 1; } }
 
@@ -226,11 +226,11 @@ _:-ms-fullscreen, :root #critique-searchend-button-m img { top: 50%; left: 0; } 
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column; }
-@media(min-width: 700px) {
+@media(min-width: 701px) {
 #critique-search.expanded #critique-search-results.expanded { display: block; } }
 
 #critique-search-results-m { height: 0; }
-@media(min-width: 700px) {
+@media(min-width: 701px) {
 #critique-search-m.expanded #critique-search-results-m { height: auto; } }
 @media(max-width: 700px) {
 #critique-search-m:not(.expanded) #critique-search-results-list-m { display: none; } }
@@ -558,7 +558,7 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #oeuvre-info #imdb-link {
     opacity: 0;  /* hack aimaing at better, non-overlapping oeuvre-span display */ } }
 
-@media(min-width: 430px) {
+@media(min-width: 431px) {
 #oeuvre-info .critique-info-text .oeuvretags {
     position: absolute;
     top: 0;
@@ -752,9 +752,9 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #cinemas.chunks ul { max-width: 440px; }
 #cinemas-elsewhere.chunks ul { max-width: 490px; }
 _:-ms-fullscreen, :root #cinemas.chunks { height: 2298px; } /* IE 11 */
-@media (min-width: 870px) {
+@media (min-width: 871px) {
 _:-ms-fullscreen, :root #cinemas.chunks { height: 1176px; } /* IE 11 */ }
-@media (min-width: 1800px) {
+@media (min-width: 1801px) {
 _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 
 
