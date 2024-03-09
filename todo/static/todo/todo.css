@@ -57,9 +57,10 @@
     width: 294px !important; }
 @media (max-width: 560px) {
 .todo-logo {
-    margin-top: -60px;
-    height: 212px;
-    width: 270px !important; } }
+    left: -2px;
+    margin-top: -34px;
+    height: 170px;
+    width: 216px !important; } }
 .todo-logo > img,
 .todo-logo > div.todo-logo-line-wrapper {
     position: absolute;
@@ -73,7 +74,7 @@
     width: 294px; }
 @media (max-width: 560px) {
 .todo-logo img.todo-logo-line {
-    width: 270px; } }
+    width: 216px; } }
 @media (min-width: 560px) {
 .todo-logo:hover div.todo-logo-line-wrapper {
     overflow: hidden;
@@ -94,6 +95,8 @@
     text-align: right;
     font-weight: normal;
     font-style: italic; }
+@media (max-width: 560px) {
+#content-wrap .todo-list-title { margin-top: 0; } }
 #content-wrap .todo-list-title a {
     color: black; }
 

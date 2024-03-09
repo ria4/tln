@@ -445,10 +445,10 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
 #top-nav-h #top-nav-optional { display: none; } }
 
 @media (max-width: 820px) {
-#top-nav-h { margin: 25px 0 16px 0; padding-top: 0; }
-#top-nav-h #homepage-link { left: -58px; height: 40px; }
-#top-nav-h .nav-separator-homepage { left: -14px; height: 40px; }
-#top-nav-h #top-nav-main { left: -5px; }
+#top-nav-h { margin: 20px 0 10px 0; padding-top: 0; }
+#top-nav-h #homepage-link { left: -27px; height: 40px; }
+#top-nav-h .nav-separator-homepage { left: 17px; height: 40px; }
+#top-nav-h #top-nav-main { left: 26px; }
 #top-nav-h .nav-separator-sub { height: 20px; }
 #top-nav-h li > a { padding: 0 18px; font-size: 38px; } }
 

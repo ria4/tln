@@ -60,7 +60,7 @@ hr, .hseparator {
     visibility: visible;
     padding: 7px 0 5px 0;
     height: 70px; }
-@media (max-width: 1080px) { #top-nav-h.expanded { height: 216px; } }
+@media (max-width: 820px) { #top-nav-h.expanded { height: 86px; } }
 
 #top-nav-h a, #top-nav-h span { opacity: 0; line-height: 1.15; }
 #top-nav-h.expanded a, #top-nav-h.expanded span { opacity: 1; }
@@ -85,6 +85,9 @@ hr, .hseparator {
     margin-left: 50px;
     font-family: SoljikDambaek, "Times New Roman", Times, serif;
     font-size: 56px; }
+@media (max-width: 820px) {
+#main-nav #top-nav-trigger {
+    margin-left: 32px; } }
 
 #main-nav ul {
     font-size: 46px;
@@ -113,6 +116,7 @@ hr, .hseparator {
 
 #sub-nav-trigger { padding-right: 26px; transition: padding 0.4s ease; }
 @media(min-width: 701px) { #sub-nav-trigger.reduced { padding-right: 0; } }
+@media(max-width: 700px) { #sub-nav-trigger { padding-right: 4px; } }
 
 #critique-search {
     position: relative;
