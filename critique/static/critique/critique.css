@@ -562,7 +562,6 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #oeuvre-info #imdb-link {
     opacity: 0;  /* hack aimaing at better, non-overlapping oeuvre-span display */ } }
 
-@media(min-width: 431px) {
 #oeuvre-info .critique-info-text .oeuvretags {
     position: absolute;
     top: 0;
@@ -576,7 +575,9 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     color: inherit;
     text-decoration: none; }
 #oeuvre-info .critique-info-text .oeuvretags a:hover {
-    color: #f7a300; }}
+    color: #f7a300; }
+@media(max-width: 600px) {
+#oeuvre-info .critique-info-text .oeuvretags { display: none; } }
 
 #oeuvre-info .critique-info-text-content {
     padding-bottom: 8%;
