@@ -371,19 +371,3 @@ _:-ms-fullscreen, :root #gallery-description { margin-bottom: 16px; } /* IE 11 *
 #infos-tirages > div:last-child > div { margin-top: -6px; }
 #infos-tirages > div:last-child > div.with-tables { margin-top: 32px; }
 #infos-tirages > div:last-child > div:last-child p { margin-top: 0; } }
-
-#infos-tirages table {
-    border-collapse: collapse;
-    border: 1px solid #a57100;
-    font-size: 18px;
-    font-family: AlegreyaSans; }
-@media (max-width: 600px) {
-#infos-tirages table { margin: auto 3% !important; } }
-#infos-tirages td, #infos-tirages th {
-    border: 1px solid #a57100;
-    padding: 4px 8px;
-    text-align: center;
-    vertical-align: middle; }
-#infos-tirages tr:nth-child(odd) { background-color: rgba(251, 242, 189, 0.9); }
-#infos-tirages tr:first-child { background-color: rgba(247, 163, 0, 0.3); }
-#infos-tirages th { font-weight: normal; text-decoration: underline; }
