@@ -18,7 +18,6 @@ sys.path.append('/home/ria/tln')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tln.settings')
 django.setup()
 
-from django.db import models
 from django.utils.encoding import filepath_to_uri
 
 from photologue.models import Gallery, Photo, PhotoSizeCache
