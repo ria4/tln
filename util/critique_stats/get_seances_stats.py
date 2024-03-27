@@ -13,7 +13,7 @@ import pprint
 import sys
 
 import django
-from django.db.models import Count, F
+from django.db.models import Count
 from django.db.models.functions import TruncYear
 
 sys.path.append('/home/ria/tln')
@@ -34,12 +34,11 @@ pprint.pprint(stats)
 print()
 
 stats = (
-    Seance.objects.annotate(cinema_name=F("cinema__name"))
-    .values("cinema_name")
+    Seance.objects.values("cinema__name")
     .annotate(cnt=Count("id"))
     .order_by("-cnt")
 )
-stats = OrderedDict([(stat["cinema_name"], stat["cnt"]) for stat in stats])
+stats = OrderedDict([(stat["cinema__name"], stat["cnt"]) for stat in stats])
 stats_cleaned = OrderedDict()
 side_cnt = 0
 for cinema, cnt in stats.items():
