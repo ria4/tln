@@ -44,14 +44,14 @@ def seancefilmlink(seance):
         return format_html("<a href=%s>%s</a>" % (href, film.title_vf))
 
 
-def cinemalink_with_len(cinema, cinema_unsure=False):
+def cinemalink_with_len(cinema, cinema_unsure=False, cinema_name_override=None):
     "Return a link to the Cinema, in long form."""
     prefix = None
-    a_text = cinema.name_long
+    a_text = cinema_name_override or cinema.name_long
     for prefix_possible in CINEMA_LONGNAME_PREFIXES:
-        if cinema.name_long.startswith(prefix_possible):
+        if a_text.startswith(prefix_possible):
             prefix = prefix_possible
-            a_text = cinema.name_long[len(prefix):]
+            a_text = a_text[len(prefix):]
             break
     href = reverse('detail_cinema', kwargs={'slug': cinema.slug})
     res = "%s<a href=%s>%s</a>" % (prefix, href, a_text)
@@ -131,6 +131,7 @@ def fancyspans(mtype, spans):
                     cl, len_cl_stripped = cinemalink_with_len(
                         span.seance.cinema,
                         span.seance.cinema_unsure,
+                        span.seance.cinema_name_long_override,
                     )
                     len_date = len(res)
                     if span.date_start.day == 1:
