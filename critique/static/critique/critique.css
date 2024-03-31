@@ -779,6 +779,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #preambule .entry-content ul { margin-top: 10px; margin-bottom: 18px; }
 #preambule .entry-content li { padding: 2px 0; }
 #preambule .entry-content li:first-child { padding-top: 0; }
+#preambule .entry-content li:nth-child(even) { margin-bottom: 10px; }
 #preambule .entry-content li:last-child { padding-bottom: 0; }
 #preambule .entry-section {
     max-width: 750px;
