@@ -1,6 +1,7 @@
 from django import template
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.timezone import localtime
 
 from tln.templatetags.tln_extras import fancydate
 
@@ -149,8 +150,8 @@ def fancyspans(mtype, spans):
                 else:
                     res += ", dans un cinéma oublié"
         elif (
-            span.date_start.month == span.date_end.month
-            and span.date_start.year == span.date_end.year
+            localtime(span.date_start).month == localtime(span.date_end).month
+            and localtime(span.date_start).year == localtime(span.date_end).year
             and (span.date_start_du or span.date_end_du)
         ):
             res += fancydate(
@@ -163,9 +164,9 @@ def fancyspans(mtype, spans):
             )
         else:
             mois = True
-            annee = span.date_start.year != span.date_end.year
+            annee = localtime(span.date_start).year != localtime(span.date_end).year
             if not annee:
-                mois = span.date_start.month != span.date_end.month
+                mois = localtime(span.date_start).month != localtime(span.date_end).month
             start = fancydate(
                 span,
                 date_attrname='date_start',
