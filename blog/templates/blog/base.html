@@ -43,8 +43,11 @@
   <h3>{% trans "Tools" %}</h3>
   <ul>
     {% if user.is_superuser %}
-        {% block admin-tools %}
-        {% endblock admin-tools %}
+      {% block admin-tools %}
+        <li class='bullet-li'>
+          <a href="/admin/blog/entry/" title="interface admin">accès admin</a>
+        </li>
+      {% endblock admin-tools %}
     {% endif %}
     <li class='bullet-li'>
       <a href="/logout" title="déconnexion" onclick="event.preventDefault(); logout();">déconnexion :: {{user.username}}</a>
