@@ -317,6 +317,7 @@ a { text-decoration: none; }
 #content-wrap a, #footer a { color: #bd4700; }
 #content-wrap a:hover, #footer a:hover { color: #f7a300; }
 .entry-content a,
+#comments .comment-content a,
 #oeuvre-info a,
 #gallery-description a,
 body.photos-infos #content a,
@@ -754,17 +755,6 @@ a.no-zoom {
 a.no-zoom img {
     display: block;
     border: 1px solid #deda99; }
-
-
-/* Misc
-   ========================================================================== */
-
-.archived-link {
-    font-size: 75%; }
-.archived-link::before {
-    content: "["; }
-.archived-link::after {
-    content: "]"; }
 
 
 /* ==========================================================================

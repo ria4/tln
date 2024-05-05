@@ -66,17 +66,6 @@
     {% block entry-discussions %}
     <p class="entry-discussions">
       {% block entry-comments %}
-      {% if comments_count_display %}
-      {% with comment_count=object.comment_count %}
-      <meta itemprop="commentCount" content="{{ object.comment_count }}" />
-      <meta itemprop="discussionUrl" content="{{ object.get_absolute_url }}#comments" />
-      {% if comment_count %}
-      {{ comment_count }}
-      <img src="{% static 'blog/icon_comment.png' %}" alt="{% trans 'comment' %}" />
-      -
-      {% endif %}
-      {% endwith %}
-      {% endif %}
       {% endblock entry-comments %}
     </p>
     {% endblock entry-discussions %}

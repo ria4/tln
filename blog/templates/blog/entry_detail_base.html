@@ -48,8 +48,8 @@
 <div class="hseparator" role="presentation"></div>
 
 {% block entry-comments %}
-<section id="comments" {% if not object.comment_count %}class="empty"{% endif %}>
-  {% if object.comment_count %}
+<section id="comments" {% if not object.comments %}class="empty"{% endif %}>
+  {% if object.comments %}
   {% with comment_list=object.comments %}
   {% block comments-loop %}
   <ol id="comment-list">
@@ -68,7 +68,7 @@
       {% endblock comment-info %}
       <div class="comment-content">
       {% block comment-content %}
-      {{ comment.comment|linebreaks }}
+      {{ comment.comment|safe }}
       {% endblock comment-content %}
       </div>
     </li>

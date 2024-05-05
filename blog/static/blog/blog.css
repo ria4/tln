@@ -172,6 +172,12 @@ body #sidebar-column {
 #comments .comment .comment-info time { font-style: italic; }
 #comments .comment .comment-content { padding-bottom: 1px; }
 #comments .comment .comment-content p { padding: 3px 0; line-height: 1.2; }
+#comments .comment .comment-content .archived-links { padding: 3px 0; }
+#comments .comment .comment-content .archived-links p { padding: 0; }
+#comments .comment .comment-content .archived-links ul {
+    padding-top: 1px;
+    padding-left: 17px;
+    list-style: disc; }
 
 
 /* Code Snippets
