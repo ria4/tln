@@ -178,6 +178,7 @@ body #sidebar-column {
     padding-top: 1px;
     padding-left: 17px;
     list-style: disc; }
+#comments .comment .comment-content .archived-links a { font-style: italic; }
 
 
 /* Code Snippets
