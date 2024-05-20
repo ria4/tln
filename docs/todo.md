@@ -1,6 +1,5 @@
 ## Features critique
 
-- dataviz seances, cinemas, words
 - dataviz spans
 
 

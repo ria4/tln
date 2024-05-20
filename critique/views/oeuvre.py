@@ -176,11 +176,8 @@ def format_oeuvre_results(oeuvres, ajax):
     if ajax:
         res = [ {'vf': oeuvre.title_vf,
                  'vo': oeuvre.title_vo,
-                 'year': oeuvre.year,
+                 'year': oeuvre.year if oeuvre.year != 2099 else "20xx",
                  'slug': oeuvre.slug} for oeuvre in oeuvres ]
-        for info in res:
-            if info["year"] == 2099:
-                info["year"] = "20xx"
         return json.dumps(res)
     else:
         for oeuvre in oeuvres:
@@ -189,35 +186,40 @@ def format_oeuvre_results(oeuvres, ajax):
         return oeuvres
 
 def get_oeuvres(match, limit, ajax=False):
-    oeuvres = Oeuvre.objects.none()
+    # try and return an artist's oeuvres if the string matches
     if (len(match) >= 5):
         oeuvres = (
             Oeuvre.objects.filter(artists__name__icontains=match)
             .order_by('-year')[:limit]
         )
-    oeuvres_n = len(oeuvres)
-    if oeuvres_n == limit:
-        return format_oeuvre_results(oeuvres, ajax)
+        if oeuvres:
+            return format_oeuvre_results(oeuvres, ajax)
 
-    oeuvres_commentated = (
+    # otherwise, try matching oeuvre titles
+    # if not ajax, commentated and uncommentated oeuvres are mixed together
+    if not ajax:
+        oeuvres = Oeuvre.objects.filter(
+            Q(title_vo__icontains=match) | Q(title_vf__icontains=match),
+        ).prefetch_related("comments").order_by("-year", "title_vf")[:limit]
+        return format_oeuvre_results(oeuvres, False)
+
+    # if ajax, commentated oeuvres are put on top
+    oeuvres = list(
         Oeuvre.objects.filter(
             Q(comment__isnull=False) &
             (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
-        ).order_by('-year')[:limit-oeuvres_n]
+        ).order_by("-year", "title_vf").distinct()[:limit]
     )
-    oeuvres |= oeuvres_commentated
-    oeuvres_n = len(oeuvres)
-    if oeuvres_n == limit:
-        return format_oeuvre_results(oeuvres, ajax)
-
-    oeuvres_uncommentated = (
-        Oeuvre.objects.filter(
-            Q(comment=None) &
-            (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
-        ).order_by('-year')[:limit-oeuvres_n]
-    )
-    oeuvres |= oeuvres_uncommentated
-    return format_oeuvre_results(oeuvres, ajax)
+    if len(oeuvres) < limit:
+        # we needed to cast the queryset as a list,
+        # otherwise the order of the following 'union' would be messed up
+        oeuvres += list(
+            Oeuvre.objects.filter(
+                Q(comment=None) &
+                (Q(title_vo__icontains=match) | Q(title_vf__icontains=match))
+            ).order_by("-year", "title_vf").distinct()[:limit-len(oeuvres)]
+        )
+    return format_oeuvre_results(oeuvres, True)
 
 def search_oeuvres(req, match=''):
     get_match = req.GET.get('match', None)
@@ -231,7 +233,7 @@ def search_oeuvres(req, match=''):
         oeuvres = get_oeuvres(match, 5, ajax=True)
         return HttpResponse(oeuvres)
     else:
-        oeuvres = get_oeuvres(match, 10)
+        oeuvres = get_oeuvres(match, 20)
         return render(req, 'critique/search_oeuvres.html', locals())
 
 
@@ -245,7 +247,7 @@ class OeuvreAutocomplete(PermissionRequiredMixin, Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(title_vo__icontains=self.q) | Q(title_vf__icontains=self.q)
-            )
+            ).order_by("title_vf")
         return qs
 
 

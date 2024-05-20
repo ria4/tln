@@ -128,9 +128,6 @@ class Oeuvre(models.Model):
     def __str__(self):
         return self.title_vf
 
-    class Meta:
-        ordering = ["title_vf"]
-
 
 
 class OeuvreSpan(models.Model):
@@ -180,6 +177,9 @@ class Commentaire(models.Model):
     date_mu = models.BooleanField(default=False)
     content = models.TextField(blank=True)
     starred = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-date"]
 
     def __str__(self):
         return f'"{self.content:.60}..." [{self.oeuvre}, {self.date.date()}]'

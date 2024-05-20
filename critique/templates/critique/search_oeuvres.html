@@ -24,8 +24,7 @@
             </header>
 
             {% if oeuvre.comments.count > 0 %}
-            {% for comment in oeuvre.comments.all %}
-            {% if forloop.last %}
+            {% with oeuvre.comments.all.0 as comment %}
             <div class="entry-body">
                 <div class="entry-content">
                     {# hack for printing linebreaks #}
@@ -40,8 +39,7 @@
                 <!--[if !IE]><!--><div class="entry-discussions" role="presentation"></div><!--<![endif]-->
                 <time>{% fancydate comment 'date' annee=True %}</time>
             </footer>
-            {% endif %}
-            {% endfor %}
+            {% endwith %}
             {% endif %}
         </article>
     </a>
