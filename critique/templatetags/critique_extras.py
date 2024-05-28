@@ -45,7 +45,12 @@ def seancefilmlink(seance):
         return format_html("<a href=%s>%s</a>" % (href, film.title_vf))
 
 
-def cinemalink_with_len(cinema, cinema_unsure=False, cinema_name_override=None):
+def cinemalink_with_len(
+    cinema,
+    cinema_unsure=False,
+    cinema_name_override=None,
+    stop_propagation=False,
+):
     "Return a link to the Cinema, in long form."""
     prefix = None
     a_text = cinema_name_override or cinema.name_long
@@ -55,7 +60,14 @@ def cinemalink_with_len(cinema, cinema_unsure=False, cinema_name_override=None):
             a_text = a_text[len(prefix):]
             break
     href = reverse('detail_cinema', kwargs={'slug': cinema.slug})
-    res = "%s<a href=%s>%s</a>" % (prefix, href, a_text)
+    onclick = ""
+    if stop_propagation:
+        onclick = (
+            ' onclick="event.stopPropagation(); '
+            f"window.location.href='{href}'; "
+            'return false"'
+        )
+    res = f"{prefix}<a href={href}{onclick}>{a_text}</a>"
     l = len(prefix + a_text)
     if cinema_unsure:
         maybe = " (peut-être)"
@@ -64,8 +76,18 @@ def cinemalink_with_len(cinema, cinema_unsure=False, cinema_name_override=None):
     return format_html(res), l
 
 @register.filter
-def cinemalink(cinema, cinema_unsure=False):
-    cl, l = cinemalink_with_len(cinema, cinema_unsure=False)
+def cinemalink(
+    cinema,
+    cinema_unsure=False,
+    cinema_name_override=None,
+    stop_propagation=False,
+):
+    cl, l = cinemalink_with_len(
+        cinema,
+        cinema_unsure=cinema_unsure,
+        cinema_name_override=cinema_name_override,
+        stop_propagation=stop_propagation,
+    )
     return cl
 
 
@@ -81,16 +103,16 @@ def fancyspans(mtype, spans):
 
     Examples:
 
-    "vu le 15 mai 2022"
+    "vu le 15 mai 2022",
 
     "lu entre mai et octobre 2022",
 
     "commencé en juin 2022",
 
-    "vu le 16 juin 2022 au <a href=...>Katorza</a>"
+    "vu le 16 juin 2022 au <a href=...>Katorza</a>",
 
     "         vu le 12 novembre 2019
-    au <a...>Max Linder Panorama</a>"
+    au <a...>Max Linder Panorama</a>",
 
     "   vu le 3 mars 2017,
            le 12 mai 2019
@@ -135,7 +157,7 @@ def fancyspans(mtype, spans):
                         span.seance.cinema_name_long_override,
                     )
                     len_date = len(res)
-                    if span.date_start.day == 1:
+                    if localtime(span.date_start).day == 1:
                         # strip 1<sup>er</sup>
                         len_date -= 12
                     adjust = -2 if n == 1 else 8
@@ -188,4 +210,49 @@ def fancyspans(mtype, spans):
             res += ",<br>"
         if i == n - 2:
             res += "et "
+    return format_html(res)
+
+
+@register.simple_tag
+def fancyspan_short(span):
+    """Return a shorter version of the fancyspans.
+
+    Examples: "15 mai 2022", "mai–octobre 2022", "juin 2022", "juin 2022–..."
+    """
+    if span.ongoing:
+        start = fancydate(span, date_attrname='date_start', mois=True, annee=True)
+        res = f"{start}–..."
+    elif span.date_start == span.date_end:
+        res = fancydate(span, date_attrname='date_start', mois=True, annee=True)
+        if hasattr(span, 'seance'):
+            res += "<br>vu "
+            if span.seance.cinema:
+                res += cinemalink(
+                    span.seance.cinema,
+                    span.seance.cinema_unsure,
+                    span.seance.cinema_name_long_override,
+                    stop_propagation=True,
+                )
+            else:
+                res += "dans un cinéma oublié"
+    elif (
+        localtime(span.date_start).month == localtime(span.date_end).month
+        and localtime(span.date_start).year == localtime(span.date_end).year
+        and (span.date_start_du or span.date_end_du)
+    ):
+        res = fancydate(span, date_attrname='date_start', mois=True, annee=True)
+    else:
+        mois = True
+        annee = localtime(span.date_start).year != localtime(span.date_end).year
+        if not annee:
+            mois = localtime(span.date_start).month != localtime(span.date_end).month
+        start = fancydate(span, date_attrname='date_start', mois=mois, annee=annee)
+        end = fancydate(span, date_attrname='date_end', mois=True, annee=True)
+        res_len = len(start + end)
+        if localtime(span.date_start).day == 1 and not span.date_start_du:
+            res_len -= 12
+        if localtime(span.date_end).day == 1 and not span.date_end_du:
+            res_len -= 12
+        br = "<br>" if res_len > 24 else ""
+        res = f"{start}–{br}{end}"
     return format_html(res)

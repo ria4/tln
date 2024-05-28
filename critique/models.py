@@ -5,15 +5,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 
-
-OEUVRES_TYPES = [
-    ('film', 'Film'),
-    ('serie', 'Série'),
-    ('album', 'Album'),
-    ('jeu', 'Jeu'),
-    ('livre', 'Livre'),
-    ('bd', 'BD'),
-]
+from .constants import OEUVRE_MTYPES
 
 
 class RightsSupport(models.Model):
@@ -78,7 +70,7 @@ class Oeuvre(models.Model):
     ou d'une production française, 'vf' est rempli mais 'vo' est laissé vide.
     L'attribut 'alt' peut être utilisé pour contenir un autre titre.
     """
-    mtype = models.CharField(max_length=5, choices=OEUVRES_TYPES)
+    mtype = models.CharField(max_length=5, choices=OEUVRE_MTYPES)
     title_vf = models.CharField(max_length=200, db_index=True)
     title_vo = models.CharField(max_length=200, blank=True, db_index=True)
     title_alt = models.CharField(max_length=200, blank=True)
@@ -104,7 +96,7 @@ class Oeuvre(models.Model):
         """
         Retourne un slug unique, en fonction des slugs existants.
         Pour les homonymes, on a dans l'ordre : oeuvre, oeuvre-1, oeuvre-2...
-        /!\ La suppression d'une oeuvre ne modifiera pas les homonymes.
+        NB: La suppression d'une oeuvre ne modifiera pas les homonymes.
         """
         slug_base = slug_base or "dummyslug"
         oeuvres = Oeuvre.objects.filter(slug=slug_base)

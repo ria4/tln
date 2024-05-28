@@ -1,6 +1,13 @@
 ## Features critique
 
 - dataviz spans
+  - select & implement interesting filters
+  - write up page presentation
+  - cache template fragment of non-recent data
+  - write blog article with old documents (needful_things/archives_media)
+  - take a break
+  - setup a view for the seances
+- cache collection view rather than template
 
 
 ## Life is too short for this

@@ -1,3 +1,12 @@
+OEUVRE_MTYPES = [
+    ('film', 'Film'),
+    ('serie', 'Série'),
+    ('album', 'Album'),
+    ('jeu', 'Jeu'),
+    ('livre', 'Livre'),
+    ('bd', 'BD'),
+]
+
 # second element of the tuple indicates un accord féminin
 MTYPE_SPAN_MAP = {
     'film': ('vu ', False),

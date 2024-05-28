@@ -7,17 +7,8 @@ from dal.autocomplete import ModelSelect2, ModelSelect2Multiple
 from django import forms
 from django.db.models import Q
 
+from .constants import OEUVRE_MTYPES
 from .models import Artiste, Cinema, Oeuvre, OeuvreTag
-
-
-OEUVRES_TYPES = [
-    ('film', 'Film'),
-    ('serie', 'Série'),
-    ('album', 'Album'),
-    ('jeu', 'Jeu'),
-    ('livre', 'Livre'),
-    ('bd', 'BD')
- ]
 
 
 class DateInput(forms.DateInput):
@@ -29,7 +20,7 @@ class DateInput(forms.DateInput):
 
 
 class OeuvreForm(forms.Form):
-    mtype = forms.ChoiceField(label="type", choices=OEUVRES_TYPES)
+    mtype = forms.ChoiceField(label="type", choices=OEUVRE_MTYPES)
     title_vf = forms.CharField(label="titre vf", max_length=200)
     title_vo = forms.CharField(label="titre vo", max_length=200, required=False)
     title_alt = forms.CharField(label="titre alt", max_length=200, required=False)

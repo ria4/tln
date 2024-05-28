@@ -27,8 +27,10 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="home" href="https://oriane.ink" />
     <link rel="stylesheet" type="text/css" href="{% static 'tln/main.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />{% block link %}{% endblock link %}{% block script %}{% endblock script %}
-    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>{% block import-scripts %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% block css-path %}{% endblock %}" />
+    {% block css-additional %}{% endblock %}{% block link %}{% endblock link %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    {% block js-additional %}{% endblock %}
     <script>var userIsAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};</script>
     <script>var userIsSuperuser = {% if user.is_superuser %}true{% else %}false{% endif %};</script> <!-- display tweaks for the admin -->
   </head>

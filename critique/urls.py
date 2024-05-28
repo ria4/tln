@@ -2,6 +2,7 @@ from django.urls import path, re_path
 from django.views.generic import TemplateView
 
 import critique.views.artiste as views_artiste
+import critique.views.chronologie as views_chronologie
 import critique.views.cinema as views_cinema
 import critique.views.collection as views_collection
 import critique.views.commentaire as views_commentaire
@@ -72,5 +73,8 @@ urlpatterns = [
     path('seances/', views_seance.list_seances, name='list_seances'),
     path('seances/add', views_seance.add_seance, name='add_seance'),
     path('seances/<int:year>', views_seance.list_seances, name='list_seances'),
+
+    # chronologies
+    path('chronologies/', views_chronologie.get_chronologies, name='get_chronologies'),
 ]
 

@@ -1,0 +1,19 @@
+{% comment %}
+This HTML snippet provides a template for vis-timeline items on /chronologies.
+vis-timeline removes class attributes, so the tags are somewhat bare.
+
+Since we cannot load the <img> with a data-src for lazy-loading, we add
+a dummy div, not to be displayed, whose content will be repurposed for the lazy-load.
+{% endcomment %}
+
+{% load static %}
+{% load critique_extras %}
+
+<div
+    class="vis-item-details {% if linkable %} linkable{% endif %}"
+    {% if linkable %}onclick="document.location.href = '{% url 'detail_oeuvre' span.oeuvre.slug %}'; return false"{% endif %}
+>
+    <img data-src="{% if span_img_url %}{{ span_img_url }}{% else %}{% static 'critique/substitute.jpg' %}{% endif %}">
+    <h2>{{ span_h2 }}</h2>
+    <span class="vis-item-time">{% fancyspan_short span %}</span>
+</div>

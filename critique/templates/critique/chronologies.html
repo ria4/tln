@@ -1,0 +1,43 @@
+{% extends "critique/base.html" %}
+{% load static %}
+
+{% block title %}chronologies{% endblock %}
+{% block og-title %}{% endblock %}
+{% block tw-title %}{% endblock %}
+{% block meta-description-page %}{% endblock %}
+
+{% block og-description %}{% endblock %}
+{% block tw-description %}{% endblock %}
+
+{% block content-wrap-class %}decenter{% endblock %}
+{% block body-class %}entry{% endblock %}
+
+{% block css-additional %}<link rel="stylesheet" type="text/css" href="{% static 'critique/vis-timeline-graph2d.min.css' %}" />{% endblock %}
+{% block js-additional %}<script type="text/javascript" src="{% static 'critique/vis-timeline-graph2d.min.js' %}"></script>{% endblock %}
+
+{% block content %}
+<div id="chronologies" class="critique-perso">
+    <article class="hentry">
+        <header class="entry-header">
+            <h1 class="entry-title">Chronologies</h1>
+        </header>
+
+        <div class="entry-body">
+            <div class="entry-content">
+                <p>Paris abrite une centaine de cinémas. Je ne travaille pas au CNC et je doute que quiconque d'autre soit capable de fournir un nombre exact, mais je suis certaine que c'est la ville la mieux lotie au monde en lieux dédiés à la projection. Après Londres ? Perfide Albion. Quoi qu'il en soit, cent, c'est déjà bien assez. Il y a quelques années, j'ambitionnais vaguement de tous leur payer une petite visite. On s'occupe comme on peut.</p>
+            </div>
+        </div>
+    </article>
+</div>
+<div id="timeline" class="transparent"></div>
+{% endblock %}
+
+{% block vars-js %}
+<script type="text/javascript">
+  // Create media Groups
+  const timelineGroups = new vis.DataSet({{ chrono_groups|safe }});
+  // Create a DataSet
+  const timelineItems = new vis.DataSet({{ chrono_items|safe }});
+</script>
+<script type="text/javascript" src="{% static 'critique/critique-timeline.js' %}"></script>
+{% endblock %}
