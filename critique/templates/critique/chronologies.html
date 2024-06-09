@@ -29,15 +29,47 @@
         </div>
     </article>
 </div>
+
 <div id="timeline" class="transparent"></div>
+
+<div id="timeline-filters" class="critique-perso transparent">
+    <article class="hentry">
+    <div>
+        <div>
+            <span onclick="toggleFilterMType(this)" data-filter-mtype=0>films</span>
+            <span onclick="toggleFilterMType(this)" data-filter-mtype=1>séries</span>
+            <span onclick="toggleFilterMType(this)" data-filter-mtype=3>jeux vidéo</span>
+            <span onclick="toggleFilterMType(this)" data-filter-mtype=4>livres</span>
+            <span onclick="toggleFilterMType(this)" data-filter-mtype=5>BDs</span>
+        </div>
+    </div>
+    <div>
+        <div>
+            <span onclick="toggleFilterTag(this)" data-filter-tag="thinky-games">thinky games</span>
+            <span onclick="toggleFilterTag(this)" data-filter-tag="twitch">jeux streamés sur Twitch</span>
+        </div>
+        <div>
+            <span onclick="toggleFilterTag(this)" data-filter-tag="nico">avec Nico</span>
+            <span onclick="toggleFilterTag(this)" data-filter-tag="samuel">avec Samuel</span>
+            <span onclick="toggleFilterTag(this)" data-filter-tag="ivain">avec Ivain</span>
+        </div>
+    </div>
+    </article>
+</div>
 {% endblock %}
 
 {% block vars-js %}
 <script type="text/javascript">
-  // Create media Groups
-  const timelineGroups = new vis.DataSet({{ chrono_groups|safe }});
-  // Create a DataSet
-  const timelineItems = new vis.DataSet({{ chrono_items|safe }});
+  // Gather media Groups
+  const timelineGroupsRaw = {{ chrono_groups|safe }};
+  // Gather a DataSet
+  let timelineItemsRaw = {{ chrono_items|safe }};
+  timelineItemsRaw.forEach((item, idx, arr) => {
+    // store Date objects rather than 'YYYY-MM-DD' strings
+    item.start = new Date(item.start);
+    item.end = new Date(item.end);
+  })
+  Object.freeze(timelineItemsRaw);
 </script>
 <script type="text/javascript" src="{% static 'critique/critique-timeline.js' %}"></script>
 {% endblock %}

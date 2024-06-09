@@ -914,6 +914,20 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 }
 #timeline .vis-panel.vis-center.furthest-right::after { visibility: hidden; opacity: 0; }
 
+/* user help */
+#timeline .vis-panel.vis-background.vis-horizontal::after {
+    content: " ↔ (scroll)\A         (ctrl+scroll)";
+    white-space: pre;
+    background: url("/static/tln/img/search_icon_timeline.png") no-repeat 3px 28px fixed;
+    background-size: 15%;
+    position: absolute;
+    top: 5%;
+    right: 4%;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-style: italic;
+    color: #4d4d4d;
+}
+
 /* item colors */
 #timeline .vis-item { border: 0; }
 #timeline .vis-group-film .vis-item { background-color: #6ea1fa; }
@@ -992,7 +1006,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 
 /* time axis */
 #timeline .vis-time-axis {
-    font-family: AlegreyaSans;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-style: italic;
 }
 #timeline .vis-time-axis .vis-text { padding-left: 6px; }
@@ -1006,6 +1020,39 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     position: absolute;
     right: 0;
     bottom: -20px;
+}
+
+/* filters */
+#timeline-filters { opacity: 1; transition: opacity 1s ease; }
+#timeline-filters.transparent { opacity: 0; }
+#timeline-filters .hentry > div {
+    margin: 12px 0;
+    display: flex;
+    flex-direction: row;
+}
+#timeline-filters .hentry > div:first-child { justify-content: center; }
+#timeline-filters .hentry > div:last-child { justify-content: space-evenly; }
+#timeline-filters span {
+    cursor: pointer;
+    user-select: none;
+    padding: 3px 5px;
+    margin: 0 2px;
+    border: 1px solid #d3d4db;
+    background-color: #fffddb;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-style: italic;
+    color: #4d4d4d;
+    box-shadow: 0 0 4px 0 rgba(0, 13, 181, .2);
+    transition: .2s ease;
+}
+#timeline-filters span:hover {
+    box-shadow: 0 0 6px rgba(0, 13, 181, .7);
+}
+#timeline-filters span.active {
+    border-color: #deda99;
+    background-color: #fbf2bd;
+    color: #333;
+    box-shadow: 0 0 6px rgba(0, 13, 181, .7);
 }
 
 

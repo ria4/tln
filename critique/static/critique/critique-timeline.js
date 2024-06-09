@@ -1,7 +1,16 @@
-
+///////////////////////
+// Timeline creation //
+///////////////////////
 
 // DOM element where the Timeline will be attached
 const timelineContainer = document.getElementById("timeline");
+const timelineFiltersContainer = document.getElementById("timeline-filters");
+
+// Create the initial items
+const timelineItems = new vis.DataSet(timelineItemsRaw);
+
+// Create the groups
+const timelineGroups = new vis.DataSet(timelineGroupsRaw);
 
 // Configuration for the Timeline
 const now = new Date();
@@ -37,6 +46,8 @@ const timelineOptions = {
   },
   locale: "fr_FR",
   showCurrentTime: false,
+  // display dates in UTC rather than local timezone
+  moment: function(date) { return vis.moment(date).utcOffset('+00:00'); },
   // options related to scroll and zoom
   horizontalScroll: true,
   zoomKey: "ctrlKey",
@@ -50,6 +61,11 @@ const timeline = new vis.Timeline(
   timelineGroups,
   timelineOptions,
 );
+
+
+///////////////
+// Callbacks //
+///////////////
 
 // Declare global variables used in "changed" and "itemover" callbacks
 let windowMinTime;
@@ -74,6 +90,7 @@ timeline.on("changed", function(properties) {
     setTimeout(function() {
       // switch from transparent to opaque
       timelineContainer.classList.remove("transparent");
+      timelineFiltersContainer.classList.remove("transparent");
       // center to 2 months before the maximum date,
       // this should stick the maximum date to the right of the timeline
       const timelineStartDate = new Date(timelineMaxDate.getTime());
@@ -137,10 +154,8 @@ timeline.on("itemover", function(properties) {
     && !visItem.classList.contains("vis-item-not-overflowing")
   ) {
     let timelineItem = timelineItems.get(properties.item);
-    let timelineItemStart = new Date(timelineItem.start);
-    let timelineItemStartTime = timelineItemStart.getTime();
-    let timelineItemEnd = new Date(timelineItem.end);
-    let timelineItemEndTime = timelineItemEnd.getTime();
+    let timelineItemStartTime = timelineItem.start.getTime();
+    let timelineItemEndTime = timelineItem.end.getTime();
     if (
       timelineItemStartTime > windowMinTimeExtended
       && timelineItemEndTime < windowMaxTimeExtended
@@ -174,3 +189,39 @@ timeline.on("mouseUp", function(properties) {
     timeline.focus(properties.item);
   }
 })
+
+
+/////////////
+// Filters //
+/////////////
+
+let timelineItemsFiltered;
+const timelineFilterButtons = document.querySelectorAll("#timeline-filters span");
+
+function toggleFilterMType(filterButton) {
+  timelineItemsFiltered = timelineItems;
+  if (!filterButton.classList.contains("active")) {
+    timelineItemsFiltered = new vis.DataSet(timelineItemsRaw.filter(
+      (item) => item.group == filterButton.getAttribute("data-filter-mtype")
+    ));
+    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
+    filterButton.classList.add("active");
+  } else {
+    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
+  }
+  timeline.setItems(timelineItemsFiltered);
+}
+
+function toggleFilterTag(filterButton) {
+  timelineItemsFiltered = timelineItems;
+  if (!filterButton.classList.contains("active")) {
+    timelineItemsFiltered = new vis.DataSet(timelineItemsRaw.filter(
+      (item) => item.className.includes("vis-item-tag-" + filterButton.getAttribute("data-filter-tag"))
+    ));
+    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
+    filterButton.classList.add("active");
+  } else {
+    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
+  }
+  timeline.setItems(timelineItemsFiltered);
+}

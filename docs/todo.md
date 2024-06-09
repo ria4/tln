@@ -1,7 +1,6 @@
 ## Features critique
 
 - dataviz spans
-  - select & implement interesting filters
   - write up page presentation
   - cache template fragment of non-recent data
   - write blog article with old documents (needful_things/archives_media)
