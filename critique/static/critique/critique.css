@@ -358,7 +358,7 @@ _:-ms-input-placeholder, :root #critique-search-results-m a > div > p:first-chil
 @media (max-width: 1380px) {
 #critique-header #sub-nav.expanded { height: 160px; } }
 @media (max-width: 950px) {
-#critique-header #sub-nav.expanded { height: 266px; } }
+#critique-header #sub-nav.expanded { height: 319px; } }
 
 #sub-nav-links-v {
     display: -ms-flexbox;

@@ -37,9 +37,9 @@ def get_formatted_span_end(span):
     return date_end.strftime("%Y-%m-%d")
 
     
-# Chronologies
+# Chronologie
 
-def get_chronologies(req):
+def get_chronologie(req):
     # define one group for each media type
     chrono_groups = [
         {"id": i, "content": mtype[1], "className": f"vis-group-{mtype[0]}"}
@@ -87,7 +87,7 @@ def get_chronologies(req):
                 "start": get_formatted_span_start(span),
                 "end": get_formatted_span_end(span),
                 "content": render_to_string(
-                    "critique/chronologies_items.html",
+                    "critique/chronologie_items.html",
                     {
                         "linkable": span.oeuvre is not None,
                         "span_h2": h2,
@@ -100,6 +100,6 @@ def get_chronologies(req):
 
     return render(
         req,
-        'critique/chronologies.html',
+        'critique/chronologie.html',
         {"chrono_groups": chrono_groups, "chrono_items": chrono_items},
     )

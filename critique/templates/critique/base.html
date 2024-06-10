@@ -10,6 +10,7 @@
     <li><a tabindex="-1" href={% url "preambule" %}>préambule</a></li>
     <li><a tabindex="-1" href={% url "top_textes" %}>textes choisis</a></li>
     <li><a tabindex="-1" href={% url "list_notes" %}>carnet de notes</a></li>
+    <li><a tabindex="-1" href={% url "get_chronologie" %}>chronologie</a></li>
     <li><a tabindex="-1" href={% url "list_seances" %}>séances ciné</a></li>
     <li><a tabindex="-1" href={% url "list_envies" %}>perspectives</a></li>
     <li>
@@ -45,6 +46,7 @@
             <ul id="main-nav-links-h">
                 <li><a href={% url "preambule" %}>préambule</a></li>
                 <li><a href={% url "top_textes" %}>textes choisis</a></li>
+                <li><a href={% url "get_chronologie" %}>chronologie</a></li>
                 <li><a href={% url "list_notes" %}>carnet de notes</a></li>
                 <li><a href={% url "list_seances" %}>séances ciné</a></li>
                 <li><a href={% url "list_envies" %}>perspectives</a></li>
@@ -52,6 +54,7 @@
             <ul id="main-nav-links-v">
                 <li class="top-textes"><a href={% url "preambule" %}>préambule</a></li>
                 <li class="top-textes"><a href={% url "top_textes" %}>textes choisis</a></li>
+                <li class="top-textes"><a href={% url "get_chronologie" %}>chronologie</a></li>
                 <li id="sub-nav-trigger"><a href="#">errances</a></li>
             </ul>
                 <li id="critique-search">
@@ -86,6 +89,7 @@
             <li class="top-textes" style="display: none;"><a href={% url "preambule" %}>préambule</a></li>
             <li class="top-textes" style="display: none;"><a href={% url "top_textes" %}>textes choisis</a></li>
             <li><a href={% url "list_notes" %}>carnet de notes</a></li>
+            <li class="top-textes" style="display: none;"><a href={% url "get_chronologie" %}>chronologie</a></li>
             <li><a href={% url "list_seances" %}>séances ciné</a></li>
             <li><a href={% url "list_envies" %}>perspectives</a></li>
         </ul>

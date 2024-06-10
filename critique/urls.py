@@ -74,7 +74,7 @@ urlpatterns = [
     path('seances/add', views_seance.add_seance, name='add_seance'),
     path('seances/<int:year>', views_seance.list_seances, name='list_seances'),
 
-    # chronologies
-    path('chronologies/', views_chronologie.get_chronologies, name='get_chronologies'),
+    # chronologie
+    path('chronologie/', views_chronologie.get_chronologie, name='get_chronologie'),
 ]
 
