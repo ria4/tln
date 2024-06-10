@@ -1,9 +1,5 @@
 ## Features critique
 
-- dataviz spans
-  - write up page presentation
-  - take a break
-  - write blog article with old documents (needful_things/archives_media)
 - cache collection view rather than template
 
 

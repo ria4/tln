@@ -864,6 +864,11 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 /* Timeline
    ========================================================================== */
 
+/* introduction */
+#chronologie { margin-bottom: 24px; }
+#chronologie p { text-align: center; }
+
+/* timeline */
 #timeline {
     width: 92%;
     transform: translateX(.8%);  /* balances de-centering from hiding groups column */
