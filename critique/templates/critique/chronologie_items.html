@@ -11,7 +11,7 @@ a dummy div, not to be displayed, whose content will be repurposed for the lazy-
 
 <div
     class="vis-item-details {% if linkable %} linkable{% endif %}"
-    {% if linkable %}onclick="document.location.href = '{% url 'detail_oeuvre' span.oeuvre.slug %}'; return false"{% endif %}
+    {% if linkable %}onclick="event.stopPropagation(); document.location.href = '{% url 'detail_oeuvre' span.oeuvre.slug %}'; return false"{% endif %}
 >
     <img data-src="{% if span_img_url %}{{ span_img_url }}{% else %}{% static 'critique/substitute.jpg' %}{% endif %}">
     <h2>{{ span_h2 }}</h2>

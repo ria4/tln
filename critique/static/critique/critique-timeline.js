@@ -234,7 +234,7 @@ timeline.on("itemover", function(properties) {
 })
 
 // Callback for "mouseUp" event
-timeline.on("mouseUp", function(properties) {
+timeline.on("click", function(properties) {
   // center the timeline on an item when clicked
   if (properties.what == "item") {
     timeline.focus(properties.item);
