@@ -934,8 +934,20 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     color: #4d4d4d;
 }
 
-/* item colors */
+/* items */
 #timeline .vis-item { border: 0; }
+#timeline .vis-item.transparent { visibility: hidden; opacity: 0; }
+#timeline .vis-item.vis-item-animated-0 { transition: visibility ease .3s, opacity ease .4s; }
+#timeline .vis-item.vis-item-animated-1 { transition: visibility ease .3s .02s, opacity ease .4s .02s; }
+#timeline .vis-item.vis-item-animated-2 { transition: visibility ease .3s .04s, opacity ease .4s .04s; }
+#timeline .vis-item.vis-item-animated-3 { transition: visibility ease .3s .06s, opacity ease .4s .06s; }
+#timeline .vis-item.vis-item-animated-4 { transition: visibility ease .3s .08s, opacity ease .4s .08s; }
+#timeline .vis-item.vis-item-animated-5 { transition: visibility ease .3s .1s, opacity ease .4s .1s; }
+#timeline .vis-item.vis-item-animated-6 { transition: visibility ease .3s .12s, opacity ease .4s .12s; }
+#timeline .vis-item.vis-item-animated-7 { transition: visibility ease .3s .14s, opacity ease .4s .14s; }
+#timeline .vis-item.vis-item-animated-8 { transition: visibility ease .3s .16s, opacity ease .4s .16s; }
+#timeline .vis-item.vis-item-animated-9 { transition: visibility ease .3s .18s, opacity ease .4s .18s; }
+#timeline .vis-item.vis-item-animated-10 { transition: visibility ease .3s .2s, opacity ease .4s .2s; }
 #timeline .vis-group-film .vis-item { background-color: #6ea1fa; }
 #timeline .vis-group-serie .vis-item { background-color: #a2dad3; }
 #timeline .vis-group-jeu .vis-item { background-color: #fba76d; }

@@ -36,22 +36,22 @@
     <article class="hentry">
     <div>
         <div>
-            <span onclick="toggleFilterMType(this)" data-filter-mtype=0>films</span>
-            <span onclick="toggleFilterMType(this)" data-filter-mtype=1>séries</span>
-            <span onclick="toggleFilterMType(this)" data-filter-mtype=3>jeux vidéo</span>
-            <span onclick="toggleFilterMType(this)" data-filter-mtype=4>livres</span>
-            <span onclick="toggleFilterMType(this)" data-filter-mtype=5>BDs</span>
+            <span onclick="toggleFilter(this)" data-filter-group data-filter="film">films</span>
+            <span onclick="toggleFilter(this)" data-filter-group data-filter="serie">séries</span>
+            <span onclick="toggleFilter(this)" data-filter-group data-filter="jeu">jeux vidéo</span>
+            <span onclick="toggleFilter(this)" data-filter-group data-filter="livre">livres</span>
+            <span onclick="toggleFilter(this)" data-filter-group data-filter="bd">BDs</span>
         </div>
     </div>
     <div>
         <div>
-            <span onclick="toggleFilterTag(this)" data-filter-tag="thinky-games">thinky games</span>
-            <span onclick="toggleFilterTag(this)" data-filter-tag="twitch">jeux streamés sur Twitch</span>
+            <span onclick="toggleFilter(this)" data-filter="thinky-games">thinky games</span>
+            <span onclick="toggleFilter(this)" data-filter="twitch">jeux streamés sur Twitch</span>
         </div>
         <div>
-            <span onclick="toggleFilterTag(this)" data-filter-tag="nico">avec Nico</span>
-            <span onclick="toggleFilterTag(this)" data-filter-tag="samuel">avec Samuel</span>
-            <span onclick="toggleFilterTag(this)" data-filter-tag="ivain">avec Ivain</span>
+            <span onclick="toggleFilter(this)" data-filter="nico">avec Nico</span>
+            <span onclick="toggleFilter(this)" data-filter="samuel">avec Samuel</span>
+            <span onclick="toggleFilter(this)" data-filter="ivain">avec Ivain</span>
         </div>
     </div>
     </article>

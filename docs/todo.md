@@ -1,7 +1,6 @@
 ## Features critique
 
 - dataviz spans
-  - try filtering with opacity only, no redraw
   - write up page presentation
   - take a break
   - write blog article with old documents (needful_things/archives_media)

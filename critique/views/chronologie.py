@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from django.shortcuts import render
 from django.template.loader import render_to_string
@@ -61,7 +62,7 @@ def get_chronologie(req):
     # format the spans
     chrono_items = []
     for i, span in enumerate(spans):
-        class_name = f"vis-item-{i}"
+        class_name = f"vis-item-{i} vis-item-animated-{random.randint(0, 10)}"
         group = ""
         h2 = ""
         img_url = ""

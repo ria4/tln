@@ -63,6 +63,49 @@ const timeline = new vis.Timeline(
 );
 
 
+/////////////
+// Filters //
+/////////////
+
+const timelineFilterButtons = document.querySelectorAll("#timeline-filters span");
+let isGroupFilter = null;
+let filterValue = null;
+
+function applyFilter(isGroupFilter, filterValue) {
+  if (filterValue === null) { return }
+  let querySelectorValid =
+    isGroupFilter
+    ? ".vis-group-" + filterValue + " .vis-item"
+    : ".vis-item-tag-" + filterValue;
+  let querySelectorInvalid =
+    isGroupFilter
+    ? ".vis-group:not(.vis-group-" + filterValue + ") .vis-item"
+    : ".vis-item:not(.vis-item-tag-" + filterValue + ")";
+  timelineContainer.querySelectorAll(querySelectorValid).forEach(
+    (el) => el.classList.remove("transparent")
+  );
+  timelineContainer.querySelectorAll(querySelectorInvalid).forEach(
+    (el) => el.classList.add("transparent")
+  );
+}
+
+function toggleFilter(filterButton) {
+  if (!filterButton.classList.contains("active")) {
+    isGroupFilter = filterButton.hasAttribute("data-filter-group");
+    filterValue = filterButton.getAttribute("data-filter");
+    applyFilter(isGroupFilter, filterValue);
+    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
+    filterButton.classList.add("active");
+  } else {
+    isGroupFilter = null;
+    filterValue = null;
+    let visItems = timelineContainer.querySelectorAll(".vis-item");
+    visItems.forEach((item) => item.classList.remove("transparent"));
+    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
+  }
+}
+
+
 ///////////////
 // Callbacks //
 ///////////////
@@ -120,6 +163,9 @@ timeline.on("changed", function(properties) {
   } else {
     visPanelCenter.classList.remove("furthest-right");
   }
+
+  // apply optional filter
+  applyFilter(isGroupFilter, filterValue);
 
   // reset the overflowing status of items
   (document.querySelectorAll(".vis-item-overflowing")).forEach(
@@ -189,39 +235,3 @@ timeline.on("mouseUp", function(properties) {
     timeline.focus(properties.item);
   }
 })
-
-
-/////////////
-// Filters //
-/////////////
-
-let timelineItemsFiltered;
-const timelineFilterButtons = document.querySelectorAll("#timeline-filters span");
-
-function toggleFilterMType(filterButton) {
-  timelineItemsFiltered = timelineItems;
-  if (!filterButton.classList.contains("active")) {
-    timelineItemsFiltered = new vis.DataSet(timelineItemsRaw.filter(
-      (item) => item.group == filterButton.getAttribute("data-filter-mtype")
-    ));
-    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
-    filterButton.classList.add("active");
-  } else {
-    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
-  }
-  timeline.setItems(timelineItemsFiltered);
-}
-
-function toggleFilterTag(filterButton) {
-  timelineItemsFiltered = timelineItems;
-  if (!filterButton.classList.contains("active")) {
-    timelineItemsFiltered = new vis.DataSet(timelineItemsRaw.filter(
-      (item) => item.className.includes("vis-item-tag-" + filterButton.getAttribute("data-filter-tag"))
-    ));
-    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
-    filterButton.classList.add("active");
-  } else {
-    timelineFilterButtons.forEach((el) => el.classList.remove("active"));
-  }
-  timeline.setItems(timelineItemsFiltered);
-}
