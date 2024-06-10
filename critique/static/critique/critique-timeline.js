@@ -62,6 +62,11 @@ const timeline = new vis.Timeline(
   timelineOptions,
 );
 
+// Remove user help on mobile
+if (isTouchDevice()) {
+  let timelineHelp = document.querySelector("#timeline .vis-panel.vis-background.vis-horizontal");
+  timelineHelp.style.setProperty('--after-display', "none");
+}
 
 /////////////
 // Filters //
