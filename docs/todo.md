@@ -2,10 +2,8 @@
 
 - dataviz spans
   - write up page presentation
-  - cache template fragment of non-recent data
-  - write blog article with old documents (needful_things/archives_media)
   - take a break
-  - setup a view for the seances
+  - write blog article with old documents (needful_things/archives_media)
 - cache collection view rather than template
 
 

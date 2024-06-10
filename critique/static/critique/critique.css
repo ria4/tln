@@ -776,14 +776,20 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     flex-direction: column;
     -ms-flex-align: center;
     align-items: center; }
-#preambule .entry-content ul { margin-top: 10px; margin-bottom: 18px; }
-#preambule .entry-content li { padding: 2px 0; }
-#preambule .entry-content li:first-child { padding-top: 0; }
-#preambule .entry-content li:nth-child(even) { margin-bottom: 10px; }
-#preambule .entry-content li:last-child { padding-bottom: 0; }
-#preambule .entry-section {
+#preambule .entry-content .entry-section {
     max-width: 750px;
     width: 100%; }
+#preambule .entry-content .entry-section > ul {
+    margin-top: 8px;
+    margin-bottom: 22px;
+    padding-left: 44px;
+}
+#preambule .entry-content .entry-section > ul > li { margin-bottom: 11px; }
+#preambule .entry-content .entry-section > ul > li > ul { margin-top: 2px; padding-left: 34px; }
+#preambule .entry-content .entry-section > ul > li > ul > li { list-style: disc; }
+#preambule .entry-content .entry-section > ul > li > ul > li { padding: 1px 0; }
+#preambule .entry-content .entry-section > ul > li > ul > li:first-child { padding-top: 0; }
+#preambule .entry-content .entry-section > ul > li > ul > li:last-child { margin-bottom: 4px; }
 #preambule hr {
     max-width: none;
     border-bottom-color: #a57100; }
