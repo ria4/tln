@@ -1,5 +1,6 @@
 """Feeds for Zinnia"""
 from mimetypes import guess_type
+import os
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
