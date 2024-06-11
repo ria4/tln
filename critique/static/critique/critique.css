@@ -1074,6 +1074,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     box-shadow: 0 0 4px 0 rgba(0, 13, 181, .2);
     text-wrap: nowrap;
     transition: .2s ease;
+    position: relative;
 }
 #timeline-filters span:hover {
     box-shadow: 0 0 6px rgba(0, 13, 181, .7);
@@ -1083,6 +1084,33 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     background-color: #fbf2bd;
     color: #333;
     box-shadow: 0 0 6px rgba(0, 13, 181, .7);
+}
+
+/* additional filter colors */
+#timeline-filters span[data-filter-group] { color: #444; }
+#timeline-filters span.active[data-filter-group] {
+    border-color: #a0a0a0;
+    color: #1b1b1b;
+}
+#timeline-filters span::after {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    content: "";
+}
+#timeline-filters span[data-filter="film"]::after {
+    box-shadow: inset 0 6px 14px -4px #6ea1fa, inset 0 -6px 14px -4px #6ea1fa;
+}
+#timeline-filters span[data-filter="serie"]::after {
+    box-shadow: inset 0 6px 14px -4px #a2dad3, inset 0 -6px 14px -4px #a2dad3;
+}
+#timeline-filters span[data-filter="jeu"]::after {
+    box-shadow: inset 0 6px 14px -4px #fba76d, inset 0 -6px 14px -4px #fba76d;
+}
+#timeline-filters span[data-filter="livre"]::after {
+    box-shadow: inset 0 6px 14px -4px #e9a2b6, inset 0 -6px 14px -4px #e9a2b6;
+}
+#timeline-filters span[data-filter="bd"]::after {
+    box-shadow: inset 0 6px 14px -4px #c3aed8, inset 0 -6px 14px -4px #c3aed8;
 }
 
 
