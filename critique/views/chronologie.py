@@ -24,7 +24,7 @@ def get_formatted_span_start(span):
 
 def get_formatted_span_end(span):
     if span.ongoing:
-        date_end = datetime.datetime.now()
+        date_end = datetime.datetime.now() + datetime.timedelta(days=1)
     elif span.date_end_du:
         # ceil the date to the first day of the following month
         date_end = localtime(span.date_end).replace(day=1)
