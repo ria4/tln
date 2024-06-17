@@ -17,7 +17,7 @@ const now = new Date();
 const timelineMinDate = new Date(2022, 3, 25);
 let timelineEndDate = new Date(timelineMinDate.getTime());
 timelineEndDate.setMonth(timelineMinDate.getMonth() + 4);
-const timelineMaxDate = new Date(now.getFullYear(), now.getMonth(), now.getDay() + 10);
+const timelineMaxDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4);
 const timelineOptions = {
   // disable XSS protection, since there is no user input
   // and we need items not to be stripped of their html attributes
