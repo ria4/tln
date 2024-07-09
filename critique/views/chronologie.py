@@ -2,6 +2,7 @@ import datetime
 import random
 
 from django.shortcuts import render
+from django.utils import timezone
 from django.template.loader import render_to_string
 from django.utils.timezone import localtime
 
@@ -23,20 +24,23 @@ def get_formatted_span_start(span):
     return date_start.strftime("%Y-%m-%d")
 
 def get_formatted_span_end(span):
-    max_date = datetime.datetime.now() + datetime.timedelta(days=1)
+    date_max = timezone.now() + datetime.timedelta(days=1)
     if span.ongoing:
-        date_end = max_date
-    elif span.date_end_du:
-        # ceil the date to the first day of the following month
-        date_end = localtime(span.date_end).replace(day=1)
-        date_end = datetime.datetime(
-            date_end.year + int(date_end.month / 12),
-            (date_end.month % 12) + 1,
-            1,
-        )
-        date_end = min(max_date, date_end)
+        date_end = date_max
     else:
-        date_end = localtime(span.date_end) + datetime.timedelta(days=1)
+        if not span.date_end_du:
+            date_end = localtime(span.date_end) + datetime.timedelta(days=1)
+        else:
+            # ceil the date to the first day of the following month
+            date_end = localtime(span.date_end).replace(day=1)
+            date_end = datetime.datetime(
+                date_end.year + int(date_end.month / 12),
+                (date_end.month % 12) + 1,
+                1,
+                tzinfo=date_end.tzinfo,
+            )
+        # cap to the latest date to be displayed
+        date_end = min(date_end, date_max)
     return date_end.strftime("%Y-%m-%d")
 
     
