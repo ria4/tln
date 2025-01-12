@@ -1,9 +1,10 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.contrib.auth.models import User
 from django.forms.models import BaseInlineFormSet
+from django.utils.translation import ngettext
 
 from photologue.admin import GalleryAdmin as GalleryAdminDefault, PhotoAdmin as PhotoAdminDefault
-from photologue.models import Gallery, Photo
+from photologue.models import Gallery, Photo, PhotoSizeCache
 
 from .models import GalleryCustom, PhotoCustom
 
@@ -38,6 +39,41 @@ class PhotoCustomInline(admin.StackedInline):
 
 class PhotoAdmin(PhotoAdminDefault):
     inlines = [PhotoCustomInline, ]
+    actions = ["create_native"]
+
+    @admin.action(
+        description="Copier les photos sélectionnées dans le cache en taille native",
+    )
+    def create_native(self, request, queryset):
+        photosize = PhotoSizeCache().sizes.get("native")
+        size_exists_n = 0
+        size_created_n = 0
+        for photo in queryset:
+            if not photo.size_exists(photosize):
+                photo.create_size(photosize)
+                size_created_n += 1
+            else:
+                size_exists_n += 1
+
+        if size_created_n > 0:
+            msg = ngettext(
+                "%d image a été ajoutée au cache avec succès.",
+                "%d images ont été ajoutées au cache avec succès.",
+                size_created_n,
+            ) % size_created_n
+            if size_exists_n > 0:
+                msg += ngettext(
+                    " %d image était déjà présente dans le cache.",
+                    " %d images étaient déjà présentes dans le cache.",
+                    size_exists_n,
+                ) % size_exists_n
+        else:
+            msg = ngettext(
+                "L'image était déjà présente dans le cache.",
+                "Les images étaient déjà présentes dans le cache.",
+                size_exists_n,
+            )
+        self.message_user(request, msg, messages.SUCCESS)
 
 admin.site.unregister(Gallery)
 admin.site.register(Gallery, GalleryAdmin)
