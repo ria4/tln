@@ -14,6 +14,9 @@ __pycache__
 /util/old/mongo_backup/
 *.bkp
 
+# Secrets
+/net/.htpasswd
+
 # Third-party content
 /.well-known/
 /node_modules/
