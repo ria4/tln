@@ -62,6 +62,11 @@ def detail_tag(req, slug, page=1):
 # Oeuvre Cache
 
 def refresh_oeuvre_cache(mtype):
+    """Refresh the template fragment cached for the mtype collection.
+
+    Note that we use template fragment caching instead of per-view caching
+    because Django does not provide a proper way to clear per-view caches.
+    """
     # release the template fragment cache key
     cache_key = make_template_fragment_key('chunks_collection', [mtype])
     cache.delete(cache_key)

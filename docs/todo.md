@@ -3,11 +3,6 @@
 - create generic css class for images (include borders from 'zoomable' class)
 
 
-## Features critique
-
-- cache collection view rather than template
-
-
 ## Life is too short for this
 
 - use ajax and icons with todo app
