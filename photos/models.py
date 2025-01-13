@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from django.utils.encoding import smart_str, filepath_to_uri
+from django.utils.encoding import force_str, smart_str, filepath_to_uri
 from functools import partial
 
-from photologue.models import Gallery, Photo, PhotoSizeCache
+from photologue.models import Gallery, Photo, PhotoSize, PhotoSizeCache
 
 logger = logging.getLogger(__name__)
 
@@ -20,8 +20,17 @@ size_method_map_custom = {}
 
 
 class PhotoCustom(models.Model):
-    photo = models.OneToOneField(Photo, related_name='custom',
-                                 on_delete=models.CASCADE)
+    """Model extending Photologue's Photo model.
+
+    Since it's not a proper subclass of the Photo model, various methods had to be
+    replicated... It's a mess, but not one that's been worth cleaning up so far.
+    """
+
+    photo = models.OneToOneField(
+        Photo,
+        related_name='custom',
+        on_delete=models.CASCADE,
+    )
     placeholder_width = models.IntegerField(default=0)
     placeholder_primitive_mode = models.IntegerField(default=1)
     placeholder_primitive_number = models.IntegerField(default=120)
@@ -87,6 +96,11 @@ class PhotoCustom(models.Model):
 
         if self.size_exists(photosize):
             return
+
+        # The part below has possibly never been called, due to my past misunderstanding
+        # of photologue's caching... I've used a script stored in utils/ instead.
+        # If I ever get to cleaning this model, this part should be operated
+        # from an admin action, much like the 'native' photosize creation.
 
         namesplit = photosize.name.split('_')
         display_size, placeholder = '_'.join(namesplit[:-1]), namesplit[-1]
@@ -202,15 +216,22 @@ def init_size_method_map_custom():
 
 
 class GalleryCustom(models.Model):
-    gallery = models.OneToOneField(Gallery, related_name='custom',
-                                   on_delete=models.CASCADE)
+    gallery = models.OneToOneField(
+        Gallery,
+        related_name='custom',
+        on_delete=models.CASCADE,
+    )
     nav_title = models.CharField('Titre-menu du projet', max_length=63, blank=True)
     date_shooting = models.CharField('Date du projet', max_length=31)
     description_fr = models.TextField('Description FR', blank=True)
     description_en = models.TextField('Description EN', blank=True)
     allowed_users = models.ManyToManyField(User, blank=True)
-    thumbnail_photo = models.OneToOneField(Photo, blank=True, null=True,
-                                           on_delete=models.PROTECT)
+    thumbnail_photo = models.OneToOneField(
+        Photo,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+    )
 
     class Meta:
         verbose_name = u'Gallery Custom'
@@ -218,3 +239,47 @@ class GalleryCustom(models.Model):
 
     def __str__(self):
         return self.gallery.title
+
+
+class GalleryProxy(Gallery):
+    """Proxy model for re-registering the model to our 'Photos' app admin."""
+
+    class Meta:
+        proxy = True
+        verbose_name = "Galerie"
+        verbose_name_plural = "Galeries"
+
+
+class PhotoSizeProxy(PhotoSize):
+    """Proxy model for re-registering the model to our 'Photos' app admin."""
+
+    class Meta:
+        proxy = True
+        verbose_name = "Taille de photo"
+        verbose_name_plural = "Tailles de photo"
+
+
+class PhotoProxy(Photo):
+    """Proxy model for routing the filename either to the legacy name or a slug name."""
+
+    class Meta:
+        proxy = True
+        verbose_name = "Photo"
+        verbose_name_plural = "Photos"
+
+    def image_filename(self):
+        # Checking for the admin_thumbnail cached file with the legacy filename
+        # to identify photos which were processed before the new slug-based logic.
+        legacy_filename = os.path.basename(force_str(self.image.name))
+        base, ext = os.path.splitext(legacy_filename)
+        legacy_admin_thumbnail_filename = os.path.join(
+            self.cache_path(),
+            "".join([base, "_", "admin_thumbnail", ext]),
+        )
+        if self.image.storage.exists(legacy_admin_thumbnail_filename):
+            return legacy_filename
+
+        # Otherwise, use our own slug-based name for new photos,
+        # as this gives us better control over the public name and the extension.
+        _, extension = os.path.splitext(self.image.name)
+        return self.slug + extension.lower()

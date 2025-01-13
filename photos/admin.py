@@ -3,10 +3,27 @@ from django.contrib.auth.models import User
 from django.forms.models import BaseInlineFormSet
 from django.utils.translation import ngettext
 
-from photologue.admin import GalleryAdmin as GalleryAdminDefault, PhotoAdmin as PhotoAdminDefault
-from photologue.models import Gallery, Photo, PhotoSizeCache
+from photologue.admin import (
+    GalleryAdmin as GalleryAdminDefault,
+    PhotoAdmin as PhotoAdminDefault,
+    PhotoSizeAdmin,
+)
+from photologue.models import (
+    Gallery,
+    Photo,
+    PhotoEffect,
+    PhotoSize,
+    PhotoSizeCache,
+    Watermark,
+)
 
-from .models import GalleryCustom, PhotoCustom
+from .models import (
+    GalleryCustom,
+    GalleryProxy,
+    PhotoCustom,
+    PhotoProxy,
+    PhotoSizeProxy,
+)
 
 
 class GalleryCustomFormSet(BaseInlineFormSet):
@@ -32,6 +49,7 @@ class GalleryCustomInline(admin.StackedInline):
 
 class GalleryAdmin(GalleryAdminDefault):
     inlines = [GalleryCustomInline, ]
+
 
 class PhotoCustomInline(admin.StackedInline):
     model = PhotoCustom
@@ -75,7 +93,15 @@ class PhotoAdmin(PhotoAdminDefault):
             )
         self.message_user(request, msg, messages.SUCCESS)
 
+
+# unregister all photologue models
 admin.site.unregister(Gallery)
-admin.site.register(Gallery, GalleryAdmin)
 admin.site.unregister(Photo)
-admin.site.register(Photo, PhotoAdmin)
+admin.site.unregister(PhotoEffect)
+admin.site.unregister(PhotoSize)
+admin.site.unregister(Watermark)
+
+# re-register the models we care about through our proxies
+admin.site.register(GalleryProxy, GalleryAdmin)
+admin.site.register(PhotoSizeProxy, PhotoSizeAdmin)
+admin.site.register(PhotoProxy, PhotoAdmin)
