@@ -1,8 +1,3 @@
-## Features photologue
-
-- create generic css class for images (include borders from 'zoomable' class)
-
-
 ## Life is too short for this
 
 - use ajax and icons with todo app
