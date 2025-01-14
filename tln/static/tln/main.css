@@ -641,6 +641,7 @@ body #sidebar {
 .entry-content { line-height: 1.35; }
 @media (max-width: 700px) { .entry-content { font-size: 19px; } }
 .entry .entry-content img { border: 1px solid #deda99; }
+.entry .entry-content img[src$=".png"] { border: 0; }
 .entry .entry-content p { margin: 18px 0; line-height: 27px; }
 .entry-content ul { list-style: square; padding-left: 40px; }
 .entry-content li { list-style: square; }
