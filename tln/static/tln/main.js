@@ -312,7 +312,11 @@ if (zoomableContainers.length > 0) {
         var placeholders = [];
 
         for (var i=0; i<zoomableContainers.length; i++) {
-            placeholders.push(zoomableContainers[i].children[0].children[0]);
+            var child = zoomableContainers[i].children[0].children[0];
+            // either we only display the img
+            if (child.tagName == "IMG") { placeholders.push(child); }
+            // or we embed it within an anchor element
+            else if (child.tagName == "A") { placeholders.push(child.children[0]); }
         }
 
         function setPhotoPosition(i, coeff) {
