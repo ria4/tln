@@ -929,9 +929,9 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #timeline .vis-panel.vis-background.vis-horizontal { --after-display: initial; }
 #timeline .vis-panel.vis-background.vis-horizontal::after {
     display: var(--after-display);  /* hack to edit the pseudo-element with javascript */
-    content: " ↔ (scroll)\A         (ctrl+scroll)";
+    content: " ↔ (scroll)\A           (ctrl+scroll)";
     white-space: pre;
-    background: url("/static/tln/img/search_icon_timeline.png") no-repeat 3px 28px fixed;
+    background: url("/static/tln/img/search_icon_timeline.png") no-repeat 7px 33px fixed;
     background-size: 15%;
     position: absolute;
     top: 5%;
