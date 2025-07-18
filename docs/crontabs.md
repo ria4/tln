@@ -3,7 +3,9 @@
 ```
 @reboot /usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /home/ria/tln/net/uwsgi-emperor.log
 @reboot . /home/ria/.bash_secrets; /home/ria/.virtualenvs/lajujabot/bin/python /opt/lajujabot/main.py -c /opt/lajujabot/config.json
+@reboot mkdir /tmp/oeuvres_img && chmod 755 /tmp/oeuvres_img
 0 4 * * * wget --spider https://oriane.ink/critique/rencontres/ 2>/dev/null
+*/30 * * * * /home/ria/.virtualenvs/dyndns_ovh-jcypVYJ1/bin/python3 /opt/dyndns_ovh/dyndns_ovh.py
 ```
 
 
