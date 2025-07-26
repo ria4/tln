@@ -13,9 +13,8 @@ import critique.views.top as views_top
 
 
 urlpatterns = [
-    # preambule
-    path('', TemplateView.as_view(template_name='critique/preambule.html')),
-    path('preambule/', TemplateView.as_view(template_name='critique/preambule.html'), name='preambule'),
+    # index
+    path('', TemplateView.as_view(template_name='critique/index.html'), name='critique_index'),
 
     # artistes
     path('artiste/autocomplete', views_artiste.ArtisteAutocomplete.as_view(create_field='name', validate_create=True), name='autocomplete_artiste'),

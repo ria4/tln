@@ -15,9 +15,8 @@ var topNavTrigger = document.getElementById("top-nav-trigger");
 var mainNavBar = document.getElementById("main-nav");
 var subNavTrigger = document.getElementById("sub-nav-trigger");
 var subNavBar = document.getElementById("sub-nav");
-var mainNavLinksH = document.getElementById("main-nav-links-h");
-var mainNavLinksV = document.getElementById("main-nav-links-v");
-var subNavLinksV = document.getElementById("sub-nav-links-v");
+var mainNavLinks = document.getElementById("main-nav-links");
+var subNavLinks = document.getElementById("sub-nav-links");
 
 /* Reveal the topNavBar on clicking the utmost left link */
 topNavTrigger.addEventListener("click", function(e) {
@@ -36,20 +35,17 @@ subNavTrigger.addEventListener("click", function (e) {
 });
 
 /* Place the top texts link according to window width */
-var widthTriggerCritiqueNavLayout = 1380;
 var widthTriggerTopTextesPosition = 950;
-var topTextesMain = mainNavLinksV.getElementsByClassName("top-textes");
-var topTextesSub = subNavLinksV.getElementsByClassName("top-textes");
+var topTextesMain = mainNavLinks.getElementsByClassName("navlink-shrinkable");
+var topTextesSub = subNavLinks.getElementsByClassName("navlink-shrinkable");
 function setTopTextesPosition() {
     let elem = null;
-    if (window.innerWidth < widthTriggerCritiqueNavLayout) {
-        if (window.innerWidth < widthTriggerTopTextesPosition) {
-            for (elem of topTextesMain) { elem.style.display = "none"; }
-            for (elem of topTextesSub) { elem.style.display = "list-item"; }
-        } else {
-            for (elem of topTextesMain) { elem.style.display = "list-item"; }
-            for (elem of topTextesSub) { elem.style.display = "none"; }
-        }
+    if (window.innerWidth < widthTriggerTopTextesPosition) {
+        for (elem of topTextesMain) { elem.style.display = "none"; }
+        for (elem of topTextesSub) { elem.style.display = "list-item"; }
+    } else {
+        for (elem of topTextesMain) { elem.style.display = "list-item"; }
+        for (elem of topTextesSub) { elem.style.display = "none"; }
     }
 }
 setTopTextesPosition();
@@ -80,7 +76,7 @@ contentWrap.addEventListener("click", function () {
 });
 
 /* Hide menus when clicking on the transparent part of the subNavBar */
-subNavLinksV.addEventListener("click", function (e) {
+subNavLinks.addEventListener("click", function (e) {
     e.stopPropagation();
 });
 subNavBar.addEventListener("click", function () {
@@ -121,6 +117,7 @@ function hideSearchInput(prev) {
     updateAgnosticSearchElements();
     if (!critiqueSearchX.classList.contains("expanded")) { return }
 
+    document.activeElement.blur();
     searchResultsListX.replaceChildren();
     searchInputX.value = "";
     critiqueSearchX.classList.remove("expanded");
