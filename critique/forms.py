@@ -65,6 +65,8 @@ class CommentaireForm(forms.Form):
     date = forms.DateField(label="date", widget=DateInput)
     no_month = forms.BooleanField(label="sans mois", required=False)
     no_day = forms.BooleanField(label="sans jour", required=False)
+    tgdb = forms.BooleanField(label="tgdb", required=False)
+    tgdb_slug = forms.CharField(label="tgdb slug", max_length=200, required=False)
     content = forms.CharField(label="contenu", widget=forms.Textarea)
 
 

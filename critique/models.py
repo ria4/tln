@@ -168,7 +168,9 @@ class Commentaire(models.Model):
     date_du = models.BooleanField(default=False)
     date_mu = models.BooleanField(default=False)
     content = models.TextField(blank=True)
-    starred = models.BooleanField(default=False)
+    starred = models.BooleanField(default=False)  # "textes choisis" list
+    tgdb = models.BooleanField(default=False)  # Thinky Games database list
+    tgdb_slug = models.CharField(max_length=200, blank=True)
 
     class Meta:
         ordering = ["-date"]

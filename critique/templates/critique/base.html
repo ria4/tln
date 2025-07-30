@@ -9,6 +9,7 @@
 <nav id="critique-header-access" class="hidden"><ul>
     <li><a tabindex="-1" href={% url "critique_index" %}>index</a></li>
     <li><a tabindex="-1" href={% url "get_chronologie" %}>chronologie</a></li>
+    <li><a tabindex="-1" href={% url "list_tgdb_excerpts" %}>thinky games</a></li>
     <li><a tabindex="-1" href={% url "top_textes" %}>textes choisis</a></li>
     <li><a tabindex="-1" href={% url "list_notes" %}>carnet de notes</a></li>
     <li><a tabindex="-1" href={% url "list_seances" %}>séances ciné</a></li>
@@ -48,7 +49,7 @@
             <ul id="main-nav-links">
                 <li><a href={% url "critique_index" %}>index</a></li>
                 <li class="navlink-shrinkable"><a href={% url "get_chronologie" %}>chronologie</a></li>
-                <li class="navlink-shrinkable"><a href={% url "top_textes" %}>textes choisis</a></li>
+                <li class="navlink-shrinkable"><a href={% url "list_tgdb_excerpts" %}>thinky games</a></li>
                 <li id="sub-nav-trigger"><a href="#">(...)</a></li>
             </ul>
                 <li id="critique-search">
@@ -82,7 +83,8 @@
         <ul id="sub-nav-links">
             <li style="display: none;"><a href={% url "critique_index" %}>index</a></li>
             <li class="navlink-shrinkable" style="display: none;"><a href={% url "get_chronologie" %}>chronologie</a></li>
-            <li class="navlink-shrinkable" style="display: none;"><a href={% url "top_textes" %}>textes choisis</a></li>
+            <li class="navlink-shrinkable" style="display: none;"><a href={% url "list_tgdb_excerpts" %}>thinky games</a></li>
+            <li><a href={% url "top_textes" %}>textes choisis</a></li>
             <li><a href={% url "list_notes" %}>carnet de notes</a></li>
             <li><a href={% url "list_seances" %}>séances ciné</a></li>
             <li><a href={% url "list_envies" %}>perspectives</a></li>

@@ -18,6 +18,9 @@ def get_comment_form_data(comment):
         form_data['no_month'] = comment.date_mu
     if hasattr(comment, 'date_du'):
         form_data['no_day'] = comment.date_du
+    if hasattr(comment, 'tgdb'):
+        form_data['tgdb'] = comment.tgdb
+    form_data['tgdb_slug'] = comment.tgdb_slug
     form_data['content'] = comment.content
     return form_data
 
@@ -39,6 +42,8 @@ def update_comment_with_form(comment, form):
     comment.date = dt.replace(microsecond=0)
     comment.date_mu = form.cleaned_data['no_month']
     comment.date_du = form.cleaned_data['no_day']
+    comment.tgdb = form.cleaned_data['tgdb']
+    comment.tgdb_slug = form.cleaned_data['tgdb_slug']
     comment.content = form.cleaned_data['content']
     comment.save()
 

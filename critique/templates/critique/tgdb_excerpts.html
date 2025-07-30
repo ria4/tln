@@ -1,0 +1,80 @@
+{% extends "critique/base.html" %}
+{% load static %}
+{% load l10n %}
+{% load i18n %}
+
+{% block title %}thinky games{% endblock %}
+{% block meta-description-page %}descriptions written for the thinky games database{% endblock %}
+
+{% block body-class %}entry-list{% endblock %}
+{% block content-wrap-class %}decenter{% endblock %}
+
+{% block content %}
+<div id="tgdb-excerpts" class="critique-perso">
+    <div>
+        <header class="entry-header">
+            <h1 class="entry-title">Thinky Games</h1>
+        </header>
+
+        <div class="entry-body">
+            <div class="entry-content">
+                <div class="entry-section">
+                    <p>Je contribue depuis 2024 à <a href="https://thinkygames.com">Thinky Games</a>, un site anglophone dédié aux jeux vidéo de réflexion. En plus des traditionnels articles d'actualité et de critique propres à la presse vidéoludique, le site héberge <a href="https://thinkygames.com/games/">une base de données</a> dont je suis l'éditrice principale.</p>
+                    <p>Une partie de mon travail consiste à publier des descriptions de jeux rédigées par une petite équipe de collaborateur·ices, ou bien directement par moi-même. Ma ligne éditoriale s'articule autour des mécaniques de chaque jeu : quels problèmes formulent-ils ? à quelles capacités doit-on faire appel pour les résoudre ? J'approche ces questions avec une familiarité de ton mesurée, et je fais preuve de réserve dans l'expression de mes opinions.</p>
+                    <p>La liste ci-dessous présente des extraits des textes que j'ai écrits dans ce cadre. Vous pouvez également retrouver les <em lang="en">thinky games</em> auxquels j'ai joué en consultant ma <a href={% url "get_chronologie" %}>chronologie</a>.</p>
+                </div>
+                <hr>
+                <div class="entry-section" lang="en">
+                    <p>I've worked as an editor for <a href="https://thinkygames.com">Thinky Games</a> since 2024. We cover “<em>games you love to solve</em>”, meaning puzzle games, detective games, strategy games and the like. Our website publishes the kind of news and reviews that have come to define videogame journalism, but we also curate <a href="https://thinkygames.com/games/">a large database of thinky games</a>. And it's my job to update and manage its contents.</p>
+                    <p>Some of the database entries include a factual, mechanics-oriented description of the game. Many descriptions are submissions from freelancers that I reviewed, edited and published, but from time to time I get to write them myself. The editorial line I follow focuses on articulating the challenges that each ruleset creates and the problem-solving skills that they require. I've kept to a mildly informal tone and to mostly muted personal opinions.</p>
+                    <p>I've listed below excerpts of my own game descriptions, along with links to the full articles. You can also visualize every thinky game I've played recently using my <a href={% url "get_chronologie" %}>timeline</a>.</p>
+                </div>
+                <hr>
+
+<div class="entry-section entry-links no-filter-nav-bar" lang="en">
+{% for texte in commentaire_list %}
+{% with texte.oeuvre as oeuvre %}
+    <a href="https://thinkygames.com/games/{% if texte.tgdb_slug %}{{texte.tgdb_slug}}{% else %}{{oeuvre.slug}}{% endif %}/" class="entry-link">
+        <div class="oeuvre-display">
+        {% if oeuvre.image %}
+        <img src="{{ oeuvre.image.url }}" alt="" />
+        {% endif %}
+        </div>
+
+        <article class="hentry">
+            <header class="entry-header">
+                <h2 class="entry-title">{{ oeuvre.title_vf }}</h2>
+            </header>
+
+            <div class="entry-body">
+                <div class="entry-content entry-content-tgdb-quote">
+                    {# hack for printing linebreaks #}
+                    {% if texte.content|slice:"-3:" == '!!!' %}
+                    {{ texte.content|slice:":-3"|striptags|linebreaks }}
+                    {% else %}
+                    {{ texte.content|striptags }}
+                    {% endif %}
+                </div>
+            </div>
+            <footer class="entry-footer">
+                <!--[if !IE]><!--><div class="entry-discussions" role="presentation"></div><!--<![endif]-->
+                <time>
+                    {% language 'en' %}
+                    {% if texte.date_mu %}
+                        {{ texte.date|date:"Y" }}
+                    {% elif texte.date_du %}
+                        {{ texte.date|date:"F Y" }}
+                    {% else %}
+                        {{ texte.date|date:"F j, Y" }}
+                    {% endif %}
+                    {% endlanguage %}
+                </time>
+            </footer>
+            {% endwith %}
+        </article>
+    </a>
+{% endfor %}
+</div>
+
+</div></div></div></div>
+{% endblock %}

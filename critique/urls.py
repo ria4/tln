@@ -37,6 +37,7 @@ urlpatterns = [
 
     # commentaires
     path('textes/', views_top.TopTextesView.as_view(), name='top_textes'),
+    path('thinky_games/', views_top.TgdbExcerptsView.as_view(), name='list_tgdb_excerpts'),
     path('notes/', views_commentaire.list_notes, name='list_notes'),
     path('notes/<int:page>', views_commentaire.list_notes, name='list_notes'),
     path('notes/<str:mtype>', views_commentaire.list_notes, name='list_notes'),

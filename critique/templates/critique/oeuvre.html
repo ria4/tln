@@ -82,12 +82,14 @@
         {% endif %}
 
         <div class="entry-body">
-            <div class="entry-content">
+            <div class="entry-content" {% if comment.tgdb %}lang="en"{% endif %}>
                 {# hack for printing linebreaks in previews #}
                 {% if comment.content|slice:"-3:" == '!!!' %}
                 {{ comment.content|slice:":-3"|safe|linebreaks }}
                 {% else %}
+                {% if comment.tgdb %}<blockquote cite="https://thinkygames.com/games/{% if comment.tgdb_slug %}{{comment.tgdb_slug}}{% else %}{{oeuvre.slug}}{% endif %}/">{% endif %}
                 {{ comment.content|safe|linebreaks }}
+                {% if comment.tgdb %}</blockquote>{% endif %}
                 {% endif %}
             </div>
         </div>
@@ -95,6 +97,9 @@
         <footer class="entry-footer">
             <div class="entry-discussions"></div>
             <time>écrit {% fancydate comment en=True le=True annee=True %}</time>
+            {% if comment.tgdb %}
+            <span class="entry-footer-tgdb-note" lang="en">and published on <a href="https://thinkygames.com/games/{% if comment.tgdb_slug %}{{comment.tgdb_slug}}{% else %}{{oeuvre.slug}}{% endif %}/">Thinky Games</a></span>
+            {% endif %}
         </footer>
     </article>
 {% endfor %}

@@ -354,9 +354,9 @@ _:-ms-input-placeholder, :root #critique-search-results a > div > p:first-child,
 
 #critique-header #sub-nav > #sub-nav-links { display: -ms-flexbox; display: flex; }
 
-#critique-header #sub-nav.expanded { height: 266px; }
+#critique-header #sub-nav.expanded { height: 319px; }
 @media (max-width: 950px) {
-#critique-header #sub-nav.expanded { height: 372px; } }
+#critique-header #sub-nav.expanded { height: 425px; } }
 
 #sub-nav-links {
     display: -ms-flexbox;
@@ -426,9 +426,12 @@ _:-ms-input-placeholder, :root #critique-search-results a > div > p:first-child,
     max-width: 760px; }
 @media (max-width: 700px) { .critique-perso .hentry { padding: 4px 23px 0 22.2px; } }
 .critique-perso .hentry .entry-footer {
+    flex-direction: column;
+    align-items: end;
     padding-top: 0;
     padding-right: 20px;
     margin-bottom: 10px; }
+.critique-perso .hentry .entry-footer-tgdb-note { font-style: italic; }
 
 
 /* Oeuvre Display
@@ -678,6 +681,7 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     padding: 0 !important;
     overflow: hidden;
     text-overflow: ellipsis; }
+.entry-link .hentry .entry-content-tgdb-quote { font-style: italic; }
 .entry-link .hentry .entry-content:after {
     display: block;
     position: absolute;
@@ -759,7 +763,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 1176px; } /* IE 11 */ }
 _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 
 
-/* Content Preambule
+/* Content Index
    ========================================================================== */
 
 #preambule { margin-top: -14px; margin-bottom: 20px; }
@@ -789,6 +793,59 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #preambule hr {
     max-width: none;
     border-bottom-color: #a57100; }
+
+
+/* Content Thinky Games
+   ========================================================================== */
+
+#tgdb-excerpts { margin-top: -14px; margin-bottom: 20px; }
+#tgdb-excerpts > div {
+    padding: 4px 4px 0 6px;
+    max-width: 860px;
+    width: 100%; }
+@media(max-width: 700px) { #tgdb-excerpts > div { padding: 4px 23px 0 22.2px; } }
+#tgdb-excerpts h1.entry-title {
+    padding: 44px 8px 12px 0;
+    letter-spacing: normal;
+    font-size: 40px;
+    font-family: Alegreya, Palatino, serif; }
+#tgdb-excerpts .entry-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center; }
+#tgdb-excerpts .entry-content .entry-section {
+    padding-top: 20px;
+    padding-bottom: 4px;
+    max-width: 750px;
+    width: 100%; }
+#tgdb-excerpts .entry-content .entry-section:first-child { padding-top: 6px; }
+#tgdb-excerpts .entry-content .entry-section { padding-top: 4px; }
+#tgdb-excerpts .entry-content .entry-section:last-child { padding-top: 20px; }
+#tgdb-excerpts .entry-content p {
+    margin: 18px 0;
+    line-height: 27px; }
+#tgdb-excerpts hr {
+    max-width: none;
+    border-bottom-color: #a57100; }
+#tgdb-excerpts .oeuvre-display { display: none; }
+#tgdb-excerpts .entry-content .entry-section.entry-links { max-width: 830px; }
+#tgdb-excerpts .entry-link { text-decoration: none; max-height: none; }
+#tgdb-excerpts .entry-link .hentry { padding: 0; }
+#tgdb-excerpts .entry-link .entry-title {
+    text-align: left;
+    padding: 4px 0 4px 40px; }
+#tgdb-excerpts .entry-link .entry-title::before {
+    padding-right: 6px;
+    content: "— "; }
+#tgdb-excerpts .entry-link .hentry .entry-body { padding: 0 4px 0 8px; }
+#tgdb-excerpts .entry-link .hentry .entry-content { max-height: none; }
+#tgdb-excerpts .entry-link .hentry .entry-footer {
+    padding-top: 6px;
+    padding-right: 0;
+    margin-bottom: 0; }
 
 
 /* Content Artiste
@@ -1203,8 +1260,10 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #comment_form_empty p label[for="id_empty_date"],
 #comment_form p label[for="id_no_month"],
 #comment_form p label[for="id_no_day"],
+#comment_form p label[for="id_tgdb"],
 #comment_form_empty p label[for="id_empty_no_month"],
-#comment_form_empty p label[for="id_empty_no_day"] { width: 91px; }
+#comment_form_empty p label[for="id_empty_no_day"],
+#comment_form_empty p label[for="id_empty_tgdb"] { width: 91px; }
 #comment_form .form_buttons .filler,
 #comment_form_empty .form_buttons .filler { width: 72px; }
 @media (max-width: 400px) {
@@ -1216,8 +1275,10 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #comment_form_empty p label[for="id_empty_date"],
 #comment_form p label[for="id_no_month"],
 #comment_form p label[for="id_no_day"],
+#comment_form p label[for="id_tgdb"],
 #comment_form_empty p label[for="id_empty_no_month"],
-#comment_form_empty p label[for="id_empty_no_day"] { width: 71px; }
+#comment_form_empty p label[for="id_empty_no_day"],
+#comment_form_empty p label[for="id_empty_tgdb"] { width: 71px; }
 #comment_form .form_buttons .filler { width: 31px; }}
 
 

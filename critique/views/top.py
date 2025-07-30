@@ -13,6 +13,13 @@ class TopTextesView(ListView):
     template_name = 'critique/top_textes.html'
 
 
+# Thinky Games database excerpts
+
+class TgdbExcerptsView(ListView):
+    queryset = Commentaire.objects.filter(tgdb=True).order_by('-date')
+    template_name = 'critique/tgdb_excerpts.html'
+
+
 # Top Films
 
 def top_films(req, year=2011):
