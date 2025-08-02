@@ -185,6 +185,18 @@ _:-ms-fullscreen, :root #info { flex: 1 0 auto; } /* IE 11 */
     62% { color: transparent; text-shadow: 0 0 0px rgba(0, 0, 0, 1); }
     100% { color: transparent; text-shadow: 0 0 8px rgba(0, 0, 0, .7); } }
 
+#textlines-wrapper {
+    position: absolute;
+    height: 100%;
+    overflow: hidden;
+}
+.textline {
+    position: absolute;
+    text-wrap: nowrap;
+    transform-origin: top left;
+    /* font-size: attr(data-angle px); */
+    /* using attr() here would be great, but support for this feature is unreliable */
+}
 
 /* Footer
    ========================================================================== */
