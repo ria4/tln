@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cache %}
 
 {% block css-path %}{% static 'home/home.css' %}{% endblock %}
 {% block title %}oriane tury{% endblock %}
@@ -85,7 +86,21 @@
         </div>
     </footer>
 
-    <div id="night-sky"></div>
+    <div id="night-sky">
+        {# {% cache 60 nightsky 0 %} #}
+        {% for stars_subgroup in stars %}
+        <svg class="stars" width="100%" height="100%" preserveAspectRatio="none">
+            {% for star in stars_subgroup %}
+            <circle
+                class="star"
+                cx="{{ star.0|stringformat:'.1f' }}%"
+                cy="{{ star.1|stringformat:'.1f' }}%"
+                r="{{ star.2|stringformat:'.1f' }}"
+            ></circle>
+            {% endfor %}
+        </svg>
+        {% endfor %}
+    </div>
 </main>
 {% endblock %}
 

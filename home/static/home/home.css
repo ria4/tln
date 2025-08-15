@@ -194,23 +194,90 @@ _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0;
     );
 
     --ns-cycle: 120s;
-    --ns-speed-factor: 20;
+    /* --ns-speed-factor: 20; */
+    /* DEBUG speed */
+    --ns-speed-factor: 200;
     --_a: nsAnimation cubic-bezier(.8, .02, .98, .05) forwards;
     animation:
         var(--_a) var(--ns-cycle),
         var(--_a) calc(var(--ns-cycle)/var(--ns-speed-factor)) paused;
     animation-composition: add;
 
-    background: black;
+    background-color: black;
     box-shadow: inset 0 7px 10px -7px rgba(0, 13, 181, 0.9);
 }
 
 #night-sky:hover {
     animation-play-state: running;
-    /* debug background */
+    /* DEBUG background */
     /* background: rgb(232, 202, 138); */
 }
 
 @keyframes nsAnimation {
     to { --ns-radius: 100vmax; }
+}
+
+@property --star-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: white;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    --stars-subgroup-n: 10;
+    --animation-duration: 10s;
+    animation: twinkle var(--animation-duration) cubic-bezier(.7, 0, .3, 1) infinite;
+
+    &:nth-child(1) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 1);
+    }
+
+    &:nth-child(2) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 2);
+    }
+
+    &:nth-child(3) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 3);
+    }
+
+    &:nth-child(4) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 4);
+    }
+
+    &:nth-child(5) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 5);
+    }
+
+    &:nth-child(6) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 6);
+    }
+
+    &:nth-child(7) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 7);
+    }
+
+    &:nth-child(8) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 8);
+    }
+
+    &:nth-child(9) {
+        animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 9);
+    }
+}
+
+@keyframes twinkle { 25% { opacity: 0; } }
+
+.star {
+    --star-color: white;
+    fill: var(--star-color);
+
+    &:nth-child(15n) {
+        --star-color: #fff6a8;
+    }
+
+    &:nth-child(15n + 1) {
+        --star-color: #ffdede;
+    }
 }
