@@ -171,7 +171,7 @@ _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0;
 @property --ns-radius {
     syntax: "<length>";
     inherits: true;
-    initial-value: 4px;
+    initial-value: 2px;
 }
 
 @property --ns-max-feather {
@@ -184,19 +184,19 @@ _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0;
     position: absolute;
     height: 100%;
 
-    clip-path: circle(calc(var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))) at 1000px 600px);
+    clip-path: circle(calc(var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))) at 600px 580px);
     mask-image: radial-gradient(
-        circle at 1000px 600px,
+        circle at 600px 580px,
         black,
         black var(--ns-radius),
         transparent calc(var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))),
         transparent
     );
 
-    --ns-cycle: 120s;
-    /* --ns-speed-factor: 20; */
+    --ns-cycle: 150s;
+    --ns-speed-factor: 40;
     /* DEBUG speed */
-    --ns-speed-factor: 200;
+    /* --ns-speed-factor: 200; */
     --_a: nsAnimation cubic-bezier(.8, .02, .98, .05) forwards;
     animation:
         var(--_a) var(--ns-cycle),
@@ -228,7 +228,7 @@ _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0;
     top: 0;
     --stars-subgroup-n: 10;
     --animation-duration: 10s;
-    animation: twinkle var(--animation-duration) cubic-bezier(.7, 0, .3, 1) infinite;
+    animation: twinkle-star var(--animation-duration) cubic-bezier(.7, 0, .3, 1) infinite;
 
     &:nth-child(1) {
         animation-delay: calc(var(--animation-duration) / var(--stars-subgroup-n) * 1);
@@ -267,7 +267,7 @@ _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0;
     }
 }
 
-@keyframes twinkle { 25% { opacity: 0; } }
+@keyframes twinkle-star { 25% { opacity: 0; } }
 
 .star {
     --star-color: white;
@@ -280,4 +280,60 @@ _:-ms-input-placeholder, :root #footer { position: absolute; left: 0; bottom: 0;
     &:nth-child(15n + 1) {
         --star-color: #ffdede;
     }
+}
+
+.sparks {
+    position: absolute;
+    top: 0;
+}
+
+.spark {
+    fill: #ffe2b2;
+    opacity: 0;
+
+    --sparks-n: 10;
+    --animation-duration: 20s;
+    animation: twinkle-spark var(--animation-duration) cubic-bezier(.8, 0, .1, 0) infinite;
+
+    &:nth-child(1) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 1);
+    }
+
+    &:nth-child(2) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 2);
+    }
+
+    &:nth-child(3) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 3);
+    }
+
+    &:nth-child(4) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 4);
+    }
+
+    &:nth-child(5) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 5);
+    }
+
+    &:nth-child(6) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 6);
+    }
+
+    &:nth-child(7) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 7);
+    }
+
+    &:nth-child(8) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 8);
+    }
+
+    &:nth-child(9) {
+        animation-delay: calc(var(--animation-duration) / var(--sparks-n) * 9);
+    }
+}
+
+@keyframes twinkle-spark {
+    14% { opacity: 0; }
+    40% { opacity: 1; }
+    42% { opacity: 0; }
 }

@@ -87,7 +87,9 @@
     </footer>
 
     <div id="night-sky">
-        {# {% cache 60 nightsky 0 %} #}
+        <!-- this animation was inspired by Starseed Pilgrim (and probably also by Thoth) -->
+        {% cache None nightsky nightsky_seed %}
+
         {% for stars_subgroup in stars %}
         <svg class="stars" width="100%" height="100%" preserveAspectRatio="none">
             {% for star in stars_subgroup %}
@@ -96,10 +98,25 @@
                 cx="{{ star.0|stringformat:'.1f' }}%"
                 cy="{{ star.1|stringformat:'.1f' }}%"
                 r="{{ star.2|stringformat:'.1f' }}"
-            ></circle>
+            />
             {% endfor %}
         </svg>
         {% endfor %}
+
+        <svg class="sparks" width="100%" height="100%" preserveAspectRatio="none">
+            {% for spark in sparks %}
+            <g
+                class="spark"
+                transform="scale({{ spark.2|stringformat:'.1f' }})"
+                transform-origin="{{ spark.0|stringformat:'.1f' }}% {{ spark.1|stringformat:'.1f' }}%">
+            <path
+                style="transform: translate({{ spark.0|stringformat:'.1f' }}%, {{ spark.1|stringformat:'.1f' }}%)"
+                d="M73.022,58.44l1.667,14.815c1.014,9.006,8.122,16.114,17.128,17.128l14.815,1.667l-14.815,1.667   c-9.006,1.014-16.114,8.121-17.128,17.128l-1.667,14.815l-1.667-14.815c-1.014-9.006-8.121-16.114-17.128-17.128L39.412,92.05   l14.815-1.667c9.006-1.014,16.114-8.121,17.128-17.128L73.022,58.44z"/>
+            </g>
+            {% endfor %}
+        </svg>
+
+        {% endcache %}
     </div>
 </main>
 {% endblock %}
