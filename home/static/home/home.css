@@ -97,9 +97,9 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     font-family: "DejaVu Sans";
     font-size: 110px;
     clip-path: rect(48% 84% 88% 16%);
-    --text-shadow-size: 4px;
-    --text-shadow-blur-radius: 4px;
-    --text-shadow-color: rgba(255, 225, 118, 0.6);
+    --text-shadow-size: 3px;
+    --text-shadow-blur-radius: 3px;
+    --text-shadow-color: rgba(255, 225, 118, 0.7);
     text-shadow:
         var(--text-shadow-size) 0 var(--text-shadow-blur-radius) var(--text-shadow-color),
         0 var(--text-shadow-size) var(--text-shadow-blur-radius) var(--text-shadow-color),
@@ -142,11 +142,11 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     font-size: 170%;
 }
 @media (min-width: 1200px) { #info { margin-right: 1.8%; } }
-@media (max-width: 700px) { #info { font-size: 19px; } }
+@media (max-width: 920px) { #info { font-size: 120%; } }
 @media (max-height: 900px) { #info { justify-content: space-evenly; } }
 #info .hseparator { margin: 0 -20px 1px -20px; }
-@media (max-width: 976px) { #info .hseparator { margin: 54px 6px 55px 6px; } }
-@media (max-width: 700px) { #info .hseparator { margin: 34px 80px 35px 80px; } }
+@media (max-width: 1020px) { #info .hseparator { margin: 0px 60px 1px 60px; } }
+@media (max-width: 920px) { #info .hseparator { margin: 34px 80px 35px 80px; } }
 
 #info .info-div {
     display: flex;
@@ -219,7 +219,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     box-shadow: inset 0 7px 10px -7px rgba(0, 13, 181, 0.9);
     background-color: black;
 
-    --ns-cycle: 200s;
+    --ns-cycle: 180s;
     --ns-speed-factor: 80;
     --_a: nsAnimation cubic-bezier(.8, .02, .98, .05) forwards;
     animation:
@@ -243,6 +243,11 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     /* the animation is triggered by JS when the anchor is visible */
     animation-play-state: paused;
 }
+@media (max-width: 920px) {
+#night-sky {
+    /* run things faster on mobile */
+    --ns-cycle: 120s;
+} }
 
 #night-sky:hover {
     /* the !important overrides the 'running, paused' value set with JS */
