@@ -259,10 +259,10 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 
     --ns-cycle: 180s;
     --ns-speed-factor: 80;
-    --_a: nsAnimation cubic-bezier(.8, .02, .98, .05) forwards;
+    --_a: cubic-bezier(.8, .02, .98, .05) forwards;
     animation:
-        var(--_a) var(--ns-cycle),
-        var(--_a) calc(var(--ns-cycle)/var(--ns-speed-factor));
+        nsAnimation0 var(--_a) var(--ns-cycle),
+        nsAnimation1 var(--_a) calc(var(--ns-cycle)/var(--ns-speed-factor));
     animation-composition: add;
 
     /* these properties are set with JS because we need the current (x0, y0) anchor position */
@@ -278,8 +278,9 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     );
     */
 
-    /* the animation is triggered by JS when the anchor is visible */
-    animation-play-state: paused;
+    /* the first, slower animation is triggered by JS when the anchor is visible */
+    /* then the animation-play-state are toggled when the night sky is hovered on */
+    animation-play-state: paused, paused;
 }
 @media (max-width: 920px) {
 #night-sky {
@@ -287,12 +288,11 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
     --ns-cycle: 120s;
 } }
 
-#night-sky:hover {
-    /* the !important overrides the 'running, paused' value set with JS */
-    animation-play-state: running !important;
+@keyframes nsAnimation0 {
+    to { --ns-radius: 100vmax; }
 }
 
-@keyframes nsAnimation {
+@keyframes nsAnimation1 {
     to { --ns-radius: 100vmax; }
 }
 

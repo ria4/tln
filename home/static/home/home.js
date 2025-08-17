@@ -42,3 +42,26 @@ const startNightSky = (entries, observer) => {
 
 const observer = new IntersectionObserver(startNightSky, { threshold: 1.0 });
 observer.observe(nightSkyAnchor);
+
+
+/* Night Sky - Toggle animations based on hover */
+
+nightSky.addEventListener("mouseenter", (event) => {
+    let style = window.getComputedStyle(nightSky);
+    console.log(style.getPropertyValue("animation-play-state"));
+    if (style.getPropertyValue("animation-play-state") == "running, paused") {
+        nightSky.style.animationPlayState = "paused, running";
+    }
+});
+
+nightSky.addEventListener("mouseleave", (event) => {
+    let style = window.getComputedStyle(nightSky);
+    if (style.getPropertyValue("animation-play-state") == "paused, running") {
+        nightSky.style.animationPlayState = "running, paused";
+    }
+});
+
+nightSky.addEventListener("animationend", (event) => {
+    /* stop the remaining animation once either one completed */
+    nightSky.style.animationPlayState = "paused, paused";
+});
