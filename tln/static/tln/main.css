@@ -3,19 +3,9 @@
 /* modifications by ria */
 
 /* ===== HTML5 display definitions ===== */
-/* Corrects `block` display not defined in IE 8/9. */
-article, aside, details, figcaption, figure, footer,
-header, hgroup, nav, section, summary { display: block; }
-
-/* Corrects `inline-block` display not defined in IE 8/9. */
-audio, canvas, video { display: inline-block; }
-
 /* Prevents modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices. */
 audio:not([controls]) { display: none; height: 0; }
-
-/* Addresses styling for `hidden` attribute not present in IE 8/9. */
-[hidden] { display: none; }
 
 /* ===== Base ===== */
 /* Prevents iOS text size adjust after orientation change,
@@ -34,9 +24,6 @@ b, strong { font-weight: bold; }
 
 /* Addresses styling not present in Safari 5 and Chrome. */
 dfn { font-style: italic; }
-
-/* Addresses styling not present in IE 8/9. */
-mark { background: #ff0; color: #000; }
 
 /* Corrects font family set oddly in Safari 5 and Chrome. */
 code, kbd, pre, samp {
@@ -63,13 +50,6 @@ sub, sup {
     font-weight: normal; }
 sup { top: -0.45em; }
 sub { bottom: -0.2em; }
-
-/* ===== Embedded content ===== */
-/* Removes border when inside `a` element in IE 8/9. */
-img { border: 0; }
-
-/* Corrects overflow displayed oddly in IE 9. */
-svg:not(:root) { overflow: hidden; }
 
 /* ===== Figures ===== */
 /* Addresses margin not present in IE 8/9 and Safari 5. */
@@ -109,12 +89,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* Re-set default cursor for disabled elements. */
 button[disabled], input[disabled] { cursor: default; }
-
-/* 1. Addresses box sizing set to `content-box` in IE 8/9.
- * 2. Removes excess padding in IE 8/9. */
-input[type="checkbox"], input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0; }
 
 /* 1. Addresses `appearance` set to `searchfield` in Safari 5 and Chrome.
  * 2. Addresses `box-sizing` set to `border-box` in Safari 5 and Chrome
