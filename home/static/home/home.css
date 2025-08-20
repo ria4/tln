@@ -14,7 +14,7 @@ body { background-image: none; overflow-x: hidden; height: 100%; }
 
 body > #content-wrap { margin-bottom: 0; height: 100%; }
 
-#header {
+#body-wrapper > #header {
     position: relative;
     z-index: 1;
     left: -48%;

@@ -235,38 +235,34 @@ textarea { outline: none; }
 
 html { height: 100%; }
 body {
-    min-width: 320px;
-    min-height: 100%;
-    overflow-x: hidden;
     background-size: 100% auto;
     font-size: 20px;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-align: center;
-    align-items: center; }
+}
 body { background-image: url("/static/tln/img/critique_background_content_norm.jpg"); }
 @media (max-width: 960px) {
 body { background-image: url("/static/tln/img/critique_background_content_min.jpg"); } }
+#body-wrapper {
+    position: relative;
+    min-width: 320px;
+    min-height: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* https://bugs.chromium.org/p/chromium/issues/detail?id=332189 */
 .preload * { transition: none !important; }
 
-body > header { width: 100%; }
-body > #content-wrap {
+#body-wrapper > header { width: 100%; }
+#body-wrapper > #content-wrap {
     margin-bottom: 46px;
     width: 100%;
     max-height: 100%;
-    -ms-flex-grow: 1;
-    -ms-flex-shrink: 1;
     flex: 1;
     font-family: Alegreya, Palatino, serif;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 #footer {
@@ -278,11 +274,8 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 
 #content {
     width: 100%;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 #content > * { width: 100%; }
 hr, .hseparator { border-bottom: solid 1px #a57100; }
@@ -338,18 +331,12 @@ body.photos-infos #content a:hover,
 .navbar {
     text-align: center;
     font-family: Abuget, Palatino, serif;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center; }
 .navbar ul {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center; }
 .navbar a {
     color: black;
@@ -582,11 +569,8 @@ body #sidebar {
 
 .entry-links {
     padding: 0 20px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 
 
@@ -645,9 +629,7 @@ body #sidebar {
 
 .entry-footer {
     padding-top: 6px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
     align-items: center;
     white-space: nowrap; }
 @media (max-width: 700px) {
@@ -668,13 +650,9 @@ body #sidebar {
 .entry-footer .entry-tags { font-size: 16px; } }
 
 .entry-footer .entry-discussions {
-    -ms-flex: 1;
     flex: 1;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: end;
     justify-content: flex-end;
-    -ms-flex-align: center;
     align-items: center; }
 .entry-footer .entry-discussions img {
     margin: 3px 8px 0 4px;
@@ -752,11 +730,8 @@ a.no-zoom img {
     width: 100%;
     height: 100%;
     background-color: rgba(50, 50, 50, 0.8);
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center;
     transition: all 0.3s ease; }
 .overlay.revealed {
@@ -785,17 +760,12 @@ a.no-zoom img {
 
 .form_inputs {
     margin-top: 3px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-pack: start;
     justify-content: flex-start; }
 .form_inputs p {
     margin: 4px 0;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
     align-items: center; }
 @media (max-width: 400px) {
 .form_inputs p { margin: 3px 0; }}
@@ -833,9 +803,7 @@ a.no-zoom img {
     margin-top: -2px;
     font-family: Abuget, Palatino, serif;
     font-size: 40px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center; }
 .form_buttons input:focus { color: #f7a300; }
 @media (max-width: 400px) {
