@@ -259,7 +259,7 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 
     --ns-cycle: 180s;
     --ns-speed-factor: 80;
-    --_a: cubic-bezier(.8, .02, .98, .05) forwards;
+    --_a: cubic-bezier(.8, .02, .95, .1) forwards;
     animation:
         nsAnimation0 var(--_a) var(--ns-cycle),
         nsAnimation1 var(--_a) calc(var(--ns-cycle)/var(--ns-speed-factor));

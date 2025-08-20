@@ -1,6 +1,5 @@
 ## Home
 
-- feat: increase night-sky clickable box on mobile (it's too small for fingers)
 - bug: sometimes it's impossible to click on the night-sky in safari...?
 - bug: browsers (on iOS) may reload the page without any user input...??
 - bug: some mobile browsers add a thin space to the right after using the goto arrow

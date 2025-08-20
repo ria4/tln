@@ -15,13 +15,21 @@ let nightSky = document.getElementById("night-sky");
 let nightSkyAnchor = document.getElementById("nightsky-anchor");
 let content = document.getElementById("content");
 
+// dirty heuristic to approximate mobile screen detection
+let biggerClipPath = (screen.width < 1920) && (window.devicePixelRatio > 2.2);
+
 function setNightSkyOrigin() {
     let anchorRect = nightSkyAnchor.getBoundingClientRect();
     let contentRect = content.getBoundingClientRect();
     let x = Math.floor((anchorRect.left + anchorRect.right) / 2) + 1 + "px";
     let y = Math.floor(anchorRect.top * .3 + anchorRect.bottom * .7) - contentRect.top + "px";
 
-    nightSky.style.clipPath = "circle(calc(var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))) at " + x + " " + y +")";
+    let clipPathRadius = "var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))"
+    if (biggerClipPath) {
+        clipPathRadius += " + 20px";
+    }
+
+    nightSky.style.clipPath = "circle(calc(" + clipPathRadius + ") at " + x + " " + y +")";
     nightSky.style.maskImage = "radial-gradient(circle at " + x + " " + y + ", black, black var(--ns-radius), transparent calc(var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))), transparent)";
 }
 
