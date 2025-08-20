@@ -9,11 +9,24 @@ $('a[href^="#info"]').click( function (event) {
 });
 
 
-/* Night Sky - Position animation on nightsky anchor */
+/* Night Sky animation */
 
 let nightSky = document.getElementById("night-sky");
 let nightSkyAnchor = document.getElementById("nightsky-anchor");
 let content = document.getElementById("content");
+
+
+/* Night Sky - Deactivate on iPhones */
+
+// iOS may crash-loop on the night sky animation, so I'll turn it off
+// frankly, I don't care enough about crappy expensive iPhones to spend more time trying to fix this
+if (navigator.userAgent.includes("iPhone")) {
+    nightSky.style.display = "none";
+    nightSkyAnchor.style.display = "none";
+} else {
+
+
+/* Night Sky - Position animation on nightsky anchor */
 
 // dirty heuristic to approximate mobile screen detection
 let biggerClipPath = (screen.width < 1920) && (window.devicePixelRatio > 2.2);
@@ -73,3 +86,5 @@ nightSky.addEventListener("animationend", (event) => {
     /* stop the remaining animation once either one completed */
     nightSky.style.animationPlayState = "paused, paused";
 });
+
+}
