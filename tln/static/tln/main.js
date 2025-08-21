@@ -168,13 +168,13 @@ function activateOverlayIf(e) {
     return false;
 }
 
-if (isTouchDevice()) {
+if (userIsAuthenticated && isTouchDevice()) {
 
     var adminInput = document.getElementById("admin-codes");
     if (adminInput) {
-        // wait 1s for critique.js to load with deployAdminInputLogic
+        // wait .5s for critique.js to load with deployAdminInputLogic
         function deployAdminInputLogicDummy() { deployAdminInputLogic() };
-        setTimeout(deployAdminInputLogicDummy, 1000);
+        setTimeout(deployAdminInputLogicDummy, 500);
     }
 
 } else {

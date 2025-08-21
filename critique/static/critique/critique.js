@@ -21,11 +21,7 @@ var subNavLinks = document.getElementById("sub-nav-links");
 /* Reveal the topNavBar on clicking the utmost left link */
 topNavTrigger.addEventListener("click", function(e) {
     e.preventDefault();
-    if (!topNavTrigger.displayAdminInput) {
-        topNavBar.classList.toggle("expanded");
-    } else {
-        adminInput.focus();
-    }
+    topNavBar.classList.toggle("expanded");
 });
 
 /* Reveal the subNavBar on clicking the utmost right link */
@@ -539,19 +535,48 @@ if (oeuvrespanFormEmpty) {
 /* Critique Admin Codes - Register admin inputs */
 
 function deployAdminInputLogic() {
-    function displayAdminInput() {
-        topNavTrigger.displayAdminInput = true;
-        adminInput.style.display = "initial"; }
-    function hideAdminInput() {
-        adminInput.style.display = "none"; }
 
-    var admin_cnt = 0;
-    topNavTrigger.addEventListener("touchstart", function (e) {
-        if (++admin_cnt >= 5) {
-            displayAdminInput();
-            admin_cnt = 0;
+    function displayAdminInput() {
+        adminInput.style.display = "initial";
+        adminInput.focus();
+    }
+    function hideAdminInput() {
+        adminInput.style.display = "none";
+        adminInput.value = "";
+    }
+
+    // display admin input after two short taps
+
+    let adminTapCount = 0;
+    let tapStartTime = 0;
+    let noTapStartTime = 0;
+
+    function handleTouchStart() {
+        if (adminTapCount > 0) {
+            var noTapDuration = new Date().getTime() - noTapStartTime;
+            if (noTapDuration > 500) {
+                // reset counter if too much time has passed
+                adminTapCount = 0;
+            }
         }
-    });
+        tapStartTime = new Date().getTime();
+    }
+
+    function handleTouchEnd(e) {
+        var tapDuration = new Date().getTime() - tapStartTime;
+        if (tapDuration < 200) {
+            adminTapCount++;
+        }
+        if (adminTapCount >= 2) {
+            e.preventDefault();
+            displayAdminInput();
+            adminTapCount = 0;
+        }
+        noTapStartTime = new Date().getTime();
+    }
+
+    document.body.addEventListener("touchstart", handleTouchStart);
+    document.body.addEventListener("touchend", handleTouchEnd);
 
     adminInput.addEventListener("input", function (e) {
         cachedCode = e.target.value;
