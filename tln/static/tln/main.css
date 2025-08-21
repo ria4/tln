@@ -498,8 +498,6 @@ body #sidebar {
     transform: rotate(32deg);
     transition: transform ease .9s; }
 #todo-logo-nav.todo-logo-nav-mobile {
-    top: -80px;
-    right: -62px;
     height: 120px;
     width: 160px !important; }
 #todo-logo-nav > img {
@@ -507,7 +505,6 @@ body #sidebar {
     width: 100%; }
 
 #todo-logo-nav:hover,
-#todo-logo-nav.todo-logo-nav-mobile.mobile-hover,
 #top-nav-h #todo-logo-nav:hover {
     transform: rotate(22deg) translate(-9%, 68%); }
 
@@ -523,10 +520,6 @@ body #sidebar {
     right: 0;
     transition: opacity ease-out .2s, transform ease .9s;
     transform: rotate(32deg); }
-#top-nav-h #todo-logo-nav.todo-logo-nav-mobile {
-    top: -120px; }
-#top-nav-h #todo-logo-nav.todo-logo-nav-mobile.mobile-hover {
-    transform: rotate(22deg) translate(-14%, 79%); }
 #top-nav-h.expanded #todo-logo-nav {
     opacity: 1;
     transition: opacity ease-in .3s .1s, transform ease .9s }
