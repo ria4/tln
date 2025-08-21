@@ -79,11 +79,11 @@ class TodoItemListView(
         return todo_list.public or todo_list.author == self.request.user
 
     def get_queryset(self):
-        """Display items starting with '[long term]' first."""
+        """Display items starting with '[on hold]' on top."""
         qs = self.extra_context['todo_list'].items.all()
-        expression = Q(content__startswith="[long term]")
-        is_longterm = ExpressionWrapper(expression, output_field=BooleanField())
-        return qs.annotate(is_longterm=is_longterm).order_by("-is_longterm")
+        expression = Q(content__startswith="[on hold]")
+        is_onhold = ExpressionWrapper(expression, output_field=BooleanField())
+        return qs.annotate(is_onhold=is_onhold).order_by("-is_onhold")
 
 
 class TodoItemCreateView(
