@@ -1,8 +1,3 @@
-## Home
-
-- bug: some mobile browsers add a thin space to the right after using the goto arrow (this is probably related to the todo-gate and the overflow-x failings)
-
-
 ## Life is too short for this
 
 - use ajax and icons with todo app

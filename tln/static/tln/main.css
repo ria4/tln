@@ -531,6 +531,21 @@ body #sidebar {
     opacity: 1;
     transition: opacity ease-in .3s .1s, transform ease .9s }
 
+/* This may cause some blank zones to be created on the right when
+   mobile devices ignore "overflow-x: hidden" for some reason (?!),
+   so we'll use a different design for positioning... */
+#todo-logo-nav.todo-logo-nav-mobile,
+#top-nav-h #todo-logo-nav.todo-logo-nav-mobile {
+    transform: rotate(9.8deg);
+    top: -88px;
+}
+#todo-logo-nav.todo-logo-nav-mobile { top: -88px; right: 12px; }
+#top-nav-h #todo-logo-nav.todo-logo-nav-mobile { top: -102px; right: 92px; }
+#todo-logo-nav.todo-logo-nav-mobile.mobile-hover,
+#top-nav-h #todo-logo-nav.todo-logo-nav-mobile.mobile-hover {
+    transform: translate(0, 58%) rotate(9.8deg);
+}
+
 /* IE/Edge Fix
    ========================================================================== */
 /* Sometimes there may be a 1px gap between the element border and its shadow

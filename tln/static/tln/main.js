@@ -34,7 +34,15 @@ function logout() {
 
 var todoLinkNav = document.getElementById("todo-logo-nav");
 if ((isTouchDevice()) && (todoLinkNav)) {
+    // block transition while adding the class, then restore it
+    // there's probably a better way to do this but I'm tired (of mobile)
+    let todoLinkNavTransition = window.getComputedStyle(todoLinkNav).getPropertyValue("transition");
+    todoLinkNav.style.transition = "none";
     todoLinkNav.classList.add("todo-logo-nav-mobile");
+    setTimeout(() => {
+        todoLinkNav.style.transition = todoLinkNavTransition;
+    }, 500);
+
     todoLinkNav.href = "#";
     todoLinkNav.addEventListener("click", (e) => {
         if (todoLinkNav.getAttribute("href") == "#") {
@@ -46,6 +54,15 @@ if ((isTouchDevice()) && (todoLinkNav)) {
     todoLinkNav.addEventListener("blur", (e) => {
         todoLinkNav.href = "#";
         todoLinkNav.classList.remove("mobile-hover");
+    });
+    todoLinkNav.addEventListener("touchend", (e) => {
+        e.stopPropagation();
+    });
+    window.addEventListener("touchend", (e) => {
+        if (todoLinkNav.classList.contains("mobile-hover")) {
+            todoLinkNav.href = "#";
+            todoLinkNav.classList.remove("mobile-hover");
+        }
     });
     window.addEventListener("scroll", (e) => {
         todoLinkNav.href = "#";
