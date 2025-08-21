@@ -18,9 +18,15 @@ let content = document.getElementById("content");
 
 /* Night Sky - Deactivate on iPhones */
 
-// iOS may crash-loop on the night sky animation, so I'll turn it off
-// frankly, I don't care enough about crappy expensive iPhones to spend more time trying to fix this
-if (navigator.userAgent.includes("iPhone")) {
+// safari on iOS may crash-loop on the night sky animation, so I'll turn it off
+// strangely enough, it works for firefox & chrome even if on iOS they're essentially reskins of safari (?)
+// frankly, I don't care enough about crappy expensive iphones to spend more time trying to fix this
+if (
+    navigator.userAgent.includes("iPhone")
+    && (!(
+        (navigator.userAgent.includes("FxiOS"))
+        || (navigator.userAgent.includes("CriOS"))
+    ))) {
     nightSky.style.display = "none";
     nightSkyAnchor.style.display = "none";
 } else {
