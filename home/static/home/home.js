@@ -46,8 +46,10 @@ function setNightSkyOrigin() {
     nightSky.style.maskImage = "radial-gradient(circle at " + x + " " + y + ", black, black var(--ns-radius), transparent calc(var(--ns-radius) + min(var(--ns-radius), var(--ns-max-feather))), transparent)";
 }
 
-setNightSkyOrigin();
-nightSky.style.display = "initial";
+window.addEventListener("load", (e) => {
+    setNightSkyOrigin();
+    nightSky.style.display = "initial";
+});
 window.addEventListener("resize", setNightSkyOrigin);
 
 
