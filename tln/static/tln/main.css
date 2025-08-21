@@ -84,7 +84,6 @@ button, input { line-height: normal; }
  * 3. Improves usability and consistency of cursor style between image-type
  *    `input` and others. */
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
-    -webkit-appearance: button;
     cursor: pointer; }
 
 /* Re-set default cursor for disabled elements. */
@@ -94,9 +93,6 @@ button[disabled], input[disabled] { cursor: default; }
  * 2. Addresses `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof). */
 input[type="search"] {
-    -webkit-appearance: textfield;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
     box-sizing: content-box; }
 
 /* Removes inner padding and search cancel button in Safari 5 and Chrome
@@ -164,13 +160,10 @@ q:before, q:after, blockquote:before, blockquote:after {
     content: none; }
 
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; }
 
 input[type=text], input[type=email], input[type=password],
 textarea, button {
-    -webkit-appearance: none;
     border-radius: 0; }
 
 button { background-color: transparent; padding: 0; border: 0; }
@@ -240,11 +233,8 @@ body {
     overflow-x: hidden;
     background-size: 100% auto;
     font-size: 20px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 body { background-image: url("/static/tln/img/critique_background_content_norm.jpg"); }
 @media (max-width: 960px) {
@@ -258,15 +248,10 @@ body > #content-wrap {
     margin-bottom: 46px;
     width: 100%;
     max-height: 100%;
-    -ms-flex-grow: 1;
-    -ms-flex-shrink: 1;
     flex: 1;
     font-family: Alegreya, Palatino, serif;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 #footer {
@@ -278,11 +263,8 @@ _:-ms-fullscreen, :root body > #content-wrap { flex: 1 1 auto; }
 
 #content {
     width: 100%;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 #content > * { width: 100%; }
 hr, .hseparator { border-bottom: solid 1px #a57100; }
@@ -338,18 +320,12 @@ body.photos-infos #content a:hover,
 .navbar {
     text-align: center;
     font-family: Abuget, Palatino, serif;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center; }
 .navbar ul {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center; }
 .navbar a {
     color: black;
@@ -452,7 +428,6 @@ body #sidebar-column {
     position: absolute;
     transform: translateX(649px); }
 body #sidebar {
-    position: -webkit-sticky;
     position: sticky;
     top: 42px;
     will-change: transform;
@@ -582,11 +557,8 @@ body #sidebar {
 
 .entry-links {
     padding: 0 20px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center; }
 
 
@@ -645,9 +617,7 @@ body #sidebar {
 
 .entry-footer {
     padding-top: 6px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
     align-items: center;
     white-space: nowrap; }
 @media (max-width: 700px) {
@@ -668,13 +638,9 @@ body #sidebar {
 .entry-footer .entry-tags { font-size: 16px; } }
 
 .entry-footer .entry-discussions {
-    -ms-flex: 1;
     flex: 1;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: end;
     justify-content: flex-end;
-    -ms-flex-align: center;
     align-items: center; }
 .entry-footer .entry-discussions img {
     margin: 3px 8px 0 4px;
@@ -752,11 +718,8 @@ a.no-zoom img {
     width: 100%;
     height: 100%;
     background-color: rgba(50, 50, 50, 0.8);
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center;
     transition: all 0.3s ease; }
 .overlay.revealed {
@@ -785,17 +748,12 @@ a.no-zoom img {
 
 .form_inputs {
     margin-top: 3px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-pack: start;
     justify-content: flex-start; }
 .form_inputs p {
     margin: 4px 0;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
     align-items: center; }
 @media (max-width: 400px) {
 .form_inputs p { margin: 3px 0; }}
@@ -833,9 +791,7 @@ a.no-zoom img {
     margin-top: -2px;
     font-family: Abuget, Palatino, serif;
     font-size: 40px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center; }
 .form_buttons input:focus { color: #f7a300; }
 @media (max-width: 400px) {

@@ -10,9 +10,7 @@ body #content-wrap { position: relative; padding-right: 11px; } }
 #password-required-form {
     margin-top: 292px;
     width: 100%;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     text-align: center;
 }
@@ -91,7 +89,6 @@ body #sidebar-column {
     font-weight: bold;
     text-align: right; }
 .entry-list .entry-body {
-    display: -ms-flexbox;
     display: flex;
     margin: 4px 0; }
 .entry-list .entry-date {
@@ -206,7 +203,6 @@ div.molopeach {
     scrollbar-width: thin;
     scrollbar-color: #00366a #c4c4c4;
     position: relative;
-    display: -ms-flexbox;
     display: flex;
 }
 div.molopeach::-webkit-scrollbar { height: 6px; background-color: #c4c4c4; }
