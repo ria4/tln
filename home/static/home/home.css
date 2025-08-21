@@ -205,9 +205,9 @@ body > #content-wrap { margin-bottom: 0; height: 100%; }
 
 @media (max-width: 640px) {
 #info {
-    margin-left: 2%;
     font-size: 14px;
 }
+#info .info-div { position: relative; left: 1.4%; }
 #info .info-div:first-child { padding-bottom: 12px; }
 #info .info-div:last-child { padding-top: 12px; }
 #info .vseparator {
