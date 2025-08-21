@@ -69,7 +69,6 @@ observer.observe(nightSkyAnchor);
 
 nightSky.addEventListener("mouseenter", (event) => {
     let style = window.getComputedStyle(nightSky);
-    console.log(style.getPropertyValue("animation-play-state"));
     if (style.getPropertyValue("animation-play-state") == "running, paused") {
         nightSky.style.animationPlayState = "paused, running";
     }
