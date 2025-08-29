@@ -13,6 +13,8 @@
 
 <div id="cinema-info" class="critique-info">
     <h1 class="critique-title">{{ cinema.name }}</h1>
+    {# there's a hack for ignoring 'à ' because I couldn't find a precise location for one cinema #}
+    <div class="cinema-location">{% if cinema.location != "quelque part en Virginie" %}à {% endif %}{{ cinema.location }}</div>
 </div>
 
 <div id="cinema-seances" class="chunks">

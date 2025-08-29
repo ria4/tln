@@ -678,8 +678,18 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #content > .entry-links .entry-footer { margin-right: 2px; } }
 
 
-/* Cinema Footer
+/* Cinema
    ========================================================================== */
+
+#cinema-info {
+    width: auto;
+    display: flex;
+    flex-direction: column; }
+#cinema-info .critique-title {
+    margin-bottom: -4px; }
+#cinema-info .cinema-location {
+    font-size: 80%;
+    text-align: right; }
 
 #cinema-footer-content {
     display: flex;
@@ -733,6 +743,8 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 2298px; } /* IE 11 */
 _:-ms-fullscreen, :root #cinemas.chunks { height: 1176px; } /* IE 11 */ }
 @media (min-width: 1801px) {
 _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
+#cinemas-elsewhere.chunks li { color: black; }
+#cinemas-elsewhere.chunks li:hover { color: black; }
 
 
 /* Content Index

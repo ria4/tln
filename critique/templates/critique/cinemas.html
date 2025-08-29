@@ -85,8 +85,9 @@
 <div id="cinemas-elsewhere" class="chunks">
     <ul>
     {% for cinema in cinemas_elsewhere %}
-        <li><a href="{% url 'detail_cinema' cinema.slug %}">{{ cinema.name }}</a><span class="cinema-location">, à {{ cinema.location }}</span></li>
-    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+    {# there's a hack for ignoring 'à ' because I couldn't find a precise location for one cinema #}
+    <li><a href="{% url 'detail_cinema' cinema.slug %}">{{ cinema.name }}</a><span class="cinema-location">, {% if cinema.location != "quelque part en Virginie" %}à {% endif %}{{ cinema.location }}</span></li>
+    {% if forloop.counter|divisibleby:6 and not forloop.last %}
     </ul>
     <ul>
     {% endif %}
