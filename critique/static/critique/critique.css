@@ -556,17 +556,21 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     padding-bottom: 8%;
     width: 100%; }
 
-#oeuvre-info .critique-info-text .oeuvrespans {
+#oeuvre-info .critique-info-text .oeuvrespans-outer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
     text-align: right;
+    white-space: nowrap; }
+#oeuvre-info .critique-info-text .oeuvrespans {
+    float: right;
     font-style: italic;
     font-size: 20px; }
 @media (max-width: 500px) {
+#oeuvre-info .critique-info-text .oeuvrespans-outer {
+    top: 90%; }
 #oeuvre-info .critique-info-text .oeuvrespans {
-    top: 90%;
     font-size: 16px; } }
 
 #oeuvre-info .critique-title {

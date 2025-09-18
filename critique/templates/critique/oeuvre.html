@@ -64,7 +64,9 @@
             </div>
 
             {% if spans %}
-            <p class="oeuvrespans">{% fancyspans oeuvre.mtype spans %}</p>
+            <div class="oeuvrespans-outer">
+                <p class="oeuvrespans">{% fancyspans oeuvre.mtype spans %}</p>
+            </div>
             {% endif %}
         </div>
     </div>
