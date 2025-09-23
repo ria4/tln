@@ -55,7 +55,7 @@ def detail_tag(req, slug, page=1):
         oeuvres_page = paginator.page(page)
     except EmptyPage:
         oeuvres_page = paginator.page(paginator.num_pages)
-    context = {'oeuvres': oeuvres_page, 'tag': tag.name}
+    context = {'oeuvres': oeuvres_page, 'tag': tag}
     return render(req, 'critique/tag.html', context)
 
 

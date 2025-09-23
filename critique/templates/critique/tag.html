@@ -1,13 +1,13 @@
 {% extends "critique/base.html" %}
 {% load static %}
 
-{% block title %}tag {{ tag }}{% endblock %}
-{% block meta-description-page %}liste d'œuvres portant le tag {{ tag }}{% endblock %}
+{% block title %}tag {{ tag.name }}{% endblock %}
+{% block meta-description-page %}liste d'œuvres portant le tag {{ tag.name }}{% endblock %}
 
 {% block content %}
 
 <div id="tag-info">
-    <h1 class="critique-title">{{ tag }}</h1>
+    <h1 class="critique-title">{{ tag.name }}</h1>
 </div>
 
 <div class="hseparator" role="presentation"></div>
@@ -32,7 +32,7 @@
 {% if oeuvres.paginator.num_pages > 1 %}
 <nav id="pagination">
     {% if oeuvres.has_previous %}
-        <a href={% url "detail_tag" tag oeuvres.previous_page_number %}><-</a>
+        <a href={% url "detail_tag" tag.slug oeuvres.previous_page_number %}><-</a>
     {% endif %}
 
     <span class="current">
@@ -40,18 +40,18 @@
     </span>
 
     {% if oeuvres.has_next %}
-        <a href={% url "detail_tag" tag oeuvres.next_page_number %}>-></a>
+        <a href={% url "detail_tag" tag.slug oeuvres.next_page_number %}>-></a>
     {% endif %}
 </nav>
     
 <script>
     var prevPageUrl = null;
     {% if oeuvres.has_previous %}
-    prevPageUrl = '{% url "detail_tag" tag oeuvres.previous_page_number %}';
+    prevPageUrl = '{% url "detail_tag" tag.slug oeuvres.previous_page_number %}';
     {% endif %}
     var nextPageUrl = null;
     {% if oeuvres.has_next %}
-    nextPageUrl = '{% url "detail_tag" tag oeuvres.next_page_number %}';
+    nextPageUrl = '{% url "detail_tag" tag.slug oeuvres.next_page_number %}';
     {% endif %}
 </script>
 {% endif %}
