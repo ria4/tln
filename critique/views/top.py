@@ -1,9 +1,6 @@
-import random
-
-from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 
-from critique.models import Commentaire, TopFilms, TopJeux
+from critique.models import Commentaire, OeuvreTag
 
 
 # Top Textes
@@ -22,15 +19,25 @@ class TgdbExcerptsView(ListView):
 
 # Top Films
 
-def top_films(req, year=2011):
-    oeuvres = list(get_object_or_404(TopFilms, year=year).films.all())
-    random.shuffle(oeuvres)
-    return render(req, 'critique/top_films.html', locals())
+class TopFilmsView(ListView):
+    template_name = "critique/top_films.html"
+    context_object_name = "oeuvres"
+
+    def get_queryset(self):
+        year = self.kwargs.get("year")
+        top_name = "top.ciné" if year is None else f"top.ciné.{year}"
+        return OeuvreTag.objects.get(name=top_name).oeuvres.order_by("?")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if year := self.kwargs.get("year"):
+            context["year"] = year
+        return context
 
 
 # Top Jeux
 
-def top_jeux(req, year=2023):
-    oeuvres = list(get_object_or_404(TopJeux, year=year).jeux.all())
-    random.shuffle(oeuvres)
-    return render(req, 'critique/top_jeux.html', locals())
+class TopJeuxView(ListView):
+    queryset = OeuvreTag.objects.get(name="top.jeux").oeuvres.order_by("?")
+    template_name = "critique/top_jeux.html"
+    context_object_name = "oeuvres"

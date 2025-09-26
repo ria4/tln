@@ -2,7 +2,7 @@ import threading
 
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import EmptyPage, Paginator
 from django.template.loader import render_to_string
 
@@ -47,6 +47,17 @@ def list_tags(req):
     return render(req, 'critique/tags.html', {'tags': tags})
 
 def detail_tag(req, slug, page=1):
+
+    # redirects for top jeux
+    if slug == "top_jeux":
+        return redirect("top_jeux")
+
+    # redirects for tops ciné
+    if slug == "top_cine":
+        return redirect("top_films")
+    elif slug.startswith("top_cine_"):
+        return redirect("top_films", year=slug[-4:])
+
     tag = get_object_or_404(OeuvreTag, slug=slug)
     oeuvres_list = Oeuvre.objects.filter(tags=tag)
     oeuvres = oeuvres_list.order_by('-year', '-id')

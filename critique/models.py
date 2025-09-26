@@ -179,26 +179,6 @@ class Commentaire(models.Model):
         return f'"{self.content:.60}..." [{self.oeuvre}, {self.date.date()}]'
 
 
-class TopFilms(models.Model):
-    year = models.SmallIntegerField(unique=True)
-    films = models.ManyToManyField(Oeuvre,
-                                   related_name="top_films",
-                                   related_query_name="top_films")
-
-    def __str__(self):
-        return str(self.year)
-
-
-class TopJeux(models.Model):
-    year = models.SmallIntegerField(unique=True)
-    jeux = models.ManyToManyField(Oeuvre,
-                                  related_name="top_jeux",
-                                  related_query_name="top_jeux")
-
-    def __str__(self):
-        return str(self.year)
-
-
 class Cinema(models.Model):
     """The names do not need to be unique, but we should reuse get_safe_slug then."""
     name = models.CharField(max_length=100, unique=True)

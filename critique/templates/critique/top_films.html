@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block title %}top ciné{% endblock %}
-{% block title-after %} {% if year != 2011 %}{{ year }}{% endif %}{% endblock %}
+{% block title-after %} {% if year %}{{ year }}{% endif %}{% endblock %}
 {% block meta-description-page %}tops ciné{% endblock %}
 
 {% block content %}
 
-<nav class="navbar filter-navbar {{ year }} digits-filter-navbar">
+<nav class="navbar filter-navbar{% if year %} {{ year }}{% endif %} digits-filter-navbar">
     <ul>
         <li><a desc="2011" href={% url "top_films" %}>189x-2024</a></li>
         <li><a desc="2012" href={% url "top_films" 2012 %}>2012</a></li>
@@ -34,7 +34,7 @@
     </ul>
 </nav>
 
-<ul id="top_films" class="oeuvres-display {% if year == 2011 %}all_time{% endif %}">
+<ul id="top_films" class="oeuvres-display{% if not year %} all_time{% endif %}">
 {% for oeuvre in oeuvres %}
     <li class="oeuvre-display">
         <a href={% url "detail_oeuvre" oeuvre.slug %}>

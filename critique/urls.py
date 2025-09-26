@@ -51,9 +51,9 @@ urlpatterns = [
     path('perspectives/<str:mtype>/<int:page>', views_collection.list_envies, name='list_envies'),
 
     # tops
-    path('top_films/', views_top.top_films, name='top_films'),
-    path('top_films/<int:year>', views_top.top_films, name='top_films'),
-    path('top_jeux/', views_top.top_jeux, name='top_jeux'),
+    path('top_films/', views_top.TopFilmsView.as_view(), name='top_films'),
+    path('top_films/<int:year>', views_top.TopFilmsView.as_view(), name='top_films'),
+    path('top_jeux/', views_top.TopJeuxView.as_view(), name='top_jeux'),
 
     # tags
     path('tags/', views_collection.list_tags, name='list_tags'),
