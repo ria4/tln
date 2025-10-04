@@ -45,6 +45,9 @@ def download_distant_image(url):
             elif image.format == 'PNG':
                 imagename += '.png'
                 imagepath = f'{preimagepath}.png'
+            elif image.format == 'WEBP':
+                imagename += '.webp'
+                imagepath = f'{preimagepath}.webp'
             else:
                 logger.warning(f"Unknown format for image at {url}: {r.content}")
                 os.remove(preimagepath)
