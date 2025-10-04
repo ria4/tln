@@ -102,3 +102,7 @@ class SeanceForm(forms.Form):
         )
     )
     seance_title = forms.CharField(label="ou titre", max_length=200, required=False)
+
+
+class TierListForm(forms.Form):
+    name = forms.CharField(label="titre", max_length=100)

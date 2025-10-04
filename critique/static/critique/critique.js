@@ -514,6 +514,26 @@ if (seanceFormEmpty) {
     */
 }
 
+var tierListFormEmpty = document.getElementById("tierlist_form_empty");
+if (tierListFormEmpty) {
+    nameInput = document.getElementById("id_empty_tierlist_name");
+    validatedElements = [
+        [nameInput, x => (x == "")],
+    ];
+    addInputsListener(validatedElements, true);
+    addSubmitListener(tierListFormEmpty, validatedElements);
+}
+
+var tierListForm = document.getElementById("tierlist_form");
+if (tierListForm) {
+    nameInput = document.getElementById("id_name");
+    validatedElements = [
+        [nameInput, x => (x == "")],
+    ];
+    addInputsListener(validatedElements, true);
+    addSubmitListener(tierListForm, validatedElements);
+}
+
 
 /* Forms - Autocomplete init values on appropriate pages */
 
@@ -585,15 +605,25 @@ function deployAdminInputLogic() {
 }
 
 
-codes["edito"] = oeuvreForm;
 codes["addo"] = oeuvreFormEmpty;
+codes["edito"] = oeuvreForm;
+
 codes["addsp"] = oeuvrespanFormEmpty;
 codes["editsp"] = oeuvrespanForm;
-codes["editco"] = commentForm;
+
 codes["addco"] = commentFormEmpty;
-codes["editci"] = cinemaForm;
+codes["editco"] = commentForm;
+
 codes["addci"] = cinemaFormEmpty;
+codes["editci"] = cinemaForm;
+
 codes["addse"] = seanceFormEmpty;
+
+codes["addtl"] = tierListFormEmpty;
+codes["edittl"] = tierListForm;
+// codes["addtt"] = tierFormEmpty;
+// tierForms.forEach((el, idx) => codes[`edittt${idx}`] = el);
+
 codes["s"] = true;
 
 for (var key in codes) {

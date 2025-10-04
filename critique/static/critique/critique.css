@@ -1311,6 +1311,14 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     text-overflow: ellipsis; }
 
 
+/* Form Tier Lists
+   ========================================================================== */
+
+#tierlist_form .form_buttons .filler { width: 24px; }
+
+#tierlist_form_empty .form_buttons .filler { width: 40px; }
+
+
 /* Admin Codes
    ========================================================================== */
 

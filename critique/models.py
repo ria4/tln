@@ -231,3 +231,43 @@ class Seance(models.Model):
         if self.cinema:
             cinema_name = self.cinema.name_short or self.cinema.name
         return f"{cinema_name} | {date_seance} | {title}"
+
+
+class TierList(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["created_at"]
+
+
+class Tier(models.Model):
+    tier_list = models.ForeignKey(
+        TierList,
+        on_delete=models.CASCADE,
+        related_name="tiers",
+        related_query_name="tier",
+    )
+    name = models.CharField(max_length=100)
+    position = models.SmallIntegerField()
+    oeuvres = models.ManyToManyField(
+        Oeuvre,
+        related_name="tiers",
+        related_query_name="tier",
+    )
+
+    def __str__(self):
+        return f"{self.tier_list.name} [{self.name}]"
+
+    class Meta:
+        ordering = ["tier_list__created_at", "position"]

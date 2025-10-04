@@ -9,6 +9,7 @@ import critique.views.commentaire as views_commentaire
 import critique.views.oeuvre as views_oeuvre
 import critique.views.oeuvrespan as views_oeuvrespan
 import critique.views.seance as views_seance
+import critique.views.tierlist as views_tierlist
 import critique.views.top as views_top
 
 
@@ -60,6 +61,11 @@ urlpatterns = [
     path('tags/autocomplete', views_oeuvre.OeuvreTagAutocomplete.as_view(create_field='name', validate_create=True), name='autocomplete_tag'),
     path('tags/<slug:slug>', views_collection.detail_tag, name='detail_tag'),
     path('tags/<slug:slug>/<int:page>', views_collection.detail_tag, name='detail_tag'),
+
+    # tier lists
+    path('tierlist/add', views_tierlist.add_tierlist, name='add_tierlist'),
+    path('tierlist/<slug:slug>', views_tierlist.detail_tierlist, name='detail_tierlist'),
+    path('tierlist/<slug:slug>/delete', views_tierlist.delete_tierlist, name='delete_tierlist'),
 
     # cinemas
     re_path(r'^cinema/(?P<subpath>.*)$', views_cinema.CinemaRedirectView.as_view()),

@@ -1,0 +1,56 @@
+{% extends "critique/base.html" %}
+{% load static %}
+
+{% block title %}tier list {{ tierlist.name }}{% endblock %}
+{% block meta-description-page %}liste d'œuvres dans la tier list {{ tierlist.name }}{% endblock %}
+
+{% block content %}
+
+<div id="tierlist-info">
+    <h1 class="critique-title">{{ tierlist.name }}</h1>
+</div>
+
+<!-- <div class="hseparator" role="presentation"></div> -->
+
+<!-- <ul id="tierlist-detail" class="oeuvres-display"> -->
+<!-- {% for oeuvre in oeuvres %} -->
+    <!-- <li class="oeuvre-display"> -->
+        <!-- <a href={% url "detail_oeuvre" oeuvre.slug %}> -->
+        <!-- {% if oeuvre.image %} -->
+            <!-- <img src="{{ oeuvre.image.url }}" alt="{{ oeuvre.title_vf }}" /> -->
+        <!-- {% else %} -->
+            <!-- <div class="substitute-display"> -->
+                <!-- <img src="{% static 'critique/substitute.jpg' %}" alt="{{ oeuvre.title_vf }}" /> -->
+                <!-- <p>{{ oeuvre.title_vf }} ({{ oeuvre.year }})</p> -->
+            <!-- </div> -->
+        <!-- {% endif %}</a> -->
+    <!-- </li> -->
+<!-- {% endfor %} -->
+<!-- </ul> -->
+
+{% endblock %}
+
+{% block overlays %}
+{% if perms.critique.all_rights %}
+
+<div class="overlay">
+    <form id="tierlist_form" action="{% url 'detail_tierlist' tierlist.slug %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ tierlist_form.as_p }}
+        </div>
+        <div class="form_buttons">
+    {# when 'enter' is pressed, the form gives priority to the first submit #}
+    {# hence the hidden button, so that default is send rather than delete #}
+            <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
+            <input type="submit" formaction="{% url 'delete_tierlist' tierlist.slug %}" value="supprimer"/>
+            <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+
+{% endif %}
+{% endblock %}

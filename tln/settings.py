@@ -97,6 +97,7 @@ TEMPLATES = [
                 'critique.context_processors.cinema_form',
                 'critique.context_processors.comment_form',
                 'critique.context_processors.seance_form',
+                'critique.context_processors.tierlist_form',
                 'photos.context_processors.gallery_list',
                 'tln.context_processors.login_form',
                 'tln.context_processors.android',
