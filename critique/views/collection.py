@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import EmptyPage, Paginator
 from django.template.loader import render_to_string
 
-from critique.models import Oeuvre, OeuvreTag
+from critique.models import Oeuvre, OeuvreTag, TierList
 
 
 # Collection
@@ -44,7 +44,9 @@ def list_envies(req, mtype="film", page=1):
 
 def list_tags(req):
     tags = OeuvreTag.objects.all()
-    return render(req, 'critique/tags.html', {'tags': tags})
+    tierlists = TierList.objects.all()
+    tags_and_tierlists = sorted(list(tags) + list(tierlists), key=lambda el: el.name)
+    return render(req, 'critique/tags.html', {'tags_and_tierlists': tags_and_tierlists})
 
 def detail_tag(req, slug, page=1):
 

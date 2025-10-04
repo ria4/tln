@@ -6,6 +6,7 @@ from critique.forms import (
     OeuvreForm,
     OeuvreSpanForm,
     SeanceForm,
+    TierForm,
     TierListForm,
 )
 
@@ -48,3 +49,8 @@ def tierlist_form(req):
     form = TierListForm(auto_id='id_empty_tierlist_%s')
     form.fields["name"].widget.attrs.update({"class": "focus-on-reveal"})
     return {"tierlist_form_empty": form}
+
+def tier_form(req):
+    form = TierForm(auto_id='id_empty_tier_%s')
+    form.fields["name"].widget.attrs.update({"class": "focus-on-reveal"})
+    return {"tier_form_empty": form}

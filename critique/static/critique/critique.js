@@ -534,6 +534,21 @@ if (tierListForm) {
     addSubmitListener(tierListForm, validatedElements);
 }
 
+var tierFormEmpty = document.getElementById("tier_form_empty");
+if (tierFormEmpty) {
+    nameInput = document.getElementById("id_empty_tier_name");
+    position = document.getElementById("id_empty_tier_position");
+    validatedElements = [
+        [nameInput, x => (x == "")],
+        [position, x => ((x < 0) || (x > 100) || (x == ""))],
+    ];
+    addInputsListener(validatedElements, true);
+    addSubmitListener(tierFormEmpty, validatedElements);
+}
+
+// no validation on existing tierForms because getting the input fields
+// becomes messy when looping over multiple overlays
+
 
 /* Forms - Autocomplete init values on appropriate pages */
 
@@ -621,8 +636,14 @@ codes["addse"] = seanceFormEmpty;
 
 codes["addtl"] = tierListFormEmpty;
 codes["edittl"] = tierListForm;
-// codes["addtt"] = tierFormEmpty;
-// tierForms.forEach((el, idx) => codes[`edittt${idx}`] = el);
+
+codes["addte"] = tierFormEmpty;
+for (let i = 0; i < 10; i++) {
+    var tierForm = document.getElementById(`tier_form_${i}`);
+    if (tierForm) {
+        codes[`editte${i}`] = tierForm;
+    }
+}
 
 codes["s"] = true;
 

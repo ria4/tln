@@ -13,8 +13,17 @@
 
 <div id="collection" class="chunks artiste-oeuvres">
     <ul>
-    {% for tag in tags %}
-        <li class="ellipsis-link"><a href="{% url 'detail_tag' tag.slug %}">{{ tag.name }}</a></li>
+    {% for el in tags_and_tierlists %}
+        {% if el.created_at %}
+            <li class="ellipsis-link tierlist-link">
+                <span></span>
+                <span></span>
+                <span></span>
+                <a href="{% url 'detail_tierlist' el.slug %}">{{ el.name }}</a>
+            </li>
+        {% else %}
+            <li class="ellipsis-link"><a href="{% url 'detail_tag' el.slug %}">{{ el.name }}</a></li>
+        {% endif %}
     {% if forloop.counter|divisibleby:25 and not forloop.last %}
     </ul>
     <ul>

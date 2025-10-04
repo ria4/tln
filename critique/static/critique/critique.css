@@ -1151,6 +1151,30 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 }
 
 
+/* Tier Lists
+   ========================================================================== */
+
+#content-wrap .tierlist-link a {
+    padding-left: 4px;
+}
+#content-wrap .tierlist-link span {
+    display: inline-block;
+    border: 1px solid #bd4700;
+    margin-right: -2px;
+    margin-bottom: -1px;
+    content: "";
+}
+#content-wrap .tierlist-link span:nth-child(1) {
+    height: 9px;
+}
+#content-wrap .tierlist-link span:nth-child(2) {
+    height: 14px;
+}
+#content-wrap .tierlist-link span:nth-child(3) {
+    height: 11px;
+}
+
+
 /* ==========================================================================
 /* Forms
 /* ========================================================================== */
@@ -1317,6 +1341,34 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #tierlist_form .form_buttons .filler { width: 24px; }
 
 #tierlist_form_empty .form_buttons .filler { width: 40px; }
+
+.tier_form p,
+#tier_form_empty p { width: 863px; }
+.tier_form p label,
+#tier_form_empty p label { width: 84px; }
+.tier_form p label[for^="id_tier_name"],
+#tier_form_empty p label[for="id_empty_tier_name"] { width: 94px; }
+.tier_form input[type="number"],
+#tier_form_empty input[type="number"] { width: 90%; }
+.tier_form .select2-container,
+#tier_form_empty .select2-container { width: 771px !important; }
+.tier_form .form_buttons { padding-left: 4px; }
+.tier_form .form_buttons,
+#tier_form_empty .form_buttons { margin-top: -4px; }
+.tier_form .form_buttons .filler,
+#tier_form_empty .form_buttons .filler { width: 72px; }
+@media (max-width: 400px) {
+.tier_form p,
+#tier_form_empty p { width: 290px; }
+.tier_form p label,
+#tier_form_empty p label { width: 118px; }
+#tier_form_empty p label[for="id_empty_tier_name"],
+#tier_form_empty p label[for="id_empty_tier_name"] { width: 94px; }
+.tier_form .select2-container,
+#tier_form_empty .select2-container { width: 158px !important; }
+.tier_form .form_buttons { padding-left: 0; }
+.tier_form .form_buttons .filler,
+#tier_form_empty .form_buttons .filler { width: 31px; }}
 
 
 /* Admin Codes

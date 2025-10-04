@@ -266,8 +266,19 @@ class Tier(models.Model):
         related_query_name="tier",
     )
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # refresh self.tier_list.updated_at through auto_now
+        self.tier_list.save()
+
     def __str__(self):
         return f"{self.tier_list.name} [{self.name}]"
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["tier_list", "position"],
+                name="unique_position",
+            ),
+        ]
         ordering = ["tier_list__created_at", "position"]

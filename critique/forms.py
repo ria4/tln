@@ -8,7 +8,7 @@ from django import forms
 from django.db.models import Q
 
 from .constants import OEUVRE_MTYPES
-from .models import Artiste, Cinema, Oeuvre, OeuvreTag
+from .models import Artiste, Cinema, Oeuvre, OeuvreTag, TierList
 
 
 class DateInput(forms.DateInput):
@@ -38,7 +38,10 @@ class OeuvreForm(forms.Form):
     tags = forms.ModelMultipleChoiceField(
         label="tags",
         queryset=OeuvreTag.objects.all(),
-        widget=ModelSelect2Multiple(url='autocomplete_tag'),
+        widget=ModelSelect2Multiple(
+            url='autocomplete_tag',
+            attrs={'data-minimum-input-length': 2},
+        ),
         required=False,
     )
     envie = forms.BooleanField(label="envie", required=False)
@@ -90,8 +93,8 @@ class SeanceForm(forms.Form):
     )
     date = forms.DateField(label="date", widget=DateInput)
     hour = forms.CharField(label="heure", max_length=5)
-    #no_month = forms.BooleanField(label="sans mois", required=False)
-    #no_day = forms.BooleanField(label="sans jour", required=False)
+    # no_month = forms.BooleanField(label="sans mois", required=False)
+    # no_day = forms.BooleanField(label="sans jour", required=False)
     film = forms.ModelChoiceField(
         label="film",
         required=False,
@@ -106,3 +109,24 @@ class SeanceForm(forms.Form):
 
 class TierListForm(forms.Form):
     name = forms.CharField(label="titre", max_length=100)
+
+
+class TierForm(forms.Form):
+    tier_list = forms.ModelChoiceField(
+        label="tier list",
+        queryset=TierList.objects.all(),
+        widget=ModelSelect2(
+            url='autocomplete_tierlist',
+            attrs={'data-minimum-input-length': 2},
+        )
+    )
+    name = forms.CharField(label="titre", max_length=100)
+    position = forms.IntegerField(label="position", max_value=20)
+    oeuvres = forms.ModelMultipleChoiceField(
+        label="oeuvres",
+        queryset=Oeuvre.objects.all(),
+        widget=ModelSelect2Multiple(
+            url='autocomplete_oeuvre',
+            attrs={'data-minimum-input-length': 2},
+        )
+    )

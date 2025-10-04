@@ -52,5 +52,26 @@
     </form>
 </div>
 
+{% for tier_position, tier_form in tier_forms %}
+<div class="overlay">
+    <form id="tier_form_{{tier_position}}" class="tier_form" action="{% url 'detail_tier' tierlist.slug tier_position %}" method="post">
+        <div class="form_inputs">
+            {% csrf_token %}
+            {{ tier_form.as_p }}
+        </div>
+        <div class="form_buttons">
+    {# when 'enter' is pressed, the form gives priority to the first submit #}
+    {# hence the hidden button, so that default is send rather than delete #}
+            <input type="submit" value="envoyer" class="hidden" role="none" tabindex="-1"/>
+            <input type="submit" formaction="{% url 'delete_tier' tierlist.slug tier_position %}" value="supprimer"/>
+            <div class="filler"></div>
+            <input type="submit" value="envoyer"/>
+            <div class="filler"></div>
+            <input type="reset" value="annuler"/>
+        </div>
+    </form>
+</div>
+{% endfor %}
+
 {% endif %}
 {% endblock %}

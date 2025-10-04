@@ -52,9 +52,9 @@ urlpatterns = [
     path('perspectives/<str:mtype>/<int:page>', views_collection.list_envies, name='list_envies'),
 
     # tops
-    path('top_films/', views_top.TopFilmsView.as_view(), name='top_films'),
-    path('top_films/<int:year>', views_top.TopFilmsView.as_view(), name='top_films'),
-    path('top_jeux/', views_top.TopJeuxView.as_view(), name='top_jeux'),
+    path('top-films/', views_top.TopFilmsView.as_view(), name='top_films'),
+    path('top-films/<int:year>', views_top.TopFilmsView.as_view(), name='top_films'),
+    path('top-jeux/', views_top.TopJeuxView.as_view(), name='top_jeux'),
 
     # tags
     path('tags/', views_collection.list_tags, name='list_tags'),
@@ -63,9 +63,13 @@ urlpatterns = [
     path('tags/<slug:slug>/<int:page>', views_collection.detail_tag, name='detail_tag'),
 
     # tier lists
-    path('tierlist/add', views_tierlist.add_tierlist, name='add_tierlist'),
-    path('tierlist/<slug:slug>', views_tierlist.detail_tierlist, name='detail_tierlist'),
-    path('tierlist/<slug:slug>/delete', views_tierlist.delete_tierlist, name='delete_tierlist'),
+    path('tier-lists/add', views_tierlist.add_tierlist, name='add_tierlist'),
+    path('tier-lists/autocomplete', views_tierlist.TierListAutocomplete.as_view(create_field='name', validate_create=True), name='autocomplete_tierlist'),
+    path('tier-lists/<slug:slug>', views_tierlist.detail_tierlist, name='detail_tierlist'),
+    path('tier-lists/<slug:slug>/delete', views_tierlist.delete_tierlist, name='delete_tierlist'),
+    path('tier-lists/<slug:slug>/<int:position>', views_tierlist.detail_tier, name='detail_tier'),
+    path('tier-lists/<slug:slug>/<int:position>/delete', views_tierlist.delete_tier, name='delete_tier'),
+    path('tiers/add', views_tierlist.add_tier, name='add_tier'),
 
     # cinemas
     re_path(r'^cinema/(?P<subpath>.*)$', views_cinema.CinemaRedirectView.as_view()),
