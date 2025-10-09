@@ -51,13 +51,13 @@ def list_tags(req):
 def detail_tag(req, slug, page=1):
 
     # redirects for top jeux
-    if slug == "top_jeux":
+    if slug == "top-jeux":
         return redirect("top_jeux")
 
     # redirects for tops ciné
-    if slug == "top_cine":
+    if slug == "top-cine":
         return redirect("top_films")
-    elif slug.startswith("top_cine_"):
+    elif slug.startswith("top-cine-"):
         return redirect("top_films", year=slug[-4:])
 
     tag = get_object_or_404(OeuvreTag, slug=slug)

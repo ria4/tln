@@ -50,7 +50,7 @@ class OeuvreTag(models.Model):
     def save(self, update_slug=False, *args, **kwargs):
         if ((not self.id) or update_slug):
             # si création ou bien modification du nom, création d'un slug
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name.replace(".", "-"))
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -241,7 +241,7 @@ class TierList(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name.replace(".", "-"))
         super().save(*args, **kwargs)
 
     def __str__(self):
