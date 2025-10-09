@@ -117,7 +117,6 @@ class TierForm(forms.Form):
         queryset=TierList.objects.all(),
         widget=ModelSelect2(
             url='autocomplete_tierlist',
-            attrs={'data-minimum-input-length': 2},
         )
     )
     name = forms.CharField(label="titre", max_length=100)
@@ -128,5 +127,6 @@ class TierForm(forms.Form):
         widget=ModelSelect2Multiple(
             url='autocomplete_oeuvre',
             attrs={'data-minimum-input-length': 2},
-        )
+        ),
+        required=False,
     )
