@@ -1,3 +1,5 @@
+import random
+
 from django import template
 from django.urls import reverse
 from django.utils.html import format_html
@@ -256,3 +258,11 @@ def fancyspan_short(span):
         br = "<br>" if res_len > 24 else ""
         res = f"{start}–{br}{end}"
     return format_html(res)
+
+
+@register.filter
+def shuffle(qs):
+    """Randomize the order of a queryset."""
+    l = list(qs)
+    random.shuffle(l)
+    return l

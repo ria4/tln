@@ -31,7 +31,12 @@ def fancydate(obj, date_attrname='date', en=False, le=False, mois=True, annee=Fa
     Django would handle localization in one of its templates,
     but here it has to be done manually."""
 
-    dt = localtime(getattr(obj, date_attrname))
+    try:
+        # apply localtime to DateTimeField
+        dt = localtime(getattr(obj, date_attrname))
+    except AttributeError:
+        # workaround for DateField
+        dt = getattr(obj, date_attrname)
     res = ""
 
     if getattr(obj, f'{date_attrname}_mu', None):

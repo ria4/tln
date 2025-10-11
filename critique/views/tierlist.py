@@ -35,7 +35,7 @@ def add_tierlist(req):
 
 def detail_tierlist(req, slug):
     tierlist = get_object_or_404(
-        TierList.objects.prefetch_related("tiers", "tiers__oeuvres"),
+        TierList.objects.prefetch_related("tiers__oeuvres"),
         slug=slug,
     )
     tierlist_form = TierListForm(req.POST or {'name': tierlist.name})

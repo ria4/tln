@@ -1,7 +1,9 @@
 {% extends "critique/base.html" %}
 {% load static %}
+{% load tln_extras %}
+{% load critique_extras %}
 
-{% block title %}tier list {{ tierlist.name }}{% endblock %}
+{% block title %}📊&nbsp;&nbsp;{{ tierlist.name }}{% endblock %}
 {% block meta-description-page %}liste d'œuvres dans la tier list {{ tierlist.name }}{% endblock %}
 
 {% block content %}
@@ -10,23 +12,30 @@
     <h1 class="critique-title">{{ tierlist.name }}</h1>
 </div>
 
-<!-- <div class="hseparator" role="presentation"></div> -->
+<div class="hseparator" role="presentation"></div>
 
-<!-- <ul id="tierlist-detail" class="oeuvres-display"> -->
-<!-- {% for oeuvre in oeuvres %} -->
-    <!-- <li class="oeuvre-display"> -->
-        <!-- <a href={% url "detail_oeuvre" oeuvre.slug %}> -->
-        <!-- {% if oeuvre.image %} -->
-            <!-- <img src="{{ oeuvre.image.url }}" alt="{{ oeuvre.title_vf }}" /> -->
-        <!-- {% else %} -->
-            <!-- <div class="substitute-display"> -->
-                <!-- <img src="{% static 'critique/substitute.jpg' %}" alt="{{ oeuvre.title_vf }}" /> -->
-                <!-- <p>{{ oeuvre.title_vf }} ({{ oeuvre.year }})</p> -->
-            <!-- </div> -->
-        <!-- {% endif %}</a> -->
-    <!-- </li> -->
-<!-- {% endfor %} -->
-<!-- </ul> -->
+<div class="tierlist-wrapper">
+    <ul id="tierlist" class="tierlist">
+    {% for tier in tierlist.tiers.all %}
+        <li class="tier">
+            <div class="tier-name"><span>{{ tier.name }}</span></div>
+            <ul class="tier-oeuvres">
+            {% for oeuvre in tier.oeuvres.all|shuffle %}
+                <li class="tier-oeuvre">
+                    <a href={% url "detail_oeuvre" oeuvre.slug %} title="{{ oeuvre.title_vf }}">
+                        <img src="{{ oeuvre.image.url }}" alt="{{ oeuvre.title_vf }}" />
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+    <footer class="entry-footer tierlist-footer">
+        <time>dernière modification {% fancydate tierlist date_attrname="updated_at" en=True le=True annee=True %}</time>
+        <span>consulter <a href={% url "list_tags" %}>d'autres listes</a></span>
+    </footer>
+</div>
 
 {% endblock %}
 

@@ -4,7 +4,7 @@
 {% load tln_extras %}
 {% load critique_extras %}
 
-{% block title %}{{ oeuvre.title_vf|lower }}{% endblock %}
+{% block title %}{% if oeuvre.mtype == "film" %}🎞️{% elif oeuvre.mtype == "serie" %}📺{% elif oeuvre.mtype == "album" %}🎧{% elif oeuvre.mtype == "jeu" %}🎮{% elif oeuvre.mtype == "livre" %}📕{% elif oeuvre.mtype == "bd" %}💬{% endif %}&nbsp;&nbsp;{{ oeuvre.title_vf|lower }}{% endblock %}
 {% block og-title %}{{ oeuvre.title_vf }} ({{ oeuvre.year }}){% endblock %}
 {% block tw-title %}{{ oeuvre.title_vf }} ({{ oeuvre.year }}){% endblock %}
 {% block meta-description-page %}infos et/ou commentaires sur {{ oeuvre.title_vf }} ({{ oeuvre.year }}){% endblock %}

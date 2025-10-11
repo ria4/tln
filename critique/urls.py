@@ -57,7 +57,7 @@ urlpatterns = [
     path('top-jeux/', views_top.TopJeuxView.as_view(), name='top_jeux'),
 
     # tags
-    path('tags/', views_collection.list_tags, name='list_tags'),
+    path('listes/', views_collection.list_tags, name='list_tags'),
     path('tags/autocomplete', views_oeuvre.OeuvreTagAutocomplete.as_view(create_field='name', validate_create=True), name='autocomplete_tag'),
     path('tags/<slug:slug>', views_collection.detail_tag, name='detail_tag'),
     path('tags/<slug:slug>/<int:page>', views_collection.detail_tag, name='detail_tag'),

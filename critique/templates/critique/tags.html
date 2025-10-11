@@ -1,25 +1,30 @@
 {% extends "critique/base.html" %}
 {% load static %}
 
-{% block title %}tags{% endblock %}
-{% block meta-description-page %}liste de tags{% endblock %}
+{% block title %}📋&nbsp;&nbsp;listes{% endblock %}
+{% block meta-description-page %}liste de listes{% endblock %}
 
 {% block content-wrap-class %}decenter{% endblock %}
 
 {% block content %}
 <div id="artiste-info">
-    <h1 class="critique-title">Tags</h1>
+    <h1 class="critique-title">Listes</h1>
 </div>
 
-<div id="collection" class="chunks artiste-oeuvres">
+<div id="collection" class="chunks">
     <ul>
     {% for el in tags_and_tierlists %}
         {% if el.created_at %}
             <li class="ellipsis-link tierlist-link">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span role="presentation"></span>
+                <span role="presentation"></span>
+                <span role="presentation"></span>
                 <a href="{% url 'detail_tierlist' el.slug %}">{{ el.name }}</a>
+            </li>
+        {% elif el.name|slice:":3" == "top" %}
+            <li class="ellipsis-link top-link">
+                <span role="presentation"></span>
+                <a href="{% url 'detail_tag' el.slug %}">{{ el.name }}</a>
             </li>
         {% else %}
             <li class="ellipsis-link"><a href="{% url 'detail_tag' el.slug %}">{{ el.name }}</a></li>

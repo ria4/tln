@@ -1,7 +1,7 @@
 {% extends "critique/base.html" %}
 
 {# this will work with up to 9 homonyms #}
-{% block title %}{{ oeuvres.0.slug|lower|slice:":-2" }}{% endblock %}
+{% block title %}⁉️&nbsp;&nbsp;{{ oeuvres.0.slug|lower|slice:":-2" }}{% endblock %}
 {% block meta-description-title %}résolution d'homonymie{% endblock %}
 
 {% block content %}

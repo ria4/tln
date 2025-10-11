@@ -849,6 +849,38 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     width: 100%; }
 
 
+/* Content Tags
+   ========================================================================== */
+
+/* top links */
+#content-wrap .top-link {
+    position: relative;
+    left: -1px;
+}
+#content-wrap .top-link span::after {
+    content: "⁕";
+    font-size: 24px;
+    line-height: 16px;
+    position: relative;
+    top: 3px;
+    color: #bd4700;
+}
+
+/* tierlist links */
+#content-wrap .tierlist-link a {
+    padding-left: 4px;
+}
+#content-wrap .tierlist-link span {
+    display: inline-block;
+    border: 1px solid #bd4700;
+    margin-right: -2px;
+    margin-bottom: -1px;
+}
+#content-wrap .tierlist-link span:nth-child(1) { height: 9px; }
+#content-wrap .tierlist-link span:nth-child(2) { height: 14px; }
+#content-wrap .tierlist-link span:nth-child(3) { height: 11px; }
+
+
 /* Content Tag
    ========================================================================== */
 
@@ -1154,24 +1186,106 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 /* Tier Lists
    ========================================================================== */
 
-#content-wrap .tierlist-link a {
-    padding-left: 4px;
+/* position */
+.tierlist-wrapper {
+    margin-top: 70px;
+    max-width: 76%;
+    width: unset;
 }
-#content-wrap .tierlist-link span {
-    display: inline-block;
-    border: 1px solid #bd4700;
-    margin-right: -2px;
-    margin-bottom: -1px;
-    content: "";
+@media (max-width: 600px) {
+.tierlist-wrapper {
+    max-width: unset;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}}
+
+/* borders */
+.tierlist .tier {
+    border: 1px solid #a57100;
+    border-top: none;
+    display: flex;
+    /* display: inline-flex; */
 }
-#content-wrap .tierlist-link span:nth-child(1) {
-    height: 9px;
+.tierlist .tier:first-child {
+    border-top: 1px solid #a57100;
 }
-#content-wrap .tierlist-link span:nth-child(2) {
-    height: 14px;
+.tierlist .tier-name {
+    border-right: 1px solid #a57100;
 }
-#content-wrap .tierlist-link span:nth-child(3) {
-    height: 11px;
+
+/* tier names */
+.tierlist .tier:nth-child(1) .tier-name { background-color: #f3d2ff; }
+.tierlist .tier:nth-child(2) .tier-name { background-color: #ffd1e4; }
+.tierlist .tier:nth-child(3) .tier-name { background-color: #ffd6bc; }
+.tierlist .tier:nth-child(4) .tier-name { background-color: #fadd95; }
+.tierlist .tier:nth-child(5) .tier-name { background-color: #d2eba5; }
+.tierlist .tier:nth-child(6) .tier-name { background-color: #a6f4ca; }
+.tierlist .tier:nth-child(7) .tier-name { background-color: #8ef4f5; }
+.tierlist .tier:nth-child(8) .tier-name { background-color: #b8e8ff; }
+.tierlist .tier:nth-child(9) .tier-name { background-color: #d3dfff; }
+.tierlist .tier-name {
+    border-right: 1px solid #a57100;
+    width: 120px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tierlist .tier-name span {
+    width: 100%;
+    font-family: AlegreyaSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 110%;
+    text-align: center;
+    text-decoration: underline;
+    hyphens: auto;
+}
+@media (max-width: 600px) {
+.tierlist .tier-name {
+    width: 60px;
+}}
+
+/* tier oeuvres */
+.tierlist .tier-oeuvres {
+    width: 100%;
+    min-height: 150px;
+    padding: 3px;
+    background-color: #fffddb;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
+.tierlist .tier-oeuvre {
+    margin: 2px 2px;
+    display: flex;
+    align-items: center;
+}
+.tierlist .tier-oeuvre a {
+    display: flex;
+}
+.tierlist .tier-oeuvre img {
+    border: 1px solid #ddd;
+    max-width: 140px;
+    max-height: 140px;
+    transition: all .2s ease;
+}
+.tierlist .tier-oeuvre img:hover {
+    border: 1px solid rgba(0, 0, 255, .4);
+    box-shadow: 0 0 4px 0 rgba(0, 13, 181, .7);
+}
+
+/* footer */
+.tierlist-footer {
+    padding-right: 4px;
+    padding-top: 20px;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.tierlist-footer time {
+    margin-bottom: -3px;
 }
 
 
