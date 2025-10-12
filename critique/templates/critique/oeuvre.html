@@ -29,10 +29,25 @@
         {% endif %}
 
         <div class="critique-info-text{% if spans %} with-spans{% endif %}{% if long_span %} with-long-span{% endif %}">
-            {% if oeuvre.tags %}
-            <div class="oeuvretags">
-                {% for tag in oeuvre.tags.all %}
-                <a href={% url "detail_tag" tag.slug %}>{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+            {% if tags_and_tierlists %}
+            <div class="oeuvretags{% if not tierlist_or_top %} no-tierlist-or-top{% endif %}">
+                {% for el in tags_and_tierlists %}
+                    {% spaceless %}
+                    {% if el.created_at %}
+                        <span class="tierlist-link">
+                            <span role="presentation"></span>
+                            <span role="presentation"></span>
+                            <span role="presentation"></span>
+                            <a href="{% url 'detail_tierlist' el.slug %}">{{ el.name }}</a>
+                        </span>
+                    {% elif el.name|slice:":3" == "top" %}
+                        <span class="top-link">
+                            <span role="presentation"></span>
+                            <a href="{% url 'detail_tag' el.slug %}">{{ el.name }}</a>
+                        </span>
+                    {% else %}
+                        <span><a href="{% url 'detail_tag' el.slug %}">{{ el.name }}</a></span>
+                        {% endif %}{% endspaceless %}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </div>
             {% endif %}

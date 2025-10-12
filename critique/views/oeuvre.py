@@ -143,9 +143,16 @@ def detail_oeuvre(req, slug):
             'comments',
             'spans__seance__cinema',
             'tags',
+            'tiers__tier_list',
         ),
         slug=slug,
     )
+
+    tags = oeuvre.tags.all()
+    tierlists = [tier.tier_list for tier in oeuvre.tiers.all()]
+    tags_and_tierlists = sorted(list(tags) + list(tierlists), key=lambda el: el.name)
+    tierlist_or_top = tierlists or [tag for tag in tags if tag.name.startswith("top")]
+
     spans = oeuvre.spans.all().order_by('-id')[:MAX_SPANS_ON_OEUVRE]
     if spans:
         span_form = OeuvreSpanForm(initial=get_oeuvrespan_form_data(spans[0]))
@@ -153,11 +160,13 @@ def detail_oeuvre(req, slug):
     # clear previous order_by
     spans = sorted(spans, key=lambda os: os.date_start)
     long_span = any([span.date_start.month >= 9 for span in spans])
+
     comments = oeuvre.comments.all().order_by('-date')
     comment_form = None
     if comments:
         comment_form = CommentaireForm(get_comment_form_data(comments[0]))
         comment_form.fields["content"].widget.attrs.update({"class": "focus-on-reveal"})
+
     if req.POST:
         oeuvre_form = OeuvreForm(req.POST)
     else:
@@ -168,8 +177,10 @@ def detail_oeuvre(req, slug):
         update_oeuvre(req, oeuvre, oeuvre_form)
         # we redirect because the slug might change
         return redirect('detail_oeuvre', slug=oeuvre.slug)
+
     if oeuvre.year == 2099:
         oeuvre.year = '20xx'
+
     return render(req, 'critique/oeuvre.html', locals())
 
 

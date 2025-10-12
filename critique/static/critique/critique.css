@@ -549,8 +549,9 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
     text-decoration: none; }
 #oeuvre-info .critique-info-text .oeuvretags a:hover {
     color: #f7a300; }
-@media(max-width: 600px) {
-#oeuvre-info .critique-info-text .oeuvretags { display: none; } }
+@media(max-width: 500px) {
+#oeuvre-info .critique-info-text .oeuvretags.no-tierlist-or-top { display: none; }
+#oeuvre-info .critique-info-text .oeuvretags { font-size: 16px; } }
 
 #oeuvre-info .critique-info-text-content {
     padding-bottom: 8%;
@@ -866,7 +867,17 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     line-height: 16px;
     position: relative;
     top: 3px;
+}
+#content-wrap .chunks .top-link span::after {
     color: #bd4700;
+}
+#content-wrap .oeuvretags .top-link span::after {
+    font-style: normal;
+    padding-right: 1px;
+}
+@media(max-width: 500px) {
+#content-wrap .oeuvretags .top-link span { margin-right: -1px; }
+#content-wrap .oeuvretags .top-link span::after { top: 2px; }
 }
 
 /* tierlist links */
@@ -875,13 +886,24 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 }
 #content-wrap .tierlist-link span {
     display: inline-block;
-    border: 1px solid #bd4700;
+    border: 1px solid;
     margin-right: -2px;
     margin-bottom: -1px;
 }
 #content-wrap .tierlist-link span:nth-child(1) { height: 9px; }
 #content-wrap .tierlist-link span:nth-child(2) { height: 14px; }
 #content-wrap .tierlist-link span:nth-child(3) { height: 11px; }
+#content-wrap .chunks .tierlist-link span { border-color: #bd4700; }
+#content-wrap .chunks .tierlist-link a { padding-left: 3px; }
+#content-wrap .oeuvretags .tierlist-link span { margin-right: 2px; }
+#content-wrap .oeuvretags .tierlist-link span:nth-child(3) { margin-right: 0; }
+@media(max-width: 500px) {
+#content-wrap .oeuvretags .tierlist-link span { position: relative; top: -1px; }
+#content-wrap .oeuvretags .tierlist-link span:nth-child(1) { height: 6px; }
+#content-wrap .oeuvretags .tierlist-link span:nth-child(2) { height: 10px; }
+#content-wrap .oeuvretags .tierlist-link span:nth-child(3) { height: 8px; }
+#content-wrap .oeuvretags .tierlist-link span:nth-child(3) { margin-right: -1px; }
+}
 
 
 /* Content Tag
