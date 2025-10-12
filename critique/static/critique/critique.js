@@ -566,6 +566,20 @@ if (oeuvrespanFormEmpty) {
     }
 }
 
+if (tierFormEmpty) {
+    if (
+        (typeof tierDefaultTierlistId !== "undefined")
+        && (typeof tierDefaultTierlistName !== "undefined")) {
+        var tierEmptySelect = document.getElementById("id_empty_tier_tier_list");
+        tierEmptySelect.children[0].removeAttribute("selected");
+        var optionTier = document.createElement("option");
+        optionTier.setAttribute("value", tierDefaultTierlistId);
+        optionTier.setAttribute("selected", "");
+        optionTier.textContent = tierDefaultTierlistName;
+        tierEmptySelect.appendChild(optionTier);
+    }
+}
+
 
 /* Critique Admin Codes - Register admin inputs */
 
