@@ -373,8 +373,10 @@ _:-ms-fullscreen, :root .filter-navbar { min-height: 58px; } /* IE 11 */
     transition: opacity 0.5s ease-in-out;
     max-height: 100%; }
 #top-nav-h #homepage-link img.img-bottom { opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
 #top-nav-h #homepage-link img.img-top:hover { opacity: 0; }
 #top-nav-h #homepage-link img.img-bottom:hover { opacity: 1; }
+}
 
 #top-nav-h .nav-separator-homepage {
     position: relative;
@@ -532,6 +534,10 @@ body #sidebar {
     transform: rotate(9.8deg);
     top: -88px;
 }
+#top-nav-h #todo-logo-nav.todo-logo-nav-mobile {
+    transition: opacity ease-out .1s, transform ease .6s !important; }
+#top-nav-h.expanded #todo-logo-nav.todo-logo-nav-mobile {
+    transition: opacity ease-in .2s .1s, transform ease .6s !important }
 #todo-logo-nav.todo-logo-nav-mobile { top: -88px; right: 12px; }
 #top-nav-h #todo-logo-nav.todo-logo-nav-mobile { top: -102px; right: 92px; }
 #todo-logo-nav.todo-logo-nav-mobile.mobile-hover,
