@@ -778,6 +778,9 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
 #preambule hr {
     max-width: none;
     border-bottom-color: #a57100; }
+@media(max-width: 600px) {
+#preambule .entry-content .entry-section > ul { padding-left: 26px; }
+#preambule .entry-content .entry-section > ul > li > ul { padding-left: 14px; }}
 
 
 /* Content Thinky Games
@@ -1187,13 +1190,13 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
    ========================================================================== */
 
 /* position */
-.tierlist-wrapper {
+#content > .tierlist-wrapper {
     margin-top: 70px;
     max-width: 76%;
     width: unset;
 }
 @media (max-width: 600px) {
-.tierlist-wrapper {
+#content > .tierlist-wrapper {
     max-width: unset;
     width: auto;
     margin-left: 10px;
@@ -1205,7 +1208,6 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     border: 1px solid #a57100;
     border-top: none;
     display: flex;
-    /* display: inline-flex; */
 }
 .tierlist .tier:first-child {
     border-top: 1px solid #a57100;
