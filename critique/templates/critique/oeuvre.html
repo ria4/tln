@@ -110,7 +110,7 @@
 {% endblock %}
 
 
-{% block overlays %}
+{% block overlays-more %}
 {% if perms.critique.all_rights %}
 <div class="overlay">
     <form id="oeuvre_form" action="{% url 'detail_oeuvre' oeuvre.slug %}" method="post">

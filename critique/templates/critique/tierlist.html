@@ -39,7 +39,7 @@
 
 {% endblock %}
 
-{% block overlays %}
+{% block overlays-more %}
 {% if perms.critique.all_rights %}
 
 <div class="overlay">
@@ -83,4 +83,11 @@
 {% endfor %}
 
 {% endif %}
+{% endblock %}
+
+{% block vars-js %}
+<script>
+    var tierDefaultTierlistId = {{ tierlist.id }};
+    var tierDefaultTierlistName = "{{ tierlist.name }}";
+</script>
 {% endblock %}

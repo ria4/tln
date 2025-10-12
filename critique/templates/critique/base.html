@@ -99,7 +99,9 @@
 <main id="content" tabindex="-1">
     {% block content %}{% endblock %}
 </main>
+{% endblock %}
 
+{% block overlays %}
 {% if perms.critique.all_rights %}
 <input id="admin-codes" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"/>
 
@@ -187,9 +189,9 @@
     </form>
 </div>
 {% endif %}
-{% endblock %}
 
-{% block overlays %}{% endblock %}
+{% block overlays-more %}{% endblock %}
+{% endblock %}
 
 {% block app-js %}
 {% if perms.critique.all_rights %}{{ seance_form_empty.media }}{% endif %}
