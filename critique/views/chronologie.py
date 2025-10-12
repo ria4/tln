@@ -43,7 +43,7 @@ def get_formatted_span_end(span):
         date_end = min(date_end, date_max)
     return date_end.strftime("%Y-%m-%d")
 
-    
+
 # Chronologie
 
 def get_chronologie(req):
