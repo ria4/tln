@@ -696,7 +696,8 @@ tbody tr:nth-child(even) { background-color: rgba(251, 242, 189, 0.9); }
 div.zoomable {
     position: relative;
     border: 1px solid #deda99;
-    overflow: hidden; }
+    overflow: hidden;
+    cursor: zoom-in; }
 div.zoomable img {
     border: 0 !important; }
 div.zoomable img:last-child {
