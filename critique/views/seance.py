@@ -54,15 +54,15 @@ def list_seances(req, year=2025):
 
     if year > 2011:
         start = datetime.datetime(year, 1, 1)
-        end = datetime.datetime(year, 12, 31)
+        end = datetime.datetime(year + 1, 1, 1)
     else:
         year = 2011
         start = datetime.datetime(1998, 1, 1)
-        end = datetime.datetime(2011, 12, 31)
+        end = datetime.datetime(2012, 1, 1)
     seances = (
         Seance.objects.filter(
             oeuvre_span__date_start__gte=start,
-            oeuvre_span__date_start__lte=end,
+            oeuvre_span__date_start__lt=end,
         ).select_related(
             'cinema',
             'oeuvre_span',
