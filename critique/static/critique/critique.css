@@ -741,6 +741,9 @@ _:-ms-fullscreen, :root .oeuvre-display img { flex: 0 0 auto; } /* IE 11 */
 #collection.chunks ul { max-width: 380px; }
 #collection.artiste-oeuvres.chunks ul { max-width: 520px; }
 #seances.chunks ul, #cinema-seances.chunks ul { max-width: 600px; }
+#seances.chunks li.empty-chunk, #seances.chunks li.empty-chunk:hover {
+    color: black;
+    font-style: italic; }
 #cinemas.chunks ul { max-width: 440px; }
 #cinemas-elsewhere.chunks ul { max-width: 490px; }
 _:-ms-fullscreen, :root #cinemas.chunks { height: 2298px; } /* IE 11 */
@@ -748,8 +751,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 2298px; } /* IE 11 */
 _:-ms-fullscreen, :root #cinemas.chunks { height: 1176px; } /* IE 11 */ }
 @media (min-width: 1801px) {
 _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
-#cinemas-elsewhere.chunks li { color: black; }
-#cinemas-elsewhere.chunks li:hover { color: black; }
+#cinemas-elsewhere.chunks li, #cinemas-elsewhere.chunks li:hover { color: black; }
 
 
 /* Content Index
@@ -866,7 +868,7 @@ _:-ms-fullscreen, :root #cinemas.chunks { height: 588px; } /* IE 11 */ }
     font-size: 24px;
     line-height: 16px;
     position: relative;
-    top: 3px;
+    top: 1px;
 }
 #content-wrap .chunks .top-link span::after {
     color: #bd4700;

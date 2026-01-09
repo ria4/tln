@@ -47,10 +47,16 @@ def add_seance(req):
         update_seance(req, seance, form.cleaned_data)
         return redirect('list_seances', year=seance.oeuvre_span.date_start.year)
 
-def list_seances(req, year=2025):
+def list_seances(req, year=None):
     form = SeanceForm(req.POST)
     if req.POST and form.is_valid():
         update_seances(req, form)
+
+    current_year = datetime.datetime.now().year
+    if year is None:
+        year = current_year
+    elif year > current_year:
+        return redirect('list_seances')
 
     if year > 2011:
         start = datetime.datetime(year, 1, 1)
@@ -69,4 +75,24 @@ def list_seances(req, year=2025):
         ).order_by('oeuvre_span__date_start')
     )
 
-    return render(req, 'critique/seances.html', {'year': year, 'seances': seances})
+    # assemble the attributes used when creating the links to each seance year
+    links_attrs = []
+    mod = (current_year - 2011) % 3
+    links_attrs_first = [[2011, "avant 2012"]]
+    for i in range(mod):
+        link_year = 2011 + i + 1
+        links_attrs_first.append([link_year, str(link_year)])
+    links_attrs.append(links_attrs_first)
+    link_year_offset = 2011 + mod + 1
+    while link_year_offset <= current_year:
+        link_year_group = []
+        for i in range(3):
+            link_year_group.append([link_year_offset + i, str(link_year_offset + i)])
+        links_attrs.append(link_year_group)
+        link_year_offset += 3
+
+    return render(
+        req,
+        'critique/seances.html',
+        {'year': year, 'seances': seances, 'current_year': current_year, 'links_attrs': links_attrs},
+    )
