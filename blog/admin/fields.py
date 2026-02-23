@@ -45,4 +45,9 @@ class MPTTModelMultipleChoiceField(forms.ModelMultipleChoiceField):
         """
         return MPTTModelChoiceIterator(self)
 
-    choices = property(_get_choices, forms.ChoiceField._set_choices)
+    # The line below is unsupported in Django 5+ and I'm not sure how to update it.
+    # It's from an old code snippet added on top of Zinnia, which is super obsolete
+    # as of 2026. Commenting it out doesn't seem to completely break the admin.
+    # So I'm commenting it out. Whatever happens, happens.
+    #
+    # choices = property(_get_choices, forms.ChoiceField._set_choices)
