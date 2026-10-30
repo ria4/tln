@@ -7,7 +7,11 @@ from django.utils.timezone import localtime
 
 from tln.templatetags.tln_extras import fancydate
 
-from critique.constants import CINEMA_LONGNAME_PREFIXES, MTYPE_SPAN_MAP
+from critique.constants import (
+    CINEMA_LONGNAME_PREFIXES,
+    MTYPE_ATTRIBUTION_MAP,
+    MTYPE_SPAN_MAP,
+)
 
 register = template.Library()
 
@@ -98,6 +102,10 @@ def ellipsiscolor(seance):
     """Return a class for setting the right color of overflow ellipsis."""
     return 'ellipsis-black' if seance.seance_title else ''
 
+
+@register.simple_tag
+def mtypeattribution(mtype):
+    return MTYPE_ATTRIBUTION_MAP.get(mtype)
 
 @register.simple_tag
 def fancyspans(mtype, spans):
